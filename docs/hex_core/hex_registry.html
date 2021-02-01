@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.23.0">
+    <meta name="project" content="hex_core v0.7.1">
+
+    <title>hex_registry — hex_core v0.7.1</title>
+    <link rel="stylesheet" href="dist/erlang-07bc6081ab7900c6fb55.css" />
+
+    <script src="dist/sidebar_items-b9d2e885c5.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f97730d45ef67f3e6188.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="api-reference.html" class="sidebar-projectName">
+hex_core
+      </a>
+      <strong class="sidebar-projectVersion">
+        v0.7.1
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+      <h1>
+hex_registry <small class="app-vsn">(hex_core v0.7.1)</small>
+
+          <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L1" title="View Source" class="view-source" rel="help">
+            <span class="icon-code" aria-hidden="true"></span>
+            <span class="sr-only">View Source</span>
+          </a>
+
+      </h1>
+
+
+
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Summary
+          </h1>
+
+  <div class="summary-types summary">
+    <h2>
+      <a href="#types">Types</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:private_key/0">private_key()</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:public_key/0">public_key()</a>
+
+  </div>
+
+</div>
+
+  </div>
+
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#decode_and_verify_signed/2">decode_and_verify_signed ( Signed,  PublicKey ) 
+</a>
+
+  </div>
+
+    <div class="summary-synopsis">Decode message created with sign_protobuf/2 and verify it against public key.</div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#decode_names/2">decode_names ( Payload,  Repository ) 
+</a>
+
+  </div>
+
+    <div class="summary-synopsis">Decode message created with encode_names/1.</div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#decode_package/3">decode_package ( Payload,  Repository,  Package ) 
+</a>
+
+  </div>
+
+    <div class="summary-synopsis">Decode message created with encode_package/1.</div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#decode_signed/1">decode_signed ( Signed ) 
+</a>
+
+  </div>
+
+    <div class="summary-synopsis">Decode message created with sign_protobuf/2 without verification.</div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#decode_versions/2">decode_versions ( Payload,  Repository ) 
+</a>
+
+  </div>
+
+    <div class="summary-synopsis">Decode message created with encode_versions/1.</div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#encode_names/1">encode_names ( Names ) 
+</a>
+
+  </div>
+
+    <div class="summary-synopsis">Encode Names message.</div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#encode_package/1">encode_package ( Package ) 
+</a>
+
+  </div>
+
+    <div class="summary-synopsis">Encode Package message.</div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#encode_versions/1">encode_versions ( Versions ) 
+</a>
+
+  </div>
+
+    <div class="summary-synopsis">Encode Versions message.</div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#sign/2">sign ( Binary,  PrivateKey ) 
+</a>
+
+  </div>
+
+    <div class="summary-synopsis">Signs binary with given private key.</div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#sign_protobuf/2">sign_protobuf ( Payload,  PrivateKey ) 
+</a>
+
+  </div>
+
+    <div class="summary-synopsis">Encode Signed message.</div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#verify/3">verify ( Binary,  Signature,  PublicKey ) 
+</a>
+
+  </div>
+
+    <div class="summary-synopsis">Verifies binary against signature and a public key.</div>
+
+</div>
+
+  </div>
+
+        </section>
+
+
+        <section id="types" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#types">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Types
+          </h1>
+          <div class="types-list">
+<section class="detail" id="t:private_key/0">
+
+  <div class="detail-header">
+    <a href="#t:private_key/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">private_key()</h1>
+
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L17" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="t:public_key/0">
+
+  <div class="detail-header">
+    <a href="#t:public_key/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">public_key()</h1>
+
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L18" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+
+          </div>
+        </section>
+
+        <section id="functions" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#functions">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Functions
+          </h1>
+          <div class="functions-list">
+<section class="detail" id="decode_and_verify_signed/2">
+
+  <div class="detail-header">
+    <a href="#decode_and_verify_signed/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">decode_and_verify_signed ( Signed,  PublicKey ) 
+</h1>
+
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L95" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+Decode message created with sign_protobuf/2 and verify it against public key.
+  </section>
+</section>
+<section class="detail" id="decode_names/2">
+
+  <div class="detail-header">
+    <a href="#decode_names/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">decode_names ( Payload,  Repository ) 
+</h1>
+
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L31" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+Decode message created with encode_names/1.
+  </section>
+</section>
+<section class="detail" id="decode_package/3">
+
+  <div class="detail-header">
+    <a href="#decode_package/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">decode_package ( Payload,  Repository,  Package ) 
+</h1>
+
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L69" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+Decode message created with encode_package/1.
+  </section>
+</section>
+<section class="detail" id="decode_signed/1">
+
+  <div class="detail-header">
+    <a href="#decode_signed/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">decode_signed ( Signed ) 
+</h1>
+
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L89" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+Decode message created with sign_protobuf/2 without verification.
+  </section>
+</section>
+<section class="detail" id="decode_versions/2">
+
+  <div class="detail-header">
+    <a href="#decode_versions/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">decode_versions ( Payload,  Repository ) 
+</h1>
+
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L50" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+Decode message created with encode_versions/1.
+  </section>
+</section>
+<section class="detail" id="encode_names/1">
+
+  <div class="detail-header">
+    <a href="#encode_names/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">encode_names ( Names ) 
+</h1>
+
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L26" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+Encode Names message.
+  </section>
+</section>
+<section class="detail" id="encode_package/1">
+
+  <div class="detail-header">
+    <a href="#encode_package/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">encode_package ( Package ) 
+</h1>
+
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L64" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+Encode Package message.
+  </section>
+</section>
+<section class="detail" id="encode_versions/1">
+
+  <div class="detail-header">
+    <a href="#encode_versions/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">encode_versions ( Versions ) 
+</h1>
+
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L45" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+Encode Versions message.
+  </section>
+</section>
+<section class="detail" id="sign/2">
+
+  <div class="detail-header">
+    <a href="#sign/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">sign ( Binary,  PrivateKey ) 
+</h1>
+
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L106" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+Signs binary with given private key.
+  </section>
+</section>
+<section class="detail" id="sign_protobuf/2">
+
+  <div class="detail-header">
+    <a href="#sign_protobuf/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">sign_protobuf ( Payload,  PrivateKey ) 
+</h1>
+
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L83" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+Encode Signed message.
+  </section>
+</section>
+<section class="detail" id="verify/3">
+
+  <div class="detail-header">
+    <a href="#verify/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">verify ( Binary,  Signature,  PublicKey ) 
+</h1>
+
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L113" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+Verifies binary against signature and a public key.
+  </section>
+</section>
+
+          </div>
+        </section>
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.23.0) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

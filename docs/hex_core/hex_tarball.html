@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.23.0">
+    <meta name="project" content="hex_core v0.7.1">
+
+    <title>hex_tarball — hex_core v0.7.1</title>
+    <link rel="stylesheet" href="dist/erlang-07bc6081ab7900c6fb55.css" />
+
+    <script src="dist/sidebar_items-b9d2e885c5.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f97730d45ef67f3e6188.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="api-reference.html" class="sidebar-projectName">
+hex_core
+      </a>
+      <strong class="sidebar-projectVersion">
+        v0.7.1
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+      <h1>
+hex_tarball <small class="app-vsn">(hex_core v0.7.1)</small>
+
+          <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_tarball.erl#L3" title="View Source" class="view-source" rel="help">
+            <span class="icon-code" aria-hidden="true"></span>
+            <span class="sr-only">View Source</span>
+          </a>
+
+      </h1>
+
+
+        <section id="moduledoc">
+Functions for creating and unpacking Hex tarballs.
+        </section>
+
+
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Summary
+          </h1>
+
+  <div class="summary-types summary">
+    <h2>
+      <a href="#types">Types</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:checksum/0">checksum()</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:contents/0">contents()</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:filename/0">filename()</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:files/0">files()</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:metadata/0">metadata()</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:tarball/0">tarball()</a>
+
+  </div>
+
+</div>
+
+  </div>
+
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#create/2">create ( Metadata,  Files ) 
+</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#create/3">create ( Metadata,  Files,  Config ) 
+</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Creates a package tarball.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#create_docs/1">create_docs ( Files ) 
+</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#create_docs/2">create_docs ( Files,  _ ) 
+</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Creates a docs tarball.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#format_byte_size/1">format_byte_size ( Size ) 
+</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#format_checksum/1">format_checksum ( Checksum ) 
+</a>
+
+  </div>
+
+    <div class="summary-synopsis">Returns base16-encoded representation of checksum.</div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#format_error/1">format_error ( _ ) 
+</a>
+
+  </div>
+
+    <div class="summary-synopsis">Converts an error reason term to a human-readable error message string.</div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#unpack/2">unpack ( Tarball,  Output ) 
+</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#unpack/3">unpack ( Tarball,  Output,  Config ) 
+</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Unpacks a package tarball.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#unpack_docs/2">unpack_docs ( Tarball,  Output ) 
+</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#unpack_docs/3">unpack_docs ( Tarball,  Output,  Config ) 
+</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Unpacks a documentation tarball.</p></div>
+
+</div>
+
+  </div>
+
+        </section>
+
+
+        <section id="types" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#types">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Types
+          </h1>
+          <div class="types-list">
+<section class="detail" id="t:checksum/0">
+
+  <div class="detail-header">
+    <a href="#t:checksum/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">checksum()</h1>
+
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_tarball.erl#L19" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="t:contents/0">
+
+  <div class="detail-header">
+    <a href="#t:contents/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">contents()</h1>
+
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_tarball.erl#L20" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="t:filename/0">
+
+  <div class="detail-header">
+    <a href="#t:filename/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">filename()</h1>
+
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_tarball.erl#L21" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="t:files/0">
+
+  <div class="detail-header">
+    <a href="#t:files/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">files()</h1>
+
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_tarball.erl#L22" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="t:metadata/0">
+
+  <div class="detail-header">
+    <a href="#t:metadata/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">metadata()</h1>
+
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_tarball.erl#L23" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="t:tarball/0">
+
+  <div class="detail-header">
+    <a href="#t:tarball/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">tarball()</h1>
+
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_tarball.erl#L24" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+
+          </div>
+        </section>
+
+        <section id="functions" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#functions">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Functions
+          </h1>
+          <div class="functions-list">
+<section class="detail" id="create/2">
+
+  <div class="detail-header">
+    <a href="#create/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">create ( Metadata,  Files ) 
+</h1>
+
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_tarball.erl#L83" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="create/3">
+
+  <div class="detail-header">
+    <a href="#create/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">create ( Metadata,  Files,  Config ) 
+</h1>
+
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_tarball.erl#L49" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Creates a package tarball.</p><p>Returns the binary of the tarball the &quot;inner checksum&quot; and &quot;outer checksum&quot;. The inner checksum is deprecated in favor of the outer checksum.</p><p>Examples:</p><pre>  &gt; Metadata = #{&lt;&lt;&quot;name&quot;&gt;&gt; =&gt; &lt;&lt;&quot;foo&quot;&gt;&gt;, &lt;&lt;&quot;version&quot;&gt;&gt; =&gt; &lt;&lt;&quot;1.0.0&quot;&gt;&gt;},
+  &gt; Files = [{&quot;src/foo.erl&quot;, &lt;&lt;&quot;-module(foo).&quot;&gt;&gt;}],
+  &gt; hex_tarball:create(Metadata, Files).
+  {ok, #{tarball =&gt; &lt;&lt;86,69,...&gt;&gt;,
+         outer_checksum =&gt; &lt;&lt;40,32,...&gt;&gt;,
+         inner_checksum =&gt; &lt;&lt;178,12,...&gt;&gt;}}</pre>
+  </section>
+</section>
+<section class="detail" id="create_docs/1">
+
+  <div class="detail-header">
+    <a href="#create_docs/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">create_docs ( Files ) 
+</h1>
+
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_tarball.erl#L113" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="create_docs/2">
+
+  <div class="detail-header">
+    <a href="#create_docs/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">create_docs ( Files,  _ ) 
+</h1>
+
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_tarball.erl#L98" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Creates a docs tarball.</p><p>Examples:</p><pre>  &gt; Files = [{&quot;doc/index.html&quot;, &lt;&lt;&quot;Docs&quot;&gt;&gt;}],
+  &gt; hex_tarball:create_docs(Files).
+  {ok, &lt;&lt;86,69,...&gt;&gt;}</pre>
+  </section>
+</section>
+<section class="detail" id="format_byte_size/1">
+
+  <div class="detail-header">
+    <a href="#format_byte_size/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">format_byte_size ( Size ) 
+</h1>
+
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_tarball.erl#L226" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="format_checksum/1">
+
+  <div class="detail-header">
+    <a href="#format_checksum/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">format_checksum ( Checksum ) 
+</h1>
+
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_tarball.erl#L198" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+Returns base16-encoded representation of checksum.
+  </section>
+</section>
+<section class="detail" id="format_error/1">
+
+  <div class="detail-header">
+    <a href="#format_error/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">format_error ( _ ) 
+</h1>
+
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_tarball.erl#L204" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+Converts an error reason term to a human-readable error message string.
+  </section>
+</section>
+<section class="detail" id="unpack/2">
+
+  <div class="detail-header">
+    <a href="#unpack/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">unpack ( Tarball,  Output ) 
+</h1>
+
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_tarball.erl#L167" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="unpack/3">
+
+  <div class="detail-header">
+    <a href="#unpack/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">unpack ( Tarball,  Output,  Config ) 
+</h1>
+
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_tarball.erl#L142" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Unpacks a package tarball.</p>Remember to verify the outer tarball checksum against the registry checksum returned from <code>hex_repo:get_package(Config, Package)`. Examples: ``` &gt; hex_tarball:unpack(Tarball, memory). {ok,#{outer_checksum =&gt; &lt;&lt;...&gt;&gt;, contents =&gt; [{&quot;src/foo.erl&quot;,&lt;&lt;&quot;-module(foo).&quot;&gt;&gt;}], metadata =&gt; #{&lt;&lt;&quot;name&quot;&gt;&gt; =&gt; &lt;&lt;&quot;foo&quot;&gt;&gt;, ...}}} &gt; hex_tarball:unpack(Tarball, &quot;path/to/unpack&quot;). {ok,#{outer_checksum =&gt; &lt;&lt;...&gt;&gt;, metadata =&gt; #{&lt;&lt;&quot;name&quot;&gt;&gt; =&gt; &lt;&lt;&quot;foo&quot;&gt;&gt;, ...}}}</code>''
+  </section>
+</section>
+<section class="detail" id="unpack_docs/2">
+
+  <div class="detail-header">
+    <a href="#unpack_docs/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">unpack_docs ( Tarball,  Output ) 
+</h1>
+
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_tarball.erl#L192" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="unpack_docs/3">
+
+  <div class="detail-header">
+    <a href="#unpack_docs/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">unpack_docs ( Tarball,  Output,  Config ) 
+</h1>
+
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_tarball.erl#L184" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Unpacks a documentation tarball.</p><p>Examples:</p><pre>  &gt; hex_tarball:unpack_docs(Tarball, memory).
+  {ok, [{&quot;index.html&quot;, &lt;&lt;&quot;&lt;!doctype&gt;&quot;&gt;&gt;}, ...]}
+ 
+  &gt; hex_tarball:unpack_docs(Tarball, &quot;path/to/unpack&quot;).
+  ok</pre>
+  </section>
+</section>
+
+          </div>
+        </section>
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.23.0) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

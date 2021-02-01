@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.23.0">
+    <meta name="project" content="hex_core v0.7.1">
+
+    <title>hex_api_organization_member — hex_core v0.7.1</title>
+    <link rel="stylesheet" href="dist/erlang-07bc6081ab7900c6fb55.css" />
+
+    <script src="dist/sidebar_items-b9d2e885c5.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f97730d45ef67f3e6188.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="api-reference.html" class="sidebar-projectName">
+hex_core
+      </a>
+      <strong class="sidebar-projectVersion">
+        v0.7.1
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+      <h1>
+hex_api_organization_member <small class="app-vsn">(hex_core v0.7.1)</small>
+
+          <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_api_organization_member.erl#L3" title="View Source" class="view-source" rel="help">
+            <span class="icon-code" aria-hidden="true"></span>
+            <span class="sr-only">View Source</span>
+          </a>
+
+      </h1>
+
+
+        <section id="moduledoc">
+HTTP API - Organization Members
+        </section>
+
+
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Summary
+          </h1>
+
+  <div class="summary-types summary">
+    <h2>
+      <a href="#types">Types</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:role/0">role()</a>
+
+  </div>
+
+</div>
+
+  </div>
+
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#add/3">add ( Config,  UsernameOrEmail,  Role ) 
+</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Adds an organization member.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#delete/2">delete ( Config,  UsernameOrEmail ) 
+</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Deletes an organization member.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#get/2">get ( Config,  UsernameOrEmail ) 
+</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Gets an organization member.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#list/1">list ( Config ) 
+</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Lists the organization's members.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#update/3">update ( Config,  UsernameOrEmail,  Role ) 
+</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Updates an organization member's role.</p></div>
+
+</div>
+
+  </div>
+
+        </section>
+
+
+        <section id="types" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#types">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Types
+          </h1>
+          <div class="types-list">
+<section class="detail" id="t:role/0">
+
+  <div class="detail-header">
+    <a href="#t:role/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">role()</h1>
+
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_api_organization_member.erl#L12" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+
+          </div>
+        </section>
+
+        <section id="functions" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#functions">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Functions
+          </h1>
+          <div class="functions-list">
+<section class="detail" id="add/3">
+
+  <div class="detail-header">
+    <a href="#add/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">add ( Config,  UsernameOrEmail,  Role ) 
+</h1>
+
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_api_organization_member.erl#L70" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Adds an organization member.</p><p>Examples:</p><pre>  &gt; hex_api_organization_member:add(hex_core:default_config()#{api_organization =&gt; &lt;&lt;&quot;acme&quot;&gt;&gt;}, &lt;&lt;&quot;user&quot;&gt;&gt;, write).
+  {ok, {200, ..., #{
+       &lt;&lt;&quot;email&quot;&gt;&gt; =&gt; &lt;&lt;&quot;user@example.com&quot;&gt;&gt;,
+       &lt;&lt;&quot;role&quot;&gt;&gt; =&gt; &lt;&lt;&quot;write&quot;&gt;&gt;,
+       &lt;&lt;&quot;url&quot;&gt;&gt; =&gt; &lt;&lt;&quot;https://hex.pm/api/users/user&quot;&gt;&gt;,
+       &lt;&lt;&quot;username&quot;&gt;&gt; =&gt; &lt;&lt;&quot;user&quot;&gt;&gt;
+       }}}</pre>
+  </section>
+</section>
+<section class="detail" id="delete/2">
+
+  <div class="detail-header">
+    <a href="#delete/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">delete ( Config,  UsernameOrEmail ) 
+</h1>
+
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_api_organization_member.erl#L107" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Deletes an organization member.</p><p>Examples:</p><pre>  &gt; hex_api_organization_member:delete(hex_core:default_config()#{api_organization =&gt; &lt;&lt;&quot;acme&quot;&gt;&gt;}, &lt;&lt;&quot;user&quot;&gt;&gt;).
+  {ok, {204, ..., nil}}</pre>
+  </section>
+</section>
+<section class="detail" id="get/2">
+
+  <div class="detail-header">
+    <a href="#get/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">get ( Config,  UsernameOrEmail ) 
+</h1>
+
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_api_organization_member.erl#L50" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Gets an organization member.</p><p>Examples:</p><pre>  &gt; hex_api_organization_member:get(hex_core:default_config()#{api_organization =&gt; &lt;&lt;&quot;acme&quot;&gt;&gt;}, &lt;&lt;&quot;user&quot;&gt;&gt;).
+  {ok, {200, ..., #{
+       &lt;&lt;&quot;email&quot;&gt;&gt; =&gt; &lt;&lt;&quot;user@example.com&quot;&gt;&gt;,
+       &lt;&lt;&quot;role&quot;&gt;&gt; =&gt; &lt;&lt;&quot;admin&quot;&gt;&gt;,
+       &lt;&lt;&quot;url&quot;&gt;&gt; =&gt; &lt;&lt;&quot;https://hex.pm/api/users/user&quot;&gt;&gt;,
+       &lt;&lt;&quot;username&quot;&gt;&gt; =&gt; &lt;&lt;&quot;user&quot;&gt;&gt;
+       }}}</pre>
+  </section>
+</section>
+<section class="detail" id="list/1">
+
+  <div class="detail-header">
+    <a href="#list/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">list ( Config ) 
+</h1>
+
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_api_organization_member.erl#L30" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Lists the organization's members.</p><p>Examples:</p><pre>  &gt; hex_api_organization_member:list(hex_core:default_config()#{api_organization =&gt; &lt;&lt;&quot;acme&quot;&gt;&gt;}).
+  {ok, {200, ..., [#{
+       &lt;&lt;&quot;email&quot;&gt;&gt; =&gt; &lt;&lt;&quot;user@example.com&quot;&gt;&gt;,
+       &lt;&lt;&quot;role&quot;&gt;&gt; =&gt; &lt;&lt;&quot;admin&quot;&gt;&gt;,
+       &lt;&lt;&quot;url&quot;&gt;&gt; =&gt; &lt;&lt;&quot;https://hex.pm/api/users/user&quot;&gt;&gt;,
+       &lt;&lt;&quot;username&quot;&gt;&gt; =&gt; &lt;&lt;&quot;user&quot;&gt;&gt;
+       }]}}</pre>
+  </section>
+</section>
+<section class="detail" id="update/3">
+
+  <div class="detail-header">
+    <a href="#update/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">update ( Config,  UsernameOrEmail,  Role ) 
+</h1>
+
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_api_organization_member.erl#L91" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Updates an organization member's role.</p><p>Examples:</p><pre>  &gt; hex_api_organization_member:update(hex_core:default_config()#{api_organization =&gt; &lt;&lt;&quot;acme&quot;&gt;&gt;}, &lt;&lt;&quot;user&quot;&gt;&gt;, read).
+  {ok, {200, ..., #{
+       &lt;&lt;&quot;email&quot;&gt;&gt; =&gt; &lt;&lt;&quot;user@example.com&quot;&gt;&gt;,
+       &lt;&lt;&quot;role&quot;&gt;&gt; =&gt; &lt;&lt;&quot;read&quot;&gt;&gt;,
+       &lt;&lt;&quot;url&quot;&gt;&gt; =&gt; &lt;&lt;&quot;https://hex.pm/api/users/user&quot;&gt;&gt;,
+       &lt;&lt;&quot;username&quot;&gt;&gt; =&gt; &lt;&lt;&quot;user&quot;&gt;&gt;
+       }}}</pre>
+  </section>
+</section>
+
+          </div>
+        </section>
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.23.0) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>
