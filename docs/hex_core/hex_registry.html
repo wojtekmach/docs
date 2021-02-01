@@ -82,13 +82,17 @@ hex_core
       <h1>
 hex_registry <small class="app-vsn">(hex_core v0.7.1)</small>
 
-          <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L1" title="View Source" class="view-source" rel="help">
+          <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L3" title="View Source" class="view-source" rel="help">
             <span class="icon-code" aria-hidden="true"></span>
             <span class="sr-only">View Source</span>
           </a>
 
       </h1>
 
+
+        <section id="moduledoc">
+Functions for encoding and decoding Hex registries.
+        </section>
 
 
         <section id="summary" class="details-list">
@@ -259,7 +263,7 @@ Types
     </a>
     <h1 class="signature">private_key()</h1>
 
-      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L17" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L19" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -281,7 +285,7 @@ Types
     </a>
     <h1 class="signature">public_key()</h1>
 
-      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L18" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L20" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -317,7 +321,7 @@ Functions
     <h1 class="signature">decode_and_verify_signed ( Signed,  PublicKey ) 
 </h1>
 
-      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L95" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L97" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -340,7 +344,7 @@ Decode message created with sign_protobuf/2 and verify it against public key.
     <h1 class="signature">decode_names ( Payload,  Repository ) 
 </h1>
 
-      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L31" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L33" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -363,7 +367,7 @@ Decode message created with encode_names/1.
     <h1 class="signature">decode_package ( Payload,  Repository,  Package ) 
 </h1>
 
-      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L69" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L71" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -386,7 +390,7 @@ Decode message created with encode_package/1.
     <h1 class="signature">decode_signed ( Signed ) 
 </h1>
 
-      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L89" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L91" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -409,7 +413,7 @@ Decode message created with sign_protobuf/2 without verification.
     <h1 class="signature">decode_versions ( Payload,  Repository ) 
 </h1>
 
-      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L50" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L52" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -432,7 +436,7 @@ Decode message created with encode_versions/1.
     <h1 class="signature">encode_names ( Names ) 
 </h1>
 
-      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L26" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L28" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -455,7 +459,7 @@ Encode Names message.
     <h1 class="signature">encode_package ( Package ) 
 </h1>
 
-      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L64" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L66" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -478,7 +482,7 @@ Encode Package message.
     <h1 class="signature">encode_versions ( Versions ) 
 </h1>
 
-      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L45" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L47" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -501,7 +505,7 @@ Encode Versions message.
     <h1 class="signature">sign ( Binary,  PrivateKey ) 
 </h1>
 
-      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L106" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L108" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -524,7 +528,7 @@ Signs binary with given private key.
     <h1 class="signature">sign_protobuf ( Payload,  PrivateKey ) 
 </h1>
 
-      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L83" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L85" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -547,7 +551,7 @@ Encode Signed message.
     <h1 class="signature">verify ( Binary,  Signature,  PublicKey ) 
 </h1>
 
-      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L113" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/hexpm/hex_core/blob/master/src/hex_registry.erl#L115" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
