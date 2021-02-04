@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.23.0">
+    <meta name="project" content="stdlib vHEAD">
+
+    <title>epp — stdlib vHEAD</title>
+    <link rel="stylesheet" href="dist/elixir-ec941ecbc4f85ab01625.css" />
+
+    <script src="dist/sidebar_items-e3ebb08225.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f97730d45ef67f3e6188.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="api-reference.html" class="sidebar-projectName">
+stdlib
+      </a>
+      <strong class="sidebar-projectVersion">
+        vHEAD
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+      <h1>
+epp <small class="app-vsn">(stdlib vHEAD)</small>
+
+      </h1>
+
+
+        <section id="moduledoc">
+<p>The Erlang code preprocessor includes functions that are used by the <a href="stdlib:epp#compiler:compile" rel="https://erlang.org/doc/link/seeerl"><code>compile</code></a> module to preprocess macros and include files before the parsing takes place.</p><p>The Erlang source file <a id="encoding"></a><em>encoding</em> is selected by a comment in one of the first two lines of the source file. The first string matching the regular expression <code>coding\s*[:=]\s*([-a-zA-Z0-9])+</code> selects the encoding. If the matching string is not a valid encoding, it is ignored. The valid encodings are <code>Latin-1</code> and <code>UTF-8</code>, where the case of the characters can be chosen freely.</p><p><em>Examples:</em></p><pre><code class="makeup elixir"><span class="p">%</span><span class="p">%</span><span class="w"> </span><span class="ss">coding</span><span class="p">:</span><span class="w"> </span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span></code></pre><pre><code class="makeup elixir"><span class="p">%</span><span class="p">%</span><span class="w"> </span><span class="nc">For</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="n">we</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">chosen</span><span class="w"> </span><span class="n">encoding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Latin</span><span class="o">-</span><span class="mi">1</span></code></pre><pre><code class="makeup elixir"><span class="p">%</span><span class="p">%</span><span class="w"> </span><span class="o">-</span><span class="o">*</span><span class="o">-</span><span class="w"> </span><span class="ss">coding</span><span class="p">:</span><span class="w"> </span><span class="n">latin</span><span class="o">-</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="o">*</span><span class="o">-</span></code></pre><h2 id="module-error-information" class="section-heading">
+  <a href="#module-error-information" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Error Information
+</h2>
+<a id="errorinfo"></a><p><code>ErrorInfo</code> is the standard <code>ErrorInfo</code> structure that is returned from all I/O modules. The format is as follows:</p><pre><code type="none">{ErrorLine, Module, ErrorDescriptor}</code></pre><p>A string describing the error is obtained with the following call:</p><pre><code type="none">Module:format_error(ErrorDescriptor)</code></pre><h2 id="module-see-also" class="section-heading">
+  <a href="#module-see-also" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  See Also
+</h2>
+<p><a href="stdlib:epp#erl_parse" rel="https://erlang.org/doc/link/seeerl"><code>erl_parse(3)</code></a></p>
+        </section>
+
+
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Summary
+          </h1>
+
+  <div class="summary-types summary">
+    <h2>
+      <a href="#types">Types</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:epp_handle/0">epp_handle()</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Handle to the <code>epp</code> server.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:macros/0">macros()</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:source_encoding/0">source_encoding()</a>
+
+  </div>
+
+</div>
+
+  </div>
+
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#close/1">close/1</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Closes the preprocessing of a file.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#default_encoding/0">default_encoding/0</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Returns the default encoding of Erlang source files.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#encoding_to_string/1">encoding_to_string/1</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Returns a string representation of an encoding. The string is recognized by <a href="stdlib:epp#read_encoding/1" rel="https://erlang.org/doc/link/seemfa"><code>read_encoding/1,2</code></a>, <a href="stdlib:epp#read_encoding_from_binary/1" rel="https://erlang.org/doc/link/seemfa"><code>read_encoding_from_binary/1,2</code></a>, and <a href="stdlib:epp#set_encoding/1" rel="https://erlang.org/doc/link/seemfa"><code>set_encoding/1,2</code></a> as a valid encoding.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#format_error/1">format_error/1</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Takes an <code>ErrorDescriptor</code> and returns a string that describes the error or warning. This function is usually called implicitly when processing an <code>ErrorInfo</code> structure (see section <a href="stdlib:epp#errorinfo" rel="https://erlang.org/doc/link/seeerl">Error Information</a>).</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#open/1">open/1</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Opens a file for preprocessing.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#open/2">open/2</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Equivalent to <code>epp:open([{name, FileName}, {includes, IncludePath}])</code>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#open/3">open/3</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Equivalent to <code>epp:open([{name, FileName}, {includes, IncludePath}, {macros, PredefMacros}])</code>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#parse_erl_form/1">parse_erl_form/1</a>
+
+  </div>
+
+    <div class="summary-synopsis"><ul class="types"><li name="warning_info"></li></ul><p>Returns the next Erlang form from the opened Erlang source file. Tuple <code>{eof, Line}</code> is returned at the end of the file. The first form corresponds to an implicit attribute <code>-file(File,1).</code>, where <a href="https://hexdocs.pm/elixir/File.html"><code>File</code></a> is the file name.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#parse_file/2">parse_file/2</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Preprocesses and parses an Erlang source file. Notice that tuple <code>{eof, Line}</code> returned at the end of the file is included as a &quot;form&quot;.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#parse_file/3">parse_file/3</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Equivalent to <code>epp:parse_file(FileName, [{includes, IncludePath}, {macros, PredefMacros}])</code>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#read_encoding/1">read_encoding/1</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Read the <a href="stdlib:epp#encoding" rel="https://erlang.org/doc/link/seeerl">encoding</a> from a file. Returns the read encoding, or <code>none</code> if no valid encoding is found.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#read_encoding/2">read_encoding/2</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#read_encoding_from_binary/1">read_encoding_from_binary/1</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Read the <a href="stdlib:epp#encoding" rel="https://erlang.org/doc/link/seeerl">encoding</a> from a binary. Returns the read encoding, or <code>none</code> if no valid encoding is found.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#read_encoding_from_binary/2">read_encoding_from_binary/2</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#set_encoding/1">set_encoding/1</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Reads the <a href="stdlib:epp#encoding" rel="https://erlang.org/doc/link/seeerl">encoding</a> from an I/O device and sets the encoding of the device accordingly. The position of the I/O device referenced by <a href="https://hexdocs.pm/elixir/File.html"><code>File</code></a> is not affected. If no valid encoding can be read from the I/O device, the encoding of the I/O device is set to the default encoding.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#set_encoding/2">set_encoding/2</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Reads the <a href="stdlib:epp#encoding" rel="https://erlang.org/doc/link/seeerl">encoding</a> from an I/O device and sets the encoding of the device accordingly. The position of the I/O device referenced by <a href="https://hexdocs.pm/elixir/File.html"><code>File</code></a> is not affected. If no valid encoding can be read from the I/O device, the encoding of the I/O device is set to the <a href="stdlib:epp#encoding" rel="https://erlang.org/doc/link/seeerl">encoding</a> specified by <code>Default</code>.</p></div>
+
+</div>
+
+  </div>
+
+        </section>
+
+
+        <section id="types" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#types">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Types
+          </h1>
+          <div class="types-list">
+<section class="detail" id="t:epp_handle/0">
+
+  <div class="detail-header">
+    <a href="#t:epp_handle/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">epp_handle()</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>epp_handle() :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">pid</a>()</pre>
+
+      </div>
+
+<p>Handle to the <code>epp</code> server.</p>
+  </section>
+</section>
+<section class="detail" id="t:macros/0">
+
+  <div class="detail-header">
+    <a href="#t:macros/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">macros()</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>macros() :: [<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>() | {<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}]</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:source_encoding/0">
+
+  <div class="detail-header">
+    <a href="#t:source_encoding/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">source_encoding()</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>source_encoding() :: :latin1 | :utf8</pre>
+
+      </div>
+
+
+  </section>
+</section>
+
+          </div>
+        </section>
+
+        <section id="functions" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#functions">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Functions
+          </h1>
+          <div class="functions-list">
+<section class="detail" id="close/1">
+
+  <div class="detail-header">
+    <a href="#close/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">close/1</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>close(epp) :: :ok when epp: epp_handle()</pre>
+
+      </div>
+
+<p>Closes the preprocessing of a file.</p>
+  </section>
+</section>
+<section class="detail" id="default_encoding/0">
+
+  <div class="detail-header">
+    <a href="#default_encoding/0" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">default_encoding/0</h1>
+
+
+      <span class="note">(since OTP R16B)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>default_encoding() :: <a href="#type-source_encoding">source_encoding</a>()</pre>
+
+      </div>
+
+<p>Returns the default encoding of Erlang source files.</p>
+  </section>
+</section>
+<section class="detail" id="encoding_to_string/1">
+
+  <div class="detail-header">
+    <a href="#encoding_to_string/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">encoding_to_string/1</h1>
+
+
+      <span class="note">(since OTP R16B)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>encoding_to_string(encoding) :: string() when encoding: <a href="#type-source_encoding">source_encoding</a>()</pre>
+
+      </div>
+
+<p>Returns a string representation of an encoding. The string is recognized by <a href="stdlib:epp#read_encoding/1" rel="https://erlang.org/doc/link/seemfa"><code>read_encoding/1,2</code></a>, <a href="stdlib:epp#read_encoding_from_binary/1" rel="https://erlang.org/doc/link/seemfa"><code>read_encoding_from_binary/1,2</code></a>, and <a href="stdlib:epp#set_encoding/1" rel="https://erlang.org/doc/link/seemfa"><code>set_encoding/1,2</code></a> as a valid encoding.</p>
+  </section>
+</section>
+<section class="detail" id="format_error/1">
+
+  <div class="detail-header">
+    <a href="#format_error/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">format_error/1</h1>
+
+
+      <span class="note">(since OTP R14B03)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>format_error(errorDescriptor) :: <a href="http://www.erlang.org/doc/man/io_lib.html#type-chars">:io_lib.chars</a>() when errorDescriptor: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()</pre>
+
+      </div>
+
+<p>Takes an <code>ErrorDescriptor</code> and returns a string that describes the error or warning. This function is usually called implicitly when processing an <code>ErrorInfo</code> structure (see section <a href="stdlib:epp#errorinfo" rel="https://erlang.org/doc/link/seeerl">Error Information</a>).</p>
+  </section>
+</section>
+<section class="detail" id="open/1">
+
+  <div class="detail-header">
+    <a href="#open/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">open/1</h1>
+
+
+      <span class="note">(since OTP 17.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>open(options) :: {:ok, epp} | {:ok, epp, extra} | {:error, errorDescriptor}
+when options: [
+       {:default_encoding, defEncoding :: <a href="#type-source_encoding">source_encoding</a>()}
+       | {:includes, includePath :: [directoryName :: <a href="http://www.erlang.org/doc/man/file.html#type-name">:file.name</a>()]}
+       | {:source_name, sourceName :: <a href="http://www.erlang.org/doc/man/file.html#type-name">:file.name</a>()}
+       | {:macros, predefMacros :: macros()}
+       | {:name, fileName :: <a href="http://www.erlang.org/doc/man/file.html#type-name">:file.name</a>()}
+       | :extra
+     ],
+     epp: epp_handle(),
+     extra: [{:encoding, <a href="#type-source_encoding">source_encoding</a>() | :none}],
+     errorDescriptor: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()</pre>
+
+      </div>
+
+<p>Opens a file for preprocessing.</p><p>If you want to change the file name of the implicit -file() attributes inserted during preprocessing, you can do with <code>{source_name, SourceName}</code>. If unset it will default to the name of the opened file.</p><p>If <code>extra</code> is specified in <code>Options</code>, the return value is <code>{ok, Epp, Extra}</code> instead of <code>{ok, Epp}</code>.</p>
+  </section>
+</section>
+<section class="detail" id="open/2">
+
+  <div class="detail-header">
+    <a href="#open/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">open/2</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>open(fileName, includePath) :: {:ok, epp} | {:error, errorDescriptor}
+when fileName: <a href="http://www.erlang.org/doc/man/file.html#type-name">:file.name</a>(),
+     includePath: [directoryName :: <a href="http://www.erlang.org/doc/man/file.html#type-name">:file.name</a>()],
+     epp: epp_handle(),
+     errorDescriptor: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()</pre>
+
+      </div>
+
+<p>Equivalent to <code>epp:open([{name, FileName}, {includes, IncludePath}])</code>.</p>
+  </section>
+</section>
+<section class="detail" id="open/3">
+
+  <div class="detail-header">
+    <a href="#open/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">open/3</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>open(fileName, includePath, predefMacros) ::
+  {:ok, epp} | {:error, errorDescriptor}
+when fileName: <a href="http://www.erlang.org/doc/man/file.html#type-name">:file.name</a>(),
+     includePath: [directoryName :: <a href="http://www.erlang.org/doc/man/file.html#type-name">:file.name</a>()],
+     predefMacros: macros(),
+     epp: epp_handle(),
+     errorDescriptor: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()</pre>
+
+      </div>
+
+<p>Equivalent to <code>epp:open([{name, FileName}, {includes, IncludePath}, {macros, PredefMacros}])</code>.</p>
+  </section>
+</section>
+<section class="detail" id="parse_erl_form/1">
+
+  <div class="detail-header">
+    <a href="#parse_erl_form/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">parse_erl_form/1</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>parse_erl_form(epp) ::
+  {:ok, absForm} | {:error, errorInfo} | {:warning, warningInfo} | {:eof, line}
+when epp: epp_handle(),
+     absForm: <a href="http://www.erlang.org/doc/man/erl_parse.html#type-abstract_form">:erl_parse.abstract_form</a>(),
+     line: <a href="http://www.erlang.org/doc/man/erl_anno.html#type-line">:erl_anno.line</a>(),
+     errorInfo: <a href="http://www.erlang.org/doc/man/erl_scan.html#type-error_info">:erl_scan.error_info</a>() | <a href="http://www.erlang.org/doc/man/erl_parse.html#type-error_info">:erl_parse.error_info</a>(),
+     warningInfo: warning_info()</pre>
+
+      </div>
+
+<ul class="types"><li name="warning_info"></li></ul><p>Returns the next Erlang form from the opened Erlang source file. Tuple <code>{eof, Line}</code> is returned at the end of the file. The first form corresponds to an implicit attribute <code>-file(File,1).</code>, where <a href="https://hexdocs.pm/elixir/File.html"><code>File</code></a> is the file name.</p>
+  </section>
+</section>
+<section class="detail" id="parse_file/2">
+
+  <div class="detail-header">
+    <a href="#parse_file/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">parse_file/2</h1>
+
+
+      <span class="note">(since OTP 17.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>parse_file(fileName, options) ::
+  {:ok, [form]} | {:ok, [form], extra} | {:error, openError}
+when fileName: <a href="http://www.erlang.org/doc/man/file.html#type-name">:file.name</a>(),
+     options: [
+       {:includes, includePath :: [directoryName :: <a href="http://www.erlang.org/doc/man/file.html#type-name">:file.name</a>()]}
+       | {:source_name, sourceName :: <a href="http://www.erlang.org/doc/man/file.html#type-name">:file.name</a>()}
+       | {:macros, predefMacros :: macros()}
+       | {:default_encoding, defEncoding :: <a href="#type-source_encoding">source_encoding</a>()}
+       | :extra
+     ],
+     form: <a href="http://www.erlang.org/doc/man/erl_parse.html#type-abstract_form">:erl_parse.abstract_form</a>() | {:error, errorInfo} | {:eof, line},
+     line: <a href="http://www.erlang.org/doc/man/erl_anno.html#type-line">:erl_anno.line</a>(),
+     errorInfo: <a href="http://www.erlang.org/doc/man/erl_scan.html#type-error_info">:erl_scan.error_info</a>() | <a href="http://www.erlang.org/doc/man/erl_parse.html#type-error_info">:erl_parse.error_info</a>(),
+     extra: [{:encoding, <a href="#type-source_encoding">source_encoding</a>() | :none}],
+     openError: <a href="http://www.erlang.org/doc/man/file.html#type-posix">:file.posix</a>() | :badarg | :system_limit</pre>
+
+      </div>
+
+<p>Preprocesses and parses an Erlang source file. Notice that tuple <code>{eof, Line}</code> returned at the end of the file is included as a &quot;form&quot;.</p><p>If you want to change the file name of the implicit -file() attributes inserted during preprocessing, you can do with <code>{source_name, SourceName}</code>. If unset it will default to the name of the opened file.</p><p>If <code>extra</code> is specified in <code>Options</code>, the return value is <code>{ok, [Form], Extra}</code> instead of <code>{ok, [Form]}</code>.</p>
+  </section>
+</section>
+<section class="detail" id="parse_file/3">
+
+  <div class="detail-header">
+    <a href="#parse_file/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">parse_file/3</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>parse_file(fileName, includePath, predefMacros) ::
+  {:ok, [form]} | {:error, openError}
+when fileName: <a href="http://www.erlang.org/doc/man/file.html#type-name">:file.name</a>(),
+     includePath: [directoryName :: <a href="http://www.erlang.org/doc/man/file.html#type-name">:file.name</a>()],
+     form: <a href="http://www.erlang.org/doc/man/erl_parse.html#type-abstract_form">:erl_parse.abstract_form</a>() | {:error, errorInfo} | {:eof, line},
+     predefMacros: macros(),
+     line: <a href="http://www.erlang.org/doc/man/erl_anno.html#type-line">:erl_anno.line</a>(),
+     errorInfo: <a href="http://www.erlang.org/doc/man/erl_scan.html#type-error_info">:erl_scan.error_info</a>() | <a href="http://www.erlang.org/doc/man/erl_parse.html#type-error_info">:erl_parse.error_info</a>(),
+     openError: <a href="http://www.erlang.org/doc/man/file.html#type-posix">:file.posix</a>() | :badarg | :system_limit</pre>
+
+      </div>
+
+<p>Equivalent to <code>epp:parse_file(FileName, [{includes, IncludePath}, {macros, PredefMacros}])</code>.</p>
+  </section>
+</section>
+<section class="detail" id="read_encoding/1">
+
+  <div class="detail-header">
+    <a href="#read_encoding/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">read_encoding/1</h1>
+
+
+      <span class="note">(since OTP R16B)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>read_encoding(fileName) :: <a href="#type-source_encoding">source_encoding</a>() | :none when fileName: <a href="http://www.erlang.org/doc/man/file.html#type-name">:file.name</a>()</pre>
+
+      </div>
+
+<p>Read the <a href="stdlib:epp#encoding" rel="https://erlang.org/doc/link/seeerl">encoding</a> from a file. Returns the read encoding, or <code>none</code> if no valid encoding is found.</p><p>Option <code>in_comment_only</code> is <code>true</code> by default, which is correct for Erlang source files. If set to <code>false</code>, the encoding string does not necessarily have to occur in a comment.</p>
+  </section>
+</section>
+<section class="detail" id="read_encoding/2">
+
+  <div class="detail-header">
+    <a href="#read_encoding/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">read_encoding/2</h1>
+
+
+      <span class="note">(since OTP R16B)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>read_encoding(fileName, options) :: <a href="#type-source_encoding">source_encoding</a>() | :none
+when fileName: <a href="http://www.erlang.org/doc/man/file.html#type-name">:file.name</a>(),
+     options: [option],
+     option: {:in_comment_only, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()}</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="read_encoding_from_binary/1">
+
+  <div class="detail-header">
+    <a href="#read_encoding_from_binary/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">read_encoding_from_binary/1</h1>
+
+
+      <span class="note">(since OTP R16B)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>read_encoding_from_binary(binary) :: <a href="#type-source_encoding">source_encoding</a>() | :none
+when binary: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>()</pre>
+
+      </div>
+
+<p>Read the <a href="stdlib:epp#encoding" rel="https://erlang.org/doc/link/seeerl">encoding</a> from a binary. Returns the read encoding, or <code>none</code> if no valid encoding is found.</p><p>Option <code>in_comment_only</code> is <code>true</code> by default, which is correct for Erlang source files. If set to <code>false</code>, the encoding string does not necessarily have to occur in a comment.</p>
+  </section>
+</section>
+<section class="detail" id="read_encoding_from_binary/2">
+
+  <div class="detail-header">
+    <a href="#read_encoding_from_binary/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">read_encoding_from_binary/2</h1>
+
+
+      <span class="note">(since OTP R16B)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>read_encoding_from_binary(binary, options) :: <a href="#type-source_encoding">source_encoding</a>() | :none
+when binary: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>(), options: [option], option: {:in_comment_only, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()}</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="set_encoding/1">
+
+  <div class="detail-header">
+    <a href="#set_encoding/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">set_encoding/1</h1>
+
+
+      <span class="note">(since OTP R16B)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>set_encoding(file) :: <a href="#type-source_encoding">source_encoding</a>() | :none when file: <a href="http://www.erlang.org/doc/man/io.html#type-device">:io.device</a>()</pre>
+
+      </div>
+
+<p>Reads the <a href="stdlib:epp#encoding" rel="https://erlang.org/doc/link/seeerl">encoding</a> from an I/O device and sets the encoding of the device accordingly. The position of the I/O device referenced by <a href="https://hexdocs.pm/elixir/File.html"><code>File</code></a> is not affected. If no valid encoding can be read from the I/O device, the encoding of the I/O device is set to the default encoding.</p><p>Returns the read encoding, or <code>none</code> if no valid encoding is found.</p>
+  </section>
+</section>
+<section class="detail" id="set_encoding/2">
+
+  <div class="detail-header">
+    <a href="#set_encoding/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">set_encoding/2</h1>
+
+
+      <span class="note">(since OTP 17.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>set_encoding(file, default) :: <a href="#type-source_encoding">source_encoding</a>() | :none
+when default: <a href="#type-source_encoding">source_encoding</a>(), file: <a href="http://www.erlang.org/doc/man/io.html#type-device">:io.device</a>()</pre>
+
+      </div>
+
+<p>Reads the <a href="stdlib:epp#encoding" rel="https://erlang.org/doc/link/seeerl">encoding</a> from an I/O device and sets the encoding of the device accordingly. The position of the I/O device referenced by <a href="https://hexdocs.pm/elixir/File.html"><code>File</code></a> is not affected. If no valid encoding can be read from the I/O device, the encoding of the I/O device is set to the <a href="stdlib:epp#encoding" rel="https://erlang.org/doc/link/seeerl">encoding</a> specified by <code>Default</code>.</p><p>Returns the read encoding, or <code>none</code> if no valid encoding is found.</p>
+  </section>
+</section>
+
+          </div>
+        </section>
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.23.0) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>
