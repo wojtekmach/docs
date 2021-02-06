@@ -1,0 +1,1930 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.0-dev">
+    <meta name="project" content="opentelemetry_api v0.5.0">
+
+    <title>opentelemetry — opentelemetry_api v0.5.0</title>
+    <link rel="stylesheet" href="dist/erlang-e0b321562cb0bb031ae0.css" />
+
+    <script src="dist/sidebar_items-66c0c1b272.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f97730d45ef67f3e6188.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="readme.html" class="sidebar-projectName">
+opentelemetry_api
+      </a>
+      <strong class="sidebar-projectVersion">
+        v0.5.0
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+      <h1>
+opentelemetry <small class="app-vsn">(opentelemetry_api v0.5.0)</small>
+
+      </h1>
+
+
+        <section id="moduledoc">
+<p>The types defined here, and referencing records in opentelemetry.hrl are used to store trace information while being collected on the Erlang node.</p>Thus, while the types are based on protos found in the opentelemetry-proto repo: src/opentelemetry/proto/trace/v1/trace.proto, they are not exact translations because further processing is done after the span has finished and can be vendor specific. For example, there is no count of the number of dropped attributes in the span record. And an attribute's value can be a function to only evaluate the value if it is actually used (at the time of exporting). And the stacktrace is a regular Erlang stack trace.
+        </section>
+
+
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Summary
+          </h1>
+
+  <div class="summary-types summary">
+    <h2>
+      <a href="#types">Types</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:attribute/0">attribute/0</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:attribute_key/0">attribute_key/0</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:attribute_value/0">attribute_value/0</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:attributes/0">attributes/0</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:event/0">event/0</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:event_name/0">event_name/0</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:events/0">events/0</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:link/0">link/0</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:links/0">links/0</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:meter/0">meter/0</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:resource/0">resource/0</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:span/0">span/0</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:span_ctx/0">span_ctx/0</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:span_id/0">span_id/0</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:span_kind/0">span_kind/0</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:span_name/0">span_name/0</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:status/0">status/0</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:status_code/0">status_code/0</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:text_map/0">text_map/0</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:timestamp/0">timestamp/0</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:trace_flags/0">trace_flags/0</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:trace_id/0">trace_id/0</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:tracer/0">tracer/0</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:tracestate/0">tracestate/0</a>
+
+  </div>
+
+</div>
+
+  </div>
+
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#convert_timestamp/2">convert_timestamp(Timestamp, Unit)</a>
+
+  </div>
+
+    <div class="summary-synopsis">Convert a native monotonic timestamp to POSIX time of any <a href="erlang#time_unit/0" rel="https://erlang.org/doc/link/seetype"><code>erlang:time_unit()</code></a>. Meaning the time since Epoch. Epoch is defined to be 00:00:00 UTC, 1970-01-01.</div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#event/2">event(Name, Attributes)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#event/3">event(Timestamp, Name, Attributes)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#events/1">events(List)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#generate_span_id/0">generate_span_id()</a>
+
+  </div>
+
+    <div class="summary-synopsis">Generates a 64 bit random integer to use as a span id.</div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#generate_trace_id/0">generate_trace_id()</a>
+
+  </div>
+
+    <div class="summary-synopsis">Generates a 128 bit random integer to use as a trace id.</div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#get_meter/0">get_meter()</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#get_meter/1">get_meter(Name)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#get_text_map_extractors/0">get_text_map_extractors()</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#get_text_map_injectors/0">get_text_map_injectors()</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#get_tracer/0">get_tracer()</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#get_tracer/1">get_tracer(Name)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#link/1">link(SpanCtx)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#link/2">link(Span_ctx, Attributes)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#link/4">link(TraceId, SpanId, Attributes, TraceState)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#link_or_false/4">link_or_false(TraceId, SpanId, Attributes, TraceState)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#links/1">links(List)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#register_application_meter/1">register_application_meter(Name)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#register_application_tracer/1">register_application_tracer(Name)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#register_meter/2">register_meter(Name, Vsn)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#register_tracer/2">register_tracer(Name, Vsn)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#set_default_meter/1">set_default_meter(Meter)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#set_default_tracer/1">set_default_tracer(Tracer)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#set_meter/2">set_meter(Name, Meter)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#set_text_map_extractors/1">set_text_map_extractors(List)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#set_text_map_injectors/1">set_text_map_injectors(List)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#set_tracer/2">set_tracer(Name, Tracer)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#status/2">status(Code, Message)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#timestamp/0">timestamp()</a>
+
+  </div>
+
+    <div class="summary-synopsis">A monotonically increasing time provided by the Erlang runtime system in the native time unit. This value is the most accurate and precise timestamp available from the Erlang runtime and should be used for finding durations or any timestamp that can be converted to a system time before being sent to another system.</div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#timestamp_to_nano/1">timestamp_to_nano(Timestamp)</a>
+
+  </div>
+
+    <div class="summary-synopsis">Convert a native monotonic timestamp to nanosecond POSIX time. Meaning the time since Epoch. Epoch is defined to be 00:00:00 UTC, 1970-01-01.</div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#uniform/1">uniform(X)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#verify_and_set_term/3">verify_and_set_term(Module, TermKey, Behaviour)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#verify_module_exists/1">verify_module_exists(Module)</a>
+
+  </div>
+
+</div>
+
+  </div>
+
+        </section>
+
+
+        <section id="types" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#types">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Types
+          </h1>
+          <div class="types-list">
+<section class="detail" id="t:attribute/0">
+
+  <div class="detail-header">
+    <a href="#t:attribute/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">attribute/0</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>attribute() :: {<a href="#type-attribute_key">attribute_key</a>(), <a href="#type-attribute_value">attribute_value</a>()}</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:attribute_key/0">
+
+  <div class="detail-header">
+    <a href="#t:attribute_key/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">attribute_key/0</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>attribute_key() :: <a href="http://www.erlang.org/doc/man/unicode.html#type-unicode_binary">:unicode.unicode_binary</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:attribute_value/0">
+
+  <div class="detail-header">
+    <a href="#t:attribute_value/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">attribute_value/0</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>attribute_value() :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">any</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:attributes/0">
+
+  <div class="detail-header">
+    <a href="#t:attributes/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">attributes/0</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>attributes() :: [attribute()]</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:event/0">
+
+  <div class="detail-header">
+    <a href="#t:event/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">event/0</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>event() :: record(:event)</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:event_name/0">
+
+  <div class="detail-header">
+    <a href="#t:event_name/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">event_name/0</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>event_name() :: <a href="http://www.erlang.org/doc/man/unicode.html#type-unicode_binary">:unicode.unicode_binary</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:events/0">
+
+  <div class="detail-header">
+    <a href="#t:events/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">events/0</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>events() :: [record(:event)]</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:link/0">
+
+  <div class="detail-header">
+    <a href="#t:link/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">link/0</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>link() :: record(:link)</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:links/0">
+
+  <div class="detail-header">
+    <a href="#t:links/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">links/0</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>links() :: [record(:link)]</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:meter/0">
+
+  <div class="detail-header">
+    <a href="#t:meter/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">meter/0</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>meter() :: {<a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">module</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:resource/0">
+
+  <div class="detail-header">
+    <a href="#t:resource/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">resource/0</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>resource() :: %{
+  optional(<a href="http://www.erlang.org/doc/man/unicode.html#type-unicode_binary">:unicode.unicode_binary</a>()) =&gt; <a href="http://www.erlang.org/doc/man/unicode.html#type-unicode_binary">:unicode.unicode_binary</a>()
+}</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:span/0">
+
+  <div class="detail-header">
+    <a href="#t:span/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">span/0</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>span() :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:span_ctx/0">
+
+  <div class="detail-header">
+    <a href="#t:span_ctx/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">span_ctx/0</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>span_ctx() :: record(:span_ctx)</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:span_id/0">
+
+  <div class="detail-header">
+    <a href="#t:span_id/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">span_id/0</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>span_id() :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:span_kind/0">
+
+  <div class="detail-header">
+    <a href="#t:span_kind/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">span_kind/0</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>span_kind() :: :internal | :server | :client | :producer | :consumer</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:span_name/0">
+
+  <div class="detail-header">
+    <a href="#t:span_name/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">span_name/0</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>span_name() :: <a href="http://www.erlang.org/doc/man/unicode.html#type-unicode_binary">:unicode.unicode_binary</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:status/0">
+
+  <div class="detail-header">
+    <a href="#t:status/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">status/0</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>status() :: record(:status)</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:status_code/0">
+
+  <div class="detail-header">
+    <a href="#t:status_code/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">status_code/0</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>status_code() :: :unset | :ok | :error</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:text_map/0">
+
+  <div class="detail-header">
+    <a href="#t:text_map/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">text_map/0</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>text_map() :: [{<a href="http://www.erlang.org/doc/man/unicode.html#type-unicode_binary">:unicode.unicode_binary</a>(), <a href="http://www.erlang.org/doc/man/unicode.html#type-unicode_binary">:unicode.unicode_binary</a>()}]</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:timestamp/0">
+
+  <div class="detail-header">
+    <a href="#t:timestamp/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">timestamp/0</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>timestamp() :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:trace_flags/0">
+
+  <div class="detail-header">
+    <a href="#t:trace_flags/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">trace_flags/0</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>trace_flags() :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:trace_id/0">
+
+  <div class="detail-header">
+    <a href="#t:trace_id/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">trace_id/0</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>trace_id() :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:tracer/0">
+
+  <div class="detail-header">
+    <a href="#t:tracer/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">tracer/0</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>tracer() :: {<a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">module</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:tracestate/0">
+
+  <div class="detail-header">
+    <a href="#t:tracestate/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">tracestate/0</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>tracestate() :: [{<a href="http://www.erlang.org/doc/man/unicode.html#type-latin1_chardata">:unicode.latin1_chardata</a>(), <a href="http://www.erlang.org/doc/man/unicode.html#type-latin1_chardata">:unicode.latin1_chardata</a>()}]</pre>
+
+      </div>
+
+
+  </section>
+</section>
+
+          </div>
+        </section>
+
+        <section id="functions" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#functions">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Functions
+          </h1>
+          <div class="functions-list">
+<section class="detail" id="convert_timestamp/2">
+
+  <div class="detail-header">
+    <a href="#convert_timestamp/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">convert_timestamp(Timestamp, Unit)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>convert_timestamp(<a href="#type-timestamp">timestamp</a>(), <a href="http://www.erlang.org/doc/man/erlang.html#type-time_unit">:erlang.time_unit</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()</pre>
+
+      </div>
+
+Convert a native monotonic timestamp to POSIX time of any <a href="erlang#time_unit/0" rel="https://erlang.org/doc/link/seetype"><code>erlang:time_unit()</code></a>. Meaning the time since Epoch. Epoch is defined to be 00:00:00 UTC, 1970-01-01.
+  </section>
+</section>
+<section class="detail" id="event/2">
+
+  <div class="detail-header">
+    <a href="#event/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">event(Name, Attributes)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>event(name, attributes) :: <a href="#type-event">event</a>() | :undefined
+when name: <a href="http://www.erlang.org/doc/man/unicode.html#type-unicode_binary">:unicode.unicode_binary</a>(), attributes: <a href="#type-attributes">attributes</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="event/3">
+
+  <div class="detail-header">
+    <a href="#event/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">event(Timestamp, Name, Attributes)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>event(timestamp, name, attributes) :: <a href="#type-event">event</a>() | :undefined
+when timestamp: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>(),
+     name: <a href="http://www.erlang.org/doc/man/unicode.html#type-unicode_binary">:unicode.unicode_binary</a>(),
+     attributes: <a href="#type-attributes">attributes</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="events/1">
+
+  <div class="detail-header">
+    <a href="#events/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">events(List)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="generate_span_id/0">
+
+  <div class="detail-header">
+    <a href="#generate_span_id/0" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">generate_span_id()</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>generate_span_id() :: <a href="#type-span_id">span_id</a>()</pre>
+
+      </div>
+
+Generates a 64 bit random integer to use as a span id.
+  </section>
+</section>
+<section class="detail" id="generate_trace_id/0">
+
+  <div class="detail-header">
+    <a href="#generate_trace_id/0" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">generate_trace_id()</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>generate_trace_id() :: <a href="#type-trace_id">trace_id</a>()</pre>
+
+      </div>
+
+Generates a 128 bit random integer to use as a trace id.
+  </section>
+</section>
+<section class="detail" id="get_meter/0">
+
+  <div class="detail-header">
+    <a href="#get_meter/0" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">get_meter()</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>get_meter() :: <a href="#type-meter">meter</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="get_meter/1">
+
+  <div class="detail-header">
+    <a href="#get_meter/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">get_meter(Name)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>get_meter(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()) :: <a href="#type-meter">meter</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="get_text_map_extractors/0">
+
+  <div class="detail-header">
+    <a href="#get_text_map_extractors/0" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">get_text_map_extractors()</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="get_text_map_injectors/0">
+
+  <div class="detail-header">
+    <a href="#get_text_map_injectors/0" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">get_text_map_injectors()</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="get_tracer/0">
+
+  <div class="detail-header">
+    <a href="#get_tracer/0" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">get_tracer()</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>get_tracer() :: <a href="#type-tracer">tracer</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="get_tracer/1">
+
+  <div class="detail-header">
+    <a href="#get_tracer/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">get_tracer(Name)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>get_tracer(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()) :: <a href="#type-tracer">tracer</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="link/1">
+
+  <div class="detail-header">
+    <a href="#link/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">link(SpanCtx)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>link(<a href="#type-span_ctx">span_ctx</a>() | :undefined) :: <a href="#type-link">link</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="link/2">
+
+  <div class="detail-header">
+    <a href="#link/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">link(Span_ctx, Attributes)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>link(<a href="#type-span_ctx">span_ctx</a>() | :undefined, <a href="#type-attributes">attributes</a>()) :: <a href="#type-link">link</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="link/4">
+
+  <div class="detail-header">
+    <a href="#link/4" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">link(TraceId, SpanId, Attributes, TraceState)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>link(traceId, spanId, attributes, traceState) :: <a href="#type-link">link</a>() | :undefined
+when traceId: <a href="#type-trace_id">trace_id</a>(),
+     spanId: <a href="#type-span_id">span_id</a>(),
+     attributes: <a href="#type-attributes">attributes</a>(),
+     traceState: <a href="#type-tracestate">tracestate</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="link_or_false/4">
+
+  <div class="detail-header">
+    <a href="#link_or_false/4" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">link_or_false(TraceId, SpanId, Attributes, TraceState)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="links/1">
+
+  <div class="detail-header">
+    <a href="#links/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">links(List)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>links([
+  {traceId, spanId, attributes, traceState}
+  | <a href="#type-span_ctx">span_ctx</a>()
+  | {<a href="#type-span_ctx">span_ctx</a>(), attributes}
+]) :: <a href="#type-links">links</a>()
+when traceId: <a href="#type-trace_id">trace_id</a>(),
+     spanId: <a href="#type-span_id">span_id</a>(),
+     attributes: <a href="#type-attributes">attributes</a>(),
+     traceState: <a href="#type-tracestate">tracestate</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="register_application_meter/1">
+
+  <div class="detail-header">
+    <a href="#register_application_meter/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">register_application_meter(Name)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>register_application_meter(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="register_application_tracer/1">
+
+  <div class="detail-header">
+    <a href="#register_application_tracer/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">register_application_tracer(Name)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>register_application_tracer(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="register_meter/2">
+
+  <div class="detail-header">
+    <a href="#register_meter/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">register_meter(Name, Vsn)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>register_meter(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), string()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="register_tracer/2">
+
+  <div class="detail-header">
+    <a href="#register_tracer/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">register_tracer(Name, Vsn)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>register_tracer(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), string()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="set_default_meter/1">
+
+  <div class="detail-header">
+    <a href="#set_default_meter/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">set_default_meter(Meter)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>set_default_meter(<a href="#type-meter">meter</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="set_default_tracer/1">
+
+  <div class="detail-header">
+    <a href="#set_default_tracer/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">set_default_tracer(Tracer)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>set_default_tracer(<a href="#type-tracer">tracer</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="set_meter/2">
+
+  <div class="detail-header">
+    <a href="#set_meter/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">set_meter(Name, Meter)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>set_meter(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), <a href="#type-meter">meter</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="set_text_map_extractors/1">
+
+  <div class="detail-header">
+    <a href="#set_text_map_extractors/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">set_text_map_extractors(List)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="set_text_map_injectors/1">
+
+  <div class="detail-header">
+    <a href="#set_text_map_injectors/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">set_text_map_injectors(List)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="set_tracer/2">
+
+  <div class="detail-header">
+    <a href="#set_tracer/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">set_tracer(Name, Tracer)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>set_tracer(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), <a href="#type-tracer">tracer</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="status/2">
+
+  <div class="detail-header">
+    <a href="#status/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">status(Code, Message)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>status(code, message) :: <a href="#type-status">status</a>() | :undefined
+when code: <a href="#type-status_code">status_code</a>(), message: <a href="http://www.erlang.org/doc/man/unicode.html#type-unicode_binary">:unicode.unicode_binary</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="timestamp/0">
+
+  <div class="detail-header">
+    <a href="#timestamp/0" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">timestamp()</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>timestamp() :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()</pre>
+
+      </div>
+
+A monotonically increasing time provided by the Erlang runtime system in the native time unit. This value is the most accurate and precise timestamp available from the Erlang runtime and should be used for finding durations or any timestamp that can be converted to a system time before being sent to another system.
+  </section>
+</section>
+<section class="detail" id="timestamp_to_nano/1">
+
+  <div class="detail-header">
+    <a href="#timestamp_to_nano/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">timestamp_to_nano(Timestamp)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>timestamp_to_nano(<a href="#type-timestamp">timestamp</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()</pre>
+
+      </div>
+
+Convert a native monotonic timestamp to nanosecond POSIX time. Meaning the time since Epoch. Epoch is defined to be 00:00:00 UTC, 1970-01-01.
+  </section>
+</section>
+<section class="detail" id="uniform/1">
+
+  <div class="detail-header">
+    <a href="#uniform/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">uniform(X)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="verify_and_set_term/3">
+
+  <div class="detail-header">
+    <a href="#verify_and_set_term/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">verify_and_set_term(Module, TermKey, Behaviour)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>verify_and_set_term(<a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">module</a>() | {<a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">module</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="verify_module_exists/1">
+
+  <div class="detail-header">
+    <a href="#verify_module_exists/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">verify_module_exists(Module)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>verify_module_exists(<a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">module</a>() | {<a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">module</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+
+          </div>
+        </section>
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.0-dev) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

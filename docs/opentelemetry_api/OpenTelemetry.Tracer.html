@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.0-dev">
+    <meta name="project" content="opentelemetry_api v0.5.0">
+
+    <title>OpenTelemetry.Tracer — opentelemetry_api v0.5.0</title>
+    <link rel="stylesheet" href="dist/erlang-e0b321562cb0bb031ae0.css" />
+
+    <script src="dist/sidebar_items-66c0c1b272.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f97730d45ef67f3e6188.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="readme.html" class="sidebar-projectName">
+opentelemetry_api
+      </a>
+      <strong class="sidebar-projectVersion">
+        v0.5.0
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+      <h1>
+OpenTelemetry.Tracer <small class="app-vsn">(opentelemetry_api v0.5.0)</small>
+
+      </h1>
+
+
+        <section id="moduledoc">
+<p>This module contains macros for Tracer operations around the lifecycle of the Spans within a Trace.</p><p>The Tracer is able to start a new Span as a child of the active Span of the current process, set
+a different Span to be the current Span by passing the Span's context, end a Span or run a code
+block within the context of a newly started span that is ended when the code block completes.</p><p>The macros use the Tracer registered to the Application the module using the macro is included in,
+assuming <a href="OpenTelemetry.html#register_application_tracer/1"><code class="inline">OpenTelemetry.register_application_tracer/1</code></a> has been called for the Application. If
+not then the default Tracer is used.</p><pre><code class="makeup elixir"><span class="kn">require</span><span class="w"> </span><span class="nc">OpenTelemetry.Tracer</span><span class="w">
+
+</span><span class="nc">OpenTelemetry.Tracer</span><span class="o">.</span><span class="n">with_span</span><span class="w"> </span><span class="s">&quot;span-1&quot;</span><span class="w"> </span><span class="k" data-group-id="2773988553-1">do</span><span class="w">
+  </span><span class="n">...</span><span class="w"> </span><span class="k" data-group-id="2773988553-2">do</span><span class="w"> </span><span class="n">something</span><span class="w"> </span><span class="n">...</span><span class="w">
+</span><span class="k" data-group-id="2773988553-2">end</span></code></pre>
+        </section>
+
+
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Summary
+          </h1>
+
+  <div class="summary-types summary">
+    <h2>
+      <a href="#types">Types</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:start_opts/0">start_opts()</a>
+
+  </div>
+
+</div>
+
+  </div>
+
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#add_event/2">add_event(event, attributes)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Add an event to the currently active Span.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#add_events/1">add_events(events)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Add a list of events to the currently active Span.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#current_span_ctx/0">current_span_ctx()</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Returns the currently active <a href="OpenTelemetry.html#t:span_ctx/0"><code class="inline">OpenTelemetry.span_ctx/0</code></a>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#current_span_ctx/1">current_span_ctx(ctx)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Returns the <a href="OpenTelemetry.html#t:span_ctx/0"><code class="inline">OpenTelemetry.span_ctx/0</code></a> active in Context <code class="inline">ctx</code>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#end_span/0">end_span()</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>End the Span. Sets the end timestamp for the currently active Span. This has no effect on any
+child Spans that may exist of this Span.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#set_attribute/2">set_attribute(key, value)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Set an attribute with key and value on the currently active Span.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#set_attributes/1">set_attributes(attributes)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Add a list of attributes to the currently active Span.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#set_current_span/1">set_current_span(span_ctx)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Takes a <a href="OpenTelemetry.html#t:span_ctx/0"><code class="inline">OpenTelemetry.span_ctx/0</code></a> and the Tracer sets it to the currently active Span.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#set_current_span/2">set_current_span(ctx, span_ctx)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Takes a <code class="inline">t:OpenTelemetry.ctx/0</code> and the <a href="OpenTelemetry.html#t:span_ctx/0"><code class="inline">OpenTelemetry.span_ctx/0</code></a> and the Tracer sets
+it to the current span in the pass Context.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#set_status/1">set_status(status)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Sets the Status of the currently active Span.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#start_span/2">start_span(name, opts \\ quote do
+  %{}
+end)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Starts a new span and does not make it the current active span of the current process.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#start_span/3">start_span(ctx, name, opts)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Starts a new span and does not make it the current active span of the current process.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#update_name/1">update_name(name)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Updates the Span name.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#with_span/3">with_span(name, start_opts \\ quote do
+  %{}
+end, list)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Creates a new span which is set to the currently active Span in the Context of the block.
+The Span is ended automatically when the <code class="inline">block</code> completes and the Context is what it was
+before the block.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#with_span/4">with_span(ctx, name, start_opts, list)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Creates a new span which is set to the currently active Span in the Context of the block.
+The Span is ended automatically when the <code class="inline">block</code> completes and the Context is what it was
+before the block.</p></div>
+
+</div>
+
+  </div>
+
+        </section>
+
+
+        <section id="types" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#types">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Types
+          </h1>
+          <div class="types-list">
+<section class="detail" id="t:start_opts/0">
+
+  <div class="detail-header">
+    <a href="#t:start_opts/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">start_opts()</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>start_opts() :: %{
+  optional(:attributes) =&gt; <a href="OpenTelemetry.html#t:attributes/0">OpenTelemetry.attributes</a>(),
+  optional(:sampler) =&gt; <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
+  optional(:links) =&gt; <a href="OpenTelemetry.html#t:links/0">OpenTelemetry.links</a>(),
+  optional(:is_recording) =&gt; <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>(),
+  optional(:start_time) =&gt; :opentelemetry.timestamp(),
+  optional(:kind) =&gt; <a href="OpenTelemetry.html#t:span_kind/0">OpenTelemetry.span_kind</a>()
+}</pre>
+
+      </div>
+
+
+  </section>
+</section>
+
+          </div>
+        </section>
+
+        <section id="functions" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#functions">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Functions
+          </h1>
+          <div class="functions-list">
+<section class="detail" id="add_event/2">
+
+  <div class="detail-header">
+    <a href="#add_event/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">add_event(event, attributes)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>add_event(<a href="OpenTelemetry.html#t:event_name/0">OpenTelemetry.event_name</a>(), <a href="OpenTelemetry.html#t:attributes/0">OpenTelemetry.attributes</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()</pre>
+
+      </div>
+
+<p>Add an event to the currently active Span.</p>
+  </section>
+</section>
+<section class="detail" id="add_events/1">
+
+  <div class="detail-header">
+    <a href="#add_events/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">add_events(events)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>add_events([<a href="OpenTelemetry.html#t:event/0">OpenTelemetry.event</a>()]) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()</pre>
+
+      </div>
+
+<p>Add a list of events to the currently active Span.</p>
+  </section>
+</section>
+<section class="detail" id="current_span_ctx/0">
+
+  <div class="detail-header">
+    <a href="#current_span_ctx/0" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">current_span_ctx()</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Returns the currently active <a href="OpenTelemetry.html#t:span_ctx/0"><code class="inline">OpenTelemetry.span_ctx/0</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="current_span_ctx/1">
+
+  <div class="detail-header">
+    <a href="#current_span_ctx/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">current_span_ctx(ctx)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Returns the <a href="OpenTelemetry.html#t:span_ctx/0"><code class="inline">OpenTelemetry.span_ctx/0</code></a> active in Context <code class="inline">ctx</code>.</p>
+  </section>
+</section>
+<section class="detail" id="end_span/0">
+
+  <div class="detail-header">
+    <a href="#end_span/0" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">end_span()</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>End the Span. Sets the end timestamp for the currently active Span. This has no effect on any
+child Spans that may exist of this Span.</p><p>The Span in the current Context has its <code class="inline">is_recording</code> set to <code class="inline">false</code>.</p>
+  </section>
+</section>
+<section class="detail" id="set_attribute/2">
+
+  <div class="detail-header">
+    <a href="#set_attribute/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">set_attribute(key, value)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>set_attribute(<a href="OpenTelemetry.html#t:attribute_key/0">OpenTelemetry.attribute_key</a>(), <a href="OpenTelemetry.html#t:attribute_value/0">OpenTelemetry.attribute_value</a>()) ::
+  <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()</pre>
+
+      </div>
+
+<p>Set an attribute with key and value on the currently active Span.</p>
+  </section>
+</section>
+<section class="detail" id="set_attributes/1">
+
+  <div class="detail-header">
+    <a href="#set_attributes/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">set_attributes(attributes)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>set_attributes(<a href="OpenTelemetry.html#t:attributes/0">OpenTelemetry.attributes</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()</pre>
+
+      </div>
+
+<p>Add a list of attributes to the currently active Span.</p>
+  </section>
+</section>
+<section class="detail" id="set_current_span/1">
+
+  <div class="detail-header">
+    <a href="#set_current_span/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">set_current_span(span_ctx)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Takes a <a href="OpenTelemetry.html#t:span_ctx/0"><code class="inline">OpenTelemetry.span_ctx/0</code></a> and the Tracer sets it to the currently active Span.</p>
+  </section>
+</section>
+<section class="detail" id="set_current_span/2">
+
+  <div class="detail-header">
+    <a href="#set_current_span/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">set_current_span(ctx, span_ctx)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Takes a <code class="inline">t:OpenTelemetry.ctx/0</code> and the <a href="OpenTelemetry.html#t:span_ctx/0"><code class="inline">OpenTelemetry.span_ctx/0</code></a> and the Tracer sets
+it to the current span in the pass Context.</p>
+  </section>
+</section>
+<section class="detail" id="set_status/1">
+
+  <div class="detail-header">
+    <a href="#set_status/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">set_status(status)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>set_status(<a href="OpenTelemetry.html#t:status/0">OpenTelemetry.status</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()</pre>
+
+      </div>
+
+<p>Sets the Status of the currently active Span.</p><p>If used, this will override the default Span Status, which is <code class="inline">ok</code>.</p>
+  </section>
+</section>
+<section class="detail" id="start_span/2">
+
+    <span id="start_span/1"></span>
+
+  <div class="detail-header">
+    <a href="#start_span/2" class="detail-link" title="Link to this macro">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature">start_span(name, opts \\ quote do
+  %{}
+end)</h1>
+
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Starts a new span and does not make it the current active span of the current process.</p><p>The current active Span is used as the parent of the created Span.</p>
+  </section>
+</section>
+<section class="detail" id="start_span/3">
+
+  <div class="detail-header">
+    <a href="#start_span/3" class="detail-link" title="Link to this macro">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature">start_span(ctx, name, opts)</h1>
+
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Starts a new span and does not make it the current active span of the current process.</p><p>The current active Span is used as the parent of the created Span.</p>
+  </section>
+</section>
+<section class="detail" id="update_name/1">
+
+  <div class="detail-header">
+    <a href="#update_name/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">update_name(name)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>update_name(String.t()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()</pre>
+
+      </div>
+
+<p>Updates the Span name.</p><p>It is highly discouraged to update the name of a Span after its creation. Span name is
+often used to group, filter and identify the logical groups of spans. And often, filtering
+logic will be implemented before the Span creation for performance reasons. Thus the name
+update may interfere with this logic.</p><p>The function name is called UpdateName to differentiate this function from the regular
+property setter. It emphasizes that this operation signifies a major change for a Span
+and may lead to re-calculation of sampling or filtering decisions made previously
+depending on the implementation.</p>
+  </section>
+</section>
+<section class="detail" id="with_span/3">
+
+    <span id="with_span/2"></span>
+
+  <div class="detail-header">
+    <a href="#with_span/3" class="detail-link" title="Link to this macro">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature">with_span(name, start_opts \\ quote do
+  %{}
+end, list)</h1>
+
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Creates a new span which is set to the currently active Span in the Context of the block.
+The Span is ended automatically when the <code class="inline">block</code> completes and the Context is what it was
+before the block.</p><p>See <a href="#start_span/2"><code class="inline">start_span/2</code></a> and <a href="#end_span/0"><code class="inline">end_span/0</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="with_span/4">
+
+  <div class="detail-header">
+    <a href="#with_span/4" class="detail-link" title="Link to this macro">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature">with_span(ctx, name, start_opts, list)</h1>
+
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Creates a new span which is set to the currently active Span in the Context of the block.
+The Span is ended automatically when the <code class="inline">block</code> completes and the Context is what it was
+before the block.</p><p>See <a href="#start_span/2"><code class="inline">start_span/2</code></a> and <a href="#end_span/0"><code class="inline">end_span/0</code></a>.</p>
+  </section>
+</section>
+
+          </div>
+        </section>
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.0-dev) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

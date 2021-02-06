@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.0-dev">
+    <meta name="project" content="opentelemetry_api v0.5.0">
+
+    <title>API Reference — opentelemetry_api v0.5.0</title>
+    <link rel="stylesheet" href="dist/erlang-e0b321562cb0bb031ae0.css" />
+
+    <script src="dist/sidebar_items-66c0c1b272.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f97730d45ef67f3e6188.js"></script>
+
+
+  </head>
+  <body data-type="extras">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="readme.html" class="sidebar-projectName">
+opentelemetry_api
+      </a>
+      <strong class="sidebar-projectVersion">
+        v0.5.0
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>
+  API Reference <small class="app-vsn">opentelemetry_api v0.5.0</small>
+</h1>
+
+  <section class="details-list">
+    <h2 id="modules" class="section-heading">
+  <a href="#modules" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Modules
+</h2>
+
+    <div class="summary">
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="OpenTelemetry.html">OpenTelemetry</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>An <a href="https://opentelemetry.io">OpenTelemetry</a> Trace consists of 1 or more Spans that either have a
+parent/child relationship or are linked together through a Link. Each Span has a TraceId (<a href="#t:trace_id/0"><code class="inline">trace_id/0</code></a>),
+SpanId (<a href="#t:span_id/0"><code class="inline">span_id/0</code></a>), and a start and end time in nanoseconds.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="OpenTelemetry.Baggage.html">OpenTelemetry.Baggage</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Baggage is used to annotate telemetry, adding context and information to
+metrics, traces, and logs. It is represented by a set of name/value pairs
+describing user-defined properties.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="OpenTelemetry.Counter.html">OpenTelemetry.Counter</a>
+
+  </div>
+
+    <div class="summary-synopsis"><pre><code class="makeup elixir"><span class="kn">require</span><span class="w"> </span><span class="nc">OpenTelemetry.Counter</span><span class="w">
+
+</span><span class="nc">OpenTelemetry.Counter</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="9820619886-1">(</span><span class="s">&quot;some.counter&quot;</span><span class="p" data-group-id="9820619886-1">)</span><span class="w">
+
+</span><span class="nc">OpenTelemetry.Counter</span><span class="o">.</span><span class="n">add</span><span class="p" data-group-id="9820619886-2">(</span><span class="s">&quot;some.counter&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="9820619886-2">)</span></code></pre></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="OpenTelemetry.Ctx.html">OpenTelemetry.Ctx</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Ctx is responsible for propagating values within a process that are associated
+with a particular Trace or set of Baggage. <a href="OpenTelemetry.Tracer.html"><code class="inline">OpenTelemetry.Tracer</code></a> and
+<a href="OpenTelemetry.Baggage.html"><code class="inline">OpenTelemetry.Baggage</code></a> handle updating the Context.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="OpenTelemetry.Meter.html">OpenTelemetry.Meter</a>
+
+  </div>
+
+    <div class="summary-synopsis"><pre><code class="makeup elixir"><span class="kn">require</span><span class="w"> </span><span class="nc">OpenTelemetry.ValueRecorder</span><span class="w">
+</span><span class="kn">require</span><span class="w"> </span><span class="nc">OpenTelemetry.Counter</span><span class="w">
+</span><span class="kn">require</span><span class="w"> </span><span class="nc">OpenTelemetry.Meter</span><span class="w">
+
+</span><span class="nc">OpenTelemetry</span><span class="o">.</span><span class="n">register_application_meter</span><span class="p" data-group-id="8910260883-1">(</span><span class="nc">Your.Application</span><span class="p" data-group-id="8910260883-1">)</span><span class="w">
+
+</span><span class="nc">OpenTelemetry.Meter</span><span class="o">.</span><span class="n">new_instruments</span><span class="p" data-group-id="8910260883-2">(</span><span class="p" data-group-id="8910260883-3">[</span><span class="nc">OpenTelemetry.ValueRecorder</span><span class="o">.</span><span class="n">instrument</span><span class="p" data-group-id="8910260883-4">(</span><span class="s">&quot;some.latency&quot;</span><span class="p" data-group-id="8910260883-4">)</span><span class="p">,</span><span class="w">
+                                     </span><span class="nc">OpenTelemetry.Counter</span><span class="o">.</span><span class="n">instrument</span><span class="p" data-group-id="8910260883-5">(</span><span class="s">&quot;some.counter&quot;</span><span class="p" data-group-id="8910260883-5">)</span><span class="p" data-group-id="8910260883-3">]</span><span class="p" data-group-id="8910260883-2">)</span><span class="w">
+
+</span><span class="c1"># use the new instrument by name</span><span class="w">
+</span><span class="nc">OpenTelemetry.Counter</span><span class="o">.</span><span class="n">add</span><span class="p" data-group-id="8910260883-6">(</span><span class="s">&quot;some.counter&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="8910260883-6">)</span><span class="w">
+
+</span><span class="c1"># or use a bound instrument</span><span class="w">
+</span><span class="n">bound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">OpenTelemetry.Meter</span><span class="o">.</span><span class="n">bind</span><span class="p" data-group-id="8910260883-7">(</span><span class="s">&quot;some.latency&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8910260883-8">[</span><span class="p" data-group-id="8910260883-8">]</span><span class="p" data-group-id="8910260883-7">)</span><span class="w">
+</span><span class="c1"># measure time spent on some function and then record it</span><span class="w">
+</span><span class="nc">OpenTelemetry.ValueRecorder</span><span class="o">.</span><span class="n">record</span><span class="p" data-group-id="8910260883-9">(</span><span class="n">bound</span><span class="p">,</span><span class="w"> </span><span class="n">time</span><span class="p" data-group-id="8910260883-9">)</span></code></pre></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="OpenTelemetry.Span.html">OpenTelemetry.Span</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>This module contains macros for Span operations that update the active current Span in the current process.
+An example of creating an Event and adding it to the current Span</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="OpenTelemetry.SumObserver.html">OpenTelemetry.SumObserver</a>
+
+  </div>
+
+    <div class="summary-synopsis"><pre><code class="makeup elixir"><span class="kn">require</span><span class="w"> </span><span class="nc">OpenTelemetry.SumObserver</span><span class="w">
+
+</span><span class="nc">OpenTelemetry.SumObserver</span><span class="o">.</span><span class="n">set_callback</span><span class="p" data-group-id="2299117616-1">(</span><span class="s">&quot;some.counter&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="nc">OpenTelemetry.SumObserver</span><span class="o">.</span><span class="n">observe</span><span class="p" data-group-id="2299117616-2">(</span><span class="ni">&amp;1</span><span class="p">,</span><span class="w"> </span><span class="mi">33</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2299117616-3">[</span><span class="p" data-group-id="2299117616-3">]</span><span class="p" data-group-id="2299117616-2">)</span><span class="p" data-group-id="2299117616-1">)</span></code></pre></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="OpenTelemetry.Tracer.html">OpenTelemetry.Tracer</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>This module contains macros for Tracer operations around the lifecycle of the Spans within a Trace.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="OpenTelemetry.UpdownCounter.html">OpenTelemetry.UpdownCounter</a>
+
+  </div>
+
+    <div class="summary-synopsis"><pre><code class="makeup elixir"><span class="kn">require</span><span class="w"> </span><span class="nc">OpenTelemetry.UpdownCounter</span><span class="w">
+
+</span><span class="nc">OpenTelemetry.UpdownCounter</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="9268869001-1">(</span><span class="s">&quot;some.counter&quot;</span><span class="p" data-group-id="9268869001-1">)</span><span class="w">
+
+</span><span class="nc">OpenTelemetry.UpdownCounter</span><span class="o">.</span><span class="n">add</span><span class="p" data-group-id="9268869001-2">(</span><span class="s">&quot;some.counter&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">3</span><span class="p" data-group-id="9268869001-2">)</span></code></pre></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="OpenTelemetry.UpdownSumObserver.html">OpenTelemetry.UpdownSumObserver</a>
+
+  </div>
+
+    <div class="summary-synopsis"><pre><code class="makeup elixir"><span class="kn">require</span><span class="w"> </span><span class="nc">OpenTelemetry.UpdownSumObserver</span><span class="w">
+
+</span><span class="nc">OpenTelemetry.UpdownSumObserver</span><span class="o">.</span><span class="n">set_callback</span><span class="p" data-group-id="4352090415-1">(</span><span class="s">&quot;some.counter&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">OpenTelemetry.UpdownSumObserver</span><span class="o">.</span><span class="n">observe</span><span class="p" data-group-id="4352090415-2">(</span><span class="ni">&amp;1</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">33</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4352090415-3">[</span><span class="p" data-group-id="4352090415-3">]</span><span class="p" data-group-id="4352090415-2">)</span><span class="p" data-group-id="4352090415-1">)</span></code></pre></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="OpenTelemetry.ValueObserver.html">OpenTelemetry.ValueObserver</a>
+
+  </div>
+
+    <div class="summary-synopsis"><pre><code class="makeup elixir"><span class="kn">require</span><span class="w"> </span><span class="nc">OpenTelemetry.ValueObserver</span><span class="w">
+
+</span><span class="nc">OpenTelemetry.ValueObserver</span><span class="o">.</span><span class="n">set_callback</span><span class="p" data-group-id="0553973922-1">(</span><span class="s">&quot;some.counter&quot;</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="0553973922-2">fn</span><span class="w"> </span><span class="n">o</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nc">OpenTelemetry.ValueObserver</span><span class="o">.</span><span class="n">observe</span><span class="p" data-group-id="0553973922-3">(</span><span class="n">o</span><span class="p">,</span><span class="w"> </span><span class="mi">33</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0553973922-4">[</span><span class="p" data-group-id="0553973922-4">]</span><span class="p" data-group-id="0553973922-3">)</span><span class="p">)</span></code></pre></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="OpenTelemetry.ValueRecorder.html">OpenTelemetry.ValueRecorder</a>
+
+  </div>
+
+    <div class="summary-synopsis"><pre><code class="makeup elixir"><span class="kn">require</span><span class="w"> </span><span class="nc">OpenTelemetry.ValueRecorder</span><span class="w">
+
+</span><span class="nc">OpenTelemetry.ValueRecorder</span><span class="o">.</span><span class="n">record</span><span class="p" data-group-id="4920717485-1">(</span><span class="s">&quot;some.recorder&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="4920717485-1">)</span></code></pre></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="opentelemetry.html">opentelemetry</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The types defined here, and referencing records in opentelemetry.hrl are used to store trace information while being collected on the Erlang node.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="otel_baggage.html">otel_baggage</a>
+
+  </div>
+
+    <div class="summary-synopsis">Baggage is used to annotate telemetry, adding context and information to metrics, traces, and logs. It is represented by a set of name/value pairs describing user-defined properties.</div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="otel_counter.html">otel_counter</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="otel_ctx.html">otel_ctx</a>
+
+  </div>
+
+    <div class="summary-synopsis">Ctx is responsible for propagating values within a process that are associated with a particular Trace or set of Baggage. <a href="OpenTelemetry.Tracer.html"><code>OpenTelemetry.Tracer</code></a> and <a href="OpenTelemetry.Baggage.html"><code>OpenTelemetry.Baggage</code></a> handle updating the Context.</div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="otel_instrument.html">otel_instrument</a>
+
+  </div>
+
+    <div class="summary-synopsis">All measurements are associated with an instrument. To record measurements for an instrument it must first be created with <code>new</code> and then can be referenced by name.</div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="otel_meter.html">otel_meter</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="otel_meter_noop.html">otel_meter_noop</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="otel_meter_provider.html">otel_meter_provider</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="otel_observer.html">otel_observer</a>
+
+  </div>
+
+    <div class="summary-synopsis">An <code>Observer</code> is a callback based instrument with a <code>LastValue</code> aggregator. On each collection cycle each Observer callback is run and passed an <code>ObserverInstrument</code> variable to use when <code>observe</code>ing the new value, passing the <code>ObserverInstrument</code>, the new value and a list of attributes, key/value pairs.</div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="otel_propagator.html">otel_propagator</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="otel_propagator_http_b3.html">otel_propagator_http_b3</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="otel_propagator_http_w3c.html">otel_propagator_http_w3c</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="otel_span.html">otel_span</a>
+
+  </div>
+
+    <div class="summary-synopsis">Span behaviour.</div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="otel_sum_observer.html">otel_sum_observer</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="otel_tracer.html">otel_tracer</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="otel_tracer_noop.html">otel_tracer_noop</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="otel_tracer_provider.html">otel_tracer_provider</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="otel_updown_counter.html">otel_updown_counter</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="otel_updown_sum_observer.html">otel_updown_sum_observer</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="otel_value_observer.html">otel_value_observer</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="otel_value_recorder.html">otel_value_recorder</a>
+
+  </div>
+
+</div>
+
+    </div>
+  </section>
+
+
+<div class="bottom-actions">
+  <div class="bottom-actions-item">
+
+  </div>
+  <div class="bottom-actions-item">
+
+      <a href="readme.html" class="bottom-actions-button" rel="next">
+        <span class="subheader">
+          Next Page →
+        </span>
+        <span class="title">
+Erlang/Elixir OpenTelemetry API
+        </span>
+      </a>
+
+  </div>
+</div>
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.0-dev) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

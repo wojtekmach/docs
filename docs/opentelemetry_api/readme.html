@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.0-dev">
+    <meta name="project" content="opentelemetry_api v0.5.0">
+
+    <title>Erlang/Elixir OpenTelemetry API — opentelemetry_api v0.5.0</title>
+    <link rel="stylesheet" href="dist/erlang-e0b321562cb0bb031ae0.css" />
+
+    <script src="dist/sidebar_items-66c0c1b272.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f97730d45ef67f3e6188.js"></script>
+
+
+  </head>
+  <body data-type="extras">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="readme.html" class="sidebar-projectName">
+opentelemetry_api
+      </a>
+      <strong class="sidebar-projectVersion">
+        v0.5.0
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>Erlang/Elixir OpenTelemetry API</h1><p><a href="https://github.com/erlef/eef-observability-wg"><img src="https://img.shields.io/badge/EEF-Observability-black" alt="EEF Observability WG project"></img></a>
+<a href="https://hex.pm/packages/opentelemetry_api"><img src="https://img.shields.io/hexpm/v/opentelemetry" alt="Hex.pm"></img></a>
+<img src="https://github.com/open-telemetry/opentelemetry-erlang-api/workflows/Common%20Test/badge.svg" alt="Build Status"></img></p><p>This is the API portion of <a href="https://opentelemetry.io/">OpenTelemetry</a> for Erlang and Elixir Applications.</p><p>This is a library, it does not start any processes, and should be the only OpenTelemetry dependency of Erlang/Elixir Applications. </p><p>The end user of your Application can then choose to include the <a href="https://github.com/open-telemetry/opentelemetry-erlang">OpenTelemetry implementation</a> Application. If the implementation Application is not in the final release the OpenTelemetry instrumentation will all be no-ops. This means no processes started, no ETS tables created and nothing added to the process dictionary.</p><p>This separation is done so you should feel comfortable instrumenting your Erlang/Elixir Application with OpenTelemetry and not worry that a complicated dependency is being forced on your users.</p><h2 id="use" class="section-heading">
+  <a href="#use" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Use
+</h2>
+<p>When instrumenting an Application to be used as a dependency of other projects it is best practice to register a <code class="inline">Tracer</code> with a name and a version using the Application's name and version. This should be the name and version of the Application that has the <code class="inline">opentelemetry</code> calls being written in it, not the name of the Application it might be being used to instrument. For example, an <a href="https://github.com/elli-lib/elli">Elli</a> middleware to add tracing to the Elli HTTP server would <em>not</em> be named <code class="inline">elli</code>, it would be the name of the middleware Application, like <code class="inline">opentelemetry_elli</code>.</p><p>Registration is done through a single process and uses a <a href="https://erlang.org/doc/man/persistent_term.html">persistent_term</a>, so should be done only once per-Application. Updating a registration is allowed, so updating the version on a release upgrade can, and should, be done, but will involve the performance penalty of updating a <a href="https://erlang.org/doc/man/persistent_term.html">persistent_term</a>.</p><p>Naming the <code class="inline">Tracers</code> provides additional metadata on spans and allows the user of your Application to disable the traces from the dependency if it is needed.</p><h3 id="dependency-in-elixir" class="section-heading">
+  <a href="#dependency-in-elixir" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Dependency in Elixir
+</h3>
+<pre><code class="makeup elixir"><span class="kd">def</span><span class="w"> </span><span class="nf">deps</span><span class="w"> </span><span class="k" data-group-id="1174003666-1">do</span><span class="w">
+  </span><span class="p" data-group-id="1174003666-2">[</span><span class="w">
+    </span><span class="p" data-group-id="1174003666-3">{</span><span class="ss">:opentelemetry_api</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;~&gt; 0.3.0&quot;</span><span class="p" data-group-id="1174003666-3">}</span><span class="w">
+  </span><span class="p" data-group-id="1174003666-2">]</span><span class="w">
+</span><span class="k" data-group-id="1174003666-1">end</span></code></pre><h3 id="registering-and-using-tracers-directly" class="section-heading">
+  <a href="#registering-and-using-tracers-directly" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Registering and Using Tracers Directly
+</h3>
+<p>If it is a runnable application then this registration should happen in <code class="inline">start/2</code>, example below is adding <code class="inline">Tracer</code> registration to the Postgres library <a href="https://github.com/erleans/pgo">pgo</a>:</p><pre><code class="makeup erlang"><span class="nf">start</span><span class="p" data-group-id="9798180453-1">(</span><span class="p">_</span><span class="n">StartType</span><span class="p">,</span><span class="w"> </span><span class="p">_</span><span class="n">StartArgs</span><span class="p" data-group-id="9798180453-1">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w">
+    </span><span class="p">_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">opentelemetry</span><span class="p">:</span><span class="nf">register_application_tracer</span><span class="p" data-group-id="9798180453-2">(</span><span class="ss">pgo</span><span class="p" data-group-id="9798180453-2">)</span><span class="p">,</span><span class="w">
+</span><span class="p">.</span><span class="p">.</span><span class="p">.</span></code></pre><p>Or for an Elixir Application named <code class="inline">MyApp</code>:</p><pre><code class="makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyApp</span><span class="w"> </span><span class="k" data-group-id="4571964997-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">Application</span><span class="w">
+
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">start</span><span class="p" data-group-id="4571964997-2">(</span><span class="c">_type</span><span class="p">,</span><span class="w"> </span><span class="c">_args</span><span class="p" data-group-id="4571964997-2">)</span><span class="w"> </span><span class="k" data-group-id="4571964997-3">do</span><span class="w">
+    </span><span class="bp">_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">OpenTelemetry</span><span class="o">.</span><span class="n">register_application_tracer</span><span class="p" data-group-id="4571964997-4">(</span><span class="ss">:my_app</span><span class="p" data-group-id="4571964997-4">)</span><span class="w">
+    </span><span class="n">...</span><span class="w">
+  </span><span class="k" data-group-id="4571964997-3">end</span><span class="w">
+</span><span class="k" data-group-id="4571964997-1">end</span></code></pre><p>Then when the spans are started and finished in the application's code the <code class="inline">Tracer</code> is fetched with <code class="inline">get_tracer/1</code> and passed to <code class="inline">with_span/3</code> or <code class="inline">start_span/3</code>:</p><pre><code class="makeup erlang"><span class="n">Tracer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">opentelemetry</span><span class="p">:</span><span class="nf">get_tracer</span><span class="p" data-group-id="5747974694-1">(</span><span class="ss">pgo</span><span class="p" data-group-id="5747974694-1">)</span><span class="p">,</span><span class="w">
+</span><span class="nc">otel_tracer</span><span class="p">:</span><span class="nf">with_span</span><span class="p" data-group-id="5747974694-2">(</span><span class="n">Tracer</span><span class="p">,</span><span class="w"> </span><span class="p">&lt;&lt;</span><span class="s">&quot;pgo:query/3&quot;</span><span class="p">&gt;&gt;</span><span class="p">,</span><span class="w"> </span><span class="nf">fun</span><span class="p" data-group-id="5747974694-3">(</span><span class="p" data-group-id="5747974694-3">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="w"> </span><span class="k">end</span><span class="p" data-group-id="5747974694-2">)</span><span class="p">.</span></code></pre><p>A <code class="inline">Tracer</code> variable can be passed through your Application's calls so <code class="inline">get_tracer</code> only has to be called once, it is safe to store it in the state of a <code class="inline">gen_server</code> and to pass across process boundaries.</p><p>If the application does not have a <code class="inline">start/2</code> there may be another function that is always called before the library would create any spans. For example, the <a href="https://github.com/elli-lib/elli">Elli</a> middleware for OpenTelemetry instrumentation registers the <code class="inline">Tracer</code> during Elli startup:</p><pre><code class="makeup erlang"><span class="nf">handle_event</span><span class="p" data-group-id="6630834103-1">(</span><span class="ss">elli_startup</span><span class="p">,</span><span class="w"> </span><span class="p">_</span><span class="n">Args</span><span class="p">,</span><span class="w"> </span><span class="p">_</span><span class="n">Config</span><span class="p" data-group-id="6630834103-1">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w">
+    </span><span class="p">_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">opentelemetry</span><span class="p">:</span><span class="nf">register_application_tracer</span><span class="p" data-group-id="6630834103-2">(</span><span class="ss">opentelemetry_elli</span><span class="p" data-group-id="6630834103-2">)</span><span class="p">,</span><span class="w">
+    </span><span class="ss">ok</span><span class="p">;</span></code></pre><p>When there is no startup of any kind to hook into in the library itself it should export a function <code class="inline">register_application_tracer/0</code> to be used by any application that depends on it to do the registration:</p><pre><code class="makeup erlang"><span class="p">-</span><span class="na">module</span><span class="p" data-group-id="9432195262-1">(</span><span class="ss">mylib</span><span class="p" data-group-id="9432195262-1">)</span><span class="p">.</span><span class="w">
+</span><span class="w">
+</span><span class="p">-</span><span class="na">export</span><span class="p" data-group-id="9432195262-2">(</span><span class="p" data-group-id="9432195262-3">[</span><span class="ss">register_tracer</span><span class="o">/</span><span class="mi">0</span><span class="p" data-group-id="9432195262-3">]</span><span class="p" data-group-id="9432195262-2">)</span><span class="p">.</span><span class="w">
+
+</span><span class="nf">register_tracer</span><span class="p" data-group-id="9432195262-4">(</span><span class="p" data-group-id="9432195262-4">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w">
+    </span><span class="p">_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">opentelemetry</span><span class="p">:</span><span class="nf">register_application_tracer</span><span class="p" data-group-id="9432195262-5">(</span><span class="ss">mylib</span><span class="p" data-group-id="9432195262-5">)</span><span class="p">,</span><span class="w">
+    </span><span class="ss">ok</span><span class="p">.</span></code></pre><p>Not registering does not cause any issues or crashes, OpenTelemetry simply will fallback to the default <code class="inline">Tracer</code> if <code class="inline">get_tracer/1</code> is called with a name that is not registered.</p><h3 id="helper-macros-for-application-tracers" class="section-heading">
+  <a href="#helper-macros-for-application-tracers" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Helper Macros for Application Tracers
+</h3>
+<p>When <code class="inline">register_application_tracer/1</code> is used to register a Tracer there are both Erlang and Elixir macros that make use of the current module's name to lookup the Tracer for you and can be used for Trace and Span operations:</p><pre><code class="makeup erlang"><span class="p">-</span><span class="na">include_lib</span><span class="p" data-group-id="8645142548-1">(</span><span class="s">&quot;opentelemetry_api/include/otel_tracer.hrl&quot;</span><span class="p" data-group-id="8645142548-1">)</span><span class="p">.</span><span class="w">
+
+</span><span class="nf">some_fun</span><span class="p" data-group-id="8645142548-2">(</span><span class="p" data-group-id="8645142548-2">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w">
+    </span><span class="o">?</span><span class="nf">with_span</span><span class="p" data-group-id="8645142548-3">(</span><span class="p">&lt;&lt;</span><span class="s">&quot;some_fun/0&quot;</span><span class="p">&gt;&gt;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8645142548-4">#{</span><span class="p" data-group-id="8645142548-4">}</span><span class="p">,</span><span class="w"> 
+        </span><span class="nf">fun</span><span class="p" data-group-id="8645142548-5">(</span><span class="p">_</span><span class="n">SpanCtx</span><span class="p" data-group-id="8645142548-5">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> 
+            </span><span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="w">
+            </span><span class="o">?</span><span class="nf">set_attribute</span><span class="p" data-group-id="8645142548-6">(</span><span class="p">&lt;&lt;</span><span class="s">&quot;key&quot;</span><span class="p">&gt;&gt;</span><span class="p">,</span><span class="w"> </span><span class="p">&lt;&lt;</span><span class="s">&quot;value&quot;</span><span class="p">&gt;&gt;</span><span class="p" data-group-id="8645142548-6">)</span><span class="p">,</span><span class="w">
+            </span><span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="w">
+        </span><span class="k">end</span><span class="p" data-group-id="8645142548-3">)</span><span class="p">,</span></code></pre><pre><code class="makeup elixir"><span class="kn">require</span><span class="w"> </span><span class="nc">OpenTelemetry.Tracer</span><span class="w">
+</span><span class="kn">require</span><span class="w"> </span><span class="nc">OpenTelemetry.Span</span><span class="w">
+      
+</span><span class="kd">def</span><span class="w"> </span><span class="nf">some_fun</span><span class="p" data-group-id="5735654660-1">(</span><span class="p" data-group-id="5735654660-1">)</span><span class="w"> </span><span class="k" data-group-id="5735654660-2">do</span><span class="w">
+    </span><span class="nc">OpenTelemetry.Tracer</span><span class="o">.</span><span class="n">with_span</span><span class="w"> </span><span class="s">&quot;some-span&quot;</span><span class="w"> </span><span class="k" data-group-id="5735654660-3">do</span><span class="w">
+      </span><span class="n">...</span><span class="w">
+      </span><span class="nc">OpenTelemetry.Span</span><span class="o">.</span><span class="n">set_attribute</span><span class="p" data-group-id="5735654660-4">(</span><span class="s">&quot;key&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;value&quot;</span><span class="p" data-group-id="5735654660-4">)</span><span class="w">
+      </span><span class="n">...</span><span class="w">
+    </span><span class="k" data-group-id="5735654660-3">end</span><span class="w">
+</span><span class="k" data-group-id="5735654660-2">end</span></code></pre><h3 id="including-the-opentelemetry-sdk" class="section-heading">
+  <a href="#including-the-opentelemetry-sdk" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Including the OpenTelemetry SDK
+</h3>
+<p>For traces to actually be tracked, propagated and exported, the <a href="https://github.com/open-telemetry/opentelemetry-erlang">opentelemetry</a> Application must be included as a dependency of your project, likely as part of a <a href="https://erlang.org/doc/design_principles/release_structure.html">Release</a> and not as a dependency of an individual Application within the Release.</p><p>See the <a href="https://github.com/open-telemetry/opentelemetry-erlang#using">Using section</a> of the <a href="https://github.com/open-telemetry/opentelemetry-erlang">OpenTelemetry-Erlang</a> repository for details.</p><h3 id="exporters" class="section-heading">
+  <a href="#exporters" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Exporters
+</h3>
+<p>Exporters can be found as separate Applications on Github under the <a href="https://github.com/opentelemetry-beam">OpenTelemetry Beam Organization</a>.</p><ul><li><a href="https://hex.pm/packages/opentelemetry_zipkin">Zipkin</a></li><li><a href="https://hex.pm/packages/opentelemetry_exporter">OpenTelemetry Collector</a></li></ul><h3 id="http-integrations" class="section-heading">
+  <a href="#http-integrations" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  HTTP Integrations
+</h3>
+<ul><li><a href="https://hex.pm/packages/opentelemetry_elli">Elli</a></li></ul><h3 id="database-client-integration" class="section-heading">
+  <a href="#database-client-integration" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Database Client Integration
+</h3>
+<ul><li><a href="https://hex.pm/packages/opentelemetry_ecto">Ecto</a></li></ul><h2 id="contributing" class="section-heading">
+  <a href="#contributing" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Contributing
+</h2>
+<p>See the <a href="CONTRIBUTING.md">contributing file</a>.</p>
+<div class="bottom-actions">
+  <div class="bottom-actions-item">
+
+      <a href="api-reference.html" class="bottom-actions-button" rel="prev">
+        <span class="subheader">
+          ← Previous Page
+        </span>
+        <span class="title">
+API Reference
+        </span>
+      </a>
+
+  </div>
+  <div class="bottom-actions-item">
+
+  </div>
+</div>
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.0-dev) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

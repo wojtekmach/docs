@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.0-dev">
+    <meta name="project" content="opentelemetry_api v0.5.0">
+
+    <title>otel_span — opentelemetry_api v0.5.0</title>
+    <link rel="stylesheet" href="dist/erlang-e0b321562cb0bb031ae0.css" />
+
+    <script src="dist/sidebar_items-66c0c1b272.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f97730d45ef67f3e6188.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="readme.html" class="sidebar-projectName">
+opentelemetry_api
+      </a>
+      <strong class="sidebar-projectVersion">
+        v0.5.0
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+      <h1>
+otel_span <small class="app-vsn">(opentelemetry_api v0.5.0)</small>
+
+      </h1>
+
+
+        <section id="moduledoc">
+Span behaviour.
+        </section>
+
+
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Summary
+          </h1>
+
+  <div class="summary-types summary">
+    <h2>
+      <a href="#types">Types</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:start_opts/0">start_opts/0</a>
+
+  </div>
+
+</div>
+
+  </div>
+
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#add_event/3">add_event(SpanCtx, Name, Attributes)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#add_events/2">add_events(SpanCtx, Events)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#end_span/1">end_span(SpanCtx)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#is_recording/1">is_recording(SpanCtx)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#is_valid/1">is_valid(SpanCtx)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#set_attribute/3">set_attribute(SpanCtx, Key, Value)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#set_attributes/2">set_attributes(SpanCtx, Attributes)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#set_status/2">set_status(SpanCtx, Status)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#span_id/1">span_id(Span_ctx)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#trace_id/1">trace_id(Span_ctx)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#tracestate/1">tracestate(Span_ctx)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#update_name/2">update_name(SpanCtx, Name)</a>
+
+  </div>
+
+</div>
+
+  </div>
+
+        </section>
+
+
+        <section id="types" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#types">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Types
+          </h1>
+          <div class="types-list">
+<section class="detail" id="t:start_opts/0">
+
+  <div class="detail-header">
+    <a href="#t:start_opts/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">start_opts/0</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>start_opts() :: %{
+  optional(:attributes) =&gt; :opentelemetry.attributes(),
+  optional(:sampler) =&gt; <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
+  optional(:links) =&gt; :opentelemetry.links(),
+  optional(:is_recording) =&gt; <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>(),
+  optional(:start_time) =&gt; :opentelemetry.timestamp(),
+  optional(:kind) =&gt; :opentelemetry.span_kind()
+}</pre>
+
+      </div>
+
+
+  </section>
+</section>
+
+          </div>
+        </section>
+
+        <section id="functions" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#functions">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Functions
+          </h1>
+          <div class="functions-list">
+<section class="detail" id="add_event/3">
+
+  <div class="detail-header">
+    <a href="#add_event/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">add_event(SpanCtx, Name, Attributes)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>add_event(spanCtx, name, attributes) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()
+when name: :opentelemetry.event_name(),
+     attributes: :opentelemetry.attributes(),
+     spanCtx: :opentelemetry.span_ctx()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="add_events/2">
+
+  <div class="detail-header">
+    <a href="#add_events/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">add_events(SpanCtx, Events)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>add_events(spanCtx, events) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()
+when events: :opentelemetry.events(), spanCtx: :opentelemetry.span_ctx()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="end_span/1">
+
+  <div class="detail-header">
+    <a href="#end_span/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">end_span(SpanCtx)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>end_span(spanCtx) :: spanCtx when spanCtx: :opentelemetry.span_ctx()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="is_recording/1">
+
+  <div class="detail-header">
+    <a href="#is_recording/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">is_recording(SpanCtx)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>is_recording(spanCtx) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>() when spanCtx: :opentelemetry.span_ctx()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="is_valid/1">
+
+  <div class="detail-header">
+    <a href="#is_valid/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">is_valid(SpanCtx)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>is_valid(spanCtx) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>() when spanCtx: :opentelemetry.span_ctx()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="set_attribute/3">
+
+  <div class="detail-header">
+    <a href="#set_attribute/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">set_attribute(SpanCtx, Key, Value)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>set_attribute(spanCtx, key, value) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()
+when key: :opentelemetry.attribute_key(),
+     value: :opentelemetry.attribute_value(),
+     spanCtx: :opentelemetry.span_ctx()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="set_attributes/2">
+
+  <div class="detail-header">
+    <a href="#set_attributes/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">set_attributes(SpanCtx, Attributes)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>set_attributes(spanCtx, attributes) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()
+when attributes: :opentelemetry.attributes(), spanCtx: :opentelemetry.span_ctx()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="set_status/2">
+
+  <div class="detail-header">
+    <a href="#set_status/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">set_status(SpanCtx, Status)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>set_status(spanCtx, status) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()
+when status: :opentelemetry.status(), spanCtx: :opentelemetry.span_ctx()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="span_id/1">
+
+  <div class="detail-header">
+    <a href="#span_id/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">span_id(Span_ctx)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>span_id(:opentelemetry.span_ctx()) :: :opentelemetry.span_id()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="trace_id/1">
+
+  <div class="detail-header">
+    <a href="#trace_id/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">trace_id(Span_ctx)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>trace_id(:opentelemetry.span_ctx()) :: :opentelemetry.trace_id()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="tracestate/1">
+
+  <div class="detail-header">
+    <a href="#tracestate/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">tracestate(Span_ctx)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>tracestate(:opentelemetry.span_ctx()) :: :opentelemetry.tracestate()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="update_name/2">
+
+  <div class="detail-header">
+    <a href="#update_name/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">update_name(SpanCtx, Name)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>update_name(spanCtx, name) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()
+when name: :opentelemetry.span_name(), spanCtx: :opentelemetry.span_ctx()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+
+          </div>
+        </section>
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.0-dev) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>
