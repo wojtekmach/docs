@@ -96,7 +96,7 @@ requests
     </a>
     <h1 class="signature">request(method, url, body, opts \\ [])</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L79" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L81" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -109,7 +109,7 @@ requests
 <p>Makes a HTTP request.</p><p>Options:</p><ul><li><p><code class="inline">:headers</code> - list of request headers, defaults to <code class="inline">[]</code>.</p></li><li><p><code class="inline">:finch</code> - name of the <a href="https://hexdocs.pm/finch/0.6.0/Finch.html"><code class="inline">Finch</code></a> pool to use, defaults to <code class="inline">Requests.Finch</code> that is started
 with the default options.</p></li><li><p><code class="inline">:request_middleware</code> - list of middleware to run the request through, defaults to <code class="inline">[]</code>.</p></li><li><p><code class="inline">:default_request_middleware</code> - if <code class="inline">true</code> (default), prepends the following functions
  to the request middleware list:</p><ul><li><a href="#normalize_request_headers/2"><code class="inline">normalize_request_headers/2</code></a></li><li><a href="#default_headers/2"><code class="inline">default_headers/2</code></a></li></ul></li><li><p><code class="inline">:response_middleware</code> - list of middleware to run the response through, defaults to <code class="inline">[]</code>.</p></li><li><p><code class="inline">:default_response_middleware</code> - if <code class="inline">true</code> (default), prepends the following functions to
-the response middleware list:</p><ul><li><a href="#decompress/2"><code class="inline">decompress/2</code></a></li><li><a href="#response_content_type/2"><code class="inline">response_content_type/2</code></a></li></ul></li></ul><h2 id="request/4-request-middleware" class="section-heading">
+the response middleware list:</p><ul><li><a href="#decompress/2"><code class="inline">decompress/2</code></a></li><li><a href="#response_content_type/2"><code class="inline">response_content_type/2</code></a></li></ul></li></ul><p>The <code class="inline">opts</code> keywords list is passed to each middleware.</p><h2 id="request/4-request-middleware" class="section-heading">
   <a href="#request/4-request-middleware" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Request middleware
 </h2>

@@ -94,7 +94,7 @@ requests
     </a>
     <h1 class="signature">response_content_type(response, opts)</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L200" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L204" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -104,8 +104,14 @@ requests
 
   <section class="docstring">
 
-<p>Decodes the response body based on the content-type header.</p><p>Currently these <code class="inline">&quot;content-type&quot;</code> values are supported:</p><ul><li><p><code class="inline">&quot;application/json*&quot;</code> - using <a href="https://hexdocs.pm/jason/1.2.2/Jason.html#decode!/1"><code class="inline">Jason.decode!/1</code></a> (if Jason is available)</p></li><li><p><code class="inline">&quot;text/csv*&quot;</code> - using <code class="inline">NimbleCSV.RFC4180.parse_string(body, skip_headers: false)</code>
-(if NimbleCSV is available)</p></li></ul>
+<p>Decodes the response body based on the content-type header.</p><h2 id="response_content_type/2-options" class="section-heading">
+  <a href="#response_content_type/2-options" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Options
+</h2>
+<ul><li><p><code class="inline">:json_decoder</code> - if set, used on the <code class="inline">&quot;application/json*&quot;</code> content type. Defaults to
+<code class="inline">&amp;Jason.decode/1</code> if <code class="inline">jason</code> dependency is installed.</p></li><li><p><code class="inline">:csv_decoder</code> - if set, used on the <code class="inline">&quot;text/csv*&quot;</code> content type. Defaults to
+<code class="inline">&amp;NimbleCSV.RFC4180.parse_string(&amp;1, skip_headers: false)</code> if <code class="inline">nimble_csv</code> dependency is
+installed.</p></li></ul>
   </section>
 </section>
 

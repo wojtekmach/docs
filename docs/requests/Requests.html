@@ -255,7 +255,7 @@ API
     </a>
     <h1 class="signature">request(method, url, body, opts \\ [])</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L79" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L81" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -268,7 +268,7 @@ API
 <p>Makes a HTTP request.</p><p>Options:</p><ul><li><p><code class="inline">:headers</code> - list of request headers, defaults to <code class="inline">[]</code>.</p></li><li><p><code class="inline">:finch</code> - name of the <a href="https://hexdocs.pm/finch/0.6.0/Finch.html"><code class="inline">Finch</code></a> pool to use, defaults to <code class="inline">Requests.Finch</code> that is started
 with the default options.</p></li><li><p><code class="inline">:request_middleware</code> - list of middleware to run the request through, defaults to <code class="inline">[]</code>.</p></li><li><p><code class="inline">:default_request_middleware</code> - if <code class="inline">true</code> (default), prepends the following functions
  to the request middleware list:</p><ul><li><a href="#normalize_request_headers/2"><code class="inline">normalize_request_headers/2</code></a></li><li><a href="#default_headers/2"><code class="inline">default_headers/2</code></a></li></ul></li><li><p><code class="inline">:response_middleware</code> - list of middleware to run the response through, defaults to <code class="inline">[]</code>.</p></li><li><p><code class="inline">:default_response_middleware</code> - if <code class="inline">true</code> (default), prepends the following functions to
-the response middleware list:</p><ul><li><a href="#decompress/2"><code class="inline">decompress/2</code></a></li><li><a href="#response_content_type/2"><code class="inline">response_content_type/2</code></a></li></ul></li></ul><h2 id="request/4-request-middleware" class="section-heading">
+the response middleware list:</p><ul><li><a href="#decompress/2"><code class="inline">decompress/2</code></a></li><li><a href="#response_content_type/2"><code class="inline">response_content_type/2</code></a></li></ul></li></ul><p>The <code class="inline">opts</code> keywords list is passed to each middleware.</p><h2 id="request/4-request-middleware" class="section-heading">
   <a href="#request/4-request-middleware" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Request middleware
 </h2>
@@ -301,7 +301,7 @@ Request middleware
     </a>
     <h1 class="signature">default_headers(request, opts)</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L141" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L143" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -323,7 +323,7 @@ Request middleware
     </a>
     <h1 class="signature">normalize_request_headers(request, opts)</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L117" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L119" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -359,7 +359,7 @@ Response middleware
     </a>
     <h1 class="signature">decompress(response, opts)</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L155" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L157" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -381,7 +381,7 @@ Response middleware
     </a>
     <h1 class="signature">response_content_type(response, opts)</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L200" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L204" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -391,8 +391,14 @@ Response middleware
 
   <section class="docstring">
 
-<p>Decodes the response body based on the content-type header.</p><p>Currently these <code class="inline">&quot;content-type&quot;</code> values are supported:</p><ul><li><p><code class="inline">&quot;application/json*&quot;</code> - using <a href="https://hexdocs.pm/jason/1.2.2/Jason.html#decode!/1"><code class="inline">Jason.decode!/1</code></a> (if Jason is available)</p></li><li><p><code class="inline">&quot;text/csv*&quot;</code> - using <code class="inline">NimbleCSV.RFC4180.parse_string(body, skip_headers: false)</code>
-(if NimbleCSV is available)</p></li></ul>
+<p>Decodes the response body based on the content-type header.</p><h2 id="response_content_type/2-options" class="section-heading">
+  <a href="#response_content_type/2-options" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Options
+</h2>
+<ul><li><p><code class="inline">:json_decoder</code> - if set, used on the <code class="inline">&quot;application/json*&quot;</code> content type. Defaults to
+<code class="inline">&amp;Jason.decode/1</code> if <code class="inline">jason</code> dependency is installed.</p></li><li><p><code class="inline">:csv_decoder</code> - if set, used on the <code class="inline">&quot;text/csv*&quot;</code> content type. Defaults to
+<code class="inline">&amp;NimbleCSV.RFC4180.parse_string(&amp;1, skip_headers: false)</code> if <code class="inline">nimble_csv</code> dependency is
+installed.</p></li></ul>
   </section>
 </section>
 
