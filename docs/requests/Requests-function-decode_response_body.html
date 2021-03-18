@@ -7,7 +7,7 @@
     <meta name="generator" content="ExDoc v0.24.0">
     <meta name="project" content="requests v0.1.0-dev">
 
-    <title>Requests.get-exclamation-mark — requests v0.1.0-dev</title>
+    <title>Requests.decode_response_body — requests v0.1.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
 
     <script src="dist/sidebar_items-4196088d1c.js"></script>
@@ -79,24 +79,22 @@ requests
   <div class="content-outer">
     <div id="content" class="content-inner">
 
-<h1>Requests.get-exclamation-mark</h1>
+<h1>Requests.decode_response_body</h1>
 
 <div class="deprecated">
-  You're seeing just the function <code>get-exclamation-mark</code>, go back to <a href="Requests.html">Requests</a> module for more information.
+  You're seeing just the function <code>decode_response_body</code>, go back to <a href="Requests.html">Requests</a> module for more information.
 </div>
 
-<section class="detail" id="get!/2">
-
-    <span id="get!/1"></span>
+<section class="detail" id="decode_response_body/2">
 
   <div class="detail-header">
-    <a href="#get!/2" class="detail-link" title="Link to this function">
+    <a href="#decode_response_body/2" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature">get!(url, opts \\ [])</h1>
+    <h1 class="signature">decode_response_body(response, opts)</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L44" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L220" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -106,7 +104,14 @@ requests
 
   <section class="docstring">
 
-<p>See <a href="#get/2"><code class="inline">get/2</code></a>.</p>
+<p>Decodes the response body based on the content-type header.</p><h2 id="decode_response_body/2-options" class="section-heading">
+  <a href="#decode_response_body/2-options" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Options
+</h2>
+<ul><li><p><code class="inline">:json_decoder</code> - if set, used on the <code class="inline">&quot;application/json*&quot;</code> content type. Defaults to
+<code class="inline">&amp;Jason.decode/1</code> if <code class="inline">jason</code> dependency is installed.</p></li><li><p><code class="inline">:csv_decoder</code> - if set, used on the <code class="inline">&quot;text/csv*&quot;</code> content type. Defaults to
+<code class="inline">&amp;NimbleCSV.RFC4180.parse_string(&amp;1, skip_headers: false)</code> if <code class="inline">nimble_csv</code> dependency is
+installed.</p></li></ul>
   </section>
 </section>
 
