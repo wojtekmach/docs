@@ -95,12 +95,13 @@ Requests <small class="app-vsn">(requests v0.1.0-dev)</small>
   <a href="#module-features" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Features
 </h2>
-<ul><li>Extensible via request and response middlewares</li><li>Automatic compression/decompression based on <code class="inline">content-encoding</code> header (via <a href="#decompress/2"><code class="inline">decompress/2</code></a>)</li><li>Automatic body encoding/decoding based on <code class="inline">content-type</code> (via <a href="#encode_request_body/2"><code class="inline">encode_request_body/2</code></a>,
+<ul><li>Extensible via request and response middlewares</li><li>Automatic compression/decompression based on <code class="inline">content-encoding</code> header (via <a href="#compress/2"><code class="inline">compress/2</code></a> and
+<a href="#decompress/2"><code class="inline">decompress/2</code></a>)</li><li>Automatic body encoding/decoding based on <code class="inline">content-type</code> (via <a href="#encode_request_body/2"><code class="inline">encode_request_body/2</code></a> and
 <a href="#decode_response_body/2"><code class="inline">decode_response_body/2</code></a>)</li></ul><h2 id="module-examples" class="section-heading">
   <a href="#module-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Examples
 </h2>
-<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="8328612406-1">(</span><span class="s">&quot;https://api.github.com/repos/elixir-lang/elixir&quot;</span><span class="p" data-group-id="8328612406-1">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="8328612406-2">[</span><span class="s">&quot;description&quot;</span><span class="p" data-group-id="8328612406-2">]</span><span class="w">
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="3585431179-1">(</span><span class="s">&quot;https://api.github.com/repos/elixir-lang/elixir&quot;</span><span class="p" data-group-id="3585431179-1">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="3585431179-2">[</span><span class="s">&quot;description&quot;</span><span class="p" data-group-id="3585431179-2">]</span><span class="w">
 </span><span class="s">&quot;Elixir is a dynamic, functional language designed for building scalable and maintainable applications&quot;</span></code></pre><h2 id="module-credits" class="section-heading">
   <a href="#module-credits" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Credits
@@ -261,7 +262,7 @@ API
     </a>
     <h1 class="signature">get(url, opts \\ [])</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L44" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L45" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -285,7 +286,7 @@ API
     </a>
     <h1 class="signature">get!(url, opts \\ [])</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L51" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L52" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -309,7 +310,7 @@ API
     </a>
     <h1 class="signature">post(url, body, opts \\ [])</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L63" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L64" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -333,7 +334,7 @@ API
     </a>
     <h1 class="signature">post!(url, body, opts \\ [])</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L70" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L71" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -357,7 +358,7 @@ API
     </a>
     <h1 class="signature">request(method, url, body, opts \\ [])</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L127" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L128" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -405,7 +406,7 @@ Request middleware
     </a>
     <h1 class="signature">compress(request, opts)</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L251" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L252" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -427,7 +428,7 @@ Request middleware
     </a>
     <h1 class="signature">default_headers(request, opts)</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L191" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L192" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -449,7 +450,7 @@ Request middleware
     </a>
     <h1 class="signature">encode_request_body(request, opts)</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L215" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L216" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -480,7 +481,7 @@ installed.</p></li></ul>
     </a>
     <h1 class="signature">normalize_request_headers(request, opts)</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L167" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L168" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -516,7 +517,7 @@ Response middleware
     </a>
     <h1 class="signature">decode_response_body(response, opts)</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L315" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L316" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -545,7 +546,7 @@ if <code class="inline">nimble_csv</code> dependency is installed.</p></li></ul>
     </a>
     <h1 class="signature">decompress(response, opts)</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L280" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L281" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
