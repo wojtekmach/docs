@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.0">
+    <meta name="project" content="requests v0.1.0-dev">
+
+    <title>Requests.request — requests v0.1.0-dev</title>
+    <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
+
+    <script src="dist/sidebar_items-5376826dd4.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="Requests.html" class="sidebar-projectName">
+requests
+      </a>
+      <strong class="sidebar-projectVersion">
+        v0.1.0-dev
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>Requests.request</h1>
+
+<div class="deprecated">
+  You're seeing just the function <code>request</code>, go back to <a href="Requests.html">Requests</a> module for more information.
+</div>
+
+<section class="detail" id="request/4">
+
+    <span id="request/3"></span>
+
+  <div class="detail-header">
+    <a href="#request/4" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">request(method, url, body, opts \\ [])</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Makes a HTTP request.</p><p>Options:</p><ul><li><p><code class="inline">:headers</code> - list of request headers, defaults to <code class="inline">[]</code>.</p></li><li><p><code class="inline">:finch</code> - name of the <a href="https://hexdocs.pm/finch/0.6.0/Finch.html"><code class="inline">Finch</code></a> pool to use, defaults to <code class="inline">Requests.Finch</code> that is started
+with the default options.</p></li><li><p><code class="inline">:request_middleware</code> - list of middleware to run the request through, defaults to <code class="inline">[]</code>.</p></li><li><p><code class="inline">:default_request_middleware</code> - if <code class="inline">true</code> (default), prepends the following functions
+ to the request middleware list:</p><ul><li><a href="#normalize_request_headers/2"><code class="inline">normalize_request_headers/2</code></a></li><li><a href="#default_headers/2"><code class="inline">default_headers/2</code></a></li></ul></li><li><p><code class="inline">:response_middleware</code> - list of middleware to run the response through, defaults to <code class="inline">[]</code>.</p></li><li><p><code class="inline">:default_response_middleware</code> - if <code class="inline">true</code> (default), prepends the following functions to
+the response middleware list:</p><ul><li><a href="#decompress/2"><code class="inline">decompress/2</code></a></li><li><a href="#response_content_type/2"><code class="inline">response_content_type/2</code></a></li></ul></li></ul><h2 id="request/4-request-middleware" class="section-heading">
+  <a href="#request/4-request-middleware" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Request middleware
+</h2>
+<p>A request middleware is a function that two arguments:</p><ul><li><code class="inline">request</code> struct</li><li><code class="inline">opts</code></li></ul><p>An example is <a href="#normalize_request_headers/2"><code class="inline">normalize_request_headers/2</code></a>.</p><h2 id="request/4-response-middleware" class="section-heading">
+  <a href="#request/4-response-middleware" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Response middleware
+</h2>
+<p>A response middleware is a function that two arguments:</p><ul><li><code class="inline">response</code> struct</li><li><code class="inline">opts</code></li></ul><p>An example is <a href="#decompress/2"><code class="inline">decompress/2</code></a>.</p>
+  </section>
+</section>
+
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.0) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>
