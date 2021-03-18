@@ -10,7 +10,7 @@
     <title>Requests — requests v0.1.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
 
-    <script src="dist/sidebar_items-dbb5e0a04f.js"></script>
+    <script src="dist/sidebar_items-b8242d9597.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -99,8 +99,12 @@ Requests <small class="app-vsn">(requests v0.1.0-dev)</small>
   <a href="#module-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Examples
 </h2>
-<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="4991787618-1">(</span><span class="s">&quot;https://api.github.com/repos/elixir-lang/elixir&quot;</span><span class="p" data-group-id="4991787618-1">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="4991787618-2">[</span><span class="s">&quot;description&quot;</span><span class="p" data-group-id="4991787618-2">]</span><span class="w">
-</span><span class="s">&quot;Elixir is a dynamic, functional language designed for building scalable and maintainable applications&quot;</span></code></pre>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="9770183432-1">(</span><span class="s">&quot;https://api.github.com/repos/elixir-lang/elixir&quot;</span><span class="p" data-group-id="9770183432-1">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="9770183432-2">[</span><span class="s">&quot;description&quot;</span><span class="p" data-group-id="9770183432-2">]</span><span class="w">
+</span><span class="s">&quot;Elixir is a dynamic, functional language designed for building scalable and maintainable applications&quot;</span></code></pre><h2 id="module-credits" class="section-heading">
+  <a href="#module-credits" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Credits
+</h2>
+<ul><li><a href="https://requests.readthedocs.io">Requests</a></li><li><a href="https://github.com/teamon/tesla">Tesla</a></li><li><a href="https://github.com/keathley/finch">Finch</a> (and <a href="https://github.com/elixir-mint/mint">Mint</a> &amp; <a href="https://github.com/dashbitco/nimble_pool">NimblePool</a>)</li></ul>
         </section>
 
 
@@ -247,7 +251,7 @@ API
     </a>
     <h1 class="signature">get(url, opts \\ [])</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L37" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L43" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -271,7 +275,7 @@ API
     </a>
     <h1 class="signature">get!(url, opts \\ [])</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L44" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L50" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -295,7 +299,7 @@ API
     </a>
     <h1 class="signature">post(url, body, opts \\ [])</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L56" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L62" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -319,7 +323,7 @@ API
     </a>
     <h1 class="signature">post!(url, body, opts \\ [])</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L63" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L69" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -343,7 +347,7 @@ API
     </a>
     <h1 class="signature">request(method, url, body, opts \\ [])</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L117" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L125" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -360,11 +364,13 @@ the response middleware list:</p><ul><li><a href="#decompress/2"><code class="in
   <a href="#request/4-request-middleware" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Request middleware
 </h2>
-<p>A request middleware is a function that two arguments and returns a possibly updated request:</p><ul><li>a <a href="https://hexdocs.pm/finch/0.6.0/Finch.Request.html"><code class="inline">Finch.Request</code></a> struct</li><li>an <code class="inline">opts</code> keywords list</li></ul><p>An example is <a href="#normalize_request_headers/2"><code class="inline">normalize_request_headers/2</code></a>.</p><h2 id="request/4-response-middleware" class="section-heading">
+<p>A request middleware is a function that takes two arguments and returns a possibly updated
+request:</p><ul><li>a <a href="https://hexdocs.pm/finch/0.6.0/Finch.Request.html"><code class="inline">Finch.Request</code></a> struct</li><li>an <code class="inline">opts</code> keywords list</li></ul><p>An example is <a href="#normalize_request_headers/2"><code class="inline">normalize_request_headers/2</code></a>.</p><h2 id="request/4-response-middleware" class="section-heading">
   <a href="#request/4-response-middleware" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Response middleware
 </h2>
-<p>A response middleware is a function that two arguments and returns a possibly updated response:</p><ul><li>a <a href="https://hexdocs.pm/finch/0.6.0/Finch.Response.html"><code class="inline">Finch.Response</code></a> struct</li><li>an <code class="inline">opts</code> keywords list</li></ul><p>An example is <a href="#decompress/2"><code class="inline">decompress/2</code></a>.</p>
+<p>A response middleware is a function that takes two arguments and returns a possibly updated
+response:</p><ul><li>a <a href="https://hexdocs.pm/finch/0.6.0/Finch.Response.html"><code class="inline">Finch.Response</code></a> struct</li><li>an <code class="inline">opts</code> keywords list</li></ul><p>An example is <a href="#decompress/2"><code class="inline">decompress/2</code></a>.</p>
   </section>
 </section>
 
@@ -389,7 +395,7 @@ Request middleware
     </a>
     <h1 class="signature">default_headers(request, opts)</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L180" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L188" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -411,7 +417,7 @@ Request middleware
     </a>
     <h1 class="signature">encode_request_body(request, opts)</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L204" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L212" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -442,7 +448,7 @@ installed.</p></li></ul>
     </a>
     <h1 class="signature">normalize_request_headers(request, opts)</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L156" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L164" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -478,7 +484,7 @@ Response middleware
     </a>
     <h1 class="signature">decode_response_body(response, opts)</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L287" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L295" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -507,7 +513,7 @@ if <code class="inline">nimble_csv</code> dependency is installed.</p></li></ul>
     </a>
     <h1 class="signature">decompress(response, opts)</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L240" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L248" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
