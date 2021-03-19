@@ -95,14 +95,18 @@ Requests <small class="app-vsn">(requests v0.1.0-dev)</small>
   <a href="#module-features" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Features
 </h2>
-<ul><li>Extensible via request and response middlewares</li><li>Automatic compression/decompression based on <code class="inline">content-encoding</code> header (via <a href="#compress/2"><code class="inline">compress/2</code></a> and
-<a href="#decompress/2"><code class="inline">decompress/2</code></a>)</li><li>Automatic body encoding/decoding based on <code class="inline">content-type</code> (via <a href="#encode_request_body/2"><code class="inline">encode_request_body/2</code></a> and
-<a href="#decode_response_body/2"><code class="inline">decode_response_body/2</code></a>)</li></ul><h2 id="module-examples" class="section-heading">
+<ul><li><p>Extensible via request and response middlewares</p></li><li><p>Automatic body encoding/decoding (via <a href="#encode_request_body/2"><code class="inline">encode_request_body/2</code></a> and <a href="#decode_response_body/2"><code class="inline">decode_response_body/2</code></a>
+middleware)</p></li><li><p>Automatic compression/decompression (via the <a href="#compress/2"><code class="inline">compress/2</code></a> and <a href="#decompress/2"><code class="inline">decompress/2</code></a> middleware)</p></li></ul><h2 id="module-examples" class="section-heading">
   <a href="#module-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Examples
 </h2>
-<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="3585431179-1">(</span><span class="s">&quot;https://api.github.com/repos/elixir-lang/elixir&quot;</span><span class="p" data-group-id="3585431179-1">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="3585431179-2">[</span><span class="s">&quot;description&quot;</span><span class="p" data-group-id="3585431179-2">]</span><span class="w">
-</span><span class="s">&quot;Elixir is a dynamic, functional language designed for building scalable and maintainable applications&quot;</span></code></pre><h2 id="module-credits" class="section-heading">
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="8681952219-1">(</span><span class="s">&quot;https://api.github.com/repos/elixir-lang/elixir&quot;</span><span class="p" data-group-id="8681952219-1">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="8681952219-2">[</span><span class="s">&quot;description&quot;</span><span class="p" data-group-id="8681952219-2">]</span><span class="w">
+</span><span class="s">&quot;Elixir is a dynamic, functional language designed for building scalable and maintainable applications&quot;</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="8681952219-3">%{</span><span class="ss">files</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="8681952219-4">%{</span><span class="s">&quot;hello.txt&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p" data-group-id="8681952219-5">%{</span><span class="s">&quot;content&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;world&quot;</span><span class="p" data-group-id="8681952219-5">}</span><span class="p" data-group-id="8681952219-4">}</span><span class="p" data-group-id="8681952219-3">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">headers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="8681952219-6">[</span><span class="ss">accept</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;application/vnd.github.v3+json&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">authorization</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Bearer &quot;</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="nc">System</span><span class="o">.</span><span class="n">fetch_env!</span><span class="p" data-group-id="8681952219-7">(</span><span class="s">&quot;GITHUB_TOKEN&quot;</span><span class="p" data-group-id="8681952219-7">)</span><span class="p" data-group-id="8681952219-6">]</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">post!</span><span class="p" data-group-id="8681952219-8">(</span><span class="s">&quot;https://api.github.com/gists&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8681952219-9">{</span><span class="ss">:json</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p" data-group-id="8681952219-9">}</span><span class="p">,</span><span class="w"> </span><span class="ss">headers</span><span class="p">:</span><span class="w"> </span><span class="n">headers</span><span class="p" data-group-id="8681952219-8">)</span><span class="w">
+</span><span class="p" data-group-id="8681952219-10">%</span><span class="nc" data-group-id="8681952219-10">Finch.Response</span><span class="p" data-group-id="8681952219-10">{</span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="mi">201</span><span class="p">,</span><span class="w"> </span><span class="n">...</span><span class="p" data-group-id="8681952219-10">}</span></code></pre><h2 id="module-credits" class="section-heading">
   <a href="#module-credits" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Credits
 </h2>
@@ -199,7 +203,7 @@ Requests <small class="app-vsn">(requests v0.1.0-dev)</small>
 
   </div>
 
-    <div class="summary-synopsis"><p>Encodes the request body based on the content-type header.</p></div>
+    <div class="summary-synopsis"><p>Encodes the request body based on it's shape.</p></div>
 
 </div>
 <div class="summary-row">
@@ -262,7 +266,7 @@ API
     </a>
     <h1 class="signature">get(url, opts \\ [])</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L45" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L53" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -286,7 +290,7 @@ API
     </a>
     <h1 class="signature">get!(url, opts \\ [])</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L52" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L60" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -310,7 +314,7 @@ API
     </a>
     <h1 class="signature">post(url, body, opts \\ [])</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L64" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L72" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -334,7 +338,7 @@ API
     </a>
     <h1 class="signature">post!(url, body, opts \\ [])</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L71" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L79" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -358,7 +362,7 @@ API
     </a>
     <h1 class="signature">request(method, url, body, opts \\ [])</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L128" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L136" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -376,7 +380,7 @@ the response middleware list:</p><ul><li><a href="#decompress/2"><code class="in
   Request middleware
 </h2>
 <p>A request middleware is a function that takes two arguments and returns a possibly updated
-request:</p><ul><li>a <a href="https://hexdocs.pm/finch/0.6.0/Finch.Request.html"><code class="inline">Finch.Request</code></a> struct</li><li>an <code class="inline">opts</code> keywords list</li></ul><p>An example is <a href="#normalize_request_headers/2"><code class="inline">normalize_request_headers/2</code></a>.</p><h2 id="request/4-response-middleware" class="section-heading">
+request:</p><ul><li>a <a href="https://hexdocs.pm/finch/0.6.0/Finch.Request.html"><code class="inline">Finch.Request</code></a> struct</li><li>an <code class="inline">opts</code> keywords list</li></ul><p>An example is <a href="#compress/2"><code class="inline">compress/2</code></a>.</p><h2 id="request/4-response-middleware" class="section-heading">
   <a href="#request/4-response-middleware" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Response middleware
 </h2>
@@ -406,7 +410,7 @@ Request middleware
     </a>
     <h1 class="signature">compress(request, opts)</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L252" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L310" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -428,7 +432,7 @@ Request middleware
     </a>
     <h1 class="signature">default_headers(request, opts)</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L192" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L200" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -450,7 +454,7 @@ Request middleware
     </a>
     <h1 class="signature">encode_request_body(request, opts)</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L216" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L242" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -460,16 +464,24 @@ Request middleware
 
   <section class="docstring">
 
-<p>Encodes the request body based on the content-type header.</p><h2 id="encode_request_body/2-options" class="section-heading">
+<p>Encodes the request body based on it's shape.</p><p>If body is of the following shape, it's encoded and it's <code class="inline">content-type</code> set
+accordingly. Otherwise it's unchanged.</p><table><thead><tr><th style="text-align: left;">Shape</th><th style="text-align: left;">Encoder</th><th style="text-align: left;">Content-Type</th></tr></thead><tbody><tr><td style="text-align: left;"><code class="inline">{:form, data}</code></td><td style="text-align: left;"><code class="inline">:form_encoder</code></td><td style="text-align: left;"><code class="inline">&quot;application/x-www-form-urlencoded&quot;</code></td></tr><tr><td style="text-align: left;"><code class="inline">{:json, data}</code></td><td style="text-align: left;"><code class="inline">:json_encoder</code></td><td style="text-align: left;"><code class="inline">&quot;application/json&quot;</code></td></tr><tr><td style="text-align: left;"><code class="inline">{:csv, data}</code></td><td style="text-align: left;"><code class="inline">:csv_encoder</code></td><td style="text-align: left;"><code class="inline">&quot;text/csv&quot;</code></td></tr></tbody></table><h2 id="encode_request_body/2-options" class="section-heading">
   <a href="#encode_request_body/2-options" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Options
 </h2>
-<ul><li><p><code class="inline">:json_encoder</code> - if set, used on the <code class="inline">&quot;application/json*&quot;</code> content type. Defaults to
-<a href="https://hexdocs.pm/jason/1.2.2/Jason.html#encode_to_iodata!/1"><code class="inline">&amp;Jason.encode_to_iodata!/1</code></a>
-if <code class="inline">jason</code> dependency is installed.</p></li><li><p><code class="inline">:csv_encoder</code> - if set, used on the <code class="inline">&quot;text/csv*&quot;</code> content type. Defaults to
-<a href="https://hexdocs.pm/nimble_csv/1.1.0/NimbleCSV.RFC4180.html#dump_to_iodata/1"><code class="inline">&amp;NimbleCSV.RFC4180.dump_to_iodata/1</code></a>
-if <code class="inline">nimble_csv</code> dependency is
-installed.</p></li></ul>
+<ul><li><p><code class="inline">:form_encoder</code> - defaults to <a href="https://hexdocs.pm/elixir/URI.html#encode_query/1"><code class="inline">&amp;URI.encode_query/1</code></a>.</p></li><li><p><code class="inline">:json_encoder</code> - defaults to <a href="https://hexdocs.pm/jason/1.2.2/Jason.html#encode_to_iodata!/1"><code class="inline">&amp;Jason.encode_to_iodata!/1</code></a>.</p></li><li><p><code class="inline">:csv_encoder</code> - defaults to <a href="https://hexdocs.pm/nimble_csv/1.1.0/NimbleCSV.RFC4180.html#dump_to_iodata/1"><code class="inline">&amp;NimbleCSV.RFC4180.dump_to_iodata/1</code></a>.</p></li></ul><h2 id="encode_request_body/2-examples" class="section-heading">
+  <a href="#encode_request_body/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">post!</span><span class="p" data-group-id="5412748291-1">(</span><span class="s">&quot;https://httpbin.org/post&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5412748291-2">{</span><span class="ss">:form</span><span class="p">,</span><span class="w"> </span><span class="ss">custname</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Alice&quot;</span><span class="p" data-group-id="5412748291-2">}</span><span class="p" data-group-id="5412748291-1">)</span><span class="w">
+</span><span class="p" data-group-id="5412748291-3">%</span><span class="nc" data-group-id="5412748291-3">Finch.Response</span><span class="p" data-group-id="5412748291-3">{</span><span class="w">
+  </span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="ss">headers</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5412748291-4">[</span><span class="p" data-group-id="5412748291-5">{</span><span class="s">&quot;content-type&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;application/json&quot;</span><span class="p" data-group-id="5412748291-5">}</span><span class="p">,</span><span class="w"> </span><span class="n">...</span><span class="p" data-group-id="5412748291-4">]</span><span class="p">,</span><span class="w">
+  </span><span class="ss">body</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5412748291-6">%{</span><span class="w">
+    </span><span class="s">&quot;form&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p" data-group-id="5412748291-7">%{</span><span class="s">&quot;custname&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;Alice&quot;</span><span class="p" data-group-id="5412748291-7">}</span><span class="p">,</span><span class="w">
+    </span><span class="n">...</span><span class="w">
+  </span><span class="p" data-group-id="5412748291-6">}</span><span class="w">
+</span><span class="p" data-group-id="5412748291-3">}</span></code></pre>
   </section>
 </section>
 <section class="detail" id="normalize_request_headers/2">
@@ -481,7 +493,7 @@ installed.</p></li></ul>
     </a>
     <h1 class="signature">normalize_request_headers(request, opts)</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L168" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L176" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -517,7 +529,7 @@ Response middleware
     </a>
     <h1 class="signature">decode_response_body(response, opts)</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L316" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L374" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -546,7 +558,7 @@ if <code class="inline">nimble_csv</code> dependency is installed.</p></li></ul>
     </a>
     <h1 class="signature">decompress(response, opts)</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L281" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L339" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
