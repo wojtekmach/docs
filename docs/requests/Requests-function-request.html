@@ -96,7 +96,7 @@ requests
     </a>
     <h1 class="signature">request(method, url, body, opts \\ [])</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L136" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L139" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -113,13 +113,12 @@ the response middleware list:</p><ul><li><a href="#decompress/2"><code class="in
   <a href="#request/4-request-middleware" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Request middleware
 </h2>
-<p>A request middleware is a function that takes two arguments and returns a possibly updated
-request:</p><ul><li>a <a href="https://hexdocs.pm/finch/0.6.0/Finch.Request.html"><code class="inline">Finch.Request</code></a> struct</li><li>an <code class="inline">opts</code> keywords list</li></ul><p>An example is <a href="#compress/2"><code class="inline">compress/2</code></a>.</p><h2 id="request/4-response-middleware" class="section-heading">
+<p>A request middleware is a function that takes two arguments:
+request:</p><ul><li>a <a href="https://hexdocs.pm/finch/0.6.0/Finch.Request.html"><code class="inline">Finch.Request</code></a> struct</li><li>an <code class="inline">opts</code> keywords list</li></ul><p>and returns a possibly updated.</p><p>An example is <a href="#compress/2"><code class="inline">compress/2</code></a>.</p><h2 id="request/4-response-middleware" class="section-heading">
   <a href="#request/4-response-middleware" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Response middleware
 </h2>
-<p>A response middleware is a function that takes two arguments and returns a possibly updated
-response:</p><ul><li>a <a href="https://hexdocs.pm/finch/0.6.0/Finch.Response.html"><code class="inline">Finch.Response</code></a> struct</li><li>an <code class="inline">opts</code> keywords list</li></ul><p>An example is <a href="#decompress/2"><code class="inline">decompress/2</code></a>.</p>
+<p>A response middleware is a function that takes two arguments:</p><ul><li>a <a href="https://hexdocs.pm/finch/0.6.0/Finch.Response.html"><code class="inline">Finch.Response</code></a> struct</li><li>an <code class="inline">opts</code> keywords list</li></ul><p>and returns a possibly updated response.</p><p>An example is <a href="#decompress/2"><code class="inline">decompress/2</code></a>.</p>
   </section>
 </section>
 
