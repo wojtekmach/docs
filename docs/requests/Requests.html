@@ -100,13 +100,11 @@ middleware)</p></li><li><p>Automatic compression/decompression (via the <a href=
   <a href="#module-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Examples
 </h2>
-<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="4366559854-1">(</span><span class="s">&quot;https://api.github.com/repos/elixir-lang/elixir&quot;</span><span class="p" data-group-id="4366559854-1">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="4366559854-2">[</span><span class="s">&quot;description&quot;</span><span class="p" data-group-id="4366559854-2">]</span><span class="w">
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="6857602874-1">(</span><span class="s">&quot;https://api.github.com/repos/elixir-lang/elixir&quot;</span><span class="p" data-group-id="6857602874-1">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="6857602874-2">[</span><span class="s">&quot;description&quot;</span><span class="p" data-group-id="6857602874-2">]</span><span class="w">
 </span><span class="s">&quot;Elixir is a dynamic, functional language designed for building scalable and maintainable applications&quot;</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt; </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="4366559854-3">%{</span><span class="ss">files</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="4366559854-4">%{</span><span class="s">&quot;hello.txt&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p" data-group-id="4366559854-5">%{</span><span class="s">&quot;content&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;world&quot;</span><span class="p" data-group-id="4366559854-5">}</span><span class="p" data-group-id="4366559854-4">}</span><span class="p" data-group-id="4366559854-3">}</span><span class="w">
-</span><span class="gp unselectable">iex&gt; </span><span class="n">headers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="4366559854-6">[</span><span class="ss">authorization</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Bearer &quot;</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="nc">System</span><span class="o">.</span><span class="n">fetch_env!</span><span class="p" data-group-id="4366559854-7">(</span><span class="s">&quot;GITHUB_TOKEN&quot;</span><span class="p" data-group-id="4366559854-7">)</span><span class="p" data-group-id="4366559854-6">]</span><span class="w">
-</span><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">post!</span><span class="p" data-group-id="4366559854-8">(</span><span class="s">&quot;https://api.github.com/gists&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4366559854-9">{</span><span class="ss">:json</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p" data-group-id="4366559854-9">}</span><span class="p">,</span><span class="w"> </span><span class="ss">headers</span><span class="p">:</span><span class="w"> </span><span class="n">headers</span><span class="p" data-group-id="4366559854-8">)</span><span class="o">.</span><span class="n">status</span><span class="w">
-</span><span class="mi">201</span></code></pre><h2 id="module-credits" class="section-heading">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">post!</span><span class="p" data-group-id="6857602874-3">(</span><span class="s">&quot;https://httpbin.org/post&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="6857602874-4">{</span><span class="ss">:form</span><span class="p">,</span><span class="w"> </span><span class="ss">comments</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hello!&quot;</span><span class="p" data-group-id="6857602874-4">}</span><span class="p" data-group-id="6857602874-3">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="6857602874-5">[</span><span class="s">&quot;form&quot;</span><span class="p" data-group-id="6857602874-5">]</span><span class="w">
+</span><span class="p" data-group-id="6857602874-6">%{</span><span class="s">&quot;comments&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;hello!&quot;</span><span class="p" data-group-id="6857602874-6">}</span></code></pre><h2 id="module-credits" class="section-heading">
   <a href="#module-credits" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Credits
 </h2>
@@ -266,7 +264,7 @@ API
     </a>
     <h1 class="signature">get(url, opts \\ [])</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L53" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L51" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -290,7 +288,7 @@ API
     </a>
     <h1 class="signature">get!(url, opts \\ [])</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L60" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L58" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -314,7 +312,7 @@ API
     </a>
     <h1 class="signature">post(url, body, opts \\ [])</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L72" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L70" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -338,7 +336,7 @@ API
     </a>
     <h1 class="signature">post!(url, body, opts \\ [])</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L79" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L77" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -362,7 +360,7 @@ API
     </a>
     <h1 class="signature">request(method, url, body, opts \\ [])</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L139" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L137" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -409,7 +407,7 @@ Request middleware
     </a>
     <h1 class="signature">compress(request, opts)</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L344" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L335" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -431,7 +429,7 @@ Request middleware
     </a>
     <h1 class="signature">default_headers(request, opts)</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L203" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L201" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -453,7 +451,7 @@ Request middleware
     </a>
     <h1 class="signature">encode_request_body(request, opts)</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L248" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L239" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -472,15 +470,8 @@ accordingly. Otherwise it's unchanged.</p><table><thead><tr><th style="text-alig
   <a href="#encode_request_body/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Examples
 </h2>
-<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">post!</span><span class="p" data-group-id="3713959957-1">(</span><span class="s">&quot;https://httpbin.org/post&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="3713959957-2">{</span><span class="ss">:form</span><span class="p">,</span><span class="w"> </span><span class="ss">custname</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Alice&quot;</span><span class="p" data-group-id="3713959957-2">}</span><span class="p" data-group-id="3713959957-1">)</span><span class="w">
-</span><span class="p" data-group-id="3713959957-3">%</span><span class="nc" data-group-id="3713959957-3">Finch.Response</span><span class="p" data-group-id="3713959957-3">{</span><span class="w">
-  </span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-  </span><span class="ss">headers</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3713959957-4">[</span><span class="p" data-group-id="3713959957-5">{</span><span class="s">&quot;content-type&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;application/json&quot;</span><span class="p" data-group-id="3713959957-5">}</span><span class="p">,</span><span class="w"> </span><span class="n">...</span><span class="p" data-group-id="3713959957-4">]</span><span class="p">,</span><span class="w">
-  </span><span class="ss">body</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3713959957-6">%{</span><span class="w">
-    </span><span class="s">&quot;form&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p" data-group-id="3713959957-7">%{</span><span class="s">&quot;custname&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;Alice&quot;</span><span class="p" data-group-id="3713959957-7">}</span><span class="p">,</span><span class="w">
-    </span><span class="n">...</span><span class="w">
-  </span><span class="p" data-group-id="3713959957-6">}</span><span class="w">
-</span><span class="p" data-group-id="3713959957-3">}</span></code></pre>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">post!</span><span class="p" data-group-id="0967506263-1">(</span><span class="s">&quot;https://httpbin.org/post&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0967506263-2">{</span><span class="ss">:form</span><span class="p">,</span><span class="w"> </span><span class="ss">comments</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hello!&quot;</span><span class="p" data-group-id="0967506263-2">}</span><span class="p" data-group-id="0967506263-1">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="0967506263-3">[</span><span class="s">&quot;form&quot;</span><span class="p" data-group-id="0967506263-3">]</span><span class="w">
+</span><span class="p" data-group-id="0967506263-4">%{</span><span class="s">&quot;comments&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;hello!&quot;</span><span class="p" data-group-id="0967506263-4">}</span></code></pre>
   </section>
 </section>
 <section class="detail" id="normalize_request_headers/2">
@@ -492,7 +483,7 @@ accordingly. Otherwise it's unchanged.</p><table><thead><tr><th style="text-alig
     </a>
     <h1 class="signature">normalize_request_headers(request, opts)</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L179" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L177" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -528,7 +519,7 @@ Response middleware
     </a>
     <h1 class="signature">decode_response_body(response, opts)</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L408" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L399" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -557,7 +548,7 @@ if <code class="inline">nimble_csv</code> dependency is installed.</p></li></ul>
     </a>
     <h1 class="signature">decompress(response, opts)</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L373" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L364" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
