@@ -10,7 +10,7 @@
     <title>Requests.retry — requests v0.1.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
 
-    <script src="dist/sidebar_items-1c215bbb7a.js"></script>
+    <script src="dist/sidebar_items-ff5e8d07a8.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -85,16 +85,18 @@ requests
   You're seeing just the function <code>retry</code>, go back to <a href="Requests.html">Requests</a> module for more information.
 </div>
 
-<section class="detail" id="retry/1">
+<section class="detail" id="retry/2">
+
+    <span id="retry/1"></span>
 
   <div class="detail-header">
-    <a href="#retry/1" class="detail-link" title="Link to this function">
+    <a href="#retry/2" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature">retry(response_or_exception)</h1>
+    <h1 class="signature">retry(response_or_exception, opts \\ [])</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L543" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L548" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -105,7 +107,12 @@ requests
   <section class="docstring">
 
 <p>Retries a request on errors.</p><p>This function can be used as either or both response and error middleware. It retries a
-request that resulted in:</p><ul><li><p>response with status <code class="inline">5xx</code></p></li><li><p>exception</p></li></ul><p>Retries up to 2 times (3 requests total) with 100ms delay in between.</p><p>If all attempts have been exhausted, returns <a href="Requests.TooManyFailedAttempts.html"><code class="inline">Requests.TooManyFailedAttempts</code></a>.</p>
+request that resulted in:</p><ul><li><p>response with status <code class="inline">5xx</code></p></li><li><p>exception</p></li></ul><h2 id="retry/2-options" class="section-heading">
+  <a href="#retry/2-options" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Options
+</h2>
+<ul><li><p><code class="inline">:retry_max_count</code> - maximum number of retries, defaults to: <code class="inline">2</code></p></li><li><p><code class="inline">:retry_delay</code> - sleep this number of milliseconds before making another attempt, defaults
+to <code class="inline">2000</code></p></li></ul><p>If all attempts have failed, returns <a href="Requests.TooManyFailedAttempts.html"><code class="inline">Requests.TooManyFailedAttempts</code></a>.</p>
   </section>
 </section>
 

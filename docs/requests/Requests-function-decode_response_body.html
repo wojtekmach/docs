@@ -10,7 +10,7 @@
     <title>Requests.decode_response_body — requests v0.1.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
 
-    <script src="dist/sidebar_items-1c215bbb7a.js"></script>
+    <script src="dist/sidebar_items-ff5e8d07a8.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -87,12 +87,14 @@ requests
 
 <section class="detail" id="decode_response_body/2">
 
+    <span id="decode_response_body/1"></span>
+
   <div class="detail-header">
     <a href="#decode_response_body/2" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature">decode_response_body(response, opts)</h1>
+    <h1 class="signature">decode_response_body(response, opts \\ [])</h1>
 
       <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L498" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
@@ -114,10 +116,10 @@ requests
   <a href="#decode_response_body/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Examples
 </h2>
-<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="9468802430-1">(</span><span class="s">&quot;https://httpbin.org/json&quot;</span><span class="p" data-group-id="9468802430-1">)</span><span class="o">.</span><span class="n">body</span><span class="w">
-</span><span class="p" data-group-id="9468802430-2">%{</span><span class="n">...</span><span class="p" data-group-id="9468802430-2">}</span><span class="w">
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="3998676497-1">(</span><span class="s">&quot;https://httpbin.org/json&quot;</span><span class="p" data-group-id="3998676497-1">)</span><span class="o">.</span><span class="n">body</span><span class="w">
+</span><span class="p" data-group-id="3998676497-2">%{</span><span class="n">...</span><span class="p" data-group-id="3998676497-2">}</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="9468802430-3">(</span><span class="s">&quot;https://httpbin.org/json&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">json_decoder</span><span class="p">:</span><span class="w"> </span><span class="k" data-group-id="9468802430-4">fn</span><span class="w"> </span><span class="bp">_</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;fake&quot;</span><span class="w"> </span><span class="k" data-group-id="9468802430-4">end</span><span class="p" data-group-id="9468802430-3">)</span><span class="o">.</span><span class="n">body</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="3998676497-3">(</span><span class="s">&quot;https://httpbin.org/json&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">json_decoder</span><span class="p">:</span><span class="w"> </span><span class="k" data-group-id="3998676497-4">fn</span><span class="w"> </span><span class="bp">_</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;fake&quot;</span><span class="w"> </span><span class="k" data-group-id="3998676497-4">end</span><span class="p" data-group-id="3998676497-3">)</span><span class="o">.</span><span class="n">body</span><span class="w">
 </span><span class="s">&quot;fake&quot;</span></code></pre>
   </section>
 </section>
