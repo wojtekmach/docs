@@ -10,7 +10,7 @@
     <title>Requests — requests v0.1.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
 
-    <script src="dist/sidebar_items-3b1dae1e80.js"></script>
+    <script src="dist/sidebar_items-3cdb16cd3f.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -95,16 +95,16 @@ Requests <small class="app-vsn">(requests v0.1.0-dev)</small>
   <a href="#module-features" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Features
 </h2>
-<ul><li><p>Extensible via request and response middlewares</p></li><li><p>Automatic body encoding/decoding (via <a href="#encode_request_body/2"><code class="inline">encode_request_body/2</code></a> and <a href="#decode_response_body/2"><code class="inline">decode_response_body/2</code></a>
-middleware)</p></li><li><p>Automatic compression/decompression (via the <a href="#compress/2"><code class="inline">compress/2</code></a> and <a href="#decompress/2"><code class="inline">decompress/2</code></a> middleware)</p></li></ul><h2 id="module-examples" class="section-heading">
+<ul><li><p>Extensible via request and response middleware</p></li><li><p>Automatic body encoding/decoding (via <a href="#encode_request_body/1"><code class="inline">encode_request_body/1</code></a> and <a href="#decode_response_body/1"><code class="inline">decode_response_body/1</code></a>
+middleware)</p></li><li><p>Automatic compression/decompression (via the <a href="#compress/2"><code class="inline">compress/2</code></a> and <a href="#decompress/1"><code class="inline">decompress/1</code></a> middleware)</p></li></ul><h2 id="module-examples" class="section-heading">
   <a href="#module-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Examples
 </h2>
-<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="6857602874-1">(</span><span class="s">&quot;https://api.github.com/repos/elixir-lang/elixir&quot;</span><span class="p" data-group-id="6857602874-1">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="6857602874-2">[</span><span class="s">&quot;description&quot;</span><span class="p" data-group-id="6857602874-2">]</span><span class="w">
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="8393990177-1">(</span><span class="s">&quot;https://api.github.com/repos/elixir-lang/elixir&quot;</span><span class="p" data-group-id="8393990177-1">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="8393990177-2">[</span><span class="s">&quot;description&quot;</span><span class="p" data-group-id="8393990177-2">]</span><span class="w">
 </span><span class="s">&quot;Elixir is a dynamic, functional language designed for building scalable and maintainable applications&quot;</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">post!</span><span class="p" data-group-id="6857602874-3">(</span><span class="s">&quot;https://httpbin.org/post&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="6857602874-4">{</span><span class="ss">:form</span><span class="p">,</span><span class="w"> </span><span class="ss">comments</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hello!&quot;</span><span class="p" data-group-id="6857602874-4">}</span><span class="p" data-group-id="6857602874-3">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="6857602874-5">[</span><span class="s">&quot;form&quot;</span><span class="p" data-group-id="6857602874-5">]</span><span class="w">
-</span><span class="p" data-group-id="6857602874-6">%{</span><span class="s">&quot;comments&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;hello!&quot;</span><span class="p" data-group-id="6857602874-6">}</span></code></pre><h2 id="module-credits" class="section-heading">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">post!</span><span class="p" data-group-id="8393990177-3">(</span><span class="s">&quot;https://httpbin.org/post&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8393990177-4">{</span><span class="ss">:form</span><span class="p">,</span><span class="w"> </span><span class="ss">comments</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hello!&quot;</span><span class="p" data-group-id="8393990177-4">}</span><span class="p" data-group-id="8393990177-3">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="8393990177-5">[</span><span class="s">&quot;form&quot;</span><span class="p" data-group-id="8393990177-5">]</span><span class="w">
+</span><span class="p" data-group-id="8393990177-6">%{</span><span class="s">&quot;comments&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;hello!&quot;</span><span class="p" data-group-id="8393990177-6">}</span></code></pre><h2 id="module-credits" class="section-heading">
   <a href="#module-credits" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Credits
 </h2>
@@ -179,16 +179,16 @@ middleware)</p></li><li><p>Automatic compression/decompression (via the <a href=
     </h2>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#compress/2">compress(request, opts)</a>
+    <a href="#compress/2">compress(request, algorithms)</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Compresses the request body based on the <code class="inline">content-encoding</code> header.</p></div>
+    <div class="summary-synopsis"><p>Compresses the request body with the given <code class="inline">algorithms</code>.</p></div>
 
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#default_headers/2">default_headers(request, opts)</a>
+    <a href="#default_headers/1">default_headers(request)</a>
 
   </div>
 
@@ -197,7 +197,7 @@ middleware)</p></li><li><p>Automatic compression/decompression (via the <a href=
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#encode_request_body/2">encode_request_body(request, opts)</a>
+    <a href="#encode_request_body/2">encode_request_body(request, opts \\ [])</a>
 
   </div>
 
@@ -206,7 +206,7 @@ middleware)</p></li><li><p>Automatic compression/decompression (via the <a href=
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#normalize_request_headers/2">normalize_request_headers(request, opts)</a>
+    <a href="#normalize_request_headers/1">normalize_request_headers(request)</a>
 
   </div>
 
@@ -222,7 +222,7 @@ middleware)</p></li><li><p>Automatic compression/decompression (via the <a href=
     </h2>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#decode_response_body/2">decode_response_body(response, opts)</a>
+    <a href="#decode_response_body/2">decode_response_body(response, opts \\ [])</a>
 
   </div>
 
@@ -231,7 +231,7 @@ middleware)</p></li><li><p>Automatic compression/decompression (via the <a href=
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#decompress/2">decompress(response, opts)</a>
+    <a href="#decompress/1">decompress(response)</a>
 
   </div>
 
@@ -360,7 +360,7 @@ API
     </a>
     <h1 class="signature">request(method, url, body, opts \\ [])</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L137" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L139" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -371,18 +371,29 @@ API
   <section class="docstring">
 
 <p>Makes a HTTP request.</p><p>Options:</p><ul><li><p><code class="inline">:headers</code> - list of request headers, defaults to <code class="inline">[]</code>.</p></li><li><p><code class="inline">:finch</code> - name of the <a href="https://hexdocs.pm/finch/0.6.0/Finch.html"><code class="inline">Finch</code></a> pool to use, defaults to <code class="inline">Requests.Finch</code> that is started
-with the default options.</p></li><li><p><code class="inline">:request_middleware</code> - list of middleware to run the request through, defaults to <code class="inline">[]</code>.</p></li><li><p><code class="inline">:default_request_middleware</code> - if <code class="inline">true</code> (default), prepends the following functions
- to the request middleware list:</p><ul><li><a href="#normalize_request_headers/2"><code class="inline">normalize_request_headers/2</code></a></li><li><a href="#default_headers/2"><code class="inline">default_headers/2</code></a></li><li><a href="#encode_request_body/2"><code class="inline">encode_request_body/2</code></a></li><li><a href="#compress/2"><code class="inline">compress/2</code></a></li></ul></li><li><p><code class="inline">:response_middleware</code> - list of middleware to run the response through, defaults to <code class="inline">[]</code>.</p></li><li><p><code class="inline">:default_response_middleware</code> - if <code class="inline">true</code> (default), prepends the following functions to
-the response middleware list:</p><ul><li><a href="#decompress/2"><code class="inline">decompress/2</code></a></li><li><a href="#decode_response_body/2"><code class="inline">decode_response_body/2</code></a></li></ul></li></ul><p>The <code class="inline">opts</code> keywords list is passed to each middleware.</p><h2 id="request/4-request-middleware" class="section-heading">
-  <a href="#request/4-request-middleware" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
-  Request middleware
+with the default options.</p></li><li><p><code class="inline">:request_middleware</code> - list of middleware to run the request through, defaults to using:</p><ul><li><a href="#normalize_request_headers/1"><code class="inline">normalize_request_headers/1</code></a></li><li><a href="#default_headers/1"><code class="inline">default_headers/1</code></a></li><li><a href="#encode_request_body/2"><code class="inline">encode_request_body/2</code></a> with <code class="inline">opts[:encode_request_body] || []</code></li><li><a href="#compress/2"><code class="inline">compress/2</code></a> with <code class="inline">opts[:compress]</code> (if set)</li></ul></li><li><p><code class="inline">:response_middleware</code> - list of middleware to run the response through, defaults to using:</p><ul><li><a href="#decompress/1"><code class="inline">decompress/1</code></a></li><li><a href="#decode_response_body/2"><code class="inline">decode_response_body/2</code></a> with <code class="inline">opts[:decode_response_body] || []</code></li></ul></li></ul><h2 id="request/4-middleware" class="section-heading">
+  <a href="#request/4-middleware" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Middleware
 </h2>
-<p>A request middleware is a function that takes two arguments:
-request:</p><ul><li>a <a href="https://hexdocs.pm/finch/0.6.0/Finch.Request.html"><code class="inline">Finch.Request</code></a> struct</li><li>an <code class="inline">opts</code> keywords list</li></ul><p>and returns a possibly updated.</p><p>An example is <a href="#compress/2"><code class="inline">compress/2</code></a>.</p><h2 id="request/4-response-middleware" class="section-heading">
-  <a href="#request/4-response-middleware" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
-  Response middleware
-</h2>
-<p>A response middleware is a function that takes two arguments:</p><ul><li>a <a href="https://hexdocs.pm/finch/0.6.0/Finch.Response.html"><code class="inline">Finch.Response</code></a> struct</li><li>an <code class="inline">opts</code> keywords list</li></ul><p>and returns a possibly updated response.</p><p>An example is <a href="#decompress/2"><code class="inline">decompress/2</code></a>.</p>
+<p><a href="Requests.html#content"><code class="inline">Requests</code></a> has two types of middleware: for requests and for responses.</p><p>A request middleware is any function that accepts and returns a possibly updated <a href="https://hexdocs.pm/finch/0.6.0/Finch.Request.html"><code class="inline">Finch.Request</code></a>
+struct. An example is <a href="#default_headers/1"><code class="inline">default_headers/1</code></a>.</p><p>A response middleware is any function that accepts and returns a possibly updated <a href="https://hexdocs.pm/finch/0.6.0/Finch.Response.html"><code class="inline">Finch.Response</code></a>
+struct. An example is <a href="#decompress/1"><code class="inline">decompress/1</code></a>.</p><p>Notice that some of the built-in middleware functions take more than one argument. In order to
+use them, you have a couple options:</p><ul><li><p>use <a href="`Kernel.SpecialForms.&`">capture operator</a>, for example: <code class="inline">&amp;compress(&amp;1, [&quot;gzip&quot;])</code></p></li><li><p>use a <code class="inline">{module, function, args}</code> tuple, where the first argument (request or response)
+will be automatically prepended, for example: <code class="inline">{Requests, :compress, [&quot;gzip&quot;]}</code></p></li></ul><h3 id="request/4-example" class="section-heading">
+  <a href="#request/4-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example
+</h3>
+<pre><code class="makeup elixir"><span class="n">opts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="6914601785-1">[</span><span class="w">
+  </span><span class="ss">request_middleware</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6914601785-2">[</span><span class="w">
+    </span><span class="o">&amp;</span><span class="nc">Requests</span><span class="o">.</span><span class="n">default_headers</span><span class="o">/</span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="o">&amp;</span><span class="nc">IO</span><span class="o">.</span><span class="n">inspect</span><span class="p" data-group-id="6914601785-3">(</span><span class="ni">&amp;1</span><span class="p">,</span><span class="w"> </span><span class="ss">label</span><span class="p">:</span><span class="w"> </span><span class="ss">:final_request</span><span class="p" data-group-id="6914601785-3">)</span><span class="p">,</span><span class="w">
+  </span><span class="p" data-group-id="6914601785-2">]</span><span class="p">,</span><span class="w">
+  </span><span class="ss">response_middleware</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6914601785-4">[</span><span class="w">
+    </span><span class="p" data-group-id="6914601785-5">{</span><span class="nc">IO</span><span class="p">,</span><span class="w"> </span><span class="ss">:inspect</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="6914601785-6">[</span><span class="p" data-group-id="6914601785-7">[</span><span class="ss">label</span><span class="p">:</span><span class="w"> </span><span class="ss">:initial_response</span><span class="p" data-group-id="6914601785-7">]</span><span class="p" data-group-id="6914601785-6">]</span><span class="p" data-group-id="6914601785-5">}</span><span class="p">,</span><span class="w">
+    </span><span class="p" data-group-id="6914601785-8">{</span><span class="nc">Requests</span><span class="p">,</span><span class="w"> </span><span class="ss">:decompress</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="6914601785-9">[</span><span class="p" data-group-id="6914601785-9">]</span><span class="p" data-group-id="6914601785-8">}</span><span class="w">
+  </span><span class="p" data-group-id="6914601785-4">]</span><span class="w">
+</span><span class="p" data-group-id="6914601785-1">]</span><span class="w">
+</span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="6914601785-10">(</span><span class="s">&quot;https://httpbin.org/json&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">opts</span><span class="p" data-group-id="6914601785-10">)</span></code></pre>
   </section>
 </section>
 
@@ -405,9 +416,9 @@ Request middleware
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature">compress(request, opts)</h1>
+    <h1 class="signature">compress(request, algorithms)</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L335" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L355" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -417,19 +428,19 @@ Request middleware
 
   <section class="docstring">
 
-<p>Compresses the request body based on the <code class="inline">content-encoding</code> header.</p><p>Supported values: <code class="inline">&quot;gzip&quot;</code>, <code class="inline">&quot;x-gzip&quot;</code>, <code class="inline">&quot;deflate&quot;</code>, and <code class="inline">&quot;identity&quot;</code>.</p>
+<p>Compresses the request body with the given <code class="inline">algorithms</code>.</p><p>Supported algorithms: <code class="inline">&quot;gzip&quot;</code>, <code class="inline">&quot;x-gzip&quot;</code>, <code class="inline">&quot;deflate&quot;</code>, and <code class="inline">&quot;identity&quot;</code>.</p><p>This function also sets the appropriate <code class="inline">content-encoding</code> header (unless already set.)</p>
   </section>
 </section>
-<section class="detail" id="default_headers/2">
+<section class="detail" id="default_headers/1">
 
   <div class="detail-header">
-    <a href="#default_headers/2" class="detail-link" title="Link to this function">
+    <a href="#default_headers/1" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature">default_headers(request, opts)</h1>
+    <h1 class="signature">default_headers(request)</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L201" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L219" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -444,14 +455,16 @@ Request middleware
 </section>
 <section class="detail" id="encode_request_body/2">
 
+    <span id="encode_request_body/1"></span>
+
   <div class="detail-header">
     <a href="#encode_request_body/2" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature">encode_request_body(request, opts)</h1>
+    <h1 class="signature">encode_request_body(request, opts \\ [])</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L239" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L257" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -470,20 +483,20 @@ accordingly. Otherwise it's unchanged.</p><table><thead><tr><th style="text-alig
   <a href="#encode_request_body/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Examples
 </h2>
-<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">post!</span><span class="p" data-group-id="0967506263-1">(</span><span class="s">&quot;https://httpbin.org/post&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0967506263-2">{</span><span class="ss">:form</span><span class="p">,</span><span class="w"> </span><span class="ss">comments</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hello!&quot;</span><span class="p" data-group-id="0967506263-2">}</span><span class="p" data-group-id="0967506263-1">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="0967506263-3">[</span><span class="s">&quot;form&quot;</span><span class="p" data-group-id="0967506263-3">]</span><span class="w">
-</span><span class="p" data-group-id="0967506263-4">%{</span><span class="s">&quot;comments&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;hello!&quot;</span><span class="p" data-group-id="0967506263-4">}</span></code></pre>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">post!</span><span class="p" data-group-id="1249644888-1">(</span><span class="s">&quot;https://httpbin.org/post&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1249644888-2">{</span><span class="ss">:form</span><span class="p">,</span><span class="w"> </span><span class="ss">comments</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hello!&quot;</span><span class="p" data-group-id="1249644888-2">}</span><span class="p" data-group-id="1249644888-1">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="1249644888-3">[</span><span class="s">&quot;form&quot;</span><span class="p" data-group-id="1249644888-3">]</span><span class="w">
+</span><span class="p" data-group-id="1249644888-4">%{</span><span class="s">&quot;comments&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;hello!&quot;</span><span class="p" data-group-id="1249644888-4">}</span></code></pre>
   </section>
 </section>
-<section class="detail" id="normalize_request_headers/2">
+<section class="detail" id="normalize_request_headers/1">
 
   <div class="detail-header">
-    <a href="#normalize_request_headers/2" class="detail-link" title="Link to this function">
+    <a href="#normalize_request_headers/1" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature">normalize_request_headers(request, opts)</h1>
+    <h1 class="signature">normalize_request_headers(request)</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L177" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L195" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -512,14 +525,16 @@ Response middleware
           <div class="response-middleware-list">
 <section class="detail" id="decode_response_body/2">
 
+    <span id="decode_response_body/1"></span>
+
   <div class="detail-header">
     <a href="#decode_response_body/2" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature">decode_response_body(response, opts)</h1>
+    <h1 class="signature">decode_response_body(response, opts \\ [])</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L399" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L420" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -539,16 +554,16 @@ Response middleware
 if <code class="inline">nimble_csv</code> dependency is installed.</p></li></ul>
   </section>
 </section>
-<section class="detail" id="decompress/2">
+<section class="detail" id="decompress/1">
 
   <div class="detail-header">
-    <a href="#decompress/2" class="detail-link" title="Link to this function">
+    <a href="#decompress/1" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature">decompress(response, opts)</h1>
+    <h1 class="signature">decompress(response)</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L364" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L385" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>

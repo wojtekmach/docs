@@ -10,7 +10,7 @@
     <title>Requests.compress — requests v0.1.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
 
-    <script src="dist/sidebar_items-3b1dae1e80.js"></script>
+    <script src="dist/sidebar_items-3cdb16cd3f.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -92,9 +92,9 @@ requests
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature">compress(request, opts)</h1>
+    <h1 class="signature">compress(request, algorithms)</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L335" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L355" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -104,7 +104,7 @@ requests
 
   <section class="docstring">
 
-<p>Compresses the request body based on the <code class="inline">content-encoding</code> header.</p><p>Supported values: <code class="inline">&quot;gzip&quot;</code>, <code class="inline">&quot;x-gzip&quot;</code>, <code class="inline">&quot;deflate&quot;</code>, and <code class="inline">&quot;identity&quot;</code>.</p>
+<p>Compresses the request body with the given <code class="inline">algorithms</code>.</p><p>Supported algorithms: <code class="inline">&quot;gzip&quot;</code>, <code class="inline">&quot;x-gzip&quot;</code>, <code class="inline">&quot;deflate&quot;</code>, and <code class="inline">&quot;identity&quot;</code>.</p><p>This function also sets the appropriate <code class="inline">content-encoding</code> header (unless already set.)</p>
   </section>
 </section>
 
