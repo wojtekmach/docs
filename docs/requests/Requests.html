@@ -100,11 +100,11 @@ middleware)</p></li><li><p>Automatic compression/decompression (via the <a href=
   <a href="#module-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Examples
 </h2>
-<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="4681144184-1">(</span><span class="s">&quot;https://api.github.com/repos/elixir-lang/elixir&quot;</span><span class="p" data-group-id="4681144184-1">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="4681144184-2">[</span><span class="s">&quot;description&quot;</span><span class="p" data-group-id="4681144184-2">]</span><span class="w">
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="7076705092-1">(</span><span class="s">&quot;https://api.github.com/repos/elixir-lang/elixir&quot;</span><span class="p" data-group-id="7076705092-1">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="7076705092-2">[</span><span class="s">&quot;description&quot;</span><span class="p" data-group-id="7076705092-2">]</span><span class="w">
 </span><span class="s">&quot;Elixir is a dynamic, functional language designed for building scalable and maintainable applications&quot;</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">post!</span><span class="p" data-group-id="4681144184-3">(</span><span class="s">&quot;https://httpbin.org/post&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4681144184-4">{</span><span class="ss">:form</span><span class="p">,</span><span class="w"> </span><span class="ss">comments</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hello!&quot;</span><span class="p" data-group-id="4681144184-4">}</span><span class="p" data-group-id="4681144184-3">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="4681144184-5">[</span><span class="s">&quot;form&quot;</span><span class="p" data-group-id="4681144184-5">]</span><span class="w">
-</span><span class="p" data-group-id="4681144184-6">%{</span><span class="s">&quot;comments&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;hello!&quot;</span><span class="p" data-group-id="4681144184-6">}</span></code></pre><h2 id="module-credits" class="section-heading">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">post!</span><span class="p" data-group-id="7076705092-3">(</span><span class="s">&quot;https://httpbin.org/post&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="7076705092-4">{</span><span class="ss">:form</span><span class="p">,</span><span class="w"> </span><span class="ss">comments</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hello!&quot;</span><span class="p" data-group-id="7076705092-4">}</span><span class="p" data-group-id="7076705092-3">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="7076705092-5">[</span><span class="s">&quot;form&quot;</span><span class="p" data-group-id="7076705092-5">]</span><span class="w">
+</span><span class="p" data-group-id="7076705092-6">%{</span><span class="s">&quot;comments&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;hello!&quot;</span><span class="p" data-group-id="7076705092-6">}</span></code></pre><h2 id="module-credits" class="section-heading">
   <a href="#module-credits" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Credits
 </h2>
@@ -383,19 +383,19 @@ will be automatically prepended, for example: <code class="inline">{Requests, :c
   <a href="#request/4-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Example
 </h3>
-<pre><code class="makeup elixir"><span class="n">opts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="2809984181-1">[</span><span class="w">
-  </span><span class="ss">request_middleware</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2809984181-2">[</span><span class="w">
+<pre><code class="makeup elixir"><span class="n">opts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="2797903914-1">[</span><span class="w">
+  </span><span class="ss">request_middleware</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2797903914-2">[</span><span class="w">
     </span><span class="o">&amp;</span><span class="nc">Requests</span><span class="o">.</span><span class="n">default_headers</span><span class="o">/</span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="o">&amp;</span><span class="nc">IO</span><span class="o">.</span><span class="n">inspect</span><span class="p" data-group-id="2809984181-3">(</span><span class="ni">&amp;1</span><span class="p">,</span><span class="w"> </span><span class="ss">label</span><span class="p">:</span><span class="w"> </span><span class="ss">:final_request</span><span class="p" data-group-id="2809984181-3">)</span><span class="p">,</span><span class="w">
-  </span><span class="p" data-group-id="2809984181-2">]</span><span class="p">,</span><span class="w">
-  </span><span class="ss">response_middleware</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2809984181-4">[</span><span class="w">
-    </span><span class="p" data-group-id="2809984181-5">{</span><span class="nc">IO</span><span class="p">,</span><span class="w"> </span><span class="ss">:inspect</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2809984181-6">[</span><span class="p" data-group-id="2809984181-7">[</span><span class="ss">label</span><span class="p">:</span><span class="w"> </span><span class="ss">:initial_response</span><span class="p" data-group-id="2809984181-7">]</span><span class="p" data-group-id="2809984181-6">]</span><span class="p" data-group-id="2809984181-5">}</span><span class="p">,</span><span class="w">
-    </span><span class="p" data-group-id="2809984181-8">{</span><span class="nc">Requests</span><span class="p">,</span><span class="w"> </span><span class="ss">:decode_response_body</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2809984181-9">[</span><span class="p" data-group-id="2809984181-9">]</span><span class="p" data-group-id="2809984181-8">}</span><span class="w">
-  </span><span class="p" data-group-id="2809984181-4">]</span><span class="w">
-</span><span class="p" data-group-id="2809984181-1">]</span><span class="w">
+    </span><span class="o">&amp;</span><span class="nc">IO</span><span class="o">.</span><span class="n">inspect</span><span class="p" data-group-id="2797903914-3">(</span><span class="ni">&amp;1</span><span class="p">,</span><span class="w"> </span><span class="ss">label</span><span class="p">:</span><span class="w"> </span><span class="ss">:final_request</span><span class="p" data-group-id="2797903914-3">)</span><span class="p">,</span><span class="w">
+  </span><span class="p" data-group-id="2797903914-2">]</span><span class="p">,</span><span class="w">
+  </span><span class="ss">response_middleware</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2797903914-4">[</span><span class="w">
+    </span><span class="p" data-group-id="2797903914-5">{</span><span class="nc">IO</span><span class="p">,</span><span class="w"> </span><span class="ss">:inspect</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2797903914-6">[</span><span class="p" data-group-id="2797903914-7">[</span><span class="ss">label</span><span class="p">:</span><span class="w"> </span><span class="ss">:initial_response</span><span class="p" data-group-id="2797903914-7">]</span><span class="p" data-group-id="2797903914-6">]</span><span class="p" data-group-id="2797903914-5">}</span><span class="p">,</span><span class="w">
+    </span><span class="p" data-group-id="2797903914-8">{</span><span class="nc">Requests</span><span class="p">,</span><span class="w"> </span><span class="ss">:decode_response_body</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2797903914-9">[</span><span class="p" data-group-id="2797903914-9">]</span><span class="p" data-group-id="2797903914-8">}</span><span class="w">
+  </span><span class="p" data-group-id="2797903914-4">]</span><span class="w">
+</span><span class="p" data-group-id="2797903914-1">]</span><span class="w">
 
-</span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="2809984181-10">(</span><span class="s">&quot;https://httpbin.org/json&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">opts</span><span class="p" data-group-id="2809984181-10">)</span><span class="w">
-</span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">IO</span><span class="o">.</span><span class="n">inspect</span><span class="p" data-group-id="2809984181-11">(</span><span class="ss">label</span><span class="p">:</span><span class="w"> </span><span class="ss">:final_response</span><span class="p" data-group-id="2809984181-11">)</span></code></pre>
+</span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="2797903914-10">(</span><span class="s">&quot;https://httpbin.org/json&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">opts</span><span class="p" data-group-id="2797903914-10">)</span><span class="w">
+</span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">IO</span><span class="o">.</span><span class="n">inspect</span><span class="p" data-group-id="2797903914-11">(</span><span class="ss">label</span><span class="p">:</span><span class="w"> </span><span class="ss">:final_response</span><span class="p" data-group-id="2797903914-11">)</span></code></pre>
   </section>
 </section>
 
@@ -485,8 +485,8 @@ accordingly. Otherwise it's unchanged.</p><table><thead><tr><th style="text-alig
   <a href="#encode_request_body/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Examples
 </h2>
-<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">post!</span><span class="p" data-group-id="7690781601-1">(</span><span class="s">&quot;https://httpbin.org/post&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="7690781601-2">{</span><span class="ss">:form</span><span class="p">,</span><span class="w"> </span><span class="ss">comments</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hello!&quot;</span><span class="p" data-group-id="7690781601-2">}</span><span class="p" data-group-id="7690781601-1">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="7690781601-3">[</span><span class="s">&quot;form&quot;</span><span class="p" data-group-id="7690781601-3">]</span><span class="w">
-</span><span class="p" data-group-id="7690781601-4">%{</span><span class="s">&quot;comments&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;hello!&quot;</span><span class="p" data-group-id="7690781601-4">}</span></code></pre>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">post!</span><span class="p" data-group-id="3074598930-1">(</span><span class="s">&quot;https://httpbin.org/post&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="3074598930-2">{</span><span class="ss">:form</span><span class="p">,</span><span class="w"> </span><span class="ss">comments</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hello!&quot;</span><span class="p" data-group-id="3074598930-2">}</span><span class="p" data-group-id="3074598930-1">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="3074598930-3">[</span><span class="s">&quot;form&quot;</span><span class="p" data-group-id="3074598930-3">]</span><span class="w">
+</span><span class="p" data-group-id="3074598930-4">%{</span><span class="s">&quot;comments&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;hello!&quot;</span><span class="p" data-group-id="3074598930-4">}</span></code></pre>
   </section>
 </section>
 <section class="detail" id="normalize_request_headers/1">
@@ -536,7 +536,7 @@ Response middleware
     </a>
     <h1 class="signature">decode_response_body(response, opts \\ [])</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L422" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L421" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -551,9 +551,8 @@ Response middleware
   Options
 </h2>
 <ul><li><p><code class="inline">:json_decoder</code> - if set, used on the <code class="inline">&quot;application/json*&quot;</code> content type. Defaults to
-<a href="https://hexdocs.pm/jason/1.2.2/Jason.html#decode/1"><code class="inline">&amp;Jason.decode/1</code></a> if <code class="inline">jason</code> dependency is installed.</p></li><li><p><code class="inline">:csv_decoder</code> - if set, used on the <code class="inline">&quot;text/csv*&quot;</code> content type. Defaults to
-<a href="https://hexdocs.pm/nimble_csv/1.1.0/NimbleCSV.RFC4180.html#parse_string/2"><code class="inline">&amp;NimbleCSV.RFC4180.parse_string(&amp;1, skip_headers: false)</code></a>
-if <code class="inline">nimble_csv</code> dependency is installed.</p></li></ul>
+<a href="https://hexdocs.pm/jason/1.2.2/Jason.html#decode/1"><code class="inline">&amp;Jason.decode/1</code></a></p></li><li><p><code class="inline">:csv_decoder</code> - if set, used on the <code class="inline">&quot;text/csv*&quot;</code> content type. Defaults to
+<a href="https://hexdocs.pm/nimble_csv/1.1.0/NimbleCSV.RFC4180.html#parse_string/2"><code class="inline">&amp;NimbleCSV.RFC4180.parse_string(&amp;1, skip_headers: false)</code></a></p></li></ul>
   </section>
 </section>
 <section class="detail" id="decompress/1">
