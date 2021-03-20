@@ -7,7 +7,7 @@
     <meta name="generator" content="ExDoc v0.24.0">
     <meta name="project" content="requests v0.1.0-dev">
 
-    <title>Requests.get — requests v0.1.0-dev</title>
+    <title>Requests.retry — requests v0.1.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
 
     <script src="dist/sidebar_items-c512cc38ce.js"></script>
@@ -79,24 +79,22 @@ requests
   <div class="content-outer">
     <div id="content" class="content-inner">
 
-<h1>Requests.get</h1>
+<h1>Requests.retry</h1>
 
 <div class="deprecated">
-  You're seeing just the function <code>get</code>, go back to <a href="Requests.html">Requests</a> module for more information.
+  You're seeing just the function <code>retry</code>, go back to <a href="Requests.html">Requests</a> module for more information.
 </div>
 
-<section class="detail" id="get/2">
-
-    <span id="get/1"></span>
+<section class="detail" id="retry/1">
 
   <div class="detail-header">
-    <a href="#get/2" class="detail-link" title="Link to this function">
+    <a href="#retry/1" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature">get(url, opts \\ [])</h1>
+    <h1 class="signature">retry(result)</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L62" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L503" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -106,7 +104,7 @@ requests
 
   <section class="docstring">
 
-<p>Makes a GET request.</p><p>See <a href="#request/4"><code class="inline">request/4</code></a> for possible options.</p>
+<p>Retries a request on errors.</p><p>Retries a request that resulted in either:</p><ul><li><p>response with status <code class="inline">5xx</code></p></li><li><p>exception</p></li></ul><p>Retries up to 2 times (3 requests total) with 100ms delay in between.</p><p>Returns <code class="inline">{:ok, response}</code> or <code class="inline">{:error, %Requests.TooManyFailedAttempts{}}</code>.</p>
   </section>
 </section>
 
