@@ -10,7 +10,7 @@
     <title>Requests.retry — requests v0.1.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
 
-    <script src="dist/sidebar_items-ff5e8d07a8.js"></script>
+    <script src="dist/sidebar_items-9d7b3d43a3.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -96,7 +96,7 @@ requests
     </a>
     <h1 class="signature">retry(response_or_exception, opts \\ [])</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L568" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L591" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -112,7 +112,7 @@ request that resulted in:</p><ul><li><p>response with status <code class="inline
   Options
 </h2>
 <ul><li><p><code class="inline">:retry_max_count</code> - maximum number of retries, defaults to: <code class="inline">2</code></p></li><li><p><code class="inline">:retry_delay</code> - sleep this number of milliseconds before making another attempt, defaults
-to <code class="inline">2000</code></p></li></ul><p>If all attempts have failed, returns <a href="Requests.TooManyFailedAttempts.html"><code class="inline">Requests.TooManyFailedAttempts</code></a>.</p>
+to <code class="inline">2000</code></p></li></ul><p>If all attempts have failed, returns the last result: <code class="inline">{:ok, response}</code> or <code class="inline">{:error, exception}</code>.</p>
   </section>
 </section>
 
