@@ -10,7 +10,7 @@
     <title>Requests.decompress — requests v0.1.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
 
-    <script src="dist/sidebar_items-9d7b3d43a3.js"></script>
+    <script src="dist/sidebar_items-40fe3922b2.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -85,16 +85,18 @@ requests
   You're seeing just the function <code>decompress</code>, go back to <a href="Requests.html">Requests</a> module for more information.
 </div>
 
-<section class="detail" id="decompress/1">
+<section class="detail" id="decompress/2">
+
+    <span id="decompress/1"></span>
 
   <div class="detail-header">
-    <a href="#decompress/1" class="detail-link" title="Link to this function">
+    <a href="#decompress/2" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature">decompress(response)</h1>
+    <h1 class="signature">decompress(response, opts \\ [])</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L500" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L479" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -104,7 +106,13 @@ requests
 
   <section class="docstring">
 
-<p>Decompresses the response body based on the <code class="inline">content-encoding</code> header.</p><p>Supported values: <code class="inline">&quot;gzip&quot;</code>, <code class="inline">&quot;x-gzip&quot;</code>, <code class="inline">&quot;deflate&quot;</code>, and <code class="inline">&quot;identity&quot;</code>.</p>
+<p>Decompresses the response body based on the <code class="inline">content-encoding</code> header.</p><h2 id="decompress/2-options" class="section-heading">
+  <a href="#decompress/2-options" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Options
+</h2>
+<ul><li><p><code class="inline">:gzip_decoder</code> - used for the <code class="inline">&quot;gzip&quot;</code> and <code class="inline">&quot;x-gzip&quot;</code> values. Defaults to
+<a href="https://erlang.org/doc/man/zlib.html#gunzip-1"><code class="inline">&amp;:zlib.gunzip/1</code></a></p></li><li><p><code class="inline">:deflate_decoder</code> - used for the <code class="inline">&quot;deflate&quot;</code> value. Defaults to
+<a href="https://erlang.org/doc/man/zlib.html#unzip-1"><code class="inline">&amp;:zlib.unzip/1</code></a></p></li></ul>
   </section>
 </section>
 
