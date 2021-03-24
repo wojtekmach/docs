@@ -116,7 +116,7 @@ to <code class="inline">2000</code></p></li></ul><p>If all attempts have failed,
   <a href="#retry/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Examples
 </h2>
-<p>Server eventually became available:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get</span><span class="p" data-group-id="1409729862-1">(</span><span class="s">&quot;http://localhost:4000&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">retry</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="1409729862-1">)</span><span class="w">
+<p>Server eventually became available:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get</span><span class="p" data-group-id="3775075958-1">(</span><span class="s">&quot;http://localhost:4000&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">retry</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="3775075958-1">)</span><span class="w">
 </span><span class="c1"># Logs:</span><span class="w">
 </span><span class="c1"># 12:37:15.554 [error] Got exception</span><span class="w">
 </span><span class="c1"># ** (Mint.TransportError) connection refused</span><span class="w">
@@ -124,17 +124,17 @@ to <code class="inline">2000</code></p></li></ul><p>If all attempts have failed,
 </span><span class="c1"># 12:37:17.557 [error] Got exception</span><span class="w">
 </span><span class="c1"># ** (Mint.TransportError) connection refused</span><span class="w">
 </span><span class="c1"># Will retry in 2000ms, 1 attempt left</span><span class="w">
-</span><span class="p" data-group-id="1409729862-2">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w">
- </span><span class="p" data-group-id="1409729862-3">%</span><span class="nc" data-group-id="1409729862-3">Finch.Response</span><span class="p" data-group-id="1409729862-3">{</span><span class="w">
+</span><span class="p" data-group-id="3775075958-2">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w">
+ </span><span class="p" data-group-id="3775075958-3">%</span><span class="nc" data-group-id="3775075958-3">Finch.Response</span><span class="p" data-group-id="3775075958-3">{</span><span class="w">
    </span><span class="ss">body</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hello&quot;</span><span class="p">,</span><span class="w">
-   </span><span class="ss">headers</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="1409729862-4">[</span><span class="w">
-     </span><span class="p" data-group-id="1409729862-5">{</span><span class="s">&quot;cache-control&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;max-age=0, private, must-revalidate&quot;</span><span class="p" data-group-id="1409729862-5">}</span><span class="p">,</span><span class="w">
-     </span><span class="p" data-group-id="1409729862-6">{</span><span class="s">&quot;content-length&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;5&quot;</span><span class="p" data-group-id="1409729862-6">}</span><span class="p">,</span><span class="w">
-     </span><span class="p" data-group-id="1409729862-7">{</span><span class="s">&quot;date&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Mon, 22 Mar 2021 11:37:18 GMT&quot;</span><span class="p" data-group-id="1409729862-7">}</span><span class="p">,</span><span class="w">
-     </span><span class="p" data-group-id="1409729862-8">{</span><span class="s">&quot;server&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Cowboy&quot;</span><span class="p" data-group-id="1409729862-8">}</span><span class="w">
-   </span><span class="p" data-group-id="1409729862-4">]</span><span class="p">,</span><span class="w">
+   </span><span class="ss">headers</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3775075958-4">[</span><span class="w">
+     </span><span class="p" data-group-id="3775075958-5">{</span><span class="s">&quot;cache-control&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;max-age=0, private, must-revalidate&quot;</span><span class="p" data-group-id="3775075958-5">}</span><span class="p">,</span><span class="w">
+     </span><span class="p" data-group-id="3775075958-6">{</span><span class="s">&quot;content-length&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;5&quot;</span><span class="p" data-group-id="3775075958-6">}</span><span class="p">,</span><span class="w">
+     </span><span class="p" data-group-id="3775075958-7">{</span><span class="s">&quot;date&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Mon, 22 Mar 2021 11:37:18 GMT&quot;</span><span class="p" data-group-id="3775075958-7">}</span><span class="p">,</span><span class="w">
+     </span><span class="p" data-group-id="3775075958-8">{</span><span class="s">&quot;server&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Cowboy&quot;</span><span class="p" data-group-id="3775075958-8">}</span><span class="w">
+   </span><span class="p" data-group-id="3775075958-4">]</span><span class="p">,</span><span class="w">
    </span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w">
- </span><span class="p" data-group-id="1409729862-3">}</span><span class="p" data-group-id="1409729862-2">}</span></code></pre><p>Server keeps returning 500:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get</span><span class="p" data-group-id="5016323113-1">(</span><span class="s">&quot;http://localhost:4000&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">retry</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="5016323113-1">)</span><span class="w">
+ </span><span class="p" data-group-id="3775075958-3">}</span><span class="p" data-group-id="3775075958-2">}</span></code></pre><p>Server keeps returning 500:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get</span><span class="p" data-group-id="3975252015-1">(</span><span class="s">&quot;http://localhost:4000&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">retry</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="3975252015-1">)</span><span class="w">
 </span><span class="c1"># Logs:</span><span class="w">
 </span><span class="c1"># 12:40:09.186 [error] Got response with status 500</span><span class="w">
 </span><span class="c1"># Headers: [...]</span><span class="w">
@@ -142,12 +142,12 @@ to <code class="inline">2000</code></p></li></ul><p>If all attempts have failed,
 </span><span class="c1"># 12:40:11.188 [error] Got response with status 500</span><span class="w">
 </span><span class="c1"># Headers: [...]</span><span class="w">
 </span><span class="c1"># Will retry in 2000ms, 1 attempt left</span><span class="w">
-</span><span class="p" data-group-id="5016323113-2">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w">
- </span><span class="p" data-group-id="5016323113-3">%</span><span class="nc" data-group-id="5016323113-3">Finch.Response</span><span class="p" data-group-id="5016323113-3">{</span><span class="w">
+</span><span class="p" data-group-id="3975252015-2">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w">
+ </span><span class="p" data-group-id="3975252015-3">%</span><span class="nc" data-group-id="3975252015-3">Finch.Response</span><span class="p" data-group-id="3975252015-3">{</span><span class="w">
    </span><span class="ss">body</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;oops&quot;</span><span class="p">,</span><span class="w">
-   </span><span class="ss">headers</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5016323113-4">[</span><span class="n">...</span><span class="p" data-group-id="5016323113-4">]</span><span class="p">,</span><span class="w">
+   </span><span class="ss">headers</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3975252015-4">[</span><span class="n">...</span><span class="p" data-group-id="3975252015-4">]</span><span class="p">,</span><span class="w">
    </span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="w">
- </span><span class="p" data-group-id="5016323113-3">}</span><span class="p" data-group-id="5016323113-2">}</span></code></pre>
+ </span><span class="p" data-group-id="3975252015-3">}</span><span class="p" data-group-id="3975252015-2">}</span></code></pre>
   </section>
 </section>
 
