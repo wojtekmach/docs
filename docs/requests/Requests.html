@@ -99,11 +99,11 @@ Requests <small class="app-vsn">(requests v0.1.0-dev)</small>
   <a href="#module-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Examples
 </h2>
-<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="0723756952-1">(</span><span class="s">&quot;https://api.github.com/repos/elixir-lang/elixir&quot;</span><span class="p" data-group-id="0723756952-1">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="0723756952-2">[</span><span class="s">&quot;description&quot;</span><span class="p" data-group-id="0723756952-2">]</span><span class="w">
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="5914931509-1">(</span><span class="s">&quot;https://api.github.com/repos/elixir-lang/elixir&quot;</span><span class="p" data-group-id="5914931509-1">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="5914931509-2">[</span><span class="s">&quot;description&quot;</span><span class="p" data-group-id="5914931509-2">]</span><span class="w">
 </span><span class="s">&quot;Elixir is a dynamic, functional language designed for building scalable and maintainable applications&quot;</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">post!</span><span class="p" data-group-id="0723756952-3">(</span><span class="s">&quot;https://httpbin.org/post&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0723756952-4">{</span><span class="ss">:form</span><span class="p">,</span><span class="w"> </span><span class="ss">comments</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hello!&quot;</span><span class="p" data-group-id="0723756952-4">}</span><span class="p" data-group-id="0723756952-3">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="0723756952-5">[</span><span class="s">&quot;form&quot;</span><span class="p" data-group-id="0723756952-5">]</span><span class="w">
-</span><span class="p" data-group-id="0723756952-6">%{</span><span class="s">&quot;comments&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;hello!&quot;</span><span class="p" data-group-id="0723756952-6">}</span></code></pre><h2 id="module-credits" class="section-heading">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">post!</span><span class="p" data-group-id="5914931509-3">(</span><span class="s">&quot;https://httpbin.org/post&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5914931509-4">{</span><span class="ss">:form</span><span class="p">,</span><span class="w"> </span><span class="ss">comments</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hello!&quot;</span><span class="p" data-group-id="5914931509-4">}</span><span class="p" data-group-id="5914931509-3">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="5914931509-5">[</span><span class="s">&quot;form&quot;</span><span class="p" data-group-id="5914931509-5">]</span><span class="w">
+</span><span class="p" data-group-id="5914931509-6">%{</span><span class="s">&quot;comments&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;hello!&quot;</span><span class="p" data-group-id="5914931509-6">}</span></code></pre><h2 id="module-credits" class="section-heading">
   <a href="#module-credits" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Credits
 </h2>
@@ -405,19 +405,19 @@ exception) will be automatically prepended, for example: <code class="inline">{R
   <a href="#request/4-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Example
 </h3>
-<pre><code class="makeup elixir"><span class="n">opts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="5276219472-1">[</span><span class="w">
-  </span><span class="ss">request_middleware</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5276219472-2">[</span><span class="w">
+<pre><code class="makeup elixir"><span class="n">opts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="8112003688-1">[</span><span class="w">
+  </span><span class="ss">request_middleware</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="8112003688-2">[</span><span class="w">
     </span><span class="o">&amp;</span><span class="nc">Requests</span><span class="o">.</span><span class="n">default_headers</span><span class="o">/</span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="o">&amp;</span><span class="nc">IO</span><span class="o">.</span><span class="n">inspect</span><span class="p" data-group-id="5276219472-3">(</span><span class="ni">&amp;1</span><span class="p">,</span><span class="w"> </span><span class="ss">label</span><span class="p">:</span><span class="w"> </span><span class="ss">:final_request</span><span class="p" data-group-id="5276219472-3">)</span><span class="p">,</span><span class="w">
-  </span><span class="p" data-group-id="5276219472-2">]</span><span class="p">,</span><span class="w">
-  </span><span class="ss">response_middleware</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5276219472-4">[</span><span class="w">
-    </span><span class="p" data-group-id="5276219472-5">{</span><span class="nc">IO</span><span class="p">,</span><span class="w"> </span><span class="ss">:inspect</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5276219472-6">[</span><span class="p" data-group-id="5276219472-7">[</span><span class="ss">label</span><span class="p">:</span><span class="w"> </span><span class="ss">:initial_response</span><span class="p" data-group-id="5276219472-7">]</span><span class="p" data-group-id="5276219472-6">]</span><span class="p" data-group-id="5276219472-5">}</span><span class="p">,</span><span class="w">
-    </span><span class="p" data-group-id="5276219472-8">{</span><span class="nc">Requests</span><span class="p">,</span><span class="w"> </span><span class="ss">:decode</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5276219472-9">[</span><span class="p" data-group-id="5276219472-9">]</span><span class="p" data-group-id="5276219472-8">}</span><span class="w">
-  </span><span class="p" data-group-id="5276219472-4">]</span><span class="w">
-</span><span class="p" data-group-id="5276219472-1">]</span><span class="w">
+    </span><span class="o">&amp;</span><span class="nc">IO</span><span class="o">.</span><span class="n">inspect</span><span class="p" data-group-id="8112003688-3">(</span><span class="ni">&amp;1</span><span class="p">,</span><span class="w"> </span><span class="ss">label</span><span class="p">:</span><span class="w"> </span><span class="ss">:final_request</span><span class="p" data-group-id="8112003688-3">)</span><span class="p">,</span><span class="w">
+  </span><span class="p" data-group-id="8112003688-2">]</span><span class="p">,</span><span class="w">
+  </span><span class="ss">response_middleware</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="8112003688-4">[</span><span class="w">
+    </span><span class="p" data-group-id="8112003688-5">{</span><span class="nc">IO</span><span class="p">,</span><span class="w"> </span><span class="ss">:inspect</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8112003688-6">[</span><span class="p" data-group-id="8112003688-7">[</span><span class="ss">label</span><span class="p">:</span><span class="w"> </span><span class="ss">:initial_response</span><span class="p" data-group-id="8112003688-7">]</span><span class="p" data-group-id="8112003688-6">]</span><span class="p" data-group-id="8112003688-5">}</span><span class="p">,</span><span class="w">
+    </span><span class="p" data-group-id="8112003688-8">{</span><span class="nc">Requests</span><span class="p">,</span><span class="w"> </span><span class="ss">:decode</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8112003688-9">[</span><span class="p" data-group-id="8112003688-9">]</span><span class="p" data-group-id="8112003688-8">}</span><span class="w">
+  </span><span class="p" data-group-id="8112003688-4">]</span><span class="w">
+</span><span class="p" data-group-id="8112003688-1">]</span><span class="w">
 
-</span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="5276219472-10">(</span><span class="s">&quot;https://httpbin.org/json&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">opts</span><span class="p" data-group-id="5276219472-10">)</span><span class="w">
-</span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">IO</span><span class="o">.</span><span class="n">inspect</span><span class="p" data-group-id="5276219472-11">(</span><span class="ss">label</span><span class="p">:</span><span class="w"> </span><span class="ss">:final_response</span><span class="p" data-group-id="5276219472-11">)</span></code></pre>
+</span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="8112003688-10">(</span><span class="s">&quot;https://httpbin.org/json&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">opts</span><span class="p" data-group-id="8112003688-10">)</span><span class="w">
+</span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">IO</span><span class="o">.</span><span class="n">inspect</span><span class="p" data-group-id="8112003688-11">(</span><span class="ss">label</span><span class="p">:</span><span class="w"> </span><span class="ss">:final_response</span><span class="p" data-group-id="8112003688-11">)</span></code></pre>
   </section>
 </section>
 
@@ -507,8 +507,8 @@ accordingly. Otherwise it's unchanged.</p><table><thead><tr><th style="text-alig
   <a href="#encode/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Examples
 </h2>
-<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">post!</span><span class="p" data-group-id="0838997324-1">(</span><span class="s">&quot;https://httpbin.org/post&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0838997324-2">{</span><span class="ss">:form</span><span class="p">,</span><span class="w"> </span><span class="ss">comments</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hello!&quot;</span><span class="p" data-group-id="0838997324-2">}</span><span class="p" data-group-id="0838997324-1">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="0838997324-3">[</span><span class="s">&quot;form&quot;</span><span class="p" data-group-id="0838997324-3">]</span><span class="w">
-</span><span class="p" data-group-id="0838997324-4">%{</span><span class="s">&quot;comments&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;hello!&quot;</span><span class="p" data-group-id="0838997324-4">}</span></code></pre>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">post!</span><span class="p" data-group-id="3962335647-1">(</span><span class="s">&quot;https://httpbin.org/post&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="3962335647-2">{</span><span class="ss">:form</span><span class="p">,</span><span class="w"> </span><span class="ss">comments</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hello!&quot;</span><span class="p" data-group-id="3962335647-2">}</span><span class="p" data-group-id="3962335647-1">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="3962335647-3">[</span><span class="s">&quot;form&quot;</span><span class="p" data-group-id="3962335647-3">]</span><span class="w">
+</span><span class="p" data-group-id="3962335647-4">%{</span><span class="s">&quot;comments&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;hello!&quot;</span><span class="p" data-group-id="3962335647-4">}</span></code></pre>
   </section>
 </section>
 <section class="detail" id="normalize_request_headers/1">
@@ -558,7 +558,7 @@ Response middleware
     </a>
     <h1 class="signature">decode(response, opts \\ [])</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L540" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L537" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -572,18 +572,15 @@ Response middleware
   <a href="#decode/2-options" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Options
 </h2>
-<ul><li><p><code class="inline">:json_decoder</code> - if set, used on the <code class="inline">&quot;application/json*&quot;</code> content type. Defaults to
-<a href="https://hexdocs.pm/jason/1.2.2/Jason.html#decode/1"><code class="inline">&amp;Jason.decode/1</code></a></p></li><li><p><code class="inline">:csv_decoder</code> - if set, used on the <code class="inline">&quot;text/csv*&quot;</code> content type. Defaults to
-<a href="https://hexdocs.pm/nimble_csv/1.1.0/NimbleCSV.RFC4180.html#parse_string/2"><code class="inline">&amp;NimbleCSV.RFC4180.parse_string(&amp;1, skip_headers: false)</code></a></p></li><li><p><code class="inline">:gzip_decoder</code> - used on the <code class="inline">&quot;application/(x-)gzip&quot;</code> content type. Defaults to
-<a href="https://erlang.org/doc/man/zlib.html#gunzip-1"><code class="inline">&amp;:zlib.gunzip/1</code></a></p></li><li><p><code class="inline">:zip_decoder</code> - used on the <code class="inline">&quot;application/zip&quot;</code> content type. Defaults to using
-<a href="https://erlang.org/doc/man/zip.html#unzip-2"><code class="inline">:zip.unzip/2</code></a></p></li></ul><h2 id="decode/2-examples" class="section-heading">
+<ul><li><p><code class="inline">:json_decoder</code> - if set, used for JSON. Defaults to <a href="https://hexdocs.pm/jason/1.2.2/Jason.html#decode/1"><code class="inline">&amp;Jason.decode/1</code></a></p></li><li><p><code class="inline">:csv_decoder</code> - if set, used for CSV. Defaults to
+<a href="https://hexdocs.pm/nimble_csv/1.1.0/NimbleCSV.RFC4180.html#parse_string/2"><code class="inline">&amp;NimbleCSV.RFC4180.parse_string(&amp;1, skip_headers: false)</code></a></p></li><li><p><code class="inline">:gzip_decoder</code> - used for gzip. Defaults to <a href="https://erlang.org/doc/man/zlib.html#gunzip-1"><code class="inline">&amp;:zlib.gunzip/1</code></a></p></li><li><p><code class="inline">:zip_decoder</code> - used for ZIP. Defaults to using <a href="https://erlang.org/doc/man/zip.html#unzip-2"><code class="inline">:zip.unzip/2</code></a></p></li></ul><h2 id="decode/2-examples" class="section-heading">
   <a href="#decode/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Examples
 </h2>
-<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="1878237748-1">(</span><span class="s">&quot;https://httpbin.org/json&quot;</span><span class="p" data-group-id="1878237748-1">)</span><span class="o">.</span><span class="n">body</span><span class="w">
-</span><span class="p" data-group-id="1878237748-2">%{</span><span class="n">...</span><span class="p" data-group-id="1878237748-2">}</span><span class="w">
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="9674825713-1">(</span><span class="s">&quot;https://httpbin.org/json&quot;</span><span class="p" data-group-id="9674825713-1">)</span><span class="o">.</span><span class="n">body</span><span class="w">
+</span><span class="p" data-group-id="9674825713-2">%{</span><span class="n">...</span><span class="p" data-group-id="9674825713-2">}</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="1878237748-3">(</span><span class="s">&quot;https://httpbin.org/json&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">json_decoder</span><span class="p">:</span><span class="w"> </span><span class="k" data-group-id="1878237748-4">fn</span><span class="w"> </span><span class="bp">_</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;fake&quot;</span><span class="w"> </span><span class="k" data-group-id="1878237748-4">end</span><span class="p" data-group-id="1878237748-3">)</span><span class="o">.</span><span class="n">body</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="9674825713-3">(</span><span class="s">&quot;https://httpbin.org/json&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">json_decoder</span><span class="p">:</span><span class="w"> </span><span class="k" data-group-id="9674825713-4">fn</span><span class="w"> </span><span class="bp">_</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;fake&quot;</span><span class="w"> </span><span class="k" data-group-id="9674825713-4">end</span><span class="p" data-group-id="9674825713-3">)</span><span class="o">.</span><span class="n">body</span><span class="w">
 </span><span class="s">&quot;fake&quot;</span></code></pre>
   </section>
 </section>
@@ -641,7 +638,7 @@ Error middleware
     </a>
     <h1 class="signature">retry(response_or_exception, opts \\ [])</h1>
 
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L654" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L653" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -661,7 +658,7 @@ to <code class="inline">2000</code></p></li></ul><p>If all attempts have failed,
   <a href="#retry/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Examples
 </h2>
-<p>Server eventually became available:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get</span><span class="p" data-group-id="3320512520-1">(</span><span class="s">&quot;http://localhost:4000&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">retry</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="3320512520-1">)</span><span class="w">
+<p>Server eventually became available:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get</span><span class="p" data-group-id="5308236815-1">(</span><span class="s">&quot;http://localhost:4000&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">retry</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="5308236815-1">)</span><span class="w">
 </span><span class="c1"># Logs:</span><span class="w">
 </span><span class="c1"># 12:37:15.554 [error] Got exception</span><span class="w">
 </span><span class="c1"># ** (Mint.TransportError) connection refused</span><span class="w">
@@ -669,17 +666,17 @@ to <code class="inline">2000</code></p></li></ul><p>If all attempts have failed,
 </span><span class="c1"># 12:37:17.557 [error] Got exception</span><span class="w">
 </span><span class="c1"># ** (Mint.TransportError) connection refused</span><span class="w">
 </span><span class="c1"># Will retry in 2000ms, 1 attempt left</span><span class="w">
-</span><span class="p" data-group-id="3320512520-2">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w">
- </span><span class="p" data-group-id="3320512520-3">%</span><span class="nc" data-group-id="3320512520-3">Finch.Response</span><span class="p" data-group-id="3320512520-3">{</span><span class="w">
+</span><span class="p" data-group-id="5308236815-2">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w">
+ </span><span class="p" data-group-id="5308236815-3">%</span><span class="nc" data-group-id="5308236815-3">Finch.Response</span><span class="p" data-group-id="5308236815-3">{</span><span class="w">
    </span><span class="ss">body</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hello&quot;</span><span class="p">,</span><span class="w">
-   </span><span class="ss">headers</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3320512520-4">[</span><span class="w">
-     </span><span class="p" data-group-id="3320512520-5">{</span><span class="s">&quot;cache-control&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;max-age=0, private, must-revalidate&quot;</span><span class="p" data-group-id="3320512520-5">}</span><span class="p">,</span><span class="w">
-     </span><span class="p" data-group-id="3320512520-6">{</span><span class="s">&quot;content-length&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;5&quot;</span><span class="p" data-group-id="3320512520-6">}</span><span class="p">,</span><span class="w">
-     </span><span class="p" data-group-id="3320512520-7">{</span><span class="s">&quot;date&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Mon, 22 Mar 2021 11:37:18 GMT&quot;</span><span class="p" data-group-id="3320512520-7">}</span><span class="p">,</span><span class="w">
-     </span><span class="p" data-group-id="3320512520-8">{</span><span class="s">&quot;server&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Cowboy&quot;</span><span class="p" data-group-id="3320512520-8">}</span><span class="w">
-   </span><span class="p" data-group-id="3320512520-4">]</span><span class="p">,</span><span class="w">
+   </span><span class="ss">headers</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5308236815-4">[</span><span class="w">
+     </span><span class="p" data-group-id="5308236815-5">{</span><span class="s">&quot;cache-control&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;max-age=0, private, must-revalidate&quot;</span><span class="p" data-group-id="5308236815-5">}</span><span class="p">,</span><span class="w">
+     </span><span class="p" data-group-id="5308236815-6">{</span><span class="s">&quot;content-length&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;5&quot;</span><span class="p" data-group-id="5308236815-6">}</span><span class="p">,</span><span class="w">
+     </span><span class="p" data-group-id="5308236815-7">{</span><span class="s">&quot;date&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Mon, 22 Mar 2021 11:37:18 GMT&quot;</span><span class="p" data-group-id="5308236815-7">}</span><span class="p">,</span><span class="w">
+     </span><span class="p" data-group-id="5308236815-8">{</span><span class="s">&quot;server&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Cowboy&quot;</span><span class="p" data-group-id="5308236815-8">}</span><span class="w">
+   </span><span class="p" data-group-id="5308236815-4">]</span><span class="p">,</span><span class="w">
    </span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w">
- </span><span class="p" data-group-id="3320512520-3">}</span><span class="p" data-group-id="3320512520-2">}</span></code></pre><p>Server keeps returning 500:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get</span><span class="p" data-group-id="9688672346-1">(</span><span class="s">&quot;http://localhost:4000&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">retry</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="9688672346-1">)</span><span class="w">
+ </span><span class="p" data-group-id="5308236815-3">}</span><span class="p" data-group-id="5308236815-2">}</span></code></pre><p>Server keeps returning 500:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get</span><span class="p" data-group-id="9227079058-1">(</span><span class="s">&quot;http://localhost:4000&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">retry</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="9227079058-1">)</span><span class="w">
 </span><span class="c1"># Logs:</span><span class="w">
 </span><span class="c1"># 12:40:09.186 [error] Got response with status 500</span><span class="w">
 </span><span class="c1"># Headers: [...]</span><span class="w">
@@ -687,12 +684,12 @@ to <code class="inline">2000</code></p></li></ul><p>If all attempts have failed,
 </span><span class="c1"># 12:40:11.188 [error] Got response with status 500</span><span class="w">
 </span><span class="c1"># Headers: [...]</span><span class="w">
 </span><span class="c1"># Will retry in 2000ms, 1 attempt left</span><span class="w">
-</span><span class="p" data-group-id="9688672346-2">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w">
- </span><span class="p" data-group-id="9688672346-3">%</span><span class="nc" data-group-id="9688672346-3">Finch.Response</span><span class="p" data-group-id="9688672346-3">{</span><span class="w">
+</span><span class="p" data-group-id="9227079058-2">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w">
+ </span><span class="p" data-group-id="9227079058-3">%</span><span class="nc" data-group-id="9227079058-3">Finch.Response</span><span class="p" data-group-id="9227079058-3">{</span><span class="w">
    </span><span class="ss">body</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;oops&quot;</span><span class="p">,</span><span class="w">
-   </span><span class="ss">headers</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="9688672346-4">[</span><span class="n">...</span><span class="p" data-group-id="9688672346-4">]</span><span class="p">,</span><span class="w">
+   </span><span class="ss">headers</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="9227079058-4">[</span><span class="n">...</span><span class="p" data-group-id="9227079058-4">]</span><span class="p">,</span><span class="w">
    </span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="w">
- </span><span class="p" data-group-id="9688672346-3">}</span><span class="p" data-group-id="9688672346-2">}</span></code></pre>
+ </span><span class="p" data-group-id="9227079058-3">}</span><span class="p" data-group-id="9227079058-2">}</span></code></pre>
   </section>
 </section>
 
