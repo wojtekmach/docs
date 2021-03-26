@@ -6,28 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.24.0">
     <meta name="project" content="requests v0.1.0-dev">
-
     <title>Requests — requests v0.1.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
-
-    <script src="dist/sidebar_items-40fe3922b2.js"></script>
-
+    <script src="dist/sidebar_items-9538ece90c.js"></script>
       <script src="docs_config.js"></script>
-
     <script async src="dist/app-f27ff079945e43879c46.js"></script>
-
-
   </head>
   <body data-type="modules">
     <script>
-
       try {
         if (localStorage.getItem('night-mode') === 'true') {
           document.body.classList.add('night-mode');
         }
       } catch (error) { }
     </script>
-
 <div class="main">
 
 <button class="sidebar-button sidebar-toggle">
@@ -55,20 +47,17 @@
   <div class="sidebar-header">
     <div class="sidebar-projectDetails">
       <a href="Requests.html" class="sidebar-projectName">
-requests
-      </a>
+requests      </a>
       <strong class="sidebar-projectVersion">
         v0.1.0-dev
       </strong>
     </div>
-
   </div>
 
   <ul class="sidebar-listNav">
     <li><a id="extras-list-link" href="#full-list">Pages</a></li>
 
       <li><a id="modules-list-link" href="#full-list">Modules</a></li>
-
 
   </ul>
   <div class="gradient"></div>
@@ -80,13 +69,11 @@ requests
     <div id="content" class="content-inner">
 
       <h1>
-Requests <small class="app-vsn">(requests v0.1.0-dev)</small>
-
+        Requests <small class="app-vsn">(requests v0.1.0-dev)</small>
           <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L13" title="View Source" class="view-source" rel="help">
             <span class="icon-code" aria-hidden="true"></span>
             <span class="sr-only">View Source</span>
           </a>
-
       </h1>
 
 
@@ -95,21 +82,19 @@ Requests <small class="app-vsn">(requests v0.1.0-dev)</small>
   <a href="#module-features" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Features
 </h2>
-<ul><li><p>Extensible via request, response, and error middleware</p></li><li><p>Automatic body encoding/decoding (via the <a href="#encode/2"><code class="inline">encode/2</code></a> and <a href="#decode/2"><code class="inline">decode/2</code></a> middleware)</p></li><li><p>Automatic compression/decompression (via the <a href="#compress/2"><code class="inline">compress/2</code></a> and <a href="#decompress/1"><code class="inline">decompress/1</code></a> middleware)</p></li><li><p>Retries on errors (via the <a href="#retry/2"><code class="inline">retry/2</code></a> middleware)</p></li><li><p>Request streaming (by setting body as <code class="inline">{:stream, enumerable}</code>)</p></li></ul><h2 id="module-examples" class="section-heading">
+<ul><li><p>Extensible via request, response, and error middleware</p></li><li><p>Automatic body encoding/decoding (via the <a href="#encode/2"><code class="inline">encode/2</code></a> and <a href="#decode/2"><code class="inline">decode/2</code></a> middleware)</p></li><li><p>Automatic compression/decompression (via the <a href="#compress/2"><code class="inline">compress/2</code></a> and <a href="#decompress/1"><code class="inline">decompress/1</code></a> middleware)</p></li><li><p>Basic authentication (via the <a href="#auth/2"><code class="inline">auth/2</code></a> middleware)</p></li><li><p>Retries on errors (via the <a href="#retry/2"><code class="inline">retry/2</code></a> middleware)</p></li><li><p>Request streaming (by setting body as <code class="inline">{:stream, enumerable}</code>)</p></li></ul><h2 id="module-examples" class="section-heading">
   <a href="#module-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Examples
 </h2>
-<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="5914931509-1">(</span><span class="s">&quot;https://api.github.com/repos/elixir-lang/elixir&quot;</span><span class="p" data-group-id="5914931509-1">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="5914931509-2">[</span><span class="s">&quot;description&quot;</span><span class="p" data-group-id="5914931509-2">]</span><span class="w">
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="7972885873-1">(</span><span class="s">&quot;https://api.github.com/repos/elixir-lang/elixir&quot;</span><span class="p" data-group-id="7972885873-1">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="7972885873-2">[</span><span class="s">&quot;description&quot;</span><span class="p" data-group-id="7972885873-2">]</span><span class="w">
 </span><span class="s">&quot;Elixir is a dynamic, functional language designed for building scalable and maintainable applications&quot;</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">post!</span><span class="p" data-group-id="5914931509-3">(</span><span class="s">&quot;https://httpbin.org/post&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5914931509-4">{</span><span class="ss">:form</span><span class="p">,</span><span class="w"> </span><span class="ss">comments</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hello!&quot;</span><span class="p" data-group-id="5914931509-4">}</span><span class="p" data-group-id="5914931509-3">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="5914931509-5">[</span><span class="s">&quot;form&quot;</span><span class="p" data-group-id="5914931509-5">]</span><span class="w">
-</span><span class="p" data-group-id="5914931509-6">%{</span><span class="s">&quot;comments&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;hello!&quot;</span><span class="p" data-group-id="5914931509-6">}</span></code></pre><h2 id="module-credits" class="section-heading">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">post!</span><span class="p" data-group-id="7972885873-3">(</span><span class="s">&quot;https://httpbin.org/post&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="7972885873-4">{</span><span class="ss">:form</span><span class="p">,</span><span class="w"> </span><span class="ss">comments</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hello!&quot;</span><span class="p" data-group-id="7972885873-4">}</span><span class="p" data-group-id="7972885873-3">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="7972885873-5">[</span><span class="s">&quot;form&quot;</span><span class="p" data-group-id="7972885873-5">]</span><span class="w">
+</span><span class="p" data-group-id="7972885873-6">%{</span><span class="s">&quot;comments&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;hello!&quot;</span><span class="p" data-group-id="7972885873-6">}</span></code></pre><h2 id="module-credits" class="section-heading">
   <a href="#module-credits" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Credits
 </h2>
-<ul><li><a href="https://requests.readthedocs.io">Requests</a></li><li><a href="https://github.com/teamon/tesla">Tesla</a></li><li><a href="https://github.com/keathley/finch">Finch</a> (and <a href="https://github.com/elixir-mint/mint">Mint</a> &amp; <a href="https://github.com/dashbitco/nimble_pool">NimblePool</a>!)</li></ul>
-        </section>
-
+<ul><li><a href="https://requests.readthedocs.io">Requests</a></li><li><a href="https://github.com/teamon/tesla">Tesla</a></li><li><a href="https://github.com/keathley/finch">Finch</a> (and <a href="https://github.com/elixir-mint/mint">Mint</a> &amp; <a href="https://github.com/dashbitco/nimble_pool">NimblePool</a>!)</li></ul>        </section>
 
         <section id="summary" class="details-list">
           <h1 class="section-heading">
@@ -119,59 +104,47 @@ Requests <small class="app-vsn">(requests v0.1.0-dev)</small>
             </a>
             Summary
           </h1>
-
   <div class="summary-api summary">
     <h2>
       <a href="#api">API</a>
     </h2>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#get/2">get(url, opts \\ [])</a>
-
+    <a href="#auth/2">auth(request, auth)</a>
   </div>
-
+    <div class="summary-synopsis"><p>Sets request authentication.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#get/2">get(url, opts \\ [])</a>
+  </div>
     <div class="summary-synopsis"><p>Makes a GET request.</p></div>
-
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#get!/2">get!(url, opts \\ [])</a>
-
   </div>
-
     <div class="summary-synopsis"><p>See <a href="#get/2"><code class="inline">get/2</code></a>.</p></div>
-
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#post/3">post(url, body, opts \\ [])</a>
-
   </div>
-
     <div class="summary-synopsis"><p>Makes a POST request.</p></div>
-
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#post!/3">post!(url, body, opts \\ [])</a>
-
   </div>
-
     <div class="summary-synopsis"><p>See <a href="#post/3"><code class="inline">post/3</code></a>.</p></div>
-
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#request/4">request(method, url, body, opts \\ [])</a>
-
   </div>
-
     <div class="summary-synopsis"><p>Makes a HTTP request.</p></div>
-
 </div>
-
   </div>
-
   <div class="summary-request-middleware summary">
     <h2>
       <a href="#request-middleware">Request middleware</a>
@@ -179,42 +152,28 @@ Requests <small class="app-vsn">(requests v0.1.0-dev)</small>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#compress/2">compress(request, algorithms)</a>
-
   </div>
-
     <div class="summary-synopsis"><p>Compresses the request body with the given <code class="inline">algorithms</code>.</p></div>
-
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#default_headers/1">default_headers(request)</a>
-
   </div>
-
     <div class="summary-synopsis"><p>Adds default request headers.</p></div>
-
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#encode/2">encode(request, opts \\ [])</a>
-
   </div>
-
     <div class="summary-synopsis"><p>Encodes the request body based on its shape.</p></div>
-
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#normalize_request_headers/1">normalize_request_headers(request)</a>
-
   </div>
-
     <div class="summary-synopsis"><p>Normalizes request headers.</p></div>
-
 </div>
-
   </div>
-
   <div class="summary-response-middleware summary">
     <h2>
       <a href="#response-middleware">Response middleware</a>
@@ -222,24 +181,16 @@ Requests <small class="app-vsn">(requests v0.1.0-dev)</small>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#decode/2">decode(response, opts \\ [])</a>
-
   </div>
-
     <div class="summary-synopsis"><p>Decodes the response body based on the <code class="inline">content-type</code> header.</p></div>
-
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#decompress/2">decompress(response, opts \\ [])</a>
-
   </div>
-
     <div class="summary-synopsis"><p>Decompresses the response body based on the <code class="inline">content-encoding</code> header.</p></div>
-
 </div>
-
   </div>
-
   <div class="summary-error-middleware summary">
     <h2>
       <a href="#error-middleware">Error middleware</a>
@@ -247,17 +198,11 @@ Requests <small class="app-vsn">(requests v0.1.0-dev)</small>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#retry/2">retry(response_or_exception, opts \\ [])</a>
-
   </div>
-
     <div class="summary-synopsis"><p>Retries a request on errors.</p></div>
-
 </div>
-
   </div>
-
         </section>
-
 
         <section id="api" class="details-list">
           <h1 class="section-heading">
@@ -265,127 +210,121 @@ Requests <small class="app-vsn">(requests v0.1.0-dev)</small>
               <span class="icon-link" aria-hidden="true"></span>
               <span class="sr-only">Link to this section</span>
             </a>
-API
-          </h1>
+API          </h1>
           <div class="api-list">
+<section class="detail" id="auth/2">
+  <div class="detail-header">
+    <a href="#auth/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">auth(request, auth)</h1>
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L293" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+
+  <section class="docstring">
+
+<p>Sets request authentication.</p><p><code class="inline">auth</code> can be one of:</p><ul><li><p><code class="inline">{username, password}</code> - same as <code class="inline">{:basic, username, password}</code></p></li><li><p><code class="inline">{:basic, username, password}</code> - uses Basic HTTP authentication</p></li><li><p><code class="inline">{:bearer, token}</code> - sets OAuth 2.0 bearer token</p></li></ul><h2 id="auth/2-examples" class="section-heading">
+  <a href="#auth/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="3333319436-1">(</span><span class="s">&quot;https://httpbin.org/basic-auth/foo/bar&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">auth</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3333319436-2">{</span><span class="s">&quot;bad&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bad&quot;</span><span class="p" data-group-id="3333319436-2">}</span><span class="p" data-group-id="3333319436-1">)</span><span class="o">.</span><span class="n">status</span><span class="w">
+</span><span class="mi">401</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="3333319436-3">(</span><span class="s">&quot;https://httpbin.org/basic-auth/foo/bar&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">auth</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3333319436-4">{</span><span class="s">&quot;foo&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bar&quot;</span><span class="p" data-group-id="3333319436-4">}</span><span class="p" data-group-id="3333319436-3">)</span><span class="o">.</span><span class="n">status</span><span class="w">
+</span><span class="mi">200</span></code></pre>  </section>
+</section>
 <section class="detail" id="get/2">
-
     <span id="get/1"></span>
-
   <div class="detail-header">
     <a href="#get/2" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">get(url, opts \\ [])</h1>
-
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L54" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L56" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
-
-
   </div>
 
   <section class="docstring">
 
-<p>Makes a GET request.</p><p>See <a href="#request/4"><code class="inline">request/4</code></a> for possible options.</p>
-  </section>
+<p>Makes a GET request.</p><p>See <a href="#request/4"><code class="inline">request/4</code></a> for possible options.</p>  </section>
 </section>
 <section class="detail" id="get!/2">
-
     <span id="get!/1"></span>
-
   <div class="detail-header">
     <a href="#get!/2" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">get!(url, opts \\ [])</h1>
-
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L61" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L63" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
-
-
   </div>
 
   <section class="docstring">
 
-<p>See <a href="#get/2"><code class="inline">get/2</code></a>.</p>
-  </section>
+<p>See <a href="#get/2"><code class="inline">get/2</code></a>.</p>  </section>
 </section>
 <section class="detail" id="post/3">
-
     <span id="post/2"></span>
-
   <div class="detail-header">
     <a href="#post/3" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">post(url, body, opts \\ [])</h1>
-
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L73" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L75" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
-
-
   </div>
 
   <section class="docstring">
 
-<p>Makes a POST request.</p><p>See <a href="#request/4"><code class="inline">request/4</code></a> for possible options.</p>
-  </section>
+<p>Makes a POST request.</p><p>See <a href="#request/4"><code class="inline">request/4</code></a> for possible options.</p>  </section>
 </section>
 <section class="detail" id="post!/3">
-
     <span id="post!/2"></span>
-
   <div class="detail-header">
     <a href="#post!/3" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">post!(url, body, opts \\ [])</h1>
-
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L80" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L82" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
-
-
   </div>
 
   <section class="docstring">
 
-<p>See <a href="#post/3"><code class="inline">post/3</code></a>.</p>
-  </section>
+<p>See <a href="#post/3"><code class="inline">post/3</code></a>.</p>  </section>
 </section>
 <section class="detail" id="request/4">
-
     <span id="request/3"></span>
-
   <div class="detail-header">
     <a href="#request/4" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">request(method, url, body, opts \\ [])</h1>
-
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L166" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L169" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
-
-
   </div>
 
   <section class="docstring">
 
-<p>Makes a HTTP request.</p><p>Returns <code class="inline">{:ok, response}</code> or <code class="inline">{:error, exception}</code>.</p><p>Options:</p><ul><li><p><code class="inline">:headers</code> - list of request headers, defaults to <code class="inline">[]</code>.</p></li><li><p><code class="inline">:request_middleware</code> - list of middleware to run the request through, defaults to using:</p><ul><li><a href="#normalize_request_headers/1"><code class="inline">normalize_request_headers/1</code></a></li><li><a href="#default_headers/1"><code class="inline">default_headers/1</code></a></li><li><a href="#encode/2"><code class="inline">encode/2</code></a> with <code class="inline">opts</code></li><li><a href="#compress/2"><code class="inline">compress/2</code></a> with <code class="inline">opts[:compress]</code> (if set)</li></ul></li><li><p><code class="inline">:response_middleware</code> - list of middleware to run the response through, defaults to using:</p><ul><li><a href="#retry/2"><code class="inline">retry/2</code></a> with <code class="inline">opts</code> (if <code class="inline">retry: true</code> or any of the <code class="inline">:retry_*</code> options are set)</li><li><a href="#decompress/2"><code class="inline">decompress/2</code></a> with <code class="inline">opts</code></li><li><a href="#decode/2"><code class="inline">decode/2</code></a> with <code class="inline">opts</code></li></ul></li><li><p><code class="inline">:error_middleware</code> - list of middleware to run the error through, defaults to using:</p><ul><li><a href="#retry/2"><code class="inline">retry/2</code></a> with <code class="inline">opts</code> (if <code class="inline">retry: true</code> or any of the <code class="inline">:retry_*</code> options are set)</li></ul></li><li><p><code class="inline">:finch</code> - name of the <a href="https://hexdocs.pm/finch/0.6.0/Finch.html"><code class="inline">Finch</code></a> pool to use, defaults to <code class="inline">Requests.Finch</code> that is started
+<p>Makes a HTTP request.</p><p>Returns <code class="inline">{:ok, response}</code> or <code class="inline">{:error, exception}</code>.</p><p>Options:</p><ul><li><p><code class="inline">:headers</code> - list of request headers, defaults to <code class="inline">[]</code>.</p></li><li><p><code class="inline">:request_middleware</code> - list of middleware to run the request through, defaults to using:</p><ul><li><a href="#normalize_request_headers/1"><code class="inline">normalize_request_headers/1</code></a></li><li><a href="#default_headers/1"><code class="inline">default_headers/1</code></a></li><li><a href="#encode/2"><code class="inline">encode/2</code></a> with <code class="inline">opts</code></li><li><a href="#auth/2"><code class="inline">auth/2</code></a> with <code class="inline">opts[:auth]</code> (if set)</li><li><a href="#compress/2"><code class="inline">compress/2</code></a> with <code class="inline">opts[:compress]</code> (if set)</li></ul></li><li><p><code class="inline">:response_middleware</code> - list of middleware to run the response through, defaults to using:</p><ul><li><a href="#retry/2"><code class="inline">retry/2</code></a> with <code class="inline">opts</code> (if <code class="inline">retry: true</code> or any of the <code class="inline">:retry_*</code> options are set)</li><li><a href="#decompress/2"><code class="inline">decompress/2</code></a> with <code class="inline">opts</code></li><li><a href="#decode/2"><code class="inline">decode/2</code></a> with <code class="inline">opts</code></li></ul></li><li><p><code class="inline">:error_middleware</code> - list of middleware to run the error through, defaults to using:</p><ul><li><a href="#retry/2"><code class="inline">retry/2</code></a> with <code class="inline">opts</code> (if <code class="inline">retry: true</code> or any of the <code class="inline">:retry_*</code> options are set)</li></ul></li><li><p><code class="inline">:finch</code> - name of the <a href="https://hexdocs.pm/finch/0.6.0/Finch.html"><code class="inline">Finch</code></a> pool to use, defaults to <code class="inline">Requests.Finch</code> that is started
 with the default options. See <a href="https://hexdocs.pm/finch/0.6.0/Finch.html#start_link/1"><code class="inline">Finch.start_link/1</code></a> for more information.</p></li><li><p><code class="inline">:pool_timeout</code> - the maximum time to wait for a connection, defaults to <code class="inline">5000</code>. See
 <a href="https://hexdocs.pm/finch/0.6.0/Finch.html#request/3"><code class="inline">Finch.request/3</code></a> for more information.</p></li><li><p><code class="inline">:receive_timeout</code> - the maximum time to wait for a response, defaults to <code class="inline">15000</code>. See
 <a href="https://hexdocs.pm/finch/0.6.0/Finch.html#request/3"><code class="inline">Finch.request/3</code></a> for more information.</p></li></ul><h2 id="request/4-middleware" class="section-heading">
@@ -405,95 +344,76 @@ exception) will be automatically prepended, for example: <code class="inline">{R
   <a href="#request/4-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Example
 </h3>
-<pre><code class="makeup elixir"><span class="n">opts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="8112003688-1">[</span><span class="w">
-  </span><span class="ss">request_middleware</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="8112003688-2">[</span><span class="w">
+<pre><code class="makeup elixir"><span class="n">opts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="4594810371-1">[</span><span class="w">
+  </span><span class="ss">request_middleware</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="4594810371-2">[</span><span class="w">
     </span><span class="o">&amp;</span><span class="nc">Requests</span><span class="o">.</span><span class="n">default_headers</span><span class="o">/</span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="o">&amp;</span><span class="nc">IO</span><span class="o">.</span><span class="n">inspect</span><span class="p" data-group-id="8112003688-3">(</span><span class="ni">&amp;1</span><span class="p">,</span><span class="w"> </span><span class="ss">label</span><span class="p">:</span><span class="w"> </span><span class="ss">:final_request</span><span class="p" data-group-id="8112003688-3">)</span><span class="p">,</span><span class="w">
-  </span><span class="p" data-group-id="8112003688-2">]</span><span class="p">,</span><span class="w">
-  </span><span class="ss">response_middleware</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="8112003688-4">[</span><span class="w">
-    </span><span class="p" data-group-id="8112003688-5">{</span><span class="nc">IO</span><span class="p">,</span><span class="w"> </span><span class="ss">:inspect</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8112003688-6">[</span><span class="p" data-group-id="8112003688-7">[</span><span class="ss">label</span><span class="p">:</span><span class="w"> </span><span class="ss">:initial_response</span><span class="p" data-group-id="8112003688-7">]</span><span class="p" data-group-id="8112003688-6">]</span><span class="p" data-group-id="8112003688-5">}</span><span class="p">,</span><span class="w">
-    </span><span class="p" data-group-id="8112003688-8">{</span><span class="nc">Requests</span><span class="p">,</span><span class="w"> </span><span class="ss">:decode</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8112003688-9">[</span><span class="p" data-group-id="8112003688-9">]</span><span class="p" data-group-id="8112003688-8">}</span><span class="w">
-  </span><span class="p" data-group-id="8112003688-4">]</span><span class="w">
-</span><span class="p" data-group-id="8112003688-1">]</span><span class="w">
+    </span><span class="o">&amp;</span><span class="nc">IO</span><span class="o">.</span><span class="n">inspect</span><span class="p" data-group-id="4594810371-3">(</span><span class="ni">&amp;1</span><span class="p">,</span><span class="w"> </span><span class="ss">label</span><span class="p">:</span><span class="w"> </span><span class="ss">:final_request</span><span class="p" data-group-id="4594810371-3">)</span><span class="p">,</span><span class="w">
+  </span><span class="p" data-group-id="4594810371-2">]</span><span class="p">,</span><span class="w">
+  </span><span class="ss">response_middleware</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="4594810371-4">[</span><span class="w">
+    </span><span class="p" data-group-id="4594810371-5">{</span><span class="nc">IO</span><span class="p">,</span><span class="w"> </span><span class="ss">:inspect</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4594810371-6">[</span><span class="p" data-group-id="4594810371-7">[</span><span class="ss">label</span><span class="p">:</span><span class="w"> </span><span class="ss">:initial_response</span><span class="p" data-group-id="4594810371-7">]</span><span class="p" data-group-id="4594810371-6">]</span><span class="p" data-group-id="4594810371-5">}</span><span class="p">,</span><span class="w">
+    </span><span class="p" data-group-id="4594810371-8">{</span><span class="nc">Requests</span><span class="p">,</span><span class="w"> </span><span class="ss">:decode</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4594810371-9">[</span><span class="p" data-group-id="4594810371-9">]</span><span class="p" data-group-id="4594810371-8">}</span><span class="w">
+  </span><span class="p" data-group-id="4594810371-4">]</span><span class="w">
+</span><span class="p" data-group-id="4594810371-1">]</span><span class="w">
 
-</span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="8112003688-10">(</span><span class="s">&quot;https://httpbin.org/json&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">opts</span><span class="p" data-group-id="8112003688-10">)</span><span class="w">
-</span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">IO</span><span class="o">.</span><span class="n">inspect</span><span class="p" data-group-id="8112003688-11">(</span><span class="ss">label</span><span class="p">:</span><span class="w"> </span><span class="ss">:final_response</span><span class="p" data-group-id="8112003688-11">)</span></code></pre>
-  </section>
+</span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="4594810371-10">(</span><span class="s">&quot;https://httpbin.org/json&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">opts</span><span class="p" data-group-id="4594810371-10">)</span><span class="w">
+</span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">IO</span><span class="o">.</span><span class="n">inspect</span><span class="p" data-group-id="4594810371-11">(</span><span class="ss">label</span><span class="p">:</span><span class="w"> </span><span class="ss">:final_response</span><span class="p" data-group-id="4594810371-11">)</span></code></pre>  </section>
 </section>
-
           </div>
         </section>
-
         <section id="request-middleware" class="details-list">
           <h1 class="section-heading">
             <a class="hover-link" href="#request-middleware">
               <span class="icon-link" aria-hidden="true"></span>
               <span class="sr-only">Link to this section</span>
             </a>
-Request middleware
-          </h1>
+Request middleware          </h1>
           <div class="request-middleware-list">
 <section class="detail" id="compress/2">
-
   <div class="detail-header">
     <a href="#compress/2" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">compress(request, algorithms)</h1>
-
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L434" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L480" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
-
-
   </div>
 
   <section class="docstring">
 
-<p>Compresses the request body with the given <code class="inline">algorithms</code>.</p><p>Supported algorithms: <code class="inline">:gzip</code>, <code class="inline">:deflate</code>, and <code class="inline">:identity</code>.</p><p>This function also sets the appropriate <code class="inline">content-encoding</code> header (unless already set.)</p>
-  </section>
+<p>Compresses the request body with the given <code class="inline">algorithms</code>.</p><p>Supported algorithms: <code class="inline">:gzip</code>, <code class="inline">:deflate</code>, and <code class="inline">:identity</code>.</p><p>This function also sets the appropriate <code class="inline">content-encoding</code> header (unless already set.)</p>  </section>
 </section>
 <section class="detail" id="default_headers/1">
-
   <div class="detail-header">
     <a href="#default_headers/1" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">default_headers(request)</h1>
-
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L298" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L344" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
-
-
   </div>
 
   <section class="docstring">
 
-<p>Adds default request headers.</p><p>Currently these headers are added:</p><ul><li><p><code class="inline">&quot;user-agent&quot;</code> - <code class="inline">&quot;requests/0.1.0-dev&quot;</code></p></li><li><p><code class="inline">&quot;accept-encoding&quot;</code> - <code class="inline">&quot;gzip&quot;</code></p></li></ul>
-  </section>
+<p>Adds default request headers.</p><p>Currently these headers are added:</p><ul><li><p><code class="inline">&quot;user-agent&quot;</code> - <code class="inline">&quot;requests/0.1.0-dev&quot;</code></p></li><li><p><code class="inline">&quot;accept-encoding&quot;</code> - <code class="inline">&quot;gzip&quot;</code></p></li></ul>  </section>
 </section>
 <section class="detail" id="encode/2">
-
     <span id="encode/1"></span>
-
   <div class="detail-header">
     <a href="#encode/2" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">encode(request, opts \\ [])</h1>
-
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L336" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L382" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
-
-
   </div>
 
   <section class="docstring">
@@ -507,63 +427,49 @@ accordingly. Otherwise it's unchanged.</p><table><thead><tr><th style="text-alig
   <a href="#encode/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Examples
 </h2>
-<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">post!</span><span class="p" data-group-id="3962335647-1">(</span><span class="s">&quot;https://httpbin.org/post&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="3962335647-2">{</span><span class="ss">:form</span><span class="p">,</span><span class="w"> </span><span class="ss">comments</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hello!&quot;</span><span class="p" data-group-id="3962335647-2">}</span><span class="p" data-group-id="3962335647-1">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="3962335647-3">[</span><span class="s">&quot;form&quot;</span><span class="p" data-group-id="3962335647-3">]</span><span class="w">
-</span><span class="p" data-group-id="3962335647-4">%{</span><span class="s">&quot;comments&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;hello!&quot;</span><span class="p" data-group-id="3962335647-4">}</span></code></pre>
-  </section>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">post!</span><span class="p" data-group-id="8881447804-1">(</span><span class="s">&quot;https://httpbin.org/post&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8881447804-2">{</span><span class="ss">:form</span><span class="p">,</span><span class="w"> </span><span class="ss">comments</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hello!&quot;</span><span class="p" data-group-id="8881447804-2">}</span><span class="p" data-group-id="8881447804-1">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="8881447804-3">[</span><span class="s">&quot;form&quot;</span><span class="p" data-group-id="8881447804-3">]</span><span class="w">
+</span><span class="p" data-group-id="8881447804-4">%{</span><span class="s">&quot;comments&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;hello!&quot;</span><span class="p" data-group-id="8881447804-4">}</span></code></pre>  </section>
 </section>
 <section class="detail" id="normalize_request_headers/1">
-
   <div class="detail-header">
     <a href="#normalize_request_headers/1" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">normalize_request_headers(request)</h1>
-
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L274" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L320" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
-
-
   </div>
 
   <section class="docstring">
 
 <p>Normalizes request headers.</p><p>Turns atom header names into strings, e.g.: <code class="inline">:user_agent</code> becomes <code class="inline">&quot;user-agent&quot;</code>.
-Non-atom names are returned as is.</p>
-  </section>
+Non-atom names are returned as is.</p>  </section>
 </section>
-
           </div>
         </section>
-
         <section id="response-middleware" class="details-list">
           <h1 class="section-heading">
             <a class="hover-link" href="#response-middleware">
               <span class="icon-link" aria-hidden="true"></span>
               <span class="sr-only">Link to this section</span>
             </a>
-Response middleware
-          </h1>
+Response middleware          </h1>
           <div class="response-middleware-list">
 <section class="detail" id="decode/2">
-
     <span id="decode/1"></span>
-
   <div class="detail-header">
     <a href="#decode/2" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">decode(response, opts \\ [])</h1>
-
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L537" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L583" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
-
-
   </div>
 
   <section class="docstring">
@@ -577,30 +483,24 @@ Response middleware
   <a href="#decode/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Examples
 </h2>
-<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="9674825713-1">(</span><span class="s">&quot;https://httpbin.org/json&quot;</span><span class="p" data-group-id="9674825713-1">)</span><span class="o">.</span><span class="n">body</span><span class="w">
-</span><span class="p" data-group-id="9674825713-2">%{</span><span class="n">...</span><span class="p" data-group-id="9674825713-2">}</span><span class="w">
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="0480045409-1">(</span><span class="s">&quot;https://httpbin.org/json&quot;</span><span class="p" data-group-id="0480045409-1">)</span><span class="o">.</span><span class="n">body</span><span class="w">
+</span><span class="p" data-group-id="0480045409-2">%{</span><span class="n">...</span><span class="p" data-group-id="0480045409-2">}</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="9674825713-3">(</span><span class="s">&quot;https://httpbin.org/json&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">json_decoder</span><span class="p">:</span><span class="w"> </span><span class="k" data-group-id="9674825713-4">fn</span><span class="w"> </span><span class="bp">_</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;fake&quot;</span><span class="w"> </span><span class="k" data-group-id="9674825713-4">end</span><span class="p" data-group-id="9674825713-3">)</span><span class="o">.</span><span class="n">body</span><span class="w">
-</span><span class="s">&quot;fake&quot;</span></code></pre>
-  </section>
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="0480045409-3">(</span><span class="s">&quot;https://httpbin.org/json&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">json_decoder</span><span class="p">:</span><span class="w"> </span><span class="k" data-group-id="0480045409-4">fn</span><span class="w"> </span><span class="bp">_</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;fake&quot;</span><span class="w"> </span><span class="k" data-group-id="0480045409-4">end</span><span class="p" data-group-id="0480045409-3">)</span><span class="o">.</span><span class="n">body</span><span class="w">
+</span><span class="s">&quot;fake&quot;</span></code></pre>  </section>
 </section>
 <section class="detail" id="decompress/2">
-
     <span id="decompress/1"></span>
-
   <div class="detail-header">
     <a href="#decompress/2" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">decompress(response, opts \\ [])</h1>
-
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L479" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L525" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
-
-
   </div>
 
   <section class="docstring">
@@ -611,39 +511,30 @@ Response middleware
 </h2>
 <ul><li><p><code class="inline">:gzip_decoder</code> - used for the <code class="inline">&quot;gzip&quot;</code> and <code class="inline">&quot;x-gzip&quot;</code> values. Defaults to
 <a href="https://erlang.org/doc/man/zlib.html#gunzip-1"><code class="inline">&amp;:zlib.gunzip/1</code></a></p></li><li><p><code class="inline">:deflate_decoder</code> - used for the <code class="inline">&quot;deflate&quot;</code> value. Defaults to
-<a href="https://erlang.org/doc/man/zlib.html#unzip-1"><code class="inline">&amp;:zlib.unzip/1</code></a></p></li></ul>
-  </section>
+<a href="https://erlang.org/doc/man/zlib.html#unzip-1"><code class="inline">&amp;:zlib.unzip/1</code></a></p></li></ul>  </section>
 </section>
-
           </div>
         </section>
-
         <section id="error-middleware" class="details-list">
           <h1 class="section-heading">
             <a class="hover-link" href="#error-middleware">
               <span class="icon-link" aria-hidden="true"></span>
               <span class="sr-only">Link to this section</span>
             </a>
-Error middleware
-          </h1>
+Error middleware          </h1>
           <div class="error-middleware-list">
 <section class="detail" id="retry/2">
-
     <span id="retry/1"></span>
-
   <div class="detail-header">
     <a href="#retry/2" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">retry(response_or_exception, opts \\ [])</h1>
-
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L653" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L699" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
-
-
   </div>
 
   <section class="docstring">
@@ -658,7 +549,7 @@ to <code class="inline">2000</code></p></li></ul><p>If all attempts have failed,
   <a href="#retry/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Examples
 </h2>
-<p>Server eventually became available:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get</span><span class="p" data-group-id="5308236815-1">(</span><span class="s">&quot;http://localhost:4000&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">retry</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="5308236815-1">)</span><span class="w">
+<p>Server eventually became available:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get</span><span class="p" data-group-id="6768603354-1">(</span><span class="s">&quot;http://localhost:4000&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">retry</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="6768603354-1">)</span><span class="w">
 </span><span class="c1"># Logs:</span><span class="w">
 </span><span class="c1"># 12:37:15.554 [error] Got exception</span><span class="w">
 </span><span class="c1"># ** (Mint.TransportError) connection refused</span><span class="w">
@@ -666,17 +557,17 @@ to <code class="inline">2000</code></p></li></ul><p>If all attempts have failed,
 </span><span class="c1"># 12:37:17.557 [error] Got exception</span><span class="w">
 </span><span class="c1"># ** (Mint.TransportError) connection refused</span><span class="w">
 </span><span class="c1"># Will retry in 2000ms, 1 attempt left</span><span class="w">
-</span><span class="p" data-group-id="5308236815-2">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w">
- </span><span class="p" data-group-id="5308236815-3">%</span><span class="nc" data-group-id="5308236815-3">Finch.Response</span><span class="p" data-group-id="5308236815-3">{</span><span class="w">
+</span><span class="p" data-group-id="6768603354-2">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w">
+ </span><span class="p" data-group-id="6768603354-3">%</span><span class="nc" data-group-id="6768603354-3">Finch.Response</span><span class="p" data-group-id="6768603354-3">{</span><span class="w">
    </span><span class="ss">body</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hello&quot;</span><span class="p">,</span><span class="w">
-   </span><span class="ss">headers</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5308236815-4">[</span><span class="w">
-     </span><span class="p" data-group-id="5308236815-5">{</span><span class="s">&quot;cache-control&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;max-age=0, private, must-revalidate&quot;</span><span class="p" data-group-id="5308236815-5">}</span><span class="p">,</span><span class="w">
-     </span><span class="p" data-group-id="5308236815-6">{</span><span class="s">&quot;content-length&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;5&quot;</span><span class="p" data-group-id="5308236815-6">}</span><span class="p">,</span><span class="w">
-     </span><span class="p" data-group-id="5308236815-7">{</span><span class="s">&quot;date&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Mon, 22 Mar 2021 11:37:18 GMT&quot;</span><span class="p" data-group-id="5308236815-7">}</span><span class="p">,</span><span class="w">
-     </span><span class="p" data-group-id="5308236815-8">{</span><span class="s">&quot;server&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Cowboy&quot;</span><span class="p" data-group-id="5308236815-8">}</span><span class="w">
-   </span><span class="p" data-group-id="5308236815-4">]</span><span class="p">,</span><span class="w">
+   </span><span class="ss">headers</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6768603354-4">[</span><span class="w">
+     </span><span class="p" data-group-id="6768603354-5">{</span><span class="s">&quot;cache-control&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;max-age=0, private, must-revalidate&quot;</span><span class="p" data-group-id="6768603354-5">}</span><span class="p">,</span><span class="w">
+     </span><span class="p" data-group-id="6768603354-6">{</span><span class="s">&quot;content-length&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;5&quot;</span><span class="p" data-group-id="6768603354-6">}</span><span class="p">,</span><span class="w">
+     </span><span class="p" data-group-id="6768603354-7">{</span><span class="s">&quot;date&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Mon, 22 Mar 2021 11:37:18 GMT&quot;</span><span class="p" data-group-id="6768603354-7">}</span><span class="p">,</span><span class="w">
+     </span><span class="p" data-group-id="6768603354-8">{</span><span class="s">&quot;server&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Cowboy&quot;</span><span class="p" data-group-id="6768603354-8">}</span><span class="w">
+   </span><span class="p" data-group-id="6768603354-4">]</span><span class="p">,</span><span class="w">
    </span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w">
- </span><span class="p" data-group-id="5308236815-3">}</span><span class="p" data-group-id="5308236815-2">}</span></code></pre><p>Server keeps returning 500:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get</span><span class="p" data-group-id="9227079058-1">(</span><span class="s">&quot;http://localhost:4000&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">retry</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="9227079058-1">)</span><span class="w">
+ </span><span class="p" data-group-id="6768603354-3">}</span><span class="p" data-group-id="6768603354-2">}</span></code></pre><p>Server keeps returning 500:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get</span><span class="p" data-group-id="7097846148-1">(</span><span class="s">&quot;http://localhost:4000&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">retry</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="7097846148-1">)</span><span class="w">
 </span><span class="c1"># Logs:</span><span class="w">
 </span><span class="c1"># 12:40:09.186 [error] Got response with status 500</span><span class="w">
 </span><span class="c1"># Headers: [...]</span><span class="w">
@@ -684,18 +575,15 @@ to <code class="inline">2000</code></p></li></ul><p>If all attempts have failed,
 </span><span class="c1"># 12:40:11.188 [error] Got response with status 500</span><span class="w">
 </span><span class="c1"># Headers: [...]</span><span class="w">
 </span><span class="c1"># Will retry in 2000ms, 1 attempt left</span><span class="w">
-</span><span class="p" data-group-id="9227079058-2">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w">
- </span><span class="p" data-group-id="9227079058-3">%</span><span class="nc" data-group-id="9227079058-3">Finch.Response</span><span class="p" data-group-id="9227079058-3">{</span><span class="w">
+</span><span class="p" data-group-id="7097846148-2">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w">
+ </span><span class="p" data-group-id="7097846148-3">%</span><span class="nc" data-group-id="7097846148-3">Finch.Response</span><span class="p" data-group-id="7097846148-3">{</span><span class="w">
    </span><span class="ss">body</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;oops&quot;</span><span class="p">,</span><span class="w">
-   </span><span class="ss">headers</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="9227079058-4">[</span><span class="n">...</span><span class="p" data-group-id="9227079058-4">]</span><span class="p">,</span><span class="w">
+   </span><span class="ss">headers</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="7097846148-4">[</span><span class="n">...</span><span class="p" data-group-id="7097846148-4">]</span><span class="p">,</span><span class="w">
    </span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="w">
- </span><span class="p" data-group-id="9227079058-3">}</span><span class="p" data-group-id="9227079058-2">}</span></code></pre>
-  </section>
+ </span><span class="p" data-group-id="7097846148-3">}</span><span class="p" data-group-id="7097846148-2">}</span></code></pre>  </section>
 </section>
-
           </div>
         </section>
-
       <footer class="footer">
         <p>
           <span class="line">
@@ -709,9 +597,7 @@ to <code class="inline">2000</code></p></li></ul><p>If all attempts have failed,
           </span>
         </p>
         <p>
-
             <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
-
           <button class="line footer-button display-shortcuts-help">
             Display keyboard shortcuts
           </button>
@@ -731,7 +617,5 @@ to <code class="inline">2000</code></p></li></ul><p>If all attempts have failed,
   </div>
 </section>
 </div>
-
-
   </body>
 </html>

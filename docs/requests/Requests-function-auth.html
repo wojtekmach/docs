@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.24.0">
     <meta name="project" content="requests v0.1.0-dev">
-    <title>Requests.compress — requests v0.1.0-dev</title>
+    <title>Requests.auth — requests v0.1.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
     <script src="dist/sidebar_items-9538ece90c.js"></script>
       <script src="docs_config.js"></script>
@@ -68,20 +68,20 @@ requests      </a>
   <div class="content-outer">
     <div id="content" class="content-inner">
 
-<h1>Requests.compress</h1>
+<h1>Requests.auth</h1>
 
 <div class="deprecated">
-  You're seeing just the function <code>compress</code>, go back to <a href="Requests.html">Requests</a> module for more information.
+  You're seeing just the function <code>auth</code>, go back to <a href="Requests.html">Requests</a> module for more information.
 </div>
 
-<section class="detail" id="compress/2">
+<section class="detail" id="auth/2">
   <div class="detail-header">
-    <a href="#compress/2" class="detail-link" title="Link to this function">
+    <a href="#auth/2" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature">compress(request, algorithms)</h1>
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L480" class="view-source" rel="help" title="View Source">
+    <h1 class="signature">auth(request, auth)</h1>
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L293" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -89,7 +89,14 @@ requests      </a>
 
   <section class="docstring">
 
-<p>Compresses the request body with the given <code class="inline">algorithms</code>.</p><p>Supported algorithms: <code class="inline">:gzip</code>, <code class="inline">:deflate</code>, and <code class="inline">:identity</code>.</p><p>This function also sets the appropriate <code class="inline">content-encoding</code> header (unless already set.)</p>  </section>
+<p>Sets request authentication.</p><p><code class="inline">auth</code> can be one of:</p><ul><li><p><code class="inline">{username, password}</code> - same as <code class="inline">{:basic, username, password}</code></p></li><li><p><code class="inline">{:basic, username, password}</code> - uses Basic HTTP authentication</p></li><li><p><code class="inline">{:bearer, token}</code> - sets OAuth 2.0 bearer token</p></li></ul><h2 id="auth/2-examples" class="section-heading">
+  <a href="#auth/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="3333319436-1">(</span><span class="s">&quot;https://httpbin.org/basic-auth/foo/bar&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">auth</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3333319436-2">{</span><span class="s">&quot;bad&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bad&quot;</span><span class="p" data-group-id="3333319436-2">}</span><span class="p" data-group-id="3333319436-1">)</span><span class="o">.</span><span class="n">status</span><span class="w">
+</span><span class="mi">401</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="3333319436-3">(</span><span class="s">&quot;https://httpbin.org/basic-auth/foo/bar&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">auth</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3333319436-4">{</span><span class="s">&quot;foo&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bar&quot;</span><span class="p" data-group-id="3333319436-4">}</span><span class="p" data-group-id="3333319436-3">)</span><span class="o">.</span><span class="n">status</span><span class="w">
+</span><span class="mi">200</span></code></pre>  </section>
 </section>
 
       <footer class="footer">
