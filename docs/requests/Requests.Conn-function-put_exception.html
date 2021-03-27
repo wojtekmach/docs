@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.24.0">
     <meta name="project" content="requests v0.1.0-dev">
-    <title>Requests.decode — requests v0.1.0-dev</title>
+    <title>Requests.Conn.put_exception — requests v0.1.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
-    <script src="dist/sidebar_items-9538ece90c.js"></script>
+    <script src="dist/sidebar_items-884f89252b.js"></script>
       <script src="docs_config.js"></script>
     <script async src="dist/app-f27ff079945e43879c46.js"></script>
   </head>
@@ -68,21 +68,20 @@ requests      </a>
   <div class="content-outer">
     <div id="content" class="content-inner">
 
-<h1>Requests.decode</h1>
+<h1>Requests.Conn.put_exception</h1>
 
 <div class="deprecated">
-  You're seeing just the function <code>decode</code>, go back to <a href="Requests.html">Requests</a> module for more information.
+  You're seeing just the function <code>put_exception</code>, go back to <a href="Requests.Conn.html">Requests.Conn</a> module for more information.
 </div>
 
-<section class="detail" id="decode/2">
-    <span id="decode/1"></span>
+<section class="detail" id="put_exception/2">
   <div class="detail-header">
-    <a href="#decode/2" class="detail-link" title="Link to this function">
+    <a href="#put_exception/2" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature">decode(response, opts \\ [])</h1>
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L583" class="view-source" rel="help" title="View Source">
+    <h1 class="signature">put_exception(conn, exception)</h1>
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L51" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -90,20 +89,7 @@ requests      </a>
 
   <section class="docstring">
 
-<p>Decodes the response body based on the <code class="inline">content-type</code> header.</p><h2 id="decode/2-options" class="section-heading">
-  <a href="#decode/2-options" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
-  Options
-</h2>
-<ul><li><p><code class="inline">:json_decoder</code> - if set, used for JSON. Defaults to <a href="https://hexdocs.pm/jason/1.2.2/Jason.html#decode/1"><code class="inline">&amp;Jason.decode/1</code></a></p></li><li><p><code class="inline">:csv_decoder</code> - if set, used for CSV. Defaults to
-<a href="https://hexdocs.pm/nimble_csv/1.1.0/NimbleCSV.RFC4180.html#parse_string/2"><code class="inline">&amp;NimbleCSV.RFC4180.parse_string(&amp;1, skip_headers: false)</code></a></p></li><li><p><code class="inline">:gzip_decoder</code> - used for gzip. Defaults to <a href="https://erlang.org/doc/man/zlib.html#gunzip-1"><code class="inline">&amp;:zlib.gunzip/1</code></a></p></li><li><p><code class="inline">:zip_decoder</code> - used for ZIP. Defaults to using <a href="https://erlang.org/doc/man/zip.html#unzip-2"><code class="inline">:zip.unzip/2</code></a></p></li></ul><h2 id="decode/2-examples" class="section-heading">
-  <a href="#decode/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
-  Examples
-</h2>
-<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="1344802212-1">(</span><span class="s">&quot;https://httpbin.org/json&quot;</span><span class="p" data-group-id="1344802212-1">)</span><span class="o">.</span><span class="n">body</span><span class="w">
-</span><span class="p" data-group-id="1344802212-2">%{</span><span class="n">...</span><span class="p" data-group-id="1344802212-2">}</span><span class="w">
-
-</span><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="1344802212-3">(</span><span class="s">&quot;https://httpbin.org/json&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">json_decoder</span><span class="p">:</span><span class="w"> </span><span class="k" data-group-id="1344802212-4">fn</span><span class="w"> </span><span class="bp">_</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;fake&quot;</span><span class="w"> </span><span class="k" data-group-id="1344802212-4">end</span><span class="p" data-group-id="1344802212-3">)</span><span class="o">.</span><span class="n">body</span><span class="w">
-</span><span class="s">&quot;fake&quot;</span></code></pre>  </section>
+  </section>
 </section>
 
       <footer class="footer">
