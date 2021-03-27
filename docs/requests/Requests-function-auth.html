@@ -81,7 +81,7 @@ requests      </a>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">auth(request, auth)</h1>
-      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L293" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/requests/blob/master/lib/requests.ex#L291" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -89,13 +89,13 @@ requests      </a>
 
   <section class="docstring">
 
-<p>Sets request authentication.</p><p><code class="inline">auth</code> can be one of:</p><ul><li><p><code class="inline">{username, password}</code> - same as <code class="inline">{:basic, username, password}</code></p></li><li><p><code class="inline">{:basic, username, password}</code> - uses Basic HTTP authentication</p></li><li><p><code class="inline">{:bearer, token}</code> - sets OAuth 2.0 bearer token</p></li></ul><h2 id="auth/2-examples" class="section-heading">
+<p>Sets request authentication.</p><p><code class="inline">auth</code> can be one of:</p><ul><li><p><code class="inline">{username, password}</code> - same as <code class="inline">{:basic, username, password}</code></p></li><li><p><code class="inline">{:basic, username, password}</code> - uses Basic HTTP authentication</p></li></ul><h2 id="auth/2-examples" class="section-heading">
   <a href="#auth/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Examples
 </h2>
-<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="5093146103-1">(</span><span class="s">&quot;https://httpbin.org/basic-auth/foo/bar&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">auth</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5093146103-2">{</span><span class="s">&quot;bad&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bad&quot;</span><span class="p" data-group-id="5093146103-2">}</span><span class="p" data-group-id="5093146103-1">)</span><span class="o">.</span><span class="n">status</span><span class="w">
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="8016634312-1">(</span><span class="s">&quot;https://httpbin.org/basic-auth/foo/bar&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">auth</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="8016634312-2">{</span><span class="s">&quot;bad&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bad&quot;</span><span class="p" data-group-id="8016634312-2">}</span><span class="p" data-group-id="8016634312-1">)</span><span class="o">.</span><span class="n">status</span><span class="w">
 </span><span class="mi">401</span><span class="w">
-</span><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="5093146103-3">(</span><span class="s">&quot;https://httpbin.org/basic-auth/foo/bar&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">auth</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5093146103-4">{</span><span class="s">&quot;foo&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bar&quot;</span><span class="p" data-group-id="5093146103-4">}</span><span class="p" data-group-id="5093146103-3">)</span><span class="o">.</span><span class="n">status</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Requests</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="8016634312-3">(</span><span class="s">&quot;https://httpbin.org/basic-auth/foo/bar&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">auth</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="8016634312-4">{</span><span class="s">&quot;foo&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bar&quot;</span><span class="p" data-group-id="8016634312-4">}</span><span class="p" data-group-id="8016634312-3">)</span><span class="o">.</span><span class="n">status</span><span class="w">
 </span><span class="mi">200</span></code></pre>  </section>
 </section>
 
