@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.1">
+    <meta name="project" content="formats v0.1.0">
+
+    <title>Formats — formats v0.1.0</title>
+    <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
+
+    <script src="dist/sidebar_items-e894f20612.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="api-reference.html" class="sidebar-projectName">
+formats
+      </a>
+      <strong class="sidebar-projectVersion">
+        v0.1.0
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+      <h1>
+Formats <small class="app-vsn">(formats v0.1.0)</small>
+
+      </h1>
+
+
+
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Summary
+          </h1>
+
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#decode!/2">decode!(data, format)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Decodes <code class="inline">data</code> according to the <code class="inline">format</code>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#decode_gzip/1">decode_gzip(data)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Decodes gzip data.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#decode_sitemap/1">decode_sitemap(data)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Decodes Sitemap data.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#decode_xml/1">decode_xml(data)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Decodes XML data.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#decoder/1">decoder(format)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Returns a decoder for the given <code class="inline">format</code>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#encode!/2">encode!(data, format)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Encodes <code class="inline">data</code> according to the <code class="inline">format</code>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#encode_gzip_to_iodata/1">encode_gzip_to_iodata(data)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Encodes gzip data.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#encode_sitemap_to_iodata/1">encode_sitemap_to_iodata(data)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Encodes Sitemap data.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#encode_xml_to_iodata/1">encode_xml_to_iodata(data)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Encodes XML data.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#encoder/1">encoder(format)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Returns an encoder for the given <code class="inline">format</code>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#format/1">format(opts)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Detects a format based on MIME type or filename.</p></div>
+
+</div>
+
+  </div>
+
+        </section>
+
+
+        <section id="functions" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#functions">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Functions
+          </h1>
+          <div class="functions-list">
+<section class="detail" id="decode!/2">
+
+  <div class="detail-header">
+    <a href="#decode!/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">decode!(data, format)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Decodes <code class="inline">data</code> according to the <code class="inline">format</code>.</p><h2 id="decode!/2-examples" class="section-heading">
+  <a href="#decode!/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Formats</span><span class="o">.</span><span class="n">decode!</span><span class="p" data-group-id="7745958686-1">(</span><span class="s">&quot;{</span><span class="se">\&quot;</span><span class="s">x</span><span class="se">\&quot;</span><span class="s">:1,</span><span class="se">\&quot;</span><span class="s">y</span><span class="se">\&quot;</span><span class="s">:2}&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">:json</span><span class="p" data-group-id="7745958686-1">)</span><span class="w">
+</span><span class="p" data-group-id="7745958686-2">%{</span><span class="s">&quot;x&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;y&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="7745958686-2">}</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="decode_gzip/1">
+
+  <div class="detail-header">
+    <a href="#decode_gzip/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">decode_gzip(data)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Decodes gzip data.</p><p>See also <a href="#encode_gzip_to_iodata/1"><code class="inline">encode_gzip_to_iodata/1</code></a> for encoding.</p>
+  </section>
+</section>
+<section class="detail" id="decode_sitemap/1">
+
+  <div class="detail-header">
+    <a href="#decode_sitemap/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">decode_sitemap(data)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Decodes Sitemap data.</p><p>See also <a href="#encode_sitemap_to_iodata/1"><code class="inline">encode_sitemap_to_iodata/1</code></a> for encoding.</p>
+  </section>
+</section>
+<section class="detail" id="decode_xml/1">
+
+  <div class="detail-header">
+    <a href="#decode_xml/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">decode_xml(data)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Decodes XML data.</p><p>See also <a href="#encode_xml_to_iodata/1"><code class="inline">encode_xml_to_iodata/1</code></a> for encoding.</p><h2 id="decode_xml/1-examples" class="section-heading">
+  <a href="#decode_xml/1-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">~s{&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;points&gt;&lt;point x=&quot;1&quot; y=&quot;2&quot;/&gt;&lt;point x=&quot;3&quot; y=&quot;4&quot;/&gt;&lt;/points&gt;}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Formats</span><span class="o">.</span><span class="n">decode!</span><span class="p" data-group-id="5637626565-1">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="ss">:xml</span><span class="p" data-group-id="5637626565-1">)</span><span class="w">
+</span><span class="p" data-group-id="5637626565-2">{</span><span class="s">&quot;points&quot;</span><span class="p">,</span><span class="w">
+ </span><span class="p" data-group-id="5637626565-3">[</span><span class="w">
+   </span><span class="p" data-group-id="5637626565-4">{</span><span class="s">&quot;point&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5637626565-5">%{</span><span class="s">&quot;x&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;y&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;2&quot;</span><span class="p" data-group-id="5637626565-5">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5637626565-6">[</span><span class="p" data-group-id="5637626565-6">]</span><span class="p" data-group-id="5637626565-4">}</span><span class="p">,</span><span class="w">
+   </span><span class="p" data-group-id="5637626565-7">{</span><span class="s">&quot;point&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5637626565-8">%{</span><span class="s">&quot;x&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;y&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;4&quot;</span><span class="p" data-group-id="5637626565-8">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5637626565-9">[</span><span class="p" data-group-id="5637626565-9">]</span><span class="p" data-group-id="5637626565-7">}</span><span class="w">
+ </span><span class="p" data-group-id="5637626565-3">]</span><span class="p" data-group-id="5637626565-2">}</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="decoder/1">
+
+  <div class="detail-header">
+    <a href="#decoder/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">decoder(format)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Returns a decoder for the given <code class="inline">format</code>.</p><h2 id="decoder/1-examples" class="section-heading">
+  <a href="#decoder/1-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Formats</span><span class="o">.</span><span class="n">decoder</span><span class="p" data-group-id="1723315398-1">(</span><span class="ss">:gzip</span><span class="p" data-group-id="1723315398-1">)</span><span class="w">
+</span><span class="o">&amp;</span><span class="nc">Formats</span><span class="o">.</span><span class="n">decode_gzip</span><span class="o">/</span><span class="mi">1</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Formats</span><span class="o">.</span><span class="n">decoder</span><span class="p" data-group-id="1723315398-2">(</span><span class="ss">:json</span><span class="p" data-group-id="1723315398-2">)</span><span class="w">
+</span><span class="o">&amp;</span><span class="nc">Jason</span><span class="o">.</span><span class="n">decode</span><span class="o">/</span><span class="mi">1</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="encode!/2">
+
+  <div class="detail-header">
+    <a href="#encode!/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">encode!(data, format)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Encodes <code class="inline">data</code> according to the <code class="inline">format</code>.</p><h2 id="encode!/2-examples" class="section-heading">
+  <a href="#encode!/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Formats</span><span class="o">.</span><span class="n">encode!</span><span class="p" data-group-id="2628626580-1">(</span><span class="p" data-group-id="2628626580-2">%{</span><span class="s">&quot;x&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;y&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="2628626580-2">}</span><span class="p">,</span><span class="w"> </span><span class="ss">:json</span><span class="p" data-group-id="2628626580-1">)</span><span class="w">
+</span><span class="s">&quot;{</span><span class="se">\&quot;</span><span class="s">x</span><span class="se">\&quot;</span><span class="s">:1,</span><span class="se">\&quot;</span><span class="s">y</span><span class="se">\&quot;</span><span class="s">:2}&quot;</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="encode_gzip_to_iodata/1">
+
+  <div class="detail-header">
+    <a href="#encode_gzip_to_iodata/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">encode_gzip_to_iodata(data)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Encodes gzip data.</p><p>See also <a href="#decode_gzip/1"><code class="inline">decode_gzip/1</code></a> for decoding.</p>
+  </section>
+</section>
+<section class="detail" id="encode_sitemap_to_iodata/1">
+
+  <div class="detail-header">
+    <a href="#encode_sitemap_to_iodata/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">encode_sitemap_to_iodata(data)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Encodes Sitemap data.</p><p>See also <a href="#decode_sitemap/1"><code class="inline">decode_sitemap/1</code></a> for decoding.</p>
+  </section>
+</section>
+<section class="detail" id="encode_xml_to_iodata/1">
+
+  <div class="detail-header">
+    <a href="#encode_xml_to_iodata/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">encode_xml_to_iodata(data)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Encodes XML data.</p><p>See also <a href="#decode_xml/1"><code class="inline">decode_xml/1</code></a> for decoding.</p><h2 id="encode_xml_to_iodata/1-examples" class="section-heading">
+  <a href="#encode_xml_to_iodata/1-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="p" data-group-id="0351615463-1">{</span><span class="s">&quot;points&quot;</span><span class="p">,</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">   </span><span class="p" data-group-id="0351615463-2">[</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">     </span><span class="p" data-group-id="0351615463-3">{</span><span class="s">&quot;point&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0351615463-4">%{</span><span class="s">&quot;x&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;y&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;2&quot;</span><span class="p" data-group-id="0351615463-4">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0351615463-5">[</span><span class="p" data-group-id="0351615463-5">]</span><span class="p" data-group-id="0351615463-3">}</span><span class="p">,</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">     </span><span class="p" data-group-id="0351615463-6">{</span><span class="s">&quot;point&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0351615463-7">%{</span><span class="s">&quot;x&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;y&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;4&quot;</span><span class="p" data-group-id="0351615463-7">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0351615463-8">[</span><span class="p" data-group-id="0351615463-8">]</span><span class="p" data-group-id="0351615463-6">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">   </span><span class="p" data-group-id="0351615463-2">]</span><span class="p" data-group-id="0351615463-1">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Formats</span><span class="o">.</span><span class="n">encode!</span><span class="p" data-group-id="0351615463-9">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="ss">:xml</span><span class="p" data-group-id="0351615463-9">)</span><span class="w">
+</span><span class="s">~s{&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;points&gt;&lt;point x=&quot;1&quot; y=&quot;2&quot;/&gt;&lt;point x=&quot;3&quot; y=&quot;4&quot;/&gt;&lt;/points&gt;}</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="encoder/1">
+
+  <div class="detail-header">
+    <a href="#encoder/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">encoder(format)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Returns an encoder for the given <code class="inline">format</code>.</p><h2 id="encoder/1-examples" class="section-heading">
+  <a href="#encoder/1-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Formats</span><span class="o">.</span><span class="n">encoder</span><span class="p" data-group-id="9183403522-1">(</span><span class="ss">:gzip</span><span class="p" data-group-id="9183403522-1">)</span><span class="w">
+</span><span class="o">&amp;</span><span class="nc">Formats</span><span class="o">.</span><span class="n">encode_gzip_to_iodata</span><span class="o">/</span><span class="mi">1</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Formats</span><span class="o">.</span><span class="n">encoder</span><span class="p" data-group-id="9183403522-2">(</span><span class="ss">:json</span><span class="p" data-group-id="9183403522-2">)</span><span class="w">
+</span><span class="o">&amp;</span><span class="nc">Jason</span><span class="o">.</span><span class="n">encode_to_iodata</span><span class="o">/</span><span class="mi">1</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="format/1">
+
+  <div class="detail-header">
+    <a href="#format/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">format(opts)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Detects a format based on MIME type or filename.</p><h2 id="format/1-options" class="section-heading">
+  <a href="#format/1-options" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Options
+</h2>
+<ul><li><p><code class="inline">:mime</code></p></li><li><p><code class="inline">:filename</code></p></li></ul><h2 id="format/1-examples" class="section-heading">
+  <a href="#format/1-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Formats</span><span class="o">.</span><span class="n">format</span><span class="p" data-group-id="6426612877-1">(</span><span class="ss">mime</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;application/x-gzip&quot;</span><span class="p" data-group-id="6426612877-1">)</span><span class="w">
+</span><span class="ss">:gzip</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Formats</span><span class="o">.</span><span class="n">format</span><span class="p" data-group-id="6426612877-2">(</span><span class="ss">mime</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;application/vnd.acme+json&quot;</span><span class="p" data-group-id="6426612877-2">)</span><span class="w">
+</span><span class="ss">:json</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Formats</span><span class="o">.</span><span class="n">format</span><span class="p" data-group-id="6426612877-3">(</span><span class="ss">filename</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;test.json&quot;</span><span class="p" data-group-id="6426612877-3">)</span><span class="w">
+</span><span class="ss">:json</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Formats</span><span class="o">.</span><span class="n">format</span><span class="p" data-group-id="6426612877-4">(</span><span class="ss">filename</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bad&quot;</span><span class="p" data-group-id="6426612877-4">)</span><span class="w">
+</span><span class="no">nil</span></code></pre>
+  </section>
+</section>
+
+          </div>
+        </section>
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.1) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>
