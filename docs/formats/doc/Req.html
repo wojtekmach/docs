@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.1">
+    <meta name="project" content="req v0.1.0-dev">
+
+    <title>Req — req v0.1.0-dev</title>
+    <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
+
+    <script src="dist/sidebar_items-66ef919689.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="Req.html" class="sidebar-projectName">
+req
+      </a>
+      <strong class="sidebar-projectVersion">
+        v0.1.0-dev
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+      <h1>
+Req <small class="app-vsn">(req v0.1.0-dev)</small>
+
+      </h1>
+
+
+        <section id="moduledoc">
+<p>A work-in-progress HTTP client.</p><h1>Features</h1><ul><li><p>Extensibility via request, response, and error steps</p></li><li><p>Automatic body decompression (via <a href="#decompress/2"><code class="inline">decompress/2</code></a> step)</p></li><li><p>Automatic body decoding (via <a href="#decode/2"><code class="inline">decode/2</code></a> step)</p></li><li><p>Retries on errors (via <a href="#retry/2"><code class="inline">retry/2</code></a> step)</p></li></ul><h2 id="module-high-level-api" class="section-heading">
+  <a href="#module-high-level-api" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  High-level API
+</h2>
+<pre><code class="makeup elixir"><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="6645337332-1">(</span><span class="s">&quot;https://api.github.com/repos/elixir-lang/elixir&quot;</span><span class="p" data-group-id="6645337332-1">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="6645337332-2">[</span><span class="s">&quot;description&quot;</span><span class="p" data-group-id="6645337332-2">]</span><span class="w">
+</span><span class="c1">#=&gt; &quot;Elixir is a dynamic, functional language designed for building scalable and maintainable applications&quot;</span></code></pre><h2 id="module-low-level-api" class="section-heading">
+  <a href="#module-low-level-api" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Low-level API
+</h2>
+<p>Under the hood, Req works by passing a request through a series of steps.</p><p>The request struct, <code class="inline">%Req.Request{}</code>, initially contains data like HTTP method and 
+request headers. You can also add request, response, and error steps to it.</p><p>Request steps are used to refine the data that will be sent to the server.</p><p>After making the actual HTTP request, we'll either get a HTTP response or an error.
+The request, along with the response or error, will go through response or
+error steps, respectively.</p><p>Nothing is actually executed until we run the pipeline with <a href="#run/1"><code class="inline">Req.run/1</code></a>.</p><p>Example:</p><pre><code class="makeup elixir"><span class="nc">Req</span><span class="o">.</span><span class="n">build</span><span class="p" data-group-id="0202542877-1">(</span><span class="ss">:get</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;https://api.github.com/repos/elixir-lang/elixir&quot;</span><span class="p" data-group-id="0202542877-1">)</span><span class="w">
+</span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">add_request_steps</span><span class="p" data-group-id="0202542877-2">(</span><span class="p" data-group-id="0202542877-3">[</span><span class="w">
+  </span><span class="o">&amp;</span><span class="nc">Req</span><span class="o">.</span><span class="n">default_headers</span><span class="o">/</span><span class="mi">1</span><span class="w">
+</span><span class="p" data-group-id="0202542877-3">]</span><span class="p" data-group-id="0202542877-2">)</span><span class="w">
+</span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">add_response_steps</span><span class="p" data-group-id="0202542877-4">(</span><span class="p" data-group-id="0202542877-5">[</span><span class="w">
+  </span><span class="o">&amp;</span><span class="nc">Req</span><span class="o">.</span><span class="n">decode</span><span class="o">/</span><span class="mi">2</span><span class="w">
+</span><span class="p" data-group-id="0202542877-5">]</span><span class="p" data-group-id="0202542877-4">)</span><span class="w">
+</span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">run</span><span class="p" data-group-id="0202542877-6">(</span><span class="p" data-group-id="0202542877-6">)</span><span class="w">
+</span><span class="c1">#=&gt; {:ok, %{body: %{&quot;description&quot; =&gt; &quot;Elixir is a dynamic,&quot; &lt;&gt; ...}, ...}, ...}</span></code></pre><p>We can also build more complex flows like returning a response from a request step
+or an error from a response step. We will explore those next.</p><h3 id="module-request-steps" class="section-heading">
+  <a href="#module-request-steps" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Request steps
+</h3>
+<p>A request step is a function that accepts a <code class="inline">request</code> and returns one of the following:</p><ul><li><p>A <code class="inline">request</code></p></li><li><p>A <code class="inline">{request, response_or_error}</code> tuple. In that case no further request steps are executed
+and the return value goes through response or error steps</p></li></ul><p>Examples:</p><pre><code class="makeup elixir"><span class="kd">def</span><span class="w"> </span><span class="nf">default_headers</span><span class="p" data-group-id="4648712934-1">(</span><span class="n">request</span><span class="p" data-group-id="4648712934-1">)</span><span class="w"> </span><span class="k" data-group-id="4648712934-2">do</span><span class="w">
+  </span><span class="n">update_in</span><span class="p" data-group-id="4648712934-3">(</span><span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="p" data-group-id="4648712934-4">[</span><span class="p" data-group-id="4648712934-5">{</span><span class="s">&quot;user-agent&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;req/0.1.0-dev&quot;</span><span class="p" data-group-id="4648712934-5">}</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="ni">&amp;1</span><span class="p" data-group-id="4648712934-4">]</span><span class="p" data-group-id="4648712934-3">)</span><span class="w">
+</span><span class="k" data-group-id="4648712934-2">end</span><span class="w">
+
+</span><span class="kd">def</span><span class="w"> </span><span class="nf">read_from_cache</span><span class="p" data-group-id="4648712934-6">(</span><span class="n">request</span><span class="p" data-group-id="4648712934-6">)</span><span class="w"> </span><span class="k" data-group-id="4648712934-7">do</span><span class="w">
+  </span><span class="k">case</span><span class="w"> </span><span class="nc">ResponseCache</span><span class="o">.</span><span class="n">fetch</span><span class="p" data-group-id="4648712934-8">(</span><span class="n">request</span><span class="p" data-group-id="4648712934-8">)</span><span class="w"> </span><span class="k" data-group-id="4648712934-9">do</span><span class="w">
+    </span><span class="p" data-group-id="4648712934-10">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="4648712934-10">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p" data-group-id="4648712934-11">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="4648712934-11">}</span><span class="w">
+    </span><span class="ss">:error</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">request</span><span class="w">
+  </span><span class="k" data-group-id="4648712934-9">end</span><span class="w">
+</span><span class="k" data-group-id="4648712934-7">end</span></code></pre><h3 id="module-response-and-error-steps" class="section-heading">
+  <a href="#module-response-and-error-steps" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Response and error steps
+</h3>
+<p>A response step is a function that accepts a <code class="inline">request</code> and a <code class="inline">response</code> and returns one of the
+following:</p><ul><li><p>A <code class="inline">{request, response}</code> tuple</p></li><li><p>A <code class="inline">{request, exception}</code> tuple. In that case, no further response steps are executed but the
+exception goes through error steps</p></li></ul><p>Similarly, an error step is a function that accepts a <code class="inline">request</code> and an <code class="inline">exception</code> and returns one
+of the following:</p><ul><li><p>A <code class="inline">{request, exception}</code> tuple</p></li><li><p>A <code class="inline">{request, response}</code> tuple. In that case, no further error steps are executed but the
+response goes through response steps</p></li></ul><p>Examples:</p><pre><code class="makeup elixir"><span class="kd">def</span><span class="w"> </span><span class="nf">decode</span><span class="p" data-group-id="2871509985-1">(</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="2871509985-1">)</span><span class="w"> </span><span class="k" data-group-id="2871509985-2">do</span><span class="w">
+  </span><span class="k">case</span><span class="w"> </span><span class="nc">List</span><span class="o">.</span><span class="n">keyfind</span><span class="p" data-group-id="2871509985-3">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;content-type&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p" data-group-id="2871509985-3">)</span><span class="w"> </span><span class="k" data-group-id="2871509985-4">do</span><span class="w">
+    </span><span class="p" data-group-id="2871509985-5">{</span><span class="bp">_</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;application/json&quot;</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="bp">_</span><span class="p" data-group-id="2871509985-5">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+      </span><span class="p" data-group-id="2871509985-6">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">update_in</span><span class="p" data-group-id="2871509985-7">(</span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="nc">Jason</span><span class="o">.</span><span class="n">decode!</span><span class="o">/</span><span class="mi">1</span><span class="p" data-group-id="2871509985-7">)</span><span class="p" data-group-id="2871509985-6">}</span><span class="w">
+
+    </span><span class="bp">_</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+      </span><span class="p" data-group-id="2871509985-8">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="2871509985-8">}</span><span class="w">
+  </span><span class="k" data-group-id="2871509985-4">end</span><span class="w">
+</span><span class="k" data-group-id="2871509985-2">end</span><span class="w">
+
+</span><span class="kd">def</span><span class="w"> </span><span class="nf">log_error</span><span class="p" data-group-id="2871509985-9">(</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">exception</span><span class="p" data-group-id="2871509985-9">)</span><span class="w"> </span><span class="k" data-group-id="2871509985-10">do</span><span class="w">
+  </span><span class="nc">Logger</span><span class="o">.</span><span class="n">error</span><span class="p" data-group-id="2871509985-11">(</span><span class="p" data-group-id="2871509985-12">[</span><span class="s">&quot;</span><span class="si" data-group-id="2871509985-13">#{</span><span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="si" data-group-id="2871509985-13">}</span><span class="s"> </span><span class="si" data-group-id="2871509985-14">#{</span><span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="si" data-group-id="2871509985-14">}</span><span class="s">: &quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">Exception</span><span class="o">.</span><span class="n">message</span><span class="p" data-group-id="2871509985-15">(</span><span class="n">exception</span><span class="p" data-group-id="2871509985-15">)</span><span class="p" data-group-id="2871509985-12">]</span><span class="p" data-group-id="2871509985-11">)</span><span class="w">
+  </span><span class="p" data-group-id="2871509985-16">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">exception</span><span class="p" data-group-id="2871509985-16">}</span><span class="w">
+</span><span class="k" data-group-id="2871509985-10">end</span></code></pre><h3 id="module-halting" class="section-heading">
+  <a href="#module-halting" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Halting
+</h3>
+<p>Any step can call <a href="Req.Request.html#halt/1"><code class="inline">Req.Request.halt/1</code></a> to halt the pipeline. This will prevent any further steps
+from being invoked.</p><p>Examples:</p><pre><code class="makeup elixir"><span class="kd">def</span><span class="w"> </span><span class="nf">circuit_breaker</span><span class="p" data-group-id="8355615453-1">(</span><span class="n">request</span><span class="p" data-group-id="8355615453-1">)</span><span class="w"> </span><span class="k" data-group-id="8355615453-2">do</span><span class="w">
+  </span><span class="k">if</span><span class="w"> </span><span class="nc">CircuitBreaker</span><span class="o">.</span><span class="n">open?</span><span class="p" data-group-id="8355615453-3">(</span><span class="p" data-group-id="8355615453-3">)</span><span class="w"> </span><span class="k" data-group-id="8355615453-4">do</span><span class="w">
+    </span><span class="p" data-group-id="8355615453-5">{</span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">halt</span><span class="p" data-group-id="8355615453-6">(</span><span class="n">request</span><span class="p" data-group-id="8355615453-6">)</span><span class="p">,</span><span class="w"> </span><span class="nc">RuntimeError</span><span class="o">.</span><span class="n">exception</span><span class="p" data-group-id="8355615453-7">(</span><span class="s">&quot;circuit breaker is open&quot;</span><span class="p" data-group-id="8355615453-7">)</span><span class="p" data-group-id="8355615453-5">}</span><span class="w">
+  </span><span class="k" data-group-id="8355615453-4">else</span><span class="w">
+    </span><span class="n">request</span><span class="w">
+  </span><span class="k" data-group-id="8355615453-4">end</span><span class="w">
+</span><span class="k" data-group-id="8355615453-2">end</span></code></pre>
+        </section>
+
+
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Summary
+          </h1>
+
+  <div class="summary-high-level-api summary">
+    <h2>
+      <a href="#high-level-api">High-level API</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#get!/2">get!(url, opts \\ [])</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Makes a GET request.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#request/3">request(method, url, opts \\ [])</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Makes an HTTP request.</p></div>
+
+</div>
+
+  </div>
+
+  <div class="summary-low-level-api summary">
+    <h2>
+      <a href="#low-level-api">Low-level API</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#add_default_steps/1">add_default_steps(request)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Adds steps that should be reasonable defaults for most users.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#add_error_steps/2">add_error_steps(request, steps)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Adds error steps.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#add_request_steps/2">add_request_steps(request, steps)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Adds request steps.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#add_response_steps/2">add_response_steps(request, steps)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Adds response steps.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#build/3">build(method, url, opts \\ [])</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Builds a request pipeline.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#run/1">run(request)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Runs a request pipeline.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#run!/1">run!(request)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Runs a request pipeline and returns a response or raises an error.</p></div>
+
+</div>
+
+  </div>
+
+  <div class="summary-request-steps summary">
+    <h2>
+      <a href="#request-steps">Request steps</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#default_headers/1">default_headers(request)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Adds common request headers.</p></div>
+
+</div>
+
+  </div>
+
+  <div class="summary-response-steps summary">
+    <h2>
+      <a href="#response-steps">Response steps</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#decode/2">decode(request, response)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Decodes the response body based on the <code class="inline">content-type</code> header.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#decompress/2">decompress(request, response)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Decompresses the response body based on the <code class="inline">content-encoding</code> header.</p></div>
+
+</div>
+
+  </div>
+
+  <div class="summary-error-steps summary">
+    <h2>
+      <a href="#error-steps">Error steps</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#retry/2">retry(request, response)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Retries a request in face of errors.</p></div>
+
+</div>
+
+  </div>
+
+        </section>
+
+
+        <section id="high-level-api" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#high-level-api">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+High-level API
+          </h1>
+          <div class="high-level-api-list">
+<section class="detail" id="get!/2">
+
+    <span id="get!/1"></span>
+
+  <div class="detail-header">
+    <a href="#get!/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">get!(url, opts \\ [])</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Makes a GET request.</p>
+  </section>
+</section>
+<section class="detail" id="request/3">
+
+    <span id="request/2"></span>
+
+  <div class="detail-header">
+    <a href="#request/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">request(method, url, opts \\ [])</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Makes an HTTP request.</p>
+  </section>
+</section>
+
+          </div>
+        </section>
+
+        <section id="low-level-api" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#low-level-api">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Low-level API
+          </h1>
+          <div class="low-level-api-list">
+<section class="detail" id="add_default_steps/1">
+
+  <div class="detail-header">
+    <a href="#add_default_steps/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">add_default_steps(request)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Adds steps that should be reasonable defaults for most users.</p><ul><li><p>request:</p><ul><li><a href="#default_headers/1"><code class="inline">default_headers/1</code></a></li></ul></li><li><p>response:</p><ul><li><a href="#decompress/2"><code class="inline">decompress/2</code></a></li><li><a href="#decode/2"><code class="inline">decode/2</code></a></li></ul></li></ul>
+  </section>
+</section>
+<section class="detail" id="add_error_steps/2">
+
+  <div class="detail-header">
+    <a href="#add_error_steps/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">add_error_steps(request, steps)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Adds error steps.</p>
+  </section>
+</section>
+<section class="detail" id="add_request_steps/2">
+
+  <div class="detail-header">
+    <a href="#add_request_steps/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">add_request_steps(request, steps)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Adds request steps.</p>
+  </section>
+</section>
+<section class="detail" id="add_response_steps/2">
+
+  <div class="detail-header">
+    <a href="#add_response_steps/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">add_response_steps(request, steps)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Adds response steps.</p>
+  </section>
+</section>
+<section class="detail" id="build/3">
+
+    <span id="build/2"></span>
+
+  <div class="detail-header">
+    <a href="#build/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">build(method, url, opts \\ [])</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Builds a request pipeline.</p>
+  </section>
+</section>
+<section class="detail" id="run/1">
+
+  <div class="detail-header">
+    <a href="#run/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">run(request)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Runs a request pipeline.</p><p>Returns <code class="inline">{:ok, response}</code> or <code class="inline">{:error, exception}</code>.</p>
+  </section>
+</section>
+<section class="detail" id="run!/1">
+
+  <div class="detail-header">
+    <a href="#run!/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">run!(request)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Runs a request pipeline and returns a response or raises an error.</p><p>See <a href="#run/1"><code class="inline">run/1</code></a>.</p>
+  </section>
+</section>
+
+          </div>
+        </section>
+
+        <section id="request-steps" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#request-steps">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Request steps
+          </h1>
+          <div class="request-steps-list">
+<section class="detail" id="default_headers/1">
+
+  <div class="detail-header">
+    <a href="#default_headers/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">default_headers(request)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Adds common request headers.</p><p>Currently the following headers are added:</p><ul><li><code class="inline">&quot;user-agent&quot;</code> - <code class="inline">&quot;req/0.1.0-dev&quot;</code></li></ul>
+  </section>
+</section>
+
+          </div>
+        </section>
+
+        <section id="response-steps" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#response-steps">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Response steps
+          </h1>
+          <div class="response-steps-list">
+<section class="detail" id="decode/2">
+
+  <div class="detail-header">
+    <a href="#decode/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">decode(request, response)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Decodes the response body based on the <code class="inline">content-type</code> header.</p>
+  </section>
+</section>
+<section class="detail" id="decompress/2">
+
+  <div class="detail-header">
+    <a href="#decompress/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">decompress(request, response)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Decompresses the response body based on the <code class="inline">content-encoding</code> header.</p>
+  </section>
+</section>
+
+          </div>
+        </section>
+
+        <section id="error-steps" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#error-steps">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Error steps
+          </h1>
+          <div class="error-steps-list">
+<section class="detail" id="retry/2">
+
+  <div class="detail-header">
+    <a href="#retry/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">retry(request, response)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Retries a request in face of errors.</p><p>This function can be used as either or both response and error step. It retries a request that
+resulted in:</p><ul><li><p>a response with status 5xx</p></li><li><p>an exception</p></li></ul>
+  </section>
+</section>
+
+          </div>
+        </section>
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.1) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>
