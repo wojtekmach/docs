@@ -54,7 +54,7 @@
 
   <div class="sidebar-header">
     <div class="sidebar-projectDetails">
-      <a href="api-reference.html" class="sidebar-projectName">
+      <a href="Formats.html" class="sidebar-projectName">
 formats
       </a>
       <strong class="sidebar-projectVersion">
@@ -104,12 +104,12 @@ formats
   Examples
 </h2>
 <pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">~s{&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;points&gt;&lt;point x=&quot;1&quot; y=&quot;2&quot;/&gt;&lt;point x=&quot;3&quot; y=&quot;4&quot;/&gt;&lt;/points&gt;}</span><span class="w">
-</span><span class="gp unselectable">iex&gt; </span><span class="nc">Formats</span><span class="o">.</span><span class="n">decode!</span><span class="p" data-group-id="5637626565-1">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="ss">:xml</span><span class="p" data-group-id="5637626565-1">)</span><span class="w">
-</span><span class="p" data-group-id="5637626565-2">{</span><span class="s">&quot;points&quot;</span><span class="p">,</span><span class="w">
- </span><span class="p" data-group-id="5637626565-3">[</span><span class="w">
-   </span><span class="p" data-group-id="5637626565-4">{</span><span class="s">&quot;point&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5637626565-5">%{</span><span class="s">&quot;x&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;y&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;2&quot;</span><span class="p" data-group-id="5637626565-5">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5637626565-6">[</span><span class="p" data-group-id="5637626565-6">]</span><span class="p" data-group-id="5637626565-4">}</span><span class="p">,</span><span class="w">
-   </span><span class="p" data-group-id="5637626565-7">{</span><span class="s">&quot;point&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5637626565-8">%{</span><span class="s">&quot;x&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;y&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;4&quot;</span><span class="p" data-group-id="5637626565-8">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5637626565-9">[</span><span class="p" data-group-id="5637626565-9">]</span><span class="p" data-group-id="5637626565-7">}</span><span class="w">
- </span><span class="p" data-group-id="5637626565-3">]</span><span class="p" data-group-id="5637626565-2">}</span></code></pre>
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Formats</span><span class="o">.</span><span class="n">decode!</span><span class="p" data-group-id="8862506867-1">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="ss">:xml</span><span class="p" data-group-id="8862506867-1">)</span><span class="w">
+</span><span class="p" data-group-id="8862506867-2">{</span><span class="s">&quot;points&quot;</span><span class="p">,</span><span class="w">
+ </span><span class="p" data-group-id="8862506867-3">[</span><span class="w">
+   </span><span class="p" data-group-id="8862506867-4">{</span><span class="s">&quot;point&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8862506867-5">%{</span><span class="s">&quot;x&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;y&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;2&quot;</span><span class="p" data-group-id="8862506867-5">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8862506867-6">[</span><span class="p" data-group-id="8862506867-6">]</span><span class="p" data-group-id="8862506867-4">}</span><span class="p">,</span><span class="w">
+   </span><span class="p" data-group-id="8862506867-7">{</span><span class="s">&quot;point&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8862506867-8">%{</span><span class="s">&quot;x&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;y&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;4&quot;</span><span class="p" data-group-id="8862506867-8">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8862506867-9">[</span><span class="p" data-group-id="8862506867-9">]</span><span class="p" data-group-id="8862506867-7">}</span><span class="w">
+ </span><span class="p" data-group-id="8862506867-3">]</span><span class="p" data-group-id="8862506867-2">}</span></code></pre>
   </section>
 </section>
 
