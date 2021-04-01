@@ -94,7 +94,7 @@ req
     </a>
     <h1 class="signature">retry(request, response_or_exception)</h1>
 
-      <a href="https://github.com/wojtekmach/req/blob/master/lib/req.ex#L430" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/req/blob/master/lib/req.ex#L453" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -105,7 +105,32 @@ req
   <section class="docstring">
 
 <p>Retries a request in face of errors.</p><p>This function can be used as either or both response and error step. It retries a request that
-resulted in:</p><ul><li><p>a response with status 5xx</p></li><li><p>an exception</p></li></ul>
+resulted in:</p><ul><li><p>a response with status 5xx</p></li><li><p>an exception</p></li></ul><h2 id="retry/2-examples" class="section-heading">
+  <a href="#retry/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="2791663238-1">(</span><span class="s">&quot;https://httpbin.org/status/500,200&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">retry</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="2791663238-1">)</span><span class="w">
+</span><span class="c1"># Outputs:</span><span class="w">
+</span><span class="c1"># 18:38:57.824 [error] Got response with status 500</span><span class="w">
+</span><span class="c1"># Headers: [</span><span class="w">
+</span><span class="c1">#   {&quot;date&quot;, &quot;Thu, 01 Apr 2021 16:38:57 GMT&quot;},</span><span class="w">
+</span><span class="c1">#   ...</span><span class="w">
+</span><span class="c1"># ]</span><span class="w">
+</span><span class="c1"># Will retry in 2000ms, 2 attempts left</span><span class="w">
+</span><span class="c1"># 18:38:59.979 [error] Got response with status 500</span><span class="w">
+</span><span class="c1"># Headers: [</span><span class="w">
+</span><span class="c1">#   {&quot;date&quot;, &quot;Thu, 01 Apr 2021 16:38:59 GMT&quot;},</span><span class="w">
+</span><span class="c1">#   ...</span><span class="w">
+</span><span class="c1"># ]</span><span class="w">
+</span><span class="c1"># Will retry in 2000ms, 1 attempt left</span><span class="w">
+</span><span class="p" data-group-id="2791663238-2">%</span><span class="nc" data-group-id="2791663238-2">Finch.Response</span><span class="p" data-group-id="2791663238-2">{</span><span class="w">
+  </span><span class="ss">body</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w">
+  </span><span class="ss">headers</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2791663238-3">[</span><span class="w">
+    </span><span class="p" data-group-id="2791663238-4">{</span><span class="s">&quot;date&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Thu, 01 Apr 2021 16:39:02 GMT&quot;</span><span class="p" data-group-id="2791663238-4">}</span><span class="p">,</span><span class="w">
+    </span><span class="n">...</span><span class="w">
+  </span><span class="p" data-group-id="2791663238-3">]</span><span class="p">,</span><span class="w">
+  </span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w">
+</span><span class="p" data-group-id="2791663238-2">}</span></code></pre>
   </section>
 </section>
 
