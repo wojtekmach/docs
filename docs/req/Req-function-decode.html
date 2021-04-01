@@ -94,7 +94,7 @@ req
     </a>
     <h1 class="signature">decode(request, response)</h1>
 
-      <a href="https://github.com/wojtekmach/req/blob/master/lib/req.ex#L372" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/req/blob/master/lib/req.ex#L390" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -104,7 +104,17 @@ req
 
   <section class="docstring">
 
-<p>Decodes the response body based on the <code class="inline">content-type</code> header.</p>
+<p>Decodes the response body based on the <code class="inline">content-type</code> header.</p><p>Supported formats:</p><table><thead><tr><th style="text-align: left;">Format</th><th style="text-align: left;">Decoder</th></tr></thead><tbody><tr><td style="text-align: left;">JSON</td><td style="text-align: left;"><a href="https://hexdocs.pm/jason/1.2.2/Jason.html#decode!/1"><code class="inline">Jason.decode!/1</code></a></td></tr><tr><td style="text-align: left;">gzip</td><td style="text-align: left;"><a href="https://erlang.org/doc/man/zlib.html#gunzip-1"><code class="inline">:zlib.gunzip/1</code></a></td></tr></tbody></table><h2 id="decode/2-examples" class="section-heading">
+  <a href="#decode/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="6257974140-1">(</span><span class="s">&quot;https://hex.pm/api/packages/finch&quot;</span><span class="p" data-group-id="6257974140-1">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="6257974140-2">[</span><span class="s">&quot;meta&quot;</span><span class="p" data-group-id="6257974140-2">]</span><span class="w">
+</span><span class="p" data-group-id="6257974140-3">%{</span><span class="w">
+  </span><span class="s">&quot;description&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;An HTTP client focused on performance.&quot;</span><span class="p">,</span><span class="w">
+  </span><span class="s">&quot;licenses&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p" data-group-id="6257974140-4">[</span><span class="s">&quot;MIT&quot;</span><span class="p" data-group-id="6257974140-4">]</span><span class="p">,</span><span class="w">
+  </span><span class="s">&quot;links&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p" data-group-id="6257974140-5">%{</span><span class="s">&quot;GitHub&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;https://github.com/keathley/finch&quot;</span><span class="p" data-group-id="6257974140-5">}</span><span class="p">,</span><span class="w">
+  </span><span class="n">...</span><span class="w">
+</span><span class="p" data-group-id="6257974140-3">}</span></code></pre>
   </section>
 </section>
 
