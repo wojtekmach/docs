@@ -7,7 +7,7 @@
     <meta name="generator" content="ExDoc v0.24.1">
     <meta name="project" content="req v0.1.0-dev">
 
-    <title>Req.add_error_steps — req v0.1.0-dev</title>
+    <title>Req.auth — req v0.1.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
 
     <script src="dist/sidebar_items-cc04715351.js"></script>
@@ -79,22 +79,22 @@ req
   <div class="content-outer">
     <div id="content" class="content-inner">
 
-<h1>Req.add_error_steps</h1>
+<h1>Req.auth</h1>
 
 <div class="deprecated">
-  You're seeing just the function <code>add_error_steps</code>, go back to <a href="Req.html">Req</a> module for more information.
+  You're seeing just the function <code>auth</code>, go back to <a href="Req.html">Req</a> module for more information.
 </div>
 
-<section class="detail" id="add_error_steps/2">
+<section class="detail" id="auth/2">
 
   <div class="detail-header">
-    <a href="#add_error_steps/2" class="detail-link" title="Link to this function">
+    <a href="#auth/2" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature">add_error_steps(request, steps)</h1>
+    <h1 class="signature">auth(request, auth)</h1>
 
-      <a href="https://github.com/wojtekmach/req/blob/master/lib/req.ex#L147" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/req/blob/master/lib/req.ex#L277" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -104,7 +104,14 @@ req
 
   <section class="docstring">
 
-<p>Adds error steps.</p>
+<p>Sets request authentication.</p><p><code class="inline">auth</code> can be one of:</p><ul><li><p><code class="inline">{username, password}</code> - same as <code class="inline">{:basic, username, password}</code></p></li><li><p><code class="inline">{:basic, username, password}</code> - uses Basic HTTP authentication</p></li></ul><h2 id="auth/2-examples" class="section-heading">
+  <a href="#auth/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="5597323969-1">(</span><span class="s">&quot;https://httpbin.org/basic-auth/foo/bar&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">auth</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5597323969-2">{</span><span class="s">&quot;bad&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bad&quot;</span><span class="p" data-group-id="5597323969-2">}</span><span class="p" data-group-id="5597323969-1">)</span><span class="o">.</span><span class="n">status</span><span class="w">
+</span><span class="mi">401</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="5597323969-3">(</span><span class="s">&quot;https://httpbin.org/basic-auth/foo/bar&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">auth</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5597323969-4">{</span><span class="s">&quot;foo&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bar&quot;</span><span class="p" data-group-id="5597323969-4">}</span><span class="p" data-group-id="5597323969-3">)</span><span class="o">.</span><span class="n">status</span><span class="w">
+</span><span class="mi">200</span></code></pre>
   </section>
 </section>
 
