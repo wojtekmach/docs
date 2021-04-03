@@ -10,7 +10,7 @@
     <title>Req.add_default_steps — req v0.1.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
 
-    <script src="dist/sidebar_items-cc04715351.js"></script>
+    <script src="dist/sidebar_items-19246bbe1e.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -96,7 +96,7 @@ req
     </a>
     <h1 class="signature">add_default_steps(request, options \\ [])</h1>
 
-      <a href="https://github.com/wojtekmach/req/blob/master/lib/req.ex#L104" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/req/blob/master/lib/req.ex#L107" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -106,7 +106,8 @@ req
 
   <section class="docstring">
 
-<p>Adds steps that should be reasonable defaults for most users.</p><p>Request steps:</p><ul><li><p><a href="#default_headers/1"><code class="inline">default_headers/1</code></a></p></li><li><p><a href="#encode/1"><code class="inline">encode/1</code></a></p></li><li><p><a href="#auth/2"><code class="inline">&amp;auth(&amp;1, options[:auth])</code></a> (if <code class="inline">options[:auth]</code> is set)</p></li></ul><p>Response steps:</p><ul><li><p><a href="#retry/2"><code class="inline">retry/2</code></a> (if <code class="inline">options[:retry]</code> is set)</p></li><li><p><a href="#decompress/2"><code class="inline">decompress/2</code></a></p></li><li><p><a href="#decode/2"><code class="inline">decode/2</code></a></p></li></ul><p>Error steps:</p><ul><li><a href="#retry/2"><code class="inline">retry/2</code></a> (if <code class="inline">options[:retry]</code> is set)</li></ul>
+<p>Adds steps that should be reasonable defaults for most users.</p><p>Request steps:</p><ul><li><p><a href="#default_headers/1"><code class="inline">default_headers/1</code></a></p></li><li><p><a href="#encode/1"><code class="inline">encode/1</code></a></p></li><li><p><a href="#auth/2"><code class="inline">&amp;auth(&amp;1, options[:auth])</code></a> (if <code class="inline">options[:auth]</code> is set)</p></li><li><p><a href="#params/2"><code class="inline">&amp;params(&amp;1, options[:params])</code></a> (if <code class="inline">options[:params]</code> is set)</p></li></ul><p>Response steps:</p><ul><li><p><a href="#retry/3"><code class="inline">&amp;retry(&amp;1, &amp;2, options[:retry])</code></a> (if <code class="inline">options[:retry]</code> is set and is a
+keywords list or an atom <code class="inline">true</code> which means the default options)</p></li><li><p><a href="#decompress/2"><code class="inline">decompress/2</code></a></p></li><li><p><a href="#decode/2"><code class="inline">decode/2</code></a></p></li></ul><p>Error steps:</p><ul><li><a href="#retry/2"><code class="inline">retry/2</code></a> (if <code class="inline">options[:retry]</code> is set)</li></ul>
   </section>
 </section>
 

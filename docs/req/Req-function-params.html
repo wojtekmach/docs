@@ -7,7 +7,7 @@
     <meta name="generator" content="ExDoc v0.24.1">
     <meta name="project" content="req v0.1.0-dev">
 
-    <title>API Reference — req v0.1.0-dev</title>
+    <title>Req.params — req v0.1.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
 
     <script src="dist/sidebar_items-19246bbe1e.js"></script>
@@ -18,7 +18,7 @@
 
 
   </head>
-  <body data-type="extras">
+  <body data-type="modules">
     <script>
 
       try {
@@ -79,46 +79,40 @@ req
   <div class="content-outer">
     <div id="content" class="content-inner">
 
-<h1>
-  API Reference <small class="app-vsn">req v0.1.0-dev</small>
-</h1>
+<h1>Req.params</h1>
 
-  <section class="details-list">
-    <h2 id="modules" class="section-heading">
-  <a href="#modules" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
-  Modules
+<div class="deprecated">
+  You're seeing just the function <code>params</code>, go back to <a href="Req.html">Req</a> module for more information.
+</div>
+
+<section class="detail" id="params/2">
+
+  <div class="detail-header">
+    <a href="#params/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">params(request, params)</h1>
+
+      <a href="https://github.com/wojtekmach/req/blob/master/lib/req.ex#L302" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Adds params to request query string.</p><h2 id="params/2-examples" class="section-heading">
+  <a href="#params/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
 </h2>
-
-    <div class="summary">
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="Req.html">Req</a>
-
-  </div>
-
-    <div class="summary-synopsis"><p>An HTTP client with a focus on composability, built on top of <a href="https://github.com/keathley/finch">Finch</a>.</p></div>
-
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="Req.Request.html">Req.Request</a>
-
-  </div>
-
-</div>
-
-    </div>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="7974220969-1">(</span><span class="s">&quot;https://httpbin.org/anything/query&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">params</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="7974220969-2">[</span><span class="ss">x</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">y</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2&quot;</span><span class="p" data-group-id="7974220969-2">]</span><span class="p" data-group-id="7974220969-1">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="7974220969-3">[</span><span class="s">&quot;args&quot;</span><span class="p" data-group-id="7974220969-3">]</span><span class="w">
+</span><span class="p" data-group-id="7974220969-4">%{</span><span class="s">&quot;x&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;y&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;2&quot;</span><span class="p" data-group-id="7974220969-4">}</span></code></pre>
   </section>
+</section>
 
-
-<div class="bottom-actions">
-  <div class="bottom-actions-item">
-
-  </div>
-  <div class="bottom-actions-item">
-
-  </div>
-</div>
 
       <footer class="footer">
         <p>
