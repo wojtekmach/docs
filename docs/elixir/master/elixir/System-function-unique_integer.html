@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.1">
+    <meta name="project" content="Elixir v1.13.0-dev">
+
+    <title>System.unique_integer — Elixir v1.13.0-dev</title>
+    <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
+
+      <link rel="canonical" href="https://hexdocs.pm/elixir/master/" />
+
+    <script src="dist/sidebar_items-ed39eda610.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName">
+Elixir
+      </a>
+      <strong class="sidebar-projectVersion">
+        v1.13.0-dev
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>System.unique_integer</h1>
+
+<div class="deprecated">
+  You're seeing just the function <code>unique_integer</code>, go back to <a href="System.html">System</a> module for more information.
+</div>
+
+<section class="detail" id="unique_integer/1">
+
+    <span id="unique_integer/0"></span>
+
+  <div class="detail-header">
+    <a href="#unique_integer/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">unique_integer(modifiers \\ [])</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/system.ex#L1227" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>unique_integer([:positive | :monotonic]) :: <a href="typespecs.html#basic-types">integer</a>()</pre>
+
+      </div>
+
+<p>Generates and returns an integer that is unique in the current runtime
+instance.</p><p>&quot;Unique&quot; means that this function, called with the same list of <code class="inline">modifiers</code>,
+will never return the same integer more than once on the current runtime
+instance.</p><p>If <code class="inline">modifiers</code> is <code class="inline">[]</code>, then a unique integer (that can be positive or negative) is returned.
+Other modifiers can be passed to change the properties of the returned integer:</p><ul><li><code class="inline">:positive</code> - the returned integer is guaranteed to be positive.</li><li><code class="inline">:monotonic</code> - the returned integer is monotonically increasing. This
+means that, on the same runtime instance (but even on different
+processes), integers returned using the <code class="inline">:monotonic</code> modifier will always
+be strictly less than integers returned by successive calls with the
+<code class="inline">:monotonic</code> modifier.</li></ul><p>All modifiers listed above can be combined; repeated modifiers in <code class="inline">modifiers</code>
+will be ignored.</p><p>Inlined by the compiler.</p>
+  </section>
+</section>
+
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.1) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

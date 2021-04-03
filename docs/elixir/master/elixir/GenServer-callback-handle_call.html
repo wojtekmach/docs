@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.1">
+    <meta name="project" content="Elixir v1.13.0-dev">
+
+    <title>GenServer.handle_call — Elixir v1.13.0-dev</title>
+    <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
+
+      <link rel="canonical" href="https://hexdocs.pm/elixir/master/" />
+
+    <script src="dist/sidebar_items-ed39eda610.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName">
+Elixir
+      </a>
+      <strong class="sidebar-projectVersion">
+        v1.13.0-dev
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>GenServer.handle_call</h1>
+
+<div class="deprecated">
+  You're seeing just the callback <code>handle_call</code>, go back to <a href="GenServer.html">GenServer</a> module for more information.
+</div>
+
+<section class="detail" id="c:handle_call/3">
+
+  <div class="detail-header">
+    <a href="#c:handle_call/3" class="detail-link" title="Link to this callback">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature">handle_call(request, from, state)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/gen_server.ex#L519" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(optional)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>handle_call(request :: <a href="typespecs.html#built-in-types">term</a>(), <a href="#t:from/0">from</a>(), state :: <a href="typespecs.html#built-in-types">term</a>()) ::
+  {:reply, reply, new_state}
+  | {:reply, reply, new_state, <a href="typespecs.html#built-in-types">timeout</a>() | :hibernate | {:continue, <a href="typespecs.html#built-in-types">term</a>()}}
+  | {:noreply, new_state}
+  | {:noreply, new_state, <a href="typespecs.html#built-in-types">timeout</a>() | :hibernate | {:continue, <a href="typespecs.html#built-in-types">term</a>()}}
+  | {:stop, reason, reply, new_state}
+  | {:stop, reason, new_state}
+when reply: <a href="typespecs.html#built-in-types">term</a>(), new_state: <a href="typespecs.html#built-in-types">term</a>(), reason: <a href="typespecs.html#built-in-types">term</a>()</pre>
+
+      </div>
+
+<p>Invoked to handle synchronous <a href="#call/3"><code class="inline">call/3</code></a> messages. <a href="#call/3"><code class="inline">call/3</code></a> will block until a
+reply is received (unless the call times out or nodes are disconnected).</p><p><code class="inline">request</code> is the request message sent by a <a href="#call/3"><code class="inline">call/3</code></a>, <code class="inline">from</code> is a 2-tuple
+containing the caller's PID and a term that uniquely identifies the call, and
+<code class="inline">state</code> is the current state of the <a href="GenServer.html#content"><code class="inline">GenServer</code></a>.</p><p>Returning <code class="inline">{:reply, reply, new_state}</code> sends the response <code class="inline">reply</code> to the
+caller and continues the loop with new state <code class="inline">new_state</code>.</p><p>Returning <code class="inline">{:reply, reply, new_state, timeout}</code> is similar to
+<code class="inline">{:reply, reply, new_state}</code> except that it also sets a timeout.
+See the &quot;Timeouts&quot; section in the module documentation for more information.</p><p>Returning <code class="inline">{:reply, reply, new_state, :hibernate}</code> is similar to
+<code class="inline">{:reply, reply, new_state}</code> except the process is hibernated and will
+continue the loop once a message is in its message queue. However, if a message is
+already in the message queue, the process will continue the loop immediately. Hibernating a
+<a href="GenServer.html#content"><code class="inline">GenServer</code></a> causes garbage collection and leaves a continuous heap that
+minimises the memory used by the process.</p><p>Returning <code class="inline">{:reply, reply, new_state, {:continue, continue}}</code> is similar to
+<code class="inline">{:reply, reply, new_state}</code> except <a href="#c:handle_continue/2"><code class="inline">handle_continue/2</code></a> will be invoked
+immediately after with the value <code class="inline">continue</code> as first argument.</p><p>Hibernating should not be used aggressively as too much time could be spent
+garbage collecting. Normally it should only be used when a message is not
+expected soon and minimising the memory of the process is shown to be
+beneficial.</p><p>Returning <code class="inline">{:noreply, new_state}</code> does not send a response to the caller and
+continues the loop with new state <code class="inline">new_state</code>. The response must be sent with
+<a href="#reply/2"><code class="inline">reply/2</code></a>.</p><p>There are three main use cases for not replying using the return value:</p><ul><li>To reply before returning from the callback because the response is known
+before calling a slow function.</li><li>To reply after returning from the callback because the response is not yet
+available.</li><li>To reply from another process, such as a task.</li></ul><p>When replying from another process the <a href="GenServer.html#content"><code class="inline">GenServer</code></a> should exit if the other
+process exits without replying as the caller will be blocking awaiting a
+reply.</p><p>Returning <code class="inline">{:noreply, new_state, timeout | :hibernate | {:continue, continue}}</code>
+is similar to <code class="inline">{:noreply, new_state}</code> except a timeout, hibernation or continue
+occurs as with a <code class="inline">:reply</code> tuple.</p><p>Returning <code class="inline">{:stop, reason, reply, new_state}</code> stops the loop and <a href="#c:terminate/2"><code class="inline">terminate/2</code></a>
+is called with reason <code class="inline">reason</code> and state <code class="inline">new_state</code>. Then, the <code class="inline">reply</code> is sent
+as the response to call and the process exits with reason <code class="inline">reason</code>.</p><p>Returning <code class="inline">{:stop, reason, new_state}</code> is similar to
+<code class="inline">{:stop, reason, reply, new_state}</code> except a reply is not sent.</p><p>This callback is optional. If one is not implemented, the server will fail
+if a call is performed against it.</p>
+  </section>
+</section>
+
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.1) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

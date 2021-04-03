@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.1">
+    <meta name="project" content="Elixir v1.12.0-rc.0">
+
+    <title>Task.Supervisor.async_nolink — Elixir v1.12.0-rc.0</title>
+    <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
+
+      <link rel="canonical" href="https://hexdocs.pm/elixir/1.12/" />
+
+    <script src="dist/sidebar_items-1a6c36a221.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName">
+Elixir
+      </a>
+      <strong class="sidebar-projectVersion">
+        v1.12.0-rc.0
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>Task.Supervisor.async_nolink</h1>
+
+<div class="deprecated">
+  You're seeing just the function <code>async_nolink</code>, go back to <a href="Task.Supervisor.html">Task.Supervisor</a> module for more information.
+</div>
+
+<section class="detail" id="async_nolink/3">
+
+    <span id="async_nolink/2"></span>
+
+  <div class="detail-header">
+    <a href="#async_nolink/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">async_nolink(supervisor, fun, options \\ [])</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/fb151383ab866230694712690fe9a583dc32a9db/lib/elixir/lib/task/supervisor.ex#L223" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>async_nolink(<a href="Supervisor.html#t:supervisor/0">Supervisor.supervisor</a>(), (() -&gt; <a href="typespecs.html#basic-types">any</a>()), <a href="Keyword.html#t:t/0">Keyword.t</a>()) :: <a href="Task.html#t:t/0">Task.t</a>()</pre>
+
+      </div>
+
+<p>Starts a task that can be awaited on.</p><p>The <code class="inline">supervisor</code> must be a reference as defined in <a href="Supervisor.html"><code class="inline">Supervisor</code></a>.
+The task won't be linked to the caller, see <a href="Task.html#async/3"><code class="inline">Task.async/3</code></a> for
+more information.</p><p>Raises an error if <code class="inline">supervisor</code> has reached the maximum number of
+children.</p><h2 id="async_nolink/3-options" class="section-heading">
+  <a href="#async_nolink/3-options" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Options
+</h2>
+<ul><li><code class="inline">:shutdown</code> - <code class="inline">:brutal_kill</code> if the tasks must be killed directly on shutdown
+or an integer indicating the timeout value, defaults to 5000 milliseconds.</li></ul><h2 id="async_nolink/3-compatibility-with-otp-behaviours" class="section-heading">
+  <a href="#async_nolink/3-compatibility-with-otp-behaviours" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Compatibility with OTP behaviours
+</h2>
+<p>If you create a task using <code class="inline">async_nolink</code> inside an OTP behaviour
+like <a href="GenServer.html"><code class="inline">GenServer</code></a>, you should match on the message coming from the
+task inside your <a href="GenServer.html#c:handle_info/2"><code class="inline">GenServer.handle_info/2</code></a> callback.</p><p>The reply sent by the task will be in the format <code class="inline">{ref, result}</code>,
+where <code class="inline">ref</code> is the monitor reference held by the task struct
+and <code class="inline">result</code> is the return value of the task function.</p><p>Keep in mind that, regardless of how the task created with <code class="inline">async_nolink</code>
+terminates, the caller's process will always receive a <code class="inline">:DOWN</code> message
+with the same <code class="inline">ref</code> value that is held by the task struct. If the task
+terminates normally, the reason in the <code class="inline">:DOWN</code> message will be <code class="inline">:normal</code>.</p><h2 id="async_nolink/3-examples" class="section-heading">
+  <a href="#async_nolink/3-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<p>Typically, you use <a href="#async_nolink/3"><code class="inline">async_nolink/3</code></a> when there is a reasonable expectation that
+the task may fail, and you don't want it to take down the caller. Let's see an
+example where a <a href="GenServer.html"><code class="inline">GenServer</code></a> is meant to run a single task and track its status:</p><pre><code class="makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyApp.Server</span><span class="w"> </span><span class="k" data-group-id="8334191196-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">GenServer</span><span class="w">
+
+  </span><span class="c1"># ...</span><span class="w">
+
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">start_task</span><span class="w"> </span><span class="k" data-group-id="8334191196-2">do</span><span class="w">
+    </span><span class="nc">GenServer</span><span class="o">.</span><span class="n">call</span><span class="p" data-group-id="8334191196-3">(</span><span class="bp">__MODULE__</span><span class="p">,</span><span class="w"> </span><span class="ss">:start_task</span><span class="p" data-group-id="8334191196-3">)</span><span class="w">
+  </span><span class="k" data-group-id="8334191196-2">end</span><span class="w">
+
+  </span><span class="c1"># In this case the task is already running, so we just return :ok.</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">handle_call</span><span class="p" data-group-id="8334191196-4">(</span><span class="ss">:start_task</span><span class="p">,</span><span class="w"> </span><span class="c">_from</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8334191196-5">%{</span><span class="ss">ref</span><span class="p">:</span><span class="w"> </span><span class="n">ref</span><span class="p" data-group-id="8334191196-5">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p" data-group-id="8334191196-4">)</span><span class="w"> </span><span class="ow">when</span><span class="w"> </span><span class="n">is_reference</span><span class="p" data-group-id="8334191196-6">(</span><span class="n">ref</span><span class="p" data-group-id="8334191196-6">)</span><span class="w"> </span><span class="k" data-group-id="8334191196-7">do</span><span class="w">
+    </span><span class="p" data-group-id="8334191196-8">{</span><span class="ss">:reply</span><span class="p">,</span><span class="w"> </span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">state</span><span class="p" data-group-id="8334191196-8">}</span><span class="w">
+  </span><span class="k" data-group-id="8334191196-7">end</span><span class="w">
+
+  </span><span class="c1"># The task is not running yet, so let&#39;s start it.</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">handle_call</span><span class="p" data-group-id="8334191196-9">(</span><span class="ss">:start_task</span><span class="p">,</span><span class="w"> </span><span class="c">_from</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8334191196-10">%{</span><span class="ss">ref</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p" data-group-id="8334191196-10">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p" data-group-id="8334191196-9">)</span><span class="w"> </span><span class="k" data-group-id="8334191196-11">do</span><span class="w">
+    </span><span class="n">task</span><span class="w"> </span><span class="o">=</span><span class="w">
+      </span><span class="nc">Task.Supervisor</span><span class="o">.</span><span class="n">async_nolink</span><span class="p" data-group-id="8334191196-12">(</span><span class="nc">MyApp.TaskSupervisor</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="8334191196-13">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+        </span><span class="n">...</span><span class="w">
+      </span><span class="k" data-group-id="8334191196-13">end</span><span class="p" data-group-id="8334191196-12">)</span><span class="w">
+
+    </span><span class="c1"># We return :ok and the server will continue running</span><span class="w">
+    </span><span class="p" data-group-id="8334191196-14">{</span><span class="ss">:reply</span><span class="p">,</span><span class="w"> </span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8334191196-15">%{</span><span class="n">state</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="ss">ref</span><span class="p">:</span><span class="w"> </span><span class="n">task</span><span class="o">.</span><span class="n">ref</span><span class="p" data-group-id="8334191196-15">}</span><span class="p" data-group-id="8334191196-14">}</span><span class="w">
+  </span><span class="k" data-group-id="8334191196-11">end</span><span class="w">
+
+  </span><span class="c1"># The task completed successfully</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">handle_info</span><span class="p" data-group-id="8334191196-16">(</span><span class="p" data-group-id="8334191196-17">{</span><span class="n">ref</span><span class="p">,</span><span class="w"> </span><span class="n">answer</span><span class="p" data-group-id="8334191196-17">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8334191196-18">%{</span><span class="ss">ref</span><span class="p">:</span><span class="w"> </span><span class="n">ref</span><span class="p" data-group-id="8334191196-18">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p" data-group-id="8334191196-16">)</span><span class="w"> </span><span class="k" data-group-id="8334191196-19">do</span><span class="w">
+    </span><span class="c1"># We don&#39;t care about the DOWN message now, so let&#39;s demonitor and flush it</span><span class="w">
+    </span><span class="nc">Process</span><span class="o">.</span><span class="n">demonitor</span><span class="p" data-group-id="8334191196-20">(</span><span class="n">ref</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8334191196-21">[</span><span class="ss">:flush</span><span class="p" data-group-id="8334191196-21">]</span><span class="p" data-group-id="8334191196-20">)</span><span class="w">
+    </span><span class="c1"># Do something with the result and then return</span><span class="w">
+    </span><span class="p" data-group-id="8334191196-22">{</span><span class="ss">:noreply</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8334191196-23">%{</span><span class="n">state</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="ss">ref</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p" data-group-id="8334191196-23">}</span><span class="p" data-group-id="8334191196-22">}</span><span class="w">
+  </span><span class="k" data-group-id="8334191196-19">end</span><span class="w">
+
+  </span><span class="c1"># The task failed</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">handle_info</span><span class="p" data-group-id="8334191196-24">(</span><span class="p" data-group-id="8334191196-25">{</span><span class="ss">:DOWN</span><span class="p">,</span><span class="w"> </span><span class="n">ref</span><span class="p">,</span><span class="w"> </span><span class="ss">:process</span><span class="p">,</span><span class="w"> </span><span class="c">_pid</span><span class="p">,</span><span class="w"> </span><span class="c">_reason</span><span class="p" data-group-id="8334191196-25">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8334191196-26">%{</span><span class="ss">ref</span><span class="p">:</span><span class="w"> </span><span class="n">ref</span><span class="p" data-group-id="8334191196-26">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p" data-group-id="8334191196-24">)</span><span class="w"> </span><span class="k" data-group-id="8334191196-27">do</span><span class="w">
+    </span><span class="c1"># Log and possibly restart the task...</span><span class="w">
+    </span><span class="p" data-group-id="8334191196-28">{</span><span class="ss">:noreply</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8334191196-29">%{</span><span class="n">state</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="ss">ref</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p" data-group-id="8334191196-29">}</span><span class="p" data-group-id="8334191196-28">}</span><span class="w">
+  </span><span class="k" data-group-id="8334191196-27">end</span><span class="w">
+</span><span class="k" data-group-id="8334191196-1">end</span></code></pre>
+  </section>
+</section>
+
+
+<section class="detail" id="async_nolink/5">
+
+    <span id="async_nolink/4"></span>
+
+  <div class="detail-header">
+    <a href="#async_nolink/5" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">async_nolink(supervisor, module, fun, args, options \\ [])</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/fb151383ab866230694712690fe9a583dc32a9db/lib/elixir/lib/task/supervisor.ex#L242" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>async_nolink(<a href="Supervisor.html#t:supervisor/0">Supervisor.supervisor</a>(), <a href="typespecs.html#built-in-types">module</a>(), <a href="typespecs.html#basic-types">atom</a>(), [<a href="typespecs.html#built-in-types">term</a>()], <a href="Keyword.html#t:t/0">Keyword.t</a>()) ::
+  <a href="Task.html#t:t/0">Task.t</a>()</pre>
+
+      </div>
+
+<p>Starts a task that can be awaited on.</p><p>The <code class="inline">supervisor</code> must be a reference as defined in <a href="Supervisor.html"><code class="inline">Supervisor</code></a>.
+The task won't be linked to the caller, see <a href="Task.html#async/3"><code class="inline">Task.async/3</code></a> for
+more information.</p><p>Raises an error if <code class="inline">supervisor</code> has reached the maximum number of
+children.</p><p>Note this function requires the task supervisor to have <code class="inline">:temporary</code>
+as the <code class="inline">:restart</code> option (the default), as <a href="#async_nolink/4"><code class="inline">async_nolink/4</code></a> keeps a
+direct reference to the task which is lost if the task is restarted.</p>
+  </section>
+</section>
+
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.1) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

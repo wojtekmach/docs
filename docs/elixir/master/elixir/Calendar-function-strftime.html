@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.1">
+    <meta name="project" content="Elixir v1.13.0-dev">
+
+    <title>Calendar.strftime — Elixir v1.13.0-dev</title>
+    <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
+
+      <link rel="canonical" href="https://hexdocs.pm/elixir/master/" />
+
+    <script src="dist/sidebar_items-ed39eda610.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName">
+Elixir
+      </a>
+      <strong class="sidebar-projectVersion">
+        v1.13.0-dev
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>Calendar.strftime</h1>
+
+<div class="deprecated">
+  You're seeing just the function <code>strftime</code>, go back to <a href="Calendar.html">Calendar</a> module for more information.
+</div>
+
+<section class="detail" id="strftime/3">
+
+    <span id="strftime/2"></span>
+
+  <div class="detail-header">
+    <a href="#strftime/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">strftime(date_or_time_or_datetime, string_format, user_options \\ [])</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/calendar.ex#L523" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.11.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>strftime(<a href="typespecs.html#basic-types">map</a>(), <a href="String.html#t:t/0">String.t</a>(), <a href="typespecs.html#built-in-types">keyword</a>()) :: <a href="String.html#t:t/0">String.t</a>()</pre>
+
+      </div>
+
+<p>Formats received datetime into a string.</p><p>The datetime can be any of the Calendar types (<a href="Time.html"><code class="inline">Time</code></a>, <a href="Date.html"><code class="inline">Date</code></a>,
+<a href="NaiveDateTime.html"><code class="inline">NaiveDateTime</code></a>, and <a href="DateTime.html"><code class="inline">DateTime</code></a>) or any map, as long as they
+contain all of the relevant fields necessary for formatting.
+For example, if you use <code class="inline">%Y</code> to format the year, the datetime
+must have the <code class="inline">:year</code> field. Therefore, if you pass a <a href="Time.html"><code class="inline">Time</code></a>,
+or a map without the <code class="inline">:year</code> field to a format that expects <code class="inline">%Y</code>,
+an error will be raised.</p><h2 id="strftime/3-options" class="section-heading">
+  <a href="#strftime/3-options" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Options
+</h2>
+<ul><li><p><code class="inline">:preferred_datetime</code> - a string for the preferred format to show datetimes,
+it can't contain the <code class="inline">%c</code> format and defaults to <code class="inline">&quot;%Y-%m-%d %H:%M:%S&quot;</code>
+if the option is not received</p></li><li><p><code class="inline">:preferred_date</code> - a string for the preferred format to show dates,
+it can't contain the <code class="inline">%x</code> format and defaults to <code class="inline">&quot;%Y-%m-%d&quot;</code>
+if the option is not received</p></li><li><p><code class="inline">:preferred_time</code> - a string for the preferred format to show times,
+it can't contain the <code class="inline">%X</code> format and defaults to <code class="inline">&quot;%H:%M:%S&quot;</code>
+if the option is not received</p></li><li><p><code class="inline">:am_pm_names</code> - a function that receives either <code class="inline">:am</code> or <code class="inline">:pm</code> and returns
+the name of the period of the day, if the option is not received it defaults
+to a function that returns <code class="inline">&quot;am&quot;</code> and <code class="inline">&quot;pm&quot;</code>, respectively</p></li><li><p> <code class="inline">:month_names</code> - a function that receives a number and returns the name of
+the corresponding month, if the option is not received it defaults to a
+function that returns the month names in English</p></li><li><p><code class="inline">:abbreviated_month_names</code> - a function that receives a number and returns the
+abbreviated name of the corresponding month, if the option is not received it
+defaults to a function that returns the abbreviated month names in English</p></li><li><p><code class="inline">:day_of_week_names</code> - a function that receives a number and returns the name of
+the corresponding day of week, if the option is not received it defaults to a
+function that returns the day of week names in English</p></li><li><p><code class="inline">:abbreviated_day_of_week_names</code> - a function that receives a number and returns
+the abbreviated name of the corresponding day of week, if the option is not received
+it defaults to a function that returns the abbreviated day of week names in English</p></li></ul><h2 id="strftime/3-formatting-syntax" class="section-heading">
+  <a href="#strftime/3-formatting-syntax" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Formatting syntax
+</h2>
+<p>The formatting syntax for strftime is a sequence of characters in the following format:</p><pre><code class="makeup elixir"><span class="p">%</span><span class="o">&lt;</span><span class="n">padding</span><span class="o">&gt;</span><span class="o">&lt;</span><span class="n">width</span><span class="o">&gt;</span><span class="o">&lt;</span><span class="n">format</span><span class="o">&gt;</span></code></pre><p>where:</p><ul><li><code class="inline">%</code>: indicates the start of a formatted section</li><li><code class="inline">&lt;padding&gt;</code>: set the padding (see below)</li><li><code class="inline">&lt;width&gt;</code>: a number indicating the minimum size of the formatted section</li><li><code class="inline">&lt;format&gt;</code>: the format itself (see below)</li></ul><h3 id="strftime/3-accepted-padding-options" class="section-heading">
+  <a href="#strftime/3-accepted-padding-options" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Accepted padding options
+</h3>
+<ul><li><code class="inline">-</code>: no padding, removes all padding from the format</li><li><code class="inline">_</code>: pad with spaces</li><li><code class="inline">0</code>: pad with zeroes</li></ul><h3 id="strftime/3-accepted-formats" class="section-heading">
+  <a href="#strftime/3-accepted-formats" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Accepted formats
+</h3>
+<p>The accepted formats are:</p><table><thead><tr><th style="text-align: left;">Format</th><th style="text-align: left;">Description</th><th style="text-align: left;">Examples (in ISO)</th></tr></thead><tbody><tr><td style="text-align: left;">a</td><td style="text-align: left;">Abbreviated name of day</td><td style="text-align: left;">Mon</td></tr><tr><td style="text-align: left;">A</td><td style="text-align: left;">Full name of day</td><td style="text-align: left;">Monday</td></tr><tr><td style="text-align: left;">b</td><td style="text-align: left;">Abbreviated month name</td><td style="text-align: left;">Jan</td></tr><tr><td style="text-align: left;">B</td><td style="text-align: left;">Full month name</td><td style="text-align: left;">January</td></tr><tr><td style="text-align: left;">c</td><td style="text-align: left;">Preferred date+time representation</td><td style="text-align: left;">2018-10-17 12:34:56</td></tr><tr><td style="text-align: left;">d</td><td style="text-align: left;">Day of the month</td><td style="text-align: left;">01, 31</td></tr><tr><td style="text-align: left;">f</td><td style="text-align: left;">Microseconds <em>(does not support width and padding modifiers)</em></td><td style="text-align: left;">000000, 999999, 0123</td></tr><tr><td style="text-align: left;">H</td><td style="text-align: left;">Hour using a 24-hour clock</td><td style="text-align: left;">00, 23</td></tr><tr><td style="text-align: left;">I</td><td style="text-align: left;">Hour using a 12-hour clock</td><td style="text-align: left;">01, 12</td></tr><tr><td style="text-align: left;">j</td><td style="text-align: left;">Day of the year</td><td style="text-align: left;">001, 366</td></tr><tr><td style="text-align: left;">m</td><td style="text-align: left;">Month</td><td style="text-align: left;">01, 12</td></tr><tr><td style="text-align: left;">M</td><td style="text-align: left;">Minute</td><td style="text-align: left;">00, 59</td></tr><tr><td style="text-align: left;">p</td><td style="text-align: left;">&quot;AM&quot; or &quot;PM&quot; (noon is &quot;PM&quot;, midnight as &quot;AM&quot;)</td><td style="text-align: left;">AM, PM</td></tr><tr><td style="text-align: left;">P</td><td style="text-align: left;">&quot;am&quot; or &quot;pm&quot; (noon is &quot;pm&quot;, midnight as &quot;am&quot;)</td><td style="text-align: left;">am, pm</td></tr><tr><td style="text-align: left;">q</td><td style="text-align: left;">Quarter</td><td style="text-align: left;">1, 2, 3, 4</td></tr><tr><td style="text-align: left;">S</td><td style="text-align: left;">Second</td><td style="text-align: left;">00, 59, 60</td></tr><tr><td style="text-align: left;">u</td><td style="text-align: left;">Day of the week</td><td style="text-align: left;">1 (Monday), 7 (Sunday)</td></tr><tr><td style="text-align: left;">x</td><td style="text-align: left;">Preferred date (without time) representation</td><td style="text-align: left;">2018-10-17</td></tr><tr><td style="text-align: left;">X</td><td style="text-align: left;">Preferred time (without date) representation</td><td style="text-align: left;">12:34:56</td></tr><tr><td style="text-align: left;">y</td><td style="text-align: left;">Year as 2-digits</td><td style="text-align: left;">01, 01, 86, 18</td></tr><tr><td style="text-align: left;">Y</td><td style="text-align: left;">Year</td><td style="text-align: left;">-0001, 0001, 1986</td></tr><tr><td style="text-align: left;">z</td><td style="text-align: left;">+hhmm/-hhmm time zone offset from UTC (empty string if naive)</td><td style="text-align: left;">+0300, -0530</td></tr><tr><td style="text-align: left;">Z</td><td style="text-align: left;">Time zone abbreviation (empty string if naive)</td><td style="text-align: left;">CET, BRST</td></tr><tr><td style="text-align: left;">%</td><td style="text-align: left;">Literal &quot;%&quot; character</td><td style="text-align: left;">%</td></tr></tbody></table><p>Any other character will be interpreted as an invalid format and raise an error</p><h2 id="strftime/3-examples" class="section-heading">
+  <a href="#strftime/3-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<p>Without options:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Calendar</span><span class="o">.</span><span class="n">strftime</span><span class="p" data-group-id="6792250112-1">(</span><span class="ld">~U[2019-08-26 13:52:06.0Z]</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;%y-%m-%d %I:%M:%S %p&quot;</span><span class="p" data-group-id="6792250112-1">)</span><span class="w">
+</span><span class="s">&quot;19-08-26 01:52:06 PM&quot;</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Calendar</span><span class="o">.</span><span class="n">strftime</span><span class="p" data-group-id="6792250112-2">(</span><span class="ld">~U[2019-08-26 13:52:06.0Z]</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;%a, %B %d %Y&quot;</span><span class="p" data-group-id="6792250112-2">)</span><span class="w">
+</span><span class="s">&quot;Mon, August 26 2019&quot;</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Calendar</span><span class="o">.</span><span class="n">strftime</span><span class="p" data-group-id="6792250112-3">(</span><span class="ld">~U[2020-04-02 13:52:06.0Z]</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;%B %-d, %Y&quot;</span><span class="p" data-group-id="6792250112-3">)</span><span class="w">
+</span><span class="s">&quot;April 2, 2020&quot;</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Calendar</span><span class="o">.</span><span class="n">strftime</span><span class="p" data-group-id="6792250112-4">(</span><span class="ld">~U[2019-08-26 13:52:06.0Z]</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;%c&quot;</span><span class="p" data-group-id="6792250112-4">)</span><span class="w">
+</span><span class="s">&quot;2019-08-26 13:52:06&quot;</span></code></pre><p>With options:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Calendar</span><span class="o">.</span><span class="n">strftime</span><span class="p" data-group-id="2486541410-1">(</span><span class="ld">~U[2019-08-26 13:52:06.0Z]</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;%c&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">preferred_datetime</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;%H:%M:%S %d-%m-%y&quot;</span><span class="p" data-group-id="2486541410-1">)</span><span class="w">
+</span><span class="s">&quot;13:52:06 26-08-19&quot;</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Calendar</span><span class="o">.</span><span class="n">strftime</span><span class="p" data-group-id="2486541410-2">(</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w"> </span><span class="ld">~U[2019-08-26 13:52:06.0Z]</span><span class="p">,</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w"> </span><span class="s">&quot;%A&quot;</span><span class="p">,</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w"> </span><span class="ss">day_of_week_names</span><span class="p">:</span><span class="w"> </span><span class="k" data-group-id="2486541410-3">fn</span><span class="w"> </span><span class="n">day_of_week</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">   </span><span class="p" data-group-id="2486541410-4">{</span><span class="s">&quot;segunda-feira&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;terça-feira&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;quarta-feira&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;quinta-feira&quot;</span><span class="p">,</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">   </span><span class="s">&quot;sexta-feira&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sábado&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;domingo&quot;</span><span class="p" data-group-id="2486541410-4">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">   </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">elem</span><span class="p" data-group-id="2486541410-5">(</span><span class="n">day_of_week</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="2486541410-5">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w"> </span><span class="k" data-group-id="2486541410-3">end</span><span class="w">
+</span><span class="gp unselectable">...&gt;</span><span class="p" data-group-id="2486541410-2">)</span><span class="w">
+</span><span class="s">&quot;segunda-feira&quot;</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Calendar</span><span class="o">.</span><span class="n">strftime</span><span class="p" data-group-id="2486541410-6">(</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w"> </span><span class="ld">~U[2019-08-26 13:52:06.0Z]</span><span class="p">,</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w"> </span><span class="s">&quot;%B&quot;</span><span class="p">,</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w"> </span><span class="ss">month_names</span><span class="p">:</span><span class="w"> </span><span class="k" data-group-id="2486541410-7">fn</span><span class="w"> </span><span class="n">month</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">   </span><span class="p" data-group-id="2486541410-8">{</span><span class="s">&quot;январь&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;февраль&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;март&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;апрель&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;май&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;июнь&quot;</span><span class="p">,</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">   </span><span class="s">&quot;июль&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;август&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;сентябрь&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;октябрь&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ноябрь&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;декабрь&quot;</span><span class="p" data-group-id="2486541410-8">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">   </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">elem</span><span class="p" data-group-id="2486541410-9">(</span><span class="n">month</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="2486541410-9">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w"> </span><span class="k" data-group-id="2486541410-7">end</span><span class="w">
+</span><span class="gp unselectable">...&gt;</span><span class="p" data-group-id="2486541410-6">)</span><span class="w">
+</span><span class="s">&quot;август&quot;</span></code></pre>
+  </section>
+</section>
+
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.1) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

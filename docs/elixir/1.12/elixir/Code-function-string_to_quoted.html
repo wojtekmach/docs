@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.1">
+    <meta name="project" content="Elixir v1.12.0-rc.0">
+
+    <title>Code.string_to_quoted — Elixir v1.12.0-rc.0</title>
+    <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
+
+      <link rel="canonical" href="https://hexdocs.pm/elixir/1.12/" />
+
+    <script src="dist/sidebar_items-1a6c36a221.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName">
+Elixir
+      </a>
+      <strong class="sidebar-projectVersion">
+        v1.12.0-rc.0
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>Code.string_to_quoted</h1>
+
+<div class="deprecated">
+  You're seeing just the function <code>string_to_quoted</code>, go back to <a href="Code.html">Code</a> module for more information.
+</div>
+
+<section class="detail" id="string_to_quoted/2">
+
+    <span id="string_to_quoted/1"></span>
+
+  <div class="detail-header">
+    <a href="#string_to_quoted/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">string_to_quoted(string, opts \\ [])</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/fb151383ab866230694712690fe9a583dc32a9db/lib/elixir/lib/code.ex#L910" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>string_to_quoted(<a href="List.Chars.html#t:t/0">List.Chars.t</a>(), <a href="typespecs.html#built-in-types">keyword</a>()) ::
+  {:ok, <a href="Macro.html#t:t/0">Macro.t</a>()} | {:error, {location :: <a href="typespecs.html#built-in-types">keyword</a>(), <a href="typespecs.html#built-in-types">term</a>(), <a href="typespecs.html#built-in-types">term</a>()}}</pre>
+
+      </div>
+
+<p>Converts the given string to its quoted form.</p><p>Returns <code class="inline">{:ok, quoted_form}</code> if it succeeds,
+<code class="inline">{:error, {line, error, token}}</code> otherwise.</p><h2 id="string_to_quoted/2-options" class="section-heading">
+  <a href="#string_to_quoted/2-options" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Options
+</h2>
+<ul><li><p><code class="inline">:file</code> - the filename to be reported in case of parsing errors.
+Defaults to &quot;nofile&quot;.</p></li><li><p><code class="inline">:line</code> - the starting line of the string being parsed.
+Defaults to 1.</p></li><li><p><code class="inline">:column</code> - (since v1.11.0) the starting column of the string being parsed.
+Defaults to 1.</p></li><li><p><code class="inline">:columns</code> - when <code class="inline">true</code>, attach a <code class="inline">:column</code> key to the quoted
+metadata. Defaults to <code class="inline">false</code>.</p></li><li><p><code class="inline">:existing_atoms_only</code> - when <code class="inline">true</code>, raises an error
+when non-existing atoms are found by the tokenizer.
+Defaults to <code class="inline">false</code>.</p></li><li><p><code class="inline">:token_metadata</code> (since v1.10.0) - when <code class="inline">true</code>, includes token-related
+metadata in the expression AST, such as metadata for <code class="inline">do</code> and <code class="inline">end</code>
+tokens, for closing tokens, end of expressions, as well as delimiters
+for sigils. See <a href="Macro.html#t:metadata/0"><code class="inline">Macro.metadata/0</code></a>. Defaults to <code class="inline">false</code>.</p></li><li><p><code class="inline">:literal_encoder</code> (since v1.10.0) - how to encode literals in the AST.
+It must be a function that receives two arguments, the literal and its
+metadata, and it must return <code class="inline">{:ok, ast :: Macro.t}</code> or
+<code class="inline">{:error, reason :: binary}</code>. If you return anything than the literal
+itself as the <code class="inline">term</code>, then the AST is no longer valid. This option
+may still useful for textual analysis of the source code.</p></li><li><p><code class="inline">:static_atoms_encoder</code> - the static atom encoder function, see
+&quot;The <code class="inline">:static_atoms_encoder</code> function&quot; section below. Note this
+option overrides the <code class="inline">:existing_atoms_only</code> behaviour for static
+atoms but <code class="inline">:existing_atoms_only</code> is still used for dynamic atoms,
+such as atoms with interpolations.</p></li><li><p><code class="inline">:warn_on_unnecessary_quotes</code> - when <code class="inline">false</code>, does not warn
+when atoms, keywords or calls have unnecessary quotes on
+them. Defaults to <code class="inline">true</code>.</p></li></ul><h2 id="string_to_quoted/2-macro-to_string-2" class="section-heading">
+  <a href="#string_to_quoted/2-macro-to_string-2" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  <a href="Macro.html#to_string/2"><code class="inline">Macro.to_string/2</code></a>
+</h2>
+<p>The opposite of converting a string to its quoted form is
+<a href="Macro.html#to_string/2"><code class="inline">Macro.to_string/2</code></a>, which converts a quoted form to a string/binary
+representation.</p><h2 id="string_to_quoted/2-the-static_atoms_encoder-function" class="section-heading">
+  <a href="#string_to_quoted/2-the-static_atoms_encoder-function" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  The <code class="inline">:static_atoms_encoder</code> function
+</h2>
+<p>When <code class="inline">static_atoms_encoder: &amp;my_encoder/2</code> is passed as an argument,
+<code class="inline">my_encoder/2</code> is called every time the tokenizer needs to create a
+&quot;static&quot; atom. Static atoms are atoms in the AST that function as
+aliases, remote calls, local calls, variable names, regular atoms
+and keyword lists.</p><p>The encoder function will receive the atom name (as a binary) and a
+keyword list with the current file, line and column. It must return
+<code class="inline">{:ok, token :: term} | {:error, reason :: binary}</code>.</p><p>The encoder function is supposed to create an atom from the given
+string. To produce a valid AST, it is required to return <code class="inline">{:ok, term}</code>,
+where <code class="inline">term</code> is an atom. It is possible to return something other than an atom,
+however, in that case the AST is no longer &quot;valid&quot; in that it cannot
+be used to compile or evaluate Elixir code. A use case for this is
+if you want to use the Elixir parser in a user-facing situation, but
+you don't want to exhaust the atom table.</p><p>The atom encoder is not called for <em>all</em> atoms that are present in
+the AST. It won't be invoked for the following atoms:</p><ul><li><p>operators (<code class="inline">:+</code>, <code class="inline">:-</code>, and so on)</p></li><li><p>syntax keywords (<code class="inline">fn</code>, <code class="inline">do</code>, <code class="inline">else</code>, and so on)</p></li><li><p>atoms containing interpolation (<code class="inline">:&quot;#{1 + 1} is two&quot;</code>), as these
+atoms are constructed at runtime.</p></li></ul>
+  </section>
+</section>
+
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.1) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

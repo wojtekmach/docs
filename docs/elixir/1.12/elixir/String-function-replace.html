@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.1">
+    <meta name="project" content="Elixir v1.12.0-rc.0">
+
+    <title>String.replace — Elixir v1.12.0-rc.0</title>
+    <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
+
+      <link rel="canonical" href="https://hexdocs.pm/elixir/1.12/" />
+
+    <script src="dist/sidebar_items-1a6c36a221.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName">
+Elixir
+      </a>
+      <strong class="sidebar-projectVersion">
+        v1.12.0-rc.0
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>String.replace</h1>
+
+<div class="deprecated">
+  You're seeing just the function <code>replace</code>, go back to <a href="String.html">String</a> module for more information.
+</div>
+
+<section class="detail" id="replace/4">
+
+    <span id="replace/3"></span>
+
+  <div class="detail-header">
+    <a href="#replace/4" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">replace(subject, pattern, replacement, options \\ [])</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/fb151383ab866230694712690fe9a583dc32a9db/lib/elixir/lib/string.ex#L1467" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>replace(<a href="#t:t/0">t</a>(), <a href="#t:pattern/0">pattern</a>() | <a href="Regex.html#t:t/0">Regex.t</a>(), <a href="#t:t/0">t</a>() | (<a href="#t:t/0">t</a>() -&gt; <a href="#t:t/0">t</a>() | <a href="typespecs.html#built-in-types">iodata</a>()), <a href="typespecs.html#built-in-types">keyword</a>()) ::
+  <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+<p>Returns a new string created by replacing occurrences of <code class="inline">pattern</code> in
+<code class="inline">subject</code> with <code class="inline">replacement</code>.</p><p>The <code class="inline">subject</code> is always a string.</p><p>The <code class="inline">pattern</code> may be a string, a list of strings, a regular expression, or a
+compiled pattern.</p><p>The <code class="inline">replacement</code> may be a string or a function that receives the matched
+pattern and must return the replacement as a string or iodata.</p><p>By default it replaces all occurrences but this behaviour can be controlled
+through the <code class="inline">:global</code> option; see the &quot;Options&quot; section below.</p><h2 id="replace/4-options" class="section-heading">
+  <a href="#replace/4-options" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Options
+</h2>
+<ul><li><code class="inline">:global</code> - (boolean) if <code class="inline">true</code>, all occurrences of <code class="inline">pattern</code> are replaced
+with <code class="inline">replacement</code>, otherwise only the first occurrence is
+replaced. Defaults to <code class="inline">true</code></li></ul><h2 id="replace/4-examples" class="section-heading">
+  <a href="#replace/4-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">String</span><span class="o">.</span><span class="n">replace</span><span class="p" data-group-id="1171155082-1">(</span><span class="s">&quot;a,b,c&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;-&quot;</span><span class="p" data-group-id="1171155082-1">)</span><span class="w">
+</span><span class="s">&quot;a-b-c&quot;</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">String</span><span class="o">.</span><span class="n">replace</span><span class="p" data-group-id="1171155082-2">(</span><span class="s">&quot;a,b,c&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;-&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">global</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="p" data-group-id="1171155082-2">)</span><span class="w">
+</span><span class="s">&quot;a-b,c&quot;</span></code></pre><p>The pattern may also be a list of strings and the replacement may also
+be a function that receives the matches:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">String</span><span class="o">.</span><span class="n">replace</span><span class="p" data-group-id="7939447541-1">(</span><span class="s">&quot;a,b,c&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="7939447541-2">[</span><span class="s">&quot;a&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;c&quot;</span><span class="p" data-group-id="7939447541-2">]</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="7939447541-3">fn</span><span class="w"> </span><span class="p" data-group-id="7939447541-4">&lt;&lt;</span><span class="n">char</span><span class="p" data-group-id="7939447541-4">&gt;&gt;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p" data-group-id="7939447541-5">&lt;&lt;</span><span class="n">char</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="7939447541-5">&gt;&gt;</span><span class="w"> </span><span class="k" data-group-id="7939447541-3">end</span><span class="p" data-group-id="7939447541-1">)</span><span class="w">
+</span><span class="s">&quot;b,b,d&quot;</span></code></pre><p>When the pattern is a regular expression, one can give <code class="inline">\N</code> or
+<code class="inline">\g{N}</code> in the <code class="inline">replacement</code> string to access a specific capture in the
+regular expression:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">String</span><span class="o">.</span><span class="n">replace</span><span class="p" data-group-id="5531594170-1">(</span><span class="s">&quot;a,b,c&quot;</span><span class="p">,</span><span class="w"> </span><span class="sr">~r/,(.)/</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;,</span><span class="se">\\</span><span class="s">1</span><span class="se">\\</span><span class="s">g{1}&quot;</span><span class="p" data-group-id="5531594170-1">)</span><span class="w">
+</span><span class="s">&quot;a,bb,cc&quot;</span></code></pre><p>Note that we had to escape the backslash escape character (i.e., we used <code class="inline">\\N</code>
+instead of just <code class="inline">\N</code> to escape the backslash; same thing for <code class="inline">\\g{N}</code>). By
+giving <code class="inline">\0</code>, one can inject the whole match in the replacement string.</p><p>A compiled pattern can also be given:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:binary</span><span class="o">.</span><span class="n">compile_pattern</span><span class="p" data-group-id="7276484434-1">(</span><span class="s">&quot;,&quot;</span><span class="p" data-group-id="7276484434-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">String</span><span class="o">.</span><span class="n">replace</span><span class="p" data-group-id="7276484434-2">(</span><span class="s">&quot;a,b,c&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pattern</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;[]&quot;</span><span class="p" data-group-id="7276484434-2">)</span><span class="w">
+</span><span class="s">&quot;a[]b[]c&quot;</span></code></pre><p>When an empty string is provided as a <code class="inline">pattern</code>, the function will treat it as
+an implicit empty string between each grapheme and the string will be
+interspersed. If an empty string is provided as <code class="inline">replacement</code> the <code class="inline">subject</code>
+will be returned:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">String</span><span class="o">.</span><span class="n">replace</span><span class="p" data-group-id="0368671191-1">(</span><span class="s">&quot;ELIXIR&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;.&quot;</span><span class="p" data-group-id="0368671191-1">)</span><span class="w">
+</span><span class="s">&quot;.E.L.I.X.I.R.&quot;</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">String</span><span class="o">.</span><span class="n">replace</span><span class="p" data-group-id="0368671191-2">(</span><span class="s">&quot;ELIXIR&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p" data-group-id="0368671191-2">)</span><span class="w">
+</span><span class="s">&quot;ELIXIR&quot;</span></code></pre>
+  </section>
+</section>
+
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.1) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

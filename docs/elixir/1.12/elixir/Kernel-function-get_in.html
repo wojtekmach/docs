@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.1">
+    <meta name="project" content="Elixir v1.12.0-rc.0">
+
+    <title>Kernel.get_in — Elixir v1.12.0-rc.0</title>
+    <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
+
+      <link rel="canonical" href="https://hexdocs.pm/elixir/1.12/" />
+
+    <script src="dist/sidebar_items-1a6c36a221.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName">
+Elixir
+      </a>
+      <strong class="sidebar-projectVersion">
+        v1.12.0-rc.0
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>Kernel.get_in</h1>
+
+<div class="deprecated">
+  You're seeing just the function <code>get_in</code>, go back to <a href="Kernel.html">Kernel</a> module for more information.
+</div>
+
+<section class="detail" id="get_in/2">
+
+  <div class="detail-header">
+    <a href="#get_in/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">get_in(data, keys)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/fb151383ab866230694712690fe9a583dc32a9db/lib/elixir/lib/kernel.ex#L2594" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>get_in(<a href="Access.html#t:t/0">Access.t</a>(), [<a href="typespecs.html#built-in-types">term</a>(), ...]) :: <a href="typespecs.html#built-in-types">term</a>()</pre>
+
+      </div>
+
+<p>Gets a value from a nested structure.</p><p>Uses the <a href="Access.html"><code class="inline">Access</code></a> module to traverse the structures
+according to the given <code class="inline">keys</code>, unless the <code class="inline">key</code> is a
+function, which is detailed in a later section.</p><h2 id="get_in/2-examples" class="section-heading">
+  <a href="#get_in/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="8529665604-1">%{</span><span class="s">&quot;john&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="p" data-group-id="8529665604-2">%{</span><span class="ss">age</span><span class="p">:</span><span class="w"> </span><span class="mi">27</span><span class="p" data-group-id="8529665604-2">}</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;meg&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="p" data-group-id="8529665604-3">%{</span><span class="ss">age</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p" data-group-id="8529665604-3">}</span><span class="p" data-group-id="8529665604-1">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">get_in</span><span class="p" data-group-id="8529665604-4">(</span><span class="n">users</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8529665604-5">[</span><span class="s">&quot;john&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">:age</span><span class="p" data-group-id="8529665604-5">]</span><span class="p" data-group-id="8529665604-4">)</span><span class="w">
+</span><span class="mi">27</span></code></pre><p>In case any of the keys returns <code class="inline">nil</code>, <code class="inline">nil</code> will be returned:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="3110368262-1">%{</span><span class="s">&quot;john&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="p" data-group-id="3110368262-2">%{</span><span class="ss">age</span><span class="p">:</span><span class="w"> </span><span class="mi">27</span><span class="p" data-group-id="3110368262-2">}</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;meg&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="p" data-group-id="3110368262-3">%{</span><span class="ss">age</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p" data-group-id="3110368262-3">}</span><span class="p" data-group-id="3110368262-1">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">get_in</span><span class="p" data-group-id="3110368262-4">(</span><span class="n">users</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="3110368262-5">[</span><span class="s">&quot;unknown&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">:age</span><span class="p" data-group-id="3110368262-5">]</span><span class="p" data-group-id="3110368262-4">)</span><span class="w">
+</span><span class="no">nil</span></code></pre><p>Note that <code class="inline">get_in</code> exists mostly for convenience and parity with
+functionality found in <code class="inline">put_in</code> and <code class="inline">update_in</code>. Given Elixir
+provides pattern matching, it can often be more expressive for
+deep data traversal, for example:</p><pre><code class="makeup elixir"><span class="k">case</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k" data-group-id="9244764787-1">do</span><span class="w">
+  </span><span class="p" data-group-id="9244764787-2">%{</span><span class="s">&quot;unknown&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="p" data-group-id="9244764787-3">%{</span><span class="ss">age</span><span class="p">:</span><span class="w"> </span><span class="n">age</span><span class="p" data-group-id="9244764787-3">}</span><span class="p" data-group-id="9244764787-2">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">age</span><span class="w">
+  </span><span class="bp">_</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">default_value</span><span class="w">
+</span><span class="k" data-group-id="9244764787-1">end</span></code></pre><h2 id="get_in/2-functions-as-keys" class="section-heading">
+  <a href="#get_in/2-functions-as-keys" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Functions as keys
+</h2>
+<p>If a key is a function, the function will be invoked passing three
+arguments:</p><ul><li>the operation (<code class="inline">:get</code>)</li><li>the data to be accessed</li><li>a function to be invoked next</li></ul><p>This means <a href="#get_in/2"><code class="inline">get_in/2</code></a> can be extended to provide custom lookups.
+In the example below, we use a function to get all the maps inside
+a list:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="9516848335-1">[</span><span class="p" data-group-id="9516848335-2">%{</span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;john&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">age</span><span class="p">:</span><span class="w"> </span><span class="mi">27</span><span class="p" data-group-id="9516848335-2">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9516848335-3">%{</span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;meg&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">age</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p" data-group-id="9516848335-3">}</span><span class="p" data-group-id="9516848335-1">]</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">all</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k" data-group-id="9516848335-4">fn</span><span class="w"> </span><span class="ss">:get</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">next</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nc">Enum</span><span class="o">.</span><span class="n">map</span><span class="p" data-group-id="9516848335-5">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">next</span><span class="p" data-group-id="9516848335-5">)</span><span class="w"> </span><span class="k" data-group-id="9516848335-4">end</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">get_in</span><span class="p" data-group-id="9516848335-6">(</span><span class="n">users</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9516848335-7">[</span><span class="n">all</span><span class="p">,</span><span class="w"> </span><span class="ss">:age</span><span class="p" data-group-id="9516848335-7">]</span><span class="p" data-group-id="9516848335-6">)</span><span class="w">
+</span><span class="p" data-group-id="9516848335-8">[</span><span class="mi">27</span><span class="p">,</span><span class="w"> </span><span class="mi">23</span><span class="p" data-group-id="9516848335-8">]</span></code></pre><p>If the previous value before invoking the function is <code class="inline">nil</code>,
+the function <em>will</em> receive <code class="inline">nil</code> as a value and must handle it
+accordingly.</p><p>The <a href="Access.html"><code class="inline">Access</code></a> module ships with many convenience accessor functions,
+like the <code class="inline">all</code> anonymous function defined above. See <a href="Access.html#all/0"><code class="inline">Access.all/0</code></a>,
+<a href="Access.html#key/2"><code class="inline">Access.key/2</code></a>, and others as examples.</p><h2 id="get_in/2-working-with-structs" class="section-heading">
+  <a href="#get_in/2-working-with-structs" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Working with structs
+</h2>
+<p>By default, structs do not implement the <a href="Access.html"><code class="inline">Access</code></a> behaviour required
+by this function. Therefore, you can't do this:</p><pre><code class="makeup elixir"><span class="n">get_in</span><span class="p" data-group-id="2919422283-1">(</span><span class="n">some_struct</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2919422283-2">[</span><span class="ss">:some_key</span><span class="p">,</span><span class="w"> </span><span class="ss">:nested_key</span><span class="p" data-group-id="2919422283-2">]</span><span class="p" data-group-id="2919422283-1">)</span></code></pre><p>The good news is that structs have predefined shape. Therefore,
+you can write instead:</p><pre><code class="makeup elixir"><span class="n">some_struct</span><span class="o">.</span><span class="n">some_key</span><span class="o">.</span><span class="n">nested_key</span></code></pre><p>If, by any chance, <code class="inline">some_key</code> can return nil, you can always
+fallback to pattern matching to provide nested struct handling:</p><pre><code class="makeup elixir"><span class="k">case</span><span class="w"> </span><span class="n">some_struct</span><span class="w"> </span><span class="k" data-group-id="7799056212-1">do</span><span class="w">
+  </span><span class="p" data-group-id="7799056212-2">%{</span><span class="ss">some_key</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="7799056212-3">%{</span><span class="ss">nested_key</span><span class="p">:</span><span class="w"> </span><span class="n">value</span><span class="p" data-group-id="7799056212-3">}</span><span class="p" data-group-id="7799056212-2">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">value</span><span class="w">
+  </span><span class="p" data-group-id="7799056212-4">%{</span><span class="p" data-group-id="7799056212-4">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="no">nil</span><span class="w">
+</span><span class="k" data-group-id="7799056212-1">end</span></code></pre>
+  </section>
+</section>
+
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.1) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

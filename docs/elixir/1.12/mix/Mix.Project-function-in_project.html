@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.1">
+    <meta name="project" content="Mix v1.12.0-rc.0">
+
+    <title>Mix.Project.in_project — Mix v1.12.0-rc.0</title>
+    <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
+
+      <link rel="canonical" href="https://hexdocs.pm/mix/1.12/" />
+
+    <script src="dist/sidebar_items-b148a62ff0.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName">
+Mix
+      </a>
+      <strong class="sidebar-projectVersion">
+        v1.12.0-rc.0
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+      <li><a id="tasks-list-link" href="#full-list">Mix Tasks</a></li>
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>Mix.Project.in_project</h1>
+
+<div class="deprecated">
+  You're seeing just the function <code>in_project</code>, go back to <a href="Mix.Project.html">Mix.Project</a> module for more information.
+</div>
+
+<section class="detail" id="in_project/4">
+
+    <span id="in_project/3"></span>
+
+  <div class="detail-header">
+    <a href="#in_project/4" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">in_project(app, path, post_config \\ [], fun)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/fb151383ab866230694712690fe9a583dc32a9db/lib/mix/lib/mix/project.ex#L340" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>in_project(<a href="https://hexdocs.pm/elixir/1.12/typespecs.html#basic-types">atom</a>(), <a href="https://hexdocs.pm/elixir/1.12/Path.html#t:t/0">Path.t</a>(), <a href="https://hexdocs.pm/elixir/1.12/typespecs.html#built-in-types">keyword</a>(), (<a href="https://hexdocs.pm/elixir/1.12/typespecs.html#built-in-types">module</a>() -&gt; result)) :: result
+when result: <a href="https://hexdocs.pm/elixir/1.12/typespecs.html#built-in-types">term</a>()</pre>
+
+      </div>
+
+<p>Runs the given <code class="inline">fun</code> inside the given project.</p><p>This function changes the current working directory and
+loads the project at the given directory onto the project
+stack.</p><p>A <code class="inline">post_config</code> can be passed that will be merged into
+the project configuration.</p><p><code class="inline">fun</code> is called with the module name of the given <a href="Mix.Project.html#content"><code class="inline">Mix.Project</code></a>.
+The return value of this function is the return value of <code class="inline">fun</code>.</p><h2 id="in_project/4-examples" class="section-heading">
+  <a href="#in_project/4-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="nc">Mix.Project</span><span class="o">.</span><span class="n">in_project</span><span class="p" data-group-id="9634863101-1">(</span><span class="ss">:my_app</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;/path/to/my_app&quot;</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="9634863101-2">fn</span><span class="w"> </span><span class="n">module</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+  </span><span class="s">&quot;Mix project is: </span><span class="si" data-group-id="9634863101-3">#{</span><span class="n">inspect</span><span class="p" data-group-id="9634863101-4">(</span><span class="n">module</span><span class="p" data-group-id="9634863101-4">)</span><span class="si" data-group-id="9634863101-3">}</span><span class="s">&quot;</span><span class="w">
+</span><span class="k" data-group-id="9634863101-2">end</span><span class="p" data-group-id="9634863101-1">)</span><span class="w">
+</span><span class="c1">#=&gt; &quot;Mix project is: MyApp.MixProject&quot;</span></code></pre>
+  </section>
+</section>
+
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.1) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

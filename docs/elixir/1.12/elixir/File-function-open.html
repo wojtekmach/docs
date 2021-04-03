@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.1">
+    <meta name="project" content="Elixir v1.12.0-rc.0">
+
+    <title>File.open — Elixir v1.12.0-rc.0</title>
+    <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
+
+      <link rel="canonical" href="https://hexdocs.pm/elixir/1.12/" />
+
+    <script src="dist/sidebar_items-1a6c36a221.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName">
+Elixir
+      </a>
+      <strong class="sidebar-projectVersion">
+        v1.12.0-rc.0
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>File.open</h1>
+
+<div class="deprecated">
+  You're seeing just the function <code>open</code>, go back to <a href="File.html">File</a> module for more information.
+</div>
+
+<section class="detail" id="open/2">
+
+    <span id="open/1"></span>
+
+  <div class="detail-header">
+    <a href="#open/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">open(path, modes_or_function \\ [])</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/fb151383ab866230694712690fe9a583dc32a9db/lib/elixir/lib/file.ex#L1382" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>open(<a href="Path.html#t:t/0">Path.t</a>(), [<a href="#t:mode/0">mode</a>() | :ram]) :: {:ok, <a href="#t:io_device/0">io_device</a>()} | {:error, <a href="#t:posix/0">posix</a>()}</pre>
+
+          <pre>open(<a href="Path.html#t:t/0">Path.t</a>(), (<a href="#t:io_device/0">io_device</a>() -&gt; res)) :: {:ok, res} | {:error, <a href="#t:posix/0">posix</a>()}
+when res: var</pre>
+
+      </div>
+
+<p>Opens the given <code class="inline">path</code>.</p><p>In order to write and read files, one must use the functions
+in the <a href="IO.html"><code class="inline">IO</code></a> module. By default, a file is opened in <code class="inline">:binary</code> mode,
+which requires the functions <a href="IO.html#binread/2"><code class="inline">IO.binread/2</code></a> and <a href="IO.html#binwrite/2"><code class="inline">IO.binwrite/2</code></a>
+to interact with the file. A developer may pass <code class="inline">:utf8</code> as an
+option when opening the file and then all other functions from
+<a href="IO.html"><code class="inline">IO</code></a> are available, since they work directly with Unicode data.</p><p><code class="inline">modes_or_function</code> can either be a list of modes or a function. If it's a
+list, it's considered to be a list of modes (that are documented below). If
+it's a function, then it's equivalent to calling <code class="inline">open(path, [], modes_or_function)</code>. See the documentation for <a href="#open/3"><code class="inline">open/3</code></a> for more information
+on this function.</p><p>The allowed modes:</p><ul><li><p><code class="inline">:binary</code> - opens the file in binary mode, disabling special handling of Unicode sequences
+(default mode).</p></li><li><p><code class="inline">:read</code> - the file, which must exist, is opened for reading.</p></li><li><p><code class="inline">:write</code> - the file is opened for writing. It is created if it does not
+exist.</p><p>If the file does exists, and if write is not combined with read, the file
+will be truncated.</p></li><li><p><code class="inline">:append</code> - the file will be opened for writing, and it will be created
+if it does not exist. Every write operation to a file opened with append
+will take place at the end of the file.</p></li><li><p><code class="inline">:exclusive</code> - the file, when opened for writing, is created if it does
+not exist. If the file exists, open will return <code class="inline">{:error, :eexist}</code>.</p></li><li><p><code class="inline">:charlist</code> - when this term is given, read operations on the file will
+return charlists rather than binaries.</p></li><li><p><code class="inline">:compressed</code> - makes it possible to read or write gzip compressed files.</p><p>The compressed option must be combined with either read or write, but not
+both. Note that the file size obtained with <a href="#stat/1"><code class="inline">stat/1</code></a> will most probably
+not match the number of bytes that can be read from a compressed file.</p></li><li><p><code class="inline">:utf8</code> - this option denotes how data is actually stored in the disk
+file and makes the file perform automatic translation of characters to
+and from UTF-8.</p><p>If data is sent to a file in a format that cannot be converted to the
+UTF-8 or if data is read by a function that returns data in a format that
+cannot cope with the character range of the data, an error occurs and the
+file will be closed.</p></li><li><p><code class="inline">:delayed_write</code>, <code class="inline">:raw</code>, <code class="inline">:ram</code>, <code class="inline">:read_ahead</code>, <code class="inline">:sync</code>, <code class="inline">{:encoding, ...}</code>,
+<code class="inline">{:read_ahead, pos_integer}</code>, <code class="inline">{:delayed_write, non_neg_integer, non_neg_integer}</code> -
+for more information about these options see <a href="https://erlang.org/doc/man/file.html#open-2"><code class="inline">:file.open/2</code></a>.</p></li></ul><p>This function returns:</p><ul><li><p><code class="inline">{:ok, io_device}</code> - the file has been opened in the requested mode.</p><p><code class="inline">io_device</code> is actually the PID of the process which handles the file.
+This process monitors the process that originally opened the file (the
+owner process). If the owner process terminates, the file is closed and
+the process itself terminates too. If any process to which the <code class="inline">io_device</code>
+is linked terminates, the file will be closed and the process itself will
+be terminated.
+An <code class="inline">io_device</code> returned from this call can be used as an argument to the
+<a href="IO.html"><code class="inline">IO</code></a> module functions.</p></li><li><p><code class="inline">{:error, reason}</code> - the file could not be opened.</p></li></ul><h2 id="open/2-examples" class="section-heading">
+  <a href="#open/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="p" data-group-id="9727118745-1">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">file</span><span class="p" data-group-id="9727118745-1">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">File</span><span class="o">.</span><span class="n">open</span><span class="p" data-group-id="9727118745-2">(</span><span class="s">&quot;foo.tar.gz&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9727118745-3">[</span><span class="ss">:read</span><span class="p">,</span><span class="w"> </span><span class="ss">:compressed</span><span class="p" data-group-id="9727118745-3">]</span><span class="p" data-group-id="9727118745-2">)</span><span class="w">
+</span><span class="nc">IO</span><span class="o">.</span><span class="n">read</span><span class="p" data-group-id="9727118745-4">(</span><span class="n">file</span><span class="p">,</span><span class="w"> </span><span class="ss">:line</span><span class="p" data-group-id="9727118745-4">)</span><span class="w">
+</span><span class="nc">File</span><span class="o">.</span><span class="n">close</span><span class="p" data-group-id="9727118745-5">(</span><span class="n">file</span><span class="p" data-group-id="9727118745-5">)</span></code></pre>
+  </section>
+</section>
+
+
+<section class="detail" id="open/3">
+
+  <div class="detail-header">
+    <a href="#open/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">open(path, modes, function)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/fb151383ab866230694712690fe9a583dc32a9db/lib/elixir/lib/file.ex#L1417" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>open(<a href="Path.html#t:t/0">Path.t</a>(), [<a href="#t:mode/0">mode</a>() | :ram], (<a href="#t:io_device/0">io_device</a>() -&gt; res)) ::
+  {:ok, res} | {:error, <a href="#t:posix/0">posix</a>()}
+when res: var</pre>
+
+      </div>
+
+<p>Similar to <a href="#open/2"><code class="inline">open/2</code></a> but expects a function as its last argument.</p><p>The file is opened, given to the function as an argument and
+automatically closed after the function returns, regardless
+if there was an error when executing the function.</p><p>Returns <code class="inline">{:ok, function_result}</code> in case of success,
+<code class="inline">{:error, reason}</code> otherwise.</p><p>This function expects the file to be closed with success,
+which is usually the case unless the <code class="inline">:delayed_write</code> option
+is given. For this reason, we do not recommend passing
+<code class="inline">:delayed_write</code> to this function.</p><h2 id="open/3-examples" class="section-heading">
+  <a href="#open/3-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="nc">File</span><span class="o">.</span><span class="n">open</span><span class="p" data-group-id="3517817348-1">(</span><span class="s">&quot;file.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="3517817348-2">[</span><span class="ss">:read</span><span class="p">,</span><span class="w"> </span><span class="ss">:write</span><span class="p" data-group-id="3517817348-2">]</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="3517817348-3">fn</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+  </span><span class="nc">IO</span><span class="o">.</span><span class="n">read</span><span class="p" data-group-id="3517817348-4">(</span><span class="n">file</span><span class="p">,</span><span class="w"> </span><span class="ss">:line</span><span class="p" data-group-id="3517817348-4">)</span><span class="w">
+</span><span class="k" data-group-id="3517817348-3">end</span><span class="p" data-group-id="3517817348-1">)</span></code></pre><p>See <a href="#open/2"><code class="inline">open/2</code></a> for the list of available <code class="inline">modes</code>.</p>
+  </section>
+</section>
+
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.1) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

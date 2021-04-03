@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.1">
+    <meta name="project" content="Elixir v1.13.0-dev">
+
+    <title>DateTime.from_unix — Elixir v1.13.0-dev</title>
+    <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
+
+      <link rel="canonical" href="https://hexdocs.pm/elixir/master/" />
+
+    <script src="dist/sidebar_items-ed39eda610.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName">
+Elixir
+      </a>
+      <strong class="sidebar-projectVersion">
+        v1.13.0-dev
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>DateTime.from_unix</h1>
+
+<div class="deprecated">
+  You're seeing just the function <code>from_unix</code>, go back to <a href="DateTime.html">DateTime</a> module for more information.
+</div>
+
+<section class="detail" id="from_unix/3">
+
+    <span id="from_unix/1"></span>
+
+    <span id="from_unix/2"></span>
+
+  <div class="detail-header">
+    <a href="#from_unix/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">from_unix(integer, unit \\ :second, calendar \\ Calendar.ISO)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/calendar/datetime.ex#L292" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>from_unix(<a href="typespecs.html#basic-types">integer</a>(), :native | <a href="System.html#t:time_unit/0">System.time_unit</a>(), <a href="Calendar.html#t:calendar/0">Calendar.calendar</a>()) ::
+  {:ok, <a href="#t:t/0">t</a>()} | {:error, <a href="typespecs.html#basic-types">atom</a>()}</pre>
+
+      </div>
+
+<p>Converts the given Unix time to <a href="DateTime.html#content"><code class="inline">DateTime</code></a>.</p><p>The integer can be given in different unit
+according to <a href="System.html#convert_time_unit/3"><code class="inline">System.convert_time_unit/3</code></a> and it will
+be converted to microseconds internally. Up to
+253402300799 seconds is supported.</p><p>Unix times are always in UTC and therefore the DateTime
+will be returned in UTC.</p><h2 id="from_unix/3-examples" class="section-heading">
+  <a href="#from_unix/3-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="8463213069-1">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">datetime</span><span class="p" data-group-id="8463213069-1">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">DateTime</span><span class="o">.</span><span class="n">from_unix</span><span class="p" data-group-id="8463213069-2">(</span><span class="mi">1_464_096_368</span><span class="p" data-group-id="8463213069-2">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">datetime</span><span class="w">
+</span><span class="ld">~U[2016-05-24 13:26:08Z]</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="8463213069-3">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">datetime</span><span class="p" data-group-id="8463213069-3">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">DateTime</span><span class="o">.</span><span class="n">from_unix</span><span class="p" data-group-id="8463213069-4">(</span><span class="mi">1_432_560_368_868_569</span><span class="p">,</span><span class="w"> </span><span class="ss">:microsecond</span><span class="p" data-group-id="8463213069-4">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">datetime</span><span class="w">
+</span><span class="ld">~U[2015-05-25 13:26:08.868569Z]</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="8463213069-5">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">datetime</span><span class="p" data-group-id="8463213069-5">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">DateTime</span><span class="o">.</span><span class="n">from_unix</span><span class="p" data-group-id="8463213069-6">(</span><span class="mi">253_402_300_799</span><span class="p" data-group-id="8463213069-6">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">datetime</span><span class="w">
+</span><span class="ld">~U[9999-12-31 23:59:59Z]</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="8463213069-7">{</span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="ss">:invalid_unix_time</span><span class="p" data-group-id="8463213069-7">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">DateTime</span><span class="o">.</span><span class="n">from_unix</span><span class="p" data-group-id="8463213069-8">(</span><span class="mi">253_402_300_800</span><span class="p" data-group-id="8463213069-8">)</span></code></pre><p>The unit can also be an integer as in <a href="System.html#t:time_unit/0"><code class="inline">System.time_unit/0</code></a>:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="9466600311-1">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">datetime</span><span class="p" data-group-id="9466600311-1">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">DateTime</span><span class="o">.</span><span class="n">from_unix</span><span class="p" data-group-id="9466600311-2">(</span><span class="mi">143_256_036_886_856</span><span class="p">,</span><span class="w"> </span><span class="mi">1024</span><span class="p" data-group-id="9466600311-2">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">datetime</span><span class="w">
+</span><span class="ld">~U[6403-03-17 07:05:22.320312Z]</span></code></pre><p>Negative Unix times are supported up to -377705116800 seconds:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="1151002439-1">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">datetime</span><span class="p" data-group-id="1151002439-1">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">DateTime</span><span class="o">.</span><span class="n">from_unix</span><span class="p" data-group-id="1151002439-2">(</span><span class="o">-</span><span class="mi">377_705_116_800</span><span class="p" data-group-id="1151002439-2">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">datetime</span><span class="w">
+</span><span class="ld">~U[-9999-01-01 00:00:00Z]</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="1151002439-3">{</span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="ss">:invalid_unix_time</span><span class="p" data-group-id="1151002439-3">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">DateTime</span><span class="o">.</span><span class="n">from_unix</span><span class="p" data-group-id="1151002439-4">(</span><span class="o">-</span><span class="mi">377_705_116_801</span><span class="p" data-group-id="1151002439-4">)</span></code></pre>
+  </section>
+</section>
+
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.1) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

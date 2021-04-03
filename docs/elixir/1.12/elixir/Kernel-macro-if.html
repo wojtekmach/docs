@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.1">
+    <meta name="project" content="Elixir v1.12.0-rc.0">
+
+    <title>Kernel.if — Elixir v1.12.0-rc.0</title>
+    <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
+
+      <link rel="canonical" href="https://hexdocs.pm/elixir/1.12/" />
+
+    <script src="dist/sidebar_items-1a6c36a221.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName">
+Elixir
+      </a>
+      <strong class="sidebar-projectVersion">
+        v1.12.0-rc.0
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>Kernel.if</h1>
+
+<div class="deprecated">
+  You're seeing just the macro <code>if</code>, go back to <a href="Kernel.html">Kernel</a> module for more information.
+</div>
+
+<section class="detail" id="if/2">
+
+  <div class="detail-header">
+    <a href="#if/2" class="detail-link" title="Link to this macro">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature">if(condition, clauses)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/fb151383ab866230694712690fe9a583dc32a9db/lib/elixir/lib/kernel.ex#L3531" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Provides an <a href="#if/2"><code class="inline">if/2</code></a> macro.</p><p>This macro expects the first argument to be a condition and the second
+argument to be a keyword list.</p><h2 id="if/2-one-liner-examples" class="section-heading">
+  <a href="#if/2-one-liner-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  One-liner examples
+</h2>
+<pre><code class="makeup elixir"><span class="k">if</span><span class="p" data-group-id="4141615107-1">(</span><span class="n">foo</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="n">bar</span><span class="p" data-group-id="4141615107-1">)</span></code></pre><p>In the example above, <code class="inline">bar</code> will be returned if <code class="inline">foo</code> evaluates to
+a truthy value (neither <code class="inline">false</code> nor <code class="inline">nil</code>). Otherwise, <code class="inline">nil</code> will be
+returned.</p><p>An <code class="inline">else</code> option can be given to specify the opposite:</p><pre><code class="makeup elixir"><span class="k">if</span><span class="p" data-group-id="2525739838-1">(</span><span class="n">foo</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="n">bar</span><span class="p">,</span><span class="w"> </span><span class="ss">else</span><span class="p">:</span><span class="w"> </span><span class="n">baz</span><span class="p" data-group-id="2525739838-1">)</span></code></pre><h2 id="if/2-blocks-examples" class="section-heading">
+  <a href="#if/2-blocks-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Blocks examples
+</h2>
+<p>It's also possible to pass a block to the <a href="#if/2"><code class="inline">if/2</code></a> macro. The first
+example above would be translated to:</p><pre><code class="makeup elixir"><span class="k">if</span><span class="w"> </span><span class="n">foo</span><span class="w"> </span><span class="k" data-group-id="6296117930-1">do</span><span class="w">
+  </span><span class="n">bar</span><span class="w">
+</span><span class="k" data-group-id="6296117930-1">end</span></code></pre><p>Note that <code class="inline">do/end</code> become delimiters. The second example would
+translate to:</p><pre><code class="makeup elixir"><span class="k">if</span><span class="w"> </span><span class="n">foo</span><span class="w"> </span><span class="k" data-group-id="2940780937-1">do</span><span class="w">
+  </span><span class="n">bar</span><span class="w">
+</span><span class="k" data-group-id="2940780937-1">else</span><span class="w">
+  </span><span class="n">baz</span><span class="w">
+</span><span class="k" data-group-id="2940780937-1">end</span></code></pre><p>In order to compare more than two clauses, the <a href="Kernel.SpecialForms.html#cond/1"><code class="inline">cond/1</code></a> macro has to be used.</p>
+  </section>
+</section>
+
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.1) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

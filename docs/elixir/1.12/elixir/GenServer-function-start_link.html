@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.1">
+    <meta name="project" content="Elixir v1.12.0-rc.0">
+
+    <title>GenServer.start_link — Elixir v1.12.0-rc.0</title>
+    <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
+
+      <link rel="canonical" href="https://hexdocs.pm/elixir/1.12/" />
+
+    <script src="dist/sidebar_items-1a6c36a221.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName">
+Elixir
+      </a>
+      <strong class="sidebar-projectVersion">
+        v1.12.0-rc.0
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>GenServer.start_link</h1>
+
+<div class="deprecated">
+  You're seeing just the function <code>start_link</code>, go back to <a href="GenServer.html">GenServer</a> module for more information.
+</div>
+
+<section class="detail" id="start_link/3">
+
+    <span id="start_link/2"></span>
+
+  <div class="detail-header">
+    <a href="#start_link/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">start_link(module, init_arg, options \\ [])</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/fb151383ab866230694712690fe9a583dc32a9db/lib/elixir/lib/gen_server.ex#L917" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>start_link(<a href="typespecs.html#built-in-types">module</a>(), <a href="typespecs.html#basic-types">any</a>(), <a href="#t:options/0">options</a>()) :: <a href="#t:on_start/0">on_start</a>()</pre>
+
+      </div>
+
+<p>Starts a <a href="GenServer.html#content"><code class="inline">GenServer</code></a> process linked to the current process.</p><p>This is often used to start the <a href="GenServer.html#content"><code class="inline">GenServer</code></a> as part of a supervision tree.</p><p>Once the server is started, the <a href="#c:init/1"><code class="inline">init/1</code></a> function of the given <code class="inline">module</code> is
+called with <code class="inline">init_arg</code> as its argument to initialize the server. To ensure a
+synchronized start-up procedure, this function does not return until <a href="#c:init/1"><code class="inline">init/1</code></a>
+has returned.</p><p>Note that a <a href="GenServer.html#content"><code class="inline">GenServer</code></a> started with <a href="#start_link/3"><code class="inline">start_link/3</code></a> is linked to the
+parent process and will exit in case of crashes from the parent. The GenServer
+will also exit due to the <code class="inline">:normal</code> reasons in case it is configured to trap
+exits in the <a href="#c:init/1"><code class="inline">init/1</code></a> callback.</p><h2 id="start_link/3-options" class="section-heading">
+  <a href="#start_link/3-options" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Options
+</h2>
+<ul><li><p><code class="inline">:name</code> - used for name registration as described in the &quot;Name
+registration&quot; section in the documentation for <a href="GenServer.html#content"><code class="inline">GenServer</code></a></p></li><li><p><code class="inline">:timeout</code> - if present, the server is allowed to spend the given number of
+milliseconds initializing or it will be terminated and the start function
+will return <code class="inline">{:error, :timeout}</code></p></li><li><p><code class="inline">:debug</code> - if present, the corresponding function in the <a href="https://erlang.org/doc/man/sys.html"><code class="inline">:sys</code> module</a> is invoked</p></li><li><p><code class="inline">:spawn_opt</code> - if present, its value is passed as options to the
+underlying process as in <a href="Process.html#spawn/4"><code class="inline">Process.spawn/4</code></a></p></li><li><p><code class="inline">:hibernate_after</code> - if present, the GenServer process awaits any message for
+the given number of milliseconds and if no message is received, the process goes
+into hibernation automatically (by calling <a href="https://erlang.org/doc/man/proc_lib.html#hibernate-3"><code class="inline">:proc_lib.hibernate/3</code></a>).</p></li></ul><h2 id="start_link/3-return-values" class="section-heading">
+  <a href="#start_link/3-return-values" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Return values
+</h2>
+<p>If the server is successfully created and initialized, this function returns
+<code class="inline">{:ok, pid}</code>, where <code class="inline">pid</code> is the PID of the server. If a process with the
+specified server name already exists, this function returns
+<code class="inline">{:error, {:already_started, pid}}</code> with the PID of that process.</p><p>If the <a href="#c:init/1"><code class="inline">init/1</code></a> callback fails with <code class="inline">reason</code>, this function returns
+<code class="inline">{:error, reason}</code>. Otherwise, if it returns <code class="inline">{:stop, reason}</code>
+or <code class="inline">:ignore</code>, the process is terminated and this function returns
+<code class="inline">{:error, reason}</code> or <code class="inline">:ignore</code>, respectively.</p>
+  </section>
+</section>
+
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.1) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

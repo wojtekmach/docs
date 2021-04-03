@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.1">
+    <meta name="project" content="Elixir v1.13.0-dev">
+
+    <title>System.trap_signal — Elixir v1.13.0-dev</title>
+    <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
+
+      <link rel="canonical" href="https://hexdocs.pm/elixir/master/" />
+
+    <script src="dist/sidebar_items-ed39eda610.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName">
+Elixir
+      </a>
+      <strong class="sidebar-projectVersion">
+        v1.13.0-dev
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>System.trap_signal</h1>
+
+<div class="deprecated">
+  You're seeing just the function <code>trap_signal</code>, go back to <a href="System.html">System</a> module for more information.
+</div>
+
+<section class="detail" id="trap_signal/3">
+
+    <span id="trap_signal/2"></span>
+
+  <div class="detail-header">
+    <a href="#trap_signal/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">trap_signal(signal, id \\ make_ref(), fun)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/system.ex#L526" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.12.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>trap_signal(<a href="#t:signal/0">signal</a>(), id, (() -&gt; :ok)) ::
+  {:ok, id} | {:error, :already_registered} | {:error, :not_sup}
+when id: <a href="typespecs.html#built-in-types">term</a>()</pre>
+
+      </div>
+
+<p>Traps the given <code class="inline">signal</code> to execute the <code class="inline">fun</code>.</p><p><strong>Important</strong>: Trapping signals may have strong implications
+on how a system shuts down and behave in production and
+therefore it is extremely discouraged for libraries to
+set their own traps. Instead, they should redirect users
+to configure them themselves. The only cases where it is
+acceptable for libraries to set their own traps is when
+using Elixir in script mode, such as in <code class="inline">.exs</code> files and
+via Mix tasks.</p><p>An optional <code class="inline">id</code> that uniquely identifies the function
+can be given, otherwise a unique one is automatically
+generated. If a previously registered <code class="inline">id</code> is given,
+this function returns an error tuple. The <code class="inline">id</code> can be
+used to remove a registered signal by calling
+<a href="#untrap_signal/2"><code class="inline">untrap_signal/2</code></a>.</p><p>The given <code class="inline">fun</code> receives no arguments and it must return
+<code class="inline">:ok</code>.</p><p>It returns <code class="inline">{:ok, id}</code> in case of success,
+<code class="inline">{:error, :already_registered}</code> in case the id has already
+been registered for the given signal, or <code class="inline">{:error, :not_sup}</code>
+in case trapping exists is not supported by the current OS.</p><p>The first time a signal is trapped, it will override the
+default behaviour from the operating system. If the same
+signal is trapped multiple times, subsequent functions
+given to <code class="inline">trap_signal</code> will execute <em>first</em>. In other
+words, you can consider each function is prepended to
+the signal handler.</p><p>By default, the Erlang VM register traps to the three
+signals:</p><ul><li><code class="inline">:sigstop</code> - gracefully shuts down the VM with <a href="#stop/0"><code class="inline">stop/0</code></a></li><li><code class="inline">:sigquit</code> - halts the VM via <a href="#halt/0"><code class="inline">halt/0</code></a></li><li><code class="inline">:sigusr1</code> - halts the VM via status code of 1</li></ul><p>Therefore, if you add traps to the signals above, the
+default behaviour above will be executed after all user
+signals.</p><h2 id="trap_signal/3-implementation-notes" class="section-heading">
+  <a href="#trap_signal/3-implementation-notes" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Implementation notes
+</h2>
+<p>All signals run from a single process. Therefore, blocking the
+<code class="inline">fun</code> will block subsequent traps. It is also not possible to add
+or remove traps from within a trap itself.</p><p>Internally, this functionality is built on top of <a href="https://erlang.org/doc/man/os.html#set_signal-2"><code class="inline">:os.set_signal/2</code></a>.
+When you register a trap, Elixir automatically sets it to <code class="inline">:handle</code>
+and it reverts it back to <code class="inline">:default</code> once all traps are removed
+(except for <code class="inline">:sigquit</code>, <code class="inline">:sigterm</code>, and <code class="inline">:sigusr1</code> which are always
+handled). If you or a library call <a href="https://erlang.org/doc/man/os.html#set_signal-2"><code class="inline">:os.set_signal/2</code></a> directly,
+it may disable Elixir traps (or Elixir may override your configuration).</p>
+  </section>
+</section>
+
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.1) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

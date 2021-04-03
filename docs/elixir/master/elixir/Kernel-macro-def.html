@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.1">
+    <meta name="project" content="Elixir v1.13.0-dev">
+
+    <title>Kernel.def — Elixir v1.13.0-dev</title>
+    <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
+
+      <link rel="canonical" href="https://hexdocs.pm/elixir/master/" />
+
+    <script src="dist/sidebar_items-ed39eda610.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName">
+Elixir
+      </a>
+      <strong class="sidebar-projectVersion">
+        v1.13.0-dev
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>Kernel.def</h1>
+
+<div class="deprecated">
+  You're seeing just the macro <code>def</code>, go back to <a href="Kernel.html">Kernel</a> module for more information.
+</div>
+
+<section class="detail" id="def/2">
+
+    <span id="def/1"></span>
+
+  <div class="detail-header">
+    <a href="#def/2" class="detail-link" title="Link to this macro">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature">def(call, expr \\ nil)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/kernel.ex#L4647" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Defines a public function with the given name and body.</p><h2 id="def/2-examples" class="section-heading">
+  <a href="#def/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Foo</span><span class="w"> </span><span class="k" data-group-id="8222961969-1">do</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">bar</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="ss">:baz</span><span class="w">
+</span><span class="k" data-group-id="8222961969-1">end</span><span class="w">
+
+</span><span class="nc">Foo</span><span class="o">.</span><span class="n">bar</span><span class="p" data-group-id="8222961969-2">(</span><span class="p" data-group-id="8222961969-2">)</span><span class="w">
+</span><span class="c1">#=&gt; :baz</span></code></pre><p>A function that expects arguments can be defined as follows:</p><pre><code class="makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Foo</span><span class="w"> </span><span class="k" data-group-id="4586174654-1">do</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">sum</span><span class="p" data-group-id="4586174654-2">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p" data-group-id="4586174654-2">)</span><span class="w"> </span><span class="k" data-group-id="4586174654-3">do</span><span class="w">
+    </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="w">
+  </span><span class="k" data-group-id="4586174654-3">end</span><span class="w">
+</span><span class="k" data-group-id="4586174654-1">end</span></code></pre><p>In the example above, a <code class="inline">sum/2</code> function is defined; this function receives
+two arguments and returns their sum.</p><h2 id="def/2-default-arguments" class="section-heading">
+  <a href="#def/2-default-arguments" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Default arguments
+</h2>
+<p><code class="inline">\\</code> is used to specify a default value for a parameter of a function. For
+example:</p><pre><code class="makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyMath</span><span class="w"> </span><span class="k" data-group-id="7818995256-1">do</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">multiply_by</span><span class="p" data-group-id="7818995256-2">(</span><span class="n">number</span><span class="p">,</span><span class="w"> </span><span class="n">factor</span><span class="w"> </span><span class="o">\\</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="7818995256-2">)</span><span class="w"> </span><span class="k" data-group-id="7818995256-3">do</span><span class="w">
+    </span><span class="n">number</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">factor</span><span class="w">
+  </span><span class="k" data-group-id="7818995256-3">end</span><span class="w">
+</span><span class="k" data-group-id="7818995256-1">end</span><span class="w">
+
+</span><span class="nc">MyMath</span><span class="o">.</span><span class="n">multiply_by</span><span class="p" data-group-id="7818995256-4">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="7818995256-4">)</span><span class="w">
+</span><span class="c1">#=&gt; 12</span><span class="w">
+
+</span><span class="nc">MyMath</span><span class="o">.</span><span class="n">multiply_by</span><span class="p" data-group-id="7818995256-5">(</span><span class="mi">4</span><span class="p" data-group-id="7818995256-5">)</span><span class="w">
+</span><span class="c1">#=&gt; 8</span></code></pre><p>The compiler translates this into multiple functions with different arities,
+here <code class="inline">MyMath.multiply_by/1</code> and <code class="inline">MyMath.multiply_by/2</code>, that represent cases when
+arguments for parameters with default values are passed or not passed.</p><p>When defining a function with default arguments as well as multiple
+explicitly declared clauses, you must write a function head that declares the
+defaults. For example:</p><pre><code class="makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyString</span><span class="w"> </span><span class="k" data-group-id="7014505826-1">do</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">join</span><span class="p" data-group-id="7014505826-2">(</span><span class="n">string1</span><span class="p">,</span><span class="w"> </span><span class="n">string2</span><span class="w"> </span><span class="o">\\</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w"> </span><span class="n">separator</span><span class="w"> </span><span class="o">\\</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p" data-group-id="7014505826-2">)</span><span class="w">
+
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">join</span><span class="p" data-group-id="7014505826-3">(</span><span class="n">string1</span><span class="p">,</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w"> </span><span class="c">_separator</span><span class="p" data-group-id="7014505826-3">)</span><span class="w"> </span><span class="k" data-group-id="7014505826-4">do</span><span class="w">
+    </span><span class="n">string1</span><span class="w">
+  </span><span class="k" data-group-id="7014505826-4">end</span><span class="w">
+
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">join</span><span class="p" data-group-id="7014505826-5">(</span><span class="n">string1</span><span class="p">,</span><span class="w"> </span><span class="n">string2</span><span class="p">,</span><span class="w"> </span><span class="n">separator</span><span class="p" data-group-id="7014505826-5">)</span><span class="w"> </span><span class="k" data-group-id="7014505826-6">do</span><span class="w">
+    </span><span class="n">string1</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="n">separator</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="n">string2</span><span class="w">
+  </span><span class="k" data-group-id="7014505826-6">end</span><span class="w">
+</span><span class="k" data-group-id="7014505826-1">end</span></code></pre><p>Note that <code class="inline">\\</code> can't be used with anonymous functions because they
+can only have a sole arity.</p><h3 id="def/2-keyword-lists-with-default-arguments" class="section-heading">
+  <a href="#def/2-keyword-lists-with-default-arguments" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Keyword lists with default arguments
+</h3>
+<p>Functions containing many arguments can benefit from using <a href="Keyword.html"><code class="inline">Keyword</code></a>
+lists to group and pass attributes as a single value.</p><p>   defmodule MyConfiguration do</p><pre><code class="makeup elixir"><span class="w"> </span><span class="na">@default_opts</span><span class="w"> </span><span class="p" data-group-id="0216678211-1">[</span><span class="ss">storage</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;local&quot;</span><span class="p" data-group-id="0216678211-1">]</span><span class="w">
+
+ </span><span class="kd">def</span><span class="w"> </span><span class="nf">configure</span><span class="p" data-group-id="0216678211-2">(</span><span class="n">resource</span><span class="p">,</span><span class="w"> </span><span class="n">opts</span><span class="w"> </span><span class="o">\\</span><span class="w"> </span><span class="p" data-group-id="0216678211-3">[</span><span class="p" data-group-id="0216678211-3">]</span><span class="p" data-group-id="0216678211-2">)</span><span class="w"> </span><span class="k" data-group-id="0216678211-4">do</span><span class="w">
+   </span><span class="n">opts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Keyword</span><span class="o">.</span><span class="n">merge</span><span class="p" data-group-id="0216678211-5">(</span><span class="na">@default_opts</span><span class="p">,</span><span class="w"> </span><span class="n">opts</span><span class="p" data-group-id="0216678211-5">)</span><span class="w">
+   </span><span class="n">storage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">opts</span><span class="p" data-group-id="0216678211-6">[</span><span class="ss">:storage</span><span class="p" data-group-id="0216678211-6">]</span><span class="w">
+   </span><span class="c1"># ...</span><span class="w">
+ </span><span class="k" data-group-id="0216678211-4">end</span></code></pre><p>   end</p><p>The difference between using <a href="Map.html"><code class="inline">Map</code></a> and <a href="Keyword.html"><code class="inline">Keyword</code></a> to store many
+arguments is <a href="Keyword.html"><code class="inline">Keyword</code></a>'s keys:</p><ul><li>must be atoms</li><li>can be given more than once</li><li>ordered, as specified by the developer</li></ul><h2 id="def/2-function-and-variable-names" class="section-heading">
+  <a href="#def/2-function-and-variable-names" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Function and variable names
+</h2>
+<p>Function and variable names have the following syntax:
+A <em>lowercase ASCII letter</em> or an <em>underscore</em>, followed by any number of
+<em>lowercase or uppercase ASCII letters</em>, <em>numbers</em>, or <em>underscores</em>.
+Optionally they can end in either an <em>exclamation mark</em> or a <em>question mark</em>.</p><p>For variables, any identifier starting with an underscore should indicate an
+unused variable. For example:</p><pre><code class="makeup elixir"><span class="kd">def</span><span class="w"> </span><span class="nf">foo</span><span class="p" data-group-id="9566471563-1">(</span><span class="n">bar</span><span class="p" data-group-id="9566471563-1">)</span><span class="w"> </span><span class="k" data-group-id="9566471563-2">do</span><span class="w">
+  </span><span class="p" data-group-id="9566471563-3">[</span><span class="p" data-group-id="9566471563-3">]</span><span class="w">
+</span><span class="k" data-group-id="9566471563-2">end</span><span class="w">
+</span><span class="c1">#=&gt; warning: variable bar is unused</span><span class="w">
+
+</span><span class="kd">def</span><span class="w"> </span><span class="nf">foo</span><span class="p" data-group-id="9566471563-4">(</span><span class="c">_bar</span><span class="p" data-group-id="9566471563-4">)</span><span class="w"> </span><span class="k" data-group-id="9566471563-5">do</span><span class="w">
+  </span><span class="p" data-group-id="9566471563-6">[</span><span class="p" data-group-id="9566471563-6">]</span><span class="w">
+</span><span class="k" data-group-id="9566471563-5">end</span><span class="w">
+</span><span class="c1">#=&gt; no warning</span><span class="w">
+
+</span><span class="kd">def</span><span class="w"> </span><span class="nf">foo</span><span class="p" data-group-id="9566471563-7">(</span><span class="c">_bar</span><span class="p" data-group-id="9566471563-7">)</span><span class="w"> </span><span class="k" data-group-id="9566471563-8">do</span><span class="w">
+  </span><span class="c">_bar</span><span class="w">
+</span><span class="k" data-group-id="9566471563-8">end</span><span class="w">
+</span><span class="c1">#=&gt; warning: the underscored variable &quot;_bar&quot; is used after being set</span></code></pre><h2 id="def/2-rescue-catch-after-else" class="section-heading">
+  <a href="#def/2-rescue-catch-after-else" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  <code class="inline">rescue</code>/<code class="inline">catch</code>/<code class="inline">after</code>/<code class="inline">else</code>
+</h2>
+<p>Function bodies support <code class="inline">rescue</code>, <code class="inline">catch</code>, <code class="inline">after</code>, and <code class="inline">else</code> as <a href="Kernel.SpecialForms.html#try/1"><code class="inline">Kernel.SpecialForms.try/1</code></a>
+does (known as &quot;implicit try&quot;). For example, the following two functions are equivalent:</p><pre><code class="makeup elixir"><span class="kd">def</span><span class="w"> </span><span class="nf">convert</span><span class="p" data-group-id="8702650865-1">(</span><span class="n">number</span><span class="p" data-group-id="8702650865-1">)</span><span class="w"> </span><span class="k" data-group-id="8702650865-2">do</span><span class="w">
+  </span><span class="k">try</span><span class="w"> </span><span class="k" data-group-id="8702650865-3">do</span><span class="w">
+    </span><span class="nc">String</span><span class="o">.</span><span class="n">to_integer</span><span class="p" data-group-id="8702650865-4">(</span><span class="n">number</span><span class="p" data-group-id="8702650865-4">)</span><span class="w">
+  </span><span class="k" data-group-id="8702650865-3">rescue</span><span class="w">
+    </span><span class="n">e</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nc">ArgumentError</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p" data-group-id="8702650865-5">{</span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="o">.</span><span class="n">message</span><span class="p" data-group-id="8702650865-5">}</span><span class="w">
+  </span><span class="k" data-group-id="8702650865-3">end</span><span class="w">
+</span><span class="k" data-group-id="8702650865-2">end</span><span class="w">
+
+</span><span class="kd">def</span><span class="w"> </span><span class="nf">convert</span><span class="p" data-group-id="8702650865-6">(</span><span class="n">number</span><span class="p" data-group-id="8702650865-6">)</span><span class="w"> </span><span class="k" data-group-id="8702650865-7">do</span><span class="w">
+  </span><span class="nc">String</span><span class="o">.</span><span class="n">to_integer</span><span class="p" data-group-id="8702650865-8">(</span><span class="n">number</span><span class="p" data-group-id="8702650865-8">)</span><span class="w">
+</span><span class="k" data-group-id="8702650865-7">rescue</span><span class="w">
+  </span><span class="n">e</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nc">ArgumentError</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p" data-group-id="8702650865-9">{</span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="o">.</span><span class="n">message</span><span class="p" data-group-id="8702650865-9">}</span><span class="w">
+</span><span class="k" data-group-id="8702650865-7">end</span></code></pre>
+  </section>
+</section>
+
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.1) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

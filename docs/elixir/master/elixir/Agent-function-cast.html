@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.1">
+    <meta name="project" content="Elixir v1.13.0-dev">
+
+    <title>Agent.cast — Elixir v1.13.0-dev</title>
+    <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
+
+      <link rel="canonical" href="https://hexdocs.pm/elixir/master/" />
+
+    <script src="dist/sidebar_items-ed39eda610.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName">
+Elixir
+      </a>
+      <strong class="sidebar-projectVersion">
+        v1.13.0-dev
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>Agent.cast</h1>
+
+<div class="deprecated">
+  You're seeing just the function <code>cast</code>, go back to <a href="Agent.html">Agent</a> module for more information.
+</div>
+
+<section class="detail" id="cast/2">
+
+  <div class="detail-header">
+    <a href="#cast/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">cast(agent, fun)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/agent.ex#L461" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>cast(<a href="#t:agent/0">agent</a>(), (<a href="#t:state/0">state</a>() -&gt; <a href="#t:state/0">state</a>())) :: :ok</pre>
+
+      </div>
+
+<p>Performs a cast (<em>fire and forget</em>) operation on the agent state.</p><p>The function <code class="inline">fun</code> is sent to the <code class="inline">agent</code> which invokes the function
+passing the agent state. The return value of <code class="inline">fun</code> becomes the new
+state of the agent.</p><p>Note that <code class="inline">cast</code> returns <code class="inline">:ok</code> immediately, regardless of whether <code class="inline">agent</code> (or
+the node it should live on) exists.</p><h2 id="cast/2-examples" class="section-heading">
+  <a href="#cast/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="8735148818-1">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">pid</span><span class="p" data-group-id="8735148818-1">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Agent</span><span class="o">.</span><span class="n">start_link</span><span class="p" data-group-id="8735148818-2">(</span><span class="k" data-group-id="8735148818-3">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="mi">42</span><span class="w"> </span><span class="k" data-group-id="8735148818-3">end</span><span class="p" data-group-id="8735148818-2">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Agent</span><span class="o">.</span><span class="n">cast</span><span class="p" data-group-id="8735148818-4">(</span><span class="n">pid</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="8735148818-5">fn</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k" data-group-id="8735148818-5">end</span><span class="p" data-group-id="8735148818-4">)</span><span class="w">
+</span><span class="ss">:ok</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Agent</span><span class="o">.</span><span class="n">get</span><span class="p" data-group-id="8735148818-6">(</span><span class="n">pid</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="8735148818-7">fn</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="k" data-group-id="8735148818-7">end</span><span class="p" data-group-id="8735148818-6">)</span><span class="w">
+</span><span class="mi">43</span></code></pre>
+  </section>
+</section>
+
+
+<section class="detail" id="cast/4">
+
+  <div class="detail-header">
+    <a href="#cast/4" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">cast(agent, module, fun, args)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/agent.ex#L482" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>cast(<a href="#t:agent/0">agent</a>(), <a href="typespecs.html#built-in-types">module</a>(), <a href="typespecs.html#basic-types">atom</a>(), [<a href="typespecs.html#built-in-types">term</a>()]) :: :ok</pre>
+
+      </div>
+
+<p>Performs a cast (<em>fire and forget</em>) operation on the agent state.</p><p>Same as <a href="#cast/2"><code class="inline">cast/2</code></a> but a module, function, and arguments are expected
+instead of an anonymous function. The state is added as first
+argument to the given list of arguments.</p><h2 id="cast/4-examples" class="section-heading">
+  <a href="#cast/4-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="5637061299-1">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">pid</span><span class="p" data-group-id="5637061299-1">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Agent</span><span class="o">.</span><span class="n">start_link</span><span class="p" data-group-id="5637061299-2">(</span><span class="k" data-group-id="5637061299-3">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="mi">42</span><span class="w"> </span><span class="k" data-group-id="5637061299-3">end</span><span class="p" data-group-id="5637061299-2">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Agent</span><span class="o">.</span><span class="n">cast</span><span class="p" data-group-id="5637061299-4">(</span><span class="n">pid</span><span class="p">,</span><span class="w"> </span><span class="nc">Kernel</span><span class="p">,</span><span class="w"> </span><span class="ss">:+</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5637061299-5">[</span><span class="mi">12</span><span class="p" data-group-id="5637061299-5">]</span><span class="p" data-group-id="5637061299-4">)</span><span class="w">
+</span><span class="ss">:ok</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Agent</span><span class="o">.</span><span class="n">get</span><span class="p" data-group-id="5637061299-6">(</span><span class="n">pid</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="5637061299-7">fn</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="k" data-group-id="5637061299-7">end</span><span class="p" data-group-id="5637061299-6">)</span><span class="w">
+</span><span class="mi">54</span></code></pre>
+  </section>
+</section>
+
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.1) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.1">
+    <meta name="project" content="Elixir v1.13.0-dev">
+
+    <title>Enum.sort — Elixir v1.13.0-dev</title>
+    <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
+
+      <link rel="canonical" href="https://hexdocs.pm/elixir/master/" />
+
+    <script src="dist/sidebar_items-ed39eda610.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName">
+Elixir
+      </a>
+      <strong class="sidebar-projectVersion">
+        v1.13.0-dev
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>Enum.sort</h1>
+
+<div class="deprecated">
+  You're seeing just the function <code>sort</code>, go back to <a href="Enum.html">Enum</a> module for more information.
+</div>
+
+<section class="detail" id="sort/1">
+
+  <div class="detail-header">
+    <a href="#sort/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">sort(enumerable)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/enum.ex#L2712" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>sort(<a href="#t:t/0">t</a>()) :: <a href="typespecs.html#built-in-types">list</a>()</pre>
+
+      </div>
+
+<p>Sorts the <code class="inline">enumerable</code> according to Erlang's term ordering.</p><p>This function uses the merge sort algorithm. Do not use this
+function to sort structs, see <a href="#sort/2"><code class="inline">sort/2</code></a> for more information.</p><h2 id="sort/1-examples" class="section-heading">
+  <a href="#sort/1-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Enum</span><span class="o">.</span><span class="n">sort</span><span class="p" data-group-id="5586425564-1">(</span><span class="p" data-group-id="5586425564-2">[</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="5586425564-2">]</span><span class="p" data-group-id="5586425564-1">)</span><span class="w">
+</span><span class="p" data-group-id="5586425564-3">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="5586425564-3">]</span></code></pre>
+  </section>
+</section>
+
+
+<section class="detail" id="sort/2">
+
+  <div class="detail-header">
+    <a href="#sort/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">sort(enumerable, fun)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/enum.ex#L2796" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>sort(
+  <a href="#t:t/0">t</a>(),
+  (<a href="#t:element/0">element</a>(), <a href="#t:element/0">element</a>() -&gt; <a href="typespecs.html#built-in-types">boolean</a>())
+  | :asc
+  | :desc
+  | <a href="typespecs.html#built-in-types">module</a>()
+  | {:asc | :desc, <a href="typespecs.html#built-in-types">module</a>()}
+) :: <a href="typespecs.html#built-in-types">list</a>()</pre>
+
+      </div>
+
+<p>Sorts the <code class="inline">enumerable</code> by the given function.</p><p>This function uses the merge sort algorithm. The given function should compare
+two arguments, and return <code class="inline">true</code> if the first argument precedes or is in the
+same place as the second one.</p><h2 id="sort/2-examples" class="section-heading">
+  <a href="#sort/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Enum</span><span class="o">.</span><span class="n">sort</span><span class="p" data-group-id="4490405790-1">(</span><span class="p" data-group-id="4490405790-2">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="4490405790-2">]</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="p" data-group-id="4490405790-3">(</span><span class="ni">&amp;1</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="ni">&amp;2</span><span class="p" data-group-id="4490405790-3">)</span><span class="p" data-group-id="4490405790-1">)</span><span class="w">
+</span><span class="p" data-group-id="4490405790-4">[</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="4490405790-4">]</span></code></pre><p>The sorting algorithm will be stable as long as the given function
+returns <code class="inline">true</code> for values considered equal:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Enum</span><span class="o">.</span><span class="n">sort</span><span class="p" data-group-id="3911826955-1">(</span><span class="p" data-group-id="3911826955-2">[</span><span class="s">&quot;some&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;kind&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;of&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;monster&quot;</span><span class="p" data-group-id="3911826955-2">]</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="p" data-group-id="3911826955-3">(</span><span class="n">byte_size</span><span class="p" data-group-id="3911826955-4">(</span><span class="ni">&amp;1</span><span class="p" data-group-id="3911826955-4">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">byte_size</span><span class="p" data-group-id="3911826955-5">(</span><span class="ni">&amp;2</span><span class="p" data-group-id="3911826955-5">)</span><span class="p" data-group-id="3911826955-3">)</span><span class="p" data-group-id="3911826955-1">)</span><span class="w">
+</span><span class="p" data-group-id="3911826955-6">[</span><span class="s">&quot;of&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;some&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;kind&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;monster&quot;</span><span class="p" data-group-id="3911826955-6">]</span></code></pre><p>If the function does not return <code class="inline">true</code> for equal values, the sorting
+is not stable and the order of equal terms may be shuffled.
+For example:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Enum</span><span class="o">.</span><span class="n">sort</span><span class="p" data-group-id="1737412806-1">(</span><span class="p" data-group-id="1737412806-2">[</span><span class="s">&quot;some&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;kind&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;of&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;monster&quot;</span><span class="p" data-group-id="1737412806-2">]</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="p" data-group-id="1737412806-3">(</span><span class="n">byte_size</span><span class="p" data-group-id="1737412806-4">(</span><span class="ni">&amp;1</span><span class="p" data-group-id="1737412806-4">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">byte_size</span><span class="p" data-group-id="1737412806-5">(</span><span class="ni">&amp;2</span><span class="p" data-group-id="1737412806-5">)</span><span class="p" data-group-id="1737412806-3">)</span><span class="p" data-group-id="1737412806-1">)</span><span class="w">
+</span><span class="p" data-group-id="1737412806-6">[</span><span class="s">&quot;of&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;kind&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;some&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;monster&quot;</span><span class="p" data-group-id="1737412806-6">]</span></code></pre><h2 id="sort/2-ascending-and-descending" class="section-heading">
+  <a href="#sort/2-ascending-and-descending" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Ascending and descending
+</h2>
+<p><a href="#sort/2"><code class="inline">sort/2</code></a> allows a developer to pass <code class="inline">:asc</code> or <code class="inline">:desc</code> as the sorting
+function, which is a convenience for <a href="Kernel.html#%3C=/2"><code class="inline">&lt;=/2</code></a> and <a href="Kernel.html#%3E=/2"><code class="inline">&gt;=/2</code></a> respectively.</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Enum</span><span class="o">.</span><span class="n">sort</span><span class="p" data-group-id="5864907475-1">(</span><span class="p" data-group-id="5864907475-2">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="5864907475-2">]</span><span class="p">,</span><span class="w"> </span><span class="ss">:asc</span><span class="p" data-group-id="5864907475-1">)</span><span class="w">
+</span><span class="p" data-group-id="5864907475-3">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="5864907475-3">]</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Enum</span><span class="o">.</span><span class="n">sort</span><span class="p" data-group-id="5864907475-4">(</span><span class="p" data-group-id="5864907475-5">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="5864907475-5">]</span><span class="p">,</span><span class="w"> </span><span class="ss">:desc</span><span class="p" data-group-id="5864907475-4">)</span><span class="w">
+</span><span class="p" data-group-id="5864907475-6">[</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="5864907475-6">]</span></code></pre><h2 id="sort/2-sorting-structs" class="section-heading">
+  <a href="#sort/2-sorting-structs" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Sorting structs
+</h2>
+<p>Do not use <a href="Kernel.html#%3C/2"><code class="inline">&lt;/2</code></a>, <a href="Kernel.html#%3C=/2"><code class="inline">&lt;=/2</code></a>, <a href="Kernel.html#%3E/2"><code class="inline">&gt;/2</code></a>, <a href="Kernel.html#%3E=/2"><code class="inline">&gt;=/2</code></a> and friends when sorting structs.
+That's because the built-in operators above perform structural comparison
+and not a semantic one. Imagine we sort the following list of dates:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">dates</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="6121030664-1">[</span><span class="ld">~D[2019-01-01]</span><span class="p">,</span><span class="w"> </span><span class="ld">~D[2020-03-02]</span><span class="p">,</span><span class="w"> </span><span class="ld">~D[2019-06-06]</span><span class="p" data-group-id="6121030664-1">]</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Enum</span><span class="o">.</span><span class="n">sort</span><span class="p" data-group-id="6121030664-2">(</span><span class="n">dates</span><span class="p" data-group-id="6121030664-2">)</span><span class="w">
+</span><span class="p" data-group-id="6121030664-3">[</span><span class="ld">~D[2019-01-01]</span><span class="p">,</span><span class="w"> </span><span class="ld">~D[2020-03-02]</span><span class="p">,</span><span class="w"> </span><span class="ld">~D[2019-06-06]</span><span class="p" data-group-id="6121030664-3">]</span></code></pre><p>Note that the returned result is incorrect, because <a href="#sort/1"><code class="inline">sort/1</code></a> by default uses
+<a href="Kernel.html#%3C=/2"><code class="inline">&lt;=/2</code></a>, which will compare their structure. When comparing structures, the
+fields are compared in alphabetical order, which means the dates above will
+be compared by <code class="inline">day</code>, <code class="inline">month</code> and then <code class="inline">year</code>, which is the opposite of what
+we want.</p><p>For this reason, most structs provide a &quot;compare&quot; function, such as
+<a href="Date.html#compare/2"><code class="inline">Date.compare/2</code></a>, which receives two structs and returns <code class="inline">:lt</code> (less-than),
+<code class="inline">:eq</code> (equal to), and <code class="inline">:gt</code> (greater-than). If you pass a module as the
+sorting function, Elixir will automatically use the <code class="inline">compare/2</code> function
+of said module:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">dates</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="6838039536-1">[</span><span class="ld">~D[2019-01-01]</span><span class="p">,</span><span class="w"> </span><span class="ld">~D[2020-03-02]</span><span class="p">,</span><span class="w"> </span><span class="ld">~D[2019-06-06]</span><span class="p" data-group-id="6838039536-1">]</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Enum</span><span class="o">.</span><span class="n">sort</span><span class="p" data-group-id="6838039536-2">(</span><span class="n">dates</span><span class="p">,</span><span class="w"> </span><span class="nc">Date</span><span class="p" data-group-id="6838039536-2">)</span><span class="w">
+</span><span class="p" data-group-id="6838039536-3">[</span><span class="ld">~D[2019-01-01]</span><span class="p">,</span><span class="w"> </span><span class="ld">~D[2019-06-06]</span><span class="p">,</span><span class="w"> </span><span class="ld">~D[2020-03-02]</span><span class="p" data-group-id="6838039536-3">]</span></code></pre><p>To retrieve all dates in descending order, you can wrap the module in
+a tuple with <code class="inline">:asc</code> or <code class="inline">:desc</code> as first element:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">dates</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="3680909566-1">[</span><span class="ld">~D[2019-01-01]</span><span class="p">,</span><span class="w"> </span><span class="ld">~D[2020-03-02]</span><span class="p">,</span><span class="w"> </span><span class="ld">~D[2019-06-06]</span><span class="p" data-group-id="3680909566-1">]</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Enum</span><span class="o">.</span><span class="n">sort</span><span class="p" data-group-id="3680909566-2">(</span><span class="n">dates</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="3680909566-3">{</span><span class="ss">:asc</span><span class="p">,</span><span class="w"> </span><span class="nc">Date</span><span class="p" data-group-id="3680909566-3">}</span><span class="p" data-group-id="3680909566-2">)</span><span class="w">
+</span><span class="p" data-group-id="3680909566-4">[</span><span class="ld">~D[2019-01-01]</span><span class="p">,</span><span class="w"> </span><span class="ld">~D[2019-06-06]</span><span class="p">,</span><span class="w"> </span><span class="ld">~D[2020-03-02]</span><span class="p" data-group-id="3680909566-4">]</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">dates</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="3680909566-5">[</span><span class="ld">~D[2019-01-01]</span><span class="p">,</span><span class="w"> </span><span class="ld">~D[2020-03-02]</span><span class="p">,</span><span class="w"> </span><span class="ld">~D[2019-06-06]</span><span class="p" data-group-id="3680909566-5">]</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Enum</span><span class="o">.</span><span class="n">sort</span><span class="p" data-group-id="3680909566-6">(</span><span class="n">dates</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="3680909566-7">{</span><span class="ss">:desc</span><span class="p">,</span><span class="w"> </span><span class="nc">Date</span><span class="p" data-group-id="3680909566-7">}</span><span class="p" data-group-id="3680909566-6">)</span><span class="w">
+</span><span class="p" data-group-id="3680909566-8">[</span><span class="ld">~D[2020-03-02]</span><span class="p">,</span><span class="w"> </span><span class="ld">~D[2019-06-06]</span><span class="p">,</span><span class="w"> </span><span class="ld">~D[2019-01-01]</span><span class="p" data-group-id="3680909566-8">]</span></code></pre>
+  </section>
+</section>
+
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.1) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

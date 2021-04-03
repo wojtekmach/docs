@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.1">
+    <meta name="project" content="Elixir v1.12.0-rc.0">
+
+    <title>Inspect.Opts — Elixir v1.12.0-rc.0</title>
+    <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
+
+      <link rel="canonical" href="https://hexdocs.pm/elixir/1.12/Inspect.Opts.html" />
+
+    <script src="dist/sidebar_items-1a6c36a221.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName">
+Elixir
+      </a>
+      <strong class="sidebar-projectVersion">
+        v1.12.0-rc.0
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+      <h1>
+Inspect.Opts <small class="app-vsn">(Elixir v1.12.0-rc.0)</small>
+
+          <a href="https://github.com/elixir-lang/elixir/blob/fb151383ab866230694712690fe9a583dc32a9db/lib/elixir/lib/inspect/algebra.ex#L1" title="View Source" class="view-source" rel="help">
+            <span class="icon-code" aria-hidden="true"></span>
+            <span class="sr-only">View Source</span>
+          </a>
+
+      </h1>
+
+
+        <section id="moduledoc">
+<p>Defines the options used by the <a href="Inspect.html"><code class="inline">Inspect</code></a> protocol.</p><p>The following fields are available:</p><ul><li><p><code class="inline">:base</code> - prints integers as <code class="inline">:binary</code>, <code class="inline">:octal</code>, <code class="inline">:decimal</code>, or <code class="inline">:hex</code>,
+defaults to <code class="inline">:decimal</code>. When inspecting binaries any <code class="inline">:base</code> other than
+<code class="inline">:decimal</code> implies <code class="inline">binaries: :as_binaries</code>.</p></li><li><p><code class="inline">:binaries</code> - when <code class="inline">:as_binaries</code> all binaries will be printed in bit
+syntax.</p><p>When <code class="inline">:as_strings</code> all binaries will be printed as strings, non-printable
+bytes will be escaped.
+When the default <code class="inline">:infer</code>, the binary will be printed as a string if it
+is printable, otherwise in bit syntax. See <a href="String.html#printable?/1"><code class="inline">String.printable?/1</code></a> to learn
+when a string is printable.</p></li><li><p><code class="inline">:charlists</code> - when <code class="inline">:as_charlists</code> all lists will be printed as charlists,
+non-printable elements will be escaped.</p><p>When <code class="inline">:as_lists</code> all lists will be printed as lists.
+When the default <code class="inline">:infer</code>, the list will be printed as a charlist if it
+is printable, otherwise as list. See <a href="List.html#ascii_printable?/1"><code class="inline">List.ascii_printable?/1</code></a> to learn
+when a charlist is printable.</p></li><li><p><code class="inline">:custom_options</code> (since v1.9.0) - a keyword list storing custom user-defined
+options. Useful when implementing the <a href="Inspect.html"><code class="inline">Inspect</code></a> protocol for nested structs
+to pass the custom options through.</p></li><li><p><code class="inline">:inspect_fun</code> (since v1.9.0) - a function to build algebra documents.
+Defaults to <a href="Inspect.html#inspect/2"><code class="inline">Inspect.inspect/2</code></a>.</p></li><li><p><code class="inline">:limit</code> - limits the number of items that are inspected for tuples,
+bitstrings, maps, lists and any other collection of items, with the exception of
+printable strings and printable charlists which use the <code class="inline">:printable_limit</code> option.
+If you don't want to limit the number of items to a particular number,
+use <code class="inline">:infinity</code>. It accepts a positive integer or <code class="inline">:infinity</code>.
+Defaults to <code class="inline">50</code>.</p></li><li><p><code class="inline">:pretty</code> - if set to <code class="inline">true</code> enables pretty printing. Defaults to <code class="inline">false</code>.</p></li><li><p><code class="inline">:printable_limit</code> - limits the number of characters that are inspected
+on printable strings and printable charlists. You can use <a href="String.html#printable?/1"><code class="inline">String.printable?/1</code></a>
+and <a href="List.html#ascii_printable?/1"><code class="inline">List.ascii_printable?/1</code></a> to check if a given string or charlist is
+printable. If you don't want to limit the number of characters to a particular
+number, use <code class="inline">:infinity</code>. It accepts a positive integer or <code class="inline">:infinity</code>.
+Defaults to <code class="inline">4096</code>.</p></li><li><p><code class="inline">:safe</code> - when <code class="inline">false</code>, failures while inspecting structs will be raised
+as errors instead of being wrapped in the <a href="Inspect.Error.html"><code class="inline">Inspect.Error</code></a> exception. This
+is useful when debugging failures and crashes for custom inspect
+implementations.</p></li><li><p><code class="inline">:structs</code> - when <code class="inline">false</code>, structs are not formatted by the inspect
+protocol, they are instead printed as maps. Defaults to <code class="inline">true</code>.</p></li><li><p><code class="inline">:syntax_colors</code> - when set to a keyword list of colors the output is
+colorized. The keys are types and the values are the colors to use for
+each type (for example, <code class="inline">[number: :red, atom: :blue]</code>). Types can include
+<code class="inline">:atom</code>, <code class="inline">:binary</code>, <code class="inline">:boolean</code>, <code class="inline">:list</code>, <code class="inline">:map</code>, <code class="inline">:number</code>, <code class="inline">:regex</code>,
+<code class="inline">:string</code>, and <code class="inline">:tuple</code>. Custom data types may provide their own options.
+Colors can be any <a href="IO.ANSI.html#t:ansidata/0"><code class="inline">IO.ANSI.ansidata/0</code></a> as accepted by <a href="IO.ANSI.html#format/1"><code class="inline">IO.ANSI.format/1</code></a>.</p></li><li><p><code class="inline">:width</code> - number of characters per line used when pretty is <code class="inline">true</code> or when
+printing to IO devices. Set to <code class="inline">0</code> to force each item to be printed on its
+own line. If you don't want to limit the number of items to a particular
+number, use <code class="inline">:infinity</code>. Defaults to <code class="inline">80</code>.</p></li></ul>
+        </section>
+
+
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Summary
+          </h1>
+
+  <div class="summary-types summary">
+    <h2>
+      <a href="#types">Types</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:color_key/0">color_key()</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:t/0">t()</a>
+
+  </div>
+
+</div>
+
+  </div>
+
+        </section>
+
+
+        <section id="types" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#types">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Types
+          </h1>
+          <div class="types-list">
+<section class="detail" id="t:color_key/0">
+
+  <div class="detail-header">
+    <a href="#t:color_key/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">color_key()</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/fb151383ab866230694712690fe9a583dc32a9db/lib/elixir/lib/inspect/algebra.ex#L90" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>color_key() :: <a href="typespecs.html#basic-types">atom</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:t/0">
+
+  <div class="detail-header">
+    <a href="#t:t/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">t()</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/fb151383ab866230694712690fe9a583dc32a9db/lib/elixir/lib/inspect/algebra.ex#L93" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>t() :: %Inspect.Opts{
+  base: :decimal | :binary | :hex | :octal,
+  binaries: :infer | :as_binaries | :as_strings,
+  char_lists: :infer | :as_lists | :as_char_lists,
+  charlists: :infer | :as_lists | :as_charlists,
+  custom_options: <a href="typespecs.html#built-in-types">keyword</a>(),
+  inspect_fun: (<a href="typespecs.html#basic-types">any</a>(), <a href="#t:t/0">t</a>() -&gt; <a href="Inspect.Algebra.html#t:t/0">Inspect.Algebra.t</a>()),
+  limit: <a href="typespecs.html#basic-types">non_neg_integer</a>() | :infinity,
+  pretty: <a href="typespecs.html#built-in-types">boolean</a>(),
+  printable_limit: <a href="typespecs.html#basic-types">non_neg_integer</a>() | :infinity,
+  safe: <a href="typespecs.html#built-in-types">boolean</a>(),
+  structs: <a href="typespecs.html#built-in-types">boolean</a>(),
+  syntax_colors: [{<a href="#t:color_key/0">color_key</a>(), <a href="IO.ANSI.html#t:ansidata/0">IO.ANSI.ansidata</a>()}],
+  width: <a href="typespecs.html#basic-types">non_neg_integer</a>() | :infinity
+}</pre>
+
+      </div>
+
+
+  </section>
+</section>
+
+          </div>
+        </section>
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.1) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

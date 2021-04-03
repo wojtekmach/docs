@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.1">
+    <meta name="project" content="Elixir v1.13.0-dev">
+
+    <title>System.cmd — Elixir v1.13.0-dev</title>
+    <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
+
+      <link rel="canonical" href="https://hexdocs.pm/elixir/master/" />
+
+    <script src="dist/sidebar_items-ed39eda610.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName">
+Elixir
+      </a>
+      <strong class="sidebar-projectVersion">
+        v1.13.0-dev
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>System.cmd</h1>
+
+<div class="deprecated">
+  You're seeing just the function <code>cmd</code>, go back to <a href="System.html">System</a> module for more information.
+</div>
+
+<section class="detail" id="cmd/3">
+
+    <span id="cmd/2"></span>
+
+  <div class="detail-header">
+    <a href="#cmd/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">cmd(command, args, opts \\ [])</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/system.ex#L970" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>cmd(<a href="typespecs.html#built-in-types">binary</a>(), [<a href="typespecs.html#built-in-types">binary</a>()], <a href="typespecs.html#built-in-types">keyword</a>()) ::
+  {<a href="Collectable.html#t:t/0">Collectable.t</a>(), exit_status :: <a href="typespecs.html#basic-types">non_neg_integer</a>()}</pre>
+
+      </div>
+
+<p>Executes the given <code class="inline">command</code> with <code class="inline">args</code>.</p><p><code class="inline">command</code> is expected to be an executable available in PATH
+unless an absolute path is given.</p><p><code class="inline">args</code> must be a list of binaries which the executable will receive
+as its arguments as is. This means that:</p><ul><li>environment variables will not be interpolated</li><li>wildcard expansion will not happen (unless <a href="Path.html#wildcard/2"><code class="inline">Path.wildcard/2</code></a> is used
+explicitly)</li><li>arguments do not need to be escaped or quoted for shell safety</li></ul><p>This function returns a tuple containing the collected result
+and the command exit status.</p><p>Internally, this function uses a <a href="Port.html"><code class="inline">Port</code></a> for interacting with the
+outside world. However, if you plan to run a long-running program,
+ports guarantee stdin/stdout devices will be closed but it does not
+automatically terminate the program. The documentation for the
+<a href="Port.html"><code class="inline">Port</code></a> module describes this problem and possible solutions under
+the &quot;Zombie processes&quot; section.</p><h2 id="cmd/3-examples" class="section-heading">
+  <a href="#cmd/3-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">System</span><span class="o">.</span><span class="n">cmd</span><span class="p" data-group-id="8944661907-1">(</span><span class="s">&quot;echo&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8944661907-2">[</span><span class="s">&quot;hello&quot;</span><span class="p" data-group-id="8944661907-2">]</span><span class="p" data-group-id="8944661907-1">)</span><span class="w">
+</span><span class="p" data-group-id="8944661907-3">{</span><span class="s">&quot;hello</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p" data-group-id="8944661907-3">}</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">System</span><span class="o">.</span><span class="n">cmd</span><span class="p" data-group-id="8944661907-4">(</span><span class="s">&quot;echo&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8944661907-5">[</span><span class="s">&quot;hello&quot;</span><span class="p" data-group-id="8944661907-5">]</span><span class="p">,</span><span class="w"> </span><span class="ss">env</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="8944661907-6">[</span><span class="p" data-group-id="8944661907-7">{</span><span class="s">&quot;MIX_ENV&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;test&quot;</span><span class="p" data-group-id="8944661907-7">}</span><span class="p" data-group-id="8944661907-6">]</span><span class="p" data-group-id="8944661907-4">)</span><span class="w">
+</span><span class="p" data-group-id="8944661907-8">{</span><span class="s">&quot;hello</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p" data-group-id="8944661907-8">}</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">System</span><span class="o">.</span><span class="n">cmd</span><span class="p" data-group-id="8944661907-9">(</span><span class="s">&quot;echo&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8944661907-10">[</span><span class="s">&quot;hello&quot;</span><span class="p" data-group-id="8944661907-10">]</span><span class="p">,</span><span class="w"> </span><span class="ss">into</span><span class="p">:</span><span class="w"> </span><span class="nc">IO</span><span class="o">.</span><span class="n">stream</span><span class="p" data-group-id="8944661907-11">(</span><span class="ss">:stdio</span><span class="p">,</span><span class="w"> </span><span class="ss">:line</span><span class="p" data-group-id="8944661907-11">)</span><span class="p" data-group-id="8944661907-9">)</span><span class="w">
+</span><span class="n">hello</span><span class="w">
+</span><span class="p" data-group-id="8944661907-12">{</span><span class="p" data-group-id="8944661907-13">%</span><span class="nc" data-group-id="8944661907-13">IO.Stream</span><span class="p" data-group-id="8944661907-13">{</span><span class="p" data-group-id="8944661907-13">}</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p" data-group-id="8944661907-12">}</span></code></pre><h2 id="cmd/3-options" class="section-heading">
+  <a href="#cmd/3-options" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Options
+</h2>
+<ul><li><code class="inline">:into</code> - injects the result into the given collectable, defaults to <code class="inline">&quot;&quot;</code></li><li><code class="inline">:cd</code> - the directory to run the command in</li><li><code class="inline">:env</code> - an enumerable of tuples containing environment key-value as
+binary. The child process inherits all environment variables from its
+parent process, the Elixir application, except those overwritten or
+cleared using this option. Specify a value of <code class="inline">nil</code> to clear (unset) an
+environment variable, which is useful for preventing credentials passed
+to the application from leaking into child processes.</li><li><code class="inline">:arg0</code> - sets the command arg0</li><li><code class="inline">:stderr_to_stdout</code> - redirects stderr to stdout when <code class="inline">true</code></li><li><code class="inline">:parallelism</code> - when <code class="inline">true</code>, the VM will schedule port tasks to improve
+parallelism in the system. If set to <code class="inline">false</code>, the VM will try to perform
+commands immediately, improving latency at the expense of parallelism.
+The default can be set on system startup by passing the &quot;+spp&quot; argument
+to <code class="inline">--erl</code>.</li></ul><h2 id="cmd/3-error-reasons" class="section-heading">
+  <a href="#cmd/3-error-reasons" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Error reasons
+</h2>
+<p>If invalid arguments are given, <a href="ArgumentError.html"><code class="inline">ArgumentError</code></a> is raised by
+<a href="#cmd/3"><code class="inline">System.cmd/3</code></a>. <a href="#cmd/3"><code class="inline">System.cmd/3</code></a> also expects a strict set of
+options and will raise if unknown or invalid options are given.</p><p>Furthermore, <a href="#cmd/3"><code class="inline">System.cmd/3</code></a> may fail with one of the POSIX reasons
+detailed below:</p><ul><li><p><code class="inline">:system_limit</code> - all available ports in the Erlang emulator are in use</p></li><li><p><code class="inline">:enomem</code> - there was not enough memory to create the port</p></li><li><p><code class="inline">:eagain</code> - there are no more available operating system processes</p></li><li><p><code class="inline">:enametoolong</code> - the external command given was too long</p></li><li><p><code class="inline">:emfile</code> - there are no more available file descriptors
+(for the operating system process that the Erlang emulator runs in)</p></li><li><p><code class="inline">:enfile</code> - the file table is full (for the entire operating system)</p></li><li><p><code class="inline">:eacces</code> - the command does not point to an executable file</p></li><li><p><code class="inline">:enoent</code> - the command does not point to an existing file</p></li></ul><h2 id="cmd/3-shell-commands" class="section-heading">
+  <a href="#cmd/3-shell-commands" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Shell commands
+</h2>
+<p>If you desire to execute a trusted command inside a shell, with pipes,
+redirecting and so on, please check <a href="https://erlang.org/doc/man/os.html#cmd-1"><code class="inline">:os.cmd/1</code></a>.</p>
+  </section>
+</section>
+
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.1) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.1">
+    <meta name="project" content="Logger v1.13.0-dev">
+
+    <title>Logger.Backends.Console — Logger v1.13.0-dev</title>
+    <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
+
+      <link rel="canonical" href="https://hexdocs.pm/logger/master/Logger.Backends.Console.html" />
+
+    <script src="dist/sidebar_items-79989d3661.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName">
+Logger
+      </a>
+      <strong class="sidebar-projectVersion">
+        v1.13.0-dev
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+      <h1>
+Logger.Backends.Console <small class="app-vsn">(Logger v1.13.0-dev)</small>
+
+          <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/logger/lib/logger/backends/console.ex#L1" title="View Source" class="view-source" rel="help">
+            <span class="icon-code" aria-hidden="true"></span>
+            <span class="sr-only">View Source</span>
+          </a>
+
+      </h1>
+
+
+        <section id="moduledoc">
+<p>A logger backend that logs messages by printing them to the console.</p><h2 id="module-options" class="section-heading">
+  <a href="#module-options" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Options
+</h2>
+<ul><li><p><code class="inline">:level</code> - the level to be logged by this backend.
+Note that messages are filtered by the general
+<code class="inline">:level</code> configuration for the <code class="inline">:logger</code> application first.</p></li><li><p><code class="inline">:format</code> - the format message used to print logs.
+Defaults to: <code class="inline">&quot;\n$time $metadata[$level] $levelpad$message\n&quot;</code>.
+It may also be a <code class="inline">{module, function}</code> tuple that is invoked
+with the log level, the message, the current timestamp and
+the metadata.</p></li><li><p><code class="inline">:metadata</code> - the metadata to be printed by <code class="inline">$metadata</code>.
+Defaults to an empty list (no metadata).
+Setting <code class="inline">:metadata</code> to <code class="inline">:all</code> prints all metadata. See
+the &quot;Metadata&quot; section for more information.</p></li><li><p><code class="inline">:colors</code> - a keyword list of coloring options.</p></li><li><p><code class="inline">:device</code> - the device to log error messages to. Defaults to
+<code class="inline">:user</code> but can be changed to something else such as <code class="inline">:standard_error</code>.</p></li><li><p><code class="inline">:max_buffer</code> - maximum events to buffer while waiting
+for a confirmation from the IO device (default: 32).
+Once the buffer is full, the backend will block until
+a confirmation is received.</p></li></ul><p>The supported keys in the <code class="inline">:colors</code> keyword list are:</p><ul><li><p><code class="inline">:enabled</code> - boolean value that allows for switching the
+coloring on and off. Defaults to: <a href="https://hexdocs.pm/elixir/master/IO.ANSI.html#enabled?/0"><code class="inline">IO.ANSI.enabled?/0</code></a></p></li><li><p><code class="inline">:debug</code> - color for debug messages. Defaults to: <code class="inline">:cyan</code></p></li><li><p><code class="inline">:info</code> - color for info and notice messages. Defaults to: <code class="inline">:normal</code></p></li><li><p><code class="inline">:warn</code> - color for warning messages. Defaults to: <code class="inline">:yellow</code></p></li><li><p><code class="inline">:error</code> - color for error and higher messages. Defaults to: <code class="inline">:red</code></p></li></ul><p>See the <a href="https://hexdocs.pm/elixir/master/IO.ANSI.html"><code class="inline">IO.ANSI</code></a> module for a list of colors and attributes.</p><p>Here is an example of how to configure the <code class="inline">:console</code> backend in a
+<code class="inline">config/config.exs</code> file:</p><pre><code class="makeup elixir"><span class="n">config</span><span class="w"> </span><span class="ss">:logger</span><span class="p">,</span><span class="w"> </span><span class="ss">:console</span><span class="p">,</span><span class="w">
+  </span><span class="ss">format</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">$time $metadata[$level] $levelpad$message</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w">
+  </span><span class="ss">metadata</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3405624474-1">[</span><span class="ss">:user_id</span><span class="p" data-group-id="3405624474-1">]</span></code></pre><h2 id="module-custom-formatting" class="section-heading">
+  <a href="#module-custom-formatting" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Custom formatting
+</h2>
+<p>The console backend allows you to customize the format of your
+log messages with the <code class="inline">:format</code> option.</p><p>You may set <code class="inline">:format</code> to either a string or a <code class="inline">{module, function}</code>
+tuple if you wish to provide your own format function. Here is an
+example of how to configure the <code class="inline">:console</code> backend in a
+<code class="inline">config/config.exs</code> file:</p><pre><code class="makeup elixir"><span class="n">config</span><span class="w"> </span><span class="ss">:logger</span><span class="p">,</span><span class="w"> </span><span class="ss">:console</span><span class="p">,</span><span class="w">
+  </span><span class="ss">format</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6512323484-1">{</span><span class="nc">MyConsoleLogger</span><span class="p">,</span><span class="w"> </span><span class="ss">:format</span><span class="p" data-group-id="6512323484-1">}</span></code></pre><p>And here is an example of how you can define <code class="inline">MyConsoleLogger.format/4</code>
+from the above configuration:</p><pre><code class="makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyConsoleLogger</span><span class="w"> </span><span class="k" data-group-id="8912587782-1">do</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">format</span><span class="p" data-group-id="8912587782-2">(</span><span class="n">level</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">,</span><span class="w"> </span><span class="n">timestamp</span><span class="p">,</span><span class="w"> </span><span class="n">metadata</span><span class="p" data-group-id="8912587782-2">)</span><span class="w"> </span><span class="k" data-group-id="8912587782-3">do</span><span class="w">
+    </span><span class="c1"># Custom formatting logic...</span><span class="w">
+  </span><span class="k" data-group-id="8912587782-3">end</span><span class="w">
+</span><span class="k" data-group-id="8912587782-1">end</span></code></pre><p>It is extremely important that <strong>the formatting function does
+not fail</strong>, as it will bring that particular logger instance down,
+causing your system to temporarily lose messages. If necessary,
+wrap the function in a <code class="inline">rescue</code> and log a default message instead:</p><pre><code class="makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyConsoleLogger</span><span class="w"> </span><span class="k" data-group-id="0684270721-1">do</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">format</span><span class="p" data-group-id="0684270721-2">(</span><span class="n">level</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">,</span><span class="w"> </span><span class="n">timestamp</span><span class="p">,</span><span class="w"> </span><span class="n">metadata</span><span class="p" data-group-id="0684270721-2">)</span><span class="w"> </span><span class="k" data-group-id="0684270721-3">do</span><span class="w">
+    </span><span class="c1"># Custom formatting logic...</span><span class="w">
+  </span><span class="k" data-group-id="0684270721-3">rescue</span><span class="w">
+    </span><span class="bp">_</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;could not format: </span><span class="si" data-group-id="0684270721-4">#{</span><span class="n">inspect</span><span class="p" data-group-id="0684270721-5">(</span><span class="p" data-group-id="0684270721-6">{</span><span class="n">level</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">,</span><span class="w"> </span><span class="n">metadata</span><span class="p" data-group-id="0684270721-6">}</span><span class="p" data-group-id="0684270721-5">)</span><span class="si" data-group-id="0684270721-4">}</span><span class="s">&quot;</span><span class="w">
+  </span><span class="k" data-group-id="0684270721-3">end</span><span class="w">
+</span><span class="k" data-group-id="0684270721-1">end</span></code></pre><p>The <code class="inline">{module, function}</code> will be invoked with four arguments:</p><ul><li>the log level: an atom</li><li>the message: this is usually chardata, but in some cases it
+may contain invalid data. Since the formatting function should
+<em>never</em> fail, you need to prepare for the message being anything</li><li>the current timestamp: a term of type <a href="Logger.Formatter.html#t:time/0"><code class="inline">Logger.Formatter.time/0</code></a></li><li>the metadata: a keyword list</li></ul><p>You can read more about formatting in <a href="Logger.Formatter.html"><code class="inline">Logger.Formatter</code></a>, especially
+if you want to support custom formatting in a custom backend.</p>
+        </section>
+
+
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.1) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

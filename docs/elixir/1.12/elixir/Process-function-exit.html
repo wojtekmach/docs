@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.1">
+    <meta name="project" content="Elixir v1.12.0-rc.0">
+
+    <title>Process.exit — Elixir v1.12.0-rc.0</title>
+    <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
+
+      <link rel="canonical" href="https://hexdocs.pm/elixir/1.12/" />
+
+    <script src="dist/sidebar_items-1a6c36a221.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName">
+Elixir
+      </a>
+      <strong class="sidebar-projectVersion">
+        v1.12.0-rc.0
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>Process.exit</h1>
+
+<div class="deprecated">
+  You're seeing just the function <code>exit</code>, go back to <a href="Process.html">Process</a> module for more information.
+</div>
+
+<section class="detail" id="exit/2">
+
+  <div class="detail-header">
+    <a href="#exit/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">exit(pid, reason)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/fb151383ab866230694712690fe9a583dc32a9db/lib/elixir/lib/process.ex#L173" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>exit(<a href="typespecs.html#basic-types">pid</a>(), <a href="typespecs.html#built-in-types">term</a>()) :: true</pre>
+
+      </div>
+
+<p>Sends an exit signal with the given <code class="inline">reason</code> to <code class="inline">pid</code>.</p><p>The following behaviour applies if <code class="inline">reason</code> is any term except <code class="inline">:normal</code>
+or <code class="inline">:kill</code>:</p><ol><li><p>If <code class="inline">pid</code> is not trapping exits, <code class="inline">pid</code> will exit with the given
+<code class="inline">reason</code>.</p></li><li><p>If <code class="inline">pid</code> is trapping exits, the exit signal is transformed into a
+message <code class="inline">{:EXIT, from, reason}</code> and delivered to the message queue
+of <code class="inline">pid</code>.</p></li></ol><p>If <code class="inline">reason</code> is the atom <code class="inline">:normal</code>, <code class="inline">pid</code> will not exit (unless <code class="inline">pid</code> is
+the calling process, in which case it will exit with the reason <code class="inline">:normal</code>).
+If it is trapping exits, the exit signal is transformed into a message
+<code class="inline">{:EXIT, from, :normal}</code> and delivered to its message queue.</p><p>If <code class="inline">reason</code> is the atom <code class="inline">:kill</code>, that is if <code class="inline">Process.exit(pid, :kill)</code> is called,
+an untrappable exit signal is sent to <code class="inline">pid</code> which will unconditionally exit
+with reason <code class="inline">:killed</code>.</p><p>Inlined by the compiler.</p><h2 id="exit/2-examples" class="section-heading">
+  <a href="#exit/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="nc">Process</span><span class="o">.</span><span class="n">exit</span><span class="p" data-group-id="2635683874-1">(</span><span class="n">pid</span><span class="p">,</span><span class="w"> </span><span class="ss">:kill</span><span class="p" data-group-id="2635683874-1">)</span><span class="w">
+</span><span class="c1">#=&gt; true</span></code></pre>
+  </section>
+</section>
+
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.1) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

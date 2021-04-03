@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.1">
+    <meta name="project" content="Elixir v1.13.0-dev">
+
+    <title>Task.await — Elixir v1.13.0-dev</title>
+    <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
+
+      <link rel="canonical" href="https://hexdocs.pm/elixir/master/" />
+
+    <script src="dist/sidebar_items-ed39eda610.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName">
+Elixir
+      </a>
+      <strong class="sidebar-projectVersion">
+        v1.13.0-dev
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>Task.await</h1>
+
+<div class="deprecated">
+  You're seeing just the function <code>await</code>, go back to <a href="Task.html">Task</a> module for more information.
+</div>
+
+<section class="detail" id="await/2">
+
+    <span id="await/1"></span>
+
+  <div class="detail-header">
+    <a href="#await/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">await(task, timeout \\ 5000)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/task.ex#L711" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>await(<a href="#t:t/0">t</a>(), <a href="typespecs.html#built-in-types">timeout</a>()) :: <a href="typespecs.html#built-in-types">term</a>()</pre>
+
+      </div>
+
+<p>Awaits a task reply and returns it.</p><p>In case the task process dies, the current process will exit with the same
+reason as the task.</p><p>A timeout, in milliseconds or <code class="inline">:infinity</code>, can be given with a default value
+of <code class="inline">5000</code>. If the timeout is exceeded, then the current process will exit. If
+the task process is linked to the current process which is the case when a
+task is started with <code class="inline">async</code>, then the task process will also exit. If the
+task process is trapping exits or not linked to the current process, then it
+will continue to run.</p><p>This function assumes the task's monitor is still active or the monitor's
+<code class="inline">:DOWN</code> message is in the message queue. If it has been demonitored, or the
+message already received, this function will wait for the duration of the
+timeout awaiting the message.</p><p>This function can only be called once for any given task. If you want
+to be able to check multiple times if a long-running task has finished
+its computation, use <a href="#yield/2"><code class="inline">yield/2</code></a> instead.</p><h2 id="await/2-examples" class="section-heading">
+  <a href="#await/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">task</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Task</span><span class="o">.</span><span class="n">async</span><span class="p" data-group-id="9492721439-1">(</span><span class="k" data-group-id="9492721439-2">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k" data-group-id="9492721439-2">end</span><span class="p" data-group-id="9492721439-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Task</span><span class="o">.</span><span class="n">await</span><span class="p" data-group-id="9492721439-3">(</span><span class="n">task</span><span class="p" data-group-id="9492721439-3">)</span><span class="w">
+</span><span class="mi">2</span></code></pre><h2 id="await/2-compatibility-with-otp-behaviours" class="section-heading">
+  <a href="#await/2-compatibility-with-otp-behaviours" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Compatibility with OTP behaviours
+</h2>
+<p>It is not recommended to <code class="inline">await</code> a long-running task inside an OTP
+behaviour such as <a href="GenServer.html"><code class="inline">GenServer</code></a>. Instead, you should match on the message
+coming from a task inside your <a href="GenServer.html#c:handle_info/2"><code class="inline">GenServer.handle_info/2</code></a> callback.</p><p>A GenServer will receive two messages on <code class="inline">handle_info/2</code>:</p><ul><li><p><code class="inline">{ref, result}</code> - the reply message where <code class="inline">ref</code> is the monitor
+reference returned by the <code class="inline">task.ref</code> and <code class="inline">result</code> is the task
+result</p></li><li><p><code class="inline">{:DOWN, ref, :process, pid, reason}</code> - since all tasks are also
+monitored, you will also receive the <code class="inline">:DOWN</code> message delivered by
+<a href="Process.html#monitor/1"><code class="inline">Process.monitor/1</code></a>. If you receive the <code class="inline">:DOWN</code> message without a
+a reply, it means the task crashed</p></li></ul><p>Another consideration to have in mind is that tasks started by <a href="#async/1"><code class="inline">Task.async/1</code></a>
+are always linked to their callers and you may not want the GenServer to
+crash if the task crashes. Therefore, it is preferable to instead use
+<a href="Task.Supervisor.html#async_nolink/3"><code class="inline">Task.Supervisor.async_nolink/3</code></a> inside OTP behaviours. For completeness, here
+is an example of a GenServer that start tasks and handles their results:</p><pre><code class="makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">GenServerTaskExample</span><span class="w"> </span><span class="k" data-group-id="6188111311-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">GenServer</span><span class="w">
+
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">start_link</span><span class="p" data-group-id="6188111311-2">(</span><span class="n">opts</span><span class="p" data-group-id="6188111311-2">)</span><span class="w"> </span><span class="k" data-group-id="6188111311-3">do</span><span class="w">
+    </span><span class="nc">GenServer</span><span class="o">.</span><span class="n">start_link</span><span class="p" data-group-id="6188111311-4">(</span><span class="bp">__MODULE__</span><span class="p">,</span><span class="w"> </span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">opts</span><span class="p" data-group-id="6188111311-4">)</span><span class="w">
+  </span><span class="k" data-group-id="6188111311-3">end</span><span class="w">
+
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">init</span><span class="p" data-group-id="6188111311-5">(</span><span class="c">_opts</span><span class="p" data-group-id="6188111311-5">)</span><span class="w"> </span><span class="k" data-group-id="6188111311-6">do</span><span class="w">
+    </span><span class="c1"># We will keep all running tasks in a map</span><span class="w">
+    </span><span class="p" data-group-id="6188111311-7">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="6188111311-8">%{</span><span class="ss">tasks</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6188111311-9">%{</span><span class="p" data-group-id="6188111311-9">}</span><span class="p" data-group-id="6188111311-8">}</span><span class="p" data-group-id="6188111311-7">}</span><span class="w">
+  </span><span class="k" data-group-id="6188111311-6">end</span><span class="w">
+
+  </span><span class="c1"># Imagine we invoke a task from the GenServer to access a URL...</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">handle_call</span><span class="p" data-group-id="6188111311-10">(</span><span class="ss">:some_message</span><span class="p">,</span><span class="w"> </span><span class="c">_from</span><span class="p">,</span><span class="w"> </span><span class="n">state</span><span class="p" data-group-id="6188111311-10">)</span><span class="w"> </span><span class="k" data-group-id="6188111311-11">do</span><span class="w">
+    </span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">...</span><span class="w">
+    </span><span class="n">task</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Task.Supervisor</span><span class="o">.</span><span class="n">async_nolink</span><span class="p" data-group-id="6188111311-12">(</span><span class="nc">MyApp.TaskSupervisor</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="6188111311-13">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">fetch_url</span><span class="p" data-group-id="6188111311-14">(</span><span class="n">url</span><span class="p" data-group-id="6188111311-14">)</span><span class="w"> </span><span class="k" data-group-id="6188111311-13">end</span><span class="p" data-group-id="6188111311-12">)</span><span class="w">
+
+    </span><span class="c1"># After we start the task, we store its reference and the url it is fetching</span><span class="w">
+    </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">put_in</span><span class="p" data-group-id="6188111311-15">(</span><span class="n">state</span><span class="o">.</span><span class="n">tasks</span><span class="p" data-group-id="6188111311-16">[</span><span class="n">task</span><span class="o">.</span><span class="n">ref</span><span class="p" data-group-id="6188111311-16">]</span><span class="p">,</span><span class="w"> </span><span class="n">url</span><span class="p" data-group-id="6188111311-15">)</span><span class="w">
+
+    </span><span class="p" data-group-id="6188111311-17">{</span><span class="ss">:reply</span><span class="p">,</span><span class="w"> </span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">state</span><span class="p" data-group-id="6188111311-17">}</span><span class="w">
+  </span><span class="k" data-group-id="6188111311-11">end</span><span class="w">
+
+  </span><span class="c1"># If the task succeeds...</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">handle_info</span><span class="p" data-group-id="6188111311-18">(</span><span class="p" data-group-id="6188111311-19">{</span><span class="n">ref</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p" data-group-id="6188111311-19">}</span><span class="p">,</span><span class="w"> </span><span class="n">state</span><span class="p" data-group-id="6188111311-18">)</span><span class="w"> </span><span class="k" data-group-id="6188111311-20">do</span><span class="w">
+    </span><span class="c1"># The task succeed so we can cancel the monitoring and discard the DOWN message</span><span class="w">
+    </span><span class="nc">Process</span><span class="o">.</span><span class="n">demonitor</span><span class="p" data-group-id="6188111311-21">(</span><span class="n">ref</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="6188111311-22">[</span><span class="ss">:flush</span><span class="p" data-group-id="6188111311-22">]</span><span class="p" data-group-id="6188111311-21">)</span><span class="w">
+
+    </span><span class="p" data-group-id="6188111311-23">{</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">state</span><span class="p" data-group-id="6188111311-23">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pop_in</span><span class="p" data-group-id="6188111311-24">(</span><span class="n">state</span><span class="o">.</span><span class="n">tasks</span><span class="p" data-group-id="6188111311-25">[</span><span class="n">ref</span><span class="p" data-group-id="6188111311-25">]</span><span class="p" data-group-id="6188111311-24">)</span><span class="w">
+    </span><span class="nc">IO</span><span class="o">.</span><span class="n">puts</span><span class="w"> </span><span class="s">&quot;Got </span><span class="si" data-group-id="6188111311-26">#{</span><span class="n">inspect</span><span class="p" data-group-id="6188111311-27">(</span><span class="n">result</span><span class="p" data-group-id="6188111311-27">)</span><span class="si" data-group-id="6188111311-26">}</span><span class="s"> for URL </span><span class="si" data-group-id="6188111311-28">#{</span><span class="n">inspect</span><span class="w"> </span><span class="n">url</span><span class="si" data-group-id="6188111311-28">}</span><span class="s">&quot;</span><span class="w">
+    </span><span class="p" data-group-id="6188111311-29">{</span><span class="ss">:noreply</span><span class="p">,</span><span class="w"> </span><span class="n">state</span><span class="p" data-group-id="6188111311-29">}</span><span class="w">
+  </span><span class="k" data-group-id="6188111311-20">end</span><span class="w">
+
+  </span><span class="c1"># If the task fails...</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">handle_info</span><span class="p" data-group-id="6188111311-30">(</span><span class="p" data-group-id="6188111311-31">{</span><span class="ss">:DOWN</span><span class="p">,</span><span class="w"> </span><span class="n">ref</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="p">,</span><span class="w"> </span><span class="n">reason</span><span class="p" data-group-id="6188111311-31">}</span><span class="p">,</span><span class="w"> </span><span class="n">state</span><span class="p" data-group-id="6188111311-30">)</span><span class="w"> </span><span class="k" data-group-id="6188111311-32">do</span><span class="w">
+    </span><span class="p" data-group-id="6188111311-33">{</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">state</span><span class="p" data-group-id="6188111311-33">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pop_in</span><span class="p" data-group-id="6188111311-34">(</span><span class="n">state</span><span class="o">.</span><span class="n">tasks</span><span class="p" data-group-id="6188111311-35">[</span><span class="n">ref</span><span class="p" data-group-id="6188111311-35">]</span><span class="p" data-group-id="6188111311-34">)</span><span class="w">
+    </span><span class="nc">IO</span><span class="o">.</span><span class="n">puts</span><span class="w"> </span><span class="s">&quot;URL </span><span class="si" data-group-id="6188111311-36">#{</span><span class="n">inspect</span><span class="w"> </span><span class="n">url</span><span class="si" data-group-id="6188111311-36">}</span><span class="s"> failed with reason </span><span class="si" data-group-id="6188111311-37">#{</span><span class="n">inspect</span><span class="p" data-group-id="6188111311-38">(</span><span class="n">reason</span><span class="p" data-group-id="6188111311-38">)</span><span class="si" data-group-id="6188111311-37">}</span><span class="s">&quot;</span><span class="w">
+    </span><span class="p" data-group-id="6188111311-39">{</span><span class="ss">:noreply</span><span class="p">,</span><span class="w"> </span><span class="n">state</span><span class="p" data-group-id="6188111311-39">}</span><span class="w">
+  </span><span class="k" data-group-id="6188111311-32">end</span><span class="w">
+</span><span class="k" data-group-id="6188111311-1">end</span></code></pre><p>With the server defined, you will want to start the task supervisor
+above and the GenServer in your supervision tree:</p><pre><code class="makeup elixir"><span class="n">children</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="9933902237-1">[</span><span class="w">
+  </span><span class="p" data-group-id="9933902237-2">{</span><span class="nc">Task.Supervisor</span><span class="p">,</span><span class="w"> </span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="nc">MyApp.TaskSupervisor</span><span class="p" data-group-id="9933902237-2">}</span><span class="p">,</span><span class="w">
+  </span><span class="p" data-group-id="9933902237-3">{</span><span class="nc">GenServerTaskExample</span><span class="p">,</span><span class="w"> </span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="nc">MyApp.GenServerTaskExample</span><span class="p" data-group-id="9933902237-3">}</span><span class="w">
+</span><span class="p" data-group-id="9933902237-1">]</span><span class="w">
+
+</span><span class="nc">Supervisor</span><span class="o">.</span><span class="n">start_link</span><span class="p" data-group-id="9933902237-4">(</span><span class="n">children</span><span class="p">,</span><span class="w"> </span><span class="ss">strategy</span><span class="p">:</span><span class="w"> </span><span class="ss">:one_for_one</span><span class="p" data-group-id="9933902237-4">)</span></code></pre>
+  </section>
+</section>
+
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.1) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

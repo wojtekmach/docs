@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.1">
+    <meta name="project" content="Elixir v1.13.0-dev">
+
+    <title>Kernel.update_in — Elixir v1.13.0-dev</title>
+    <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
+
+      <link rel="canonical" href="https://hexdocs.pm/elixir/master/" />
+
+    <script src="dist/sidebar_items-ed39eda610.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName">
+Elixir
+      </a>
+      <strong class="sidebar-projectVersion">
+        v1.13.0-dev
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>Kernel.update_in</h1>
+
+<div class="deprecated">
+  You're seeing just the function <code>update_in</code>, go back to <a href="Kernel.html">Kernel</a> module for more information.
+</div>
+
+<section class="detail" id="update_in/3">
+
+  <div class="detail-header">
+    <a href="#update_in/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">update_in(data, keys, fun)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/kernel.ex#L2671" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>update_in(<a href="Access.html#t:t/0">Access.t</a>(), [<a href="typespecs.html#built-in-types">term</a>(), ...], (<a href="typespecs.html#built-in-types">term</a>() -&gt; <a href="typespecs.html#built-in-types">term</a>())) :: <a href="Access.html#t:t/0">Access.t</a>()</pre>
+
+      </div>
+
+<p>Updates a key in a nested structure.</p><p>Uses the <a href="Access.html"><code class="inline">Access</code></a> module to traverse the structures
+according to the given <code class="inline">keys</code>, unless the <code class="inline">key</code> is a
+function. If the key is a function, it will be invoked
+as specified in <a href="#get_and_update_in/3"><code class="inline">get_and_update_in/3</code></a>.</p><p><code class="inline">data</code> is a nested structure (that is, a map, keyword
+list, or struct that implements the <a href="Access.html"><code class="inline">Access</code></a> behaviour).
+The <code class="inline">fun</code> argument receives the value of <code class="inline">key</code> (or <code class="inline">nil</code>
+if <code class="inline">key</code> is not present) and the result replaces the value
+in the structure.</p><h2 id="update_in/3-examples" class="section-heading">
+  <a href="#update_in/3-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="0292936871-1">%{</span><span class="s">&quot;john&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="p" data-group-id="0292936871-2">%{</span><span class="ss">age</span><span class="p">:</span><span class="w"> </span><span class="mi">27</span><span class="p" data-group-id="0292936871-2">}</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;meg&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="p" data-group-id="0292936871-3">%{</span><span class="ss">age</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p" data-group-id="0292936871-3">}</span><span class="p" data-group-id="0292936871-1">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">update_in</span><span class="p" data-group-id="0292936871-4">(</span><span class="n">users</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0292936871-5">[</span><span class="s">&quot;john&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">:age</span><span class="p" data-group-id="0292936871-5">]</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="p" data-group-id="0292936871-6">(</span><span class="ni">&amp;1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="0292936871-6">)</span><span class="p" data-group-id="0292936871-4">)</span><span class="w">
+</span><span class="p" data-group-id="0292936871-7">%{</span><span class="s">&quot;john&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="p" data-group-id="0292936871-8">%{</span><span class="ss">age</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="p" data-group-id="0292936871-8">}</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;meg&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="p" data-group-id="0292936871-9">%{</span><span class="ss">age</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p" data-group-id="0292936871-9">}</span><span class="p" data-group-id="0292936871-7">}</span></code></pre><p>Note the current value given to the anonymous function may be <code class="inline">nil</code>.
+If any of the intermediate values are nil, it will raise:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="8797674231-1">%{</span><span class="s">&quot;john&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="p" data-group-id="8797674231-2">%{</span><span class="ss">age</span><span class="p">:</span><span class="w"> </span><span class="mi">27</span><span class="p" data-group-id="8797674231-2">}</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;meg&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="p" data-group-id="8797674231-3">%{</span><span class="ss">age</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p" data-group-id="8797674231-3">}</span><span class="p" data-group-id="8797674231-1">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">update_in</span><span class="p" data-group-id="8797674231-4">(</span><span class="n">users</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8797674231-5">[</span><span class="s">&quot;jane&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">:age</span><span class="p" data-group-id="8797674231-5">]</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="ni">&amp;1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="8797674231-4">)</span><span class="w">
+</span><span class="gt">** (ArgumentError) could not put/update key :age on a nil value</span></code></pre>
+  </section>
+</section>
+
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.1) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

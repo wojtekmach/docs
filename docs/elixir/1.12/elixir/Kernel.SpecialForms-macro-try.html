@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.1">
+    <meta name="project" content="Elixir v1.12.0-rc.0">
+
+    <title>Kernel.SpecialForms.try — Elixir v1.12.0-rc.0</title>
+    <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
+
+      <link rel="canonical" href="https://hexdocs.pm/elixir/1.12/" />
+
+    <script src="dist/sidebar_items-1a6c36a221.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName">
+Elixir
+      </a>
+      <strong class="sidebar-projectVersion">
+        v1.12.0-rc.0
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>Kernel.SpecialForms.try</h1>
+
+<div class="deprecated">
+  You're seeing just the macro <code>try</code>, go back to <a href="Kernel.SpecialForms.html">Kernel.SpecialForms</a> module for more information.
+</div>
+
+<section class="detail" id="try/1">
+
+  <div class="detail-header">
+    <a href="#try/1" class="detail-link" title="Link to this macro">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature">try(args)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/fb151383ab866230694712690fe9a583dc32a9db/lib/elixir/lib/kernel/special_forms.ex#L2133" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Evaluates the given expressions and handles any error, exit,
+or throw that may have happened.</p><h2 id="try/1-examples" class="section-heading">
+  <a href="#try/1-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="k">try</span><span class="w"> </span><span class="k" data-group-id="5871478770-1">do</span><span class="w">
+  </span><span class="n">do_something_that_may_fail</span><span class="p" data-group-id="5871478770-2">(</span><span class="n">some_arg</span><span class="p" data-group-id="5871478770-2">)</span><span class="w">
+</span><span class="k" data-group-id="5871478770-1">rescue</span><span class="w">
+  </span><span class="nc">ArgumentError</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+    </span><span class="nc">IO</span><span class="o">.</span><span class="n">puts</span><span class="p" data-group-id="5871478770-3">(</span><span class="s">&quot;Invalid argument given&quot;</span><span class="p" data-group-id="5871478770-3">)</span><span class="w">
+</span><span class="k" data-group-id="5871478770-1">catch</span><span class="w">
+  </span><span class="n">value</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+    </span><span class="nc">IO</span><span class="o">.</span><span class="n">puts</span><span class="p" data-group-id="5871478770-4">(</span><span class="s">&quot;Caught </span><span class="si" data-group-id="5871478770-5">#{</span><span class="n">inspect</span><span class="p" data-group-id="5871478770-6">(</span><span class="n">value</span><span class="p" data-group-id="5871478770-6">)</span><span class="si" data-group-id="5871478770-5">}</span><span class="s">&quot;</span><span class="p" data-group-id="5871478770-4">)</span><span class="w">
+</span><span class="k" data-group-id="5871478770-1">else</span><span class="w">
+  </span><span class="n">value</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+    </span><span class="nc">IO</span><span class="o">.</span><span class="n">puts</span><span class="p" data-group-id="5871478770-7">(</span><span class="s">&quot;Success! The result was </span><span class="si" data-group-id="5871478770-8">#{</span><span class="n">inspect</span><span class="p" data-group-id="5871478770-9">(</span><span class="n">value</span><span class="p" data-group-id="5871478770-9">)</span><span class="si" data-group-id="5871478770-8">}</span><span class="s">&quot;</span><span class="p" data-group-id="5871478770-7">)</span><span class="w">
+</span><span class="k" data-group-id="5871478770-1">after</span><span class="w">
+  </span><span class="nc">IO</span><span class="o">.</span><span class="n">puts</span><span class="p" data-group-id="5871478770-10">(</span><span class="s">&quot;This is printed regardless if it failed or succeeded&quot;</span><span class="p" data-group-id="5871478770-10">)</span><span class="w">
+</span><span class="k" data-group-id="5871478770-1">end</span></code></pre><p>The <code class="inline">rescue</code> clause is used to handle exceptions while the <code class="inline">catch</code>
+clause can be used to catch thrown values and exits.
+The <code class="inline">else</code> clause can be used to control flow based on the result of
+the expression. <code class="inline">catch</code>, <code class="inline">rescue</code>, and <code class="inline">else</code> clauses work based on
+pattern matching (similar to the <code class="inline">case</code> special form).</p><p>Calls inside <a href="#try/1"><code class="inline">try/1</code></a> are not tail recursive since the VM needs to keep
+the stacktrace in case an exception happens. To retrieve the stacktrace,
+access <a href="#__STACKTRACE__/0"><code class="inline">__STACKTRACE__/0</code></a> inside the <code class="inline">rescue</code> or <code class="inline">catch</code> clause.</p><h2 id="try/1-rescue-clauses" class="section-heading">
+  <a href="#try/1-rescue-clauses" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  <code class="inline">rescue</code> clauses
+</h2>
+<p>Besides relying on pattern matching, <code class="inline">rescue</code> clauses provide some
+conveniences around exceptions that allow one to rescue an
+exception by its name. All the following formats are valid patterns
+in <code class="inline">rescue</code> clauses:</p><pre><code class="makeup elixir"><span class="c1"># Rescue a single exception without binding the exception</span><span class="w">
+</span><span class="c1"># to a variable</span><span class="w">
+</span><span class="k">try</span><span class="w"> </span><span class="k" data-group-id="3544798693-1">do</span><span class="w">
+  </span><span class="nc">UndefinedModule</span><span class="o">.</span><span class="n">undefined_function</span><span class="w">
+</span><span class="k" data-group-id="3544798693-1">rescue</span><span class="w">
+  </span><span class="nc">UndefinedFunctionError</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="no">nil</span><span class="w">
+</span><span class="k" data-group-id="3544798693-1">end</span><span class="w">
+
+</span><span class="c1"># Rescue any of the given exception without binding</span><span class="w">
+</span><span class="k">try</span><span class="w"> </span><span class="k" data-group-id="3544798693-2">do</span><span class="w">
+  </span><span class="nc">UndefinedModule</span><span class="o">.</span><span class="n">undefined_function</span><span class="w">
+</span><span class="k" data-group-id="3544798693-2">rescue</span><span class="w">
+  </span><span class="p" data-group-id="3544798693-3">[</span><span class="nc">UndefinedFunctionError</span><span class="p">,</span><span class="w"> </span><span class="nc">ArgumentError</span><span class="p" data-group-id="3544798693-3">]</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="no">nil</span><span class="w">
+</span><span class="k" data-group-id="3544798693-2">end</span><span class="w">
+
+</span><span class="c1"># Rescue and bind the exception to the variable &quot;x&quot;</span><span class="w">
+</span><span class="k">try</span><span class="w"> </span><span class="k" data-group-id="3544798693-4">do</span><span class="w">
+  </span><span class="nc">UndefinedModule</span><span class="o">.</span><span class="n">undefined_function</span><span class="w">
+</span><span class="k" data-group-id="3544798693-4">rescue</span><span class="w">
+  </span><span class="n">x</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="p" data-group-id="3544798693-5">[</span><span class="nc">UndefinedFunctionError</span><span class="p" data-group-id="3544798693-5">]</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="no">nil</span><span class="w">
+</span><span class="k" data-group-id="3544798693-4">end</span><span class="w">
+
+</span><span class="c1"># Rescue all kinds of exceptions and bind the rescued exception</span><span class="w">
+</span><span class="c1"># to the variable &quot;x&quot;</span><span class="w">
+</span><span class="k">try</span><span class="w"> </span><span class="k" data-group-id="3544798693-6">do</span><span class="w">
+  </span><span class="nc">UndefinedModule</span><span class="o">.</span><span class="n">undefined_function</span><span class="w">
+</span><span class="k" data-group-id="3544798693-6">rescue</span><span class="w">
+  </span><span class="n">x</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="no">nil</span><span class="w">
+</span><span class="k" data-group-id="3544798693-6">end</span></code></pre><h3 id="try/1-erlang-errors" class="section-heading">
+  <a href="#try/1-erlang-errors" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Erlang errors
+</h3>
+<p>Erlang errors are transformed into Elixir ones when rescuing:</p><pre><code class="makeup elixir"><span class="k">try</span><span class="w"> </span><span class="k" data-group-id="1266632532-1">do</span><span class="w">
+  </span><span class="ss">:erlang</span><span class="o">.</span><span class="n">error</span><span class="p" data-group-id="1266632532-2">(</span><span class="ss">:badarg</span><span class="p" data-group-id="1266632532-2">)</span><span class="w">
+</span><span class="k" data-group-id="1266632532-1">rescue</span><span class="w">
+  </span><span class="nc">ArgumentError</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="ss">:ok</span><span class="w">
+</span><span class="k" data-group-id="1266632532-1">end</span><span class="w">
+</span><span class="c1">#=&gt; :ok</span></code></pre><p>The most common Erlang errors will be transformed into their
+Elixir counterpart. Those which are not will be transformed
+into the more generic <a href="ErlangError.html"><code class="inline">ErlangError</code></a>:</p><pre><code class="makeup elixir"><span class="k">try</span><span class="w"> </span><span class="k" data-group-id="5742192126-1">do</span><span class="w">
+  </span><span class="ss">:erlang</span><span class="o">.</span><span class="n">error</span><span class="p" data-group-id="5742192126-2">(</span><span class="ss">:unknown</span><span class="p" data-group-id="5742192126-2">)</span><span class="w">
+</span><span class="k" data-group-id="5742192126-1">rescue</span><span class="w">
+  </span><span class="nc">ErlangError</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="ss">:ok</span><span class="w">
+</span><span class="k" data-group-id="5742192126-1">end</span><span class="w">
+</span><span class="c1">#=&gt; :ok</span></code></pre><p>In fact, <a href="ErlangError.html"><code class="inline">ErlangError</code></a> can be used to rescue any error that is
+not a proper Elixir error. For example, it can be used to rescue
+the earlier <code class="inline">:badarg</code> error too, prior to transformation:</p><pre><code class="makeup elixir"><span class="k">try</span><span class="w"> </span><span class="k" data-group-id="0536786238-1">do</span><span class="w">
+  </span><span class="ss">:erlang</span><span class="o">.</span><span class="n">error</span><span class="p" data-group-id="0536786238-2">(</span><span class="ss">:badarg</span><span class="p" data-group-id="0536786238-2">)</span><span class="w">
+</span><span class="k" data-group-id="0536786238-1">rescue</span><span class="w">
+  </span><span class="nc">ErlangError</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="ss">:ok</span><span class="w">
+</span><span class="k" data-group-id="0536786238-1">end</span><span class="w">
+</span><span class="c1">#=&gt; :ok</span></code></pre><h2 id="try/1-catch-clauses" class="section-heading">
+  <a href="#try/1-catch-clauses" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  <code class="inline">catch</code> clauses
+</h2>
+<p>The <code class="inline">catch</code> clause can be used to catch thrown values, exits, and errors.</p><h3 id="try/1-catching-thrown-values" class="section-heading">
+  <a href="#try/1-catching-thrown-values" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Catching thrown values
+</h3>
+<p><code class="inline">catch</code> can be used to catch values thrown by <a href="Kernel.html#throw/1"><code class="inline">Kernel.throw/1</code></a>:</p><pre><code class="makeup elixir"><span class="k">try</span><span class="w"> </span><span class="k" data-group-id="5375089152-1">do</span><span class="w">
+  </span><span class="k">throw</span><span class="p" data-group-id="5375089152-2">(</span><span class="ss">:some_value</span><span class="p" data-group-id="5375089152-2">)</span><span class="w">
+</span><span class="k" data-group-id="5375089152-1">catch</span><span class="w">
+  </span><span class="n">thrown_value</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+    </span><span class="nc">IO</span><span class="o">.</span><span class="n">puts</span><span class="p" data-group-id="5375089152-3">(</span><span class="s">&quot;A value was thrown: </span><span class="si" data-group-id="5375089152-4">#{</span><span class="n">inspect</span><span class="p" data-group-id="5375089152-5">(</span><span class="n">thrown_value</span><span class="p" data-group-id="5375089152-5">)</span><span class="si" data-group-id="5375089152-4">}</span><span class="s">&quot;</span><span class="p" data-group-id="5375089152-3">)</span><span class="w">
+</span><span class="k" data-group-id="5375089152-1">end</span></code></pre><h3 id="try/1-catching-values-of-any-kind" class="section-heading">
+  <a href="#try/1-catching-values-of-any-kind" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Catching values of any kind
+</h3>
+<p>The <code class="inline">catch</code> clause also supports catching exits and errors. To do that, it
+allows matching on both the <em>kind</em> of the caught value as well as the value
+itself:</p><pre><code class="makeup elixir"><span class="k">try</span><span class="w"> </span><span class="k" data-group-id="2643464561-1">do</span><span class="w">
+  </span><span class="n">exit</span><span class="p" data-group-id="2643464561-2">(</span><span class="ss">:shutdown</span><span class="p" data-group-id="2643464561-2">)</span><span class="w">
+</span><span class="k" data-group-id="2643464561-1">catch</span><span class="w">
+  </span><span class="ss">:exit</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+    </span><span class="nc">IO</span><span class="o">.</span><span class="n">puts</span><span class="p" data-group-id="2643464561-3">(</span><span class="s">&quot;Exited with value </span><span class="si" data-group-id="2643464561-4">#{</span><span class="n">inspect</span><span class="p" data-group-id="2643464561-5">(</span><span class="n">value</span><span class="p" data-group-id="2643464561-5">)</span><span class="si" data-group-id="2643464561-4">}</span><span class="s">&quot;</span><span class="p" data-group-id="2643464561-3">)</span><span class="w">
+</span><span class="k" data-group-id="2643464561-1">end</span><span class="w">
+
+</span><span class="k">try</span><span class="w"> </span><span class="k" data-group-id="2643464561-6">do</span><span class="w">
+  </span><span class="n">exit</span><span class="p" data-group-id="2643464561-7">(</span><span class="ss">:shutdown</span><span class="p" data-group-id="2643464561-7">)</span><span class="w">
+</span><span class="k" data-group-id="2643464561-6">catch</span><span class="w">
+  </span><span class="n">kind</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="ow">when</span><span class="w"> </span><span class="n">kind</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="p" data-group-id="2643464561-8">[</span><span class="ss">:exit</span><span class="p">,</span><span class="w"> </span><span class="ss">:throw</span><span class="p" data-group-id="2643464561-8">]</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+    </span><span class="nc">IO</span><span class="o">.</span><span class="n">puts</span><span class="p" data-group-id="2643464561-9">(</span><span class="s">&quot;Caught exit or throw with value </span><span class="si" data-group-id="2643464561-10">#{</span><span class="n">inspect</span><span class="p" data-group-id="2643464561-11">(</span><span class="n">value</span><span class="p" data-group-id="2643464561-11">)</span><span class="si" data-group-id="2643464561-10">}</span><span class="s">&quot;</span><span class="p" data-group-id="2643464561-9">)</span><span class="w">
+</span><span class="k" data-group-id="2643464561-6">end</span></code></pre><p>The <code class="inline">catch</code> clause also supports <code class="inline">:error</code> alongside <code class="inline">:exit</code> and <code class="inline">:throw</code> as
+in Erlang, although this is commonly avoided in favor of <code class="inline">raise</code>/<code class="inline">rescue</code> control
+mechanisms. One reason for this is that when catching <code class="inline">:error</code>, the error is
+not automatically transformed into an Elixir error:</p><pre><code class="makeup elixir"><span class="k">try</span><span class="w"> </span><span class="k" data-group-id="9633299040-1">do</span><span class="w">
+  </span><span class="ss">:erlang</span><span class="o">.</span><span class="n">error</span><span class="p" data-group-id="9633299040-2">(</span><span class="ss">:badarg</span><span class="p" data-group-id="9633299040-2">)</span><span class="w">
+</span><span class="k" data-group-id="9633299040-1">catch</span><span class="w">
+  </span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="ss">:badarg</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="ss">:ok</span><span class="w">
+</span><span class="k" data-group-id="9633299040-1">end</span><span class="w">
+</span><span class="c1">#=&gt; :ok</span></code></pre><h2 id="try/1-after-clauses" class="section-heading">
+  <a href="#try/1-after-clauses" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  <code class="inline">after</code> clauses
+</h2>
+<p>An <code class="inline">after</code> clause allows you to define cleanup logic that will be invoked both
+when the block of code passed to <a href="#try/1"><code class="inline">try/1</code></a> succeeds and also when an error is raised. Note
+that the process will exit as usual when receiving an exit signal that causes
+it to exit abruptly and so the <code class="inline">after</code> clause is not guaranteed to be executed.
+Luckily, most resources in Elixir (such as open files, ETS tables, ports, sockets,
+and so on) are linked to or monitor the owning process and will automatically clean
+themselves up if that process exits.</p><pre><code class="makeup elixir"><span class="nc">File</span><span class="o">.</span><span class="n">write!</span><span class="p" data-group-id="0927615022-1">(</span><span class="s">&quot;tmp/story.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Hello, World&quot;</span><span class="p" data-group-id="0927615022-1">)</span><span class="w">
+</span><span class="k">try</span><span class="w"> </span><span class="k" data-group-id="0927615022-2">do</span><span class="w">
+  </span><span class="n">do_something_with</span><span class="p" data-group-id="0927615022-3">(</span><span class="s">&quot;tmp/story.txt&quot;</span><span class="p" data-group-id="0927615022-3">)</span><span class="w">
+</span><span class="k" data-group-id="0927615022-2">after</span><span class="w">
+  </span><span class="nc">File</span><span class="o">.</span><span class="n">rm</span><span class="p" data-group-id="0927615022-4">(</span><span class="s">&quot;tmp/story.txt&quot;</span><span class="p" data-group-id="0927615022-4">)</span><span class="w">
+</span><span class="k" data-group-id="0927615022-2">end</span></code></pre><h2 id="try/1-else-clauses" class="section-heading">
+  <a href="#try/1-else-clauses" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  <code class="inline">else</code> clauses
+</h2>
+<p><code class="inline">else</code> clauses allow the result of the body passed to <a href="#try/1"><code class="inline">try/1</code></a> to be pattern
+matched on:</p><pre><code class="makeup elixir"><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w">
+</span><span class="k">try</span><span class="w"> </span><span class="k" data-group-id="5200211081-1">do</span><span class="w">
+  </span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">x</span><span class="w">
+</span><span class="k" data-group-id="5200211081-1">rescue</span><span class="w">
+  </span><span class="nc">ArithmeticError</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+    </span><span class="ss">:infinity</span><span class="w">
+</span><span class="k" data-group-id="5200211081-1">else</span><span class="w">
+  </span><span class="n">y</span><span class="w"> </span><span class="ow">when</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+    </span><span class="ss">:small</span><span class="w">
+  </span><span class="bp">_</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+    </span><span class="ss">:large</span><span class="w">
+</span><span class="k" data-group-id="5200211081-1">end</span></code></pre><p>If an <code class="inline">else</code> clause is not present and no exceptions are raised,
+the result of the expression will be returned:</p><pre><code class="makeup elixir"><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="o">^</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w">
+  </span><span class="k">try</span><span class="w"> </span><span class="k" data-group-id="1745996602-1">do</span><span class="w">
+    </span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">x</span><span class="w">
+  </span><span class="k" data-group-id="1745996602-1">rescue</span><span class="w">
+    </span><span class="nc">ArithmeticError</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+      </span><span class="ss">:infinity</span><span class="w">
+  </span><span class="k" data-group-id="1745996602-1">end</span></code></pre><p>However, when an <code class="inline">else</code> clause is present but the result of the expression
+does not match any of the patterns then an exception will be raised. This
+exception will not be caught by a <code class="inline">catch</code> or <code class="inline">rescue</code> in the same <code class="inline">try</code>:</p><pre><code class="makeup elixir"><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="k">try</span><span class="w"> </span><span class="k" data-group-id="5984099248-1">do</span><span class="w">
+  </span><span class="k">try</span><span class="w"> </span><span class="k" data-group-id="5984099248-2">do</span><span class="w">
+    </span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">x</span><span class="w">
+  </span><span class="k" data-group-id="5984099248-2">rescue</span><span class="w">
+    </span><span class="c1"># The TryClauseError cannot be rescued here:</span><span class="w">
+    </span><span class="nc">TryClauseError</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+      </span><span class="ss">:error_a</span><span class="w">
+  </span><span class="k" data-group-id="5984099248-2">else</span><span class="w">
+    </span><span class="mi">0</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+      </span><span class="ss">:small</span><span class="w">
+  </span><span class="k" data-group-id="5984099248-2">end</span><span class="w">
+</span><span class="k" data-group-id="5984099248-1">rescue</span><span class="w">
+  </span><span class="c1"># The TryClauseError is rescued here:</span><span class="w">
+  </span><span class="nc">TryClauseError</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+    </span><span class="ss">:error_b</span><span class="w">
+</span><span class="k" data-group-id="5984099248-1">end</span></code></pre><p>Similarly, an exception inside an <code class="inline">else</code> clause is not caught or rescued
+inside the same <code class="inline">try</code>:</p><pre><code class="makeup elixir"><span class="k">try</span><span class="w"> </span><span class="k" data-group-id="7274210302-1">do</span><span class="w">
+  </span><span class="k">try</span><span class="w"> </span><span class="k" data-group-id="7274210302-2">do</span><span class="w">
+    </span><span class="no">nil</span><span class="w">
+  </span><span class="k" data-group-id="7274210302-2">catch</span><span class="w">
+    </span><span class="c1"># The exit(1) call below can not be caught here:</span><span class="w">
+    </span><span class="ss">:exit</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+      </span><span class="ss">:exit_a</span><span class="w">
+  </span><span class="k" data-group-id="7274210302-2">else</span><span class="w">
+    </span><span class="bp">_</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+      </span><span class="n">exit</span><span class="p" data-group-id="7274210302-3">(</span><span class="mi">1</span><span class="p" data-group-id="7274210302-3">)</span><span class="w">
+  </span><span class="k" data-group-id="7274210302-2">end</span><span class="w">
+</span><span class="k" data-group-id="7274210302-1">catch</span><span class="w">
+  </span><span class="c1"># The exit is caught here:</span><span class="w">
+  </span><span class="ss">:exit</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+    </span><span class="ss">:exit_b</span><span class="w">
+</span><span class="k" data-group-id="7274210302-1">end</span></code></pre><p>This means the VM no longer needs to keep the stacktrace once inside
+an <code class="inline">else</code> clause and so tail recursion is possible when using a <code class="inline">try</code>
+with a tail call as the final call inside an <code class="inline">else</code> clause. The same
+is true for <code class="inline">rescue</code> and <code class="inline">catch</code> clauses.</p><p>Only the result of the tried expression falls down to the <code class="inline">else</code> clause.
+If the <code class="inline">try</code> ends up in the <code class="inline">rescue</code> or <code class="inline">catch</code> clauses, their result
+will not fall down to <code class="inline">else</code>:</p><pre><code class="makeup elixir"><span class="k">try</span><span class="w"> </span><span class="k" data-group-id="2643954556-1">do</span><span class="w">
+  </span><span class="k">throw</span><span class="p" data-group-id="2643954556-2">(</span><span class="ss">:catch_this</span><span class="p" data-group-id="2643954556-2">)</span><span class="w">
+</span><span class="k" data-group-id="2643954556-1">catch</span><span class="w">
+  </span><span class="ss">:throw</span><span class="p">,</span><span class="w"> </span><span class="ss">:catch_this</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+    </span><span class="ss">:it_was_caught</span><span class="w">
+</span><span class="k" data-group-id="2643954556-1">else</span><span class="w">
+  </span><span class="c1"># :it_was_caught will not fall down to this &quot;else&quot; clause.</span><span class="w">
+  </span><span class="n">other</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+    </span><span class="p" data-group-id="2643954556-3">{</span><span class="ss">:else</span><span class="p">,</span><span class="w"> </span><span class="n">other</span><span class="p" data-group-id="2643954556-3">}</span><span class="w">
+</span><span class="k" data-group-id="2643954556-1">end</span></code></pre><h2 id="try/1-variable-handling" class="section-heading">
+  <a href="#try/1-variable-handling" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Variable handling
+</h2>
+<p>Since an expression inside <code class="inline">try</code> may not have been evaluated
+due to an exception, any variable created inside <code class="inline">try</code> cannot
+be accessed externally. For instance:</p><pre><code class="makeup elixir"><span class="k">try</span><span class="w"> </span><span class="k" data-group-id="3455505311-1">do</span><span class="w">
+  </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w">
+  </span><span class="n">do_something_that_may_fail</span><span class="p" data-group-id="3455505311-2">(</span><span class="n">same_arg</span><span class="p" data-group-id="3455505311-2">)</span><span class="w">
+  </span><span class="ss">:ok</span><span class="w">
+</span><span class="k" data-group-id="3455505311-1">catch</span><span class="w">
+  </span><span class="bp">_</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="ss">:failed</span><span class="w">
+</span><span class="k" data-group-id="3455505311-1">end</span><span class="w">
+
+</span><span class="n">x</span><span class="w">
+</span><span class="c1">#=&gt; unbound variable &quot;x&quot;</span></code></pre><p>In the example above, <code class="inline">x</code> cannot be accessed since it was defined
+inside the <code class="inline">try</code> clause. A common practice to address this issue
+is to return the variables defined inside <code class="inline">try</code>:</p><pre><code class="makeup elixir"><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w">
+  </span><span class="k">try</span><span class="w"> </span><span class="k" data-group-id="6680037767-1">do</span><span class="w">
+    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="n">do_something_that_may_fail</span><span class="p" data-group-id="6680037767-2">(</span><span class="n">same_arg</span><span class="p" data-group-id="6680037767-2">)</span><span class="w">
+    </span><span class="n">x</span><span class="w">
+  </span><span class="k" data-group-id="6680037767-1">catch</span><span class="w">
+    </span><span class="bp">_</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="ss">:failed</span><span class="w">
+  </span><span class="k" data-group-id="6680037767-1">end</span></code></pre>
+  </section>
+</section>
+
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.1) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

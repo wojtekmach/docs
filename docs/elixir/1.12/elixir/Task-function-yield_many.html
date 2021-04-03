@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.1">
+    <meta name="project" content="Elixir v1.12.0-rc.0">
+
+    <title>Task.yield_many — Elixir v1.12.0-rc.0</title>
+    <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
+
+      <link rel="canonical" href="https://hexdocs.pm/elixir/1.12/" />
+
+    <script src="dist/sidebar_items-1a6c36a221.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName">
+Elixir
+      </a>
+      <strong class="sidebar-projectVersion">
+        v1.12.0-rc.0
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>Task.yield_many</h1>
+
+<div class="deprecated">
+  You're seeing just the function <code>yield_many</code>, go back to <a href="Task.html">Task</a> module for more information.
+</div>
+
+<section class="detail" id="yield_many/2">
+
+    <span id="yield_many/1"></span>
+
+  <div class="detail-header">
+    <a href="#yield_many/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">yield_many(tasks, timeout \\ 5000)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/fb151383ab866230694712690fe9a583dc32a9db/lib/elixir/lib/task.ex#L980" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>yield_many([<a href="#t:t/0">t</a>()], <a href="typespecs.html#built-in-types">timeout</a>()) :: [{<a href="#t:t/0">t</a>(), {:ok, <a href="typespecs.html#built-in-types">term</a>()} | {:exit, <a href="typespecs.html#built-in-types">term</a>()} | nil}]</pre>
+
+      </div>
+
+<p>Yields to multiple tasks in the given time interval.</p><p>This function receives a list of tasks and waits for their
+replies in the given time interval. It returns a list
+of two-element tuples, with the task as the first element
+and the yielded result as the second. The tasks in the returned
+list will be in the same order as the tasks supplied in the <code class="inline">tasks</code>
+input argument.</p><p>Similarly to <a href="#yield/2"><code class="inline">yield/2</code></a>, each task's result will be</p><ul><li><code class="inline">{:ok, term}</code> if the task has successfully reported its
+result back in the given time interval</li><li><code class="inline">{:exit, reason}</code> if the task has died</li><li><code class="inline">nil</code> if the task keeps running past the timeout</li></ul><p>A timeout, in milliseconds or <code class="inline">:infinity</code>, can be given with a default value
+of <code class="inline">5000</code>.</p><p>Check <a href="#yield/2"><code class="inline">yield/2</code></a> for more information.</p><h2 id="yield_many/2-example" class="section-heading">
+  <a href="#yield_many/2-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example
+</h2>
+<p><a href="#yield_many/2"><code class="inline">Task.yield_many/2</code></a> allows developers to spawn multiple tasks
+and retrieve the results received in a given timeframe.
+If we combine it with <a href="#shutdown/2"><code class="inline">Task.shutdown/2</code></a>, it allows us to gather
+those results and cancel the tasks that have not replied in time.</p><p>Let's see an example.</p><pre><code class="makeup elixir"><span class="n">tasks</span><span class="w"> </span><span class="o">=</span><span class="w">
+  </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="mi">1</span><span class="o">.</span><span class="o">.</span><span class="mi">10</span><span class="w"> </span><span class="k" data-group-id="4010021735-1">do</span><span class="w">
+    </span><span class="nc">Task</span><span class="o">.</span><span class="n">async</span><span class="p" data-group-id="4010021735-2">(</span><span class="k" data-group-id="4010021735-3">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+      </span><span class="nc">Process</span><span class="o">.</span><span class="n">sleep</span><span class="p" data-group-id="4010021735-4">(</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1000</span><span class="p" data-group-id="4010021735-4">)</span><span class="w">
+      </span><span class="n">i</span><span class="w">
+    </span><span class="k" data-group-id="4010021735-3">end</span><span class="p" data-group-id="4010021735-2">)</span><span class="w">
+  </span><span class="k" data-group-id="4010021735-1">end</span><span class="w">
+
+</span><span class="n">tasks_with_results</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Task</span><span class="o">.</span><span class="n">yield_many</span><span class="p" data-group-id="4010021735-5">(</span><span class="n">tasks</span><span class="p">,</span><span class="w"> </span><span class="mi">5000</span><span class="p" data-group-id="4010021735-5">)</span><span class="w">
+
+</span><span class="n">results</span><span class="w"> </span><span class="o">=</span><span class="w">
+  </span><span class="nc">Enum</span><span class="o">.</span><span class="n">map</span><span class="p" data-group-id="4010021735-6">(</span><span class="n">tasks_with_results</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="4010021735-7">fn</span><span class="w"> </span><span class="p" data-group-id="4010021735-8">{</span><span class="n">task</span><span class="p">,</span><span class="w"> </span><span class="n">res</span><span class="p" data-group-id="4010021735-8">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+    </span><span class="c1"># Shut down the tasks that did not reply nor exit</span><span class="w">
+    </span><span class="n">res</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nc">Task</span><span class="o">.</span><span class="n">shutdown</span><span class="p" data-group-id="4010021735-9">(</span><span class="n">task</span><span class="p">,</span><span class="w"> </span><span class="ss">:brutal_kill</span><span class="p" data-group-id="4010021735-9">)</span><span class="w">
+  </span><span class="k" data-group-id="4010021735-7">end</span><span class="p" data-group-id="4010021735-6">)</span><span class="w">
+
+</span><span class="c1"># Here we are matching only on {:ok, value} and</span><span class="w">
+</span><span class="c1"># ignoring {:exit, _} (crashed tasks) and `nil` (no replies)</span><span class="w">
+</span><span class="k">for</span><span class="w"> </span><span class="p" data-group-id="4010021735-10">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p" data-group-id="4010021735-10">}</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">results</span><span class="w"> </span><span class="k" data-group-id="4010021735-11">do</span><span class="w">
+  </span><span class="nc">IO</span><span class="o">.</span><span class="n">inspect</span><span class="p" data-group-id="4010021735-12">(</span><span class="n">value</span><span class="p" data-group-id="4010021735-12">)</span><span class="w">
+</span><span class="k" data-group-id="4010021735-11">end</span></code></pre><p>In the example above, we create tasks that sleep from 1
+up to 10 seconds and return the number of seconds they slept for.
+If you execute the code all at once, you should see 1 up to 5
+printed, as those were the tasks that have replied in the
+given time. All other tasks will have been shut down using
+the <a href="#shutdown/2"><code class="inline">Task.shutdown/2</code></a> call.</p>
+  </section>
+</section>
+
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.1) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

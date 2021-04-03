@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.1">
+    <meta name="project" content="Elixir v1.13.0-dev">
+
+    <title>Kernel.SpecialForms.quote — Elixir v1.13.0-dev</title>
+    <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
+
+      <link rel="canonical" href="https://hexdocs.pm/elixir/master/" />
+
+    <script src="dist/sidebar_items-ed39eda610.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName">
+Elixir
+      </a>
+      <strong class="sidebar-projectVersion">
+        v1.13.0-dev
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>Kernel.SpecialForms.quote</h1>
+
+<div class="deprecated">
+  You're seeing just the macro <code>quote</code>, go back to <a href="Kernel.SpecialForms.html">Kernel.SpecialForms</a> module for more information.
+</div>
+
+<section class="detail" id="quote/2">
+
+  <div class="detail-header">
+    <a href="#quote/2" class="detail-link" title="Link to this macro">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature">quote(opts, block)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/kernel/special_forms.ex#L1287" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Gets the representation of any expression.</p><h2 id="quote/2-examples" class="section-heading">
+  <a href="#quote/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="k">quote</span><span class="w"> </span><span class="k" data-group-id="7083922654-1">do</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="n">sum</span><span class="p" data-group-id="7083922654-2">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="7083922654-2">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="k" data-group-id="7083922654-1">end</span><span class="w">
+</span><span class="p" data-group-id="7083922654-3">{</span><span class="ss">:sum</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="7083922654-4">[</span><span class="p" data-group-id="7083922654-4">]</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="7083922654-5">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="7083922654-5">]</span><span class="p" data-group-id="7083922654-3">}</span></code></pre><h2 id="quote/2-elixir-s-ast-abstract-syntax-tree" class="section-heading">
+  <a href="#quote/2-elixir-s-ast-abstract-syntax-tree" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Elixir's AST (Abstract Syntax Tree)
+</h2>
+<p>Any Elixir code can be represented using Elixir data structures.
+The building block of Elixir macros is a tuple with three elements,
+for example:</p><pre><code class="makeup elixir"><span class="p" data-group-id="6511235010-1">{</span><span class="ss">:sum</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="6511235010-2">[</span><span class="p" data-group-id="6511235010-2">]</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="6511235010-3">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="6511235010-3">]</span><span class="p" data-group-id="6511235010-1">}</span></code></pre><p>The tuple above represents a function call to <code class="inline">sum</code> passing 1, 2 and
+3 as arguments. The tuple elements are:</p><ul><li><p>The first element of the tuple is always an atom or
+another tuple in the same representation.</p></li><li><p>The second element of the tuple represents <a href="Macro.html#t:metadata/0">metadata</a>.</p></li><li><p>The third element of the tuple are the arguments for the
+function call. The third argument may be an atom, which is
+usually a variable (or a local call).</p></li></ul><p>Besides the tuple described above, Elixir has a few literals that
+are also part of its AST. Those literals return themselves when
+quoted. They are:</p><pre><code class="makeup elixir"><span class="ss">:sum</span><span class="w">         </span><span class="c1">#=&gt; Atoms</span><span class="w">
+</span><span class="mi">1</span><span class="w">            </span><span class="c1">#=&gt; Integers</span><span class="w">
+</span><span class="mf">2.0</span><span class="w">          </span><span class="c1">#=&gt; Floats</span><span class="w">
+</span><span class="p" data-group-id="6085522626-1">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="6085522626-1">]</span><span class="w">       </span><span class="c1">#=&gt; Lists</span><span class="w">
+</span><span class="s">&quot;strings&quot;</span><span class="w">    </span><span class="c1">#=&gt; Strings</span><span class="w">
+</span><span class="p" data-group-id="6085522626-2">{</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p" data-group-id="6085522626-2">}</span><span class="w"> </span><span class="c1">#=&gt; Tuples with two elements</span></code></pre><p>Any other value, such as a map or a four-element tuple, must be escaped
+(<a href="Macro.html#escape/1"><code class="inline">Macro.escape/1</code></a>) before being introduced into an AST.</p><h2 id="quote/2-options" class="section-heading">
+  <a href="#quote/2-options" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Options
+</h2>
+<ul><li><p><code class="inline">:bind_quoted</code> - passes a binding to the macro. Whenever a binding is
+given, <a href="#unquote/1"><code class="inline">unquote/1</code></a> is automatically disabled.</p></li><li><p><code class="inline">:context</code> - sets the resolution context.</p></li><li><p><code class="inline">:generated</code> - marks the given chunk as generated so it does not emit warnings.
+Currently it only works on special forms (for example, you can annotate a <code class="inline">case</code>
+but not an <code class="inline">if</code>).</p></li><li><p><code class="inline">:file</code> - sets the quoted expressions to have the given file.</p></li><li><p><code class="inline">:line</code> - sets the quoted expressions to have the given line.</p></li><li><p><code class="inline">:location</code> - when set to <code class="inline">:keep</code>, keeps the current line and file from
+quote. Read the &quot;Stacktrace information&quot; section below for more information.</p></li><li><p><code class="inline">:unquote</code> - when <code class="inline">false</code>, disables unquoting. This means any <code class="inline">unquote</code>
+call will be kept as is in the AST, instead of replaced by the <code class="inline">unquote</code>
+arguments. For example:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="k">quote</span><span class="w"> </span><span class="k" data-group-id="8701593525-1">do</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="k">unquote</span><span class="p" data-group-id="8701593525-2">(</span><span class="s">&quot;hello&quot;</span><span class="p" data-group-id="8701593525-2">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="k" data-group-id="8701593525-1">end</span><span class="w">
+</span><span class="s">&quot;hello&quot;</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="k">quote</span><span class="w"> </span><span class="ss">unquote</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="w"> </span><span class="k" data-group-id="8701593525-3">do</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="k">unquote</span><span class="p" data-group-id="8701593525-4">(</span><span class="s">&quot;hello&quot;</span><span class="p" data-group-id="8701593525-4">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="k" data-group-id="8701593525-3">end</span><span class="w">
+</span><span class="p" data-group-id="8701593525-5">{</span><span class="ss">:unquote</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8701593525-6">[</span><span class="p" data-group-id="8701593525-6">]</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8701593525-7">[</span><span class="s">&quot;hello&quot;</span><span class="p" data-group-id="8701593525-7">]</span><span class="p" data-group-id="8701593525-5">}</span></code></pre></li></ul><h2 id="quote/2-quote-and-macros" class="section-heading">
+  <a href="#quote/2-quote-and-macros" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Quote and macros
+</h2>
+<p><a href="#quote/2"><code class="inline">quote/2</code></a> is commonly used with macros for code generation. As an exercise,
+let's define a macro that multiplies a number by itself (squared). In practice,
+there is no reason to define such a macro (and it would actually be
+seen as a bad practice), but it is simple enough that it allows us to focus
+on the important aspects of quotes and macros:</p><pre><code class="makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Math</span><span class="w"> </span><span class="k" data-group-id="3862684277-1">do</span><span class="w">
+  </span><span class="kd">defmacro</span><span class="w"> </span><span class="nf">squared</span><span class="p" data-group-id="3862684277-2">(</span><span class="n">x</span><span class="p" data-group-id="3862684277-2">)</span><span class="w"> </span><span class="k" data-group-id="3862684277-3">do</span><span class="w">
+    </span><span class="k">quote</span><span class="w"> </span><span class="k" data-group-id="3862684277-4">do</span><span class="w">
+      </span><span class="k">unquote</span><span class="p" data-group-id="3862684277-5">(</span><span class="n">x</span><span class="p" data-group-id="3862684277-5">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">unquote</span><span class="p" data-group-id="3862684277-6">(</span><span class="n">x</span><span class="p" data-group-id="3862684277-6">)</span><span class="w">
+    </span><span class="k" data-group-id="3862684277-4">end</span><span class="w">
+  </span><span class="k" data-group-id="3862684277-3">end</span><span class="w">
+</span><span class="k" data-group-id="3862684277-1">end</span></code></pre><p>We can invoke it as:</p><pre><code class="makeup elixir"><span class="kn">import</span><span class="w"> </span><span class="nc">Math</span><span class="w">
+</span><span class="nc">IO</span><span class="o">.</span><span class="n">puts</span><span class="p" data-group-id="4664323011-1">(</span><span class="s">&quot;Got </span><span class="si" data-group-id="4664323011-2">#{</span><span class="n">squared</span><span class="p" data-group-id="4664323011-3">(</span><span class="mi">5</span><span class="p" data-group-id="4664323011-3">)</span><span class="si" data-group-id="4664323011-2">}</span><span class="s">&quot;</span><span class="p" data-group-id="4664323011-1">)</span></code></pre><p>At first, there is nothing in this example that actually reveals it is a
+macro. But what is happening is that, at compilation time, <code class="inline">squared(5)</code>
+becomes <code class="inline">5 * 5</code>. The argument <code class="inline">5</code> is duplicated in the produced code, we
+can see this behaviour in practice though because our macro actually has
+a bug:</p><pre><code class="makeup elixir"><span class="kn">import</span><span class="w"> </span><span class="nc">Math</span><span class="w">
+</span><span class="n">my_number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k" data-group-id="6565172543-1">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+  </span><span class="nc">IO</span><span class="o">.</span><span class="n">puts</span><span class="p" data-group-id="6565172543-2">(</span><span class="s">&quot;Returning 5&quot;</span><span class="p" data-group-id="6565172543-2">)</span><span class="w">
+  </span><span class="mi">5</span><span class="w">
+</span><span class="k" data-group-id="6565172543-1">end</span><span class="w">
+</span><span class="nc">IO</span><span class="o">.</span><span class="n">puts</span><span class="p" data-group-id="6565172543-3">(</span><span class="s">&quot;Got </span><span class="si" data-group-id="6565172543-4">#{</span><span class="n">squared</span><span class="p" data-group-id="6565172543-5">(</span><span class="n">my_number</span><span class="o">.</span><span class="p" data-group-id="6565172543-6">(</span><span class="p" data-group-id="6565172543-6">)</span><span class="p" data-group-id="6565172543-5">)</span><span class="si" data-group-id="6565172543-4">}</span><span class="s">&quot;</span><span class="p" data-group-id="6565172543-3">)</span></code></pre><p>The example above will print:</p><pre><code class="makeup elixir"><span class="nc">Returning</span><span class="w"> </span><span class="mi">5</span><span class="w">
+</span><span class="nc">Returning</span><span class="w"> </span><span class="mi">5</span><span class="w">
+</span><span class="nc">Got</span><span class="w"> </span><span class="mi">25</span></code></pre><p>Notice how &quot;Returning 5&quot; was printed twice, instead of just once. This is
+because a macro receives an expression and not a value (which is what we
+would expect in a regular function). This means that:</p><pre><code class="makeup elixir"><span class="n">squared</span><span class="p" data-group-id="0972907129-1">(</span><span class="n">my_number</span><span class="o">.</span><span class="p" data-group-id="0972907129-2">(</span><span class="p" data-group-id="0972907129-2">)</span><span class="p" data-group-id="0972907129-1">)</span></code></pre><p>Actually expands to:</p><pre><code class="makeup elixir"><span class="n">my_number</span><span class="o">.</span><span class="p" data-group-id="9861349973-1">(</span><span class="p" data-group-id="9861349973-1">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">my_number</span><span class="o">.</span><span class="p" data-group-id="9861349973-2">(</span><span class="p" data-group-id="9861349973-2">)</span></code></pre><p>Which invokes the function twice, explaining why we get the printed value
+twice! In the majority of the cases, this is actually unexpected behaviour,
+and that's why one of the first things you need to keep in mind when it
+comes to macros is to <strong>not unquote the same value more than once</strong>.</p><p>Let's fix our macro:</p><pre><code class="makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Math</span><span class="w"> </span><span class="k" data-group-id="8684359196-1">do</span><span class="w">
+  </span><span class="kd">defmacro</span><span class="w"> </span><span class="nf">squared</span><span class="p" data-group-id="8684359196-2">(</span><span class="n">x</span><span class="p" data-group-id="8684359196-2">)</span><span class="w"> </span><span class="k" data-group-id="8684359196-3">do</span><span class="w">
+    </span><span class="k">quote</span><span class="w"> </span><span class="k" data-group-id="8684359196-4">do</span><span class="w">
+      </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">unquote</span><span class="p" data-group-id="8684359196-5">(</span><span class="n">x</span><span class="p" data-group-id="8684359196-5">)</span><span class="w">
+      </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="w">
+    </span><span class="k" data-group-id="8684359196-4">end</span><span class="w">
+  </span><span class="k" data-group-id="8684359196-3">end</span><span class="w">
+</span><span class="k" data-group-id="8684359196-1">end</span></code></pre><p>Now invoking <code class="inline">squared(my_number.())</code> as before will print the value just
+once.</p><p>In fact, this pattern is so common that most of the times you will want
+to use the <code class="inline">bind_quoted</code> option with <a href="#quote/2"><code class="inline">quote/2</code></a>:</p><pre><code class="makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Math</span><span class="w"> </span><span class="k" data-group-id="4313405166-1">do</span><span class="w">
+  </span><span class="kd">defmacro</span><span class="w"> </span><span class="nf">squared</span><span class="p" data-group-id="4313405166-2">(</span><span class="n">x</span><span class="p" data-group-id="4313405166-2">)</span><span class="w"> </span><span class="k" data-group-id="4313405166-3">do</span><span class="w">
+    </span><span class="k">quote</span><span class="w"> </span><span class="ss">bind_quoted</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="4313405166-4">[</span><span class="ss">x</span><span class="p">:</span><span class="w"> </span><span class="n">x</span><span class="p" data-group-id="4313405166-4">]</span><span class="w"> </span><span class="k" data-group-id="4313405166-5">do</span><span class="w">
+      </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="w">
+    </span><span class="k" data-group-id="4313405166-5">end</span><span class="w">
+  </span><span class="k" data-group-id="4313405166-3">end</span><span class="w">
+</span><span class="k" data-group-id="4313405166-1">end</span></code></pre><p><code class="inline">:bind_quoted</code> will translate to the same code as the example above.
+<code class="inline">:bind_quoted</code> can be used in many cases and is seen as good practice,
+not only because it helps prevent us from running into common mistakes, but also
+because it allows us to leverage other tools exposed by macros, such as
+unquote fragments discussed in some sections below.</p><p>Before we finish this brief introduction, you will notice that, even though
+we defined a variable <code class="inline">x</code> inside our quote:</p><pre><code class="makeup elixir"><span class="k">quote</span><span class="w"> </span><span class="k" data-group-id="0716293775-1">do</span><span class="w">
+  </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">unquote</span><span class="p" data-group-id="0716293775-2">(</span><span class="n">x</span><span class="p" data-group-id="0716293775-2">)</span><span class="w">
+  </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="w">
+</span><span class="k" data-group-id="0716293775-1">end</span></code></pre><p>When we call:</p><pre><code class="makeup elixir"><span class="kn">import</span><span class="w"> </span><span class="nc">Math</span><span class="w">
+</span><span class="n">squared</span><span class="p" data-group-id="6084687118-1">(</span><span class="mi">5</span><span class="p" data-group-id="6084687118-1">)</span><span class="w">
+</span><span class="n">x</span><span class="w">
+</span><span class="gt">** (CompileError) undefined variable x or undefined function x/0</span></code></pre><p>We can see that <code class="inline">x</code> did not leak to the user context. This happens
+because Elixir macros are hygienic, a topic we will discuss at length
+in the next sections as well.</p><h2 id="quote/2-hygiene-in-variables" class="section-heading">
+  <a href="#quote/2-hygiene-in-variables" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Hygiene in variables
+</h2>
+<p>Consider the following example:</p><pre><code class="makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Hygiene</span><span class="w"> </span><span class="k" data-group-id="0828139768-1">do</span><span class="w">
+  </span><span class="kd">defmacro</span><span class="w"> </span><span class="nf">no_interference</span><span class="w"> </span><span class="k" data-group-id="0828139768-2">do</span><span class="w">
+    </span><span class="k">quote</span><span class="w"> </span><span class="k" data-group-id="0828139768-3">do</span><span class="w">
+      </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="k" data-group-id="0828139768-3">end</span><span class="w">
+  </span><span class="k" data-group-id="0828139768-2">end</span><span class="w">
+</span><span class="k" data-group-id="0828139768-1">end</span><span class="w">
+
+</span><span class="kn">require</span><span class="w"> </span><span class="nc">Hygiene</span><span class="w">
+
+</span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="w">
+</span><span class="nc">Hygiene</span><span class="o">.</span><span class="n">no_interference</span><span class="p" data-group-id="0828139768-4">(</span><span class="p" data-group-id="0828139768-4">)</span><span class="w">
+</span><span class="n">a</span><span class="w">
+</span><span class="c1">#=&gt; 10</span></code></pre><p>In the example above, <code class="inline">a</code> returns 10 even if the macro
+is apparently setting it to 1 because variables defined
+in the macro do not affect the context the macro is executed in.
+If you want to set or get a variable in the caller's context, you
+can do it with the help of the <code class="inline">var!</code> macro:</p><pre><code class="makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">NoHygiene</span><span class="w"> </span><span class="k" data-group-id="6187375856-1">do</span><span class="w">
+  </span><span class="kd">defmacro</span><span class="w"> </span><span class="nf">interference</span><span class="w"> </span><span class="k" data-group-id="6187375856-2">do</span><span class="w">
+    </span><span class="k">quote</span><span class="w"> </span><span class="k" data-group-id="6187375856-3">do</span><span class="w">
+      </span><span class="n">var!</span><span class="p" data-group-id="6187375856-4">(</span><span class="n">a</span><span class="p" data-group-id="6187375856-4">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="k" data-group-id="6187375856-3">end</span><span class="w">
+  </span><span class="k" data-group-id="6187375856-2">end</span><span class="w">
+</span><span class="k" data-group-id="6187375856-1">end</span><span class="w">
+
+</span><span class="kn">require</span><span class="w"> </span><span class="nc">NoHygiene</span><span class="w">
+
+</span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="w">
+</span><span class="nc">NoHygiene</span><span class="o">.</span><span class="n">interference</span><span class="p" data-group-id="6187375856-5">(</span><span class="p" data-group-id="6187375856-5">)</span><span class="w">
+</span><span class="n">a</span><span class="w">
+</span><span class="c1">#=&gt; 1</span></code></pre><p>You cannot even access variables defined in the same module unless
+you explicitly give it a context:</p><pre><code class="makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Hygiene</span><span class="w"> </span><span class="k" data-group-id="8202828901-1">do</span><span class="w">
+  </span><span class="kd">defmacro</span><span class="w"> </span><span class="nf">write</span><span class="w"> </span><span class="k" data-group-id="8202828901-2">do</span><span class="w">
+    </span><span class="k">quote</span><span class="w"> </span><span class="k" data-group-id="8202828901-3">do</span><span class="w">
+      </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="k" data-group-id="8202828901-3">end</span><span class="w">
+  </span><span class="k" data-group-id="8202828901-2">end</span><span class="w">
+
+  </span><span class="kd">defmacro</span><span class="w"> </span><span class="nf">read</span><span class="w"> </span><span class="k" data-group-id="8202828901-4">do</span><span class="w">
+    </span><span class="k">quote</span><span class="w"> </span><span class="k" data-group-id="8202828901-5">do</span><span class="w">
+      </span><span class="n">a</span><span class="w">
+    </span><span class="k" data-group-id="8202828901-5">end</span><span class="w">
+  </span><span class="k" data-group-id="8202828901-4">end</span><span class="w">
+</span><span class="k" data-group-id="8202828901-1">end</span><span class="w">
+
+</span><span class="nc">Hygiene</span><span class="o">.</span><span class="n">write</span><span class="p" data-group-id="8202828901-6">(</span><span class="p" data-group-id="8202828901-6">)</span><span class="w">
+</span><span class="nc">Hygiene</span><span class="o">.</span><span class="n">read</span><span class="p" data-group-id="8202828901-7">(</span><span class="p" data-group-id="8202828901-7">)</span><span class="w">
+</span><span class="gt">** (RuntimeError) undefined variable a or undefined function a/0</span></code></pre><p>For such, you can explicitly pass the current module scope as
+argument:</p><pre><code class="makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">ContextHygiene</span><span class="w"> </span><span class="k" data-group-id="6176316162-1">do</span><span class="w">
+  </span><span class="kd">defmacro</span><span class="w"> </span><span class="nf">write</span><span class="w"> </span><span class="k" data-group-id="6176316162-2">do</span><span class="w">
+    </span><span class="k">quote</span><span class="w"> </span><span class="k" data-group-id="6176316162-3">do</span><span class="w">
+      </span><span class="n">var!</span><span class="p" data-group-id="6176316162-4">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="nc">ContextHygiene</span><span class="p" data-group-id="6176316162-4">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="k" data-group-id="6176316162-3">end</span><span class="w">
+  </span><span class="k" data-group-id="6176316162-2">end</span><span class="w">
+
+  </span><span class="kd">defmacro</span><span class="w"> </span><span class="nf">read</span><span class="w"> </span><span class="k" data-group-id="6176316162-5">do</span><span class="w">
+    </span><span class="k">quote</span><span class="w"> </span><span class="k" data-group-id="6176316162-6">do</span><span class="w">
+      </span><span class="n">var!</span><span class="p" data-group-id="6176316162-7">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="nc">ContextHygiene</span><span class="p" data-group-id="6176316162-7">)</span><span class="w">
+    </span><span class="k" data-group-id="6176316162-6">end</span><span class="w">
+  </span><span class="k" data-group-id="6176316162-5">end</span><span class="w">
+</span><span class="k" data-group-id="6176316162-1">end</span><span class="w">
+
+</span><span class="nc">ContextHygiene</span><span class="o">.</span><span class="n">write</span><span class="p" data-group-id="6176316162-8">(</span><span class="p" data-group-id="6176316162-8">)</span><span class="w">
+</span><span class="nc">ContextHygiene</span><span class="o">.</span><span class="n">read</span><span class="p" data-group-id="6176316162-9">(</span><span class="p" data-group-id="6176316162-9">)</span><span class="w">
+</span><span class="c1">#=&gt; 1</span></code></pre><h2 id="quote/2-hygiene-in-aliases" class="section-heading">
+  <a href="#quote/2-hygiene-in-aliases" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Hygiene in aliases
+</h2>
+<p>Aliases inside quote are hygienic by default.
+Consider the following example:</p><pre><code class="makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Hygiene</span><span class="w"> </span><span class="k" data-group-id="9687535522-1">do</span><span class="w">
+  </span><span class="kn">alias</span><span class="w"> </span><span class="nc">Map</span><span class="p">,</span><span class="w"> </span><span class="ss">as</span><span class="p">:</span><span class="w"> </span><span class="nc">M</span><span class="w">
+
+  </span><span class="kd">defmacro</span><span class="w"> </span><span class="nf">no_interference</span><span class="w"> </span><span class="k" data-group-id="9687535522-2">do</span><span class="w">
+    </span><span class="k">quote</span><span class="w"> </span><span class="k" data-group-id="9687535522-3">do</span><span class="w">
+      </span><span class="nc">M</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="9687535522-4">(</span><span class="p" data-group-id="9687535522-4">)</span><span class="w">
+    </span><span class="k" data-group-id="9687535522-3">end</span><span class="w">
+  </span><span class="k" data-group-id="9687535522-2">end</span><span class="w">
+</span><span class="k" data-group-id="9687535522-1">end</span><span class="w">
+
+</span><span class="kn">require</span><span class="w"> </span><span class="nc">Hygiene</span><span class="w">
+</span><span class="nc">Hygiene</span><span class="o">.</span><span class="n">no_interference</span><span class="p" data-group-id="9687535522-5">(</span><span class="p" data-group-id="9687535522-5">)</span><span class="w">
+</span><span class="c1">#=&gt; %{}</span></code></pre><p>Note that, even though the alias <code class="inline">M</code> is not available
+in the context the macro is expanded, the code above works
+because <code class="inline">M</code> still expands to <a href="Map.html"><code class="inline">Map</code></a>.</p><p>Similarly, even if we defined an alias with the same name
+before invoking a macro, it won't affect the macro's result:</p><pre><code class="makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Hygiene</span><span class="w"> </span><span class="k" data-group-id="0029717194-1">do</span><span class="w">
+  </span><span class="kn">alias</span><span class="w"> </span><span class="nc">Map</span><span class="p">,</span><span class="w"> </span><span class="ss">as</span><span class="p">:</span><span class="w"> </span><span class="nc">M</span><span class="w">
+
+  </span><span class="kd">defmacro</span><span class="w"> </span><span class="nf">no_interference</span><span class="w"> </span><span class="k" data-group-id="0029717194-2">do</span><span class="w">
+    </span><span class="k">quote</span><span class="w"> </span><span class="k" data-group-id="0029717194-3">do</span><span class="w">
+      </span><span class="nc">M</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="0029717194-4">(</span><span class="p" data-group-id="0029717194-4">)</span><span class="w">
+    </span><span class="k" data-group-id="0029717194-3">end</span><span class="w">
+  </span><span class="k" data-group-id="0029717194-2">end</span><span class="w">
+</span><span class="k" data-group-id="0029717194-1">end</span><span class="w">
+
+</span><span class="kn">require</span><span class="w"> </span><span class="nc">Hygiene</span><span class="w">
+</span><span class="kn">alias</span><span class="w"> </span><span class="nc">SomethingElse</span><span class="p">,</span><span class="w"> </span><span class="ss">as</span><span class="p">:</span><span class="w"> </span><span class="nc">M</span><span class="w">
+</span><span class="nc">Hygiene</span><span class="o">.</span><span class="n">no_interference</span><span class="p" data-group-id="0029717194-5">(</span><span class="p" data-group-id="0029717194-5">)</span><span class="w">
+</span><span class="c1">#=&gt; %{}</span></code></pre><p>In some cases, you want to access an alias or a module defined
+in the caller. For such, you can use the <code class="inline">alias!</code> macro:</p><pre><code class="makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Hygiene</span><span class="w"> </span><span class="k" data-group-id="9218947013-1">do</span><span class="w">
+  </span><span class="c1"># This will expand to Elixir.Nested.hello()</span><span class="w">
+  </span><span class="kd">defmacro</span><span class="w"> </span><span class="nf">no_interference</span><span class="w"> </span><span class="k" data-group-id="9218947013-2">do</span><span class="w">
+    </span><span class="k">quote</span><span class="w"> </span><span class="k" data-group-id="9218947013-3">do</span><span class="w">
+      </span><span class="nc">Nested</span><span class="o">.</span><span class="n">hello</span><span class="p" data-group-id="9218947013-4">(</span><span class="p" data-group-id="9218947013-4">)</span><span class="w">
+    </span><span class="k" data-group-id="9218947013-3">end</span><span class="w">
+  </span><span class="k" data-group-id="9218947013-2">end</span><span class="w">
+
+  </span><span class="c1"># This will expand to Nested.hello() for</span><span class="w">
+  </span><span class="c1"># whatever is Nested in the caller</span><span class="w">
+  </span><span class="kd">defmacro</span><span class="w"> </span><span class="nf">interference</span><span class="w"> </span><span class="k" data-group-id="9218947013-5">do</span><span class="w">
+    </span><span class="k">quote</span><span class="w"> </span><span class="k" data-group-id="9218947013-6">do</span><span class="w">
+      </span><span class="n">alias!</span><span class="p" data-group-id="9218947013-7">(</span><span class="nc">Nested</span><span class="p" data-group-id="9218947013-7">)</span><span class="o">.</span><span class="n">hello</span><span class="p" data-group-id="9218947013-8">(</span><span class="p" data-group-id="9218947013-8">)</span><span class="w">
+    </span><span class="k" data-group-id="9218947013-6">end</span><span class="w">
+  </span><span class="k" data-group-id="9218947013-5">end</span><span class="w">
+</span><span class="k" data-group-id="9218947013-1">end</span><span class="w">
+
+</span><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Parent</span><span class="w"> </span><span class="k" data-group-id="9218947013-9">do</span><span class="w">
+  </span><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Nested</span><span class="w"> </span><span class="k" data-group-id="9218947013-10">do</span><span class="w">
+    </span><span class="kd">def</span><span class="w"> </span><span class="nf">hello</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;world&quot;</span><span class="w">
+  </span><span class="k" data-group-id="9218947013-10">end</span><span class="w">
+
+  </span><span class="kn">require</span><span class="w"> </span><span class="nc">Hygiene</span><span class="w">
+  </span><span class="nc">Hygiene</span><span class="o">.</span><span class="n">no_interference</span><span class="p" data-group-id="9218947013-11">(</span><span class="p" data-group-id="9218947013-11">)</span><span class="w">
+  </span><span class="gt">** (UndefinedFunctionError) ...</span><span class="w">
+
+  </span><span class="nc">Hygiene</span><span class="o">.</span><span class="n">interference</span><span class="p" data-group-id="9218947013-12">(</span><span class="p" data-group-id="9218947013-12">)</span><span class="w">
+  </span><span class="c1">#=&gt; &quot;world&quot;</span><span class="w">
+</span><span class="k" data-group-id="9218947013-9">end</span></code></pre><h2 id="quote/2-hygiene-in-imports" class="section-heading">
+  <a href="#quote/2-hygiene-in-imports" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Hygiene in imports
+</h2>
+<p>Similar to aliases, imports in Elixir are hygienic. Consider the
+following code:</p><pre><code class="makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Hygiene</span><span class="w"> </span><span class="k" data-group-id="4963713110-1">do</span><span class="w">
+  </span><span class="kd">defmacrop</span><span class="w"> </span><span class="nf">get_length</span><span class="w"> </span><span class="k" data-group-id="4963713110-2">do</span><span class="w">
+    </span><span class="k">quote</span><span class="w"> </span><span class="k" data-group-id="4963713110-3">do</span><span class="w">
+      </span><span class="n">length</span><span class="p" data-group-id="4963713110-4">(</span><span class="p" data-group-id="4963713110-5">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="4963713110-5">]</span><span class="p" data-group-id="4963713110-4">)</span><span class="w">
+    </span><span class="k" data-group-id="4963713110-3">end</span><span class="w">
+  </span><span class="k" data-group-id="4963713110-2">end</span><span class="w">
+
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">return_length</span><span class="w"> </span><span class="k" data-group-id="4963713110-6">do</span><span class="w">
+    </span><span class="kn">import</span><span class="w"> </span><span class="nc">Kernel</span><span class="p">,</span><span class="w"> </span><span class="ss">except</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="4963713110-7">[</span><span class="ss">length</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="4963713110-7">]</span><span class="w">
+    </span><span class="n">get_length</span><span class="w">
+  </span><span class="k" data-group-id="4963713110-6">end</span><span class="w">
+</span><span class="k" data-group-id="4963713110-1">end</span><span class="w">
+
+</span><span class="nc">Hygiene</span><span class="o">.</span><span class="n">return_length</span><span class="p" data-group-id="4963713110-8">(</span><span class="p" data-group-id="4963713110-8">)</span><span class="w">
+</span><span class="c1">#=&gt; 3</span></code></pre><p>Notice how <code class="inline">Hygiene.return_length/0</code> returns <code class="inline">3</code> even though the <a href="Kernel.html#length/1"><code class="inline">Kernel.length/1</code></a>
+function is not imported. In fact, even if <code class="inline">return_length/0</code>
+imported a function with the same name and arity from another
+module, it wouldn't affect the function result:</p><pre><code class="makeup elixir"><span class="kd">def</span><span class="w"> </span><span class="nf">return_length</span><span class="w"> </span><span class="k" data-group-id="9998958489-1">do</span><span class="w">
+  </span><span class="kn">import</span><span class="w"> </span><span class="nc">String</span><span class="p">,</span><span class="w"> </span><span class="ss">only</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="9998958489-2">[</span><span class="ss">length</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="9998958489-2">]</span><span class="w">
+  </span><span class="n">get_length</span><span class="w">
+</span><span class="k" data-group-id="9998958489-1">end</span></code></pre><p>Calling this new <code class="inline">return_length/0</code> will still return <code class="inline">3</code> as result.</p><p>Elixir is smart enough to delay the resolution to the latest
+possible moment. So, if you call <code class="inline">length([1, 2, 3])</code> inside quote,
+but no <a href="Kernel.html#length/1"><code class="inline">length/1</code></a> function is available, it is then expanded in
+the caller:</p><pre><code class="makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Lazy</span><span class="w"> </span><span class="k" data-group-id="6664386635-1">do</span><span class="w">
+  </span><span class="kd">defmacrop</span><span class="w"> </span><span class="nf">get_length</span><span class="w"> </span><span class="k" data-group-id="6664386635-2">do</span><span class="w">
+    </span><span class="kn">import</span><span class="w"> </span><span class="nc">Kernel</span><span class="p">,</span><span class="w"> </span><span class="ss">except</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6664386635-3">[</span><span class="ss">length</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="6664386635-3">]</span><span class="w">
+
+    </span><span class="k">quote</span><span class="w"> </span><span class="k" data-group-id="6664386635-4">do</span><span class="w">
+      </span><span class="n">length</span><span class="p" data-group-id="6664386635-5">(</span><span class="s">&quot;hello&quot;</span><span class="p" data-group-id="6664386635-5">)</span><span class="w">
+    </span><span class="k" data-group-id="6664386635-4">end</span><span class="w">
+  </span><span class="k" data-group-id="6664386635-2">end</span><span class="w">
+
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">return_length</span><span class="w"> </span><span class="k" data-group-id="6664386635-6">do</span><span class="w">
+    </span><span class="kn">import</span><span class="w"> </span><span class="nc">Kernel</span><span class="p">,</span><span class="w"> </span><span class="ss">except</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6664386635-7">[</span><span class="ss">length</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="6664386635-7">]</span><span class="w">
+    </span><span class="kn">import</span><span class="w"> </span><span class="nc">String</span><span class="p">,</span><span class="w"> </span><span class="ss">only</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6664386635-8">[</span><span class="ss">length</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="6664386635-8">]</span><span class="w">
+    </span><span class="n">get_length</span><span class="w">
+  </span><span class="k" data-group-id="6664386635-6">end</span><span class="w">
+</span><span class="k" data-group-id="6664386635-1">end</span><span class="w">
+
+</span><span class="nc">Lazy</span><span class="o">.</span><span class="n">return_length</span><span class="p" data-group-id="6664386635-9">(</span><span class="p" data-group-id="6664386635-9">)</span><span class="w">
+</span><span class="c1">#=&gt; 5</span></code></pre><h2 id="quote/2-stacktrace-information" class="section-heading">
+  <a href="#quote/2-stacktrace-information" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Stacktrace information
+</h2>
+<p>When defining functions via macros, developers have the option of
+choosing if runtime errors will be reported from the caller or from
+inside the quote. Let's see an example:</p><pre><code class="makeup elixir"><span class="c1"># adder.ex</span><span class="w">
+</span><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Adder</span><span class="w"> </span><span class="k" data-group-id="9525149327-1">do</span><span class="w">
+  </span><span class="na">@doc</span><span class="w"> </span><span class="s">&quot;Defines a function that adds two numbers&quot;</span><span class="w">
+  </span><span class="kd">defmacro</span><span class="w"> </span><span class="nf">defadd</span><span class="w"> </span><span class="k" data-group-id="9525149327-2">do</span><span class="w">
+    </span><span class="k">quote</span><span class="w"> </span><span class="ss">location</span><span class="p">:</span><span class="w"> </span><span class="ss">:keep</span><span class="w"> </span><span class="k" data-group-id="9525149327-3">do</span><span class="w">
+      </span><span class="kd">def</span><span class="w"> </span><span class="nf">add</span><span class="p" data-group-id="9525149327-4">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p" data-group-id="9525149327-4">)</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="w">
+    </span><span class="k" data-group-id="9525149327-3">end</span><span class="w">
+  </span><span class="k" data-group-id="9525149327-2">end</span><span class="w">
+</span><span class="k" data-group-id="9525149327-1">end</span><span class="w">
+
+</span><span class="c1"># sample.ex</span><span class="w">
+</span><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Sample</span><span class="w"> </span><span class="k" data-group-id="9525149327-5">do</span><span class="w">
+  </span><span class="kn">import</span><span class="w"> </span><span class="nc">Adder</span><span class="w">
+  </span><span class="n">defadd</span><span class="w">
+</span><span class="k" data-group-id="9525149327-5">end</span><span class="w">
+
+</span><span class="kn">require</span><span class="w"> </span><span class="nc">Sample</span><span class="w">
+</span><span class="nc">Sample</span><span class="o">.</span><span class="n">add</span><span class="p" data-group-id="9525149327-6">(</span><span class="ss">:one</span><span class="p">,</span><span class="w"> </span><span class="ss">:two</span><span class="p" data-group-id="9525149327-6">)</span><span class="w">
+</span><span class="gt">** (ArithmeticError) bad argument in arithmetic expression
+    adder.ex:5: Sample.add/2</span></code></pre><p>When using <code class="inline">location: :keep</code> and invalid arguments are given to
+<code class="inline">Sample.add/2</code>, the stacktrace information will point to the file
+and line inside the quote. Without <code class="inline">location: :keep</code>, the error is
+reported to where <code class="inline">defadd</code> was invoked. <code class="inline">location: :keep</code> affects
+only definitions inside the quote.</p><h2 id="quote/2-binding-and-unquote-fragments" class="section-heading">
+  <a href="#quote/2-binding-and-unquote-fragments" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Binding and unquote fragments
+</h2>
+<p>Elixir quote/unquote mechanisms provide a functionality called
+unquote fragments. Unquote fragments provide an easy way to generate
+functions on the fly. Consider this example:</p><pre><code class="makeup elixir"><span class="n">kv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="4090464246-1">[</span><span class="ss">foo</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">bar</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="4090464246-1">]</span><span class="w">
+</span><span class="nc">Enum</span><span class="o">.</span><span class="n">each</span><span class="p" data-group-id="4090464246-2">(</span><span class="n">kv</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="4090464246-3">fn</span><span class="w"> </span><span class="p" data-group-id="4090464246-4">{</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p" data-group-id="4090464246-4">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="k">unquote</span><span class="p" data-group-id="4090464246-5">(</span><span class="n">k</span><span class="p" data-group-id="4090464246-5">)</span><span class="p" data-group-id="4090464246-6">(</span><span class="p" data-group-id="4090464246-6">)</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="k">unquote</span><span class="p" data-group-id="4090464246-7">(</span><span class="n">v</span><span class="p" data-group-id="4090464246-7">)</span><span class="w">
+</span><span class="k" data-group-id="4090464246-3">end</span><span class="p" data-group-id="4090464246-2">)</span></code></pre><p>In the example above, we have generated the functions <code class="inline">foo/0</code> and
+<code class="inline">bar/0</code> dynamically. Now, imagine that we want to convert this
+functionality into a macro:</p><pre><code class="makeup elixir"><span class="kd">defmacro</span><span class="w"> </span><span class="nf">defkv</span><span class="p" data-group-id="4470008675-1">(</span><span class="n">kv</span><span class="p" data-group-id="4470008675-1">)</span><span class="w"> </span><span class="k" data-group-id="4470008675-2">do</span><span class="w">
+  </span><span class="nc">Enum</span><span class="o">.</span><span class="n">map</span><span class="p" data-group-id="4470008675-3">(</span><span class="n">kv</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="4470008675-4">fn</span><span class="w"> </span><span class="p" data-group-id="4470008675-5">{</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p" data-group-id="4470008675-5">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+    </span><span class="k">quote</span><span class="w"> </span><span class="k" data-group-id="4470008675-6">do</span><span class="w">
+      </span><span class="kd">def</span><span class="w"> </span><span class="k">unquote</span><span class="p" data-group-id="4470008675-7">(</span><span class="n">k</span><span class="p" data-group-id="4470008675-7">)</span><span class="p" data-group-id="4470008675-8">(</span><span class="p" data-group-id="4470008675-8">)</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="k">unquote</span><span class="p" data-group-id="4470008675-9">(</span><span class="n">v</span><span class="p" data-group-id="4470008675-9">)</span><span class="w">
+    </span><span class="k" data-group-id="4470008675-6">end</span><span class="w">
+  </span><span class="k" data-group-id="4470008675-4">end</span><span class="p" data-group-id="4470008675-3">)</span><span class="w">
+</span><span class="k" data-group-id="4470008675-2">end</span></code></pre><p>We can invoke this macro as:</p><pre><code class="makeup elixir"><span class="n">defkv</span><span class="w"> </span><span class="p" data-group-id="0715166925-1">[</span><span class="ss">foo</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">bar</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="0715166925-1">]</span></code></pre><p>However, we can't invoke it as follows:</p><pre><code class="makeup elixir"><span class="n">kv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="4176904036-1">[</span><span class="ss">foo</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">bar</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="4176904036-1">]</span><span class="w">
+</span><span class="n">defkv</span><span class="w"> </span><span class="n">kv</span></code></pre><p>This is because the macro is expecting its arguments to be a
+keyword list at <strong>compilation</strong> time. Since in the example above
+we are passing the representation of the variable <code class="inline">kv</code>, our
+code fails.</p><p>This is actually a common pitfall when developing macros. We are
+assuming a particular shape in the macro. We can work around it
+by unquoting the variable inside the quoted expression:</p><pre><code class="makeup elixir"><span class="kd">defmacro</span><span class="w"> </span><span class="nf">defkv</span><span class="p" data-group-id="2225597299-1">(</span><span class="n">kv</span><span class="p" data-group-id="2225597299-1">)</span><span class="w"> </span><span class="k" data-group-id="2225597299-2">do</span><span class="w">
+  </span><span class="k">quote</span><span class="w"> </span><span class="k" data-group-id="2225597299-3">do</span><span class="w">
+    </span><span class="nc">Enum</span><span class="o">.</span><span class="n">each</span><span class="p" data-group-id="2225597299-4">(</span><span class="k">unquote</span><span class="p" data-group-id="2225597299-5">(</span><span class="n">kv</span><span class="p" data-group-id="2225597299-5">)</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="2225597299-6">fn</span><span class="w"> </span><span class="p" data-group-id="2225597299-7">{</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p" data-group-id="2225597299-7">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+      </span><span class="kd">def</span><span class="w"> </span><span class="k">unquote</span><span class="p" data-group-id="2225597299-8">(</span><span class="n">k</span><span class="p" data-group-id="2225597299-8">)</span><span class="p" data-group-id="2225597299-9">(</span><span class="p" data-group-id="2225597299-9">)</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="k">unquote</span><span class="p" data-group-id="2225597299-10">(</span><span class="n">v</span><span class="p" data-group-id="2225597299-10">)</span><span class="w">
+    </span><span class="k" data-group-id="2225597299-6">end</span><span class="p" data-group-id="2225597299-4">)</span><span class="w">
+  </span><span class="k" data-group-id="2225597299-3">end</span><span class="w">
+</span><span class="k" data-group-id="2225597299-2">end</span></code></pre><p>If you try to run our new macro, you will notice it won't
+even compile, complaining that the variables <code class="inline">k</code> and <code class="inline">v</code>
+do not exist. This is because of the ambiguity: <code class="inline">unquote(k)</code>
+can either be an unquote fragment, as previously, or a regular
+unquote as in <code class="inline">unquote(kv)</code>.</p><p>One solution to this problem is to disable unquoting in the
+macro, however, doing that would make it impossible to inject the
+<code class="inline">kv</code> representation into the tree. That's when the <code class="inline">:bind_quoted</code>
+option comes to the rescue (again!). By using <code class="inline">:bind_quoted</code>, we
+can automatically disable unquoting while still injecting the
+desired variables into the tree:</p><pre><code class="makeup elixir"><span class="kd">defmacro</span><span class="w"> </span><span class="nf">defkv</span><span class="p" data-group-id="3386016817-1">(</span><span class="n">kv</span><span class="p" data-group-id="3386016817-1">)</span><span class="w"> </span><span class="k" data-group-id="3386016817-2">do</span><span class="w">
+  </span><span class="k">quote</span><span class="w"> </span><span class="ss">bind_quoted</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3386016817-3">[</span><span class="ss">kv</span><span class="p">:</span><span class="w"> </span><span class="n">kv</span><span class="p" data-group-id="3386016817-3">]</span><span class="w"> </span><span class="k" data-group-id="3386016817-4">do</span><span class="w">
+    </span><span class="nc">Enum</span><span class="o">.</span><span class="n">each</span><span class="p" data-group-id="3386016817-5">(</span><span class="n">kv</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="3386016817-6">fn</span><span class="w"> </span><span class="p" data-group-id="3386016817-7">{</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p" data-group-id="3386016817-7">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+      </span><span class="kd">def</span><span class="w"> </span><span class="k">unquote</span><span class="p" data-group-id="3386016817-8">(</span><span class="n">k</span><span class="p" data-group-id="3386016817-8">)</span><span class="p" data-group-id="3386016817-9">(</span><span class="p" data-group-id="3386016817-9">)</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="k">unquote</span><span class="p" data-group-id="3386016817-10">(</span><span class="n">v</span><span class="p" data-group-id="3386016817-10">)</span><span class="w">
+    </span><span class="k" data-group-id="3386016817-6">end</span><span class="p" data-group-id="3386016817-5">)</span><span class="w">
+  </span><span class="k" data-group-id="3386016817-4">end</span><span class="w">
+</span><span class="k" data-group-id="3386016817-2">end</span></code></pre><p>In fact, the <code class="inline">:bind_quoted</code> option is recommended every time
+one desires to inject a value into the quote.</p>
+  </section>
+</section>
+
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.1) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

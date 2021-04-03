@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.1">
+    <meta name="project" content="Elixir v1.12.0-rc.0">
+
+    <title>Path.wildcard — Elixir v1.12.0-rc.0</title>
+    <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
+
+      <link rel="canonical" href="https://hexdocs.pm/elixir/1.12/" />
+
+    <script src="dist/sidebar_items-1a6c36a221.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName">
+Elixir
+      </a>
+      <strong class="sidebar-projectVersion">
+        v1.12.0-rc.0
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>Path.wildcard</h1>
+
+<div class="deprecated">
+  You're seeing just the function <code>wildcard</code>, go back to <a href="Path.html">Path</a> module for more information.
+</div>
+
+<section class="detail" id="wildcard/2">
+
+    <span id="wildcard/1"></span>
+
+  <div class="detail-header">
+    <a href="#wildcard/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">wildcard(glob, opts \\ [])</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/fb151383ab866230694712690fe9a583dc32a9db/lib/elixir/lib/path.ex#L650" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>wildcard(<a href="#t:t/0">t</a>(), <a href="typespecs.html#built-in-types">keyword</a>()) :: [<a href="typespecs.html#built-in-types">binary</a>()]</pre>
+
+      </div>
+
+<p>Traverses paths according to the given <code class="inline">glob</code> expression and returns a
+list of matches.</p><p>The wildcard looks like an ordinary path, except that the following
+&quot;wildcard characters&quot; are interpreted in a special way:</p><ul><li><p><code class="inline">?</code> - matches one character.</p></li><li><p><code class="inline">*</code> - matches any number of characters up to the end of the filename, the
+next dot, or the next slash.</p></li><li><p><code class="inline">**</code> - two adjacent <code class="inline">*</code>'s used as a single pattern will match all
+files and zero or more directories and subdirectories.</p></li><li><p><code class="inline">[char1,char2,...]</code> - matches any of the characters listed; two
+characters separated by a hyphen will match a range of characters.
+Do not add spaces before and after the comma as it would then match
+paths containing the space character itself.</p></li><li><p><code class="inline">{item1,item2,...}</code> - matches one of the alternatives.
+Do not add spaces before and after the comma as it would then match
+paths containing the space character itself.</p></li></ul><p>Other characters represent themselves. Only paths that have
+exactly the same character in the same position will match. Note
+that matching is case-sensitive: <code class="inline">&quot;a&quot;</code> will not match <code class="inline">&quot;A&quot;</code>.</p><p>Directory separators must always be written as <code class="inline">/</code>, even on Windows.
+You may call <a href="#expand/1"><code class="inline">Path.expand/1</code></a> to normalize the path before invoking
+this function.</p><p>By default, the patterns <code class="inline">*</code> and <code class="inline">?</code> do not match files starting
+with a dot <code class="inline">.</code>. See the <code class="inline">:match_dot</code> option in the &quot;Options&quot; section
+below.</p><h2 id="wildcard/2-options" class="section-heading">
+  <a href="#wildcard/2-options" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Options
+</h2>
+<ul><li><code class="inline">:match_dot</code> - (boolean) if <code class="inline">false</code>, the special wildcard characters <code class="inline">*</code> and <code class="inline">?</code>
+will not match files starting with a dot (<code class="inline">.</code>). If <code class="inline">true</code>, files starting with
+a <code class="inline">.</code> will not be treated specially. Defaults to <code class="inline">false</code>.</li></ul><h2 id="wildcard/2-examples" class="section-heading">
+  <a href="#wildcard/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<p>Imagine you have a directory called <code class="inline">projects</code> with three Elixir projects
+inside of it: <code class="inline">elixir</code>, <code class="inline">ex_doc</code>, and <code class="inline">plug</code>. You can find all <code class="inline">.beam</code> files
+inside the <code class="inline">ebin</code> directory of each project as follows:</p><pre><code class="makeup elixir"><span class="nc">Path</span><span class="o">.</span><span class="n">wildcard</span><span class="p" data-group-id="9997847344-1">(</span><span class="s">&quot;projects/*/ebin/**/*.beam&quot;</span><span class="p" data-group-id="9997847344-1">)</span></code></pre><p>If you want to search for both <code class="inline">.beam</code> and <code class="inline">.app</code> files, you could do:</p><pre><code class="makeup elixir"><span class="nc">Path</span><span class="o">.</span><span class="n">wildcard</span><span class="p" data-group-id="1041609689-1">(</span><span class="s">&quot;projects/*/ebin/**/*.{beam,app}&quot;</span><span class="p" data-group-id="1041609689-1">)</span></code></pre>
+  </section>
+</section>
+
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.1) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

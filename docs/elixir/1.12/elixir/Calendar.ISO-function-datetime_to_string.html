@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.1">
+    <meta name="project" content="Elixir v1.12.0-rc.0">
+
+    <title>Calendar.ISO.datetime_to_string — Elixir v1.12.0-rc.0</title>
+    <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
+
+      <link rel="canonical" href="https://hexdocs.pm/elixir/1.12/" />
+
+    <script src="dist/sidebar_items-1a6c36a221.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName">
+Elixir
+      </a>
+      <strong class="sidebar-projectVersion">
+        v1.12.0-rc.0
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>Calendar.ISO.datetime_to_string</h1>
+
+<div class="deprecated">
+  You're seeing just the function <code>datetime_to_string</code>, go back to <a href="Calendar.ISO.html">Calendar.ISO</a> module for more information.
+</div>
+
+<section class="detail" id="datetime_to_string/12">
+
+    <span id="datetime_to_string/11"></span>
+
+  <div class="detail-header">
+    <a href="#datetime_to_string/12" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">datetime_to_string(year, month, day, hour, minute, second, microsecond, time_zone, zone_abbr, utc_offset, std_offset, format \\ :extended)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/fb151383ab866230694712690fe9a583dc32a9db/lib/elixir/lib/calendar/iso.ex#L1220" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.4.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>datetime_to_string(
+  <a href="#t:year/0">year</a>(),
+  <a href="#t:month/0">month</a>(),
+  <a href="#t:day/0">day</a>(),
+  <a href="Calendar.html#t:hour/0">Calendar.hour</a>(),
+  <a href="Calendar.html#t:minute/0">Calendar.minute</a>(),
+  <a href="Calendar.html#t:second/0">Calendar.second</a>(),
+  <a href="Calendar.html#t:microsecond/0">Calendar.microsecond</a>(),
+  <a href="Calendar.html#t:time_zone/0">Calendar.time_zone</a>(),
+  <a href="Calendar.html#t:zone_abbr/0">Calendar.zone_abbr</a>(),
+  <a href="Calendar.html#t:utc_offset/0">Calendar.utc_offset</a>(),
+  <a href="Calendar.html#t:std_offset/0">Calendar.std_offset</a>(),
+  :basic | :extended
+) :: <a href="String.html#t:t/0">String.t</a>()</pre>
+
+      </div>
+
+<p>Converts the datetime (with time zone) into a string.</p><p>By default, returns datetimes formatted in the &quot;extended&quot; format,
+for human readability. It also supports the &quot;basic&quot; format
+by passing the <code class="inline">:basic</code> option.</p><h2 id="datetime_to_string/12-examples" class="section-heading">
+  <a href="#datetime_to_string/12-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">time_zone</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Etc/UTC&quot;</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Calendar.ISO</span><span class="o">.</span><span class="n">datetime_to_string</span><span class="p" data-group-id="2630974706-1">(</span><span class="mi">2017</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2630974706-2">{</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="2630974706-2">}</span><span class="p">,</span><span class="w"> </span><span class="n">time_zone</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;UTC&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p" data-group-id="2630974706-1">)</span><span class="w">
+</span><span class="s">&quot;2017-08-01 01:02:03.00000Z&quot;</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Calendar.ISO</span><span class="o">.</span><span class="n">datetime_to_string</span><span class="p" data-group-id="2630974706-3">(</span><span class="mi">2017</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2630974706-4">{</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="2630974706-4">}</span><span class="p">,</span><span class="w"> </span><span class="n">time_zone</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;UTC&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">3600</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p" data-group-id="2630974706-3">)</span><span class="w">
+</span><span class="s">&quot;2017-08-01 01:02:03.00000+01:00&quot;</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Calendar.ISO</span><span class="o">.</span><span class="n">datetime_to_string</span><span class="p" data-group-id="2630974706-5">(</span><span class="mi">2017</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2630974706-6">{</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="2630974706-6">}</span><span class="p">,</span><span class="w"> </span><span class="n">time_zone</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;UTC&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">3600</span><span class="p">,</span><span class="w"> </span><span class="mi">3600</span><span class="p" data-group-id="2630974706-5">)</span><span class="w">
+</span><span class="s">&quot;2017-08-01 01:02:03.00000+02:00&quot;</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="n">time_zone</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Europe/Berlin&quot;</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Calendar.ISO</span><span class="o">.</span><span class="n">datetime_to_string</span><span class="p" data-group-id="2630974706-7">(</span><span class="mi">2017</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2630974706-8">{</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="2630974706-8">}</span><span class="p">,</span><span class="w"> </span><span class="n">time_zone</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CET&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">3600</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p" data-group-id="2630974706-7">)</span><span class="w">
+</span><span class="s">&quot;2017-08-01 01:02:03.00000+01:00 CET Europe/Berlin&quot;</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Calendar.ISO</span><span class="o">.</span><span class="n">datetime_to_string</span><span class="p" data-group-id="2630974706-9">(</span><span class="mi">2017</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2630974706-10">{</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="2630974706-10">}</span><span class="p">,</span><span class="w"> </span><span class="n">time_zone</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CDT&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">3600</span><span class="p">,</span><span class="w"> </span><span class="mi">3600</span><span class="p" data-group-id="2630974706-9">)</span><span class="w">
+</span><span class="s">&quot;2017-08-01 01:02:03.00000+02:00 CDT Europe/Berlin&quot;</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="n">time_zone</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;America/Los_Angeles&quot;</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Calendar.ISO</span><span class="o">.</span><span class="n">datetime_to_string</span><span class="p" data-group-id="2630974706-11">(</span><span class="mi">2015</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2630974706-12">{</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="2630974706-12">}</span><span class="p">,</span><span class="w"> </span><span class="n">time_zone</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;PST&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">28800</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p" data-group-id="2630974706-11">)</span><span class="w">
+</span><span class="s">&quot;2015-02-28 01:02:03.00000-08:00 PST America/Los_Angeles&quot;</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Calendar.ISO</span><span class="o">.</span><span class="n">datetime_to_string</span><span class="p" data-group-id="2630974706-13">(</span><span class="mi">2015</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2630974706-14">{</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="2630974706-14">}</span><span class="p">,</span><span class="w"> </span><span class="n">time_zone</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;PDT&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">28800</span><span class="p">,</span><span class="w"> </span><span class="mi">3600</span><span class="p" data-group-id="2630974706-13">)</span><span class="w">
+</span><span class="s">&quot;2015-02-28 01:02:03.00000-07:00 PDT America/Los_Angeles&quot;</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="n">time_zone</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Europe/Berlin&quot;</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Calendar.ISO</span><span class="o">.</span><span class="n">datetime_to_string</span><span class="p" data-group-id="2630974706-15">(</span><span class="mi">2017</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2630974706-16">{</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="2630974706-16">}</span><span class="p">,</span><span class="w"> </span><span class="n">time_zone</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CET&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">3600</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="ss">:basic</span><span class="p" data-group-id="2630974706-15">)</span><span class="w">
+</span><span class="s">&quot;20170801 010203.00000+0100 CET Europe/Berlin&quot;</span></code></pre>
+  </section>
+</section>
+
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.1) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

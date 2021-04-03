@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.1">
+    <meta name="project" content="Elixir v1.12.0-rc.0">
+
+    <title>String.next_codepoint — Elixir v1.12.0-rc.0</title>
+    <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
+
+      <link rel="canonical" href="https://hexdocs.pm/elixir/1.12/" />
+
+    <script src="dist/sidebar_items-1a6c36a221.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName">
+Elixir
+      </a>
+      <strong class="sidebar-projectVersion">
+        v1.12.0-rc.0
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>String.next_codepoint</h1>
+
+<div class="deprecated">
+  You're seeing just the function <code>next_codepoint</code>, go back to <a href="String.html">String</a> module for more information.
+</div>
+
+<section class="detail" id="next_codepoint/1">
+
+  <div class="detail-header">
+    <a href="#next_codepoint/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">next_codepoint(string)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/fb151383ab866230694712690fe9a583dc32a9db/lib/elixir/lib/string.ex#L1691" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>next_codepoint(<a href="#t:t/0">t</a>()) :: {<a href="#t:codepoint/0">codepoint</a>(), <a href="#t:t/0">t</a>()} | nil</pre>
+
+      </div>
+
+<p>Returns the next code point in a string.</p><p>The result is a tuple with the code point and the
+remainder of the string or <code class="inline">nil</code> in case
+the string reached its end.</p><p>As with other functions in the <a href="String.html#content"><code class="inline">String</code></a> module, <a href="#next_codepoint/1"><code class="inline">next_codepoint/1</code></a>
+works with binaries that are invalid UTF-8. If the string starts
+with a sequence of bytes that is not valid in UTF-8 encoding, the
+first element of the returned tuple is a binary with the first byte.</p><h2 id="next_codepoint/1-examples" class="section-heading">
+  <a href="#next_codepoint/1-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">String</span><span class="o">.</span><span class="n">next_codepoint</span><span class="p" data-group-id="6880563394-1">(</span><span class="s">&quot;olá&quot;</span><span class="p" data-group-id="6880563394-1">)</span><span class="w">
+</span><span class="p" data-group-id="6880563394-2">{</span><span class="s">&quot;o&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;lá&quot;</span><span class="p" data-group-id="6880563394-2">}</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="n">invalid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\x</span><span class="s">80</span><span class="se">\x</span><span class="s">80OK&quot;</span><span class="w"> </span><span class="c1"># first two bytes are invalid in UTF-8</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="6880563394-3">{</span><span class="bp">_</span><span class="p">,</span><span class="w"> </span><span class="n">rest</span><span class="p" data-group-id="6880563394-3">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">String</span><span class="o">.</span><span class="n">next_codepoint</span><span class="p" data-group-id="6880563394-4">(</span><span class="n">invalid</span><span class="p" data-group-id="6880563394-4">)</span><span class="w">
+</span><span class="p" data-group-id="6880563394-5">{</span><span class="p" data-group-id="6880563394-6">&lt;&lt;</span><span class="mi">128</span><span class="p" data-group-id="6880563394-6">&gt;&gt;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="6880563394-7">&lt;&lt;</span><span class="mi">128</span><span class="p">,</span><span class="w"> </span><span class="mi">79</span><span class="p">,</span><span class="w"> </span><span class="mi">75</span><span class="p" data-group-id="6880563394-7">&gt;&gt;</span><span class="p" data-group-id="6880563394-5">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">String</span><span class="o">.</span><span class="n">next_codepoint</span><span class="p" data-group-id="6880563394-8">(</span><span class="n">rest</span><span class="p" data-group-id="6880563394-8">)</span><span class="w">
+</span><span class="p" data-group-id="6880563394-9">{</span><span class="p" data-group-id="6880563394-10">&lt;&lt;</span><span class="mi">128</span><span class="p" data-group-id="6880563394-10">&gt;&gt;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;OK&quot;</span><span class="p" data-group-id="6880563394-9">}</span></code></pre><h2 id="next_codepoint/1-comparison-with-binary-pattern-matching" class="section-heading">
+  <a href="#next_codepoint/1-comparison-with-binary-pattern-matching" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Comparison with binary pattern matching
+</h2>
+<p>Binary pattern matching provides a similar way to decompose
+a string:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="2124488036-1">&lt;&lt;</span><span class="n">codepoint</span><span class="o">::</span><span class="n">utf8</span><span class="p">,</span><span class="w"> </span><span class="n">rest</span><span class="o">::</span><span class="n">binary</span><span class="p" data-group-id="2124488036-1">&gt;&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Elixir&quot;</span><span class="w">
+</span><span class="s">&quot;Elixir&quot;</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">codepoint</span><span class="w">
+</span><span class="mi">69</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">rest</span><span class="w">
+</span><span class="s">&quot;lixir&quot;</span></code></pre><p>though not entirely equivalent because <code class="inline">codepoint</code> comes as
+an integer, and the pattern won't match invalid UTF-8.</p><p>Binary pattern matching, however, is simpler and more efficient,
+so pick the option that better suits your use case.</p>
+  </section>
+</section>
+
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.1) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

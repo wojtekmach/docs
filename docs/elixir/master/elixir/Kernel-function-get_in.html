@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.1">
+    <meta name="project" content="Elixir v1.13.0-dev">
+
+    <title>Kernel.get_in — Elixir v1.13.0-dev</title>
+    <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
+
+      <link rel="canonical" href="https://hexdocs.pm/elixir/master/" />
+
+    <script src="dist/sidebar_items-ed39eda610.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName">
+Elixir
+      </a>
+      <strong class="sidebar-projectVersion">
+        v1.13.0-dev
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>Kernel.get_in</h1>
+
+<div class="deprecated">
+  You're seeing just the function <code>get_in</code>, go back to <a href="Kernel.html">Kernel</a> module for more information.
+</div>
+
+<section class="detail" id="get_in/2">
+
+  <div class="detail-header">
+    <a href="#get_in/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">get_in(data, keys)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/kernel.ex#L2606" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>get_in(<a href="Access.html#t:t/0">Access.t</a>(), [<a href="typespecs.html#built-in-types">term</a>(), ...]) :: <a href="typespecs.html#built-in-types">term</a>()</pre>
+
+      </div>
+
+<p>Gets a value from a nested structure.</p><p>Uses the <a href="Access.html"><code class="inline">Access</code></a> module to traverse the structures
+according to the given <code class="inline">keys</code>, unless the <code class="inline">key</code> is a
+function, which is detailed in a later section.</p><h2 id="get_in/2-examples" class="section-heading">
+  <a href="#get_in/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="4796273413-1">%{</span><span class="s">&quot;john&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="p" data-group-id="4796273413-2">%{</span><span class="ss">age</span><span class="p">:</span><span class="w"> </span><span class="mi">27</span><span class="p" data-group-id="4796273413-2">}</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;meg&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="p" data-group-id="4796273413-3">%{</span><span class="ss">age</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p" data-group-id="4796273413-3">}</span><span class="p" data-group-id="4796273413-1">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">get_in</span><span class="p" data-group-id="4796273413-4">(</span><span class="n">users</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4796273413-5">[</span><span class="s">&quot;john&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">:age</span><span class="p" data-group-id="4796273413-5">]</span><span class="p" data-group-id="4796273413-4">)</span><span class="w">
+</span><span class="mi">27</span></code></pre><p><a href="#get_in/2"><code class="inline">get_in/2</code></a> can also use the accessors in the <a href="Access.html"><code class="inline">Access</code></a> module
+to traverse more complex data structures. For example, here we
+use <a href="Access.html#all/0"><code class="inline">Access.all/0</code></a> to traverse a list:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="0245578810-1">[</span><span class="p" data-group-id="0245578810-2">%{</span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;john&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">age</span><span class="p">:</span><span class="w"> </span><span class="mi">27</span><span class="p" data-group-id="0245578810-2">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0245578810-3">%{</span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;meg&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">age</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p" data-group-id="0245578810-3">}</span><span class="p" data-group-id="0245578810-1">]</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">get_in</span><span class="p" data-group-id="0245578810-4">(</span><span class="n">users</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0245578810-5">[</span><span class="nc">Access</span><span class="o">.</span><span class="n">all</span><span class="p" data-group-id="0245578810-6">(</span><span class="p" data-group-id="0245578810-6">)</span><span class="p">,</span><span class="w"> </span><span class="ss">:age</span><span class="p" data-group-id="0245578810-5">]</span><span class="p" data-group-id="0245578810-4">)</span><span class="w">
+</span><span class="p" data-group-id="0245578810-7">[</span><span class="mi">27</span><span class="p">,</span><span class="w"> </span><span class="mi">23</span><span class="p" data-group-id="0245578810-7">]</span></code></pre><p>In case any of the components returns <code class="inline">nil</code>, <code class="inline">nil</code> will be returned
+and <a href="#get_in/2"><code class="inline">get_in/2</code></a> won't traverse any futher:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="0425860230-1">%{</span><span class="s">&quot;john&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="p" data-group-id="0425860230-2">%{</span><span class="ss">age</span><span class="p">:</span><span class="w"> </span><span class="mi">27</span><span class="p" data-group-id="0425860230-2">}</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;meg&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="p" data-group-id="0425860230-3">%{</span><span class="ss">age</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p" data-group-id="0425860230-3">}</span><span class="p" data-group-id="0425860230-1">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">get_in</span><span class="p" data-group-id="0425860230-4">(</span><span class="n">users</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0425860230-5">[</span><span class="s">&quot;unknown&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">:age</span><span class="p" data-group-id="0425860230-5">]</span><span class="p" data-group-id="0425860230-4">)</span><span class="w">
+</span><span class="no">nil</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="n">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">nil</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">get_in</span><span class="p" data-group-id="0425860230-6">(</span><span class="n">users</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0425860230-7">[</span><span class="nc">Access</span><span class="o">.</span><span class="n">all</span><span class="p" data-group-id="0425860230-8">(</span><span class="p" data-group-id="0425860230-8">)</span><span class="p">,</span><span class="w"> </span><span class="ss">:age</span><span class="p" data-group-id="0425860230-7">]</span><span class="p" data-group-id="0425860230-6">)</span><span class="w">
+</span><span class="no">nil</span></code></pre><p>The main feature of <a href="#get_in/2"><code class="inline">get_in/2</code></a> is precisely that it aborts traversal
+when a <code class="inline">nil</code> value is found. Unless you need nil-safety, you are likely
+better off by writing &quot;regular&quot; Elixir code:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="9677621386-1">%{</span><span class="s">&quot;john&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="p" data-group-id="9677621386-2">%{</span><span class="ss">age</span><span class="p">:</span><span class="w"> </span><span class="mi">27</span><span class="p" data-group-id="9677621386-2">}</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;meg&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="p" data-group-id="9677621386-3">%{</span><span class="ss">age</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p" data-group-id="9677621386-3">}</span><span class="p" data-group-id="9677621386-1">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">users</span><span class="p" data-group-id="9677621386-4">[</span><span class="s">&quot;john&quot;</span><span class="p" data-group-id="9677621386-4">]</span><span class="p" data-group-id="9677621386-5">[</span><span class="ss">:age</span><span class="p" data-group-id="9677621386-5">]</span><span class="w">
+</span><span class="mi">27</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="n">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="9677621386-6">[</span><span class="p" data-group-id="9677621386-7">%{</span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;john&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">age</span><span class="p">:</span><span class="w"> </span><span class="mi">27</span><span class="p" data-group-id="9677621386-7">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9677621386-8">%{</span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;meg&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">age</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p" data-group-id="9677621386-8">}</span><span class="p" data-group-id="9677621386-6">]</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Enum</span><span class="o">.</span><span class="n">map</span><span class="p" data-group-id="9677621386-9">(</span><span class="n">users</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="9677621386-10">fn</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">user</span><span class="p" data-group-id="9677621386-11">[</span><span class="ss">:age</span><span class="p" data-group-id="9677621386-11">]</span><span class="w"> </span><span class="k" data-group-id="9677621386-10">end</span><span class="p" data-group-id="9677621386-9">)</span><span class="w">
+</span><span class="p" data-group-id="9677621386-12">[</span><span class="mi">27</span><span class="p">,</span><span class="w"> </span><span class="mi">23</span><span class="p" data-group-id="9677621386-12">]</span></code></pre><p>Alternatively, if you need to access complex data-structures, you can
+use pattern matching:</p><pre><code class="makeup elixir"><span class="k">case</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k" data-group-id="7666829256-1">do</span><span class="w">
+  </span><span class="p" data-group-id="7666829256-2">%{</span><span class="s">&quot;john&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="p" data-group-id="7666829256-3">%{</span><span class="ss">age</span><span class="p">:</span><span class="w"> </span><span class="n">age</span><span class="p" data-group-id="7666829256-3">}</span><span class="p" data-group-id="7666829256-2">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">age</span><span class="w">
+  </span><span class="bp">_</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">default_value</span><span class="w">
+</span><span class="k" data-group-id="7666829256-1">end</span></code></pre><h2 id="get_in/2-functions-as-keys" class="section-heading">
+  <a href="#get_in/2-functions-as-keys" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Functions as keys
+</h2>
+<p>If a key given to <a href="#get_in/2"><code class="inline">get_in/2</code></a> is a function, the function will be invoked
+passing three arguments:</p><ul><li>the operation (<code class="inline">:get</code>)</li><li>the data to be accessed</li><li>a function to be invoked next</li></ul><p>This means <a href="#get_in/2"><code class="inline">get_in/2</code></a> can be extended to provide custom lookups.
+That's precisely how the <a href="Access.html#all/0"><code class="inline">Access.all/0</code></a> key in the previous section
+behaves. For example, we can manually implement such traversal as
+follows:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="1444232979-1">[</span><span class="p" data-group-id="1444232979-2">%{</span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;john&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">age</span><span class="p">:</span><span class="w"> </span><span class="mi">27</span><span class="p" data-group-id="1444232979-2">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1444232979-3">%{</span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;meg&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">age</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p" data-group-id="1444232979-3">}</span><span class="p" data-group-id="1444232979-1">]</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">all</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k" data-group-id="1444232979-4">fn</span><span class="w"> </span><span class="ss">:get</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">next</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nc">Enum</span><span class="o">.</span><span class="n">map</span><span class="p" data-group-id="1444232979-5">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">next</span><span class="p" data-group-id="1444232979-5">)</span><span class="w"> </span><span class="k" data-group-id="1444232979-4">end</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">get_in</span><span class="p" data-group-id="1444232979-6">(</span><span class="n">users</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1444232979-7">[</span><span class="n">all</span><span class="p">,</span><span class="w"> </span><span class="ss">:age</span><span class="p" data-group-id="1444232979-7">]</span><span class="p" data-group-id="1444232979-6">)</span><span class="w">
+</span><span class="p" data-group-id="1444232979-8">[</span><span class="mi">27</span><span class="p">,</span><span class="w"> </span><span class="mi">23</span><span class="p" data-group-id="1444232979-8">]</span></code></pre><p>The <a href="Access.html"><code class="inline">Access</code></a> module ships with many convenience accessor functions.
+See <a href="Access.html#all/0"><code class="inline">Access.all/0</code></a>, <a href="Access.html#key/2"><code class="inline">Access.key/2</code></a>, and others as examples.</p><h2 id="get_in/2-working-with-structs" class="section-heading">
+  <a href="#get_in/2-working-with-structs" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Working with structs
+</h2>
+<p>By default, structs do not implement the <a href="Access.html"><code class="inline">Access</code></a> behaviour required
+by this function. Therefore, you can't do this:</p><pre><code class="makeup elixir"><span class="n">get_in</span><span class="p" data-group-id="8936818801-1">(</span><span class="n">some_struct</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8936818801-2">[</span><span class="ss">:some_key</span><span class="p">,</span><span class="w"> </span><span class="ss">:nested_key</span><span class="p" data-group-id="8936818801-2">]</span><span class="p" data-group-id="8936818801-1">)</span></code></pre><p>The good news is that structs have predefined shape. Therefore,
+you can write instead:</p><pre><code class="makeup elixir"><span class="n">some_struct</span><span class="o">.</span><span class="n">some_key</span><span class="o">.</span><span class="n">nested_key</span></code></pre><p>If, by any chance, <code class="inline">some_key</code> can return nil, you can always
+fallback to pattern matching to provide nested struct handling:</p><pre><code class="makeup elixir"><span class="k">case</span><span class="w"> </span><span class="n">some_struct</span><span class="w"> </span><span class="k" data-group-id="2869687469-1">do</span><span class="w">
+  </span><span class="p" data-group-id="2869687469-2">%{</span><span class="ss">some_key</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2869687469-3">%{</span><span class="ss">nested_key</span><span class="p">:</span><span class="w"> </span><span class="n">value</span><span class="p" data-group-id="2869687469-3">}</span><span class="p" data-group-id="2869687469-2">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">value</span><span class="w">
+  </span><span class="p" data-group-id="2869687469-4">%{</span><span class="p" data-group-id="2869687469-4">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="no">nil</span><span class="w">
+</span><span class="k" data-group-id="2869687469-1">end</span></code></pre>
+  </section>
+</section>
+
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.1) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

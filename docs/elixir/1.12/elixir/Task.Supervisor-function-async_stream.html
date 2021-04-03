@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.1">
+    <meta name="project" content="Elixir v1.12.0-rc.0">
+
+    <title>Task.Supervisor.async_stream — Elixir v1.12.0-rc.0</title>
+    <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
+
+      <link rel="canonical" href="https://hexdocs.pm/elixir/1.12/" />
+
+    <script src="dist/sidebar_items-1a6c36a221.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName">
+Elixir
+      </a>
+      <strong class="sidebar-projectVersion">
+        v1.12.0-rc.0
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>Task.Supervisor.async_stream</h1>
+
+<div class="deprecated">
+  You're seeing just the function <code>async_stream</code>, go back to <a href="Task.Supervisor.html">Task.Supervisor</a> module for more information.
+</div>
+
+<section class="detail" id="async_stream/4">
+
+    <span id="async_stream/3"></span>
+
+  <div class="detail-header">
+    <a href="#async_stream/4" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">async_stream(supervisor, enumerable, fun, options \\ [])</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/fb151383ab866230694712690fe9a583dc32a9db/lib/elixir/lib/task/supervisor.ex#L318" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.4.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>async_stream(
+  <a href="Supervisor.html#t:supervisor/0">Supervisor.supervisor</a>(),
+  <a href="Enumerable.html#t:t/0">Enumerable.t</a>(),
+  (<a href="typespecs.html#built-in-types">term</a>() -&gt; <a href="typespecs.html#built-in-types">term</a>()),
+  <a href="typespecs.html#built-in-types">keyword</a>()
+) :: <a href="Enumerable.html#t:t/0">Enumerable.t</a>()</pre>
+
+      </div>
+
+<p>Returns a stream that runs the given function <code class="inline">fun</code> concurrently
+on each element in <code class="inline">enumerable</code>.</p><p>Each element in <code class="inline">enumerable</code> is passed as argument to the given function <code class="inline">fun</code>
+and processed by its own task. The tasks will be spawned under the given
+<code class="inline">supervisor</code> and linked to the current process, similarly to <a href="#async/2"><code class="inline">async/2</code></a>.</p><p>See <a href="#async_stream/6"><code class="inline">async_stream/6</code></a> for discussion, options, and examples.</p>
+  </section>
+</section>
+
+
+<section class="detail" id="async_stream/6">
+
+    <span id="async_stream/5"></span>
+
+  <div class="detail-header">
+    <a href="#async_stream/6" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">async_stream(supervisor, enumerable, module, function, args, options \\ [])</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/fb151383ab866230694712690fe9a583dc32a9db/lib/elixir/lib/task/supervisor.ex#L300" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.4.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>async_stream(
+  <a href="Supervisor.html#t:supervisor/0">Supervisor.supervisor</a>(),
+  <a href="Enumerable.html#t:t/0">Enumerable.t</a>(),
+  <a href="typespecs.html#built-in-types">module</a>(),
+  <a href="typespecs.html#basic-types">atom</a>(),
+  [<a href="typespecs.html#built-in-types">term</a>()],
+  <a href="typespecs.html#built-in-types">keyword</a>()
+) :: <a href="Enumerable.html#t:t/0">Enumerable.t</a>()</pre>
+
+      </div>
+
+<p>Returns a stream where the given function (<code class="inline">module</code> and <code class="inline">function</code>)
+is mapped concurrently on each element in <code class="inline">enumerable</code>.</p><p>Each element will be prepended to the given <code class="inline">args</code> and processed by its
+own task. The tasks will be spawned under the given <code class="inline">supervisor</code> and
+linked to the current process, similarly to <a href="#async/4"><code class="inline">async/4</code></a>.</p><p>When streamed, each task will emit <code class="inline">{:ok, value}</code> upon successful
+completion or <code class="inline">{:exit, reason}</code> if the caller is trapping exits.
+The order of results depends on the value of the <code class="inline">:ordered</code> option.</p><p>The level of concurrency and the time tasks are allowed to run can
+be controlled via options (see the &quot;Options&quot; section below).</p><p>If you find yourself trapping exits to handle exits inside
+the async stream, consider using <a href="#async_stream_nolink/6"><code class="inline">async_stream_nolink/6</code></a> to start tasks
+that are not linked to the calling process.</p><h2 id="async_stream/6-options" class="section-heading">
+  <a href="#async_stream/6-options" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Options
+</h2>
+<ul><li><p><code class="inline">:max_concurrency</code> - sets the maximum number of tasks to run
+at the same time. Defaults to <a href="System.html#schedulers_online/0"><code class="inline">System.schedulers_online/0</code></a>.</p></li><li><p><code class="inline">:ordered</code> - whether the results should be returned in the same order
+as the input stream. This option is useful when you have large
+streams and don't want to buffer results before they are delivered.
+This is also useful when you're using the tasks for side effects.
+Defaults to <code class="inline">true</code>.</p></li><li><p><code class="inline">:timeout</code> - the maximum amount of time to wait (in milliseconds)
+without receiving a task reply (across all running tasks).
+Defaults to <code class="inline">5000</code>.</p></li><li><p><code class="inline">:on_timeout</code> - what do to when a task times out. The possible
+values are:</p><ul><li><code class="inline">:exit</code> (default) - the process that spawned the tasks exits.</li><li><code class="inline">:kill_task</code> - the task that timed out is killed. The value
+emitted for that task is <code class="inline">{:exit, :timeout}</code>.</li></ul></li><li><p><code class="inline">:shutdown</code> - <code class="inline">:brutal_kill</code> if the tasks must be killed directly on shutdown
+or an integer indicating the timeout value. Defaults to <code class="inline">5000</code> milliseconds.</p></li></ul><h2 id="async_stream/6-examples" class="section-heading">
+  <a href="#async_stream/6-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<p>Let's build a stream and then enumerate it:</p><pre><code class="makeup elixir"><span class="n">stream</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Task.Supervisor</span><span class="o">.</span><span class="n">async_stream</span><span class="p" data-group-id="5539040378-1">(</span><span class="nc">MySupervisor</span><span class="p">,</span><span class="w"> </span><span class="n">collection</span><span class="p">,</span><span class="w"> </span><span class="nc">Mod</span><span class="p">,</span><span class="w"> </span><span class="ss">:expensive_fun</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5539040378-2">[</span><span class="p" data-group-id="5539040378-2">]</span><span class="p" data-group-id="5539040378-1">)</span><span class="w">
+</span><span class="nc">Enum</span><span class="o">.</span><span class="n">to_list</span><span class="p" data-group-id="5539040378-3">(</span><span class="n">stream</span><span class="p" data-group-id="5539040378-3">)</span></code></pre>
+  </section>
+</section>
+
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.1) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

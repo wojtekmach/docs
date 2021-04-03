@@ -1,0 +1,1826 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.1">
+    <meta name="project" content="Elixir v1.13.0-dev">
+
+    <title>Map — Elixir v1.13.0-dev</title>
+    <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
+
+      <link rel="canonical" href="https://hexdocs.pm/elixir/master/Map.html" />
+
+    <script src="dist/sidebar_items-ed39eda610.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName">
+Elixir
+      </a>
+      <strong class="sidebar-projectVersion">
+        v1.13.0-dev
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+      <h1>
+Map <small class="app-vsn">(Elixir v1.13.0-dev)</small>
+
+          <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/map.ex#L1" title="View Source" class="view-source" rel="help">
+            <span class="icon-code" aria-hidden="true"></span>
+            <span class="sr-only">View Source</span>
+          </a>
+
+      </h1>
+
+
+        <section id="moduledoc">
+<p>Maps are the &quot;go to&quot; key-value data structure in Elixir.</p><p>Maps can be created with the <code class="inline">%{}</code> syntax, and key-value pairs can be
+expressed as <code class="inline">key =&gt; value</code>:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="5909306227-1">%{</span><span class="p" data-group-id="5909306227-1">}</span><span class="w">
+</span><span class="p" data-group-id="5909306227-2">%{</span><span class="p" data-group-id="5909306227-2">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="5909306227-3">%{</span><span class="s">&quot;one&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="ss">:two</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;four&quot;</span><span class="p" data-group-id="5909306227-3">}</span><span class="w">
+</span><span class="p" data-group-id="5909306227-4">%{</span><span class="mi">3</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;four&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;one&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="ss">:two</span><span class="p" data-group-id="5909306227-4">}</span></code></pre><p>Key-value pairs in a map do not follow any order (that's why the printed map
+in the example above has a different order than the map that was created).</p><p>Maps do not impose any restriction on the key type: anything can be a key in a
+map. As a key-value structure, maps do not allow duplicated keys. Keys are
+compared using the exact-equality operator (<a href="Kernel.html#===/2"><code class="inline">===/2</code></a>). If colliding keys are defined
+in a map literal, the last one prevails.</p><p>When the key in a key-value pair is an atom, the <code class="inline">key: value</code> shorthand syntax
+can be used (as in many other special forms):</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="9523118928-1">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="9523118928-1">}</span><span class="w">
+</span><span class="p" data-group-id="9523118928-2">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="9523118928-2">}</span></code></pre><p>If you want to mix the shorthand syntax with <code class="inline">=&gt;</code>, the shorthand syntax must come
+at the end:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="7113623692-1">%{</span><span class="s">&quot;hello&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;world&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="7113623692-1">}</span><span class="w">
+</span><span class="p" data-group-id="7113623692-2">%{</span><span class="ss">:a</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">:b</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hello&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;world&quot;</span><span class="p" data-group-id="7113623692-2">}</span></code></pre><p>Keys in maps can be accessed through some of the functions in this module
+(such as <a href="#get/3"><code class="inline">Map.get/3</code></a> or <a href="#fetch/2"><code class="inline">Map.fetch/2</code></a>) or through the <code class="inline">map[]</code> syntax provided
+by the <a href="Access.html"><code class="inline">Access</code></a> module:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="6036160026-1">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="6036160026-1">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">fetch</span><span class="p" data-group-id="6036160026-2">(</span><span class="n">map</span><span class="p">,</span><span class="w"> </span><span class="ss">:a</span><span class="p" data-group-id="6036160026-2">)</span><span class="w">
+</span><span class="p" data-group-id="6036160026-3">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="6036160026-3">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">map</span><span class="p" data-group-id="6036160026-4">[</span><span class="ss">:b</span><span class="p" data-group-id="6036160026-4">]</span><span class="w">
+</span><span class="mi">2</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">map</span><span class="p" data-group-id="6036160026-5">[</span><span class="s">&quot;non_existing_key&quot;</span><span class="p" data-group-id="6036160026-5">]</span><span class="w">
+</span><span class="no">nil</span></code></pre><p>To access atom keys, one may also use the <code class="inline">map.key</code> notation. Note that <code class="inline">map.key</code>
+will raise a <a href="KeyError.html"><code class="inline">KeyError</code></a> if the <code class="inline">map</code> doesn't contain the key <code class="inline">:key</code>, compared to
+<code class="inline">map[:key]</code>, that would return <code class="inline">nil</code>.</p><pre><code class="makeup elixir"><span class="n">map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="3876851292-1">%{</span><span class="ss">foo</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bar&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">baz</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bong&quot;</span><span class="p" data-group-id="3876851292-1">}</span><span class="w">
+</span><span class="n">map</span><span class="o">.</span><span class="n">foo</span><span class="w">
+</span><span class="c1">#=&gt; &quot;bar&quot;</span><span class="w">
+</span><span class="n">map</span><span class="o">.</span><span class="n">non_existing_key</span><span class="w">
+</span><span class="gt">** (KeyError) key :non_existing_key not found in: %{baz: &quot;bong&quot;, foo: &quot;bar&quot;}</span></code></pre><blockquote><p>Note: do not add parens when accessing fields, such as in <code class="inline">data.key()</code>.
+If parenthesis are used, Elixir will expect <code class="inline">data</code> to be an atom representing
+a module and attempt to call the <em>function</em> <code class="inline">key/0</code> in it.</p></blockquote><p>The two syntaxes for accessing keys reveal the dual nature of maps. The <code class="inline">map[key]</code>
+syntax is used for dynamically created maps that may have any key, of any type.
+<code class="inline">map.key</code> is used with maps that hold a predetermined set of atoms keys, which are
+expected to always be present. Structs, defined via <a href="Kernel.html#defstruct/1"><code class="inline">defstruct/1</code></a>, are one example
+of such &quot;static maps&quot;, where the keys can also be checked during compile time.</p><p>Maps can be pattern matched on. When a map is on the left-hand side of a
+pattern match, it will match if the map on the right-hand side contains the
+keys on the left-hand side and their values match the ones on the left-hand
+side. This means that an empty map matches every map.</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="8745359842-1">%{</span><span class="p" data-group-id="8745359842-1">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="8745359842-2">%{</span><span class="ss">foo</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bar&quot;</span><span class="p" data-group-id="8745359842-2">}</span><span class="w">
+</span><span class="p" data-group-id="8745359842-3">%{</span><span class="ss">foo</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bar&quot;</span><span class="p" data-group-id="8745359842-3">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="8745359842-4">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="n">a</span><span class="p" data-group-id="8745359842-4">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="8745359842-5">%{</span><span class="ss">:a</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;b&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8745359842-6">[</span><span class="ss">:c</span><span class="p">,</span><span class="w"> </span><span class="ss">:e</span><span class="p">,</span><span class="w"> </span><span class="ss">:e</span><span class="p" data-group-id="8745359842-6">]</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="8745359842-5">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">a</span><span class="w">
+</span><span class="mi">1</span></code></pre><p>But this will raise a <a href="MatchError.html"><code class="inline">MatchError</code></a> exception:</p><pre><code class="makeup elixir"><span class="p" data-group-id="8390682643-1">%{</span><span class="ss">:c</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="8390682643-1">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="8390682643-2">%{</span><span class="ss">:a</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="ss">:b</span><span class="p" data-group-id="8390682643-2">}</span></code></pre><p>Variables can be used as map keys both when writing map literals as well as
+when matching:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="mi">1</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="1957693848-1">%{</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="ss">:one</span><span class="p" data-group-id="1957693848-1">}</span><span class="w">
+</span><span class="p" data-group-id="1957693848-2">%{</span><span class="mi">1</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="ss">:one</span><span class="p" data-group-id="1957693848-2">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="1957693848-3">%{</span><span class="o">^</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="ss">:one</span><span class="p" data-group-id="1957693848-3">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="1957693848-4">%{</span><span class="mi">1</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="ss">:one</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="ss">:two</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="ss">:three</span><span class="p" data-group-id="1957693848-4">}</span><span class="w">
+</span><span class="p" data-group-id="1957693848-5">%{</span><span class="mi">1</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="ss">:one</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="ss">:two</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="ss">:three</span><span class="p" data-group-id="1957693848-5">}</span></code></pre><p>Maps also support a specific update syntax to update the value stored under
+<em>existing</em> atom keys:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="7993777164-1">%{</span><span class="ss">one</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">two</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="7993777164-1">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="7993777164-2">%{</span><span class="n">map</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="ss">one</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;one&quot;</span><span class="p" data-group-id="7993777164-2">}</span><span class="w">
+</span><span class="p" data-group-id="7993777164-3">%{</span><span class="ss">one</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;one&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">two</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="7993777164-3">}</span></code></pre><p>When a key that does not exist in the map is updated a <a href="KeyError.html"><code class="inline">KeyError</code></a> exception will be raised:</p><pre><code class="makeup elixir"><span class="p" data-group-id="8213997135-1">%{</span><span class="n">map</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="ss">three</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="8213997135-1">}</span></code></pre><p>The functions in this module that need to find a specific key work in logarithmic time.
+This means that the time it takes to find keys grows as the map grows, but it's not
+directly proportional to the map size. In comparison to finding an element in a list,
+it performs better because lists have a linear time complexity. Some functions,
+such as <a href="#keys/1"><code class="inline">keys/1</code></a> and <a href="#values/1"><code class="inline">values/1</code></a>, run in linear time because they need to get to every
+element in the map.</p><p>Maps also implement the <a href="Enumerable.html"><code class="inline">Enumerable</code></a> protocol, so many functions to work with maps
+are found in the <a href="Enum.html"><code class="inline">Enum</code></a> module. Additionally, the following functions for maps are
+found in <a href="Kernel.html"><code class="inline">Kernel</code></a>:</p><ul><li><a href="Kernel.html#map_size/1"><code class="inline">map_size/1</code></a></li></ul>
+        </section>
+
+
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Summary
+          </h1>
+
+  <div class="summary-types summary">
+    <h2>
+      <a href="#types">Types</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:key/0">key()</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:value/0">value()</a>
+
+  </div>
+
+</div>
+
+  </div>
+
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#delete/2">delete(map, key)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Deletes the entry in <code class="inline">map</code> for a specific <code class="inline">key</code>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#drop/2">drop(map, keys)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Drops the given <code class="inline">keys</code> from <code class="inline">map</code>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#equal?/2">equal?(map1, map2)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Checks if two maps are equal.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#fetch/2">fetch(map, key)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Fetches the value for a specific <code class="inline">key</code> in the given <code class="inline">map</code>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#fetch!/2">fetch!(map, key)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Fetches the value for a specific <code class="inline">key</code> in the given <code class="inline">map</code>, erroring out if
+<code class="inline">map</code> doesn't contain <code class="inline">key</code>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#from_struct/1">from_struct(struct)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Converts a <code class="inline">struct</code> to map.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#get/3">get(map, key, default \\ nil)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Gets the value for a specific <code class="inline">key</code> in <code class="inline">map</code>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#get_and_update/3">get_and_update(map, key, fun)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Gets the value from <code class="inline">key</code> and updates it, all in one pass.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#get_and_update!/3">get_and_update!(map, key, fun)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Gets the value from <code class="inline">key</code> and updates it, all in one pass. Raises if there is no <code class="inline">key</code>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#get_lazy/3">get_lazy(map, key, fun)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Gets the value for a specific <code class="inline">key</code> in <code class="inline">map</code>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#has_key?/2">has_key?(map, key)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Returns whether the given <code class="inline">key</code> exists in the given <code class="inline">map</code>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#keys/1">keys(map)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Returns all keys from <code class="inline">map</code>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#merge/2">merge(map1, map2)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Merges two maps into one.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#merge/3">merge(map1, map2, fun)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Merges two maps into one, resolving conflicts through the given <code class="inline">fun</code>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#new/0">new()</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Returns a new empty map.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#new/1">new(enumerable)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Creates a map from an <code class="inline">enumerable</code>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#new/2">new(enumerable, transform)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Creates a map from an <code class="inline">enumerable</code> via the given transformation function.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#pop/3">pop(map, key, default \\ nil)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Removes the value associated with <code class="inline">key</code> in <code class="inline">map</code> and returns the value and the updated map.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#pop!/2">pop!(map, key)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Removes the value associated with <code class="inline">key</code> in <code class="inline">map</code> and returns the value
+and the updated map, or it raises if <code class="inline">key</code> is not present.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#pop_lazy/3">pop_lazy(map, key, fun)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Lazily returns and removes the value associated with <code class="inline">key</code> in <code class="inline">map</code>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#put/3">put(map, key, value)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Puts the given <code class="inline">value</code> under <code class="inline">key</code> in <code class="inline">map</code>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#put_new/3">put_new(map, key, value)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Puts the given <code class="inline">value</code> under <code class="inline">key</code> unless the entry <code class="inline">key</code>
+already exists in <code class="inline">map</code>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#put_new_lazy/3">put_new_lazy(map, key, fun)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Evaluates <code class="inline">fun</code> and puts the result under <code class="inline">key</code>
+in <code class="inline">map</code> unless <code class="inline">key</code> is already present.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#replace/3">replace(map, key, value)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Puts a value under <code class="inline">key</code> only if the <code class="inline">key</code> already exists in <code class="inline">map</code>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#replace!/3">replace!(map, key, value)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Puts a value under <code class="inline">key</code> only if the <code class="inline">key</code> already exists in <code class="inline">map</code>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#split/2">split(map, keys)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Takes all entries corresponding to the given <code class="inline">keys</code> in <code class="inline">map</code> and extracts
+them into a separate map.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#take/2">take(map, keys)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Returns a new map with all the key-value pairs in <code class="inline">map</code> where the key
+is in <code class="inline">keys</code>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#to_list/1">to_list(map)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Converts <code class="inline">map</code> to a list.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#update/4">update(map, key, default, fun)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Updates the <code class="inline">key</code> in <code class="inline">map</code> with the given function.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#update!/3">update!(map, key, fun)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Updates <code class="inline">key</code> with the given function.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#values/1">values(map)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Returns all values from <code class="inline">map</code>.</p></div>
+
+</div>
+
+  </div>
+
+        </section>
+
+
+        <section id="types" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#types">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Types
+          </h1>
+          <div class="types-list">
+<section class="detail" id="t:key/0">
+
+  <div class="detail-header">
+    <a href="#t:key/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">key()</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/map.ex#L116" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>key() :: <a href="typespecs.html#basic-types">any</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:value/0">
+
+  <div class="detail-header">
+    <a href="#t:value/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">value()</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/map.ex#L117" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>value() :: <a href="typespecs.html#basic-types">any</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+
+          </div>
+        </section>
+
+        <section id="functions" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#functions">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Functions
+          </h1>
+          <div class="functions-list">
+<section class="detail" id="delete/2">
+
+  <div class="detail-header">
+    <a href="#delete/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">delete(map, key)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/map.ex#L548" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>delete(<a href="typespecs.html#basic-types">map</a>(), <a href="#t:key/0">key</a>()) :: <a href="typespecs.html#basic-types">map</a>()</pre>
+
+      </div>
+
+<p>Deletes the entry in <code class="inline">map</code> for a specific <code class="inline">key</code>.</p><p>If the <code class="inline">key</code> does not exist, returns <code class="inline">map</code> unchanged.</p><p>Inlined by the compiler.</p><h2 id="delete/2-examples" class="section-heading">
+  <a href="#delete/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">delete</span><span class="p" data-group-id="5133391490-1">(</span><span class="p" data-group-id="5133391490-2">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="5133391490-2">}</span><span class="p">,</span><span class="w"> </span><span class="ss">:a</span><span class="p" data-group-id="5133391490-1">)</span><span class="w">
+</span><span class="p" data-group-id="5133391490-3">%{</span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="5133391490-3">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">delete</span><span class="p" data-group-id="5133391490-4">(</span><span class="p" data-group-id="5133391490-5">%{</span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="5133391490-5">}</span><span class="p">,</span><span class="w"> </span><span class="ss">:a</span><span class="p" data-group-id="5133391490-4">)</span><span class="w">
+</span><span class="p" data-group-id="5133391490-6">%{</span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="5133391490-6">}</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="drop/2">
+
+  <div class="detail-header">
+    <a href="#drop/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">drop(map, keys)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/map.ex#L731" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>drop(<a href="typespecs.html#basic-types">map</a>(), [<a href="#t:key/0">key</a>()]) :: <a href="typespecs.html#basic-types">map</a>()</pre>
+
+      </div>
+
+<p>Drops the given <code class="inline">keys</code> from <code class="inline">map</code>.</p><p>If <code class="inline">keys</code> contains keys that are not in <code class="inline">map</code>, they're simply ignored.</p><h2 id="drop/2-examples" class="section-heading">
+  <a href="#drop/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">drop</span><span class="p" data-group-id="0297644704-1">(</span><span class="p" data-group-id="0297644704-2">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="ss">c</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="0297644704-2">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0297644704-3">[</span><span class="ss">:b</span><span class="p">,</span><span class="w"> </span><span class="ss">:d</span><span class="p" data-group-id="0297644704-3">]</span><span class="p" data-group-id="0297644704-1">)</span><span class="w">
+</span><span class="p" data-group-id="0297644704-4">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">c</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="0297644704-4">}</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="equal?/2">
+
+  <div class="detail-header">
+    <a href="#equal?/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">equal?(map1, map2)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/map.ex#L973" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>equal?(<a href="typespecs.html#basic-types">map</a>(), <a href="typespecs.html#basic-types">map</a>()) :: <a href="typespecs.html#built-in-types">boolean</a>()</pre>
+
+      </div>
+
+<p>Checks if two maps are equal.</p><p>Two maps are considered to be equal if they contain
+the same keys and those keys contain the same values.</p><p>Note this function exists for completeness so the <a href="Map.html#content"><code class="inline">Map</code></a>
+and <a href="Keyword.html"><code class="inline">Keyword</code></a> modules provide similar APIs. In practice,
+developers often compare maps using <a href="Kernel.html#==/2"><code class="inline">==/2</code></a> or <a href="Kernel.html#===/2"><code class="inline">===/2</code></a>
+directly.</p><h2 id="equal?/2-examples" class="section-heading">
+  <a href="#equal?/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">equal?</span><span class="p" data-group-id="9097310901-1">(</span><span class="p" data-group-id="9097310901-2">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="9097310901-2">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9097310901-3">%{</span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="9097310901-3">}</span><span class="p" data-group-id="9097310901-1">)</span><span class="w">
+</span><span class="no">true</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">equal?</span><span class="p" data-group-id="9097310901-4">(</span><span class="p" data-group-id="9097310901-5">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="9097310901-5">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9097310901-6">%{</span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="9097310901-6">}</span><span class="p" data-group-id="9097310901-4">)</span><span class="w">
+</span><span class="no">false</span></code></pre><p>Comparison between keys and values is done with <code class="inline">===/3</code>,
+which means integers are not equivalent to floats:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">equal?</span><span class="p" data-group-id="2130125218-1">(</span><span class="p" data-group-id="2130125218-2">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p" data-group-id="2130125218-2">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2130125218-3">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="2130125218-3">}</span><span class="p" data-group-id="2130125218-1">)</span><span class="w">
+</span><span class="no">false</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="fetch/2">
+
+  <div class="detail-header">
+    <a href="#fetch/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">fetch(map, key)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/map.ex#L266" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>fetch(<a href="typespecs.html#basic-types">map</a>(), <a href="#t:key/0">key</a>()) :: {:ok, <a href="#t:value/0">value</a>()} | :error</pre>
+
+      </div>
+
+<p>Fetches the value for a specific <code class="inline">key</code> in the given <code class="inline">map</code>.</p><p>If <code class="inline">map</code> contains the given <code class="inline">key</code> then its value is returned in the shape of <code class="inline">{:ok, value}</code>.
+If <code class="inline">map</code> doesn't contain <code class="inline">key</code>, <code class="inline">:error</code> is returned.</p><p>Inlined by the compiler.</p><h2 id="fetch/2-examples" class="section-heading">
+  <a href="#fetch/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">fetch</span><span class="p" data-group-id="9524232069-1">(</span><span class="p" data-group-id="9524232069-2">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="9524232069-2">}</span><span class="p">,</span><span class="w"> </span><span class="ss">:a</span><span class="p" data-group-id="9524232069-1">)</span><span class="w">
+</span><span class="p" data-group-id="9524232069-3">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="9524232069-3">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">fetch</span><span class="p" data-group-id="9524232069-4">(</span><span class="p" data-group-id="9524232069-5">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="9524232069-5">}</span><span class="p">,</span><span class="w"> </span><span class="ss">:b</span><span class="p" data-group-id="9524232069-4">)</span><span class="w">
+</span><span class="ss">:error</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="fetch!/2">
+
+  <div class="detail-header">
+    <a href="#fetch!/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">fetch!(map, key)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/map.ex#L284" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>fetch!(<a href="typespecs.html#basic-types">map</a>(), <a href="#t:key/0">key</a>()) :: <a href="#t:value/0">value</a>()</pre>
+
+      </div>
+
+<p>Fetches the value for a specific <code class="inline">key</code> in the given <code class="inline">map</code>, erroring out if
+<code class="inline">map</code> doesn't contain <code class="inline">key</code>.</p><p>If <code class="inline">map</code> contains <code class="inline">key</code>, the corresponding value is returned. If
+<code class="inline">map</code> doesn't contain <code class="inline">key</code>, a <a href="KeyError.html"><code class="inline">KeyError</code></a> exception is raised.</p><p>Inlined by the compiler.</p><h2 id="fetch!/2-examples" class="section-heading">
+  <a href="#fetch!/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">fetch!</span><span class="p" data-group-id="3940886040-1">(</span><span class="p" data-group-id="3940886040-2">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="3940886040-2">}</span><span class="p">,</span><span class="w"> </span><span class="ss">:a</span><span class="p" data-group-id="3940886040-1">)</span><span class="w">
+</span><span class="mi">1</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="from_struct/1">
+
+  <div class="detail-header">
+    <a href="#from_struct/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">from_struct(struct)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/map.ex#L939" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>from_struct(<a href="typespecs.html#basic-types">atom</a>() | <a href="typespecs.html#basic-types">struct</a>()) :: <a href="typespecs.html#basic-types">map</a>()</pre>
+
+      </div>
+
+<p>Converts a <code class="inline">struct</code> to map.</p><p>It accepts the struct module or a struct itself and
+simply removes the <code class="inline">__struct__</code> field from the given struct
+or from a new struct generated from the given module.</p><h2 id="from_struct/1-example" class="section-heading">
+  <a href="#from_struct/1-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example
+</h2>
+<pre><code class="makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">User</span><span class="w"> </span><span class="k" data-group-id="6132547690-1">do</span><span class="w">
+  </span><span class="kd">defstruct</span><span class="w"> </span><span class="p" data-group-id="6132547690-2">[</span><span class="ss">:name</span><span class="p" data-group-id="6132547690-2">]</span><span class="w">
+</span><span class="k" data-group-id="6132547690-1">end</span><span class="w">
+
+</span><span class="nc">Map</span><span class="o">.</span><span class="n">from_struct</span><span class="p" data-group-id="6132547690-3">(</span><span class="nc">User</span><span class="p" data-group-id="6132547690-3">)</span><span class="w">
+</span><span class="c1">#=&gt; %{name: nil}</span><span class="w">
+
+</span><span class="nc">Map</span><span class="o">.</span><span class="n">from_struct</span><span class="p" data-group-id="6132547690-4">(</span><span class="p" data-group-id="6132547690-5">%</span><span class="nc" data-group-id="6132547690-5">User</span><span class="p" data-group-id="6132547690-5">{</span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;john&quot;</span><span class="p" data-group-id="6132547690-5">}</span><span class="p" data-group-id="6132547690-4">)</span><span class="w">
+</span><span class="c1">#=&gt; %{name: &quot;john&quot;}</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="get/3">
+
+    <span id="get/2"></span>
+
+  <div class="detail-header">
+    <a href="#get/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">get(map, key, default \\ nil)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/map.ex#L465" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>get(<a href="typespecs.html#basic-types">map</a>(), <a href="#t:key/0">key</a>(), <a href="#t:value/0">value</a>()) :: <a href="#t:value/0">value</a>()</pre>
+
+      </div>
+
+<p>Gets the value for a specific <code class="inline">key</code> in <code class="inline">map</code>.</p><p>If <code class="inline">key</code> is present in <code class="inline">map</code> then its value <code class="inline">value</code> is
+returned. Otherwise, <code class="inline">default</code> is returned.</p><p>If <code class="inline">default</code> is not provided, <code class="inline">nil</code> is used.</p><h2 id="get/3-examples" class="section-heading">
+  <a href="#get/3-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">get</span><span class="p" data-group-id="3313209314-1">(</span><span class="p" data-group-id="3313209314-2">%{</span><span class="p" data-group-id="3313209314-2">}</span><span class="p">,</span><span class="w"> </span><span class="ss">:a</span><span class="p" data-group-id="3313209314-1">)</span><span class="w">
+</span><span class="no">nil</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">get</span><span class="p" data-group-id="3313209314-3">(</span><span class="p" data-group-id="3313209314-4">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="3313209314-4">}</span><span class="p">,</span><span class="w"> </span><span class="ss">:a</span><span class="p" data-group-id="3313209314-3">)</span><span class="w">
+</span><span class="mi">1</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">get</span><span class="p" data-group-id="3313209314-5">(</span><span class="p" data-group-id="3313209314-6">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="3313209314-6">}</span><span class="p">,</span><span class="w"> </span><span class="ss">:b</span><span class="p" data-group-id="3313209314-5">)</span><span class="w">
+</span><span class="no">nil</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">get</span><span class="p" data-group-id="3313209314-7">(</span><span class="p" data-group-id="3313209314-8">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="3313209314-8">}</span><span class="p">,</span><span class="w"> </span><span class="ss">:b</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="3313209314-7">)</span><span class="w">
+</span><span class="mi">3</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="get_and_update/3">
+
+  <div class="detail-header">
+    <a href="#get_and_update/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">get_and_update(map, key, fun)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/map.ex#L861" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>get_and_update(
+  <a href="typespecs.html#basic-types">map</a>(),
+  <a href="#t:key/0">key</a>(),
+  (<a href="#t:value/0">value</a>() | nil -&gt; {current_value, new_value :: <a href="#t:value/0">value</a>()} | :pop)
+) :: {current_value, new_map :: <a href="typespecs.html#basic-types">map</a>()}
+when current_value: <a href="#t:value/0">value</a>()</pre>
+
+      </div>
+
+<p>Gets the value from <code class="inline">key</code> and updates it, all in one pass.</p><p><code class="inline">fun</code> is called with the current value under <code class="inline">key</code> in <code class="inline">map</code> (or <code class="inline">nil</code> if <code class="inline">key</code>
+is not present in <code class="inline">map</code>) and must return a two-element tuple: the current value
+(the retrieved value, which can be operated on before being returned) and the
+new value to be stored under <code class="inline">key</code> in the resulting new map. <code class="inline">fun</code> may also
+return <code class="inline">:pop</code>, which means the current value shall be removed from <code class="inline">map</code> and
+returned (making this function behave like <code class="inline">Map.pop(map, key)</code>).</p><p>The returned value is a two-element tuple with the current value returned by
+<code class="inline">fun</code> and a new map with the updated value under <code class="inline">key</code>.</p><h2 id="get_and_update/3-examples" class="section-heading">
+  <a href="#get_and_update/3-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">get_and_update</span><span class="p" data-group-id="1526350190-1">(</span><span class="p" data-group-id="1526350190-2">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="1526350190-2">}</span><span class="p">,</span><span class="w"> </span><span class="ss">:a</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="1526350190-3">fn</span><span class="w"> </span><span class="n">current_value</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="p" data-group-id="1526350190-4">{</span><span class="n">current_value</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;new value!&quot;</span><span class="p" data-group-id="1526350190-4">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="k" data-group-id="1526350190-3">end</span><span class="p" data-group-id="1526350190-1">)</span><span class="w">
+</span><span class="p" data-group-id="1526350190-5">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1526350190-6">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;new value!&quot;</span><span class="p" data-group-id="1526350190-6">}</span><span class="p" data-group-id="1526350190-5">}</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">get_and_update</span><span class="p" data-group-id="1526350190-7">(</span><span class="p" data-group-id="1526350190-8">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="1526350190-8">}</span><span class="p">,</span><span class="w"> </span><span class="ss">:b</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="1526350190-9">fn</span><span class="w"> </span><span class="n">current_value</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="p" data-group-id="1526350190-10">{</span><span class="n">current_value</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;new value!&quot;</span><span class="p" data-group-id="1526350190-10">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="k" data-group-id="1526350190-9">end</span><span class="p" data-group-id="1526350190-7">)</span><span class="w">
+</span><span class="p" data-group-id="1526350190-11">{</span><span class="no">nil</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1526350190-12">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;new value!&quot;</span><span class="p" data-group-id="1526350190-12">}</span><span class="p" data-group-id="1526350190-11">}</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">get_and_update</span><span class="p" data-group-id="1526350190-13">(</span><span class="p" data-group-id="1526350190-14">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="1526350190-14">}</span><span class="p">,</span><span class="w"> </span><span class="ss">:a</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="1526350190-15">fn</span><span class="w"> </span><span class="bp">_</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="ss">:pop</span><span class="w"> </span><span class="k" data-group-id="1526350190-15">end</span><span class="p" data-group-id="1526350190-13">)</span><span class="w">
+</span><span class="p" data-group-id="1526350190-16">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1526350190-17">%{</span><span class="p" data-group-id="1526350190-17">}</span><span class="p" data-group-id="1526350190-16">}</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">get_and_update</span><span class="p" data-group-id="1526350190-18">(</span><span class="p" data-group-id="1526350190-19">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="1526350190-19">}</span><span class="p">,</span><span class="w"> </span><span class="ss">:b</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="1526350190-20">fn</span><span class="w"> </span><span class="bp">_</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="ss">:pop</span><span class="w"> </span><span class="k" data-group-id="1526350190-20">end</span><span class="p" data-group-id="1526350190-18">)</span><span class="w">
+</span><span class="p" data-group-id="1526350190-21">{</span><span class="no">nil</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1526350190-22">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="1526350190-22">}</span><span class="p" data-group-id="1526350190-21">}</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="get_and_update!/3">
+
+  <div class="detail-header">
+    <a href="#get_and_update!/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">get_and_update!(map, key, fun)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/map.ex#L903" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>get_and_update!(
+  <a href="typespecs.html#basic-types">map</a>(),
+  <a href="#t:key/0">key</a>(),
+  (<a href="#t:value/0">value</a>() | nil -&gt; {current_value, new_value :: <a href="#t:value/0">value</a>()} | :pop)
+) :: {current_value, <a href="typespecs.html#basic-types">map</a>()}
+when current_value: <a href="#t:value/0">value</a>()</pre>
+
+      </div>
+
+<p>Gets the value from <code class="inline">key</code> and updates it, all in one pass. Raises if there is no <code class="inline">key</code>.</p><p>Behaves exactly like <a href="#get_and_update/3"><code class="inline">get_and_update/3</code></a>, but raises a <a href="KeyError.html"><code class="inline">KeyError</code></a> exception if
+<code class="inline">key</code> is not present in <code class="inline">map</code>.</p><h2 id="get_and_update!/3-examples" class="section-heading">
+  <a href="#get_and_update!/3-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">get_and_update!</span><span class="p" data-group-id="0030877858-1">(</span><span class="p" data-group-id="0030877858-2">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="0030877858-2">}</span><span class="p">,</span><span class="w"> </span><span class="ss">:a</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="0030877858-3">fn</span><span class="w"> </span><span class="n">current_value</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="p" data-group-id="0030877858-4">{</span><span class="n">current_value</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;new value!&quot;</span><span class="p" data-group-id="0030877858-4">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="k" data-group-id="0030877858-3">end</span><span class="p" data-group-id="0030877858-1">)</span><span class="w">
+</span><span class="p" data-group-id="0030877858-5">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0030877858-6">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;new value!&quot;</span><span class="p" data-group-id="0030877858-6">}</span><span class="p" data-group-id="0030877858-5">}</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">get_and_update!</span><span class="p" data-group-id="0030877858-7">(</span><span class="p" data-group-id="0030877858-8">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="0030877858-8">}</span><span class="p">,</span><span class="w"> </span><span class="ss">:b</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="0030877858-9">fn</span><span class="w"> </span><span class="n">current_value</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="p" data-group-id="0030877858-10">{</span><span class="n">current_value</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;new value!&quot;</span><span class="p" data-group-id="0030877858-10">}</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="k" data-group-id="0030877858-9">end</span><span class="p" data-group-id="0030877858-7">)</span><span class="w">
+</span><span class="gt">** (KeyError) key :b not found in: %{a: 1}</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">get_and_update!</span><span class="p" data-group-id="0030877858-11">(</span><span class="p" data-group-id="0030877858-12">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="0030877858-12">}</span><span class="p">,</span><span class="w"> </span><span class="ss">:a</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="0030877858-13">fn</span><span class="w"> </span><span class="bp">_</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="ss">:pop</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="k" data-group-id="0030877858-13">end</span><span class="p" data-group-id="0030877858-11">)</span><span class="w">
+</span><span class="p" data-group-id="0030877858-14">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0030877858-15">%{</span><span class="p" data-group-id="0030877858-15">}</span><span class="p" data-group-id="0030877858-14">}</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="get_lazy/3">
+
+  <div class="detail-header">
+    <a href="#get_lazy/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">get_lazy(map, key, fun)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/map.ex#L501" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>get_lazy(<a href="typespecs.html#basic-types">map</a>(), <a href="#t:key/0">key</a>(), (() -&gt; <a href="#t:value/0">value</a>())) :: <a href="#t:value/0">value</a>()</pre>
+
+      </div>
+
+<p>Gets the value for a specific <code class="inline">key</code> in <code class="inline">map</code>.</p><p>If <code class="inline">key</code> is present in <code class="inline">map</code> then its value <code class="inline">value</code> is
+returned. Otherwise, <code class="inline">fun</code> is evaluated and its result is returned.</p><p>This is useful if the default value is very expensive to calculate or
+generally difficult to setup and teardown again.</p><h2 id="get_lazy/3-examples" class="section-heading">
+  <a href="#get_lazy/3-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="1002996830-1">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="1002996830-1">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k" data-group-id="1002996830-2">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="c1"># some expensive operation here</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="mi">13</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="k" data-group-id="1002996830-2">end</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">get_lazy</span><span class="p" data-group-id="1002996830-3">(</span><span class="n">map</span><span class="p">,</span><span class="w"> </span><span class="ss">:a</span><span class="p">,</span><span class="w"> </span><span class="n">fun</span><span class="p" data-group-id="1002996830-3">)</span><span class="w">
+</span><span class="mi">1</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">get_lazy</span><span class="p" data-group-id="1002996830-4">(</span><span class="n">map</span><span class="p">,</span><span class="w"> </span><span class="ss">:b</span><span class="p">,</span><span class="w"> </span><span class="n">fun</span><span class="p" data-group-id="1002996830-4">)</span><span class="w">
+</span><span class="mi">13</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="has_key?/2">
+
+  <div class="detail-header">
+    <a href="#has_key?/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">has_key?(map, key)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/map.ex#L247" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>has_key?(<a href="typespecs.html#basic-types">map</a>(), <a href="#t:key/0">key</a>()) :: <a href="typespecs.html#built-in-types">boolean</a>()</pre>
+
+      </div>
+
+<p>Returns whether the given <code class="inline">key</code> exists in the given <code class="inline">map</code>.</p><p>Inlined by the compiler.</p><h2 id="has_key?/2-examples" class="section-heading">
+  <a href="#has_key?/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">has_key?</span><span class="p" data-group-id="3254403377-1">(</span><span class="p" data-group-id="3254403377-2">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="3254403377-2">}</span><span class="p">,</span><span class="w"> </span><span class="ss">:a</span><span class="p" data-group-id="3254403377-1">)</span><span class="w">
+</span><span class="no">true</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">has_key?</span><span class="p" data-group-id="3254403377-3">(</span><span class="p" data-group-id="3254403377-4">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="3254403377-4">}</span><span class="p">,</span><span class="w"> </span><span class="ss">:b</span><span class="p" data-group-id="3254403377-3">)</span><span class="w">
+</span><span class="no">false</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="keys/1">
+
+  <div class="detail-header">
+    <a href="#keys/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">keys(map)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/map.ex#L132" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>keys(<a href="typespecs.html#basic-types">map</a>()) :: [<a href="#t:key/0">key</a>()]</pre>
+
+      </div>
+
+<p>Returns all keys from <code class="inline">map</code>.</p><p>Inlined by the compiler.</p><h2 id="keys/1-examples" class="section-heading">
+  <a href="#keys/1-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">keys</span><span class="p" data-group-id="3164513073-1">(</span><span class="p" data-group-id="3164513073-2">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="3164513073-2">}</span><span class="p" data-group-id="3164513073-1">)</span><span class="w">
+</span><span class="p" data-group-id="3164513073-3">[</span><span class="ss">:a</span><span class="p">,</span><span class="w"> </span><span class="ss">:b</span><span class="p" data-group-id="3164513073-3">]</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="merge/2">
+
+  <div class="detail-header">
+    <a href="#merge/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">merge(map1, map2)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/map.ex#L570" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>merge(<a href="typespecs.html#basic-types">map</a>(), <a href="typespecs.html#basic-types">map</a>()) :: <a href="typespecs.html#basic-types">map</a>()</pre>
+
+      </div>
+
+<p>Merges two maps into one.</p><p>All keys in <code class="inline">map2</code> will be added to <code class="inline">map1</code>, overriding any existing one
+(i.e., the keys in <code class="inline">map2</code> &quot;have precedence&quot; over the ones in <code class="inline">map1</code>).</p><p>If you have a struct and you would like to merge a set of keys into the
+struct, do not use this function, as it would merge all keys on the right
+side into the struct, even if the key is not part of the struct. Instead,
+use <a href="Kernel.html#struct/2"><code class="inline">Kernel.struct/2</code></a>.</p><p>Inlined by the compiler.</p><h2 id="merge/2-examples" class="section-heading">
+  <a href="#merge/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">merge</span><span class="p" data-group-id="2887803056-1">(</span><span class="p" data-group-id="2887803056-2">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="2887803056-2">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2887803056-3">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="ss">d</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p" data-group-id="2887803056-3">}</span><span class="p" data-group-id="2887803056-1">)</span><span class="w">
+</span><span class="p" data-group-id="2887803056-4">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="ss">d</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p" data-group-id="2887803056-4">}</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="merge/3">
+
+  <div class="detail-header">
+    <a href="#merge/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">merge(map1, map2, fun)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/map.ex#L590" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>merge(<a href="typespecs.html#basic-types">map</a>(), <a href="typespecs.html#basic-types">map</a>(), (<a href="#t:key/0">key</a>(), <a href="#t:value/0">value</a>(), <a href="#t:value/0">value</a>() -&gt; <a href="#t:value/0">value</a>())) :: <a href="typespecs.html#basic-types">map</a>()</pre>
+
+      </div>
+
+<p>Merges two maps into one, resolving conflicts through the given <code class="inline">fun</code>.</p><p>All keys in <code class="inline">map2</code> will be added to <code class="inline">map1</code>. The given function will be invoked
+when there are duplicate keys; its arguments are <code class="inline">key</code> (the duplicate key),
+<code class="inline">value1</code> (the value of <code class="inline">key</code> in <code class="inline">map1</code>), and <code class="inline">value2</code> (the value of <code class="inline">key</code> in
+<code class="inline">map2</code>). The value returned by <code class="inline">fun</code> is used as the value under <code class="inline">key</code> in
+the resulting map.</p><h2 id="merge/3-examples" class="section-heading">
+  <a href="#merge/3-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">merge</span><span class="p" data-group-id="1617968365-1">(</span><span class="p" data-group-id="1617968365-2">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="1617968365-2">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1617968365-3">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="ss">d</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p" data-group-id="1617968365-3">}</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="1617968365-4">fn</span><span class="w"> </span><span class="c">_k</span><span class="p">,</span><span class="w"> </span><span class="n">v1</span><span class="p">,</span><span class="w"> </span><span class="n">v2</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="n">v1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">v2</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="k" data-group-id="1617968365-4">end</span><span class="p" data-group-id="1617968365-1">)</span><span class="w">
+</span><span class="p" data-group-id="1617968365-5">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="ss">d</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p" data-group-id="1617968365-5">}</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="new/0">
+
+  <div class="detail-header">
+    <a href="#new/0" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">new()</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/map.ex#L177" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>new() :: <a href="typespecs.html#basic-types">map</a>()</pre>
+
+      </div>
+
+<p>Returns a new empty map.</p><h2 id="new/0-examples" class="section-heading">
+  <a href="#new/0-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="9455069722-1">(</span><span class="p" data-group-id="9455069722-1">)</span><span class="w">
+</span><span class="p" data-group-id="9455069722-2">%{</span><span class="p" data-group-id="9455069722-2">}</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="new/1">
+
+  <div class="detail-header">
+    <a href="#new/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">new(enumerable)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/map.ex#L193" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>new(<a href="Enumerable.html#t:t/0">Enumerable.t</a>()) :: <a href="typespecs.html#basic-types">map</a>()</pre>
+
+      </div>
+
+<p>Creates a map from an <code class="inline">enumerable</code>.</p><p>Duplicated keys are removed; the latest one prevails.</p><h2 id="new/1-examples" class="section-heading">
+  <a href="#new/1-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="0738925117-1">(</span><span class="p" data-group-id="0738925117-2">[</span><span class="p" data-group-id="0738925117-3">{</span><span class="ss">:b</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="0738925117-3">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0738925117-4">{</span><span class="ss">:a</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="0738925117-4">}</span><span class="p" data-group-id="0738925117-2">]</span><span class="p" data-group-id="0738925117-1">)</span><span class="w">
+</span><span class="p" data-group-id="0738925117-5">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="0738925117-5">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="0738925117-6">(</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="0738925117-6">)</span><span class="w">
+</span><span class="p" data-group-id="0738925117-7">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="0738925117-7">}</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="new/2">
+
+  <div class="detail-header">
+    <a href="#new/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">new(enumerable, transform)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/map.ex#L217" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>new(<a href="Enumerable.html#t:t/0">Enumerable.t</a>(), (<a href="typespecs.html#built-in-types">term</a>() -&gt; {<a href="#t:key/0">key</a>(), <a href="#t:value/0">value</a>()})) :: <a href="typespecs.html#basic-types">map</a>()</pre>
+
+      </div>
+
+<p>Creates a map from an <code class="inline">enumerable</code> via the given transformation function.</p><p>Duplicated keys are removed; the latest one prevails.</p><h2 id="new/2-examples" class="section-heading">
+  <a href="#new/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="9091408414-1">(</span><span class="p" data-group-id="9091408414-2">[</span><span class="ss">:a</span><span class="p">,</span><span class="w"> </span><span class="ss">:b</span><span class="p" data-group-id="9091408414-2">]</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="9091408414-3">fn</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p" data-group-id="9091408414-4">{</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p" data-group-id="9091408414-4">}</span><span class="w"> </span><span class="k" data-group-id="9091408414-3">end</span><span class="p" data-group-id="9091408414-1">)</span><span class="w">
+</span><span class="p" data-group-id="9091408414-5">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="ss">:a</span><span class="p">,</span><span class="w"> </span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="ss">:b</span><span class="p" data-group-id="9091408414-5">}</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="pop/3">
+
+    <span id="pop/2"></span>
+
+  <div class="detail-header">
+    <a href="#pop/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">pop(map, key, default \\ nil)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/map.ex#L655" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>pop(<a href="typespecs.html#basic-types">map</a>(), <a href="#t:key/0">key</a>(), default) :: {<a href="#t:value/0">value</a>(), updated_map :: <a href="typespecs.html#basic-types">map</a>()} | {default, <a href="typespecs.html#basic-types">map</a>()}
+when default: <a href="#t:value/0">value</a>()</pre>
+
+      </div>
+
+<p>Removes the value associated with <code class="inline">key</code> in <code class="inline">map</code> and returns the value and the updated map.</p><p>If <code class="inline">key</code> is present in <code class="inline">map</code>, it returns <code class="inline">{value, updated_map}</code> where <code class="inline">value</code> is the value of
+the key and <code class="inline">updated_map</code> is the result of removing <code class="inline">key</code> from <code class="inline">map</code>. If <code class="inline">key</code>
+is not present in <code class="inline">map</code>, <code class="inline">{default, map}</code> is returned.</p><h2 id="pop/3-examples" class="section-heading">
+  <a href="#pop/3-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">pop</span><span class="p" data-group-id="0669767516-1">(</span><span class="p" data-group-id="0669767516-2">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="0669767516-2">}</span><span class="p">,</span><span class="w"> </span><span class="ss">:a</span><span class="p" data-group-id="0669767516-1">)</span><span class="w">
+</span><span class="p" data-group-id="0669767516-3">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0669767516-4">%{</span><span class="p" data-group-id="0669767516-4">}</span><span class="p" data-group-id="0669767516-3">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">pop</span><span class="p" data-group-id="0669767516-5">(</span><span class="p" data-group-id="0669767516-6">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="0669767516-6">}</span><span class="p">,</span><span class="w"> </span><span class="ss">:b</span><span class="p" data-group-id="0669767516-5">)</span><span class="w">
+</span><span class="p" data-group-id="0669767516-7">{</span><span class="no">nil</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0669767516-8">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="0669767516-8">}</span><span class="p" data-group-id="0669767516-7">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">pop</span><span class="p" data-group-id="0669767516-9">(</span><span class="p" data-group-id="0669767516-10">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="0669767516-10">}</span><span class="p">,</span><span class="w"> </span><span class="ss">:b</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="0669767516-9">)</span><span class="w">
+</span><span class="p" data-group-id="0669767516-11">{</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0669767516-12">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="0669767516-12">}</span><span class="p" data-group-id="0669767516-11">}</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="pop!/2">
+
+  <div class="detail-header">
+    <a href="#pop!/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">pop!(map, key)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/map.ex#L680" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.10.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>pop!(<a href="typespecs.html#basic-types">map</a>(), <a href="#t:key/0">key</a>()) :: {<a href="#t:value/0">value</a>(), updated_map :: <a href="typespecs.html#basic-types">map</a>()}</pre>
+
+      </div>
+
+<p>Removes the value associated with <code class="inline">key</code> in <code class="inline">map</code> and returns the value
+and the updated map, or it raises if <code class="inline">key</code> is not present.</p><p>Behaves the same as <a href="#pop/3"><code class="inline">pop/3</code></a> but raises if <code class="inline">key</code> is not present in <code class="inline">map</code>.</p><h2 id="pop!/2-examples" class="section-heading">
+  <a href="#pop!/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">pop!</span><span class="p" data-group-id="4193213023-1">(</span><span class="p" data-group-id="4193213023-2">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="4193213023-2">}</span><span class="p">,</span><span class="w"> </span><span class="ss">:a</span><span class="p" data-group-id="4193213023-1">)</span><span class="w">
+</span><span class="p" data-group-id="4193213023-3">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4193213023-4">%{</span><span class="p" data-group-id="4193213023-4">}</span><span class="p" data-group-id="4193213023-3">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">pop!</span><span class="p" data-group-id="4193213023-5">(</span><span class="p" data-group-id="4193213023-6">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="4193213023-6">}</span><span class="p">,</span><span class="w"> </span><span class="ss">:a</span><span class="p" data-group-id="4193213023-5">)</span><span class="w">
+</span><span class="p" data-group-id="4193213023-7">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4193213023-8">%{</span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="4193213023-8">}</span><span class="p" data-group-id="4193213023-7">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">pop!</span><span class="p" data-group-id="4193213023-9">(</span><span class="p" data-group-id="4193213023-10">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="4193213023-10">}</span><span class="p">,</span><span class="w"> </span><span class="ss">:b</span><span class="p" data-group-id="4193213023-9">)</span><span class="w">
+</span><span class="gt">** (KeyError) key :b not found in: %{a: 1}</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="pop_lazy/3">
+
+  <div class="detail-header">
+    <a href="#pop_lazy/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">pop_lazy(map, key, fun)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/map.ex#L712" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>pop_lazy(<a href="typespecs.html#basic-types">map</a>(), <a href="#t:key/0">key</a>(), (() -&gt; <a href="#t:value/0">value</a>())) :: {<a href="#t:value/0">value</a>(), <a href="typespecs.html#basic-types">map</a>()}</pre>
+
+      </div>
+
+<p>Lazily returns and removes the value associated with <code class="inline">key</code> in <code class="inline">map</code>.</p><p>If <code class="inline">key</code> is present in <code class="inline">map</code>, it returns <code class="inline">{value, new_map}</code> where <code class="inline">value</code> is the value of
+the key and <code class="inline">new_map</code> is the result of removing <code class="inline">key</code> from <code class="inline">map</code>. If <code class="inline">key</code>
+is not present in <code class="inline">map</code>, <code class="inline">{fun_result, map}</code> is returned, where <code class="inline">fun_result</code>
+is the result of applying <code class="inline">fun</code>.</p><p>This is useful if the default value is very expensive to calculate or
+generally difficult to setup and teardown again.</p><h2 id="pop_lazy/3-examples" class="section-heading">
+  <a href="#pop_lazy/3-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="3291708632-1">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="3291708632-1">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k" data-group-id="3291708632-2">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="c1"># some expensive operation here</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="mi">13</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="k" data-group-id="3291708632-2">end</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">pop_lazy</span><span class="p" data-group-id="3291708632-3">(</span><span class="n">map</span><span class="p">,</span><span class="w"> </span><span class="ss">:a</span><span class="p">,</span><span class="w"> </span><span class="n">fun</span><span class="p" data-group-id="3291708632-3">)</span><span class="w">
+</span><span class="p" data-group-id="3291708632-4">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="3291708632-5">%{</span><span class="p" data-group-id="3291708632-5">}</span><span class="p" data-group-id="3291708632-4">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">pop_lazy</span><span class="p" data-group-id="3291708632-6">(</span><span class="n">map</span><span class="p">,</span><span class="w"> </span><span class="ss">:b</span><span class="p">,</span><span class="w"> </span><span class="n">fun</span><span class="p" data-group-id="3291708632-6">)</span><span class="w">
+</span><span class="p" data-group-id="3291708632-7">{</span><span class="mi">13</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="3291708632-8">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="3291708632-8">}</span><span class="p" data-group-id="3291708632-7">}</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="put/3">
+
+  <div class="detail-header">
+    <a href="#put/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">put(map, key, value)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/map.ex#L528" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>put(<a href="typespecs.html#basic-types">map</a>(), <a href="#t:key/0">key</a>(), <a href="#t:value/0">value</a>()) :: <a href="typespecs.html#basic-types">map</a>()</pre>
+
+      </div>
+
+<p>Puts the given <code class="inline">value</code> under <code class="inline">key</code> in <code class="inline">map</code>.</p><p>Inlined by the compiler.</p><h2 id="put/3-examples" class="section-heading">
+  <a href="#put/3-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">put</span><span class="p" data-group-id="7608263490-1">(</span><span class="p" data-group-id="7608263490-2">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="7608263490-2">}</span><span class="p">,</span><span class="w"> </span><span class="ss">:b</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="7608263490-1">)</span><span class="w">
+</span><span class="p" data-group-id="7608263490-3">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="7608263490-3">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">put</span><span class="p" data-group-id="7608263490-4">(</span><span class="p" data-group-id="7608263490-5">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="7608263490-5">}</span><span class="p">,</span><span class="w"> </span><span class="ss">:a</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="7608263490-4">)</span><span class="w">
+</span><span class="p" data-group-id="7608263490-6">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="7608263490-6">}</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="put_new/3">
+
+  <div class="detail-header">
+    <a href="#put_new/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">put_new(map, key, value)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/map.ex#L301" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>put_new(<a href="typespecs.html#basic-types">map</a>(), <a href="#t:key/0">key</a>(), <a href="#t:value/0">value</a>()) :: <a href="typespecs.html#basic-types">map</a>()</pre>
+
+      </div>
+
+<p>Puts the given <code class="inline">value</code> under <code class="inline">key</code> unless the entry <code class="inline">key</code>
+already exists in <code class="inline">map</code>.</p><h2 id="put_new/3-examples" class="section-heading">
+  <a href="#put_new/3-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">put_new</span><span class="p" data-group-id="7322042030-1">(</span><span class="p" data-group-id="7322042030-2">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="7322042030-2">}</span><span class="p">,</span><span class="w"> </span><span class="ss">:b</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="7322042030-1">)</span><span class="w">
+</span><span class="p" data-group-id="7322042030-3">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="7322042030-3">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">put_new</span><span class="p" data-group-id="7322042030-4">(</span><span class="p" data-group-id="7322042030-5">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="7322042030-5">}</span><span class="p">,</span><span class="w"> </span><span class="ss">:a</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="7322042030-4">)</span><span class="w">
+</span><span class="p" data-group-id="7322042030-6">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="7322042030-6">}</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="put_new_lazy/3">
+
+  <div class="detail-header">
+    <a href="#put_new_lazy/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">put_new_lazy(map, key, fun)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/map.ex#L385" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>put_new_lazy(<a href="typespecs.html#basic-types">map</a>(), <a href="#t:key/0">key</a>(), (() -&gt; <a href="#t:value/0">value</a>())) :: <a href="typespecs.html#basic-types">map</a>()</pre>
+
+      </div>
+
+<p>Evaluates <code class="inline">fun</code> and puts the result under <code class="inline">key</code>
+in <code class="inline">map</code> unless <code class="inline">key</code> is already present.</p><p>This function is useful in case you want to compute the value to put under
+<code class="inline">key</code> only if <code class="inline">key</code> is not already present, as for example, when the value is expensive to
+calculate or generally difficult to setup and teardown again.</p><h2 id="put_new_lazy/3-examples" class="section-heading">
+  <a href="#put_new_lazy/3-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="6575106083-1">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="6575106083-1">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k" data-group-id="6575106083-2">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="c1"># some expensive operation here</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="mi">3</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="k" data-group-id="6575106083-2">end</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">put_new_lazy</span><span class="p" data-group-id="6575106083-3">(</span><span class="n">map</span><span class="p">,</span><span class="w"> </span><span class="ss">:a</span><span class="p">,</span><span class="w"> </span><span class="n">fun</span><span class="p" data-group-id="6575106083-3">)</span><span class="w">
+</span><span class="p" data-group-id="6575106083-4">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="6575106083-4">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">put_new_lazy</span><span class="p" data-group-id="6575106083-5">(</span><span class="n">map</span><span class="p">,</span><span class="w"> </span><span class="ss">:b</span><span class="p">,</span><span class="w"> </span><span class="n">fun</span><span class="p" data-group-id="6575106083-5">)</span><span class="w">
+</span><span class="p" data-group-id="6575106083-6">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="6575106083-6">}</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="replace/3">
+
+  <div class="detail-header">
+    <a href="#replace/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">replace(map, key, value)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/map.ex#L328" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.11.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>replace(<a href="typespecs.html#basic-types">map</a>(), <a href="#t:key/0">key</a>(), <a href="#t:value/0">value</a>()) :: <a href="typespecs.html#basic-types">map</a>()</pre>
+
+      </div>
+
+<p>Puts a value under <code class="inline">key</code> only if the <code class="inline">key</code> already exists in <code class="inline">map</code>.</p><h2 id="replace/3-examples" class="section-heading">
+  <a href="#replace/3-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">replace</span><span class="p" data-group-id="8666108883-1">(</span><span class="p" data-group-id="8666108883-2">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="8666108883-2">}</span><span class="p">,</span><span class="w"> </span><span class="ss">:a</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="8666108883-1">)</span><span class="w">
+</span><span class="p" data-group-id="8666108883-3">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="8666108883-3">}</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">replace</span><span class="p" data-group-id="8666108883-4">(</span><span class="p" data-group-id="8666108883-5">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="8666108883-5">}</span><span class="p">,</span><span class="w"> </span><span class="ss">:b</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="8666108883-4">)</span><span class="w">
+</span><span class="p" data-group-id="8666108883-6">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="8666108883-6">}</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="replace!/3">
+
+  <div class="detail-header">
+    <a href="#replace!/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">replace!(map, key, value)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/map.ex#L359" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.5.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>replace!(<a href="typespecs.html#basic-types">map</a>(), <a href="#t:key/0">key</a>(), <a href="#t:value/0">value</a>()) :: <a href="typespecs.html#basic-types">map</a>()</pre>
+
+      </div>
+
+<p>Puts a value under <code class="inline">key</code> only if the <code class="inline">key</code> already exists in <code class="inline">map</code>.</p><p>If <code class="inline">key</code> is not present in <code class="inline">map</code>, a <a href="KeyError.html"><code class="inline">KeyError</code></a> exception is raised.</p><p>Inlined by the compiler.</p><h2 id="replace!/3-examples" class="section-heading">
+  <a href="#replace!/3-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">replace!</span><span class="p" data-group-id="1468383857-1">(</span><span class="p" data-group-id="1468383857-2">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="1468383857-2">}</span><span class="p">,</span><span class="w"> </span><span class="ss">:a</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="1468383857-1">)</span><span class="w">
+</span><span class="p" data-group-id="1468383857-3">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="1468383857-3">}</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">replace!</span><span class="p" data-group-id="1468383857-4">(</span><span class="p" data-group-id="1468383857-5">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="1468383857-5">}</span><span class="p">,</span><span class="w"> </span><span class="ss">:b</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="1468383857-4">)</span><span class="w">
+</span><span class="gt">** (KeyError) key :b not found in: %{a: 1}</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="split/2">
+
+  <div class="detail-header">
+    <a href="#split/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">split(map, keys)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/map.ex#L771" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>split(<a href="typespecs.html#basic-types">map</a>(), [<a href="#t:key/0">key</a>()]) :: {<a href="typespecs.html#basic-types">map</a>(), <a href="typespecs.html#basic-types">map</a>()}</pre>
+
+      </div>
+
+<p>Takes all entries corresponding to the given <code class="inline">keys</code> in <code class="inline">map</code> and extracts
+them into a separate map.</p><p>Returns a tuple with the new map and the old map with removed keys.</p><p>Keys for which there are no entries in <code class="inline">map</code> are ignored.</p><h2 id="split/2-examples" class="section-heading">
+  <a href="#split/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">split</span><span class="p" data-group-id="4595228505-1">(</span><span class="p" data-group-id="4595228505-2">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="ss">c</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="4595228505-2">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4595228505-3">[</span><span class="ss">:a</span><span class="p">,</span><span class="w"> </span><span class="ss">:c</span><span class="p">,</span><span class="w"> </span><span class="ss">:e</span><span class="p" data-group-id="4595228505-3">]</span><span class="p" data-group-id="4595228505-1">)</span><span class="w">
+</span><span class="p" data-group-id="4595228505-4">{</span><span class="p" data-group-id="4595228505-5">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">c</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="4595228505-5">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4595228505-6">%{</span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="4595228505-6">}</span><span class="p" data-group-id="4595228505-4">}</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="take/2">
+
+  <div class="detail-header">
+    <a href="#take/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">take(map, keys)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/map.ex#L411" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>take(<a href="typespecs.html#basic-types">map</a>(), [<a href="#t:key/0">key</a>()]) :: <a href="typespecs.html#basic-types">map</a>()</pre>
+
+      </div>
+
+<p>Returns a new map with all the key-value pairs in <code class="inline">map</code> where the key
+is in <code class="inline">keys</code>.</p><p>If <code class="inline">keys</code> contains keys that are not in <code class="inline">map</code>, they're simply ignored.</p><h2 id="take/2-examples" class="section-heading">
+  <a href="#take/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">take</span><span class="p" data-group-id="8494410758-1">(</span><span class="p" data-group-id="8494410758-2">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="ss">c</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="8494410758-2">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8494410758-3">[</span><span class="ss">:a</span><span class="p">,</span><span class="w"> </span><span class="ss">:c</span><span class="p">,</span><span class="w"> </span><span class="ss">:e</span><span class="p" data-group-id="8494410758-3">]</span><span class="p" data-group-id="8494410758-1">)</span><span class="w">
+</span><span class="p" data-group-id="8494410758-4">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">c</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="8494410758-4">}</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="to_list/1">
+
+  <div class="detail-header">
+    <a href="#to_list/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">to_list(map)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/map.ex#L165" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>to_list(<a href="typespecs.html#basic-types">map</a>()) :: [{<a href="typespecs.html#built-in-types">term</a>(), <a href="typespecs.html#built-in-types">term</a>()}]</pre>
+
+      </div>
+
+<p>Converts <code class="inline">map</code> to a list.</p><p>Each key-value pair in the map is converted to a two-element tuple <code class="inline">{key, value}</code> in the resulting list.</p><p>Inlined by the compiler.</p><h2 id="to_list/1-examples" class="section-heading">
+  <a href="#to_list/1-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">to_list</span><span class="p" data-group-id="6019750899-1">(</span><span class="p" data-group-id="6019750899-2">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="6019750899-2">}</span><span class="p" data-group-id="6019750899-1">)</span><span class="w">
+</span><span class="p" data-group-id="6019750899-3">[</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="6019750899-3">]</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">to_list</span><span class="p" data-group-id="6019750899-4">(</span><span class="p" data-group-id="6019750899-5">%{</span><span class="mi">1</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="6019750899-5">}</span><span class="p" data-group-id="6019750899-4">)</span><span class="w">
+</span><span class="p" data-group-id="6019750899-6">[</span><span class="p" data-group-id="6019750899-7">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="6019750899-7">}</span><span class="p" data-group-id="6019750899-6">]</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="update/4">
+
+  <div class="detail-header">
+    <a href="#update/4" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">update(map, key, default, fun)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/map.ex#L624" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>update(
+  <a href="typespecs.html#basic-types">map</a>(),
+  <a href="#t:key/0">key</a>(),
+  default :: <a href="#t:value/0">value</a>(),
+  (existing_value :: <a href="#t:value/0">value</a>() -&gt; new_value :: <a href="#t:value/0">value</a>())
+) :: <a href="typespecs.html#basic-types">map</a>()</pre>
+
+      </div>
+
+<p>Updates the <code class="inline">key</code> in <code class="inline">map</code> with the given function.</p><p>If <code class="inline">key</code> is present in <code class="inline">map</code> then the existing value is passed to <code class="inline">fun</code> and its result is
+used as the updated value of <code class="inline">key</code>. If <code class="inline">key</code> is
+not present in <code class="inline">map</code>, <code class="inline">default</code> is inserted as the value of <code class="inline">key</code>. The default
+value will not be passed through the update function.</p><h2 id="update/4-examples" class="section-heading">
+  <a href="#update/4-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">update</span><span class="p" data-group-id="9718325873-1">(</span><span class="p" data-group-id="9718325873-2">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="9718325873-2">}</span><span class="p">,</span><span class="w"> </span><span class="ss">:a</span><span class="p">,</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="9718325873-3">fn</span><span class="w"> </span><span class="n">existing_value</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">existing_value</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="k" data-group-id="9718325873-3">end</span><span class="p" data-group-id="9718325873-1">)</span><span class="w">
+</span><span class="p" data-group-id="9718325873-4">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="9718325873-4">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">update</span><span class="p" data-group-id="9718325873-5">(</span><span class="p" data-group-id="9718325873-6">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="9718325873-6">}</span><span class="p">,</span><span class="w"> </span><span class="ss">:b</span><span class="p">,</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="9718325873-7">fn</span><span class="w"> </span><span class="n">existing_value</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">existing_value</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="k" data-group-id="9718325873-7">end</span><span class="p" data-group-id="9718325873-5">)</span><span class="w">
+</span><span class="p" data-group-id="9718325873-8">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p" data-group-id="9718325873-8">}</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="update!/3">
+
+  <div class="detail-header">
+    <a href="#update!/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">update!(map, key, fun)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/map.ex#L821" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>update!(<a href="typespecs.html#basic-types">map</a>(), <a href="#t:key/0">key</a>(), (existing_value :: <a href="#t:value/0">value</a>() -&gt; new_value :: <a href="#t:value/0">value</a>())) ::
+  <a href="typespecs.html#basic-types">map</a>()</pre>
+
+      </div>
+
+<p>Updates <code class="inline">key</code> with the given function.</p><p>If <code class="inline">key</code> is present in <code class="inline">map</code> then the existing value is passed to <code class="inline">fun</code> and its result is
+used as the updated value of <code class="inline">key</code>. If <code class="inline">key</code> is
+not present in <code class="inline">map</code>, a <a href="KeyError.html"><code class="inline">KeyError</code></a> exception is raised.</p><h2 id="update!/3-examples" class="section-heading">
+  <a href="#update!/3-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">update!</span><span class="p" data-group-id="7213192861-1">(</span><span class="p" data-group-id="7213192861-2">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="7213192861-2">}</span><span class="p">,</span><span class="w"> </span><span class="ss">:a</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="p" data-group-id="7213192861-3">(</span><span class="ni">&amp;1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="7213192861-3">)</span><span class="p" data-group-id="7213192861-1">)</span><span class="w">
+</span><span class="p" data-group-id="7213192861-4">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="7213192861-4">}</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">update!</span><span class="p" data-group-id="7213192861-5">(</span><span class="p" data-group-id="7213192861-6">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="7213192861-6">}</span><span class="p">,</span><span class="w"> </span><span class="ss">:b</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="p" data-group-id="7213192861-7">(</span><span class="ni">&amp;1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="7213192861-7">)</span><span class="p" data-group-id="7213192861-5">)</span><span class="w">
+</span><span class="gt">** (KeyError) key :b not found in: %{a: 1}</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="values/1">
+
+  <div class="detail-header">
+    <a href="#values/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">values(map)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/03829be0c0f8af5e3b8bc18bf365cafa84bb21ab/lib/elixir/lib/map.ex#L146" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>values(<a href="typespecs.html#basic-types">map</a>()) :: [<a href="#t:value/0">value</a>()]</pre>
+
+      </div>
+
+<p>Returns all values from <code class="inline">map</code>.</p><p>Inlined by the compiler.</p><h2 id="values/1-examples" class="section-heading">
+  <a href="#values/1-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Map</span><span class="o">.</span><span class="n">values</span><span class="p" data-group-id="7507010685-1">(</span><span class="p" data-group-id="7507010685-2">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="7507010685-2">}</span><span class="p" data-group-id="7507010685-1">)</span><span class="w">
+</span><span class="p" data-group-id="7507010685-3">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="7507010685-3">]</span></code></pre>
+  </section>
+</section>
+
+          </div>
+        </section>
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.1) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

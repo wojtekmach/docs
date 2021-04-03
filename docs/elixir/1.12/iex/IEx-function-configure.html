@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.1">
+    <meta name="project" content="IEx v1.12.0-rc.0">
+
+    <title>IEx.configure — IEx v1.12.0-rc.0</title>
+    <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
+
+      <link rel="canonical" href="https://hexdocs.pm/iex/1.12/" />
+
+    <script src="dist/sidebar_items-979a2906d3.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName">
+IEx
+      </a>
+      <strong class="sidebar-projectVersion">
+        v1.12.0-rc.0
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>IEx.configure</h1>
+
+<div class="deprecated">
+  You're seeing just the function <code>configure</code>, go back to <a href="IEx.html">IEx</a> module for more information.
+</div>
+
+<section class="detail" id="configure/1">
+
+  <div class="detail-header">
+    <a href="#configure/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">configure(options)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/fb151383ab866230694712690fe9a583dc32a9db/lib/iex/lib/iex.ex#L471" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>configure(<a href="https://hexdocs.pm/elixir/1.12/typespecs.html#built-in-types">keyword</a>()) :: :ok</pre>
+
+      </div>
+
+<p>Configures IEx.</p><p>The supported options are:</p><ul><li><code class="inline">:colors</code></li><li><code class="inline">:inspect</code></li><li><code class="inline">:width</code></li><li><code class="inline">:history_size</code></li><li><code class="inline">:default_prompt</code></li><li><code class="inline">:continuation_prompt</code></li><li><code class="inline">:alive_prompt</code></li><li><code class="inline">:alive_continuation_prompt</code></li><li><code class="inline">:parser</code></li></ul><p>They are discussed individually in the sections below.</p><h2 id="configure/1-colors" class="section-heading">
+  <a href="#configure/1-colors" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Colors
+</h2>
+<p>A keyword list that encapsulates all color settings used by the
+shell. See documentation for the <a href="https://hexdocs.pm/elixir/1.12/IO.ANSI.html"><code class="inline">IO.ANSI</code></a> module for the list of
+supported colors and attributes.</p><p>List of supported keys in the keyword list:</p><ul><li><code class="inline">:enabled</code> - boolean value that allows for switching the coloring on and off</li><li><code class="inline">:eval_result</code> - color for an expression's resulting value</li><li><code class="inline">:eval_info</code> - ... various informational messages</li><li><code class="inline">:eval_error</code> - ... error messages</li><li><code class="inline">:eval_interrupt</code> - ... interrupt messages</li><li><code class="inline">:stack_info</code> - ... the stacktrace color</li><li><code class="inline">:blame_diff</code> - ... when blaming source with no match</li><li><code class="inline">:ls_directory</code> - ... for directory entries (ls helper)</li><li><code class="inline">:ls_device</code> - ... device entries (ls helper)</li></ul><p>When printing documentation, IEx will convert the Markdown
+documentation to ANSI as well. Colors for this can be configured
+via:</p><ul><li><code class="inline">:doc_code</code>        - the attributes for code blocks (cyan, bright)</li><li><code class="inline">:doc_inline_code</code> - inline code (cyan)</li><li><code class="inline">:doc_headings</code>    - h1 and h2 (yellow, bright)</li><li><code class="inline">:doc_title</code>       - the overall heading for the output (reverse, yellow, bright)</li><li><code class="inline">:doc_bold</code>        - (bright)</li><li><code class="inline">:doc_underline</code>   - (underline)</li></ul><p>IEx will also color inspected expressions using the <code class="inline">:syntax_colors</code>
+option. Such can be disabled with:</p><pre><code class="makeup elixir"><span class="nc">IEx</span><span class="o">.</span><span class="n">configure</span><span class="p" data-group-id="4613846626-1">(</span><span class="ss">colors</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="4613846626-2">[</span><span class="ss">syntax_colors</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="p" data-group-id="4613846626-2">]</span><span class="p" data-group-id="4613846626-1">)</span></code></pre><p>You can also configure the syntax colors, however, as desired:</p><pre><code class="makeup elixir"><span class="nc">IEx</span><span class="o">.</span><span class="n">configure</span><span class="p" data-group-id="8756137400-1">(</span><span class="ss">colors</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="8756137400-2">[</span><span class="ss">syntax_colors</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="8756137400-3">[</span><span class="ss">atom</span><span class="p">:</span><span class="w"> </span><span class="ss">:red</span><span class="p" data-group-id="8756137400-3">]</span><span class="p" data-group-id="8756137400-2">]</span><span class="p" data-group-id="8756137400-1">)</span></code></pre><p>Configuration for most built-in data types are supported: <code class="inline">:atom</code>,
+<code class="inline">:string</code>, <code class="inline">:binary</code>, <code class="inline">:list</code>, <code class="inline">:number</code>, <code class="inline">:boolean</code>, <code class="inline">:nil</code>, and others.
+The default is:</p><pre><code class="makeup elixir"><span class="p" data-group-id="8451825323-1">[</span><span class="ss">number</span><span class="p">:</span><span class="w"> </span><span class="ss">:magenta</span><span class="p">,</span><span class="w"> </span><span class="ss">atom</span><span class="p">:</span><span class="w"> </span><span class="ss">:cyan</span><span class="p">,</span><span class="w"> </span><span class="ss">string</span><span class="p">:</span><span class="w"> </span><span class="ss">:green</span><span class="p">,</span><span class="w">
+ </span><span class="ss">boolean</span><span class="p">:</span><span class="w"> </span><span class="ss">:magenta</span><span class="p">,</span><span class="w"> </span><span class="ss">nil</span><span class="p">:</span><span class="w"> </span><span class="ss">:magenta</span><span class="p" data-group-id="8451825323-1">]</span></code></pre><h2 id="configure/1-inspect" class="section-heading">
+  <a href="#configure/1-inspect" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Inspect
+</h2>
+<p>A keyword list containing inspect options used by the shell
+when printing results of expression evaluation. Default to
+pretty formatting with a limit of 50 entries.</p><p>To show all entries, configure the limit to <code class="inline">:infinity</code>:</p><pre><code class="makeup elixir"><span class="nc">IEx</span><span class="o">.</span><span class="n">configure</span><span class="p" data-group-id="5525793228-1">(</span><span class="ss">inspect</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5525793228-2">[</span><span class="ss">limit</span><span class="p">:</span><span class="w"> </span><span class="ss">:infinity</span><span class="p" data-group-id="5525793228-2">]</span><span class="p" data-group-id="5525793228-1">)</span></code></pre><p>See <a href="https://hexdocs.pm/elixir/1.12/Inspect.Opts.html"><code class="inline">Inspect.Opts</code></a> for the full list of options.</p><h2 id="configure/1-width" class="section-heading">
+  <a href="#configure/1-width" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Width
+</h2>
+<p>An integer indicating the maximum number of columns to use in output.
+The default value is 80 columns. The actual output width is the minimum
+of this number and result of <code class="inline">:io.columns</code>. This way you can configure IEx
+to be your largest screen size and it should always take up the full width
+of your current terminal screen.</p><h2 id="configure/1-history-size" class="section-heading">
+  <a href="#configure/1-history-size" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  History size
+</h2>
+<p>Number of expressions and their results to keep in the history.
+The value is an integer. When it is negative, the history is unlimited.</p><h2 id="configure/1-prompt" class="section-heading">
+  <a href="#configure/1-prompt" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Prompt
+</h2>
+<p>This is an option determining the prompt displayed to the user
+when awaiting input.</p><p>The value is a keyword list with two possible keys representing prompt types:</p><ul><li><p><code class="inline">:default_prompt</code> - used when <a href="https://hexdocs.pm/elixir/1.12/Node.html#alive?/0"><code class="inline">Node.alive?/0</code></a> returns <code class="inline">false</code></p></li><li><p><code class="inline">:continuation_prompt</code> - used when <a href="https://hexdocs.pm/elixir/1.12/Node.html#alive?/0"><code class="inline">Node.alive?/0</code></a> returns <code class="inline">false</code>
+and more input is expected</p></li><li><p><code class="inline">:alive_prompt</code> - used when <a href="https://hexdocs.pm/elixir/1.12/Node.html#alive?/0"><code class="inline">Node.alive?/0</code></a> returns <code class="inline">true</code></p></li><li><p><code class="inline">:alive_continuation_prompt</code> - used when <a href="https://hexdocs.pm/elixir/1.12/Node.html#alive?/0"><code class="inline">Node.alive?/0</code></a> returns
+<code class="inline">true</code> and more input is expected</p></li></ul><p>The following values in the prompt string will be replaced appropriately:</p><ul><li><code class="inline">%counter</code> - the index of the history</li><li><code class="inline">%prefix</code>  - a prefix given by <a href="IEx.Server.html"><code class="inline">IEx.Server</code></a></li><li><code class="inline">%node</code>    - the name of the local node</li></ul><h2 id="configure/1-parser" class="section-heading">
+  <a href="#configure/1-parser" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Parser
+</h2>
+<p>This is an option determining the parser to use for IEx.</p><p>The parser is a &quot;mfargs&quot;, which is a tuple with three elements:
+the module name, the function name, and extra arguments to
+be appended. The parser receives at least three arguments, the
+current input as a string, the parsing options as a keyword list,
+and the buffer as a string. It must return <code class="inline">{:ok, expr, buffer}</code>
+or <code class="inline">{:incomplete, buffer}</code>.</p><p>If the parser raises, the buffer is reset to an empty string.</p>
+  </section>
+</section>
+
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.1) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>
