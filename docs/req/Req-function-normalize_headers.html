@@ -10,7 +10,7 @@
     <title>Req.normalize_headers — req v0.1.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
 
-    <script src="dist/sidebar_items-92a3c1261a.js"></script>
+    <script src="dist/sidebar_items-da09ebcac7.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -94,7 +94,7 @@ req
     </a>
     <h1 class="signature">normalize_headers(request)</h1>
 
-      <a href="https://github.com/wojtekmach/req/blob/master/lib/req.ex#L336" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/req/blob/master/lib/req.ex#L349" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -109,11 +109,11 @@ are returned as is.</p><h2 id="normalize_headers/1-examples" class="section-head
   <a href="#normalize_headers/1-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Examples
 </h2>
-<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="4931412849-1">(</span><span class="s">&quot;https://httpbin.org/headers&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">headers</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="4931412849-2">[</span><span class="ss">x_foo</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bar&quot;</span><span class="p" data-group-id="4931412849-2">]</span><span class="p" data-group-id="4931412849-1">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="4931412849-3">[</span><span class="s">&quot;headers&quot;</span><span class="p" data-group-id="4931412849-3">]</span><span class="w">
-</span><span class="p" data-group-id="4931412849-4">%{</span><span class="w">
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="9292856199-1">(</span><span class="s">&quot;https://httpbin.org/headers&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">headers</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="9292856199-2">[</span><span class="ss">x_foo</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bar&quot;</span><span class="p" data-group-id="9292856199-2">]</span><span class="p" data-group-id="9292856199-1">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="9292856199-3">[</span><span class="s">&quot;headers&quot;</span><span class="p" data-group-id="9292856199-3">]</span><span class="w">
+</span><span class="p" data-group-id="9292856199-4">%{</span><span class="w">
   </span><span class="s">&quot;X-Foo&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;bar&quot;</span><span class="p">,</span><span class="w">
   </span><span class="n">...</span><span class="w">
-</span><span class="p" data-group-id="4931412849-4">}</span></code></pre>
+</span><span class="p" data-group-id="9292856199-4">}</span></code></pre>
   </section>
 </section>
 
