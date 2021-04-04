@@ -94,7 +94,7 @@ req
     </a>
     <h1 class="signature">auth(request, auth)</h1>
 
-      <a href="https://github.com/wojtekmach/req/blob/master/lib/req.ex#L307" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/req/blob/master/lib/req.ex#L300" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -108,9 +108,9 @@ req
   <a href="#auth/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Examples
 </h2>
-<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="0404818953-1">(</span><span class="s">&quot;https://httpbin.org/basic-auth/foo/bar&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">auth</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="0404818953-2">{</span><span class="s">&quot;bad&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bad&quot;</span><span class="p" data-group-id="0404818953-2">}</span><span class="p" data-group-id="0404818953-1">)</span><span class="o">.</span><span class="n">status</span><span class="w">
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="3749911658-1">(</span><span class="s">&quot;https://httpbin.org/basic-auth/foo/bar&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">auth</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3749911658-2">{</span><span class="s">&quot;bad&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bad&quot;</span><span class="p" data-group-id="3749911658-2">}</span><span class="p" data-group-id="3749911658-1">)</span><span class="o">.</span><span class="n">status</span><span class="w">
 </span><span class="mi">401</span><span class="w">
-</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="0404818953-3">(</span><span class="s">&quot;https://httpbin.org/basic-auth/foo/bar&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">auth</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="0404818953-4">{</span><span class="s">&quot;foo&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bar&quot;</span><span class="p" data-group-id="0404818953-4">}</span><span class="p" data-group-id="0404818953-3">)</span><span class="o">.</span><span class="n">status</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="3749911658-3">(</span><span class="s">&quot;https://httpbin.org/basic-auth/foo/bar&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">auth</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3749911658-4">{</span><span class="s">&quot;foo&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bar&quot;</span><span class="p" data-group-id="3749911658-4">}</span><span class="p" data-group-id="3749911658-3">)</span><span class="o">.</span><span class="n">status</span><span class="w">
 </span><span class="mi">200</span></code></pre>
   </section>
 </section>
