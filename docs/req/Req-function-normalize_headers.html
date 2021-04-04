@@ -7,7 +7,7 @@
     <meta name="generator" content="ExDoc v0.24.1">
     <meta name="project" content="req v0.1.0-dev">
 
-    <title>Req.add_error_steps — req v0.1.0-dev</title>
+    <title>Req.normalize_headers — req v0.1.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
 
     <script src="dist/sidebar_items-92a3c1261a.js"></script>
@@ -79,22 +79,22 @@ req
   <div class="content-outer">
     <div id="content" class="content-inner">
 
-<h1>Req.add_error_steps</h1>
+<h1>Req.normalize_headers</h1>
 
 <div class="deprecated">
-  You're seeing just the function <code>add_error_steps</code>, go back to <a href="Req.html">Req</a> module for more information.
+  You're seeing just the function <code>normalize_headers</code>, go back to <a href="Req.html">Req</a> module for more information.
 </div>
 
-<section class="detail" id="add_error_steps/2">
+<section class="detail" id="normalize_headers/1">
 
   <div class="detail-header">
-    <a href="#add_error_steps/2" class="detail-link" title="Link to this function">
+    <a href="#normalize_headers/1" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature">add_error_steps(request, steps)</h1>
+    <h1 class="signature">normalize_headers(request)</h1>
 
-      <a href="https://github.com/wojtekmach/req/blob/master/lib/req.ex#L167" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/req/blob/master/lib/req.ex#L336" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -104,7 +104,16 @@ req
 
   <section class="docstring">
 
-<p>Adds error steps.</p>
+<p>Normalizes request headers.</p><p>Turns atom header names into strings, e.g.: <code class="inline">:user_agent</code> becomes <code class="inline">&quot;user-agent&quot;</code>. Non-atom names
+are returned as is.</p><h2 id="normalize_headers/1-examples" class="section-heading">
+  <a href="#normalize_headers/1-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="1496631435-1">(</span><span class="s">&quot;https://httpbin.org/headers&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">headers</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="1496631435-2">[</span><span class="ss">x_foo</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bar&quot;</span><span class="p" data-group-id="1496631435-2">]</span><span class="p" data-group-id="1496631435-1">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="1496631435-3">[</span><span class="s">&quot;headers&quot;</span><span class="p" data-group-id="1496631435-3">]</span><span class="w">
+</span><span class="p" data-group-id="1496631435-4">%{</span><span class="w">
+  </span><span class="s">&quot;X-Foo&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;bar&quot;</span><span class="p">,</span><span class="w">
+  </span><span class="n">...</span><span class="w">
+</span><span class="p" data-group-id="1496631435-4">}</span></code></pre>
   </section>
 </section>
 
