@@ -10,7 +10,7 @@
     <title>Req.retry — req v0.1.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
 
-    <script src="dist/sidebar_items-19246bbe1e.js"></script>
+    <script src="dist/sidebar_items-ce9ad941d8.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -96,7 +96,7 @@ req
     </a>
     <h1 class="signature">retry(request, response_or_exception, options \\ [])</h1>
 
-      <a href="https://github.com/wojtekmach/req/blob/master/lib/req.ex#L487" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/req/blob/master/lib/req.ex#L528" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -116,20 +116,20 @@ to <code class="inline">2000</code></p></li><li><p><code class="inline">:max_att
   <a href="#retry/3-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Examples
 </h2>
-<p>With default options:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="6938683460-1">(</span><span class="s">&quot;https://httpbin.org/status/500,200&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">retry</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="6938683460-1">)</span><span class="w">
+<p>With default options:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="6699985245-1">(</span><span class="s">&quot;https://httpbin.org/status/500,200&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">retry</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="6699985245-1">)</span><span class="w">
 </span><span class="c1"># 19:02:08.463 [error] Got response with status 500. Will retry in 2000ms, 2 attempts left</span><span class="w">
 </span><span class="c1"># 19:02:10.710 [error] Got response with status 500. Will retry in 2000ms, 1 attempt left</span><span class="w">
-</span><span class="p" data-group-id="6938683460-2">%</span><span class="nc" data-group-id="6938683460-2">Finch.Response</span><span class="p" data-group-id="6938683460-2">{</span><span class="w">
+</span><span class="p" data-group-id="6699985245-2">%</span><span class="nc" data-group-id="6699985245-2">Finch.Response</span><span class="p" data-group-id="6699985245-2">{</span><span class="w">
   </span><span class="ss">body</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w">
-  </span><span class="ss">headers</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6938683460-3">[</span><span class="w">
-    </span><span class="p" data-group-id="6938683460-4">{</span><span class="s">&quot;date&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Thu, 01 Apr 2021 16:39:02 GMT&quot;</span><span class="p" data-group-id="6938683460-4">}</span><span class="p">,</span><span class="w">
+  </span><span class="ss">headers</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6699985245-3">[</span><span class="w">
+    </span><span class="p" data-group-id="6699985245-4">{</span><span class="s">&quot;date&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Thu, 01 Apr 2021 16:39:02 GMT&quot;</span><span class="p" data-group-id="6699985245-4">}</span><span class="p">,</span><span class="w">
     </span><span class="n">...</span><span class="w">
-  </span><span class="p" data-group-id="6938683460-3">]</span><span class="p">,</span><span class="w">
+  </span><span class="p" data-group-id="6699985245-3">]</span><span class="p">,</span><span class="w">
   </span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w">
-</span><span class="p" data-group-id="6938683460-2">}</span></code></pre><p>With custom options:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">request</span><span class="p" data-group-id="9986408744-1">(</span><span class="ss">:get</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;http://localhost:9999&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">retry</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="9986408744-2">[</span><span class="ss">delay</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="ss">max_attempts</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="9986408744-2">]</span><span class="p" data-group-id="9986408744-1">)</span><span class="w">
+</span><span class="p" data-group-id="6699985245-2">}</span></code></pre><p>With custom options:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">request</span><span class="p" data-group-id="6040887329-1">(</span><span class="ss">:get</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;http://localhost:9999&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">retry</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6040887329-2">[</span><span class="ss">delay</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="ss">max_attempts</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="6040887329-2">]</span><span class="p" data-group-id="6040887329-1">)</span><span class="w">
 </span><span class="c1"># 19:04:13.163 [error] Got exception. Will retry in 100ms, 1 attempt left</span><span class="w">
 </span><span class="c1"># 19:04:13.164 [error] ** (Mint.TransportError) connection refused</span><span class="w">
-</span><span class="p" data-group-id="9986408744-3">{</span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9986408744-4">%</span><span class="nc" data-group-id="9986408744-4">Mint.TransportError</span><span class="p" data-group-id="9986408744-4">{</span><span class="ss">reason</span><span class="p">:</span><span class="w"> </span><span class="ss">:econnrefused</span><span class="p" data-group-id="9986408744-4">}</span><span class="p" data-group-id="9986408744-3">}</span></code></pre>
+</span><span class="p" data-group-id="6040887329-3">{</span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="6040887329-4">%</span><span class="nc" data-group-id="6040887329-4">Mint.TransportError</span><span class="p" data-group-id="6040887329-4">{</span><span class="ss">reason</span><span class="p">:</span><span class="w"> </span><span class="ss">:econnrefused</span><span class="p" data-group-id="6040887329-4">}</span><span class="p" data-group-id="6040887329-3">}</span></code></pre>
   </section>
 </section>
 
