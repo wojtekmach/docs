@@ -108,18 +108,18 @@ req
   <a href="#decompress/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Examples
 </h2>
-<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="8518368255-1">(</span><span class="s">&quot;https://httpbin.org/gzip&quot;</span><span class="p" data-group-id="8518368255-1">)</span><span class="w">
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="0653129356-1">(</span><span class="s">&quot;https://httpbin.org/gzip&quot;</span><span class="p" data-group-id="0653129356-1">)</span><span class="w">
 </span><span class="gp unselectable">iex&gt; </span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="w">
-</span><span class="p" data-group-id="8518368255-2">[</span><span class="w">
-  </span><span class="p" data-group-id="8518368255-3">{</span><span class="s">&quot;content-encoding&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;gzip&quot;</span><span class="p" data-group-id="8518368255-3">}</span><span class="p">,</span><span class="w">
-  </span><span class="p" data-group-id="8518368255-4">{</span><span class="s">&quot;content-type&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;application/json&quot;</span><span class="p" data-group-id="8518368255-4">}</span><span class="p">,</span><span class="w">
+</span><span class="p" data-group-id="0653129356-2">[</span><span class="w">
+  </span><span class="p" data-group-id="0653129356-3">{</span><span class="s">&quot;content-encoding&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;gzip&quot;</span><span class="p" data-group-id="0653129356-3">}</span><span class="p">,</span><span class="w">
+  </span><span class="p" data-group-id="0653129356-4">{</span><span class="s">&quot;content-type&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;application/json&quot;</span><span class="p" data-group-id="0653129356-4">}</span><span class="p">,</span><span class="w">
   </span><span class="n">...</span><span class="w">
-</span><span class="p" data-group-id="8518368255-2">]</span><span class="w">
+</span><span class="p" data-group-id="0653129356-2">]</span><span class="w">
 </span><span class="gp unselectable">iex&gt; </span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="w">
-</span><span class="p" data-group-id="8518368255-5">%{</span><span class="w">
+</span><span class="p" data-group-id="0653129356-5">%{</span><span class="w">
   </span><span class="s">&quot;gzipped&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="no">true</span><span class="p">,</span><span class="w">
   </span><span class="n">...</span><span class="w">
-</span><span class="p" data-group-id="8518368255-5">}</span></code></pre>
+</span><span class="p" data-group-id="0653129356-5">}</span></code></pre>
   </section>
 </section>
 
