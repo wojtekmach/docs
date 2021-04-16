@@ -7,10 +7,10 @@
     <meta name="generator" content="ExDoc v0.24.1">
     <meta name="project" content="req v0.1.0-dev">
 
-    <title>Req.encode — req v0.1.0-dev</title>
+    <title>Req.http_errors — req v0.1.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
 
-    <script src="dist/sidebar_items-3e1c805be5.js"></script>
+    <script src="dist/sidebar_items-edabe6bc91.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -79,22 +79,22 @@ req
   <div class="content-outer">
     <div id="content" class="content-inner">
 
-<h1>Req.encode</h1>
+<h1>Req.http_errors</h1>
 
 <div class="deprecated">
-  You're seeing just the function <code>encode</code>, go back to <a href="Req.html">Req</a> module for more information.
+  You're seeing just the function <code>http_errors</code>, go back to <a href="Req.html">Req</a> module for more information.
 </div>
 
-<section class="detail" id="encode/1">
+<section class="detail" id="http_errors/2">
 
   <div class="detail-header">
-    <a href="#encode/1" class="detail-link" title="Link to this function">
+    <a href="#http_errors/2" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature">encode(request)</h1>
+    <h1 class="signature">http_errors(request, response)</h1>
 
-      <a href="https://github.com/wojtekmach/req/blob/main/lib/req.ex#L464" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/req/blob/main/lib/req.ex#L700" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -104,13 +104,12 @@ req
 
   <section class="docstring">
 
-<p>Encodes the request body based on its shape.</p><p>If body is of the following shape, it's encoded and its <code class="inline">content-type</code> set
-accordingly. Otherwise it's unchanged.</p><table><thead><tr><th style="text-align: left;">Shape</th><th style="text-align: left;">Encoder</th><th style="text-align: left;">Content-Type</th></tr></thead><tbody><tr><td style="text-align: left;"><code class="inline">{:form, data}</code></td><td style="text-align: left;"><a href="https://hexdocs.pm/elixir/URI.html#encode_query/1"><code class="inline">URI.encode_query/1</code></a></td><td style="text-align: left;"><code class="inline">&quot;application/x-www-form-urlencoded&quot;</code></td></tr><tr><td style="text-align: left;"><code class="inline">{:json, data}</code></td><td style="text-align: left;"><a href="https://hexdocs.pm/jason/1.2.2/Jason.html#encode_to_iodata!/1"><code class="inline">Jason.encode_to_iodata!/1</code></a></td><td style="text-align: left;"><code class="inline">&quot;application/json&quot;</code></td></tr></tbody></table><h2 id="encode/1-examples" class="section-heading">
-  <a href="#encode/1-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+<p>Transforms HTTP errors (<code class="inline">4xx</code> and <code class="inline">5xx</code>) into exceptions.</p><p>This functions halts the request and thus no error steps will be executed.</p><h2 id="http_errors/2-examples" class="section-heading">
+  <a href="#http_errors/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Examples
 </h2>
-<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">post!</span><span class="p" data-group-id="9421930389-1">(</span><span class="s">&quot;https://httpbin.org/post&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9421930389-2">{</span><span class="ss">:form</span><span class="p">,</span><span class="w"> </span><span class="ss">comments</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hello!&quot;</span><span class="p" data-group-id="9421930389-2">}</span><span class="p" data-group-id="9421930389-1">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="9421930389-3">[</span><span class="s">&quot;form&quot;</span><span class="p" data-group-id="9421930389-3">]</span><span class="w">
-</span><span class="p" data-group-id="9421930389-4">%{</span><span class="s">&quot;comments&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;hello!&quot;</span><span class="p" data-group-id="9421930389-4">}</span></code></pre>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="1122648774-1">(</span><span class="s">&quot;https://httpbin.org/status/404&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">http_errors</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="1122648774-1">)</span><span class="w">
+</span><span class="gt">** (RuntimeError) HTTP 404, body: &quot;&quot;</span></code></pre>
   </section>
 </section>
 
