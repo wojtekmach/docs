@@ -96,7 +96,7 @@ req
     </a>
     <h1 class="signature">retry(request, response_or_exception, options \\ [])</h1>
 
-      <a href="https://github.com/wojtekmach/req/blob/master/lib/req.ex#L723" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/req/blob/main/lib/req.ex#L723" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -116,10 +116,10 @@ to <code class="inline">2000</code></p></li><li><p><code class="inline">:max_att
   <a href="#retry/3-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Examples
 </h2>
-<p>With default options:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="4729779038-1">(</span><span class="s">&quot;https://httpbin.org/status/500,200&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">retry</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="4729779038-1">)</span><span class="o">.</span><span class="n">status</span><span class="w">
+<p>With default options:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="1607589020-1">(</span><span class="s">&quot;https://httpbin.org/status/500,200&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">retry</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="1607589020-1">)</span><span class="o">.</span><span class="n">status</span><span class="w">
 </span><span class="c1"># 19:02:08.463 [error] Req.retry/3: Got response with status 500. Will retry in 2000ms, 2 attempts left</span><span class="w">
 </span><span class="c1"># 19:02:10.710 [error] Req.retry/3: Got response with status 500. Will retry in 2000ms, 1 attempt left</span><span class="w">
-</span><span class="mi">200</span></code></pre><p>With custom options:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="8253403850-1">(</span><span class="s">&quot;http://localhost:9999&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">retry</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="8253403850-2">[</span><span class="ss">delay</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="ss">max_attempts</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="8253403850-2">]</span><span class="p" data-group-id="8253403850-1">)</span><span class="w">
+</span><span class="mi">200</span></code></pre><p>With custom options:</p><pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="1209681912-1">(</span><span class="s">&quot;http://localhost:9999&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">retry</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="1209681912-2">[</span><span class="ss">delay</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="ss">max_attempts</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="1209681912-2">]</span><span class="p" data-group-id="1209681912-1">)</span><span class="w">
 </span><span class="c1"># 17:00:38.371 [error] Req.retry/3: Got exception. Will retry in 100ms, 3 attempts left</span><span class="w">
 </span><span class="c1"># 17:00:38.371 [error] ** (Mint.TransportError) connection refused</span><span class="w">
 </span><span class="c1"># 17:00:38.473 [error] Req.retry/3: Got exception. Will retry in 100ms, 2 attempts left</span><span class="w">
