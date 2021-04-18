@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.1">
+    <meta name="project" content="req v0.1.0-dev">
+
+    <title>Req.if_modified_since — req v0.1.0-dev</title>
+    <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
+
+    <script src="dist/sidebar_items-a0dc028294.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="Req.html" class="sidebar-projectName">
+req
+      </a>
+      <strong class="sidebar-projectVersion">
+        v0.1.0-dev
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>Req.if_modified_since</h1>
+
+<div class="deprecated">
+  You're seeing just the function <code>if_modified_since</code>, go back to <a href="Req.html">Req</a> module for more information.
+</div>
+
+<section class="detail" id="if_modified_since/2">
+
+    <span id="if_modified_since/1"></span>
+
+  <div class="detail-header">
+    <a href="#if_modified_since/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">if_modified_since(request, options \\ [])</h1>
+
+      <a href="https://github.com/wojtekmach/req/blob/main/lib/req.ex#L459" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Handles HTTP cache using <code class="inline">if-modified-since</code> header.</p><h2 id="if_modified_since/2-options" class="section-heading">
+  <a href="#if_modified_since/2-options" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Options
+</h2>
+<ul><li><code class="inline">:dir</code> - the directory to store the cache, defaults to <code class="inline">&lt;user_cache_dir&gt;/req</code>
+(see: <a href="https://erlang.org/doc/man/filename.html#basedir-3"><code class="inline">:filename.basedir/3</code></a>)</li></ul><h2 id="if_modified_since/2-examples" class="section-heading">
+  <a href="#if_modified_since/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;https://storage.googleapis.com/cvdf-datasets/mnist/train-labels-idx1-ubyte.gz&quot;</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="8603155918-1">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="ss">cache</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="8603155918-1">)</span><span class="w">
+</span><span class="p" data-group-id="8603155918-2">%{</span><span class="w">
+  </span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="ss">body</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="8603155918-3">&lt;&lt;</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">...</span><span class="o">&gt;</span><span class="p">,</span><span class="w">
+  </span><span class="ss">headers</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="8603155918-4">[</span><span class="w">
+    </span><span class="p" data-group-id="8603155918-5">{</span><span class="s">&quot;date&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Fri, 16 Apr 2021 10:09:56 GMT&quot;</span><span class="p" data-group-id="8603155918-5">}</span><span class="p">,</span><span class="w">
+    </span><span class="n">...</span><span class="w">
+  </span><span class="p" data-group-id="8603155918-4">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="8603155918-6">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="ss">cache</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="8603155918-6">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">response</span><span class="w">
+</span><span class="no">true</span></code></pre>
+  </section>
+</section>
+
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.1) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>
