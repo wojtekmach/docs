@@ -106,8 +106,8 @@ req
 
   <section class="docstring">
 
-<p>Handles HTTP cache using <code class="inline">if-modified-since</code> header.</p><p>Only successful (200 OK) responses are cached.</p><p>This registers a response step that loads and writes the cache. If you add custom steps,
-make sure that step remains at the beginning of your response steps pipeline.</p><h2 id="if_modified_since/2-options" class="section-heading">
+<p>Handles HTTP cache using <code class="inline">if-modified-since</code> header.</p><p>Only successful (200 OK) responses are cached.</p><p>This step also <em>prepends</em> a response step that loads and writes the cache. Be careful when
+<em>prepending</em> other response steps, make sure the cache is loaded/written as soon as possible.</p><h2 id="if_modified_since/2-options" class="section-heading">
   <a href="#if_modified_since/2-options" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Options
 </h2>
@@ -117,16 +117,16 @@ make sure that step remains at the beginning of your response steps pipeline.</p
   Examples
 </h2>
 <pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;https://storage.googleapis.com/cvdf-datasets/mnist/train-labels-idx1-ubyte.gz&quot;</span><span class="w">
-</span><span class="gp unselectable">iex&gt; </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="3224746641-1">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="ss">cache</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="3224746641-1">)</span><span class="w">
-</span><span class="p" data-group-id="3224746641-2">%{</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="3336329570-1">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="ss">cache</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="3336329570-1">)</span><span class="w">
+</span><span class="p" data-group-id="3336329570-2">%{</span><span class="w">
   </span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-  </span><span class="ss">body</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3224746641-3">&lt;&lt;</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">...</span><span class="o">&gt;</span><span class="p">,</span><span class="w">
-  </span><span class="ss">headers</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3224746641-4">[</span><span class="w">
-    </span><span class="p" data-group-id="3224746641-5">{</span><span class="s">&quot;date&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Fri, 16 Apr 2021 10:09:56 GMT&quot;</span><span class="p" data-group-id="3224746641-5">}</span><span class="p">,</span><span class="w">
+  </span><span class="ss">body</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3336329570-3">&lt;&lt;</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">...</span><span class="o">&gt;</span><span class="p">,</span><span class="w">
+  </span><span class="ss">headers</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3336329570-4">[</span><span class="w">
+    </span><span class="p" data-group-id="3336329570-5">{</span><span class="s">&quot;date&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Fri, 16 Apr 2021 10:09:56 GMT&quot;</span><span class="p" data-group-id="3336329570-5">}</span><span class="p">,</span><span class="w">
     </span><span class="n">...</span><span class="w">
-  </span><span class="p" data-group-id="3224746641-4">]</span><span class="w">
+  </span><span class="p" data-group-id="3336329570-4">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="3224746641-6">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="ss">cache</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="3224746641-6">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">response</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="3336329570-6">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="ss">cache</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="3336329570-6">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">response</span><span class="w">
 </span><span class="no">true</span></code></pre>
   </section>
 </section>
