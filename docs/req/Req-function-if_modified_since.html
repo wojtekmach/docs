@@ -96,7 +96,7 @@ req
     </a>
     <h1 class="signature">if_modified_since(request, options \\ [])</h1>
 
-      <a href="https://github.com/wojtekmach/req/blob/main/lib/req.ex#L464" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/req/blob/main/lib/req.ex#L471" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -117,16 +117,16 @@ req
   Examples
 </h2>
 <pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;https://hexdocs.pm/elixir/Kernel.html&quot;</span><span class="w">
-</span><span class="gp unselectable">iex&gt; </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="6722940228-1">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="ss">cache</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="6722940228-1">)</span><span class="w">
-</span><span class="p" data-group-id="6722940228-2">%{</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="8364771443-1">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="ss">cache</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="8364771443-1">)</span><span class="w">
+</span><span class="p" data-group-id="8364771443-2">%{</span><span class="w">
   </span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-  </span><span class="ss">headers</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6722940228-3">[</span><span class="w">
-    </span><span class="p" data-group-id="6722940228-4">{</span><span class="s">&quot;date&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Fri, 16 Apr 2021 10:09:56 GMT&quot;</span><span class="p" data-group-id="6722940228-4">}</span><span class="p">,</span><span class="w">
+  </span><span class="ss">headers</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="8364771443-3">[</span><span class="w">
+    </span><span class="p" data-group-id="8364771443-4">{</span><span class="s">&quot;date&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Fri, 16 Apr 2021 10:09:56 GMT&quot;</span><span class="p" data-group-id="8364771443-4">}</span><span class="p">,</span><span class="w">
     </span><span class="n">...</span><span class="w">
-  </span><span class="p" data-group-id="6722940228-3">]</span><span class="p">,</span><span class="w">
+  </span><span class="p" data-group-id="8364771443-3">]</span><span class="p">,</span><span class="w">
   </span><span class="n">...</span><span class="w">
-</span><span class="p" data-group-id="6722940228-2">}</span><span class="w">
-</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="6722940228-5">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="ss">cache</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="6722940228-5">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">response</span><span class="w">
+</span><span class="p" data-group-id="8364771443-2">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="8364771443-5">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="ss">cache</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="8364771443-5">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">response</span><span class="w">
 </span><span class="no">true</span></code></pre>
   </section>
 </section>

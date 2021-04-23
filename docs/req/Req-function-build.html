@@ -96,7 +96,7 @@ req
     </a>
     <h1 class="signature">build(method, uri, options \\ [])</h1>
 
-      <a href="https://github.com/wojtekmach/req/blob/main/lib/req.ex#L84" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/req/blob/main/lib/req.ex#L90" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -111,7 +111,8 @@ req
   Options
 </h2>
 <ul><li><p><code class="inline">:header</code> - request headers, defaults to <code class="inline">[]</code></p></li><li><p><code class="inline">:body</code> - request body, defaults to <code class="inline">&quot;&quot;</code></p></li><li><p><code class="inline">:finch</code> - Finch pool to use, defaults to <code class="inline">Req.Finch</code> which is automatically started
-by the application. See <a href="https://hexdocs.pm/finch/0.6.3/Finch.html"><code class="inline">Finch</code></a> module documentation for more information on starting pools.</p></li></ul>
+by the application. See <a href="https://hexdocs.pm/finch/0.6.3/Finch.html"><code class="inline">Finch</code></a> module documentation for more information on starting pools.</p></li><li><p><code class="inline">:finch_options</code> - Options passed down to Finch when making the request, defaults to <code class="inline">[]</code>.
+See <a href="https://hexdocs.pm/finch/0.6.3/Finch.html#request/3"><code class="inline">Finch.request/3</code></a> for more information.</p></li></ul>
   </section>
 </section>
 
