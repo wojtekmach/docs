@@ -10,7 +10,7 @@
     <title>Req.add_default_steps — req v0.1.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
 
-    <script src="dist/sidebar_items-eecef7ea31.js"></script>
+    <script src="dist/sidebar_items-13a684d953.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -96,7 +96,7 @@ req
     </a>
     <h1 class="signature">add_default_steps(request, options \\ [])</h1>
 
-      <a href="https://github.com/wojtekmach/req/blob/main/lib/req.ex#L150" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/req/blob/main/lib/req.ex#L155" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -110,12 +110,13 @@ req
   <a href="#add_default_steps/2-request-steps" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Request steps
 </h2>
-<ul><li><p><a href="#normalize_headers/1"><code class="inline">normalize_headers/1</code></a></p></li><li><p><a href="#default_headers/1"><code class="inline">default_headers/1</code></a></p></li><li><p><a href="#encode/1"><code class="inline">encode/1</code></a></p></li><li><p><a href="#auth/2"><code class="inline">&amp;auth(&amp;1, options[:auth])</code></a> (if <code class="inline">options[:auth]</code> is set)</p></li><li><p><a href="#params/2"><code class="inline">&amp;params(&amp;1, options[:params])</code></a> (if <code class="inline">options[:params]</code> is set)</p></li><li><p><a href="#range/2"><code class="inline">&amp;range(&amp;1, options[:range])</code></a> (if <code class="inline">options[:range]</code> is set)</p></li></ul><h2 id="add_default_steps/2-response-steps" class="section-heading">
+<ul><li><p><a href="#normalize_headers/1"><code class="inline">normalize_headers/1</code></a></p></li><li><p><a href="#default_headers/1"><code class="inline">default_headers/1</code></a></p></li><li><p><a href="#encode/1"><code class="inline">encode/1</code></a></p></li><li><p><a href="#netrc/2"><code class="inline">&amp;netrc(&amp;1, options[:netrc])</code></a> (if <code class="inline">options[:netrc]</code> is set
+to an atom true for default path or a string for custom path)</p></li><li><p><a href="#auth/2"><code class="inline">&amp;auth(&amp;1, options[:auth])</code></a> (if <code class="inline">options[:auth]</code> is set to)</p></li><li><p><a href="#params/2"><code class="inline">&amp;params(&amp;1, options[:params])</code></a> (if <code class="inline">options[:params]</code> is set)</p></li><li><p><a href="#range/2"><code class="inline">&amp;range(&amp;1, options[:range])</code></a> (if <code class="inline">options[:range]</code> is set)</p></li></ul><h2 id="add_default_steps/2-response-steps" class="section-heading">
   <a href="#add_default_steps/2-response-steps" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Response steps
 </h2>
-<ul><li><p><a href="#retry/3"><code class="inline">&amp;retry(&amp;1, &amp;2, options[:retry])</code></a> (if <code class="inline">options[:retry]</code> is set and is a
-keywords list or an atom <code class="inline">true</code>)</p></li><li><p><a href="#follow_redirects/2"><code class="inline">follow_redirects/2</code></a></p></li><li><p><a href="#decompress/2"><code class="inline">decompress/2</code></a></p></li><li><p><a href="#decode/2"><code class="inline">decode/2</code></a></p></li></ul><h2 id="add_default_steps/2-error-steps" class="section-heading">
+<ul><li><p><a href="#retry/3"><code class="inline">&amp;retry(&amp;1, &amp;2, options[:retry])</code></a> (if <code class="inline">options[:retry]</code> is set to
+an atom true or a options keywords list)</p></li><li><p><a href="#follow_redirects/2"><code class="inline">follow_redirects/2</code></a></p></li><li><p><a href="#decompress/2"><code class="inline">decompress/2</code></a></p></li><li><p><a href="#decode/2"><code class="inline">decode/2</code></a></p></li></ul><h2 id="add_default_steps/2-error-steps" class="section-heading">
   <a href="#add_default_steps/2-error-steps" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Error steps
 </h2>
@@ -124,7 +125,7 @@ keywords list or an atom <code class="inline">true</code>)</li></ul><h2 id="add_
   <a href="#add_default_steps/2-options" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Options
 </h2>
-<ul><li><p><code class="inline">:auth</code> - if set, adds the <a href="#auth/2"><code class="inline">auth/2</code></a> step</p></li><li><p><code class="inline">:params</code> - if set, adds the <a href="#params/2"><code class="inline">params/2</code></a> step</p></li><li><p><code class="inline">:range</code> - if set, adds the <a href="#range/2"><code class="inline">range/2</code></a> step</p></li><li><p><code class="inline">:cache</code> - if set to <code class="inline">true</code>, adds <a href="#if_modified_since/2"><code class="inline">if_modified_since/2</code></a> step</p></li><li><p><code class="inline">:raw</code> if set to <code class="inline">true</code>, skips <a href="#decompress/2"><code class="inline">decompress/2</code></a> and <a href="#decode/2"><code class="inline">decode/2</code></a> steps</p></li><li><p><code class="inline">:retry</code> - if set, adds the <a href="#retry/3"><code class="inline">retry/3</code></a> step to response and error steps</p></li></ul>
+<ul><li><p><code class="inline">:netrc</code> - if set, adds the <a href="#netrc/2"><code class="inline">netrc/2</code></a> step</p></li><li><p><code class="inline">:auth</code> - if set, adds the <a href="#auth/2"><code class="inline">auth/2</code></a> step</p></li><li><p><code class="inline">:params</code> - if set, adds the <a href="#params/2"><code class="inline">params/2</code></a> step</p></li><li><p><code class="inline">:range</code> - if set, adds the <a href="#range/2"><code class="inline">range/2</code></a> step</p></li><li><p><code class="inline">:cache</code> - if set to <code class="inline">true</code>, adds <a href="#if_modified_since/2"><code class="inline">if_modified_since/2</code></a> step</p></li><li><p><code class="inline">:raw</code> if set to <code class="inline">true</code>, skips <a href="#decompress/2"><code class="inline">decompress/2</code></a> and <a href="#decode/2"><code class="inline">decode/2</code></a> steps</p></li><li><p><code class="inline">:retry</code> - if set, adds the <a href="#retry/3"><code class="inline">retry/3</code></a> step to response and error steps</p></li></ul>
   </section>
 </section>
 

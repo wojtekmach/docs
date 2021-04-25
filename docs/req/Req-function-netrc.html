@@ -7,7 +7,7 @@
     <meta name="generator" content="ExDoc v0.24.2">
     <meta name="project" content="req v0.1.0-dev">
 
-    <title>API Reference — req v0.1.0-dev</title>
+    <title>Req.netrc — req v0.1.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
 
     <script src="dist/sidebar_items-13a684d953.js"></script>
@@ -18,7 +18,7 @@
 
 
   </head>
-  <body data-type="extras">
+  <body data-type="modules">
     <script>
 
       try {
@@ -79,46 +79,44 @@ req
   <div class="content-outer">
     <div id="content" class="content-inner">
 
-<h1>
-  API Reference <small class="app-vsn">req v0.1.0-dev</small>
-</h1>
+<h1>Req.netrc</h1>
 
-  <section class="details-list">
-    <h2 id="modules" class="section-heading">
-  <a href="#modules" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
-  Modules
+<div class="deprecated">
+  You're seeing just the function <code>netrc</code>, go back to <a href="Req.html">Req</a> module for more information.
+</div>
+
+<section class="detail" id="netrc/2">
+
+  <div class="detail-header">
+    <a href="#netrc/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">netrc(request, path)</h1>
+
+      <a href="https://github.com/wojtekmach/req/blob/main/lib/req.ex#L367" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Sets request authentication for a matching host from a netrc file.</p><h2 id="netrc/2-examples" class="section-heading">
+  <a href="#netrc/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
 </h2>
-
-    <div class="summary">
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="Req.html">Req</a>
-
-  </div>
-
-    <div class="summary-synopsis"><p>An HTTP client with a focus on composability, built on top of <a href="https://github.com/keathley/finch">Finch</a>.</p></div>
-
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="Req.Request.html">Req.Request</a>
-
-  </div>
-
-</div>
-
-    </div>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="6106007061-1">(</span><span class="s">&quot;https://httpbin.org/basic-auth/foo/bar&quot;</span><span class="p" data-group-id="6106007061-1">)</span><span class="o">.</span><span class="n">status</span><span class="w">
+</span><span class="mi">401</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="6106007061-2">(</span><span class="s">&quot;https://httpbin.org/basic-auth/foo/bar&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">netrc</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="6106007061-2">)</span><span class="o">.</span><span class="n">status</span><span class="w">
+</span><span class="mi">200</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="6106007061-3">(</span><span class="s">&quot;https://httpbin.org/basic-auth/foo/bar&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">netrc</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/path/to/custom_netrc&quot;</span><span class="p" data-group-id="6106007061-3">)</span><span class="o">.</span><span class="n">status</span><span class="w">
+</span><span class="mi">200</span></code></pre>
   </section>
+</section>
 
-
-<div class="bottom-actions">
-  <div class="bottom-actions-item">
-
-  </div>
-  <div class="bottom-actions-item">
-
-  </div>
-</div>
 
       <footer class="footer">
         <p>
