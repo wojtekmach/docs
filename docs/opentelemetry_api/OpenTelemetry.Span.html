@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="ExDoc v0.24.0-dev">
-    <meta name="project" content="opentelemetry_api v0.5.0">
+    <meta name="generator" content="ExDoc v0.24.2">
+    <meta name="project" content="opentelemetry_api v1.0.0-rc.2">
 
-    <title>OpenTelemetry.Span — opentelemetry_api v0.5.0</title>
-    <link rel="stylesheet" href="dist/erlang-e0b321562cb0bb031ae0.css" />
+    <title>OpenTelemetry.Span — opentelemetry_api v1.0.0-rc.2</title>
+    <link rel="stylesheet" href="dist/erlang-342d9843ccb2e80b8d3f.css" />
 
-    <script src="dist/sidebar_items-ca37362dac.js"></script>
+    <script src="dist/sidebar_items-4b5e446996.js"></script>
 
       <script src="docs_config.js"></script>
 
-    <script async src="dist/app-f97730d45ef67f3e6188.js"></script>
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
 
 
   </head>
@@ -58,7 +58,7 @@
 opentelemetry_api
       </a>
       <strong class="sidebar-projectVersion">
-        v0.5.0
+        v1.0.0-rc.2
       </strong>
     </div>
 
@@ -80,7 +80,7 @@ opentelemetry_api
     <div id="content" class="content-inner">
 
       <h1>
-OpenTelemetry.Span <small class="app-vsn">(opentelemetry_api v0.5.0)</small>
+OpenTelemetry.Span <small class="app-vsn">(opentelemetry_api v1.0.0-rc.2)</small>
 
       </h1>
 
@@ -90,8 +90,8 @@ OpenTelemetry.Span <small class="app-vsn">(opentelemetry_api v0.5.0)</small>
 An example of creating an Event and adding it to the current Span:</p><pre><code class="makeup elixir"><span class="kn">require</span><span class="w"> </span><span class="nc">OpenTelemetry.Span</span><span class="w">
 </span><span class="n">...</span><span class="w">
 </span><span class="n">event</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ecto.query&quot;</span><span class="w">
-</span><span class="n">ecto_attributes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">OpenTelemetry</span><span class="o">.</span><span class="n">event</span><span class="p" data-group-id="7265606688-1">(</span><span class="p" data-group-id="7265606688-2">[</span><span class="p" data-group-id="7265606688-3">{</span><span class="s">&quot;query&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">query</span><span class="p" data-group-id="7265606688-3">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="7265606688-4">{</span><span class="s">&quot;total_time&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">total_time</span><span class="p" data-group-id="7265606688-4">}</span><span class="p" data-group-id="7265606688-2">]</span><span class="p" data-group-id="7265606688-1">)</span><span class="w">
-</span><span class="nc">OpenTelemetry.Span</span><span class="o">.</span><span class="n">add_event</span><span class="p" data-group-id="7265606688-5">(</span><span class="n">event</span><span class="p">,</span><span class="w"> </span><span class="n">ecto_attributes</span><span class="p" data-group-id="7265606688-5">)</span><span class="w">
+</span><span class="n">ecto_attributes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">OpenTelemetry</span><span class="o">.</span><span class="n">event</span><span class="p" data-group-id="0173931957-1">(</span><span class="p" data-group-id="0173931957-2">[</span><span class="p" data-group-id="0173931957-3">{</span><span class="s">&quot;query&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">query</span><span class="p" data-group-id="0173931957-3">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0173931957-4">{</span><span class="s">&quot;total_time&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">total_time</span><span class="p" data-group-id="0173931957-4">}</span><span class="p" data-group-id="0173931957-2">]</span><span class="p" data-group-id="0173931957-1">)</span><span class="w">
+</span><span class="nc">OpenTelemetry.Span</span><span class="o">.</span><span class="n">add_event</span><span class="p" data-group-id="0173931957-5">(</span><span class="n">event</span><span class="p">,</span><span class="w"> </span><span class="n">ecto_attributes</span><span class="p" data-group-id="0173931957-5">)</span><span class="w">
 </span><span class="n">...</span></code></pre><p>A Span represents a single operation within a trace. Spans can be nested to form a trace tree.
 Each trace contains a root span, which typically describes the end-to-end latency and, optionally,
 one or more sub-spans for its sub-operations.</p><p>Spans encapsulate:</p><ul><li>The span name</li><li>An immutable SpanContext (<a href="OpenTelemetry.html#t:span_ctx/0"><code class="inline">OpenTelemetry.span_ctx/0</code></a>) that uniquely identifies the Span</li><li>A parent Span in the form of a Span (<a href="OpenTelemetry.html#t:span/0"><code class="inline">OpenTelemetry.span/0</code></a>), SpanContext (<a href="OpenTelemetry.html#t:span_ctx/0"><code class="inline">OpenTelemetry.span_ctx/0</code></a>), or <code class="inline">undefined</code></li><li>A start timestamp</li><li>An end timestamp</li><li>An ordered mapping of Attributes (<a href="OpenTelemetry.html#t:attributes/0"><code class="inline">OpenTelemetry.attributes/0</code></a>)</li><li>A list of Links to other Spans (<a href="OpenTelemetry.html#t:link/0"><code class="inline">OpenTelemetry.link/0</code></a>)</li><li>A list of timestamped Events (<a href="OpenTelemetry.html#t:event/0"><code class="inline">OpenTelemetry.event/0</code></a>)</li><li>A Status (<a href="OpenTelemetry.html#t:status/0"><code class="inline">OpenTelemetry.status/0</code></a>)</li></ul>
@@ -155,6 +155,15 @@ child Spans that may exist of this Span.</p></div>
   </div>
 
     <div class="summary-synopsis"></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#record_exception/4">record_exception(span_ctx, exception, trace \\ nil, attributes \\ [])</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Record an exception as an event, following the semantics convetions for exceptions.</p></div>
 
 </div>
 <div class="summary-row">
@@ -337,6 +346,27 @@ child Spans that may exist of this Span.</p><p>The Span Context is returned with
   <section class="docstring">
 
 
+  </section>
+</section>
+<section class="detail" id="record_exception/4">
+
+    <span id="record_exception/2"></span>
+
+    <span id="record_exception/3"></span>
+
+  <div class="detail-header">
+    <a href="#record_exception/4" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">record_exception(span_ctx, exception, trace \\ nil, attributes \\ [])</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Record an exception as an event, following the semantics convetions for exceptions.</p><p>If trace is not provided, the stacktrace is retrieved from <a href="https://hexdocs.pm/elixir/Process.html#info/2"><code class="inline">Process.info/2</code></a></p>
   </section>
 </section>
 <section class="detail" id="set_attribute/3">
@@ -526,7 +556,7 @@ depending on the implementation.</p>
         <p>
           <span class="line">
             Built using
-            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.0-dev) for the
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.2) for the
             <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
           </span>
           <span class="line">

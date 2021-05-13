@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="ExDoc v0.24.0-dev">
-    <meta name="project" content="opentelemetry_api v0.5.0">
+    <meta name="generator" content="ExDoc v0.24.2">
+    <meta name="project" content="opentelemetry_api v1.0.0-rc.2">
 
-    <title>otel_tracer_provider — opentelemetry_api v0.5.0</title>
-    <link rel="stylesheet" href="dist/erlang-e0b321562cb0bb031ae0.css" />
+    <title>otel_tracer_provider — opentelemetry_api v1.0.0-rc.2</title>
+    <link rel="stylesheet" href="dist/erlang-342d9843ccb2e80b8d3f.css" />
 
-    <script src="dist/sidebar_items-ca37362dac.js"></script>
+    <script src="dist/sidebar_items-4b5e446996.js"></script>
 
       <script src="docs_config.js"></script>
 
-    <script async src="dist/app-f97730d45ef67f3e6188.js"></script>
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
 
 
   </head>
@@ -58,7 +58,7 @@
 opentelemetry_api
       </a>
       <strong class="sidebar-projectVersion">
-        v0.5.0
+        v1.0.0-rc.2
       </strong>
     </div>
 
@@ -80,7 +80,7 @@ opentelemetry_api
     <div id="content" class="content-inner">
 
       <h1>
-otel_tracer_provider <small>behaviour</small> <small class="app-vsn">(opentelemetry_api v0.5.0)</small>
+otel_tracer_provider <small>behaviour</small> <small class="app-vsn">(opentelemetry_api v1.0.0-rc.2)</small>
 
       </h1>
 
@@ -105,16 +105,12 @@ otel_tracer_provider <small>behaviour</small> <small class="app-vsn">(openteleme
 
   </div>
 
-    <div class="summary-synopsis"><p>Callback implementation for <a href="http://www.erlang.org/doc/man/gen_server.html#Module:code_change-3"><code class="inline">:gen_server.code_change/3</code></a>.</p></div>
-
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#handle_call/3">handle_call(Msg, From, State)</a>
 
   </div>
-
-    <div class="summary-synopsis"><p>Callback implementation for <a href="http://www.erlang.org/doc/man/gen_server.html#Module:handle_call-3"><code class="inline">:gen_server.handle_call/3</code></a>.</p></div>
 
 </div>
 <div class="summary-row">
@@ -123,16 +119,12 @@ otel_tracer_provider <small>behaviour</small> <small class="app-vsn">(openteleme
 
   </div>
 
-    <div class="summary-synopsis"><p>Callback implementation for <a href="http://www.erlang.org/doc/man/gen_server.html#Module:handle_cast-2"><code class="inline">:gen_server.handle_cast/2</code></a>.</p></div>
-
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#init/1">init(_)</a>
 
   </div>
-
-    <div class="summary-synopsis"><p>Callback implementation for <a href="http://www.erlang.org/doc/man/gen_server.html#Module:init-1"><code class="inline">:gen_server.init/1</code></a>.</p></div>
 
 </div>
 <div class="summary-row">
@@ -220,7 +212,7 @@ Functions
 
   <section class="docstring">
 
-<p>Callback implementation for <a href="http://www.erlang.org/doc/man/gen_server.html#Module:code_change-3"><code class="inline">:gen_server.code_change/3</code></a>.</p>
+
   </section>
 </section>
 <section class="detail" id="handle_call/3">
@@ -237,7 +229,7 @@ Functions
 
   <section class="docstring">
 
-<p>Callback implementation for <a href="http://www.erlang.org/doc/man/gen_server.html#Module:handle_call-3"><code class="inline">:gen_server.handle_call/3</code></a>.</p>
+
   </section>
 </section>
 <section class="detail" id="handle_cast/2">
@@ -254,7 +246,7 @@ Functions
 
   <section class="docstring">
 
-<p>Callback implementation for <a href="http://www.erlang.org/doc/man/gen_server.html#Module:handle_cast-2"><code class="inline">:gen_server.handle_cast/2</code></a>.</p>
+
   </section>
 </section>
 <section class="detail" id="init/1">
@@ -271,7 +263,7 @@ Functions
 
   <section class="docstring">
 
-<p>Callback implementation for <a href="http://www.erlang.org/doc/man/gen_server.html#Module:init-1"><code class="inline">:gen_server.init/1</code></a>.</p>
+
   </section>
 </section>
 <section class="detail" id="register_application_tracer/1">
@@ -291,7 +283,7 @@ Functions
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>register_application_tracer(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()</pre>
+          <pre>register_application_tracer(atom()) -> boolean().</pre>
 
       </div>
 
@@ -315,7 +307,7 @@ Functions
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>register_tracer(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), string()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()</pre>
+          <pre>register_tracer(atom(), string()) -> boolean().</pre>
 
       </div>
 
@@ -339,7 +331,7 @@ Functions
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>resource() :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>() | :undefined</pre>
+          <pre>resource() -> term() | undefined.</pre>
 
       </div>
 
@@ -393,7 +385,7 @@ Callbacks
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>init(<a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()) :: {:ok, cb_state()}</pre>
+          <pre>init(term()) -> {ok, cb_state()}.</pre>
 
       </div>
 
@@ -417,7 +409,7 @@ Callbacks
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>register_tracer(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), string(), cb_state()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()</pre>
+          <pre>register_tracer(atom(), string(), cb_state()) -> boolean().</pre>
 
       </div>
 
@@ -441,7 +433,7 @@ Callbacks
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>resource(cb_state()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>() | :undefined</pre>
+          <pre>resource(cb_state()) -> term() | undefined.</pre>
 
       </div>
 
@@ -456,7 +448,7 @@ Callbacks
         <p>
           <span class="line">
             Built using
-            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.0-dev) for the
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.2) for the
             <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
           </span>
           <span class="line">

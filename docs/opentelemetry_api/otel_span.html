@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="ExDoc v0.24.0-dev">
-    <meta name="project" content="opentelemetry_api v0.5.0">
+    <meta name="generator" content="ExDoc v0.24.2">
+    <meta name="project" content="opentelemetry_api v1.0.0-rc.2">
 
-    <title>otel_span — opentelemetry_api v0.5.0</title>
-    <link rel="stylesheet" href="dist/erlang-e0b321562cb0bb031ae0.css" />
+    <title>otel_span — opentelemetry_api v1.0.0-rc.2</title>
+    <link rel="stylesheet" href="dist/erlang-342d9843ccb2e80b8d3f.css" />
 
-    <script src="dist/sidebar_items-ca37362dac.js"></script>
+    <script src="dist/sidebar_items-4b5e446996.js"></script>
 
       <script src="docs_config.js"></script>
 
-    <script async src="dist/app-f97730d45ef67f3e6188.js"></script>
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
 
 
   </head>
@@ -58,7 +58,7 @@
 opentelemetry_api
       </a>
       <strong class="sidebar-projectVersion">
-        v0.5.0
+        v1.0.0-rc.2
       </strong>
     </div>
 
@@ -80,7 +80,7 @@ opentelemetry_api
     <div id="content" class="content-inner">
 
       <h1>
-otel_span <small class="app-vsn">(opentelemetry_api v0.5.0)</small>
+otel_span <small class="app-vsn">(opentelemetry_api v1.0.0-rc.2)</small>
 
       </h1>
 
@@ -148,6 +148,20 @@ Span behaviour.
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#is_valid/1">is_valid(SpanCtx)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#record_exception/5">record_exception(SpanCtx, Class, Term, Stacktrace, Attributes)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#record_exception/6">record_exception(SpanCtx, Class, Term, Message, Stacktrace, Attributes)</a>
 
   </div>
 
@@ -233,14 +247,13 @@ Types
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>start_opts() :: %{
-  optional(:attributes) =&gt; :opentelemetry.attributes(),
-  optional(:sampler) =&gt; <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
-  optional(:links) =&gt; :opentelemetry.links(),
-  optional(:is_recording) =&gt; <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>(),
-  optional(:start_time) =&gt; :opentelemetry.timestamp(),
-  optional(:kind) =&gt; :opentelemetry.span_kind()
-}</pre>
+          <pre>start_opts() ::
+    #{attributes => opentelemetry:attributes(),
+      sampler => term(),
+      links => opentelemetry:links(),
+      is_recording => boolean(),
+      start_time => opentelemetry:timestamp(),
+      kind => opentelemetry:span_kind()}.</pre>
 
       </div>
 
@@ -277,10 +290,11 @@ Functions
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>add_event(spanCtx, name, attributes) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()
-when name: :opentelemetry.event_name(),
-     attributes: :opentelemetry.attributes(),
-     spanCtx: :opentelemetry.span_ctx()</pre>
+          <pre>add_event(SpanCtx, Name, Attributes) -> boolean()
+             when
+                 Name :: opentelemetry:event_name(),
+                 Attributes :: opentelemetry:attributes(),
+                 SpanCtx :: opentelemetry:span_ctx().</pre>
 
       </div>
 
@@ -304,8 +318,8 @@ when name: :opentelemetry.event_name(),
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>add_events(spanCtx, events) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()
-when events: :opentelemetry.events(), spanCtx: :opentelemetry.span_ctx()</pre>
+          <pre>add_events(SpanCtx, Events) -> boolean()
+              when Events :: opentelemetry:events(), SpanCtx :: opentelemetry:span_ctx().</pre>
 
       </div>
 
@@ -329,7 +343,7 @@ when events: :opentelemetry.events(), spanCtx: :opentelemetry.span_ctx()</pre>
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>end_span(spanCtx) :: spanCtx when spanCtx: :opentelemetry.span_ctx()</pre>
+          <pre>end_span(SpanCtx) -> SpanCtx when SpanCtx :: opentelemetry:span_ctx().</pre>
 
       </div>
 
@@ -353,7 +367,7 @@ when events: :opentelemetry.events(), spanCtx: :opentelemetry.span_ctx()</pre>
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>is_recording(spanCtx) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>() when spanCtx: :opentelemetry.span_ctx()</pre>
+          <pre>is_recording(SpanCtx) -> boolean() when SpanCtx :: opentelemetry:span_ctx().</pre>
 
       </div>
 
@@ -377,7 +391,68 @@ when events: :opentelemetry.events(), spanCtx: :opentelemetry.span_ctx()</pre>
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>is_valid(spanCtx) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>() when spanCtx: :opentelemetry.span_ctx()</pre>
+          <pre>is_valid(SpanCtx) -> boolean() when SpanCtx :: opentelemetry:span_ctx().</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="record_exception/5">
+
+  <div class="detail-header">
+    <a href="#record_exception/5" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">record_exception(SpanCtx, Class, Term, Stacktrace, Attributes)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>record_exception(SpanCtx, Class, Term, Stacktrace, Attributes) -> boolean()
+                    when
+                        SpanCtx :: opentelemetry:span_ctx(),
+                        Class :: atom(),
+                        Term :: term(),
+                        Stacktrace :: [any()],
+                        Attributes :: opentelemetry:attributes().</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="record_exception/6">
+
+  <div class="detail-header">
+    <a href="#record_exception/6" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">record_exception(SpanCtx, Class, Term, Message, Stacktrace, Attributes)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>record_exception(SpanCtx, Class, Term, Message, Stacktrace, Attributes) -> boolean()
+                    when
+                        SpanCtx :: opentelemetry:span_ctx(),
+                        Class :: atom(),
+                        Term :: term(),
+                        Message :: unicode:unicode_binary(),
+                        Stacktrace :: [any()],
+                        Attributes :: opentelemetry:attributes().</pre>
 
       </div>
 
@@ -401,10 +476,11 @@ when events: :opentelemetry.events(), spanCtx: :opentelemetry.span_ctx()</pre>
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>set_attribute(spanCtx, key, value) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()
-when key: :opentelemetry.attribute_key(),
-     value: :opentelemetry.attribute_value(),
-     spanCtx: :opentelemetry.span_ctx()</pre>
+          <pre>set_attribute(SpanCtx, Key, Value) -> boolean()
+                 when
+                     Key :: opentelemetry:attribute_key(),
+                     Value :: opentelemetry:attribute_value(),
+                     SpanCtx :: opentelemetry:span_ctx().</pre>
 
       </div>
 
@@ -428,8 +504,10 @@ when key: :opentelemetry.attribute_key(),
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>set_attributes(spanCtx, attributes) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()
-when attributes: :opentelemetry.attributes(), spanCtx: :opentelemetry.span_ctx()</pre>
+          <pre>set_attributes(SpanCtx, Attributes) -> boolean()
+                  when
+                      Attributes :: opentelemetry:attributes(),
+                      SpanCtx :: opentelemetry:span_ctx().</pre>
 
       </div>
 
@@ -453,8 +531,8 @@ when attributes: :opentelemetry.attributes(), spanCtx: :opentelemetry.span_ctx()
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>set_status(spanCtx, status) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()
-when status: :opentelemetry.status(), spanCtx: :opentelemetry.span_ctx()</pre>
+          <pre>set_status(SpanCtx, Status) -> boolean()
+              when Status :: opentelemetry:status(), SpanCtx :: opentelemetry:span_ctx().</pre>
 
       </div>
 
@@ -478,7 +556,7 @@ when status: :opentelemetry.status(), spanCtx: :opentelemetry.span_ctx()</pre>
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>span_id(:opentelemetry.span_ctx()) :: :opentelemetry.span_id()</pre>
+          <pre>span_id(opentelemetry:span_ctx()) -> opentelemetry:span_id().</pre>
 
       </div>
 
@@ -502,7 +580,7 @@ when status: :opentelemetry.status(), spanCtx: :opentelemetry.span_ctx()</pre>
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>trace_id(:opentelemetry.span_ctx()) :: :opentelemetry.trace_id()</pre>
+          <pre>trace_id(opentelemetry:span_ctx()) -> opentelemetry:trace_id().</pre>
 
       </div>
 
@@ -526,7 +604,7 @@ when status: :opentelemetry.status(), spanCtx: :opentelemetry.span_ctx()</pre>
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>tracestate(:opentelemetry.span_ctx()) :: :opentelemetry.tracestate()</pre>
+          <pre>tracestate(opentelemetry:span_ctx()) -> opentelemetry:tracestate().</pre>
 
       </div>
 
@@ -550,8 +628,8 @@ when status: :opentelemetry.status(), spanCtx: :opentelemetry.span_ctx()</pre>
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>update_name(spanCtx, name) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()
-when name: :opentelemetry.span_name(), spanCtx: :opentelemetry.span_ctx()</pre>
+          <pre>update_name(SpanCtx, Name) -> boolean()
+               when Name :: opentelemetry:span_name(), SpanCtx :: opentelemetry:span_ctx().</pre>
 
       </div>
 
@@ -566,7 +644,7 @@ when name: :opentelemetry.span_name(), spanCtx: :opentelemetry.span_ctx()</pre>
         <p>
           <span class="line">
             Built using
-            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.0-dev) for the
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.2) for the
             <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
           </span>
           <span class="line">

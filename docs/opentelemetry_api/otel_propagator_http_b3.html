@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="ExDoc v0.24.0-dev">
-    <meta name="project" content="opentelemetry_api v0.5.0">
+    <meta name="generator" content="ExDoc v0.24.2">
+    <meta name="project" content="opentelemetry_api v1.0.0-rc.2">
 
-    <title>otel_propagator_http_b3 — opentelemetry_api v0.5.0</title>
-    <link rel="stylesheet" href="dist/erlang-e0b321562cb0bb031ae0.css" />
+    <title>otel_propagator_http_b3 — opentelemetry_api v1.0.0-rc.2</title>
+    <link rel="stylesheet" href="dist/erlang-342d9843ccb2e80b8d3f.css" />
 
-    <script src="dist/sidebar_items-ca37362dac.js"></script>
+    <script src="dist/sidebar_items-4b5e446996.js"></script>
 
       <script src="docs_config.js"></script>
 
-    <script async src="dist/app-f97730d45ef67f3e6188.js"></script>
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
 
 
   </head>
@@ -58,7 +58,7 @@
 opentelemetry_api
       </a>
       <strong class="sidebar-projectVersion">
-        v0.5.0
+        v1.0.0-rc.2
       </strong>
     </div>
 
@@ -80,7 +80,7 @@ opentelemetry_api
     <div id="content" class="content-inner">
 
       <h1>
-otel_propagator_http_b3 <small class="app-vsn">(opentelemetry_api v0.5.0)</small>
+otel_propagator_http_b3 <small class="app-vsn">(opentelemetry_api v1.0.0-rc.2)</small>
 
       </h1>
 
@@ -105,16 +105,12 @@ otel_propagator_http_b3 <small class="app-vsn">(opentelemetry_api v0.5.0)</small
 
   </div>
 
-    <div class="summary-synopsis"><p>Callback implementation for <code class="inline">c::otel_propagator.extract/2</code>.</p></div>
-
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#inject/1">inject(Span_ctx)</a>
 
   </div>
-
-    <div class="summary-synopsis"><p>Callback implementation for <code class="inline">c::otel_propagator.inject/1</code>.</p></div>
 
 </div>
 <div class="summary-row">
@@ -177,12 +173,11 @@ Functions
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>extract(:otel_propagator.text_map(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()) ::
-  :opentelemetry.span_ctx() | :undefined</pre>
+          <pre>extract(otel_propagator:text_map(), term()) -> opentelemetry:span_ctx() | undefined.</pre>
 
       </div>
 
-<p>Callback implementation for <code class="inline">c::otel_propagator.extract/2</code>.</p>
+
   </section>
 </section>
 <section class="detail" id="inject/1">
@@ -202,11 +197,11 @@ Functions
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>inject(:opentelemetry.span_ctx() | :undefined) :: :otel_propagator.text_map()</pre>
+          <pre>inject(opentelemetry:span_ctx() | undefined) -> otel_propagator:text_map().</pre>
 
       </div>
 
-<p>Callback implementation for <code class="inline">c::otel_propagator.inject/1</code>.</p>
+
   </section>
 </section>
 <section class="detail" id="lookup/2">
@@ -285,7 +280,7 @@ Functions
         <p>
           <span class="line">
             Built using
-            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.0-dev) for the
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.2) for the
             <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
           </span>
           <span class="line">

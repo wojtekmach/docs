@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="ExDoc v0.24.0-dev">
-    <meta name="project" content="opentelemetry_api v0.5.0">
+    <meta name="generator" content="ExDoc v0.24.2">
+    <meta name="project" content="opentelemetry_api v1.0.0-rc.2">
 
-    <title>otel_tracer_noop — opentelemetry_api v0.5.0</title>
-    <link rel="stylesheet" href="dist/erlang-e0b321562cb0bb031ae0.css" />
+    <title>otel_tracer_noop — opentelemetry_api v1.0.0-rc.2</title>
+    <link rel="stylesheet" href="dist/erlang-342d9843ccb2e80b8d3f.css" />
 
-    <script src="dist/sidebar_items-ca37362dac.js"></script>
+    <script src="dist/sidebar_items-4b5e446996.js"></script>
 
       <script src="docs_config.js"></script>
 
-    <script async src="dist/app-f97730d45ef67f3e6188.js"></script>
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
 
 
   </head>
@@ -58,7 +58,7 @@
 opentelemetry_api
       </a>
       <strong class="sidebar-projectVersion">
-        v0.5.0
+        v1.0.0-rc.2
       </strong>
     </div>
 
@@ -80,7 +80,7 @@ opentelemetry_api
     <div id="content" class="content-inner">
 
       <h1>
-otel_tracer_noop <small class="app-vsn">(opentelemetry_api v0.5.0)</small>
+otel_tracer_noop <small class="app-vsn">(opentelemetry_api v1.0.0-rc.2)</small>
 
       </h1>
 
@@ -147,8 +147,6 @@ otel_tracer_noop <small class="app-vsn">(opentelemetry_api v0.5.0)</small>
 
   </div>
 
-    <div class="summary-synopsis"><p>Callback implementation for <code class="inline">c::otel_tracer.start_span/4</code>.</p></div>
-
 </div>
 <div class="summary-row">
   <div class="summary-signature">
@@ -162,8 +160,6 @@ otel_tracer_noop <small class="app-vsn">(opentelemetry_api v0.5.0)</small>
     <a href="#with_span/5">with_span(Ctx, Tracer, SpanName, Opts, Fun)</a>
 
   </div>
-
-    <div class="summary-synopsis"><p>Callback implementation for <code class="inline">c::otel_tracer.with_span/5</code>.</p></div>
 
 </div>
 
@@ -198,11 +194,12 @@ Functions
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>add_event(tracer, spanCtx, name, attributes) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()
-when tracer: :opentelemetry.tracer(),
-     name: :opentelemetry.event_name(),
-     attributes: :opentelemetry.attributes(),
-     spanCtx: :opentelemetry.span_ctx()</pre>
+          <pre>add_event(Tracer, SpanCtx, Name, Attributes) -> boolean()
+             when
+                 Tracer :: opentelemetry:tracer(),
+                 Name :: opentelemetry:event_name(),
+                 Attributes :: opentelemetry:attributes(),
+                 SpanCtx :: opentelemetry:span_ctx().</pre>
 
       </div>
 
@@ -226,10 +223,11 @@ when tracer: :opentelemetry.tracer(),
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>add_events(tracer, spanCtx, events) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()
-when tracer: :opentelemetry.tracer(),
-     events: :opentelemetry.events(),
-     spanCtx: :opentelemetry.span_ctx()</pre>
+          <pre>add_events(Tracer, SpanCtx, Events) -> boolean()
+              when
+                  Tracer :: opentelemetry:tracer(),
+                  Events :: opentelemetry:events(),
+                  SpanCtx :: opentelemetry:span_ctx().</pre>
 
       </div>
 
@@ -253,8 +251,7 @@ when tracer: :opentelemetry.tracer(),
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>end_span(:opentelemetry.tracer(), :opentelemetry.span_ctx()) ::
-  <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>() | {:error, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}</pre>
+          <pre>end_span(opentelemetry:tracer(), opentelemetry:span_ctx()) -> boolean() | {error, term()}.</pre>
 
       </div>
 
@@ -278,11 +275,12 @@ when tracer: :opentelemetry.tracer(),
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>set_attribute(tracer, spanCtx, key, value) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()
-when tracer: :opentelemetry.tracer(),
-     key: :opentelemetry.attribute_key(),
-     value: :opentelemetry.attribute_value(),
-     spanCtx: :opentelemetry.span_ctx()</pre>
+          <pre>set_attribute(Tracer, SpanCtx, Key, Value) -> boolean()
+                 when
+                     Tracer :: opentelemetry:tracer(),
+                     Key :: opentelemetry:attribute_key(),
+                     Value :: opentelemetry:attribute_value(),
+                     SpanCtx :: opentelemetry:span_ctx().</pre>
 
       </div>
 
@@ -306,10 +304,11 @@ when tracer: :opentelemetry.tracer(),
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>set_attributes(tracer, spanCtx, attributes) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()
-when tracer: :opentelemetry.tracer(),
-     attributes: :opentelemetry.attributes(),
-     spanCtx: :opentelemetry.span_ctx()</pre>
+          <pre>set_attributes(Tracer, SpanCtx, Attributes) -> boolean()
+                  when
+                      Tracer :: opentelemetry:tracer(),
+                      Attributes :: opentelemetry:attributes(),
+                      SpanCtx :: opentelemetry:span_ctx().</pre>
 
       </div>
 
@@ -333,10 +332,11 @@ when tracer: :opentelemetry.tracer(),
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>set_status(tracer, spanCtx, status) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()
-when tracer: :opentelemetry.tracer(),
-     status: :opentelemetry.status(),
-     spanCtx: :opentelemetry.span_ctx()</pre>
+          <pre>set_status(Tracer, SpanCtx, Status) -> boolean()
+              when
+                  Tracer :: opentelemetry:tracer(),
+                  Status :: opentelemetry:status(),
+                  SpanCtx :: opentelemetry:span_ctx().</pre>
 
       </div>
 
@@ -360,16 +360,15 @@ when tracer: :opentelemetry.tracer(),
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>start_span(
-  :otel_ctx.t(),
-  :opentelemetry.tracer(),
-  :opentelemetry.span_name(),
-  :otel_span.start_opts()
-) :: :opentelemetry.span_ctx()</pre>
+          <pre>start_span(otel_ctx:t(),
+           opentelemetry:tracer(),
+           opentelemetry:span_name(),
+           otel_span:start_opts()) ->
+              opentelemetry:span_ctx().</pre>
 
       </div>
 
-<p>Callback implementation for <code class="inline">c::otel_tracer.start_span/4</code>.</p>
+
   </section>
 </section>
 <section class="detail" id="update_name/3">
@@ -389,10 +388,11 @@ when tracer: :opentelemetry.tracer(),
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>update_name(tracer, spanCtx, name) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()
-when tracer: :opentelemetry.tracer(),
-     name: :opentelemetry.span_name(),
-     spanCtx: :opentelemetry.span_ctx()</pre>
+          <pre>update_name(Tracer, SpanCtx, Name) -> boolean()
+               when
+                   Tracer :: opentelemetry:tracer(),
+                   Name :: opentelemetry:span_name(),
+                   SpanCtx :: opentelemetry:span_ctx().</pre>
 
       </div>
 
@@ -416,18 +416,16 @@ when tracer: :opentelemetry.tracer(),
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>with_span(
-  :otel_ctx.t(),
-  :opentelemetry.tracer(),
-  :opentelemetry.span_name(),
-  :otel_span.start_opts(),
-  :otel_tracer.traced_fun(t)
-) :: t
-when t: var</pre>
+          <pre>with_span(otel_ctx:t(),
+          opentelemetry:tracer(),
+          opentelemetry:span_name(),
+          otel_span:start_opts(),
+          otel_tracer:traced_fun(T)) ->
+             T.</pre>
 
       </div>
 
-<p>Callback implementation for <code class="inline">c::otel_tracer.with_span/5</code>.</p>
+
   </section>
 </section>
 
@@ -438,7 +436,7 @@ when t: var</pre>
         <p>
           <span class="line">
             Built using
-            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.0-dev) for the
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.2) for the
             <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
           </span>
           <span class="line">

@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="ExDoc v0.24.0-dev">
-    <meta name="project" content="opentelemetry_api v0.5.0">
+    <meta name="generator" content="ExDoc v0.24.2">
+    <meta name="project" content="opentelemetry_api v1.0.0-rc.2">
 
-    <title>API Reference — opentelemetry_api v0.5.0</title>
-    <link rel="stylesheet" href="dist/erlang-e0b321562cb0bb031ae0.css" />
+    <title>API Reference — opentelemetry_api v1.0.0-rc.2</title>
+    <link rel="stylesheet" href="dist/erlang-342d9843ccb2e80b8d3f.css" />
 
-    <script src="dist/sidebar_items-ca37362dac.js"></script>
+    <script src="dist/sidebar_items-4b5e446996.js"></script>
 
       <script src="docs_config.js"></script>
 
-    <script async src="dist/app-f97730d45ef67f3e6188.js"></script>
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
 
 
   </head>
@@ -58,7 +58,7 @@
 opentelemetry_api
       </a>
       <strong class="sidebar-projectVersion">
-        v0.5.0
+        v1.0.0-rc.2
       </strong>
     </div>
 
@@ -80,7 +80,7 @@ opentelemetry_api
     <div id="content" class="content-inner">
 
 <h1>
-  API Reference <small class="app-vsn">opentelemetry_api v0.5.0</small>
+  API Reference <small class="app-vsn">opentelemetry_api v1.0.0-rc.2</small>
 </h1>
 
   <section class="details-list">
@@ -114,19 +114,6 @@ describing user-defined properties.</p></div>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="OpenTelemetry.Counter.html">OpenTelemetry.Counter</a>
-
-  </div>
-
-    <div class="summary-synopsis"><pre><code class="makeup elixir"><span class="kn">require</span><span class="w"> </span><span class="nc">OpenTelemetry.Counter</span><span class="w">
-
-</span><span class="nc">OpenTelemetry.Counter</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="6815862149-1">(</span><span class="s">&quot;some.counter&quot;</span><span class="p" data-group-id="6815862149-1">)</span><span class="w">
-
-</span><span class="nc">OpenTelemetry.Counter</span><span class="o">.</span><span class="n">add</span><span class="p" data-group-id="6815862149-2">(</span><span class="s">&quot;some.counter&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="6815862149-2">)</span></code></pre></div>
-
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
     <a href="OpenTelemetry.Ctx.html">OpenTelemetry.Ctx</a>
 
   </div>
@@ -134,30 +121,6 @@ describing user-defined properties.</p></div>
     <div class="summary-synopsis"><p>Ctx is responsible for propagating values within a process that are associated
 with a particular Trace or set of Baggage. <a href="OpenTelemetry.Tracer.html"><code class="inline">OpenTelemetry.Tracer</code></a> and
 <a href="OpenTelemetry.Baggage.html"><code class="inline">OpenTelemetry.Baggage</code></a> handle updating the Context.</p></div>
-
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="OpenTelemetry.Meter.html">OpenTelemetry.Meter</a>
-
-  </div>
-
-    <div class="summary-synopsis"><pre><code class="makeup elixir"><span class="kn">require</span><span class="w"> </span><span class="nc">OpenTelemetry.ValueRecorder</span><span class="w">
-</span><span class="kn">require</span><span class="w"> </span><span class="nc">OpenTelemetry.Counter</span><span class="w">
-</span><span class="kn">require</span><span class="w"> </span><span class="nc">OpenTelemetry.Meter</span><span class="w">
-
-</span><span class="nc">OpenTelemetry</span><span class="o">.</span><span class="n">register_application_meter</span><span class="p" data-group-id="9880173391-1">(</span><span class="nc">Your.Application</span><span class="p" data-group-id="9880173391-1">)</span><span class="w">
-
-</span><span class="nc">OpenTelemetry.Meter</span><span class="o">.</span><span class="n">new_instruments</span><span class="p" data-group-id="9880173391-2">(</span><span class="p" data-group-id="9880173391-3">[</span><span class="nc">OpenTelemetry.ValueRecorder</span><span class="o">.</span><span class="n">instrument</span><span class="p" data-group-id="9880173391-4">(</span><span class="s">&quot;some.latency&quot;</span><span class="p" data-group-id="9880173391-4">)</span><span class="p">,</span><span class="w">
-                                     </span><span class="nc">OpenTelemetry.Counter</span><span class="o">.</span><span class="n">instrument</span><span class="p" data-group-id="9880173391-5">(</span><span class="s">&quot;some.counter&quot;</span><span class="p" data-group-id="9880173391-5">)</span><span class="p" data-group-id="9880173391-3">]</span><span class="p" data-group-id="9880173391-2">)</span><span class="w">
-
-</span><span class="c1"># use the new instrument by name</span><span class="w">
-</span><span class="nc">OpenTelemetry.Counter</span><span class="o">.</span><span class="n">add</span><span class="p" data-group-id="9880173391-6">(</span><span class="s">&quot;some.counter&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="9880173391-6">)</span><span class="w">
-
-</span><span class="c1"># or use a bound instrument</span><span class="w">
-</span><span class="n">bound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">OpenTelemetry.Meter</span><span class="o">.</span><span class="n">bind</span><span class="p" data-group-id="9880173391-7">(</span><span class="s">&quot;some.latency&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9880173391-8">[</span><span class="p" data-group-id="9880173391-8">]</span><span class="p" data-group-id="9880173391-7">)</span><span class="w">
-</span><span class="c1"># measure time spent on some function and then record it</span><span class="w">
-</span><span class="nc">OpenTelemetry.ValueRecorder</span><span class="o">.</span><span class="n">record</span><span class="p" data-group-id="9880173391-9">(</span><span class="n">bound</span><span class="p">,</span><span class="w"> </span><span class="n">time</span><span class="p" data-group-id="9880173391-9">)</span></code></pre></div>
 
 </div>
 <div class="summary-row">
@@ -172,68 +135,11 @@ An example of creating an Event and adding it to the current Span</p></div>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="OpenTelemetry.SumObserver.html">OpenTelemetry.SumObserver</a>
-
-  </div>
-
-    <div class="summary-synopsis"><pre><code class="makeup elixir"><span class="kn">require</span><span class="w"> </span><span class="nc">OpenTelemetry.SumObserver</span><span class="w">
-
-</span><span class="nc">OpenTelemetry.SumObserver</span><span class="o">.</span><span class="n">set_callback</span><span class="p" data-group-id="8694872160-1">(</span><span class="s">&quot;some.counter&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="nc">OpenTelemetry.SumObserver</span><span class="o">.</span><span class="n">observe</span><span class="p" data-group-id="8694872160-2">(</span><span class="ni">&amp;1</span><span class="p">,</span><span class="w"> </span><span class="mi">33</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8694872160-3">[</span><span class="p" data-group-id="8694872160-3">]</span><span class="p" data-group-id="8694872160-2">)</span><span class="p" data-group-id="8694872160-1">)</span></code></pre></div>
-
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
     <a href="OpenTelemetry.Tracer.html">OpenTelemetry.Tracer</a>
 
   </div>
 
     <div class="summary-synopsis"><p>This module contains macros for Tracer operations around the lifecycle of the Spans within a Trace.</p></div>
-
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="OpenTelemetry.UpdownCounter.html">OpenTelemetry.UpdownCounter</a>
-
-  </div>
-
-    <div class="summary-synopsis"><pre><code class="makeup elixir"><span class="kn">require</span><span class="w"> </span><span class="nc">OpenTelemetry.UpdownCounter</span><span class="w">
-
-</span><span class="nc">OpenTelemetry.UpdownCounter</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="0010733323-1">(</span><span class="s">&quot;some.counter&quot;</span><span class="p" data-group-id="0010733323-1">)</span><span class="w">
-
-</span><span class="nc">OpenTelemetry.UpdownCounter</span><span class="o">.</span><span class="n">add</span><span class="p" data-group-id="0010733323-2">(</span><span class="s">&quot;some.counter&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">3</span><span class="p" data-group-id="0010733323-2">)</span></code></pre></div>
-
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="OpenTelemetry.UpdownSumObserver.html">OpenTelemetry.UpdownSumObserver</a>
-
-  </div>
-
-    <div class="summary-synopsis"><pre><code class="makeup elixir"><span class="kn">require</span><span class="w"> </span><span class="nc">OpenTelemetry.UpdownSumObserver</span><span class="w">
-
-</span><span class="nc">OpenTelemetry.UpdownSumObserver</span><span class="o">.</span><span class="n">set_callback</span><span class="p" data-group-id="9228620993-1">(</span><span class="s">&quot;some.counter&quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">OpenTelemetry.UpdownSumObserver</span><span class="o">.</span><span class="n">observe</span><span class="p" data-group-id="9228620993-2">(</span><span class="ni">&amp;1</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">33</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9228620993-3">[</span><span class="p" data-group-id="9228620993-3">]</span><span class="p" data-group-id="9228620993-2">)</span><span class="p" data-group-id="9228620993-1">)</span></code></pre></div>
-
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="OpenTelemetry.ValueObserver.html">OpenTelemetry.ValueObserver</a>
-
-  </div>
-
-    <div class="summary-synopsis"><pre><code class="makeup elixir"><span class="kn">require</span><span class="w"> </span><span class="nc">OpenTelemetry.ValueObserver</span><span class="w">
-
-</span><span class="nc">OpenTelemetry.ValueObserver</span><span class="o">.</span><span class="n">set_callback</span><span class="p" data-group-id="8458663495-1">(</span><span class="s">&quot;some.counter&quot;</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="8458663495-2">fn</span><span class="w"> </span><span class="n">o</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nc">OpenTelemetry.ValueObserver</span><span class="o">.</span><span class="n">observe</span><span class="p" data-group-id="8458663495-3">(</span><span class="n">o</span><span class="p">,</span><span class="w"> </span><span class="mi">33</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8458663495-4">[</span><span class="p" data-group-id="8458663495-4">]</span><span class="p" data-group-id="8458663495-3">)</span><span class="p">)</span></code></pre></div>
-
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="OpenTelemetry.ValueRecorder.html">OpenTelemetry.ValueRecorder</a>
-
-  </div>
-
-    <div class="summary-synopsis"><pre><code class="makeup elixir"><span class="kn">require</span><span class="w"> </span><span class="nc">OpenTelemetry.ValueRecorder</span><span class="w">
-
-</span><span class="nc">OpenTelemetry.ValueRecorder</span><span class="o">.</span><span class="n">record</span><span class="p" data-group-id="8356511928-1">(</span><span class="s">&quot;some.recorder&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="8356511928-1">)</span></code></pre></div>
 
 </div>
 <div class="summary-row">
@@ -256,57 +162,11 @@ An example of creating an Event and adding it to the current Span</p></div>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="otel_counter.html">otel_counter</a>
-
-  </div>
-
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
     <a href="otel_ctx.html">otel_ctx</a>
 
   </div>
 
     <div class="summary-synopsis">Ctx is responsible for propagating values within a process that are associated with a particular Trace or set of Baggage. <a href="OpenTelemetry.Tracer.html"><code>OpenTelemetry.Tracer</code></a> and <a href="OpenTelemetry.Baggage.html"><code>OpenTelemetry.Baggage</code></a> handle updating the Context.</div>
-
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="otel_instrument.html">otel_instrument</a>
-
-  </div>
-
-    <div class="summary-synopsis">All measurements are associated with an instrument. To record measurements for an instrument it must first be created with <code>new</code> and then can be referenced by name.</div>
-
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="otel_meter.html">otel_meter</a>
-
-  </div>
-
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="otel_meter_noop.html">otel_meter_noop</a>
-
-  </div>
-
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="otel_meter_provider.html">otel_meter_provider</a>
-
-  </div>
-
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="otel_observer.html">otel_observer</a>
-
-  </div>
-
-    <div class="summary-synopsis">An <code>Observer</code> is a callback based instrument with a <code>LastValue</code> aggregator. On each collection cycle each Observer callback is run and passed an <code>ObserverInstrument</code> variable to use when <code>observe</code>ing the new value, passing the <code>ObserverInstrument</code>, the new value and a list of attributes, key/value pairs.</div>
 
 </div>
 <div class="summary-row">
@@ -341,13 +201,6 @@ An example of creating an Event and adding it to the current Span</p></div>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="otel_sum_observer.html">otel_sum_observer</a>
-
-  </div>
-
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
     <a href="otel_tracer.html">otel_tracer</a>
 
   </div>
@@ -363,34 +216,6 @@ An example of creating an Event and adding it to the current Span</p></div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="otel_tracer_provider.html">otel_tracer_provider</a>
-
-  </div>
-
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="otel_updown_counter.html">otel_updown_counter</a>
-
-  </div>
-
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="otel_updown_sum_observer.html">otel_updown_sum_observer</a>
-
-  </div>
-
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="otel_value_observer.html">otel_value_observer</a>
-
-  </div>
-
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="otel_value_recorder.html">otel_value_recorder</a>
 
   </div>
 
@@ -422,7 +247,7 @@ Erlang/Elixir OpenTelemetry API
         <p>
           <span class="line">
             Built using
-            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.0-dev) for the
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.2) for the
             <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
           </span>
           <span class="line">

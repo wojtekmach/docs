@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="ExDoc v0.24.0-dev">
-    <meta name="project" content="opentelemetry_api v0.5.0">
+    <meta name="generator" content="ExDoc v0.24.2">
+    <meta name="project" content="opentelemetry_api v1.0.0-rc.2">
 
-    <title>OpenTelemetry.Tracer — opentelemetry_api v0.5.0</title>
-    <link rel="stylesheet" href="dist/erlang-e0b321562cb0bb031ae0.css" />
+    <title>OpenTelemetry.Tracer — opentelemetry_api v1.0.0-rc.2</title>
+    <link rel="stylesheet" href="dist/erlang-342d9843ccb2e80b8d3f.css" />
 
-    <script src="dist/sidebar_items-ca37362dac.js"></script>
+    <script src="dist/sidebar_items-4b5e446996.js"></script>
 
       <script src="docs_config.js"></script>
 
-    <script async src="dist/app-f97730d45ef67f3e6188.js"></script>
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
 
 
   </head>
@@ -58,7 +58,7 @@
 opentelemetry_api
       </a>
       <strong class="sidebar-projectVersion">
-        v0.5.0
+        v1.0.0-rc.2
       </strong>
     </div>
 
@@ -80,7 +80,7 @@ opentelemetry_api
     <div id="content" class="content-inner">
 
       <h1>
-OpenTelemetry.Tracer <small class="app-vsn">(opentelemetry_api v0.5.0)</small>
+OpenTelemetry.Tracer <small class="app-vsn">(opentelemetry_api v1.0.0-rc.2)</small>
 
       </h1>
 
@@ -92,9 +92,9 @@ block within the context of a newly started span that is ended when the code blo
 assuming <a href="OpenTelemetry.html#register_application_tracer/1"><code class="inline">OpenTelemetry.register_application_tracer/1</code></a> has been called for the Application. If
 not then the default Tracer is used.</p><pre><code class="makeup elixir"><span class="kn">require</span><span class="w"> </span><span class="nc">OpenTelemetry.Tracer</span><span class="w">
 
-</span><span class="nc">OpenTelemetry.Tracer</span><span class="o">.</span><span class="n">with_span</span><span class="w"> </span><span class="s">&quot;span-1&quot;</span><span class="w"> </span><span class="k" data-group-id="4596255115-1">do</span><span class="w">
-  </span><span class="n">...</span><span class="w"> </span><span class="k" data-group-id="4596255115-2">do</span><span class="w"> </span><span class="n">something</span><span class="w"> </span><span class="n">...</span><span class="w">
-</span><span class="k" data-group-id="4596255115-2">end</span></code></pre>
+</span><span class="nc">OpenTelemetry.Tracer</span><span class="o">.</span><span class="n">with_span</span><span class="w"> </span><span class="s">&quot;span-1&quot;</span><span class="w"> </span><span class="k" data-group-id="1822244002-1">do</span><span class="w">
+  </span><span class="n">...</span><span class="w"> </span><span class="k" data-group-id="1822244002-2">do</span><span class="w"> </span><span class="n">something</span><span class="w"> </span><span class="n">...</span><span class="w">
+</span><span class="k" data-group-id="1822244002-2">end</span></code></pre>
         </section>
 
 
@@ -204,7 +204,7 @@ child Spans that may exist of this Span.</p></div>
 
   </div>
 
-    <div class="summary-synopsis"><p>Takes a <code class="inline">t:OpenTelemetry.ctx/0</code> and the <a href="OpenTelemetry.html#t:span_ctx/0"><code class="inline">OpenTelemetry.span_ctx/0</code></a> and the Tracer sets
+    <div class="summary-synopsis"><p>Takes a <a href="OpenTelemetry.Ctx.html#t:t/0"><code class="inline">OpenTelemetry.Ctx.t/0</code></a> and the <a href="OpenTelemetry.html#t:span_ctx/0"><code class="inline">OpenTelemetry.span_ctx/0</code></a> and the Tracer sets
 it to the current span in the pass Context.</p></div>
 
 </div>
@@ -509,7 +509,7 @@ child Spans that may exist of this Span.</p><p>The Span in the current Context h
 
   <section class="docstring">
 
-<p>Takes a <code class="inline">t:OpenTelemetry.ctx/0</code> and the <a href="OpenTelemetry.html#t:span_ctx/0"><code class="inline">OpenTelemetry.span_ctx/0</code></a> and the Tracer sets
+<p>Takes a <a href="OpenTelemetry.Ctx.html#t:t/0"><code class="inline">OpenTelemetry.Ctx.t/0</code></a> and the <a href="OpenTelemetry.html#t:span_ctx/0"><code class="inline">OpenTelemetry.span_ctx/0</code></a> and the Tracer sets
 it to the current span in the pass Context.</p>
   </section>
 </section>
@@ -663,7 +663,7 @@ before the block.</p><p>See <a href="#start_span/2"><code class="inline">start_s
         <p>
           <span class="line">
             Built using
-            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.0-dev) for the
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.2) for the
             <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
           </span>
           <span class="line">

@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="ExDoc v0.24.0-dev">
-    <meta name="project" content="opentelemetry_api v0.5.0">
+    <meta name="generator" content="ExDoc v0.24.2">
+    <meta name="project" content="opentelemetry_api v1.0.0-rc.2">
 
-    <title>otel_baggage — opentelemetry_api v0.5.0</title>
-    <link rel="stylesheet" href="dist/erlang-e0b321562cb0bb031ae0.css" />
+    <title>otel_baggage — opentelemetry_api v1.0.0-rc.2</title>
+    <link rel="stylesheet" href="dist/erlang-342d9843ccb2e80b8d3f.css" />
 
-    <script src="dist/sidebar_items-ca37362dac.js"></script>
+    <script src="dist/sidebar_items-4b5e446996.js"></script>
 
       <script src="docs_config.js"></script>
 
-    <script async src="dist/app-f97730d45ef67f3e6188.js"></script>
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
 
 
   </head>
@@ -58,7 +58,7 @@
 opentelemetry_api
       </a>
       <strong class="sidebar-projectVersion">
-        v0.5.0
+        v1.0.0-rc.2
       </strong>
     </div>
 
@@ -80,7 +80,7 @@ opentelemetry_api
     <div id="content" class="content-inner">
 
       <h1>
-otel_baggage <small class="app-vsn">(opentelemetry_api v0.5.0)</small>
+otel_baggage <small class="app-vsn">(opentelemetry_api v1.0.0-rc.2)</small>
 
       </h1>
 
@@ -112,6 +112,13 @@ Baggage is used to annotate telemetry, adding context and information to metrics
 </div>
 <div class="summary-row">
   <div class="summary-signature">
+    <a href="#t:metadata/0">metadata/0</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
     <a href="#t:t/0">t/0</a>
 
   </div>
@@ -133,7 +140,70 @@ Baggage is used to annotate telemetry, adding context and information to metrics
     </h2>
 <div class="summary-row">
   <div class="summary-signature">
+    <a href="#check_utf8/1">check_utf8(Cs)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
     <a href="#clear/0">clear()</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#clear/1">clear(Ctx)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#convert_to_binary/3">convert_to_binary(Binary, InEncoding, OutEncoding)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#decode_key/1">decode_key(Key)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#decode_value/1">decode_value(ValueAndMetadata)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#encode_key/1">encode_key(Key)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#encode_metadata/1">encode_metadata(Metadata)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#encode_value/1">encode_value(_)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#form_urlencode/2">form_urlencode(Cs, _)</a>
 
   </div>
 
@@ -147,6 +217,13 @@ Baggage is used to annotate telemetry, adding context and information to metrics
 </div>
 <div class="summary-row">
   <div class="summary-signature">
+    <a href="#get_all/1">get_all(Ctx)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
     <a href="#get_text_map_propagators/0">get_text_map_propagators()</a>
 
   </div>
@@ -154,7 +231,63 @@ Baggage is used to annotate telemetry, adding context and information to metrics
 </div>
 <div class="summary-row">
   <div class="summary-signature">
+    <a href="#html5_byte_encode/1">html5_byte_encode(B)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#html5_byte_encode/2">html5_byte_encode(H, Acc)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#is_hex_digit/1">is_hex_digit(C)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#is_url_char/1">is_url_char(C)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
     <a href="#lookup/2">lookup(Header, Rest)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#metadata_decode/1">metadata_decode(Metadata)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#percent_decode/1">percent_decode(URI)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#raw_decode/1">raw_decode(Cs)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#raw_decode/2">raw_decode(L, Acc)</a>
 
   </div>
 
@@ -169,6 +302,62 @@ Baggage is used to annotate telemetry, adding context and information to metrics
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#set/2">set(Key, Value)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#set/3">set(Key, Value, Metadata)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#set/4">set(Ctx, Key, Value, Metadata)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#string_decode/1">string_decode(S)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#to_binary/1">to_binary(String)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#update_metadata/1">update_metadata(Value)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#update_metadata/2">update_metadata(Value, Metadata)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#verify_baggage/1">verify_baggage(KeyValues)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#verify_metadata/1">verify_metadata(M)</a>
 
   </div>
 
@@ -205,7 +394,31 @@ Types
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>key() :: string()</pre>
+          <pre>key() :: unicode:unicode_binary().</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:metadata/0">
+
+  <div class="detail-header">
+    <a href="#t:metadata/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">metadata/0</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>metadata() :: [unicode:unicode_binary() | {unicode:unicode_binary(), unicode:unicode_binary()}].</pre>
 
       </div>
 
@@ -229,7 +442,7 @@ Types
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>t() :: %{optional(<a href="#type-key">key</a>()) =&gt; <a href="#type-value">value</a>()}</pre>
+          <pre>t() :: #{key() => {value(), metadata()}}.</pre>
 
       </div>
 
@@ -253,7 +466,7 @@ Types
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>value() :: string()</pre>
+          <pre>value() :: unicode:unicode_binary().</pre>
 
       </div>
 
@@ -273,6 +486,23 @@ Types
 Functions
           </h1>
           <div class="functions-list">
+<section class="detail" id="check_utf8/1">
+
+  <div class="detail-header">
+    <a href="#check_utf8/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">check_utf8(Cs)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
 <section class="detail" id="clear/0">
 
   <div class="detail-header">
@@ -290,9 +520,152 @@ Functions
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>clear() :: :ok</pre>
+          <pre>clear() -> ok.</pre>
 
       </div>
+
+
+  </section>
+</section>
+<section class="detail" id="clear/1">
+
+  <div class="detail-header">
+    <a href="#clear/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">clear(Ctx)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>clear(otel_ctx:t()) -> otel_ctx:t().</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="convert_to_binary/3">
+
+  <div class="detail-header">
+    <a href="#convert_to_binary/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">convert_to_binary(Binary, InEncoding, OutEncoding)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="decode_key/1">
+
+  <div class="detail-header">
+    <a href="#decode_key/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">decode_key(Key)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="decode_value/1">
+
+  <div class="detail-header">
+    <a href="#decode_value/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">decode_value(ValueAndMetadata)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="encode_key/1">
+
+  <div class="detail-header">
+    <a href="#encode_key/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">encode_key(Key)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="encode_metadata/1">
+
+  <div class="detail-header">
+    <a href="#encode_metadata/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">encode_metadata(Metadata)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="encode_value/1">
+
+  <div class="detail-header">
+    <a href="#encode_value/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">encode_value(_)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="form_urlencode/2">
+
+  <div class="detail-header">
+    <a href="#form_urlencode/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">form_urlencode(Cs, _)</h1>
+
+
+  </div>
+
+  <section class="docstring">
 
 
   </section>
@@ -314,7 +687,31 @@ Functions
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>get_all() :: <a href="#type-t">t</a>()</pre>
+          <pre>get_all() -> t().</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="get_all/1">
+
+  <div class="detail-header">
+    <a href="#get_all/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">get_all(Ctx)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>get_all(otel_ctx:t()) -> t().</pre>
 
       </div>
 
@@ -338,10 +735,86 @@ Functions
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>get_text_map_propagators() ::
-  {:otel_propagator.text_map_extractor(), :otel_propagator.text_map_injector()}</pre>
+          <pre>get_text_map_propagators() ->
+                            {otel_propagator:text_map_extractor(),
+                             otel_propagator:text_map_injector()}.</pre>
 
       </div>
+
+
+  </section>
+</section>
+<section class="detail" id="html5_byte_encode/1">
+
+  <div class="detail-header">
+    <a href="#html5_byte_encode/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">html5_byte_encode(B)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="html5_byte_encode/2">
+
+  <div class="detail-header">
+    <a href="#html5_byte_encode/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">html5_byte_encode(H, Acc)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="is_hex_digit/1">
+
+  <div class="detail-header">
+    <a href="#is_hex_digit/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">is_hex_digit(C)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>is_hex_digit(char()) -> boolean().</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="is_url_char/1">
+
+  <div class="detail-header">
+    <a href="#is_url_char/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">is_url_char(C)</h1>
+
+
+  </div>
+
+  <section class="docstring">
 
 
   </section>
@@ -354,6 +827,92 @@ Functions
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">lookup(Header, Rest)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="metadata_decode/1">
+
+  <div class="detail-header">
+    <a href="#metadata_decode/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">metadata_decode(Metadata)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="percent_decode/1">
+
+  <div class="detail-header">
+    <a href="#percent_decode/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">percent_decode(URI)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>percent_decode(URI) -> Result
+                  when
+                      URI :: uri_string:uri_string(),
+                      Result ::
+                          uri_string:uri_string() | {error, {invalid, {atom(), {term(), term()}}}}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="raw_decode/1">
+
+  <div class="detail-header">
+    <a href="#raw_decode/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">raw_decode(Cs)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>raw_decode(list() | binary()) -> list() | binary() | uri_string:error().</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="raw_decode/2">
+
+  <div class="detail-header">
+    <a href="#raw_decode/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">raw_decode(L, Acc)</h1>
 
 
   </div>
@@ -380,7 +939,7 @@ Functions
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>set(%{optional(<a href="#type-key">key</a>()) =&gt; <a href="#type-value">value</a>()} | [{<a href="#type-key">key</a>(), <a href="#type-value">value</a>()}]) :: :ok</pre>
+          <pre>set(#{key() => value()} | [{key(), value()}]) -> ok.</pre>
 
       </div>
 
@@ -404,9 +963,160 @@ Functions
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>set(<a href="#type-key">key</a>(), <a href="#type-value">value</a>()) :: :ok</pre>
+          <pre>set(otel_ctx:t() | key() | unicode:charlist(), #{key() => value()} | [{key(), value()}] | value()) ->
+       otel_ctx:t().</pre>
 
       </div>
+
+
+  </section>
+</section>
+<section class="detail" id="set/3">
+
+  <div class="detail-header">
+    <a href="#set/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">set(Key, Value, Metadata)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>set(otel_ctx:t() | key(), key() | value(), value() | list()) -> ok | otel_ctx:t().</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="set/4">
+
+  <div class="detail-header">
+    <a href="#set/4" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">set(Ctx, Key, Value, Metadata)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>set(otel_ctx:t(), key(), value(), metadata()) -> otel_ctx:t().</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="string_decode/1">
+
+  <div class="detail-header">
+    <a href="#string_decode/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">string_decode(S)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="to_binary/1">
+
+  <div class="detail-header">
+    <a href="#to_binary/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">to_binary(String)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="update_metadata/1">
+
+  <div class="detail-header">
+    <a href="#update_metadata/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">update_metadata(Value)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="update_metadata/2">
+
+  <div class="detail-header">
+    <a href="#update_metadata/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">update_metadata(Value, Metadata)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="verify_baggage/1">
+
+  <div class="detail-header">
+    <a href="#verify_baggage/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">verify_baggage(KeyValues)</h1>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="verify_metadata/1">
+
+  <div class="detail-header">
+    <a href="#verify_metadata/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">verify_metadata(M)</h1>
+
+
+  </div>
+
+  <section class="docstring">
 
 
   </section>
@@ -419,7 +1129,7 @@ Functions
         <p>
           <span class="line">
             Built using
-            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.0-dev) for the
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.2) for the
             <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
           </span>
           <span class="line">

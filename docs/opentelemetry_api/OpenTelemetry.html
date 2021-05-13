@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="ExDoc v0.24.0-dev">
-    <meta name="project" content="opentelemetry_api v0.5.0">
+    <meta name="generator" content="ExDoc v0.24.2">
+    <meta name="project" content="opentelemetry_api v1.0.0-rc.2">
 
-    <title>opentelemetry — opentelemetry_api v0.5.0</title>
-    <link rel="stylesheet" href="dist/erlang-e0b321562cb0bb031ae0.css" />
+    <title>opentelemetry — opentelemetry_api v1.0.0-rc.2</title>
+    <link rel="stylesheet" href="dist/erlang-342d9843ccb2e80b8d3f.css" />
 
-    <script src="dist/sidebar_items-ca37362dac.js"></script>
+    <script src="dist/sidebar_items-4b5e446996.js"></script>
 
       <script src="docs_config.js"></script>
 
-    <script async src="dist/app-f97730d45ef67f3e6188.js"></script>
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
 
 
   </head>
@@ -58,7 +58,7 @@
 opentelemetry_api
       </a>
       <strong class="sidebar-projectVersion">
-        v0.5.0
+        v1.0.0-rc.2
       </strong>
     </div>
 
@@ -80,7 +80,7 @@ opentelemetry_api
     <div id="content" class="content-inner">
 
       <h1>
-opentelemetry <small class="app-vsn">(opentelemetry_api v0.5.0)</small>
+opentelemetry <small class="app-vsn">(opentelemetry_api v1.0.0-rc.2)</small>
 
       </h1>
 
@@ -162,13 +162,6 @@ opentelemetry <small class="app-vsn">(opentelemetry_api v0.5.0)</small>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#t:links/0">links/0</a>
-
-  </div>
-
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="#t:meter/0">meter/0</a>
 
   </div>
 
@@ -328,20 +321,6 @@ opentelemetry <small class="app-vsn">(opentelemetry_api v0.5.0)</small>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#get_meter/0">get_meter()</a>
-
-  </div>
-
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="#get_meter/1">get_meter(Name)</a>
-
-  </div>
-
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
     <a href="#get_text_map_extractors/0">get_text_map_extractors()</a>
 
   </div>
@@ -405,21 +384,7 @@ opentelemetry <small class="app-vsn">(opentelemetry_api v0.5.0)</small>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#register_application_meter/1">register_application_meter(Name)</a>
-
-  </div>
-
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
     <a href="#register_application_tracer/1">register_application_tracer(Name)</a>
-
-  </div>
-
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="#register_meter/2">register_meter(Name, Vsn)</a>
 
   </div>
 
@@ -433,21 +398,7 @@ opentelemetry <small class="app-vsn">(opentelemetry_api v0.5.0)</small>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#set_default_meter/1">set_default_meter(Meter)</a>
-
-  </div>
-
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
     <a href="#set_default_tracer/1">set_default_tracer(Tracer)</a>
-
-  </div>
-
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="#set_meter/2">set_meter(Name, Meter)</a>
 
   </div>
 
@@ -514,6 +465,13 @@ opentelemetry <small class="app-vsn">(opentelemetry_api v0.5.0)</small>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
+    <a href="#verify_and_set_term/4">verify_and_set_term(AppKey, Module, TermKey, Behaviour)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
     <a href="#verify_module_exists/1">verify_module_exists(Module)</a>
 
   </div>
@@ -551,7 +509,7 @@ Types
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>attribute() :: {<a href="#type-attribute_key">attribute_key</a>(), <a href="#type-attribute_value">attribute_value</a>()}</pre>
+          <pre>attribute() :: {attribute_key(), attribute_value()}.</pre>
 
       </div>
 
@@ -575,7 +533,7 @@ Types
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>attribute_key() :: <a href="http://www.erlang.org/doc/man/unicode.html#type-unicode_binary">:unicode.unicode_binary</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()</pre>
+          <pre>attribute_key() :: unicode:unicode_binary() | atom().</pre>
 
       </div>
 
@@ -599,7 +557,7 @@ Types
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>attribute_value() :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">any</a>()</pre>
+          <pre>attribute_value() :: any().</pre>
 
       </div>
 
@@ -623,7 +581,7 @@ Types
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>attributes() :: [attribute()]</pre>
+          <pre>attributes() :: [attribute()].</pre>
 
       </div>
 
@@ -647,7 +605,7 @@ Types
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>event() :: record(:event)</pre>
+          <pre>event() :: #event{}.</pre>
 
       </div>
 
@@ -671,7 +629,7 @@ Types
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>event_name() :: <a href="http://www.erlang.org/doc/man/unicode.html#type-unicode_binary">:unicode.unicode_binary</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()</pre>
+          <pre>event_name() :: unicode:unicode_binary() | atom().</pre>
 
       </div>
 
@@ -695,7 +653,7 @@ Types
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>events() :: [record(:event)]</pre>
+          <pre>events() :: [#event{}].</pre>
 
       </div>
 
@@ -719,7 +677,7 @@ Types
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>link() :: record(:link)</pre>
+          <pre>link() :: #link{}.</pre>
 
       </div>
 
@@ -743,31 +701,7 @@ Types
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>links() :: [record(:link)]</pre>
-
-      </div>
-
-
-  </section>
-</section>
-<section class="detail" id="t:meter/0">
-
-  <div class="detail-header">
-    <a href="#t:meter/0" class="detail-link" title="Link to this type">
-      <span class="icon-link" aria-hidden="true"></span>
-      <span class="sr-only">Link to this type</span>
-    </a>
-    <h1 class="signature">meter/0</h1>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <h2>Specs</h2>
-      <div class="specs">
-
-          <pre>meter() :: {<a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">module</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}</pre>
+          <pre>links() :: [#link{}].</pre>
 
       </div>
 
@@ -791,9 +725,7 @@ Types
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>resource() :: %{
-  optional(<a href="http://www.erlang.org/doc/man/unicode.html#type-unicode_binary">:unicode.unicode_binary</a>()) =&gt; <a href="http://www.erlang.org/doc/man/unicode.html#type-unicode_binary">:unicode.unicode_binary</a>()
-}</pre>
+          <pre>resource() :: #{unicode:unicode_binary() => unicode:unicode_binary()}.</pre>
 
       </div>
 
@@ -817,7 +749,7 @@ Types
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>span() :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()</pre>
+          <pre>span() :: term().</pre>
 
       </div>
 
@@ -841,7 +773,7 @@ Types
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>span_ctx() :: record(:span_ctx)</pre>
+          <pre>span_ctx() :: #span_ctx{}.</pre>
 
       </div>
 
@@ -865,7 +797,7 @@ Types
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>span_id() :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>()</pre>
+          <pre>span_id() :: non_neg_integer().</pre>
 
       </div>
 
@@ -889,7 +821,7 @@ Types
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>span_kind() :: :internal | :server | :client | :producer | :consumer</pre>
+          <pre>span_kind() :: internal | server | client | producer | consumer.</pre>
 
       </div>
 
@@ -913,7 +845,7 @@ Types
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>span_name() :: <a href="http://www.erlang.org/doc/man/unicode.html#type-unicode_binary">:unicode.unicode_binary</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()</pre>
+          <pre>span_name() :: unicode:unicode_binary() | atom().</pre>
 
       </div>
 
@@ -937,7 +869,7 @@ Types
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>status() :: record(:status)</pre>
+          <pre>status() :: #status{}.</pre>
 
       </div>
 
@@ -961,7 +893,7 @@ Types
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>status_code() :: :unset | :ok | :error</pre>
+          <pre>status_code() :: unset | ok | error.</pre>
 
       </div>
 
@@ -985,7 +917,7 @@ Types
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>text_map() :: [{<a href="http://www.erlang.org/doc/man/unicode.html#type-unicode_binary">:unicode.unicode_binary</a>(), <a href="http://www.erlang.org/doc/man/unicode.html#type-unicode_binary">:unicode.unicode_binary</a>()}]</pre>
+          <pre>text_map() :: [{unicode:unicode_binary(), unicode:unicode_binary()}].</pre>
 
       </div>
 
@@ -1009,7 +941,7 @@ Types
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>timestamp() :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()</pre>
+          <pre>timestamp() :: integer().</pre>
 
       </div>
 
@@ -1033,7 +965,7 @@ Types
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>trace_flags() :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>()</pre>
+          <pre>trace_flags() :: non_neg_integer().</pre>
 
       </div>
 
@@ -1057,7 +989,7 @@ Types
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>trace_id() :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>()</pre>
+          <pre>trace_id() :: non_neg_integer().</pre>
 
       </div>
 
@@ -1081,7 +1013,7 @@ Types
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>tracer() :: {<a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">module</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}</pre>
+          <pre>tracer() :: {module(), term()}.</pre>
 
       </div>
 
@@ -1105,7 +1037,7 @@ Types
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>tracestate() :: [{<a href="http://www.erlang.org/doc/man/unicode.html#type-latin1_chardata">:unicode.latin1_chardata</a>(), <a href="http://www.erlang.org/doc/man/unicode.html#type-latin1_chardata">:unicode.latin1_chardata</a>()}]</pre>
+          <pre>tracestate() :: [{unicode:latin1_chardata(), unicode:latin1_chardata()}].</pre>
 
       </div>
 
@@ -1142,7 +1074,7 @@ Functions
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>convert_timestamp(<a href="#type-timestamp">timestamp</a>(), <a href="http://www.erlang.org/doc/man/erlang.html#type-time_unit">:erlang.time_unit</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()</pre>
+          <pre>convert_timestamp(timestamp(), erlang:time_unit()) -> integer().</pre>
 
       </div>
 
@@ -1166,8 +1098,8 @@ Convert a native monotonic timestamp to POSIX time of any <a href="erlang#time_u
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>event(name, attributes) :: <a href="#type-event">event</a>() | :undefined
-when name: <a href="http://www.erlang.org/doc/man/unicode.html#type-unicode_binary">:unicode.unicode_binary</a>(), attributes: <a href="#type-attributes">attributes</a>()</pre>
+          <pre>event(Name, Attributes) -> event() | undefined
+         when Name :: unicode:unicode_binary(), Attributes :: attributes().</pre>
 
       </div>
 
@@ -1191,10 +1123,11 @@ when name: <a href="http://www.erlang.org/doc/man/unicode.html#type-unicode_bina
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>event(timestamp, name, attributes) :: <a href="#type-event">event</a>() | :undefined
-when timestamp: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>(),
-     name: <a href="http://www.erlang.org/doc/man/unicode.html#type-unicode_binary">:unicode.unicode_binary</a>(),
-     attributes: <a href="#type-attributes">attributes</a>()</pre>
+          <pre>event(Timestamp, Name, Attributes) -> event() | undefined
+         when
+             Timestamp :: non_neg_integer(),
+             Name :: unicode:unicode_binary(),
+             Attributes :: attributes().</pre>
 
       </div>
 
@@ -1235,7 +1168,7 @@ when timestamp: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">n
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>generate_span_id() :: <a href="#type-span_id">span_id</a>()</pre>
+          <pre>generate_span_id() -> span_id().</pre>
 
       </div>
 
@@ -1259,59 +1192,11 @@ Generates a 64 bit random integer to use as a span id.
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>generate_trace_id() :: <a href="#type-trace_id">trace_id</a>()</pre>
+          <pre>generate_trace_id() -> trace_id().</pre>
 
       </div>
 
 Generates a 128 bit random integer to use as a trace id.
-  </section>
-</section>
-<section class="detail" id="get_meter/0">
-
-  <div class="detail-header">
-    <a href="#get_meter/0" class="detail-link" title="Link to this function">
-      <span class="icon-link" aria-hidden="true"></span>
-      <span class="sr-only">Link to this function</span>
-    </a>
-    <h1 class="signature">get_meter()</h1>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <h2>Specs</h2>
-      <div class="specs">
-
-          <pre>get_meter() :: <a href="#type-meter">meter</a>()</pre>
-
-      </div>
-
-
-  </section>
-</section>
-<section class="detail" id="get_meter/1">
-
-  <div class="detail-header">
-    <a href="#get_meter/1" class="detail-link" title="Link to this function">
-      <span class="icon-link" aria-hidden="true"></span>
-      <span class="sr-only">Link to this function</span>
-    </a>
-    <h1 class="signature">get_meter(Name)</h1>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <h2>Specs</h2>
-      <div class="specs">
-
-          <pre>get_meter(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()) :: <a href="#type-meter">meter</a>()</pre>
-
-      </div>
-
-
   </section>
 </section>
 <section class="detail" id="get_text_map_extractors/0">
@@ -1365,7 +1250,7 @@ Generates a 128 bit random integer to use as a trace id.
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>get_tracer() :: <a href="#type-tracer">tracer</a>()</pre>
+          <pre>get_tracer() -> tracer().</pre>
 
       </div>
 
@@ -1389,7 +1274,7 @@ Generates a 128 bit random integer to use as a trace id.
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>get_tracer(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()) :: <a href="#type-tracer">tracer</a>()</pre>
+          <pre>get_tracer(atom()) -> tracer().</pre>
 
       </div>
 
@@ -1413,7 +1298,7 @@ Generates a 128 bit random integer to use as a trace id.
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>link(<a href="#type-span_ctx">span_ctx</a>() | :undefined) :: <a href="#type-link">link</a>()</pre>
+          <pre>link(span_ctx() | undefined) -> link().</pre>
 
       </div>
 
@@ -1437,7 +1322,7 @@ Generates a 128 bit random integer to use as a trace id.
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>link(<a href="#type-span_ctx">span_ctx</a>() | :undefined, <a href="#type-attributes">attributes</a>()) :: <a href="#type-link">link</a>()</pre>
+          <pre>link(span_ctx() | undefined, attributes()) -> link().</pre>
 
       </div>
 
@@ -1461,11 +1346,12 @@ Generates a 128 bit random integer to use as a trace id.
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>link(traceId, spanId, attributes, traceState) :: <a href="#type-link">link</a>() | :undefined
-when traceId: <a href="#type-trace_id">trace_id</a>(),
-     spanId: <a href="#type-span_id">span_id</a>(),
-     attributes: <a href="#type-attributes">attributes</a>(),
-     traceState: <a href="#type-tracestate">tracestate</a>()</pre>
+          <pre>link(TraceId, SpanId, Attributes, TraceState) -> link() | undefined
+        when
+            TraceId :: trace_id(),
+            SpanId :: span_id(),
+            Attributes :: attributes(),
+            TraceState :: tracestate().</pre>
 
       </div>
 
@@ -1506,39 +1392,13 @@ when traceId: <a href="#type-trace_id">trace_id</a>(),
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>links([
-  {traceId, spanId, attributes, traceState}
-  | <a href="#type-span_ctx">span_ctx</a>()
-  | {<a href="#type-span_ctx">span_ctx</a>(), attributes}
-]) :: <a href="#type-links">links</a>()
-when traceId: <a href="#type-trace_id">trace_id</a>(),
-     spanId: <a href="#type-span_id">span_id</a>(),
-     attributes: <a href="#type-attributes">attributes</a>(),
-     traceState: <a href="#type-tracestate">tracestate</a>()</pre>
-
-      </div>
-
-
-  </section>
-</section>
-<section class="detail" id="register_application_meter/1">
-
-  <div class="detail-header">
-    <a href="#register_application_meter/1" class="detail-link" title="Link to this function">
-      <span class="icon-link" aria-hidden="true"></span>
-      <span class="sr-only">Link to this function</span>
-    </a>
-    <h1 class="signature">register_application_meter(Name)</h1>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <h2>Specs</h2>
-      <div class="specs">
-
-          <pre>register_application_meter(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()</pre>
+          <pre>links([{TraceId, SpanId, Attributes, TraceState} | span_ctx() | {span_ctx(), Attributes}]) ->
+         links()
+         when
+             TraceId :: trace_id(),
+             SpanId :: span_id(),
+             Attributes :: attributes(),
+             TraceState :: tracestate().</pre>
 
       </div>
 
@@ -1562,31 +1422,7 @@ when traceId: <a href="#type-trace_id">trace_id</a>(),
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>register_application_tracer(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()</pre>
-
-      </div>
-
-
-  </section>
-</section>
-<section class="detail" id="register_meter/2">
-
-  <div class="detail-header">
-    <a href="#register_meter/2" class="detail-link" title="Link to this function">
-      <span class="icon-link" aria-hidden="true"></span>
-      <span class="sr-only">Link to this function</span>
-    </a>
-    <h1 class="signature">register_meter(Name, Vsn)</h1>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <h2>Specs</h2>
-      <div class="specs">
-
-          <pre>register_meter(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), string()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()</pre>
+          <pre>register_application_tracer(atom()) -> boolean().</pre>
 
       </div>
 
@@ -1610,31 +1446,7 @@ when traceId: <a href="#type-trace_id">trace_id</a>(),
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>register_tracer(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), string()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()</pre>
-
-      </div>
-
-
-  </section>
-</section>
-<section class="detail" id="set_default_meter/1">
-
-  <div class="detail-header">
-    <a href="#set_default_meter/1" class="detail-link" title="Link to this function">
-      <span class="icon-link" aria-hidden="true"></span>
-      <span class="sr-only">Link to this function</span>
-    </a>
-    <h1 class="signature">set_default_meter(Meter)</h1>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <h2>Specs</h2>
-      <div class="specs">
-
-          <pre>set_default_meter(<a href="#type-meter">meter</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()</pre>
+          <pre>register_tracer(atom(), string()) -> boolean().</pre>
 
       </div>
 
@@ -1658,31 +1470,7 @@ when traceId: <a href="#type-trace_id">trace_id</a>(),
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>set_default_tracer(<a href="#type-tracer">tracer</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()</pre>
-
-      </div>
-
-
-  </section>
-</section>
-<section class="detail" id="set_meter/2">
-
-  <div class="detail-header">
-    <a href="#set_meter/2" class="detail-link" title="Link to this function">
-      <span class="icon-link" aria-hidden="true"></span>
-      <span class="sr-only">Link to this function</span>
-    </a>
-    <h1 class="signature">set_meter(Name, Meter)</h1>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <h2>Specs</h2>
-      <div class="specs">
-
-          <pre>set_meter(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), <a href="#type-meter">meter</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()</pre>
+          <pre>set_default_tracer(tracer()) -> boolean().</pre>
 
       </div>
 
@@ -1740,7 +1528,7 @@ when traceId: <a href="#type-trace_id">trace_id</a>(),
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>set_tracer(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), <a href="#type-tracer">tracer</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()</pre>
+          <pre>set_tracer(atom(), tracer()) -> boolean().</pre>
 
       </div>
 
@@ -1764,8 +1552,8 @@ when traceId: <a href="#type-trace_id">trace_id</a>(),
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>status(code, message) :: <a href="#type-status">status</a>() | :undefined
-when code: <a href="#type-status_code">status_code</a>(), message: <a href="http://www.erlang.org/doc/man/unicode.html#type-unicode_binary">:unicode.unicode_binary</a>()</pre>
+          <pre>status(Code, Message) -> status() | undefined
+          when Code :: status_code(), Message :: unicode:unicode_binary().</pre>
 
       </div>
 
@@ -1789,7 +1577,7 @@ when code: <a href="#type-status_code">status_code</a>(), message: <a href="http
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>timestamp() :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()</pre>
+          <pre>timestamp() -> integer().</pre>
 
       </div>
 
@@ -1813,7 +1601,7 @@ A monotonically increasing time provided by the Erlang runtime system in the nat
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>timestamp_to_nano(<a href="#type-timestamp">timestamp</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()</pre>
+          <pre>timestamp_to_nano(timestamp()) -> integer().</pre>
 
       </div>
 
@@ -1854,9 +1642,26 @@ Convert a native monotonic timestamp to nanosecond POSIX time. Meaning the time 
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>verify_and_set_term(<a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">module</a>() | {<a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">module</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()</pre>
+          <pre>verify_and_set_term(module() | {module(), term()}, term(), atom()) -> boolean().</pre>
 
       </div>
+
+
+  </section>
+</section>
+<section class="detail" id="verify_and_set_term/4">
+
+  <div class="detail-header">
+    <a href="#verify_and_set_term/4" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">verify_and_set_term(AppKey, Module, TermKey, Behaviour)</h1>
+
+
+  </div>
+
+  <section class="docstring">
 
 
   </section>
@@ -1878,7 +1683,7 @@ Convert a native monotonic timestamp to nanosecond POSIX time. Meaning the time 
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>verify_module_exists(<a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">module</a>() | {<a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">module</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()</pre>
+          <pre>verify_module_exists(module() | {module(), term()}) -> boolean().</pre>
 
       </div>
 
@@ -1893,7 +1698,7 @@ Convert a native monotonic timestamp to nanosecond POSIX time. Meaning the time 
         <p>
           <span class="line">
             Built using
-            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.0-dev) for the
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.2) for the
             <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
           </span>
           <span class="line">
