@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.3-dev">
+    <meta name="project" content="telemetry v0.5.0-dev">
+
+    <title>Changelog — telemetry v0.5.0-dev</title>
+    <link rel="stylesheet" href="dist/erlang-342d9843ccb2e80b8d3f.css" />
+
+    <script src="dist/sidebar_items-45a1f96398.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
+  </head>
+  <body data-type="extras">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="readme.html" class="sidebar-projectName">
+telemetry
+      </a>
+      <strong class="sidebar-projectVersion">
+        v0.5.0-dev
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>Changelog</h1><p>All notable changes to this project will be documented in this file.</p><p>The format is based on <a href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a>,
+and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a>.</p><h2 id="0-4-3" class="section-heading">
+  <a href="#0-4-3" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  <a href="https://github.com/elixir-telemetry/telemetry/tree/v0.4.3">0.4.3</a>
+</h2>
+<p>This release improves the <code class="inline">telemetry:span/3</code> function by adding the <code class="inline">telemetry_span_context</code> metadata
+to all span events. The new metadata enables correlating span events that belong to the same span.</p><h3 id="added" class="section-heading">
+  <a href="#added" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Added
+</h3>
+<ul><li>Added <code class="inline">telemetry_span_context</code> metadata to all events emitted by <code class="inline">telemetry:span/3</code>.</li></ul><h2 id="0-4-2" class="section-heading">
+  <a href="#0-4-2" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  <a href="https://github.com/elixir-telemetry/telemetry/tree/v0.4.2">0.4.2</a>
+</h2>
+<h3 id="added-1" class="section-heading">
+  <a href="#added-1" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Added
+</h3>
+<ul><li>Added the <code class="inline">telemetry:span/3</code> function.</li></ul><h2 id="0-4-1" class="section-heading">
+  <a href="#0-4-1" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  <a href="https://github.com/elixir-telemetry/telemetry/tree/v0.4.1">0.4.1</a>
+</h2>
+<p>Apart from the code changes listed below, this release includes a few improvements
+to the documentation.</p><h3 id="changed" class="section-heading">
+  <a href="#changed" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Changed
+</h3>
+<ul><li>Calls to <code class="inline">execute/3</code> when <code class="inline">telemetry</code> application is not started no longer cause an error.</li></ul><h2 id="0-4-0" class="section-heading">
+  <a href="#0-4-0" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  <a href="https://github.com/elixir-telemetry/telemetry/tree/v0.4.0">0.4.0</a>
+</h2>
+<p>A single event value has been replaced by a map of measurements. Now it is up to the consumer of the
+event to decide what part of the payload is important. This is useful in cases where event indicates
+that a thing happened but there are many properties describing it. For example, a database query
+event may include total time, decode time, wait time and other measurements.</p><h3 id="changed-1" class="section-heading">
+  <a href="#changed-1" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Changed
+</h3>
+<ul><li><code class="inline">execute/3</code> now accepts a map of measurements instead of event value</li></ul><h3 id="deprecated" class="section-heading">
+  <a href="#deprecated" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Deprecated
+</h3>
+<ul><li><code class="inline">:telemetry.execute/3</code> with an event value in favour of <code class="inline">:telemetry.execute/3</code> with a map of
+measurements. If the event value is provided, it is put in a map under a <code class="inline">:value</code> key and provided
+as measurements to a handler function.</li></ul><h2 id="0-3-0" class="section-heading">
+  <a href="#0-3-0" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  <a href="https://github.com/elixir-telemetry/telemetry/tree/v0.3.0">0.3.0</a>
+</h2>
+<p>This release marks the conversion from Elixir to Erlang. This is a breaking change, but the benefits
+largely surpass the drawbacks - Telemetry core can now be used by all projects running on the BEAM,
+regardless of the language they're written in.</p><h3 id="added-2" class="section-heading">
+  <a href="#added-2" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Added
+</h3>
+<ul><li>Added <code class="inline">:telemetry.handler/0</code>, <code class="inline">:telemetry.handler_function/0</code> and <code class="inline">:telemetry.handler_config/0</code>
+types.</li></ul><h3 id="changed-2" class="section-heading">
+  <a href="#changed-2" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Changed
+</h3>
+<ul><li>The library has been rewritten to Erlang. In Elixir, <code class="inline">:telemetry</code> module has to be used in place
+of <code class="inline">Telemetry</code>. In Erlang, <code class="inline">telemetry</code> module has to be used in place of <code class="inline">'Elixir.Telemetry'</code>;</li><li><code class="inline">:telemetry.list_handlers/1</code> returns a list of maps (of type <code class="inline">:telemetry.handler/0</code>) instead of
+a list of tuples;</li><li><code class="inline">:telemetry.attach/4</code> and <code class="inline">:telemetry.attach_many/4</code> replaced the 5-arity versions and now accept
+an anonymous function for the handler function instead of a module and function name.</li></ul><h3 id="removed" class="section-heading">
+  <a href="#removed" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Removed
+</h3>
+<ul><li>Removed <code class="inline">:telemetry.attach/5</code> and <code class="inline">:telemetry.attach_many/5</code> - 4-arity versions need to be used
+now instead.</li></ul><h2 id="0-2-0" class="section-heading">
+  <a href="#0-2-0" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  <a href="https://github.com/elixir-telemetry/telemetry/tree/v0.2.0">0.2.0</a>
+</h2>
+<p>The main point of this release is to mark base Telemetry API as stable, so that other libraries can
+rely on it without worrying about backwards compatibility.</p><h3 id="removed-1" class="section-heading">
+  <a href="#removed-1" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Removed
+</h3>
+<ul><li>Removed <code class="inline">Telemetry.attach/4</code> and <code class="inline">Telemetry.attach_many/4</code> - the handler config is now required.</li></ul><h3 id="fixed" class="section-heading">
+  <a href="#fixed" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Fixed
+</h3>
+<ul><li>Fixed type specs which were producing Dialyzer errors.</li></ul><h2 id="0-1-0" class="section-heading">
+  <a href="#0-1-0" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  <a href="https://github.com/elixir-telemetry/telemetry/tree/v0.1.0">0.1.0</a>
+</h2>
+<p>First release of Telemetry library.</p>
+<div class="bottom-actions">
+  <div class="bottom-actions-item">
+
+      <a href="readme.html" class="bottom-actions-button" rel="prev">
+        <span class="subheader">
+          ← Previous Page
+        </span>
+        <span class="title">
+Telemetry
+        </span>
+      </a>
+
+  </div>
+  <div class="bottom-actions-item">
+
+      <a href="license.html" class="bottom-actions-button" rel="next">
+        <span class="subheader">
+          Next Page →
+        </span>
+        <span class="title">
+LICENSE
+        </span>
+      </a>
+
+  </div>
+</div>
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.3-dev) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>
