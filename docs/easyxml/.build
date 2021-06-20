@@ -1,6 +1,8 @@
 404.html
-Req.Request.html
-Req.html
+EasyXML.Backend.Xmerl.html
+EasyXML.Backend.html
+EasyXML.Doc.html
+EasyXML.html
 api-reference.html
 dist/app-f27ff079945e43879c46.js
 dist/elixir-a172fe91e725dcb259e2.css
@@ -8,7 +10,7 @@ dist/html/fonts/icomoon.eot
 dist/html/fonts/icomoon.svg
 dist/html/fonts/icomoon.ttf
 dist/html/fonts/icomoon.woff
-dist/search_items-697f15d2f5.js
-dist/sidebar_items-1c8f50013e.js
+dist/search_items-39c354706e.js
+dist/sidebar_items-62f17bbfa5.js
 index.html
 search.html

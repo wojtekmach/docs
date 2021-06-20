@@ -5,12 +5,12 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.24.2">
-    <meta name="project" content="req v0.1.0-dev">
+    <meta name="project" content="easyxml v0.1.0-dev">
 
-    <title>Req.post-exclamation-mark — req v0.1.0-dev</title>
+    <title>EasyXML.parse-exclamation-mark — easyxml v0.1.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
 
-    <script src="dist/sidebar_items-1c8f50013e.js"></script>
+    <script src="dist/sidebar_items-62f17bbfa5.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -54,8 +54,8 @@
 
   <div class="sidebar-header">
     <div class="sidebar-projectDetails">
-      <a href="Req.html" class="sidebar-projectName">
-req
+      <a href="api-reference.html" class="sidebar-projectName">
+easyxml
       </a>
       <strong class="sidebar-projectVersion">
         v0.1.0-dev
@@ -79,34 +79,41 @@ req
   <div class="content-outer">
     <div id="content" class="content-inner">
 
-<h1>Req.post-exclamation-mark</h1>
+<h1>EasyXML.parse-exclamation-mark</h1>
 
 <div class="deprecated">
-  You're seeing just the function <code>post-exclamation-mark</code>, go back to <a href="Req.html">Req</a> module for more information.
+  You're seeing just the function <code>parse-exclamation-mark</code>, go back to <a href="EasyXML.html">EasyXML</a> module for more information.
 </div>
 
-<section class="detail" id="post!/3">
+<section class="detail" id="parse!/2">
 
-    <span id="post!/2"></span>
+    <span id="parse!/1"></span>
 
   <div class="detail-header">
-    <a href="#post!/3" class="detail-link" title="Link to this function">
+    <a href="#parse!/2" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature">post!(uri, body, options \\ [])</h1>
-
-      <a href="https://github.com/wojtekmach/req/blob/main/lib/req.ex#L27" class="view-source" rel="help" title="View Source">
-       <span class="icon-code" aria-hidden="true"></span>
-       <span class="sr-only">View Source</span>
-     </a>
+    <h1 class="signature">parse!(xml, opts \\ [])</h1>
 
 
   </div>
 
   <section class="docstring">
 
-<p>Makes a POST request.</p><p>See <a href="#request/3"><code class="inline">request/3</code></a> for a list of supported options.</p>
+<p>Parses an XML string into a document.</p><h2 id="parse!/2-options" class="section-heading">
+  <a href="#parse!/2-options" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Options
+</h2>
+<ul><li><code class="inline">:backend</code> - a module implementing <a href="EasyXML.Backend.html"><code class="inline">EasyXML.Backend</code></a> behaviour, defaults
+to <a href="EasyXML.Backend.Xmerl.html"><code class="inline">EasyXML.Backend.Xmerl</code></a>.</li></ul><p>The remaining options are passed down to the backend.</p><h2 id="parse!/2-examples" class="section-heading">
+  <a href="#parse!/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="n">doc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">EasyXML</span><span class="o">.</span><span class="n">parse!</span><span class="p" data-group-id="2280648925-1">(</span><span class="s">&quot;&lt;hello&gt;world&lt;/hello&gt;&quot;</span><span class="p" data-group-id="2280648925-1">)</span><span class="w">
+</span><span class="c1">#=&gt; #EasyXML.Doc[&lt;hello&gt;world&lt;/hello&gt;]</span><span class="w">
+</span><span class="n">doc</span><span class="p" data-group-id="2280648925-2">[</span><span class="s">&quot;hello&quot;</span><span class="p" data-group-id="2280648925-2">]</span><span class="w">
+</span><span class="c1">#=&gt; &quot;world&quot;</span></code></pre>
   </section>
 </section>
 

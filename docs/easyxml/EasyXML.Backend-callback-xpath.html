@@ -5,12 +5,12 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.24.2">
-    <meta name="project" content="req v0.1.0-dev">
+    <meta name="project" content="easyxml v0.1.0-dev">
 
-    <title>Req.params — req v0.1.0-dev</title>
+    <title>EasyXML.Backend.xpath — easyxml v0.1.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
 
-    <script src="dist/sidebar_items-1c8f50013e.js"></script>
+    <script src="dist/sidebar_items-62f17bbfa5.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -54,8 +54,8 @@
 
   <div class="sidebar-header">
     <div class="sidebar-projectDetails">
-      <a href="Req.html" class="sidebar-projectName">
-req
+      <a href="api-reference.html" class="sidebar-projectName">
+easyxml
       </a>
       <strong class="sidebar-projectVersion">
         v0.1.0-dev
@@ -79,37 +79,36 @@ req
   <div class="content-outer">
     <div id="content" class="content-inner">
 
-<h1>Req.params</h1>
+<h1>EasyXML.Backend.xpath</h1>
 
 <div class="deprecated">
-  You're seeing just the function <code>params</code>, go back to <a href="Req.html">Req</a> module for more information.
+  You're seeing just the callback <code>xpath</code>, go back to <a href="EasyXML.Backend.html">EasyXML.Backend</a> module for more information.
 </div>
 
-<section class="detail" id="params/2">
+<section class="detail" id="c:xpath/2">
 
   <div class="detail-header">
-    <a href="#params/2" class="detail-link" title="Link to this function">
+    <a href="#c:xpath/2" class="detail-link" title="Link to this callback">
       <span class="icon-link" aria-hidden="true"></span>
-      <span class="sr-only">Link to this function</span>
+      <span class="sr-only">Link to this callback</span>
     </a>
-    <h1 class="signature">params(request, params)</h1>
-
-      <a href="https://github.com/wojtekmach/req/blob/main/lib/req.ex#L480" class="view-source" rel="help" title="View Source">
-       <span class="icon-code" aria-hidden="true"></span>
-       <span class="sr-only">View Source</span>
-     </a>
+    <h1 class="signature">xpath(%EasyXML.Doc{}, path)</h1>
 
 
   </div>
 
   <section class="docstring">
 
-<p>Adds params to request query string.</p><h2 id="params/2-examples" class="section-heading">
-  <a href="#params/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
-  Examples
-</h2>
-<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="2981665494-1">(</span><span class="s">&quot;https://httpbin.org/anything/query&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">params</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2981665494-2">[</span><span class="ss">x</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">y</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2&quot;</span><span class="p" data-group-id="2981665494-2">]</span><span class="p" data-group-id="2981665494-1">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="2981665494-3">[</span><span class="s">&quot;args&quot;</span><span class="p" data-group-id="2981665494-3">]</span><span class="w">
-</span><span class="p" data-group-id="2981665494-4">%{</span><span class="s">&quot;x&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;y&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;2&quot;</span><span class="p" data-group-id="2981665494-4">}</span></code></pre>
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>xpath(%EasyXML.Doc{backend: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(), doc: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}, path :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) :: [
+  <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()
+]</pre>
+
+      </div>
+
+
   </section>
 </section>
 
