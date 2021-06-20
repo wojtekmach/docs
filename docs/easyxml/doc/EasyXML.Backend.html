@@ -110,7 +110,7 @@ EasyXML.Backend <small>behaviour</small> <small class="app-vsn">(easyxml v0.1.0-
     </h2>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#c:dump_to_iodata/1">dump_to_iodata(%EasyXML.Doc{})</a>
+    <a href="#c:dump_to_iodata/1">dump_to_iodata(arg1)</a>
 
   </div>
 
@@ -124,14 +124,14 @@ EasyXML.Backend <small>behaviour</small> <small class="app-vsn">(easyxml v0.1.0-
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#c:to_algebra/2">to_algebra(%EasyXML.Doc{}, opts)</a>
+    <a href="#c:to_algebra/2">to_algebra(arg1, opts)</a>
 
   </div>
 
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#c:xpath/2">xpath(%EasyXML.Doc{}, path)</a>
+    <a href="#c:xpath/2">xpath(arg1, path)</a>
 
   </div>
 
@@ -158,7 +158,7 @@ Callbacks
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this callback</span>
     </a>
-    <h1 class="signature">dump_to_iodata(%EasyXML.Doc{})</h1>
+    <h1 class="signature">dump_to_iodata(arg1)</h1>
 
       <a href="https://github.com/wojtekmach/easyxml/blob/main/lib/easyxml/backend.ex#L12" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
@@ -173,7 +173,7 @@ Callbacks
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>dump_to_iodata(%EasyXML.Doc{backend: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(), doc: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">iodata</a>()</pre>
+          <pre>dump_to_iodata(<a href="EasyXML.Doc.html#t:t/0">EasyXML.Doc.t</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">iodata</a>()</pre>
 
       </div>
 
@@ -219,7 +219,7 @@ Callbacks
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this callback</span>
     </a>
-    <h1 class="signature">to_algebra(%EasyXML.Doc{}, opts)</h1>
+    <h1 class="signature">to_algebra(arg1, opts)</h1>
 
       <a href="https://github.com/wojtekmach/easyxml/blob/main/lib/easyxml/backend.ex#L10" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
@@ -234,8 +234,7 @@ Callbacks
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>to_algebra(%EasyXML.Doc{backend: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(), doc: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}, opts :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">keyword</a>()) ::
-  <a href="https://hexdocs.pm/elixir/Inspect.Algebra.html#t:t/0">Inspect.Algebra.t</a>()</pre>
+          <pre>to_algebra(<a href="EasyXML.Doc.html#t:t/0">EasyXML.Doc.t</a>(), opts :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">keyword</a>()) :: <a href="https://hexdocs.pm/elixir/Inspect.Algebra.html#t:t/0">Inspect.Algebra.t</a>()</pre>
 
       </div>
 
@@ -249,7 +248,7 @@ Callbacks
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this callback</span>
     </a>
-    <h1 class="signature">xpath(%EasyXML.Doc{}, path)</h1>
+    <h1 class="signature">xpath(arg1, path)</h1>
 
       <a href="https://github.com/wojtekmach/easyxml/blob/main/lib/easyxml/backend.ex#L8" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
@@ -264,9 +263,7 @@ Callbacks
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>xpath(%EasyXML.Doc{backend: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(), doc: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}, path :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) :: [
-  <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()
-]</pre>
+          <pre>xpath(<a href="EasyXML.Doc.html#t:t/0">EasyXML.Doc.t</a>(), path :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) :: [<a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()]</pre>
 
       </div>
 
