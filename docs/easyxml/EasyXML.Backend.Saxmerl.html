@@ -10,7 +10,7 @@
     <title>EasyXML.Backend.Saxmerl — easyxml v0.1.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
 
-    <script src="dist/sidebar_items-d5aa1aaa9d.js"></script>
+    <script src="dist/sidebar_items-587de32b60.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -91,7 +91,13 @@ EasyXML.Backend.Saxmerl <small class="app-vsn">(easyxml v0.1.0-dev)</small>
 
 
         <section id="moduledoc">
-<p>A backend based on <a href="https://hexdocs.pm/saxmerl/0.1.0/Saxmerl.html"><code class="inline">Saxmerl</code></a>.</p>
+<p>A backend based on <a href="https://hexdocs.pm/saxmerl/0.1.0/Saxmerl.html"><code class="inline">Saxmerl</code></a>.</p><h2 id="module-examples" class="section-heading">
+  <a href="#module-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">doc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">EasyXML</span><span class="o">.</span><span class="n">parse!</span><span class="p" data-group-id="5812566210-1">(</span><span class="s">&quot;&lt;hello&gt;world&lt;/hello&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">backend</span><span class="p">:</span><span class="w"> </span><span class="nc">EasyXML.Backend.Saxmerl</span><span class="p" data-group-id="5812566210-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">doc</span><span class="p" data-group-id="5812566210-2">[</span><span class="s">&quot;/hello&quot;</span><span class="p" data-group-id="5812566210-2">]</span><span class="w">
+</span><span class="s">&quot;world&quot;</span></code></pre>
         </section>
 
 
