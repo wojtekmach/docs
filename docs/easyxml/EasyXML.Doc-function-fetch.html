@@ -7,7 +7,7 @@
     <meta name="generator" content="ExDoc v0.24.2">
     <meta name="project" content="easyxml v0.1.0-dev">
 
-    <title>EasyXML.Backend.dump_to_iodata — easyxml v0.1.0-dev</title>
+    <title>EasyXML.Doc.fetch — easyxml v0.1.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
 
     <script src="dist/sidebar_items-d5aa1aaa9d.js"></script>
@@ -79,22 +79,22 @@ easyxml
   <div class="content-outer">
     <div id="content" class="content-inner">
 
-<h1>EasyXML.Backend.dump_to_iodata</h1>
+<h1>EasyXML.Doc.fetch</h1>
 
 <div class="deprecated">
-  You're seeing just the callback <code>dump_to_iodata</code>, go back to <a href="EasyXML.Backend.html">EasyXML.Backend</a> module for more information.
+  You're seeing just the function <code>fetch</code>, go back to <a href="EasyXML.Doc.html">EasyXML.Doc</a> module for more information.
 </div>
 
-<section class="detail" id="c:dump_to_iodata/1">
+<section class="detail" id="fetch/2">
 
   <div class="detail-header">
-    <a href="#c:dump_to_iodata/1" class="detail-link" title="Link to this callback">
+    <a href="#fetch/2" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
-      <span class="sr-only">Link to this callback</span>
+      <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature">dump_to_iodata(doc)</h1>
+    <h1 class="signature">fetch(doc, xpath)</h1>
 
-      <a href="https://github.com/wojtekmach/easyxml/blob/main/lib/easyxml/backend.ex#L12" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/easyxml/blob/main/lib/easyxml/doc.ex#L19" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -104,14 +104,13 @@ easyxml
 
   <section class="docstring">
 
-      <h2>Specs</h2>
-      <div class="specs">
-
-          <pre>dump_to_iodata(doc :: <a href="EasyXML.Doc.html#t:t/0">EasyXML.Doc.t</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">iodata</a>()</pre>
-
-      </div>
-
-
+<p>Fetch the text specified by the given <code class="inline">xpath</code>.</p><h2 id="fetch/2-examples" class="section-heading">
+  <a href="#fetch/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">doc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">EasyXML</span><span class="o">.</span><span class="n">parse!</span><span class="p" data-group-id="8032741089-1">(</span><span class="s">&quot;&lt;hello&gt;world&lt;/hello&gt;&quot;</span><span class="p" data-group-id="8032741089-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">doc</span><span class="p" data-group-id="8032741089-2">[</span><span class="s">&quot;hello&quot;</span><span class="p" data-group-id="8032741089-2">]</span><span class="w">
+</span><span class="p" data-group-id="8032741089-3">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;world&quot;</span><span class="p" data-group-id="8032741089-3">}</span></code></pre>
   </section>
 </section>
 

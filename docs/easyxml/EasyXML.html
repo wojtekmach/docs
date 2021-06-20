@@ -10,7 +10,7 @@
     <title>EasyXML — easyxml v0.1.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
 
-    <script src="dist/sidebar_items-e07ee694dc.js"></script>
+    <script src="dist/sidebar_items-d5aa1aaa9d.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -95,13 +95,13 @@ EasyXML <small class="app-vsn">(easyxml v0.1.0-dev)</small>
   <a href="#module-features" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Features
 </h2>
-<ul><li><p>Convenient access via the <code class="inline">doc[path]</code> notation</p></li><li><p>Support for multiple backends</p></li></ul><h2 id="module-usage" class="section-heading">
+<ul><li><p>Convenient access via the <code class="inline">doc[xpath]</code> notation</p></li><li><p>Supports multiple backends:</p><ul><li><a href="EasyXML.Backend.Xmerl.html"><code class="inline">EasyXML.Backend.Xmerl</code></a> (default)</li><li><a href="EasyXML.Backend.Saxmerl.html"><code class="inline">EasyXML.Backend.Saxmerl</code></a></li></ul></li></ul><h2 id="module-usage" class="section-heading">
   <a href="#module-usage" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Usage
 </h2>
-<p>The easiest way to use EasyXML is with <a href="https://hexdocs.pm/mix/Mix.html#install/2"><code class="inline">Mix.install/2</code></a> (requires Elixir v1.12+):</p><pre><code class="makeup elixir"><span class="nc">Mix</span><span class="o">.</span><span class="n">install</span><span class="p" data-group-id="5131327086-1">(</span><span class="p" data-group-id="5131327086-2">[</span><span class="w">
-  </span><span class="p" data-group-id="5131327086-3">{</span><span class="ss">:easyxml</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;~&gt; 0.1.0-dev&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">github</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;wojtekmach/easyxml&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">branch</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;main&quot;</span><span class="p" data-group-id="5131327086-3">}</span><span class="w">
-</span><span class="p" data-group-id="5131327086-2">]</span><span class="p" data-group-id="5131327086-1">)</span><span class="w">
+<p>The easiest way to use EasyXML is with <a href="https://hexdocs.pm/mix/Mix.html#install/2"><code class="inline">Mix.install/2</code></a> (requires Elixir v1.12+):</p><pre><code class="makeup elixir"><span class="nc">Mix</span><span class="o">.</span><span class="n">install</span><span class="p" data-group-id="6323688518-1">(</span><span class="p" data-group-id="6323688518-2">[</span><span class="w">
+  </span><span class="p" data-group-id="6323688518-3">{</span><span class="ss">:easyxml</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;~&gt; 0.1.0-dev&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">github</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;wojtekmach/easyxml&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">branch</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;main&quot;</span><span class="p" data-group-id="6323688518-3">}</span><span class="w">
+</span><span class="p" data-group-id="6323688518-2">]</span><span class="p" data-group-id="6323688518-1">)</span><span class="w">
 
 </span><span class="n">xml</span><span class="w"> </span><span class="o">=</span><span class="w">
   </span><span class="s">&quot;&quot;&quot;
@@ -111,15 +111,15 @@ EasyXML <small class="app-vsn">(easyxml v0.1.0-dev)</small>
   &lt;/points&gt;
   &quot;&quot;&quot;</span><span class="w">
 
-</span><span class="n">doc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">EasyXML</span><span class="o">.</span><span class="n">parse!</span><span class="p" data-group-id="5131327086-4">(</span><span class="n">xml</span><span class="p" data-group-id="5131327086-4">)</span><span class="w">
+</span><span class="n">doc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">EasyXML</span><span class="o">.</span><span class="n">parse!</span><span class="p" data-group-id="6323688518-4">(</span><span class="n">xml</span><span class="p" data-group-id="6323688518-4">)</span><span class="w">
 
-</span><span class="nc">EasyXML</span><span class="o">.</span><span class="n">xpath</span><span class="p" data-group-id="5131327086-5">(</span><span class="n">doc</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;//point/@x&quot;</span><span class="p" data-group-id="5131327086-5">)</span><span class="w">
+</span><span class="nc">EasyXML</span><span class="o">.</span><span class="n">xpath</span><span class="p" data-group-id="6323688518-5">(</span><span class="n">doc</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;//point/@x&quot;</span><span class="p" data-group-id="6323688518-5">)</span><span class="w">
 </span><span class="c1">#=&gt; [&quot;1&quot;, &quot;3&quot;]</span><span class="w">
 
-</span><span class="nc">EasyXML</span><span class="o">.</span><span class="n">xpath</span><span class="p" data-group-id="5131327086-6">(</span><span class="n">doc</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;//point&quot;</span><span class="p" data-group-id="5131327086-6">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Enum</span><span class="o">.</span><span class="n">map</span><span class="p" data-group-id="5131327086-7">(</span><span class="o">&amp;</span><span class="w"> </span><span class="ni">&amp;1</span><span class="p" data-group-id="5131327086-8">[</span><span class="s">&quot;@x&quot;</span><span class="p" data-group-id="5131327086-8">]</span><span class="p" data-group-id="5131327086-7">)</span><span class="w">
+</span><span class="nc">EasyXML</span><span class="o">.</span><span class="n">xpath</span><span class="p" data-group-id="6323688518-6">(</span><span class="n">doc</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;//point&quot;</span><span class="p" data-group-id="6323688518-6">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Enum</span><span class="o">.</span><span class="n">map</span><span class="p" data-group-id="6323688518-7">(</span><span class="o">&amp;</span><span class="w"> </span><span class="ni">&amp;1</span><span class="p" data-group-id="6323688518-8">[</span><span class="s">&quot;@x&quot;</span><span class="p" data-group-id="6323688518-8">]</span><span class="p" data-group-id="6323688518-7">)</span><span class="w">
 </span><span class="c1">#=&gt; [&quot;1&quot;, &quot;3&quot;]</span><span class="w">
 
-</span><span class="n">doc</span><span class="p" data-group-id="5131327086-9">[</span><span class="s">&quot;//point[1]/@x&quot;</span><span class="p" data-group-id="5131327086-9">]</span><span class="w">
+</span><span class="n">doc</span><span class="p" data-group-id="6323688518-9">[</span><span class="s">&quot;//point[1]/@x&quot;</span><span class="p" data-group-id="6323688518-9">]</span><span class="w">
 </span><span class="c1">#=&gt; &quot;1&quot;</span></code></pre>
         </section>
 
@@ -157,7 +157,7 @@ EasyXML <small class="app-vsn">(easyxml v0.1.0-dev)</small>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#xpath/2">xpath(doc_or_xml, path)</a>
+    <a href="#xpath/2">xpath(doc_or_xml, xpath)</a>
 
   </div>
 
@@ -231,9 +231,9 @@ to <a href="EasyXML.Backend.Xmerl.html"><code class="inline">EasyXML.Backend.Xme
   <a href="#parse!/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Examples
 </h2>
-<pre><code class="makeup elixir"><span class="n">doc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">EasyXML</span><span class="o">.</span><span class="n">parse!</span><span class="p" data-group-id="4422885814-1">(</span><span class="s">&quot;&lt;hello&gt;world&lt;/hello&gt;&quot;</span><span class="p" data-group-id="4422885814-1">)</span><span class="w">
+<pre><code class="makeup elixir"><span class="n">doc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">EasyXML</span><span class="o">.</span><span class="n">parse!</span><span class="p" data-group-id="1500674109-1">(</span><span class="s">&quot;&lt;hello&gt;world&lt;/hello&gt;&quot;</span><span class="p" data-group-id="1500674109-1">)</span><span class="w">
 </span><span class="c1">#=&gt; #EasyXML.Doc[&lt;hello&gt;world&lt;/hello&gt;]</span><span class="w">
-</span><span class="n">doc</span><span class="p" data-group-id="4422885814-2">[</span><span class="s">&quot;hello&quot;</span><span class="p" data-group-id="4422885814-2">]</span><span class="w">
+</span><span class="n">doc</span><span class="p" data-group-id="1500674109-2">[</span><span class="s">&quot;hello&quot;</span><span class="p" data-group-id="1500674109-2">]</span><span class="w">
 </span><span class="c1">#=&gt; &quot;world&quot;</span></code></pre>
   </section>
 </section>
@@ -244,7 +244,7 @@ to <a href="EasyXML.Backend.Xmerl.html"><code class="inline">EasyXML.Backend.Xme
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature">xpath(doc_or_xml, path)</h1>
+    <h1 class="signature">xpath(doc_or_xml, xpath)</h1>
 
       <a href="https://github.com/wojtekmach/easyxml/blob/main/lib/easyxml.ex#L44" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
@@ -260,10 +260,10 @@ to <a href="EasyXML.Backend.Xmerl.html"><code class="inline">EasyXML.Backend.Xme
   <a href="#xpath/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Examples
 </h2>
-<pre><code class="makeup elixir"><span class="n">doc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">EasyXML</span><span class="o">.</span><span class="n">parse!</span><span class="p" data-group-id="1838504577-1">(</span><span class="s">~s|&lt;points&gt;&lt;point x=&quot;1&quot; y=&quot;2&quot;/&gt;&lt;point x=&quot;3&quot; y=&quot;4&quot;/&gt;&lt;/points&gt;|</span><span class="p" data-group-id="1838504577-1">)</span><span class="w">
-</span><span class="nc">EasyXML</span><span class="o">.</span><span class="n">xpath</span><span class="p" data-group-id="1838504577-2">(</span><span class="n">xml</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;//point&quot;</span><span class="p" data-group-id="1838504577-2">)</span><span class="w">
+<pre><code class="makeup elixir"><span class="n">doc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">EasyXML</span><span class="o">.</span><span class="n">parse!</span><span class="p" data-group-id="8494504274-1">(</span><span class="s">~s|&lt;points&gt;&lt;point x=&quot;1&quot; y=&quot;2&quot;/&gt;&lt;point x=&quot;3&quot; y=&quot;4&quot;/&gt;&lt;/points&gt;|</span><span class="p" data-group-id="8494504274-1">)</span><span class="w">
+</span><span class="nc">EasyXML</span><span class="o">.</span><span class="n">xpath</span><span class="p" data-group-id="8494504274-2">(</span><span class="n">xml</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;//point&quot;</span><span class="p" data-group-id="8494504274-2">)</span><span class="w">
 </span><span class="c1">#=&gt; [#EasyXML.Doc[&lt;point x=&quot;1&quot; y=&quot;2&quot;/&gt;], #EasyXML.Doc[&lt;point x=&quot;3&quot; y=&quot;4&quot;/&gt;]]</span><span class="w">
-</span><span class="nc">EasyXML</span><span class="o">.</span><span class="n">xpath</span><span class="p" data-group-id="1838504577-3">(</span><span class="n">xml</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;//point[1]/@x&quot;</span><span class="p" data-group-id="1838504577-3">)</span><span class="w">
+</span><span class="nc">EasyXML</span><span class="o">.</span><span class="n">xpath</span><span class="p" data-group-id="8494504274-3">(</span><span class="n">xml</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;//point[1]/@x&quot;</span><span class="p" data-group-id="8494504274-3">)</span><span class="w">
 </span><span class="c1">#=&gt; [&quot;1&quot;]</span></code></pre>
   </section>
 </section>
