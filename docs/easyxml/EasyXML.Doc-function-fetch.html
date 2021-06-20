@@ -94,7 +94,7 @@ easyxml
     </a>
     <h1 class="signature">fetch(doc, xpath)</h1>
 
-      <a href="https://github.com/wojtekmach/easyxml/blob/main/lib/easyxml/doc.ex#L19" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/easyxml/blob/main/lib/easyxml/doc.ex#L21" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -108,9 +108,11 @@ easyxml
   <a href="#fetch/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Examples
 </h2>
-<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">doc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">EasyXML</span><span class="o">.</span><span class="n">parse!</span><span class="p" data-group-id="6486502021-1">(</span><span class="s">&quot;&lt;hello&gt;world&lt;/hello&gt;&quot;</span><span class="p" data-group-id="6486502021-1">)</span><span class="w">
-</span><span class="gp unselectable">iex&gt; </span><span class="n">doc</span><span class="p" data-group-id="6486502021-2">[</span><span class="s">&quot;hello&quot;</span><span class="p" data-group-id="6486502021-2">]</span><span class="w">
-</span><span class="p" data-group-id="6486502021-3">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;world&quot;</span><span class="p" data-group-id="6486502021-3">}</span></code></pre>
+<pre><code class="makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="n">doc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">EasyXML</span><span class="o">.</span><span class="n">parse!</span><span class="p" data-group-id="5605735928-1">(</span><span class="s">&quot;&lt;hello&gt;world&lt;/hello&gt;&quot;</span><span class="p" data-group-id="5605735928-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">EasyXML.Doc</span><span class="o">.</span><span class="n">fetch</span><span class="p" data-group-id="5605735928-2">(</span><span class="n">doc</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;/hello&quot;</span><span class="p" data-group-id="5605735928-2">)</span><span class="w">
+</span><span class="p" data-group-id="5605735928-3">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;world&quot;</span><span class="p" data-group-id="5605735928-3">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">EasyXML.Doc</span><span class="o">.</span><span class="n">fetch</span><span class="p" data-group-id="5605735928-4">(</span><span class="n">doc</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;/unknown&quot;</span><span class="p" data-group-id="5605735928-4">)</span><span class="w">
+</span><span class="ss">:error</span></code></pre>
   </section>
 </section>
 
