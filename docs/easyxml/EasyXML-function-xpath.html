@@ -108,10 +108,10 @@ easyxml
   <a href="#xpath/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Examples
 </h2>
-<pre><code class="makeup elixir"><span class="n">doc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">EasyXML</span><span class="o">.</span><span class="n">parse!</span><span class="p" data-group-id="7012201031-1">(</span><span class="s">~s|&lt;points&gt;&lt;point x=&quot;1&quot; y=&quot;2&quot;/&gt;&lt;point x=&quot;3&quot; y=&quot;4&quot;/&gt;&lt;/points&gt;|</span><span class="p" data-group-id="7012201031-1">)</span><span class="w">
-</span><span class="nc">EasyXML</span><span class="o">.</span><span class="n">xpath</span><span class="p" data-group-id="7012201031-2">(</span><span class="n">xml</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;//point&quot;</span><span class="p" data-group-id="7012201031-2">)</span><span class="w">
+<pre><code class="makeup elixir"><span class="n">doc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">EasyXML</span><span class="o">.</span><span class="n">parse!</span><span class="p" data-group-id="1202453690-1">(</span><span class="s">~s|&lt;points&gt;&lt;point x=&quot;1&quot; y=&quot;2&quot;/&gt;&lt;point x=&quot;3&quot; y=&quot;4&quot;/&gt;&lt;/points&gt;|</span><span class="p" data-group-id="1202453690-1">)</span><span class="w">
+</span><span class="nc">EasyXML</span><span class="o">.</span><span class="n">xpath</span><span class="p" data-group-id="1202453690-2">(</span><span class="n">xml</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;//point&quot;</span><span class="p" data-group-id="1202453690-2">)</span><span class="w">
 </span><span class="c1">#=&gt; [#EasyXML.Doc[&lt;point x=&quot;1&quot; y=&quot;2&quot;/&gt;], #EasyXML.Doc[&lt;point x=&quot;3&quot; y=&quot;4&quot;/&gt;]]</span><span class="w">
-</span><span class="nc">EasyXML</span><span class="o">.</span><span class="n">xpath</span><span class="p" data-group-id="7012201031-3">(</span><span class="n">xml</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;//point[1]/@x&quot;</span><span class="p" data-group-id="7012201031-3">)</span><span class="w">
+</span><span class="nc">EasyXML</span><span class="o">.</span><span class="n">xpath</span><span class="p" data-group-id="1202453690-3">(</span><span class="n">xml</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;//point[1]/@x&quot;</span><span class="p" data-group-id="1202453690-3">)</span><span class="w">
 </span><span class="c1">#=&gt; [&quot;1&quot;]</span></code></pre>
   </section>
 </section>
