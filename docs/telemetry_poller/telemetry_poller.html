@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.3-dev">
+    <meta name="project" content="telemetry_poller v0.5.1">
+
+    <title>telemetry_poller — telemetry_poller v0.5.1</title>
+    <link rel="stylesheet" href="dist/erlang-342d9843ccb2e80b8d3f.css" />
+
+    <script src="dist/sidebar_items-b18e21b9dc.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="readme.html" class="sidebar-projectName">
+telemetry_poller
+      </a>
+      <strong class="sidebar-projectVersion">
+        v0.5.1
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+      <h1>
+telemetry_poller <small class="app-vsn">(telemetry_poller v0.5.1)</small>
+
+          <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L178" title="View Source" class="view-source" rel="help">
+            <span class="icon-code" aria-hidden="true"></span>
+            <span class="sr-only">View Source</span>
+          </a>
+
+      </h1>
+
+
+        <section id="moduledoc">
+<p>A time-based poller to periodically dispatch Telemetry events.</p><p>A poller is a process start in your supervision tree with a list of measurements to perform periodically. On start it expects the period in milliseconds and a list of measurements to perform:</p><pre><code class="makeup erlang"><span class="w">  </span><span class="nc">telemetry_poller</span><span class="p">:</span><span class="nf">start_link</span><span class="p" data-group-id="8166682328-1">(</span><span class="p" data-group-id="8166682328-2">[</span><span class="w">
+    </span><span class="p" data-group-id="8166682328-3">{</span><span class="ss">measurements</span><span class="p">,</span><span class="w"> </span><span class="n">Measurements</span><span class="p" data-group-id="8166682328-3">}</span><span class="p">,</span><span class="w">
+    </span><span class="p" data-group-id="8166682328-4">{</span><span class="ss">period</span><span class="p">,</span><span class="w"> </span><span class="n">Period</span><span class="p" data-group-id="8166682328-4">}</span><span class="w">
+  </span><span class="p" data-group-id="8166682328-2">]</span><span class="p" data-group-id="8166682328-1">)</span></code></pre><p>The following measurements are supported:</p><p>* <code>memory</code> (default)</p><p>* <code>total_run_queue_lengths</code> (default)</p><p>* <code>system_counts</code> (default)</p><p>* <code>{process_info, Proplist}</code></p><p>* <code>{Module, Function, Args}</code></p><p>We will discuss each measurement in detail. Also note that the telemetry_poller application ships with a built-in poller that measures <code>memory</code>, <code>total_run_queue_lengths</code> and <code>system_counts</code>. This takes the VM measurement out of the way so your application can focus on what is specific to its behaviour.</p><h3 id="module-memory" class="section-heading">
+  <a href="#module-memory" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  <a name="Memory">Memory</a>
+</h3>
+<p>An event emitted as <code>[vm, memory]</code>. The measurement includes all the key-value pairs returned by <a href="https://erlang.org/doc/man/erlang.html#memory-0"><code>erlang:memory/0</code></a> function, e.g. <code>total</code> for total memory, <code>processes_used</code> for memory used by all processes, etc.</p><h3 id="module-total-run-queue-lengths" class="section-heading">
+  <a href="#module-total-run-queue-lengths" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  <a name="Total_run_queue_lengths">Total run queue lengths</a>
+</h3>
+<p>On startup, the Erlang VM starts many schedulers to do both IO and CPU work. If a process needs to do some work or wait on IO, it is allocated to the appropriate scheduler. The run queue is a queue of tasks to be scheduled. A length of a run queue corresponds to the amount of work accumulated in the system. If a run queue length is constantly growing, it means that the BEAM is not keeping up with executing all the tasks.</p><p>There are several run queue types in the Erlang VM. Each CPU scheduler (usually one per core) has its own run queue, and since Erlang 20.0 there is one dirty CPU run queue, and one dirty IO run queue.</p><p>The run queue length event is emitted as <code>[vm, total_run_queue_lengths]</code>. The event contains no metadata and three measurements:</p><ul><li><code>total</code> - a sum of all run queue lengths</li><li><code>cpu</code> - a sum of CPU schedulers' run queue lengths, including dirty CPU run queue length on Erlang version 20 and greater</li><li><code>io</code> - length of dirty IO run queue. It's always 0 if running on Erlang versions prior to 20.</li></ul><p>Note that the method of making this measurement varies between different Erlang versions: the implementation on versions earlier than Erlang/OTP 20 is less efficient.</p><p>The length of all queues is not gathered atomically, so the event value does not represent a consistent snapshot of the run queues' state. However, the value is accurate enough to help to identify issues in a running system.</p><h3 id="module-system-counts" class="section-heading">
+  <a href="#module-system-counts" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  <a name="System_counts">System counts</a>
+</h3>
+<p>An event emitted as <code>[vm, system_counts]</code>. The event contains no metadata and three measurements:</p><ul><li><code>process_count</code> - number of process currently existing at the local node</li><li><code>atom_count</code> - number of atoms currently existing at the local node</li><li><code>port_count</code> - number of ports currently existing at the local node</li></ul><p>All three measurements are from <a href="https://erlang.org/doc/man/erlang.html#system_info-1"><code>erlang:system_info/1</code></a>.</p><h3 id="module-process-info" class="section-heading">
+  <a href="#module-process-info" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  <a name="Process_info">Process info</a>
+</h3>
+<p>A measurement with information about a given process. It must be specified alongside a proplist with the process name, the event name, and a list of keys to be included:</p><pre><code class="makeup erlang"><span class="w">  </span><span class="p" data-group-id="1621992431-1">{</span><span class="nb">process_info</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1621992431-2">[</span><span class="w">
+   </span><span class="p" data-group-id="1621992431-3">{</span><span class="ss">name</span><span class="p">,</span><span class="w"> </span><span class="ss">my_app_worker</span><span class="p" data-group-id="1621992431-3">}</span><span class="p">,</span><span class="w">
+   </span><span class="p" data-group-id="1621992431-4">{</span><span class="ss">event</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1621992431-5">[</span><span class="ss">my_app</span><span class="p">,</span><span class="w"> </span><span class="ss">worker</span><span class="p" data-group-id="1621992431-5">]</span><span class="p" data-group-id="1621992431-4">}</span><span class="p">,</span><span class="w">
+   </span><span class="p" data-group-id="1621992431-6">{</span><span class="ss">keys</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1621992431-7">[</span><span class="ss">message_queue_len</span><span class="p">,</span><span class="w"> </span><span class="nb">memory</span><span class="p" data-group-id="1621992431-7">]</span><span class="p" data-group-id="1621992431-6">}</span><span class="w">
+  </span><span class="p" data-group-id="1621992431-2">]</span><span class="p" data-group-id="1621992431-1">}</span></code></pre><p>The <code>keys</code> is a list of atoms accepted by <a href="https://erlang.org/doc/man/erlang.html#process_info-2"><code>erlang:process_info/2</code></a>.</p><h3 id="module-custom-measurements" class="section-heading">
+  <a href="#module-custom-measurements" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  <a name="Custom_measurements">Custom measurements</a>
+</h3>
+<p>Telemetry poller also allows you to perform custom measurements by passing a module-function-args tuple:</p><p>{my_app_example, measure, []}</p><p>The given function will be invoked periodically and they must explicitly invoke <code>telemetry:execute/3</code> function. If the invocation of the MFA fails, the measurement is removed from the Poller.</p><p>For all options, see <a href="#start_link/1"><code>start_link/1</code></a>. The options listed there can be given to the default poller as well as to custom pollers.</p><h3 id="module-default-poller" class="section-heading">
+  <a href="#module-default-poller" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  <a name="Default_poller">Default poller</a>
+</h3>
+<p>A default poller is started with <code>telemetry_poller</code> responsible for emitting measurements for <code>memory</code> and <code>total_run_queue_lengths</code>. You can customize the behaviour of the default poller by setting the <code>default</code> key under the <code>telemetry_poller</code> application environment. Setting it to <code>false</code> disables the poller.</p><h3 id="module-example-tracking-number-of-active-sessions-in-web-application" class="section-heading">
+  <a href="#module-example-tracking-number-of-active-sessions-in-web-application" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  <a name="Example_-_tracking_number_of_active_sessions_in_web_application">Example - tracking number of active sessions in web application</a>
+</h3>
+<p>Let's imagine that you have a web application and you would like to periodically measure number of active user sessions.</p><pre><code class="makeup erlang"><span class="w">  </span><span class="p">-</span><span class="na">module</span><span class="p" data-group-id="9675494351-1">(</span><span class="ss">example_app</span><span class="p" data-group-id="9675494351-1">)</span><span class="p">.</span><span class="w">
+ 
+  </span><span class="nf">session_count</span><span class="p" data-group-id="9675494351-2">(</span><span class="p" data-group-id="9675494351-2">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w">
+     </span><span class="c1">% logic for calculating session count.</span></code></pre><p>To achieve that, we need a measurement dispatching the value we're interested in:</p><pre><code class="makeup erlang"><span class="w">  </span><span class="p">-</span><span class="na">module</span><span class="p" data-group-id="7729465227-1">(</span><span class="ss">example_app_measurements</span><span class="p" data-group-id="7729465227-1">)</span><span class="p">.</span><span class="w">
+ 
+  </span><span class="nf">dispatch_session_count</span><span class="p" data-group-id="7729465227-2">(</span><span class="p" data-group-id="7729465227-2">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w">
+     </span><span class="nc">telemetry</span><span class="p">:</span><span class="nf">execute</span><span class="p" data-group-id="7729465227-3">(</span><span class="p" data-group-id="7729465227-4">[</span><span class="ss">example_app</span><span class="p">,</span><span class="w"> </span><span class="ss">session_count</span><span class="p" data-group-id="7729465227-4">]</span><span class="p">,</span><span class="w"> </span><span class="nc">example_app</span><span class="p">:</span><span class="nf">session_count</span><span class="p" data-group-id="7729465227-5">(</span><span class="p" data-group-id="7729465227-5">)</span><span class="p" data-group-id="7729465227-3">)</span><span class="p">.</span></code></pre><p>and tell the Poller to invoke it periodically:</p><pre><code class="makeup erlang"><span class="w">  </span><span class="nc">telemetry_poller</span><span class="p">:</span><span class="nf">start_link</span><span class="p" data-group-id="7781268633-1">(</span><span class="p" data-group-id="7781268633-2">[</span><span class="p" data-group-id="7781268633-3">{</span><span class="ss">measurements</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="7781268633-4">[</span><span class="p" data-group-id="7781268633-5">{</span><span class="ss">example_app_measurements</span><span class="p">,</span><span class="w"> </span><span class="ss">dispatch_session_count</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="7781268633-6">[</span><span class="p" data-group-id="7781268633-6">]</span><span class="p" data-group-id="7781268633-5">}</span><span class="p" data-group-id="7781268633-4">]</span><span class="p">)</span><span class="p">.</span></code></pre><p>If you find that you need to somehow label the event values, e.g. differentiate between number of sessions of regular and admin users, you could use event metadata:</p><pre><code class="makeup erlang"><span class="w">  </span><span class="p">-</span><span class="na">module</span><span class="p" data-group-id="9847948576-1">(</span><span class="ss">example_app_measurements</span><span class="p" data-group-id="9847948576-1">)</span><span class="p">.</span><span class="w">
+ 
+  </span><span class="nf">dispatch_session_count</span><span class="p" data-group-id="9847948576-2">(</span><span class="p" data-group-id="9847948576-2">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w">
+     </span><span class="n">Regulars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">example_app</span><span class="p">:</span><span class="nf">regular_users_session_count</span><span class="p" data-group-id="9847948576-3">(</span><span class="p" data-group-id="9847948576-3">)</span><span class="p">,</span><span class="w">
+     </span><span class="n">Admins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">example_app</span><span class="p">:</span><span class="nf">admin_users_session_count</span><span class="p" data-group-id="9847948576-4">(</span><span class="p" data-group-id="9847948576-4">)</span><span class="p">,</span><span class="w">
+     </span><span class="nc">telemetry</span><span class="p">:</span><span class="nf">execute</span><span class="p" data-group-id="9847948576-5">(</span><span class="p" data-group-id="9847948576-6">[</span><span class="ss">example_app</span><span class="p">,</span><span class="w"> </span><span class="ss">session_count</span><span class="p" data-group-id="9847948576-6">]</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9847948576-7">#{</span><span class="ss">count</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="n">Admins</span><span class="p" data-group-id="9847948576-7">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9847948576-8">#{</span><span class="ss">role</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ss">admin</span><span class="p" data-group-id="9847948576-8">}</span><span class="p" data-group-id="9847948576-5">)</span><span class="p">,</span><span class="w">
+     </span><span class="nc">telemetry</span><span class="p">:</span><span class="nf">execute</span><span class="p" data-group-id="9847948576-9">(</span><span class="p" data-group-id="9847948576-10">[</span><span class="ss">example_app</span><span class="p">,</span><span class="w"> </span><span class="ss">session_count</span><span class="p" data-group-id="9847948576-10">]</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9847948576-11">#{</span><span class="ss">count</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="n">Regulars</span><span class="p" data-group-id="9847948576-11">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9847948576-12">#{</span><span class="ss">role</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ss">regular</span><span class="p" data-group-id="9847948576-12">}</span><span class="p" data-group-id="9847948576-9">)</span><span class="p">.</span></code></pre>Note: the other solution would be to dispatch two different events by hooking up <code>example_app:regular_users_session_count/0</code> and <code>example_app:admin_users_session_count/0</code> functions directly. However, if you add more and more user roles to your app, you'll find yourself creating a new event for each one of them, which will force you to modify existing event handlers. If you can break down event value by some feature, like user role in this example, it's usually better to use event metadata than add new events. This is a perfect use case for poller, because you don't need to write a dedicated process which would call these functions periodically. Additionally, if you find that you need to collect more statistics like this in the future, you can easily hook them up to the same poller process and avoid creating lots of processes which would stay idle most of the time.
+        </section>
+
+
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Summary
+          </h1>
+
+  <div class="summary-types summary">
+    <h2>
+      <a href="#types">Types</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:measurement/0">measurement/0</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:option/0">option/0</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:options/0">options/0</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:period/0">period/0</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:state/0">state/0</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:t/0">t/0</a>
+
+  </div>
+
+</div>
+
+  </div>
+
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#child_spec/1">child_spec(Opts)</a>
+
+  </div>
+
+    <div class="summary-synopsis">Returns a child spec for the poller for running under a supervisor.</div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#code_change/3">code_change(OldVsn, State, Extra)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#handle_call/3">handle_call(Request, From, State)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#handle_cast/2">handle_cast(Msg, State)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#handle_info/2">handle_info(_, State)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#init/1">init(Args)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#list_measurements/1">list_measurements(Poller)</a>
+
+  </div>
+
+    <div class="summary-synopsis">Returns a list of measurements used by the poller.</div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#make_measurement/1">make_measurement(Measurement)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#make_measurements_and_filter_misbehaving/1">make_measurements_and_filter_misbehaving(Measurements)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#parse_args/1">parse_args(Args)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#parse_measurement/1">parse_measurement(Term)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#parse_measurements/1">parse_measurements(Measurements)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#schedule_measurement/1">schedule_measurement(CollectInMillis)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#start_link/1">start_link(Opts)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Starts a poller linked to the calling process.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#terminate/2">terminate(Reason, State)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#validate_period/1">validate_period(Period)</a>
+
+  </div>
+
+</div>
+
+  </div>
+
+        </section>
+
+
+        <section id="types" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#types">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Types
+          </h1>
+          <div class="types-list">
+<section class="detail" id="t:measurement/0">
+
+  <div class="detail-header">
+    <a href="#t:measurement/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">measurement/0</h1>
+
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L217" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>measurement() ::
+    memory | total_run_queue_lengths | system_counts |
+    {process_info, [{name, atom()} | {event, [atom()]} | {keys, [atom()]}]} |
+    {module(), atom(), list()}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:option/0">
+
+  <div class="detail-header">
+    <a href="#t:option/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">option/0</h1>
+
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L213" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>option() ::
+    {name, gen_server:name() | gen_server:server_name()} |
+    {period, period()} |
+    {measurements, [measurement()]}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:options/0">
+
+  <div class="detail-header">
+    <a href="#t:options/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">options/0</h1>
+
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L212" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>options() :: [option()].</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:period/0">
+
+  <div class="detail-header">
+    <a href="#t:period/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">period/0</h1>
+
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L223" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>period() :: pos_integer().</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:state/0">
+
+  <div class="detail-header">
+    <a href="#t:state/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">state/0</h1>
+
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L224" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>state() :: #{measurements => [measurement()], period => period()}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:t/0">
+
+  <div class="detail-header">
+    <a href="#t:t/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">t/0</h1>
+
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L211" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>t() :: gen_server:server().</pre>
+
+      </div>
+
+
+  </section>
+</section>
+
+          </div>
+        </section>
+
+        <section id="functions" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#functions">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Functions
+          </h1>
+          <div class="functions-list">
+<section class="detail" id="child_spec/1">
+
+  <div class="detail-header">
+    <a href="#child_spec/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">child_spec(Opts)</h1>
+
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L256" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+Returns a child spec for the poller for running under a supervisor.
+  </section>
+</section>
+<section class="detail" id="code_change/3">
+
+  <div class="detail-header">
+    <a href="#code_change/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">code_change(OldVsn, State, Extra)</h1>
+
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L357" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="handle_call/3">
+
+  <div class="detail-header">
+    <a href="#handle_call/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">handle_call(Request, From, State)</h1>
+
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L341" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="handle_cast/2">
+
+  <div class="detail-header">
+    <a href="#handle_cast/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">handle_cast(Msg, State)</h1>
+
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L346" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="handle_info/2">
+
+  <div class="detail-header">
+    <a href="#handle_info/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">handle_info(_, State)</h1>
+
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L348" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="init/1">
+
+  <div class="detail-header">
+    <a href="#init/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">init(Args)</h1>
+
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L248" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>init(map()) -> {ok, state()}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="list_measurements/1">
+
+  <div class="detail-header">
+    <a href="#list_measurements/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">list_measurements(Poller)</h1>
+
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L244" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>list_measurements(t()) -> [measurement()].</pre>
+
+      </div>
+
+Returns a list of measurements used by the poller.
+  </section>
+</section>
+<section class="detail" id="make_measurement/1">
+
+  <div class="detail-header">
+    <a href="#make_measurement/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">make_measurement(Measurement)</h1>
+
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L330" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>make_measurement(measurement()) -> measurement() | no_return().</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="make_measurements_and_filter_misbehaving/1">
+
+  <div class="detail-header">
+    <a href="#make_measurements_and_filter_misbehaving/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">make_measurements_and_filter_misbehaving(Measurements)</h1>
+
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L326" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>make_measurements_and_filter_misbehaving([measurement()]) -> [measurement()].</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="parse_args/1">
+
+  <div class="detail-header">
+    <a href="#parse_args/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">parse_args(Args)</h1>
+
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L270" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="parse_measurement/1">
+
+  <div class="detail-header">
+    <a href="#parse_measurement/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">parse_measurement(Term)</h1>
+
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L294" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>parse_measurement(measurement()) -> {module(), atom(), list()}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="parse_measurements/1">
+
+  <div class="detail-header">
+    <a href="#parse_measurements/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">parse_measurements(Measurements)</h1>
+
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L288" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>parse_measurements([measurement()]) -> [{module(), atom(), list()}].</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="schedule_measurement/1">
+
+  <div class="detail-header">
+    <a href="#schedule_measurement/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">schedule_measurement(CollectInMillis)</h1>
+
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L278" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>schedule_measurement(non_neg_integer()) -> ok.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="start_link/1">
+
+  <div class="detail-header">
+    <a href="#start_link/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">start_link(Opts)</h1>
+
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L232" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>start_link(options()) -> gen_server:on_start().</pre>
+
+      </div>
+
+<p>Starts a poller linked to the calling process.</p><p>Useful for starting Pollers as a part of a supervision tree.</p>Default options: [{name, telemetry_poller}, {period, timer:seconds(5)}]
+  </section>
+</section>
+<section class="detail" id="terminate/2">
+
+  <div class="detail-header">
+    <a href="#terminate/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">terminate(Reason, State)</h1>
+
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L355" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="validate_period/1">
+
+  <div class="detail-header">
+    <a href="#validate_period/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">validate_period(Period)</h1>
+
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L282" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>validate_period(term()) -> ok | no_return().</pre>
+
+      </div>
+
+
+  </section>
+</section>
+
+          </div>
+        </section>
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.3-dev) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

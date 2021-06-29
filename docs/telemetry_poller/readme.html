@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.3-dev">
+    <meta name="project" content="telemetry_poller v0.5.1">
+
+    <title>telemetry_poller — telemetry_poller v0.5.1</title>
+    <link rel="stylesheet" href="dist/erlang-342d9843ccb2e80b8d3f.css" />
+
+    <script src="dist/sidebar_items-b18e21b9dc.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
+  </head>
+  <body data-type="extras">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="readme.html" class="sidebar-projectName">
+telemetry_poller
+      </a>
+      <strong class="sidebar-projectVersion">
+        v0.5.1
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>telemetry_poller</h1><p><a href="https://codecov.io/gh/beam-telemetry/telemetry_poller/branch/master/graphs/badge.svg"><img src="https://codecov.io/gh/beam-telemetry/telemetry_poller/branch/master/graphs/badge.svg" alt="Codecov"/></a></p><p>Allows to periodically collect measurements and dispatch them as Telemetry events.</p><p><code class="inline">telemetry_poller</code> by default runs a poller to perform VM measurements:</p><ul><li><code class="inline">[vm, memory]</code> - contains the total memory, process memory, and all other keys in <code class="inline">erlang:memory/0</code></li><li><code class="inline">[vm, total_run_queue_lengths]</code> - returns the run queue lengths for CPU and IO schedulers. It contains the <code class="inline">total</code>, <code class="inline">cpu</code> and <code class="inline">io</code> measurements</li><li><code class="inline">[vm, system_counts]</code> - returns the current process, atom and port count as per <code class="inline">erlang:system_info/1</code></li></ul><p>You can directly consume those events after adding <code class="inline">telemetry_poller</code> as a dependency.</p><p>Poller also provides a convenient API for running custom pollers.</p><h2 id="defining-custom-measurements" class="section-heading">
+  <a href="#defining-custom-measurements" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Defining custom measurements
+</h2>
+<p>Poller also includes conveniences for performing process-based measurements as well as custom ones.</p><h3 id="erlang" class="section-heading">
+  <a href="#erlang" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Erlang
+</h3>
+<p>First define the poller with the custom measurements. The first measurement is the built-in <code class="inline">process_info</code> measurement and the second one is given by a custom module-function-args defined  by you:</p><pre><code class="makeup erlang"><span class="nc">telemetry_poller</span><span class="p">:</span><span class="nf">start_link</span><span class="p" data-group-id="5489942192-1">(</span><span class="w">
+  </span><span class="p" data-group-id="5489942192-2">[</span><span class="p" data-group-id="5489942192-3">{</span><span class="ss">measurements</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5489942192-4">[</span><span class="w">
+    </span><span class="p" data-group-id="5489942192-5">{</span><span class="nb">process_info</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5489942192-6">[</span><span class="p" data-group-id="5489942192-7">{</span><span class="ss">name</span><span class="p">,</span><span class="w"> </span><span class="ss">my_app_worker</span><span class="p" data-group-id="5489942192-7">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5489942192-8">{</span><span class="ss">event</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5489942192-9">[</span><span class="ss">my_app</span><span class="p">,</span><span class="w"> </span><span class="ss">worker</span><span class="p" data-group-id="5489942192-9">]</span><span class="p" data-group-id="5489942192-8">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5489942192-10">{</span><span class="ss">keys</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5489942192-11">[</span><span class="nb">memory</span><span class="p">,</span><span class="w"> </span><span class="ss">message_queue_len</span><span class="p" data-group-id="5489942192-11">]</span><span class="p" data-group-id="5489942192-10">}</span><span class="p" data-group-id="5489942192-6">]</span><span class="p" data-group-id="5489942192-5">}</span><span class="p">,</span><span class="w">
+    </span><span class="p" data-group-id="5489942192-12">{</span><span class="ss">example_app_measurements</span><span class="p">,</span><span class="w"> </span><span class="ss">dispatch_session_count</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5489942192-13">[</span><span class="p" data-group-id="5489942192-13">]</span><span class="p" data-group-id="5489942192-12">}</span><span class="w">
+  </span><span class="p" data-group-id="5489942192-4">]</span><span class="p" data-group-id="5489942192-3">}</span><span class="p">,</span><span class="w">
+  </span><span class="p" data-group-id="5489942192-14">{</span><span class="ss">period</span><span class="p">,</span><span class="w"> </span><span class="nc">timer</span><span class="p">:</span><span class="nf">seconds</span><span class="p" data-group-id="5489942192-15">(</span><span class="mi">10</span><span class="p" data-group-id="5489942192-15">)</span><span class="p" data-group-id="5489942192-14">}</span><span class="p">,</span><span class="w"> </span><span class="c1">% configure sampling period - default is timer:seconds(5)</span><span class="w">
+  </span><span class="p" data-group-id="5489942192-16">{</span><span class="ss">name</span><span class="p">,</span><span class="w"> </span><span class="ss">my_app_poller</span><span class="p" data-group-id="5489942192-16">}</span><span class="w">
+</span><span class="p" data-group-id="5489942192-2">]</span><span class="p" data-group-id="5489942192-1">)</span><span class="p">.</span></code></pre><p>Now define the custom measurement and you are good to go:</p><pre><code class="makeup erlang"><span class="p">-</span><span class="na">module</span><span class="p" data-group-id="4055016020-1">(</span><span class="ss">example_app_measurements</span><span class="p" data-group-id="4055016020-1">)</span><span class="p">.</span><span class="w">
+
+</span><span class="nf">dispatch_session_count</span><span class="p" data-group-id="4055016020-2">(</span><span class="p" data-group-id="4055016020-2">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w">
+    </span><span class="c1">% emit a telemetry event when called</span><span class="w">
+    </span><span class="nc">telemetry</span><span class="p">:</span><span class="nf">execute</span><span class="p" data-group-id="4055016020-3">(</span><span class="p" data-group-id="4055016020-4">[</span><span class="ss">example_app</span><span class="p">,</span><span class="w"> </span><span class="ss">session_count</span><span class="p" data-group-id="4055016020-4">]</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4055016020-5">#{</span><span class="ss">count</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nc">example_app</span><span class="p">:</span><span class="nf">session_count</span><span class="p" data-group-id="4055016020-6">(</span><span class="p" data-group-id="4055016020-6">)</span><span class="p" data-group-id="4055016020-5">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4055016020-7">#{</span><span class="p" data-group-id="4055016020-7">}</span><span class="p" data-group-id="4055016020-3">)</span><span class="p">.</span></code></pre><h3 id="elixir" class="section-heading">
+  <a href="#elixir" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Elixir
+</h3>
+<p>First define the poller with the custom measurements. The first measurement is the built-in <code class="inline">process_info</code> measurement and the second one is given by a custom module-function-args defined  by you:</p><pre><code class="makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">ExampleApp.Measurements</span><span class="w"> </span><span class="k" data-group-id="1903706840-1">do</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">dispatch_session_count</span><span class="p" data-group-id="1903706840-2">(</span><span class="p" data-group-id="1903706840-2">)</span><span class="w"> </span><span class="k" data-group-id="1903706840-3">do</span><span class="w">
+    </span><span class="c1"># emit a telemetry event when called</span><span class="w">
+    </span><span class="ss">:telemetry</span><span class="o">.</span><span class="n">execute</span><span class="p" data-group-id="1903706840-4">(</span><span class="p" data-group-id="1903706840-5">[</span><span class="ss">:example_app</span><span class="p">,</span><span class="w"> </span><span class="ss">:session_count</span><span class="p" data-group-id="1903706840-5">]</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1903706840-6">%{</span><span class="ss">count</span><span class="p">:</span><span class="w"> </span><span class="nc">ExampleApp</span><span class="o">.</span><span class="n">session_count</span><span class="p" data-group-id="1903706840-7">(</span><span class="p" data-group-id="1903706840-7">)</span><span class="p" data-group-id="1903706840-6">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1903706840-8">%{</span><span class="p" data-group-id="1903706840-8">}</span><span class="p" data-group-id="1903706840-4">)</span><span class="w">
+  </span><span class="k" data-group-id="1903706840-3">end</span><span class="w">
+</span><span class="k" data-group-id="1903706840-1">end</span></code></pre><pre><code class="makeup elixir"><span class="ss">:telemetry_poller</span><span class="o">.</span><span class="n">start_link</span><span class="p" data-group-id="9586928301-1">(</span><span class="w">
+  </span><span class="c1"># include custom measurement as an MFA tuple</span><span class="w">
+  </span><span class="ss">measurements</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="9586928301-2">[</span><span class="w">
+    </span><span class="p" data-group-id="9586928301-3">{</span><span class="ss">:process_info</span><span class="p">,</span><span class="w"> </span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="ss">:my_app_worker</span><span class="p">,</span><span class="w"> </span><span class="ss">event</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="9586928301-4">[</span><span class="ss">:my_app</span><span class="p">,</span><span class="w"> </span><span class="ss">:worker</span><span class="p" data-group-id="9586928301-4">]</span><span class="p">,</span><span class="w"> </span><span class="ss">keys</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="9586928301-5">[</span><span class="ss">:message</span><span class="p">,</span><span class="w"> </span><span class="ss">:message_queue_len</span><span class="p" data-group-id="9586928301-5">]</span><span class="p" data-group-id="9586928301-3">}</span><span class="p">,</span><span class="w">
+    </span><span class="p" data-group-id="9586928301-6">{</span><span class="nc">ExampleApp.Measurements</span><span class="p">,</span><span class="w"> </span><span class="ss">:dispatch_session_count</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9586928301-7">[</span><span class="p" data-group-id="9586928301-7">]</span><span class="p" data-group-id="9586928301-6">}</span><span class="p">,</span><span class="w">
+  </span><span class="p" data-group-id="9586928301-2">]</span><span class="p">,</span><span class="w">
+  </span><span class="ss">period</span><span class="p">:</span><span class="w"> </span><span class="ss">:timer</span><span class="o">.</span><span class="n">seconds</span><span class="p" data-group-id="9586928301-8">(</span><span class="mi">10</span><span class="p" data-group-id="9586928301-8">)</span><span class="p">,</span><span class="w"> </span><span class="c1"># configure sampling period - default is :timer.seconds(5)</span><span class="w">
+  </span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="ss">:my_app_poller</span><span class="w">
+</span><span class="p" data-group-id="9586928301-1">)</span></code></pre><h2 id="documentation" class="section-heading">
+  <a href="#documentation" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Documentation
+</h2>
+<p>See <a href="https://hexdocs.pm/telemetry_poller/">documentation</a> for more concrete examples and usage
+instructions.</p><h2 id="copyright-and-license" class="section-heading">
+  <a href="#copyright-and-license" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Copyright and License
+</h2>
+<p>telemetry_poller is copyright (c) 2018 Chris McCord and Erlang Solutions.</p><p>telemetry_poller source code is released under Apache License, Version 2.0.</p><p>See <a href="license.html">LICENSE</a> and <a href="notice.html">NOTICE</a> files for more information.</p>
+<div class="bottom-actions">
+  <div class="bottom-actions-item">
+
+      <a href="api-reference.html" class="bottom-actions-button" rel="prev">
+        <span class="subheader">
+          ← Previous Page
+        </span>
+        <span class="title">
+API Reference
+        </span>
+      </a>
+
+  </div>
+  <div class="bottom-actions-item">
+
+      <a href="changelog.html" class="bottom-actions-button" rel="next">
+        <span class="subheader">
+          Next Page →
+        </span>
+        <span class="title">
+Changelog
+        </span>
+      </a>
+
+  </div>
+</div>
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.3-dev) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.24.3-dev">
+    <meta name="project" content="telemetry_poller v0.5.1">
+
+    <title>Changelog — telemetry_poller v0.5.1</title>
+    <link rel="stylesheet" href="dist/erlang-342d9843ccb2e80b8d3f.css" />
+
+    <script src="dist/sidebar_items-b18e21b9dc.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
+  </head>
+  <body data-type="extras">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="readme.html" class="sidebar-projectName">
+telemetry_poller
+      </a>
+      <strong class="sidebar-projectVersion">
+        v0.5.1
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>Changelog</h1><p>All notable changes to this project will be documented in this file.</p><p>The format is based on <a href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a>,
+and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a>.</p><h2 id="0-5-1" class="section-heading">
+  <a href="#0-5-1" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  <a href="https://github.com/beam-telemetry/telemetry_poller/tree/v0.5.1">0.5.1</a>
+</h2>
+<h3 id="added" class="section-heading">
+  <a href="#added" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Added
+</h3>
+<ul><li>Support <code class="inline">{:global, atom()}</code> and <code class="inline">{:via, module(), term()}</code> names for the poller process.</li></ul><h2 id="0-5-0" class="section-heading">
+  <a href="#0-5-0" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  <a href="https://github.com/beam-telemetry/telemetry_poller/tree/v0.5.0">0.5.0</a>
+</h2>
+<h3 id="added-1" class="section-heading">
+  <a href="#added-1" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Added
+</h3>
+<ul><li><code class="inline">system_counts</code> measurement</li></ul><h2 id="0-4-1" class="section-heading">
+  <a href="#0-4-1" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  <a href="https://github.com/beam-telemetry/telemetry_poller/tree/v0.4.1">0.4.1</a>
+</h2>
+<h3 id="changed" class="section-heading">
+  <a href="#changed" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Changed
+</h3>
+<ul><li>Improve docs</li><li>No longer add a default name to telemetry processes</li></ul><h2 id="0-4-0" class="section-heading">
+  <a href="#0-4-0" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  <a href="https://github.com/beam-telemetry/telemetry_poller/tree/v0.4.0">0.4.0</a>
+</h2>
+<p>Telemetry Poller has been rewritten in Erlang so it can be used by the overall Erlang community.
+Therefore, the <code class="inline">Telemetry.Poller</code> module must now be accessed as <code class="inline">telemetry_poller</code>.
+A new <code class="inline">process_info</code> measurement has also been added and the <code class="inline">vm_measurements</code> and <code class="inline">measurements</code>
+keys have been merged into a single <code class="inline">measurements</code> key for simplicity.</p><h3 id="added-2" class="section-heading">
+  <a href="#added-2" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Added
+</h3>
+<ul><li><code class="inline">:process_info</code> measurement</li></ul><h3 id="changed-1" class="section-heading">
+  <a href="#changed-1" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Changed
+</h3>
+<ul><li><code class="inline">vm_measurements</code> and <code class="inline">measurements</code>  have been merged into <code class="inline">measurements</code></li><li><code class="inline">Telemetry.Poller</code> has been rewritten to <code class="inline">telemetry_poller</code></li></ul><h2 id="0-3-0" class="section-heading">
+  <a href="#0-3-0" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  <a href="https://github.com/beam-telemetry/telemetry_poller/tree/v0.3.0">0.3.0</a>
+</h2>
+<p>This release marks the upgrade to Telemetry 0.4.0. This means that Poller measurements can emit a map
+of values now instead of a single one, making it less &quot;noisy&quot; when it comes to number of emitted events.</p><p>All specific memory measurements have been replaced with a single <code class="inline">:memory</code> measurement sending all
+the values that were emitted by old measurements at once.</p><p><code class="inline">:run_queue_lengths</code> VM measurement has been removed for now, as we believe that as detailed data
+as it provided is not necessary to effectively debug the system. <code class="inline">:total_run_queue_lengths</code> VM
+measurement has been changed so that it reports a <code class="inline">:total</code> length of run queues, length of <code class="inline">:cpu</code>
+run queues (including dirty CPU run queue), and length of (dirty) <code class="inline">:io</code> run queue.</p><h3 id="added-3" class="section-heading">
+  <a href="#added-3" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Added
+</h3>
+<ul><li><code class="inline">:memory</code> VM measurement reporting all the data returned by <a href="https://erlang.org/doc/man/erlang.html#memory-0"><code class="inline">:erlang.memory/0</code></a> call.</li></ul><h3 id="changed-2" class="section-heading">
+  <a href="#changed-2" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Changed
+</h3>
+<ul><li><code class="inline">:total_run_queue_lengths</code> VM measurement is reporting a <code class="inline">:total</code>, <code class="inline">:cpu</code> and <code class="inline">:io</code> run queue lengths
+now. See documentation for more details.</li></ul><h3 id="removed" class="section-heading">
+  <a href="#removed" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Removed
+</h3>
+<ul><li><code class="inline">:total_memory</code>, <code class="inline">:atom_memory</code>, <code class="inline">:atom_used_memory</code>, <code class="inline">:processes_memory</code>, <code class="inline">:processes_used_memory</code>,
+<code class="inline">:binary_memory</code>, <code class="inline">:ets_memory</code>, <code class="inline">:code_memory</code> and <code class="inline">:system_memory</code> VM measurements have been removed.
+Please use the <code class="inline">:memory</code> measurement now instead.</li></ul><h2 id="0-2-0" class="section-heading">
+  <a href="#0-2-0" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  <a href="https://github.com/beam-telemetry/telemetry_poller/tree/v0.2.0">0.2.0</a>
+</h2>
+<h3 id="added-4" class="section-heading">
+  <a href="#added-4" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Added
+</h3>
+<ul><li>Added <code class="inline">:total_run_queue_lengths</code> and <code class="inline">:run_queue_lengths</code> memory measurements;</li></ul><h3 id="changed-3" class="section-heading">
+  <a href="#changed-3" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Changed
+</h3>
+<ul><li><code class="inline">:total_run_queue_lengths</code> is now included in the set of default VM measurements;</li><li>A default Poller process, with a default set of VM measurements, is started when <code class="inline">:telemetry_poller</code>
+application starts (configurable via <code class="inline">:telemetry.poller, :default</code> application environment).</li><li>VM measurements are now provided to Poller's <code class="inline">:vm_measurements</code> option. Passing atom <code class="inline">:default</code>
+to this option makes the Poller use a default set of VM measurements;</li><li>Telemetry has been upgraded to version 0.3, meaning that VM measurements now use this version to
+emit the events.</li></ul><h3 id="removed-1" class="section-heading">
+  <a href="#removed-1" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Removed
+</h3>
+<ul><li><code class="inline">Telemetry.Poller.vm_measurements/0</code> function has been removed in favor of <code class="inline">:vm_measurements</code>
+option.</li></ul><h3 id="fixed" class="section-heading">
+  <a href="#fixed" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Fixed
+</h3>
+<ul><li>Fixed the type definition of <code class="inline">Telemetry.Poller.measurement/0</code> type - no Dialyzer warnings are
+emitted when running it on the project.</li></ul><h2 id="0-1-0" class="section-heading">
+  <a href="#0-1-0" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  <a href="https://github.com/beam-telemetry/telemetry_poller/tree/v0.1.0">0.1.0</a>
+</h2>
+<h3 id="added-5" class="section-heading">
+  <a href="#added-5" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Added
+</h3>
+<ul><li>The Poller process periodically invoking registered functions which emit Telemetry events.
+It supports VM memory measurements and custom measurements provided as MFAs.</li></ul>
+<div class="bottom-actions">
+  <div class="bottom-actions-item">
+
+      <a href="readme.html" class="bottom-actions-button" rel="prev">
+        <span class="subheader">
+          ← Previous Page
+        </span>
+        <span class="title">
+telemetry_poller
+        </span>
+      </a>
+
+  </div>
+  <div class="bottom-actions-item">
+
+      <a href="license.html" class="bottom-actions-button" rel="next">
+        <span class="subheader">
+          Next Page →
+        </span>
+        <span class="title">
+LICENSE
+        </span>
+      </a>
+
+  </div>
+</div>
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.24.3-dev) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>
