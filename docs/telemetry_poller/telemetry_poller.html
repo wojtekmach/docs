@@ -82,7 +82,7 @@ telemetry_poller
       <h1>
 telemetry_poller <small class="app-vsn">(telemetry_poller v0.5.1)</small>
 
-          <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L178" title="View Source" class="view-source" rel="help">
+          <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L180" title="View Source" class="view-source" rel="help">
             <span class="icon-code" aria-hidden="true"></span>
             <span class="sr-only">View Source</span>
           </a>
@@ -91,10 +91,10 @@ telemetry_poller <small class="app-vsn">(telemetry_poller v0.5.1)</small>
 
 
         <section id="moduledoc">
-<p>A time-based poller to periodically dispatch Telemetry events.</p><p>A poller is a process start in your supervision tree with a list of measurements to perform periodically. On start it expects the period in milliseconds and a list of measurements to perform:</p><pre><code class="makeup erlang"><span class="w">  </span><span class="nc">telemetry_poller</span><span class="p">:</span><span class="nf">start_link</span><span class="p" data-group-id="5435756959-1">(</span><span class="p" data-group-id="5435756959-2">[</span><span class="w">
-    </span><span class="p" data-group-id="5435756959-3">{</span><span class="ss">measurements</span><span class="p">,</span><span class="w"> </span><span class="n">Measurements</span><span class="p" data-group-id="5435756959-3">}</span><span class="p">,</span><span class="w">
-    </span><span class="p" data-group-id="5435756959-4">{</span><span class="ss">period</span><span class="p">,</span><span class="w"> </span><span class="n">Period</span><span class="p" data-group-id="5435756959-4">}</span><span class="w">
-  </span><span class="p" data-group-id="5435756959-2">]</span><span class="p" data-group-id="5435756959-1">)</span></code></pre><p>The following measurements are supported:</p><p>* <code>memory</code> (default)</p><p>* <code>total_run_queue_lengths</code> (default)</p><p>* <code>system_counts</code> (default)</p><p>* <code>{process_info, Proplist}</code></p><p>* <code>{Module, Function, Args}</code></p><p>We will discuss each measurement in detail. Also note that the telemetry_poller application ships with a built-in poller that measures <code>memory</code>, <code>total_run_queue_lengths</code> and <code>system_counts</code>. This takes the VM measurement out of the way so your application can focus on what is specific to its behaviour.</p><h3 id="module-memory" class="section-heading">
+<p>A time-based poller to periodically dispatch Telemetry events.</p><p>A poller is a process start in your supervision tree with a list of measurements to perform periodically. On start it expects the period in milliseconds and a list of measurements to perform:</p><pre><code class="makeup erlang"><span class="w">  </span><span class="nc">telemetry_poller</span><span class="p">:</span><span class="nf">start_link</span><span class="p" data-group-id="6693458744-1">(</span><span class="p" data-group-id="6693458744-2">[</span><span class="w">
+    </span><span class="p" data-group-id="6693458744-3">{</span><span class="ss">measurements</span><span class="p">,</span><span class="w"> </span><span class="n">Measurements</span><span class="p" data-group-id="6693458744-3">}</span><span class="p">,</span><span class="w">
+    </span><span class="p" data-group-id="6693458744-4">{</span><span class="ss">period</span><span class="p">,</span><span class="w"> </span><span class="n">Period</span><span class="p" data-group-id="6693458744-4">}</span><span class="w">
+  </span><span class="p" data-group-id="6693458744-2">]</span><span class="p" data-group-id="6693458744-1">)</span></code></pre><p>The following measurements are supported:</p><p>* <code>memory</code> (default)</p><p>* <code>total_run_queue_lengths</code> (default)</p><p>* <code>system_counts</code> (default)</p><p>* <code>{process_info, Proplist}</code></p><p>* <code>{Module, Function, Args}</code></p><p>We will discuss each measurement in detail. Also note that the telemetry_poller application ships with a built-in poller that measures <code>memory</code>, <code>total_run_queue_lengths</code> and <code>system_counts</code>. This takes the VM measurement out of the way so your application can focus on what is specific to its behaviour.</p><h3 id="module-memory" class="section-heading">
   <a href="#module-memory" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   <a name="Memory">Memory</a>
 </h3>
@@ -110,15 +110,15 @@ telemetry_poller <small class="app-vsn">(telemetry_poller v0.5.1)</small>
   <a href="#module-process-info" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   <a name="Process_info">Process info</a>
 </h3>
-<p>A measurement with information about a given process. It must be specified alongside a proplist with the process name, the event name, and a list of keys to be included:</p><pre><code class="makeup erlang"><span class="w">  </span><span class="p" data-group-id="1090135534-1">{</span><span class="nb">process_info</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1090135534-2">[</span><span class="w">
-   </span><span class="p" data-group-id="1090135534-3">{</span><span class="ss">name</span><span class="p">,</span><span class="w"> </span><span class="ss">my_app_worker</span><span class="p" data-group-id="1090135534-3">}</span><span class="p">,</span><span class="w">
-   </span><span class="p" data-group-id="1090135534-4">{</span><span class="ss">event</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1090135534-5">[</span><span class="ss">my_app</span><span class="p">,</span><span class="w"> </span><span class="ss">worker</span><span class="p" data-group-id="1090135534-5">]</span><span class="p" data-group-id="1090135534-4">}</span><span class="p">,</span><span class="w">
-   </span><span class="p" data-group-id="1090135534-6">{</span><span class="ss">keys</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1090135534-7">[</span><span class="ss">message_queue_len</span><span class="p">,</span><span class="w"> </span><span class="nb">memory</span><span class="p" data-group-id="1090135534-7">]</span><span class="p" data-group-id="1090135534-6">}</span><span class="w">
-  </span><span class="p" data-group-id="1090135534-2">]</span><span class="p" data-group-id="1090135534-1">}</span></code></pre><p>The <code>keys</code> is a list of atoms accepted by <a href="https://erlang.org/doc/man/erlang.html#process_info-2"><code>erlang:process_info/2</code></a>.</p><h3 id="module-custom-measurements" class="section-heading">
+<p>A measurement with information about a given process. It must be specified alongside a proplist with the process name, the event name, and a list of keys to be included:</p><pre><code class="makeup erlang"><span class="w">  </span><span class="p" data-group-id="6557743063-1">{</span><span class="nb">process_info</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="6557743063-2">[</span><span class="w">
+   </span><span class="p" data-group-id="6557743063-3">{</span><span class="ss">name</span><span class="p">,</span><span class="w"> </span><span class="ss">my_app_worker</span><span class="p" data-group-id="6557743063-3">}</span><span class="p">,</span><span class="w">
+   </span><span class="p" data-group-id="6557743063-4">{</span><span class="ss">event</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="6557743063-5">[</span><span class="ss">my_app</span><span class="p">,</span><span class="w"> </span><span class="ss">worker</span><span class="p" data-group-id="6557743063-5">]</span><span class="p" data-group-id="6557743063-4">}</span><span class="p">,</span><span class="w">
+   </span><span class="p" data-group-id="6557743063-6">{</span><span class="ss">keys</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="6557743063-7">[</span><span class="ss">message_queue_len</span><span class="p">,</span><span class="w"> </span><span class="nb">memory</span><span class="p" data-group-id="6557743063-7">]</span><span class="p" data-group-id="6557743063-6">}</span><span class="w">
+  </span><span class="p" data-group-id="6557743063-2">]</span><span class="p" data-group-id="6557743063-1">}</span></code></pre><p>The <code>keys</code> is a list of atoms accepted by <a href="https://erlang.org/doc/man/erlang.html#process_info-2"><code>erlang:process_info/2</code></a>.</p><h3 id="module-custom-measurements" class="section-heading">
   <a href="#module-custom-measurements" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   <a name="Custom_measurements">Custom measurements</a>
 </h3>
-<p>Telemetry poller also allows you to perform custom measurements by passing a module-function-args tuple:</p><p>{my_app_example, measure, []}</p><p>The given function will be invoked periodically and they must explicitly invoke <a href="https://hexdocs.pm/telemetry/telemetry.html#execute/3"><code>telemetry:execute/3</code></a> function. If the invocation of the MFA fails, the measurement is removed from the Poller.</p><p>For all options, see <a href="#start_link/1"><code>start_link/1</code></a>. The options listed there can be given to the default poller as well as to custom pollers.</p><h3 id="module-default-poller" class="section-heading">
+<p>Telemetry poller also allows you to perform custom measurements by passing a module-function-args tuple:</p><pre><code class="makeup erlang"><span class="w">  </span><span class="p" data-group-id="7499215458-1">{</span><span class="ss">my_app_example</span><span class="p">,</span><span class="w"> </span><span class="ss">measure</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="7499215458-2">[</span><span class="p" data-group-id="7499215458-2">]</span><span class="p" data-group-id="7499215458-1">}</span></code></pre><p>The given function will be invoked periodically and they must explicitly invoke <a href="https://wojtekmach.pl/docs/telemetry/telemetry.html#execute/3"><code>telemetry:execute/3</code></a> function. If the invocation of the MFA fails, the measurement is removed from the Poller.</p><p>For all options, see <a href="#start_link/1"><code>start_link/1</code></a>. The options listed there can be given to the default poller as well as to custom pollers.</p><h3 id="module-default-poller" class="section-heading">
   <a href="#module-default-poller" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   <a name="Default_poller">Default poller</a>
 </h3>
@@ -126,19 +126,19 @@ telemetry_poller <small class="app-vsn">(telemetry_poller v0.5.1)</small>
   <a href="#module-example-tracking-number-of-active-sessions-in-web-application" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   <a name="Example_-_tracking_number_of_active_sessions_in_web_application">Example - tracking number of active sessions in web application</a>
 </h3>
-<p>Let's imagine that you have a web application and you would like to periodically measure number of active user sessions.</p><pre><code class="makeup erlang"><span class="w">  </span><span class="p">-</span><span class="na">module</span><span class="p" data-group-id="7518448750-1">(</span><span class="ss">example_app</span><span class="p" data-group-id="7518448750-1">)</span><span class="p">.</span><span class="w">
+<p>Let's imagine that you have a web application and you would like to periodically measure number of active user sessions.</p><pre><code class="makeup erlang"><span class="w">  </span><span class="p">-</span><span class="na">module</span><span class="p" data-group-id="4127897662-1">(</span><span class="ss">example_app</span><span class="p" data-group-id="4127897662-1">)</span><span class="p">.</span><span class="w">
  
-  </span><span class="nf">session_count</span><span class="p" data-group-id="7518448750-2">(</span><span class="p" data-group-id="7518448750-2">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w">
-     </span><span class="c1">% logic for calculating session count.</span></code></pre><p>To achieve that, we need a measurement dispatching the value we're interested in:</p><pre><code class="makeup erlang"><span class="w">  </span><span class="p">-</span><span class="na">module</span><span class="p" data-group-id="3486349176-1">(</span><span class="ss">example_app_measurements</span><span class="p" data-group-id="3486349176-1">)</span><span class="p">.</span><span class="w">
+  </span><span class="nf">session_count</span><span class="p" data-group-id="4127897662-2">(</span><span class="p" data-group-id="4127897662-2">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w">
+     </span><span class="c1">% logic for calculating session count.</span></code></pre><p>To achieve that, we need a measurement dispatching the value we're interested in:</p><pre><code class="makeup erlang"><span class="w">  </span><span class="p">-</span><span class="na">module</span><span class="p" data-group-id="6979195677-1">(</span><span class="ss">example_app_measurements</span><span class="p" data-group-id="6979195677-1">)</span><span class="p">.</span><span class="w">
  
-  </span><span class="nf">dispatch_session_count</span><span class="p" data-group-id="3486349176-2">(</span><span class="p" data-group-id="3486349176-2">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w">
-     </span><span class="nc">telemetry</span><span class="p">:</span><span class="nf">execute</span><span class="p" data-group-id="3486349176-3">(</span><span class="p" data-group-id="3486349176-4">[</span><span class="ss">example_app</span><span class="p">,</span><span class="w"> </span><span class="ss">session_count</span><span class="p" data-group-id="3486349176-4">]</span><span class="p">,</span><span class="w"> </span><span class="nc">example_app</span><span class="p">:</span><span class="nf">session_count</span><span class="p" data-group-id="3486349176-5">(</span><span class="p" data-group-id="3486349176-5">)</span><span class="p" data-group-id="3486349176-3">)</span><span class="p">.</span></code></pre><p>and tell the Poller to invoke it periodically:</p><pre><code class="makeup erlang"><span class="w">  </span><span class="nc">telemetry_poller</span><span class="p">:</span><span class="nf">start_link</span><span class="p" data-group-id="9401497464-1">(</span><span class="p" data-group-id="9401497464-2">[</span><span class="p" data-group-id="9401497464-3">{</span><span class="ss">measurements</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9401497464-4">[</span><span class="p" data-group-id="9401497464-5">{</span><span class="ss">example_app_measurements</span><span class="p">,</span><span class="w"> </span><span class="ss">dispatch_session_count</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9401497464-6">[</span><span class="p" data-group-id="9401497464-6">]</span><span class="p" data-group-id="9401497464-5">}</span><span class="p" data-group-id="9401497464-4">]</span><span class="p">)</span><span class="p">.</span></code></pre><p>If you find that you need to somehow label the event values, e.g. differentiate between number of sessions of regular and admin users, you could use event metadata:</p><pre><code class="makeup erlang"><span class="w">  </span><span class="p">-</span><span class="na">module</span><span class="p" data-group-id="8832488137-1">(</span><span class="ss">example_app_measurements</span><span class="p" data-group-id="8832488137-1">)</span><span class="p">.</span><span class="w">
+  </span><span class="nf">dispatch_session_count</span><span class="p" data-group-id="6979195677-2">(</span><span class="p" data-group-id="6979195677-2">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w">
+     </span><span class="nc">telemetry</span><span class="p">:</span><span class="nf">execute</span><span class="p" data-group-id="6979195677-3">(</span><span class="p" data-group-id="6979195677-4">[</span><span class="ss">example_app</span><span class="p">,</span><span class="w"> </span><span class="ss">session_count</span><span class="p" data-group-id="6979195677-4">]</span><span class="p">,</span><span class="w"> </span><span class="nc">example_app</span><span class="p">:</span><span class="nf">session_count</span><span class="p" data-group-id="6979195677-5">(</span><span class="p" data-group-id="6979195677-5">)</span><span class="p" data-group-id="6979195677-3">)</span><span class="p">.</span></code></pre><p>and tell the Poller to invoke it periodically:</p><pre><code class="makeup erlang"><span class="w">  </span><span class="nc">telemetry_poller</span><span class="p">:</span><span class="nf">start_link</span><span class="p" data-group-id="7001756641-1">(</span><span class="p" data-group-id="7001756641-2">[</span><span class="p" data-group-id="7001756641-3">{</span><span class="ss">measurements</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="7001756641-4">[</span><span class="p" data-group-id="7001756641-5">{</span><span class="ss">example_app_measurements</span><span class="p">,</span><span class="w"> </span><span class="ss">dispatch_session_count</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="7001756641-6">[</span><span class="p" data-group-id="7001756641-6">]</span><span class="p" data-group-id="7001756641-5">}</span><span class="p" data-group-id="7001756641-4">]</span><span class="p">)</span><span class="p">.</span></code></pre><p>If you find that you need to somehow label the event values, e.g. differentiate between number of sessions of regular and admin users, you could use event metadata:</p><pre><code class="makeup erlang"><span class="w">  </span><span class="p">-</span><span class="na">module</span><span class="p" data-group-id="7507646502-1">(</span><span class="ss">example_app_measurements</span><span class="p" data-group-id="7507646502-1">)</span><span class="p">.</span><span class="w">
  
-  </span><span class="nf">dispatch_session_count</span><span class="p" data-group-id="8832488137-2">(</span><span class="p" data-group-id="8832488137-2">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w">
-     </span><span class="n">Regulars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">example_app</span><span class="p">:</span><span class="nf">regular_users_session_count</span><span class="p" data-group-id="8832488137-3">(</span><span class="p" data-group-id="8832488137-3">)</span><span class="p">,</span><span class="w">
-     </span><span class="n">Admins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">example_app</span><span class="p">:</span><span class="nf">admin_users_session_count</span><span class="p" data-group-id="8832488137-4">(</span><span class="p" data-group-id="8832488137-4">)</span><span class="p">,</span><span class="w">
-     </span><span class="nc">telemetry</span><span class="p">:</span><span class="nf">execute</span><span class="p" data-group-id="8832488137-5">(</span><span class="p" data-group-id="8832488137-6">[</span><span class="ss">example_app</span><span class="p">,</span><span class="w"> </span><span class="ss">session_count</span><span class="p" data-group-id="8832488137-6">]</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8832488137-7">#{</span><span class="ss">count</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="n">Admins</span><span class="p" data-group-id="8832488137-7">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8832488137-8">#{</span><span class="ss">role</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ss">admin</span><span class="p" data-group-id="8832488137-8">}</span><span class="p" data-group-id="8832488137-5">)</span><span class="p">,</span><span class="w">
-     </span><span class="nc">telemetry</span><span class="p">:</span><span class="nf">execute</span><span class="p" data-group-id="8832488137-9">(</span><span class="p" data-group-id="8832488137-10">[</span><span class="ss">example_app</span><span class="p">,</span><span class="w"> </span><span class="ss">session_count</span><span class="p" data-group-id="8832488137-10">]</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8832488137-11">#{</span><span class="ss">count</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="n">Regulars</span><span class="p" data-group-id="8832488137-11">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8832488137-12">#{</span><span class="ss">role</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ss">regular</span><span class="p" data-group-id="8832488137-12">}</span><span class="p" data-group-id="8832488137-9">)</span><span class="p">.</span></code></pre>Note: the other solution would be to dispatch two different events by hooking up <code>example_app:regular_users_session_count/0</code> and <code>example_app:admin_users_session_count/0</code> functions directly. However, if you add more and more user roles to your app, you'll find yourself creating a new event for each one of them, which will force you to modify existing event handlers. If you can break down event value by some feature, like user role in this example, it's usually better to use event metadata than add new events. This is a perfect use case for poller, because you don't need to write a dedicated process which would call these functions periodically. Additionally, if you find that you need to collect more statistics like this in the future, you can easily hook them up to the same poller process and avoid creating lots of processes which would stay idle most of the time.
+  </span><span class="nf">dispatch_session_count</span><span class="p" data-group-id="7507646502-2">(</span><span class="p" data-group-id="7507646502-2">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w">
+     </span><span class="n">Regulars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">example_app</span><span class="p">:</span><span class="nf">regular_users_session_count</span><span class="p" data-group-id="7507646502-3">(</span><span class="p" data-group-id="7507646502-3">)</span><span class="p">,</span><span class="w">
+     </span><span class="n">Admins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">example_app</span><span class="p">:</span><span class="nf">admin_users_session_count</span><span class="p" data-group-id="7507646502-4">(</span><span class="p" data-group-id="7507646502-4">)</span><span class="p">,</span><span class="w">
+     </span><span class="nc">telemetry</span><span class="p">:</span><span class="nf">execute</span><span class="p" data-group-id="7507646502-5">(</span><span class="p" data-group-id="7507646502-6">[</span><span class="ss">example_app</span><span class="p">,</span><span class="w"> </span><span class="ss">session_count</span><span class="p" data-group-id="7507646502-6">]</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="7507646502-7">#{</span><span class="ss">count</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="n">Admins</span><span class="p" data-group-id="7507646502-7">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="7507646502-8">#{</span><span class="ss">role</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ss">admin</span><span class="p" data-group-id="7507646502-8">}</span><span class="p" data-group-id="7507646502-5">)</span><span class="p">,</span><span class="w">
+     </span><span class="nc">telemetry</span><span class="p">:</span><span class="nf">execute</span><span class="p" data-group-id="7507646502-9">(</span><span class="p" data-group-id="7507646502-10">[</span><span class="ss">example_app</span><span class="p">,</span><span class="w"> </span><span class="ss">session_count</span><span class="p" data-group-id="7507646502-10">]</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="7507646502-11">#{</span><span class="ss">count</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="n">Regulars</span><span class="p" data-group-id="7507646502-11">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="7507646502-12">#{</span><span class="ss">role</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ss">regular</span><span class="p" data-group-id="7507646502-12">}</span><span class="p" data-group-id="7507646502-9">)</span><span class="p">.</span></code></pre>Note: the other solution would be to dispatch two different events by hooking up <code>example_app:regular_users_session_count/0</code> and <code>example_app:admin_users_session_count/0</code> functions directly. However, if you add more and more user roles to your app, you'll find yourself creating a new event for each one of them, which will force you to modify existing event handlers. If you can break down event value by some feature, like user role in this example, it's usually better to use event metadata than add new events. This is a perfect use case for poller, because you don't need to write a dedicated process which would call these functions periodically. Additionally, if you find that you need to collect more statistics like this in the future, you can easily hook them up to the same poller process and avoid creating lots of processes which would stay idle most of the time.
         </section>
 
 
@@ -346,7 +346,7 @@ Types
     </a>
     <h1 class="signature">measurement/0</h1>
 
-      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L217" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L219" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -378,7 +378,7 @@ Types
     </a>
     <h1 class="signature">option/0</h1>
 
-      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L213" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L215" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -410,7 +410,7 @@ Types
     </a>
     <h1 class="signature">options/0</h1>
 
-      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L212" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L214" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -439,7 +439,7 @@ Types
     </a>
     <h1 class="signature">period/0</h1>
 
-      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L223" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L225" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -468,7 +468,7 @@ Types
     </a>
     <h1 class="signature">state/0</h1>
 
-      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L224" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L226" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -497,7 +497,7 @@ Types
     </a>
     <h1 class="signature">t/0</h1>
 
-      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L211" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L213" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -539,7 +539,7 @@ Functions
     </a>
     <h1 class="signature">child_spec(Opts)</h1>
 
-      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L256" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L258" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -561,7 +561,7 @@ Returns a child spec for the poller for running under a supervisor.
     </a>
     <h1 class="signature">code_change(OldVsn, State, Extra)</h1>
 
-      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L357" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L359" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -583,7 +583,7 @@ Returns a child spec for the poller for running under a supervisor.
     </a>
     <h1 class="signature">handle_call(Request, From, State)</h1>
 
-      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L341" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L343" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -605,7 +605,7 @@ Returns a child spec for the poller for running under a supervisor.
     </a>
     <h1 class="signature">handle_cast(Msg, State)</h1>
 
-      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L346" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L348" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -627,7 +627,7 @@ Returns a child spec for the poller for running under a supervisor.
     </a>
     <h1 class="signature">handle_info(_, State)</h1>
 
-      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L348" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L350" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -649,7 +649,7 @@ Returns a child spec for the poller for running under a supervisor.
     </a>
     <h1 class="signature">init(Args)</h1>
 
-      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L248" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L250" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -678,7 +678,7 @@ Returns a child spec for the poller for running under a supervisor.
     </a>
     <h1 class="signature">list_measurements(Poller)</h1>
 
-      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L244" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L246" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -707,7 +707,7 @@ Returns a list of measurements used by the poller.
     </a>
     <h1 class="signature">make_measurement(Measurement)</h1>
 
-      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L330" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L332" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -736,7 +736,7 @@ Returns a list of measurements used by the poller.
     </a>
     <h1 class="signature">make_measurements_and_filter_misbehaving(Measurements)</h1>
 
-      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L326" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L328" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -765,7 +765,7 @@ Returns a list of measurements used by the poller.
     </a>
     <h1 class="signature">parse_args(Args)</h1>
 
-      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L270" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L272" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -787,7 +787,7 @@ Returns a list of measurements used by the poller.
     </a>
     <h1 class="signature">parse_measurement(Term)</h1>
 
-      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L294" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L296" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -816,7 +816,7 @@ Returns a list of measurements used by the poller.
     </a>
     <h1 class="signature">parse_measurements(Measurements)</h1>
 
-      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L288" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L290" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -845,7 +845,7 @@ Returns a list of measurements used by the poller.
     </a>
     <h1 class="signature">schedule_measurement(CollectInMillis)</h1>
 
-      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L278" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L280" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -874,7 +874,7 @@ Returns a list of measurements used by the poller.
     </a>
     <h1 class="signature">start_link(Opts)</h1>
 
-      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L232" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L234" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -903,7 +903,7 @@ Returns a list of measurements used by the poller.
     </a>
     <h1 class="signature">terminate(Reason, State)</h1>
 
-      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L355" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L357" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -925,7 +925,7 @@ Returns a list of measurements used by the poller.
     </a>
     <h1 class="signature">validate_period(Period)</h1>
 
-      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L282" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/beam-telemetry/telemetry_poller/blob/v0.5.1/src/telemetry_poller.erl#L284" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
