@@ -112,7 +112,7 @@ telemetry
 
       </div>
 
-<p>Equivalent to <a href="#execute/3" rel="https://erlang.org/doc/link/seemfa">execute(EventName, Measurements, #{})</a>.</p>
+<p>Equivalent to <a href="#execute/3">execute(EventName, Measurements, #{})</a>.</p>
   </section>
 </section>
 
@@ -147,7 +147,7 @@ telemetry
 
       </div>
 
-<p>Emits the event, invoking handlers attached to it.</p>When the event is emitted, the handler function provided to <a href="#attach/4" rel="https://erlang.org/doc/link/seemfa"><code>attach/4</code></a> is called with four arguments:<ul><li>the event name</li><li>the map of measurements</li><li>the map of event metadata</li><li>the handler configuration given to <a href="#attach/4" rel="https://erlang.org/doc/link/seemfa"><code>attach/4</code></a></li></ul><h4>Best practices and conventions:</h4><p>While you are able to emit messages of any <code>event_name</code> structure, it is recommended that you follow the the guidelines laid out in <a href="#span-3"><code>span/3</code></a> if you are capturing start/stop events.</p>
+<p>Emits the event, invoking handlers attached to it.</p>When the event is emitted, the handler function provided to <a href="#attach/4"><code>attach/4</code></a> is called with four arguments:<ul><li>the event name</li><li>the map of measurements</li><li>the map of event metadata</li><li>the handler configuration given to <a href="#attach/4"><code>attach/4</code></a></li></ul><h4>Best practices and conventions:</h4><p>While you are able to emit messages of any <code>event_name</code> structure, it is recommended that you follow the the guidelines laid out in <code>span/3</code> if you are capturing start/stop events.</p>
   </section>
 </section>
 

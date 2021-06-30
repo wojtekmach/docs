@@ -121,7 +121,7 @@ event may include total time, decode time, wait time and other measurements.</p>
   <a href="#deprecated" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Deprecated
 </h3>
-<ul><li><code class="inline">:telemetry.execute/3</code> with an event value in favour of <code class="inline">:telemetry.execute/3</code> with a map of
+<ul><li><a href="telemetry.html#execute/3"><code class="inline">:telemetry.execute/3</code></a> with an event value in favour of <a href="telemetry.html#execute/3"><code class="inline">:telemetry.execute/3</code></a> with a map of
 measurements. If the event value is provided, it is put in a map under a <code class="inline">:value</code> key and provided
 as measurements to a handler function.</li></ul><h2 id="0-3-0" class="section-heading">
   <a href="#0-3-0" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
@@ -139,8 +139,8 @@ types.</li></ul><h3 id="changed-2" class="section-heading">
   Changed
 </h3>
 <ul><li>The library has been rewritten to Erlang. In Elixir, <code class="inline">:telemetry</code> module has to be used in place
-of <code class="inline">Telemetry</code>. In Erlang, <code class="inline">telemetry</code> module has to be used in place of <code class="inline">'Elixir.Telemetry'</code>;</li><li><code class="inline">:telemetry.list_handlers/1</code> returns a list of maps (of type <code class="inline">:telemetry.handler/0</code>) instead of
-a list of tuples;</li><li><code class="inline">:telemetry.attach/4</code> and <code class="inline">:telemetry.attach_many/4</code> replaced the 5-arity versions and now accept
+of <code class="inline">Telemetry</code>. In Erlang, <code class="inline">telemetry</code> module has to be used in place of <code class="inline">'Elixir.Telemetry'</code>;</li><li><a href="telemetry.html#list_handlers/1"><code class="inline">:telemetry.list_handlers/1</code></a> returns a list of maps (of type <code class="inline">:telemetry.handler/0</code>) instead of
+a list of tuples;</li><li><a href="telemetry.html#attach/4"><code class="inline">:telemetry.attach/4</code></a> and <a href="telemetry.html#attach_many/4"><code class="inline">:telemetry.attach_many/4</code></a> replaced the 5-arity versions and now accept
 an anonymous function for the handler function instead of a module and function name.</li></ul><h3 id="removed" class="section-heading">
   <a href="#removed" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Removed
