@@ -10,7 +10,7 @@
     <title>telemetry — telemetry v0.4.3</title>
     <link rel="stylesheet" href="dist/erlang-342d9843ccb2e80b8d3f.css" />
 
-    <script src="dist/sidebar_items-45a1f96398.js"></script>
+    <script src="dist/sidebar_items-cbbdb0bf41.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -103,90 +103,6 @@ telemetry <small class="app-vsn">(telemetry v0.4.3)</small>
             </a>
             Summary
           </h1>
-
-  <div class="summary-types summary">
-    <h2>
-      <a href="#types">Types</a>
-    </h2>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="#t:event_measurements/0">event_measurements/0</a>
-
-  </div>
-
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="#t:event_metadata/0">event_metadata/0</a>
-
-  </div>
-
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="#t:event_name/0">event_name/0</a>
-
-  </div>
-
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="#t:event_prefix/0">event_prefix/0</a>
-
-  </div>
-
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="#t:event_value/0">event_value/0</a>
-
-  </div>
-
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="#t:handler/0">handler/0</a>
-
-  </div>
-
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="#t:handler_config/0">handler_config/0</a>
-
-  </div>
-
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="#t:handler_function/0">handler_function/0</a>
-
-  </div>
-
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="#t:handler_id/0">handler_id/0</a>
-
-  </div>
-
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="#t:span_function/0">span_function/0</a>
-
-  </div>
-
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="#t:span_result/0">span_result/0</a>
-
-  </div>
-
-</div>
-
-  </div>
 
   <div class="summary-functions summary">
     <h2>
@@ -288,343 +204,6 @@ telemetry <small class="app-vsn">(telemetry v0.4.3)</small>
 
         </section>
 
-
-        <section id="types" class="details-list">
-          <h1 class="section-heading">
-            <a class="hover-link" href="#types">
-              <span class="icon-link" aria-hidden="true"></span>
-              <span class="sr-only">Link to this section</span>
-            </a>
-Types
-          </h1>
-          <div class="types-list">
-<section class="detail" id="t:event_measurements/0">
-
-  <div class="detail-header">
-    <a href="#t:event_measurements/0" class="detail-link" title="Link to this type">
-      <span class="icon-link" aria-hidden="true"></span>
-      <span class="sr-only">Link to this type</span>
-    </a>
-    <h1 class="signature">event_measurements/0</h1>
-
-      <a href="https://github.com/beam-telemetry/telemetry/blob/v0.4.3/src/telemetry.erl#L23" class="view-source" rel="help" title="View Source">
-       <span class="icon-code" aria-hidden="true"></span>
-       <span class="sr-only">View Source</span>
-     </a>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <h2>Specs</h2>
-      <div class="specs">
-
-          <pre>event_measurements() :: map().</pre>
-
-      </div>
-
-
-  </section>
-</section>
-<section class="detail" id="t:event_metadata/0">
-
-  <div class="detail-header">
-    <a href="#t:event_metadata/0" class="detail-link" title="Link to this type">
-      <span class="icon-link" aria-hidden="true"></span>
-      <span class="sr-only">Link to this type</span>
-    </a>
-    <h1 class="signature">event_metadata/0</h1>
-
-      <a href="https://github.com/beam-telemetry/telemetry/blob/v0.4.3/src/telemetry.erl#L24" class="view-source" rel="help" title="View Source">
-       <span class="icon-code" aria-hidden="true"></span>
-       <span class="sr-only">View Source</span>
-     </a>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <h2>Specs</h2>
-      <div class="specs">
-
-          <pre>event_metadata() :: map().</pre>
-
-      </div>
-
-
-  </section>
-</section>
-<section class="detail" id="t:event_name/0">
-
-  <div class="detail-header">
-    <a href="#t:event_name/0" class="detail-link" title="Link to this type">
-      <span class="icon-link" aria-hidden="true"></span>
-      <span class="sr-only">Link to this type</span>
-    </a>
-    <h1 class="signature">event_name/0</h1>
-
-      <a href="https://github.com/beam-telemetry/telemetry/blob/v0.4.3/src/telemetry.erl#L22" class="view-source" rel="help" title="View Source">
-       <span class="icon-code" aria-hidden="true"></span>
-       <span class="sr-only">View Source</span>
-     </a>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <h2>Specs</h2>
-      <div class="specs">
-
-          <pre>event_name() :: [atom(), ...].</pre>
-
-      </div>
-
-
-  </section>
-</section>
-<section class="detail" id="t:event_prefix/0">
-
-  <div class="detail-header">
-    <a href="#t:event_prefix/0" class="detail-link" title="Link to this type">
-      <span class="icon-link" aria-hidden="true"></span>
-      <span class="sr-only">Link to this type</span>
-    </a>
-    <h1 class="signature">event_prefix/0</h1>
-
-      <a href="https://github.com/beam-telemetry/telemetry/blob/v0.4.3/src/telemetry.erl#L26" class="view-source" rel="help" title="View Source">
-       <span class="icon-code" aria-hidden="true"></span>
-       <span class="sr-only">View Source</span>
-     </a>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <h2>Specs</h2>
-      <div class="specs">
-
-          <pre>event_prefix() :: [atom()].</pre>
-
-      </div>
-
-
-  </section>
-</section>
-<section class="detail" id="t:event_value/0">
-
-  <div class="detail-header">
-    <a href="#t:event_value/0" class="detail-link" title="Link to this type">
-      <span class="icon-link" aria-hidden="true"></span>
-      <span class="sr-only">Link to this type</span>
-    </a>
-    <h1 class="signature">event_value/0</h1>
-
-      <a href="https://github.com/beam-telemetry/telemetry/blob/v0.4.3/src/telemetry.erl#L25" class="view-source" rel="help" title="View Source">
-       <span class="icon-code" aria-hidden="true"></span>
-       <span class="sr-only">View Source</span>
-     </a>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <h2>Specs</h2>
-      <div class="specs">
-
-          <pre>event_value() :: number().</pre>
-
-      </div>
-
-
-  </section>
-</section>
-<section class="detail" id="t:handler/0">
-
-  <div class="detail-header">
-    <a href="#t:handler/0" class="detail-link" title="Link to this type">
-      <span class="icon-link" aria-hidden="true"></span>
-      <span class="sr-only">Link to this type</span>
-    </a>
-    <h1 class="signature">handler/0</h1>
-
-      <a href="https://github.com/beam-telemetry/telemetry/blob/v0.4.3/src/telemetry.erl#L31" class="view-source" rel="help" title="View Source">
-       <span class="icon-code" aria-hidden="true"></span>
-       <span class="sr-only">View Source</span>
-     </a>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <h2>Specs</h2>
-      <div class="specs">
-
-          <pre>handler() ::
-    #{id := handler_id(),
-      event_name := event_name(),
-      function := handler_function(),
-      config := handler_config()}.</pre>
-
-      </div>
-
-
-  </section>
-</section>
-<section class="detail" id="t:handler_config/0">
-
-  <div class="detail-header">
-    <a href="#t:handler_config/0" class="detail-link" title="Link to this type">
-      <span class="icon-link" aria-hidden="true"></span>
-      <span class="sr-only">Link to this type</span>
-    </a>
-    <h1 class="signature">handler_config/0</h1>
-
-      <a href="https://github.com/beam-telemetry/telemetry/blob/v0.4.3/src/telemetry.erl#L27" class="view-source" rel="help" title="View Source">
-       <span class="icon-code" aria-hidden="true"></span>
-       <span class="sr-only">View Source</span>
-     </a>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <h2>Specs</h2>
-      <div class="specs">
-
-          <pre>handler_config() :: term().</pre>
-
-      </div>
-
-
-  </section>
-</section>
-<section class="detail" id="t:handler_function/0">
-
-  <div class="detail-header">
-    <a href="#t:handler_function/0" class="detail-link" title="Link to this type">
-      <span class="icon-link" aria-hidden="true"></span>
-      <span class="sr-only">Link to this type</span>
-    </a>
-    <h1 class="signature">handler_function/0</h1>
-
-      <a href="https://github.com/beam-telemetry/telemetry/blob/v0.4.3/src/telemetry.erl#L28" class="view-source" rel="help" title="View Source">
-       <span class="icon-code" aria-hidden="true"></span>
-       <span class="sr-only">View Source</span>
-     </a>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <h2>Specs</h2>
-      <div class="specs">
-
-          <pre>handler_function() ::
-    fun((event_name(), event_measurements(), event_metadata(), handler_config()) -> any()).</pre>
-
-      </div>
-
-
-  </section>
-</section>
-<section class="detail" id="t:handler_id/0">
-
-  <div class="detail-header">
-    <a href="#t:handler_id/0" class="detail-link" title="Link to this type">
-      <span class="icon-link" aria-hidden="true"></span>
-      <span class="sr-only">Link to this type</span>
-    </a>
-    <h1 class="signature">handler_id/0</h1>
-
-      <a href="https://github.com/beam-telemetry/telemetry/blob/v0.4.3/src/telemetry.erl#L21" class="view-source" rel="help" title="View Source">
-       <span class="icon-code" aria-hidden="true"></span>
-       <span class="sr-only">View Source</span>
-     </a>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <h2>Specs</h2>
-      <div class="specs">
-
-          <pre>handler_id() :: term().</pre>
-
-      </div>
-
-
-  </section>
-</section>
-<section class="detail" id="t:span_function/0">
-
-  <div class="detail-header">
-    <a href="#t:span_function/0" class="detail-link" title="Link to this type">
-      <span class="icon-link" aria-hidden="true"></span>
-      <span class="sr-only">Link to this type</span>
-    </a>
-    <h1 class="signature">span_function/0</h1>
-
-      <a href="https://github.com/beam-telemetry/telemetry/blob/v0.4.3/src/telemetry.erl#L30" class="view-source" rel="help" title="View Source">
-       <span class="icon-code" aria-hidden="true"></span>
-       <span class="sr-only">View Source</span>
-     </a>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <h2>Specs</h2>
-      <div class="specs">
-
-          <pre>span_function() :: fun(() -> {span_result(), event_metadata()}).</pre>
-
-      </div>
-
-
-  </section>
-</section>
-<section class="detail" id="t:span_result/0">
-
-  <div class="detail-header">
-    <a href="#t:span_result/0" class="detail-link" title="Link to this type">
-      <span class="icon-link" aria-hidden="true"></span>
-      <span class="sr-only">Link to this type</span>
-    </a>
-    <h1 class="signature">span_result/0</h1>
-
-      <a href="https://github.com/beam-telemetry/telemetry/blob/v0.4.3/src/telemetry.erl#L29" class="view-source" rel="help" title="View Source">
-       <span class="icon-code" aria-hidden="true"></span>
-       <span class="sr-only">View Source</span>
-     </a>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <h2>Specs</h2>
-      <div class="specs">
-
-          <pre>span_result() :: term().</pre>
-
-      </div>
-
-
-  </section>
-</section>
-
-          </div>
-        </section>
 
         <section id="functions" class="details-list">
           <h1 class="section-heading">
@@ -746,10 +325,10 @@ Functions
 
           <pre>attach(HandlerId, EventName, Function, Config) -> ok | {error, already_exists}
           when
-              HandlerId :: handler_id(),
-              EventName :: event_name(),
-              Function :: handler_function(),
-              Config :: handler_config().</pre>
+              HandlerId :: <a href="#t:handler_id/0">handler_id</a>(),
+              EventName :: <a href="#t:event_name/0">event_name</a>(),
+              Function :: <a href="#t:handler_function/0">handler_function</a>(),
+              Config :: <a href="#t:handler_config/0">handler_config</a>().</pre>
 
       </div>
 
@@ -780,10 +359,10 @@ Functions
 
           <pre>attach_many(HandlerId, [EventName], Function, Config) -> ok | {error, already_exists}
                when
-                   HandlerId :: handler_id(),
-                   EventName :: event_name(),
-                   Function :: handler_function(),
-                   Config :: handler_config().</pre>
+                   HandlerId :: <a href="#t:handler_id/0">handler_id</a>(),
+                   EventName :: <a href="#t:event_name/0">event_name</a>(),
+                   Function :: <a href="#t:handler_function/0">handler_function</a>(),
+                   Config :: <a href="#t:handler_config/0">handler_config</a>().</pre>
 
       </div>
 
@@ -812,7 +391,7 @@ Functions
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>detach(handler_id()) -> ok | {error, not_found}.</pre>
+          <pre>detach(<a href="#t:handler_id/0">handler_id</a>()) -> ok | {error, not_found}.</pre>
 
       </div>
 
@@ -842,7 +421,7 @@ Functions
       <div class="specs">
 
           <pre>execute(EventName, Measurements) -> ok
-           when EventName :: event_name(), Measurements :: event_measurements() | event_value().</pre>
+           when EventName :: <a href="#t:event_name/0">event_name</a>(), Measurements :: <a href="#t:event_measurements/0">event_measurements</a>() | <a href="#t:event_value/0">event_value</a>().</pre>
 
       </div>
 
@@ -873,13 +452,13 @@ Functions
 
           <pre>execute(EventName, Measurements, Metadata) -> ok
            when
-               EventName :: event_name(),
-               Measurements :: event_measurements() | event_value(),
-               Metadata :: event_metadata().</pre>
+               EventName :: <a href="#t:event_name/0">event_name</a>(),
+               Measurements :: <a href="#t:event_measurements/0">event_measurements</a>() | <a href="#t:event_value/0">event_value</a>(),
+               Metadata :: <a href="#t:event_metadata/0">event_metadata</a>().</pre>
 
       </div>
 
-<p>Emits the event, invoking handlers attached to it.</p>When the event is emitted, the handler function provided to <a href="#attach/4"><code>attach/4</code></a> is called with four arguments:<ul><li>the event name</li><li>the map of measurements</li><li>the map of event metadata</li><li>the handler configuration given to <a href="#attach/4"><code>attach/4</code></a></li></ul><h4>Best practices and conventions:</h4><p>While you are able to emit messages of any <code>event_name</code> structure, it is recommended that you follow the the guidelines laid out in <code>span/3</code> if you are capturing start/stop events.</p>
+<p>Emits the event, invoking handlers attached to it.</p>When the event is emitted, the handler function provided to <a href="#attach/4"><code>attach/4</code></a> is called with four arguments:<ul><li>the event name</li><li>the map of measurements</li><li>the map of event metadata</li><li>the handler configuration given to <a href="#attach/4"><code>attach/4</code></a></li></ul><h4>Best practices and conventions:</h4><p>While you are able to emit messages of any <code>event_name</code> structure, it is recommended that you follow the the guidelines laid out in <a href="#span/3"><code>span/3</code></a> if you are capturing start/stop events.</p>
   </section>
 </section>
 <section class="detail" id="list_handlers/1">
@@ -904,11 +483,11 @@ Functions
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>list_handlers(event_prefix()) -> [handler()].</pre>
+          <pre>list_handlers(<a href="#t:event_prefix/0">event_prefix</a>()) -> [<a href="#t:handler/0">handler</a>()].</pre>
 
       </div>
 
-<p>Returns all handlers attached to events with given prefix.</p>Handlers attached to many events at once using <code>attach_many/4</code> will be listed once for each event they're attached to. Note that you can list all handlers by feeding this function an empty list.
+<p>Returns all handlers attached to events with given prefix.</p>Handlers attached to many events at once using <a href="#attach_many/4"><code>attach_many/4</code></a> will be listed once for each event they're attached to. Note that you can list all handlers by feeding this function an empty list.
   </section>
 </section>
 <section class="detail" id="merge_ctx/2">
@@ -933,7 +512,7 @@ Functions
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>merge_ctx(event_metadata(), any()) -> event_metadata().</pre>
+          <pre>merge_ctx(<a href="#t:event_metadata/0">event_metadata</a>(), any()) -> <a href="#t:event_metadata/0">event_metadata</a>().</pre>
 
       </div>
 
@@ -962,41 +541,41 @@ Functions
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>span(event_prefix(), event_metadata(), span_function()) -> span_result().</pre>
+          <pre>span(<a href="#t:event_prefix/0">event_prefix</a>(), <a href="#t:event_metadata/0">event_metadata</a>(), <a href="#t:span_function/0">span_function</a>()) -> <a href="#t:span_result/0">span_result</a>().</pre>
 
       </div>
 
-<p>Emit start, and stop/exception events, invoking the handlers attached to each.</p>When this function is called, 2 events will be emitted via <code>execute/3</code>. Those events will be one of the following pairs:<ul><li><code>EventPrefix ++ [start]</code> and <code>EventPrefix ++ [stop]</code></li><li><code>EventPrefix ++ [start]</code> and <code>EventPrefix ++ [exception]</code></li></ul><p>However, note that in case the current processes crashes due to an exit signal of another process, then none or only part of those events would be emitted. Below is a breakdown of the measurements and metadata associated with each individual event.</p><p>When providing <code>StartMetadata</code> and <code>StopMetadata</code>, these values will be sent independently to <code>start</code> and <code>stop</code> events. If an exception occurs, exception metadata will be merged onto the <code>StartMetadata</code>. In general, <code>StopMetadata</code> should only provide values that are additive to <code>StartMetadata</code> so that handlers, such as those used for metrics, can rely entirely on the <code>stop</code> event.</p><p>A default span context is added to event metadata under the <code>telemetry_span_context</code> key if none is provided by the user in the <code>StartMetadata</code>. This context is useful for tracing libraries to identify unique executions of span events within a process to match start, stop, and exception events. Users should ensure this value is unique within the context of a process at a minimum if overriding this key and that the same value is provided to both <code>StartMetadata</code> and <code>StopMetadata</code>.</p><p>For <code>telemetry</code> events denoting the <strong>start</strong> of a larger event, the following data is provided:</p><p><ul><li>Event:<pre><code class="makeup erlang"><span class="w">  </span><span class="n">EventPrefix</span><span class="w"> </span><span class="o">++</span><span class="w"> </span><span class="p" data-group-id="9052357587-1">[</span><span class="ss">start</span><span class="p" data-group-id="9052357587-1">]</span></code></pre></li><li>Measurements:<pre><code class="makeup erlang"><span class="w">  </span><span class="p" data-group-id="8027266432-1">#{</span><span class="w">
+<p>Emit start, and stop/exception events, invoking the handlers attached to each.</p>When this function is called, 2 events will be emitted via <a href="#execute/3"><code>execute/3</code></a>. Those events will be one of the following pairs:<ul><li><code>EventPrefix ++ [start]</code> and <code>EventPrefix ++ [stop]</code></li><li><code>EventPrefix ++ [start]</code> and <code>EventPrefix ++ [exception]</code></li></ul><p>However, note that in case the current processes crashes due to an exit signal of another process, then none or only part of those events would be emitted. Below is a breakdown of the measurements and metadata associated with each individual event.</p><p>When providing <code>StartMetadata</code> and <code>StopMetadata</code>, these values will be sent independently to <code>start</code> and <code>stop</code> events. If an exception occurs, exception metadata will be merged onto the <code>StartMetadata</code>. In general, <code>StopMetadata</code> should only provide values that are additive to <code>StartMetadata</code> so that handlers, such as those used for metrics, can rely entirely on the <code>stop</code> event.</p><p>A default span context is added to event metadata under the <code>telemetry_span_context</code> key if none is provided by the user in the <code>StartMetadata</code>. This context is useful for tracing libraries to identify unique executions of span events within a process to match start, stop, and exception events. Users should ensure this value is unique within the context of a process at a minimum if overriding this key and that the same value is provided to both <code>StartMetadata</code> and <code>StopMetadata</code>.</p><p>For <code>telemetry</code> events denoting the <strong>start</strong> of a larger event, the following data is provided:</p><p><ul><li>Event:<pre><code class="makeup erlang"><span class="w">  </span><span class="n">EventPrefix</span><span class="w"> </span><span class="o">++</span><span class="w"> </span><span class="p" data-group-id="6506428892-1">[</span><span class="ss">start</span><span class="p" data-group-id="6506428892-1">]</span></code></pre></li><li>Measurements:<pre><code class="makeup erlang"><span class="w">  </span><span class="p" data-group-id="3180283046-1">#{</span><span class="w">
     </span><span class="c1">% The current system time in native units from</span><span class="w">
     </span><span class="c1">% calling: erlang:system_time()</span><span class="w">
-    </span><span class="ss">system_time</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nf">integer</span><span class="p" data-group-id="8027266432-2">(</span><span class="p" data-group-id="8027266432-2">)</span><span class="w">
-  </span><span class="p" data-group-id="8027266432-1">}</span></code></pre></li><li>Metadata:<pre><code class="makeup erlang"><span class="w">  </span><span class="p" data-group-id="4256621076-1">#{</span><span class="w">
-    </span><span class="ss">telemetry_span_context</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nf">term</span><span class="p" data-group-id="4256621076-2">(</span><span class="p" data-group-id="4256621076-2">)</span><span class="p">,</span><span class="w">
+    </span><span class="ss">system_time</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nf">integer</span><span class="p" data-group-id="3180283046-2">(</span><span class="p" data-group-id="3180283046-2">)</span><span class="w">
+  </span><span class="p" data-group-id="3180283046-1">}</span></code></pre></li><li>Metadata:<pre><code class="makeup erlang"><span class="w">  </span><span class="p" data-group-id="9236154888-1">#{</span><span class="w">
+    </span><span class="ss">telemetry_span_context</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nf">term</span><span class="p" data-group-id="9236154888-2">(</span><span class="p" data-group-id="9236154888-2">)</span><span class="p">,</span><span class="w">
     </span><span class="c1">% User defined metadata</span><span class="w">
     </span><span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="w">
-  </span><span class="p" data-group-id="4256621076-1">}</span></code></pre></li></ul></p>For <code>telemetry</code> events denoting the <strong>stop</strong> of a larger event, the following data is provided:<p><ul><li>Event:<pre><code class="makeup erlang"><span class="w">  </span><span class="n">EventPrefix</span><span class="w"> </span><span class="o">++</span><span class="w"> </span><span class="p" data-group-id="7237349334-1">[</span><span class="ss">stop</span><span class="p" data-group-id="7237349334-1">]</span></code></pre></li><li>Measurements:<pre><code class="makeup erlang"><span class="w">  </span><span class="p" data-group-id="8866283601-1">#{</span><span class="w">
+  </span><span class="p" data-group-id="9236154888-1">}</span></code></pre></li></ul></p>For <code>telemetry</code> events denoting the <strong>stop</strong> of a larger event, the following data is provided:<p><ul><li>Event:<pre><code class="makeup erlang"><span class="w">  </span><span class="n">EventPrefix</span><span class="w"> </span><span class="o">++</span><span class="w"> </span><span class="p" data-group-id="1409469672-1">[</span><span class="ss">stop</span><span class="p" data-group-id="1409469672-1">]</span></code></pre></li><li>Measurements:<pre><code class="makeup erlang"><span class="w">  </span><span class="p" data-group-id="8346599528-1">#{</span><span class="w">
     </span><span class="c1">% The current monotonic time minus the start monotonic time in native units</span><span class="w">
     </span><span class="c1">% by calling: erlang:monotonic_time() - start_monotonic_time</span><span class="w">
-    </span><span class="ss">duration</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nf">integer</span><span class="p" data-group-id="8866283601-2">(</span><span class="p" data-group-id="8866283601-2">)</span><span class="w">
-  </span><span class="p" data-group-id="8866283601-1">}</span></code></pre></li><li>Metadata:<pre><code class="makeup erlang"><span class="w">  </span><span class="p" data-group-id="0573071263-1">#{</span><span class="w">
+    </span><span class="ss">duration</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nf">integer</span><span class="p" data-group-id="8346599528-2">(</span><span class="p" data-group-id="8346599528-2">)</span><span class="w">
+  </span><span class="p" data-group-id="8346599528-1">}</span></code></pre></li><li>Metadata:<pre><code class="makeup erlang"><span class="w">  </span><span class="p" data-group-id="8862551426-1">#{</span><span class="w">
     </span><span class="c1">% An optional error field if the stop event is the result of an error</span><span class="w">
     </span><span class="c1">% but not necessarily an exception. Additional user defined metadata can</span><span class="w">
     </span><span class="c1">% also be added here.</span><span class="w">
-    </span><span class="ss">error</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nf">term</span><span class="p" data-group-id="0573071263-2">(</span><span class="p" data-group-id="0573071263-2">)</span><span class="p">,</span><span class="w">
-    </span><span class="ss">telemetry_span_context</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nf">term</span><span class="p" data-group-id="0573071263-3">(</span><span class="p" data-group-id="0573071263-3">)</span><span class="p">,</span><span class="w">
+    </span><span class="ss">error</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nf">term</span><span class="p" data-group-id="8862551426-2">(</span><span class="p" data-group-id="8862551426-2">)</span><span class="p">,</span><span class="w">
+    </span><span class="ss">telemetry_span_context</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nf">term</span><span class="p" data-group-id="8862551426-3">(</span><span class="p" data-group-id="8862551426-3">)</span><span class="p">,</span><span class="w">
     </span><span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="w">
-  </span><span class="p" data-group-id="0573071263-1">}</span></code></pre></li></ul></p>For <code>telemetry</code> events denoting an <strong>exception</strong> of a larger event, the following data is provided:<p><ul><li>Event:<pre><code class="makeup erlang"><span class="w">  </span><span class="n">EventPrefix</span><span class="w"> </span><span class="o">++</span><span class="w"> </span><span class="p" data-group-id="3003855461-1">[</span><span class="ss">exception</span><span class="p" data-group-id="3003855461-1">]</span></code></pre></li><li>Measurements:<pre><code class="makeup erlang"><span class="w">  </span><span class="p" data-group-id="6718011239-1">#{</span><span class="w">
+  </span><span class="p" data-group-id="8862551426-1">}</span></code></pre></li></ul></p>For <code>telemetry</code> events denoting an <strong>exception</strong> of a larger event, the following data is provided:<p><ul><li>Event:<pre><code class="makeup erlang"><span class="w">  </span><span class="n">EventPrefix</span><span class="w"> </span><span class="o">++</span><span class="w"> </span><span class="p" data-group-id="8907225172-1">[</span><span class="ss">exception</span><span class="p" data-group-id="8907225172-1">]</span></code></pre></li><li>Measurements:<pre><code class="makeup erlang"><span class="w">  </span><span class="p" data-group-id="5530021865-1">#{</span><span class="w">
     </span><span class="c1">% The current monotonic time minus the start monotonic time in native units</span><span class="w">
     </span><span class="c1">% derived by calling: erlang:monotonic_time() - start_monotonic_time</span><span class="w">
-    </span><span class="ss">duration</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nf">integer</span><span class="p" data-group-id="6718011239-2">(</span><span class="p" data-group-id="6718011239-2">)</span><span class="w">
-  </span><span class="p" data-group-id="6718011239-1">}</span></code></pre></li><li>Metadata:<pre><code class="makeup erlang"><span class="w">  </span><span class="p" data-group-id="8091824894-1">#{</span><span class="w">
+    </span><span class="ss">duration</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nf">integer</span><span class="p" data-group-id="5530021865-2">(</span><span class="p" data-group-id="5530021865-2">)</span><span class="w">
+  </span><span class="p" data-group-id="5530021865-1">}</span></code></pre></li><li>Metadata:<pre><code class="makeup erlang"><span class="w">  </span><span class="p" data-group-id="9345571687-1">#{</span><span class="w">
     </span><span class="ss">kind</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ss">throw</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="ss">error</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nb">exit</span><span class="p">,</span><span class="w">
-    </span><span class="ss">reason</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nf">term</span><span class="p" data-group-id="8091824894-2">(</span><span class="p" data-group-id="8091824894-2">)</span><span class="p">,</span><span class="w">
-    </span><span class="ss">stacktrace</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nf">list</span><span class="p" data-group-id="8091824894-3">(</span><span class="p" data-group-id="8091824894-3">)</span><span class="p">,</span><span class="w">
-    </span><span class="ss">telemetry_span_context</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nf">term</span><span class="p" data-group-id="8091824894-4">(</span><span class="p" data-group-id="8091824894-4">)</span><span class="p">,</span><span class="w">
+    </span><span class="ss">reason</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nf">term</span><span class="p" data-group-id="9345571687-2">(</span><span class="p" data-group-id="9345571687-2">)</span><span class="p">,</span><span class="w">
+    </span><span class="ss">stacktrace</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nf">list</span><span class="p" data-group-id="9345571687-3">(</span><span class="p" data-group-id="9345571687-3">)</span><span class="p">,</span><span class="w">
+    </span><span class="ss">telemetry_span_context</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nf">term</span><span class="p" data-group-id="9345571687-4">(</span><span class="p" data-group-id="9345571687-4">)</span><span class="p">,</span><span class="w">
     </span><span class="c1">% User defined metadata from the start event</span><span class="w">
      </span><span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="w">
-  </span><span class="p" data-group-id="8091824894-1">}</span></code></pre></li></ul></p>
+  </span><span class="p" data-group-id="9345571687-1">}</span></code></pre></li></ul></p>
   </section>
 </section>
 

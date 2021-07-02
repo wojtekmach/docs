@@ -10,7 +10,7 @@
     <title>telemetry.execute — telemetry v0.4.3</title>
     <link rel="stylesheet" href="dist/erlang-342d9843ccb2e80b8d3f.css" />
 
-    <script src="dist/sidebar_items-45a1f96398.js"></script>
+    <script src="dist/sidebar_items-cbbdb0bf41.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -108,7 +108,7 @@ telemetry
       <div class="specs">
 
           <pre>execute(EventName, Measurements) -> ok
-           when EventName :: event_name(), Measurements :: event_measurements() | event_value().</pre>
+           when EventName :: <a href="#t:event_name/0">event_name</a>(), Measurements :: <a href="#t:event_measurements/0">event_measurements</a>() | <a href="#t:event_value/0">event_value</a>().</pre>
 
       </div>
 
@@ -141,13 +141,13 @@ telemetry
 
           <pre>execute(EventName, Measurements, Metadata) -> ok
            when
-               EventName :: event_name(),
-               Measurements :: event_measurements() | event_value(),
-               Metadata :: event_metadata().</pre>
+               EventName :: <a href="#t:event_name/0">event_name</a>(),
+               Measurements :: <a href="#t:event_measurements/0">event_measurements</a>() | <a href="#t:event_value/0">event_value</a>(),
+               Metadata :: <a href="#t:event_metadata/0">event_metadata</a>().</pre>
 
       </div>
 
-<p>Emits the event, invoking handlers attached to it.</p>When the event is emitted, the handler function provided to <a href="#attach/4"><code>attach/4</code></a> is called with four arguments:<ul><li>the event name</li><li>the map of measurements</li><li>the map of event metadata</li><li>the handler configuration given to <a href="#attach/4"><code>attach/4</code></a></li></ul><h4>Best practices and conventions:</h4><p>While you are able to emit messages of any <code>event_name</code> structure, it is recommended that you follow the the guidelines laid out in <code>span/3</code> if you are capturing start/stop events.</p>
+<p>Emits the event, invoking handlers attached to it.</p>When the event is emitted, the handler function provided to <a href="#attach/4"><code>attach/4</code></a> is called with four arguments:<ul><li>the event name</li><li>the map of measurements</li><li>the map of event metadata</li><li>the handler configuration given to <a href="#attach/4"><code>attach/4</code></a></li></ul><h4>Best practices and conventions:</h4><p>While you are able to emit messages of any <code>event_name</code> structure, it is recommended that you follow the the guidelines laid out in <a href="#span/3"><code>span/3</code></a> if you are capturing start/stop events.</p>
   </section>
 </section>
 

@@ -10,7 +10,7 @@
     <title>telemetry.list_handlers — telemetry v0.4.3</title>
     <link rel="stylesheet" href="dist/erlang-342d9843ccb2e80b8d3f.css" />
 
-    <script src="dist/sidebar_items-45a1f96398.js"></script>
+    <script src="dist/sidebar_items-cbbdb0bf41.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -107,11 +107,11 @@ telemetry
       <h2>Specs</h2>
       <div class="specs">
 
-          <pre>list_handlers(event_prefix()) -> [handler()].</pre>
+          <pre>list_handlers(<a href="#t:event_prefix/0">event_prefix</a>()) -> [<a href="#t:handler/0">handler</a>()].</pre>
 
       </div>
 
-<p>Returns all handlers attached to events with given prefix.</p>Handlers attached to many events at once using <code>attach_many/4</code> will be listed once for each event they're attached to. Note that you can list all handlers by feeding this function an empty list.
+<p>Returns all handlers attached to events with given prefix.</p>Handlers attached to many events at once using <a href="#attach_many/4"><code>attach_many/4</code></a> will be listed once for each event they're attached to. Note that you can list all handlers by feeding this function an empty list.
   </section>
 </section>
 
