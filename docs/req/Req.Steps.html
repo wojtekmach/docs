@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.28.4">
+    <meta name="project" content="req v0.3.0-dev">
+
+    <title>Req.Steps — req v0.3.0-dev</title>
+    <link rel="stylesheet" href="dist/elixir-b6f1ed5df9b1d42a7309.css" />
+
+    <script src="dist/sidebar_items-1545ad75ce.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-bd1cb213813bf4825aa2.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+
+        if (settings.theme === 'dark' ||
+           ((settings.theme === 'system' || settings.theme == null) &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches)
+           ) {
+          document.body.classList.add('dark')
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+
+<section class="sidebar">
+  <button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar">
+    <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+  </button>
+
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <i class="ri-search-2-line" aria-hidden="true" title="Submit search"></i>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <i class="ri-close-line ri-lg" aria-hidden="true" title="Cancel search"></i>
+    </button>
+    <label class="search-label">
+      <p class="sr-only">Search</p>
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+
+    <div class="sidebar-projectDetails">
+      <a href="readme.html" class="sidebar-projectName" translate="no">
+req
+      </a>
+      <strong class="sidebar-projectVersion" translate="no">
+        v0.3.0-dev
+      </strong>
+    </div>
+    <ul class="sidebar-listNav">
+      <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+        <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+    </ul>
+  </div>
+
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <output role="status" id="toast"></output>
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>
+<button class="settings display-settings">
+  <i class="ri-settings-3-line"></i>
+  <span class="sr-only">Settings</span>
+</button>
+
+
+    <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/steps.ex#L1" title="View Source" class="view-source" rel="help">
+      <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+      <span class="sr-only">View Source</span>
+    </a>
+
+  <span translate="no">Req.Steps</span> 
+  <small class="app-vsn" translate="no">(req v0.3.0-dev)</small>
+
+</h1>
+
+
+  <section id="moduledoc">
+<p>The collection of built-in steps.</p><p>Req is composed of three main pieces:</p><ul><li><p><a href="Req.html"><code class="inline">Req</code></a> - the high-level API</p></li><li><p><a href="Req.Request.html"><code class="inline">Req.Request</code></a> - the low-level API and the request struct</p></li><li><p><a href="Req.Steps.html#content"><code class="inline">Req.Steps</code></a> - the collection of built-in steps (you're here!)</p></li></ul>
+  </section>
+
+
+  <section id="summary" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+      Summary
+    </h1>
+
+  <div class="summary-request-steps summary">
+    <h2>
+      <a href="#request-steps">Request steps</a>
+    </h2>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#auth/1" translate="no">auth(request)</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Sets request authentication.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#cache/1" translate="no">cache(request)</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Performs HTTP caching using <code class="inline">if-modified-since</code> header.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#compress_body/1" translate="no">compress_body(request)</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Compresses the request body.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#compressed/1" translate="no">compressed(request)</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Asks the server to return compressed response.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#encode_body/1" translate="no">encode_body(request)</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Encodes the request body.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#put_base_url/1" translate="no">put_base_url(request)</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Sets base URL for all requests.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#put_params/1" translate="no">put_params(request)</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Adds params to request query string.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#put_plug/1" translate="no">put_plug(request)</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Runs the request against a plug instead of over the network.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#put_range/1" translate="no">put_range(request)</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Sets the &quot;Range&quot; request header.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#put_user_agent/1" translate="no">put_user_agent(request)</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Sets the user-agent header.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#run_finch/1" translate="no">run_finch(request)</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Runs the request using <a href="https://hexdocs.pm/finch/0.11.0/Finch.html"><code class="inline">Finch</code></a>.</p></div>
+
+      </div>
+
+  </div>
+
+  <div class="summary-response-steps summary">
+    <h2>
+      <a href="#response-steps">Response steps</a>
+    </h2>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#decode_body/1" translate="no">decode_body(request_response)</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Decodes response body based on the detected format.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#decompress_body/1" translate="no">decompress_body(request_response)</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Decompresses the response body based on the <code class="inline">content-encoding</code> header.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#follow_redirects/1" translate="no">follow_redirects(request_response)</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Follows redirects.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#handle_http_errors/1" translate="no">handle_http_errors(request_response)</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Handles HTTP 4xx/5xx error responses.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#output/1" translate="no">output(arg)</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Writes the response body to a file.</p></div>
+
+      </div>
+
+  </div>
+
+  <div class="summary-error-steps summary">
+    <h2>
+      <a href="#error-steps">Error steps</a>
+    </h2>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#retry/1" translate="no">retry(request_response_or_error)</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Retries a request in face of errors.</p></div>
+
+      </div>
+
+  </div>
+
+  </section>
+
+
+  <section id="request-steps" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#request-steps">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+Request steps
+    </h1>
+    <div class="request-steps-list">
+<section class="detail" id="auth/1">
+
+  <div class="detail-header">
+    <a href="#auth/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">auth(request)</h1>
+
+      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/steps.ex#L89" class="view-source" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Sets request authentication.</p><p><code class="inline">auth</code> can be one of:</p><ul><li><p><code class="inline">{username, password}</code> - uses Basic HTTP authentication</p></li><li><p><code class="inline">{:bearer, token}</code> - uses Bearer HTTP authentication</p></li><li><p><code class="inline">:netrc</code> - load credentials from <code class="inline">.netrc</code> at path specified in <code class="inline">NETRC</code> environment variable;
+if <code class="inline">NETRC</code> is not set, load <code class="inline">.netrc</code> in user's home directory</p></li><li><p><code class="inline">{:netrc, path}</code> - load credentials from <code class="inline">path</code></p></li></ul><h2 id="auth/1-examples" class="section-heading">
+  <a href="#auth/1-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">examples</p>
+  </a>
+  Examples
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="6616011327-1">(</span><span class="s">&quot;https://httpbin.org/basic-auth/foo/bar&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">auth</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6616011327-2">{</span><span class="s">&quot;bad&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bad&quot;</span><span class="p" data-group-id="6616011327-2">}</span><span class="p" data-group-id="6616011327-1">)</span><span class="o">.</span><span class="n">status</span><span class="w">
+</span><span class="mi">401</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="6616011327-3">(</span><span class="s">&quot;https://httpbin.org/basic-auth/foo/bar&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">auth</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6616011327-4">{</span><span class="s">&quot;foo&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bar&quot;</span><span class="p" data-group-id="6616011327-4">}</span><span class="p" data-group-id="6616011327-3">)</span><span class="o">.</span><span class="n">status</span><span class="w">
+</span><span class="mi">200</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="6616011327-5">(</span><span class="s">&quot;https://httpbin.org/bearer&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">auth</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6616011327-6">{</span><span class="ss">:bearer</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p" data-group-id="6616011327-6">}</span><span class="p" data-group-id="6616011327-5">)</span><span class="o">.</span><span class="n">status</span><span class="w">
+</span><span class="mi">401</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="6616011327-7">(</span><span class="s">&quot;https://httpbin.org/bearer&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">auth</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6616011327-8">{</span><span class="ss">:bearer</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;foo&quot;</span><span class="p" data-group-id="6616011327-8">}</span><span class="p" data-group-id="6616011327-7">)</span><span class="o">.</span><span class="n">status</span><span class="w">
+</span><span class="mi">200</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">System</span><span class="o">.</span><span class="n">put_env</span><span class="p" data-group-id="6616011327-9">(</span><span class="s">&quot;NETRC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;./test/my_netrc&quot;</span><span class="p" data-group-id="6616011327-9">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="6616011327-10">(</span><span class="s">&quot;https://httpbin.org/basic-auth/foo/bar&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">auth</span><span class="p">:</span><span class="w"> </span><span class="ss">:netrc</span><span class="p" data-group-id="6616011327-10">)</span><span class="o">.</span><span class="n">status</span><span class="w">
+</span><span class="mi">200</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="6616011327-11">(</span><span class="s">&quot;https://httpbin.org/basic-auth/foo/bar&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">auth</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6616011327-12">{</span><span class="ss">:netrc</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;./test/my_netrc&quot;</span><span class="p" data-group-id="6616011327-12">}</span><span class="p" data-group-id="6616011327-11">)</span><span class="o">.</span><span class="n">status</span><span class="w">
+</span><span class="mi">200</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="cache/1">
+
+  <div class="detail-header">
+    <a href="#cache/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">cache(request)</h1>
+
+      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/steps.ex#L347" class="view-source" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Performs HTTP caching using <code class="inline">if-modified-since</code> header.</p><p>Only successful (200 OK) responses are cached.</p><p>This step also <em>prepends</em> a response step that loads and writes the cache. Be careful when
+<em>prepending</em> other response steps, make sure the cache is loaded/written as soon as possible.</p><h2 id="cache/1-options" class="section-heading">
+  <a href="#cache/1-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">options</p>
+  </a>
+  Options
+</h2>
+<ul><li><p><code class="inline">:cache</code> - if <code class="inline">true</code>, performs caching. Defaults to <code class="inline">false</code>.</p></li><li><p><code class="inline">:cache_dir</code> - the directory to store the cache, defaults to <code class="inline">&lt;user_cache_dir&gt;/req</code>
+(see: <a href="https://www.erlang.org/doc/man/filename.html#basedir-3"><code class="inline">:filename.basedir/3</code></a>)</p></li></ul><h2 id="cache/1-examples" class="section-heading">
+  <a href="#cache/1-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">examples</p>
+  </a>
+  Examples
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;https://elixir-lang.org&quot;</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">response1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="7158487758-1">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="ss">cache</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="7158487758-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">response2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="7158487758-2">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="ss">cache</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="7158487758-2">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">response1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">response2</span><span class="w">
+</span><span class="no">true</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="compress_body/1">
+
+  <div class="detail-header">
+    <a href="#compress_body/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">compress_body(request)</h1>
+
+      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/steps.ex#L395" class="view-source" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Compresses the request body.</p><h2 id="compress_body/1-request-options" class="section-heading">
+  <a href="#compress_body/1-request-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">request-options</p>
+  </a>
+  Request Options
+</h2>
+<ul><li><code class="inline">:compress_body</code> - if set to <code class="inline">true</code>, compresses the request body using gzip.
+Defaults to <code class="inline">false</code>.</li></ul>
+  </section>
+</section>
+<section class="detail" id="compressed/1">
+
+  <div class="detail-header">
+    <a href="#compressed/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">compressed(request)</h1>
+
+      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/steps.ex#L210" class="view-source" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Asks the server to return compressed response.</p><h2 id="compressed/1-request-options" class="section-heading">
+  <a href="#compressed/1-request-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">request-options</p>
+  </a>
+  Request Options
+</h2>
+<ul><li><code class="inline">:compressed</code> - if set to <code class="inline">true</code>, sets the <code class="inline">accept-encoding</code> header with compression
+algorithms that Req supports out of the box: <code class="inline">&quot;gzip, deflate&quot;</code>. Defaults
+to <code class="inline">true</code>.</li></ul><h2 id="compressed/1-examples" class="section-heading">
+  <a href="#compressed/1-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">examples</p>
+  </a>
+  Examples
+</h2>
+<p>Req automatically decompresses response body (<a href="#decompress_body/1"><code class="inline">decompress_body/1</code></a> step) so let's disable that by
+passing <code class="inline">raw: true</code>.</p><p>By default, we ask the server to send compressed response. Let's look at the headers and the raw
+body. Notice the body starts with <code class="inline">&lt;&lt;31, 139&gt;&gt;</code> (<code class="inline">&lt;&lt;0x1F, 0x8B&gt;&gt;</code>), the &quot;magic bytes&quot; for gzip:</p><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="9899807817-1">(</span><span class="s">&quot;https://elixir-lang.org&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">raw</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="9899807817-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">List</span><span class="o">.</span><span class="n">keyfind</span><span class="p" data-group-id="9899807817-2">(</span><span class="s">&quot;content-encoding&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p" data-group-id="9899807817-2">)</span><span class="w">
+</span><span class="p" data-group-id="9899807817-3">{</span><span class="s">&quot;content-encoding&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;gzip&quot;</span><span class="p" data-group-id="9899807817-3">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">binary_part</span><span class="p" data-group-id="9899807817-4">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="9899807817-4">)</span><span class="w">
+</span><span class="p" data-group-id="9899807817-5">&lt;&lt;</span><span class="mi">31</span><span class="p">,</span><span class="w"> </span><span class="mi">139</span><span class="p" data-group-id="9899807817-5">&gt;&gt;</span></code></pre><p>Now, let's pass <code class="inline">compressed: false</code> and notice the raw body was not compressed:</p><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="4542132995-1">(</span><span class="s">&quot;https://elixir-lang.org&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">raw</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p">,</span><span class="w"> </span><span class="ss">compressed</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="p" data-group-id="4542132995-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">List</span><span class="o">.</span><span class="n">keyfind</span><span class="p" data-group-id="4542132995-2">(</span><span class="s">&quot;content-encoding&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p" data-group-id="4542132995-2">)</span><span class="w">
+</span><span class="no">nil</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">binary_part</span><span class="p" data-group-id="4542132995-3">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">15</span><span class="p" data-group-id="4542132995-3">)</span><span class="w">
+</span><span class="s">&quot;&lt;!DOCTYPE html&gt;&quot;</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="encode_body/1">
+
+  <div class="detail-header">
+    <a href="#encode_body/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">encode_body(request)</h1>
+
+      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/steps.ex#L242" class="view-source" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Encodes the request body.</p><h2 id="encode_body/1-request-options" class="section-heading">
+  <a href="#encode_body/1-request-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">request-options</p>
+  </a>
+  Request Options
+</h2>
+<ul><li><p><code class="inline">:form</code> - if set, encodes the request body as form data (using <a href="https://hexdocs.pm/elixir/URI.html#encode_query/1"><code class="inline">URI.encode_query/1</code></a>).</p></li><li><p><code class="inline">:json</code> - if set, encodes the request body as JSON (using <a href="https://hexdocs.pm/jason/1.3.0/Jason.html#encode_to_iodata!/1"><code class="inline">Jason.encode_to_iodata!/1</code></a>).</p></li></ul><h2 id="encode_body/1-examples" class="section-heading">
+  <a href="#encode_body/1-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">examples</p>
+  </a>
+  Examples
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">post!</span><span class="p" data-group-id="4948060728-1">(</span><span class="s">&quot;https://httpbin.org/anything&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">form</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="4948060728-2">[</span><span class="ss">x</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="4948060728-2">]</span><span class="p" data-group-id="4948060728-1">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="4948060728-3">[</span><span class="s">&quot;form&quot;</span><span class="p" data-group-id="4948060728-3">]</span><span class="w">
+</span><span class="p" data-group-id="4948060728-4">%{</span><span class="s">&quot;x&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;1&quot;</span><span class="p" data-group-id="4948060728-4">}</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">post!</span><span class="p" data-group-id="4948060728-5">(</span><span class="s">&quot;https://httpbin.org/post&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">json</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="4948060728-6">%{</span><span class="ss">x</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="4948060728-6">}</span><span class="p" data-group-id="4948060728-5">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="4948060728-7">[</span><span class="s">&quot;json&quot;</span><span class="p" data-group-id="4948060728-7">]</span><span class="w">
+</span><span class="p" data-group-id="4948060728-8">%{</span><span class="s">&quot;x&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="4948060728-8">}</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="put_base_url/1">
+
+  <div class="detail-header">
+    <a href="#put_base_url/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">put_base_url(request)</h1>
+
+      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/steps.ex#L37" class="view-source" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Sets base URL for all requests.</p><h2 id="put_base_url/1-request-options" class="section-heading">
+  <a href="#put_base_url/1-request-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">request-options</p>
+  </a>
+  Request Options
+</h2>
+<ul><li><code class="inline">:base_url</code> - if set, the request URL is prepended with this base URL.
+If request URL contains a scheme, base URL is ignored.</li></ul><h2 id="put_base_url/1-examples" class="section-heading">
+  <a href="#put_base_url/1-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">examples</p>
+  </a>
+  Examples
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="9883951508-1">(</span><span class="ss">base_url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://httpbin.org&quot;</span><span class="p" data-group-id="9883951508-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="9883951508-2">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/status/200&quot;</span><span class="p" data-group-id="9883951508-2">)</span><span class="o">.</span><span class="n">status</span><span class="w">
+</span><span class="mi">200</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="9883951508-3">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/status/201&quot;</span><span class="p" data-group-id="9883951508-3">)</span><span class="o">.</span><span class="n">status</span><span class="w">
+</span><span class="mi">201</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="put_params/1">
+
+  <div class="detail-header">
+    <a href="#put_params/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">put_params(request)</h1>
+
+      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/steps.ex#L271" class="view-source" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Adds params to request query string.</p><h2 id="put_params/1-request-options" class="section-heading">
+  <a href="#put_params/1-request-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">request-options</p>
+  </a>
+  Request Options
+</h2>
+<ul><li><code class="inline">:params</code> - params to add to the request query string. Defaults to <code class="inline">[]</code>.</li></ul><h2 id="put_params/1-examples" class="section-heading">
+  <a href="#put_params/1-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">examples</p>
+  </a>
+  Examples
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="0051206266-1">(</span><span class="s">&quot;https://httpbin.org/anything/query&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">params</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="0051206266-2">[</span><span class="ss">x</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">y</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="0051206266-2">]</span><span class="p" data-group-id="0051206266-1">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="0051206266-3">[</span><span class="s">&quot;args&quot;</span><span class="p" data-group-id="0051206266-3">]</span><span class="w">
+</span><span class="p" data-group-id="0051206266-4">%{</span><span class="s">&quot;x&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;y&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;2&quot;</span><span class="p" data-group-id="0051206266-4">}</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="put_plug/1">
+
+  <div class="detail-header">
+    <a href="#put_plug/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">put_plug(request)</h1>
+
+      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/steps.ex#L521" class="view-source" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Runs the request against a plug instead of over the network.</p><h2 id="put_plug/1-request-options" class="section-heading">
+  <a href="#put_plug/1-request-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">request-options</p>
+  </a>
+  Request Options
+</h2>
+<ul><li><code class="inline">:plug</code> - if set, the plug to run the request against.</li></ul><h2 id="put_plug/1-examples" class="section-heading">
+  <a href="#put_plug/1-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">examples</p>
+  </a>
+  Examples
+</h2>
+<p>This step is particularly useful to test plugs:</p><pre><code class="makeup elixir" translate="no"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Echo</span><span class="w"> </span><span class="k" data-group-id="4112623652-1">do</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">call</span><span class="p" data-group-id="4112623652-2">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="p" data-group-id="4112623652-2">)</span><span class="w"> </span><span class="k" data-group-id="4112623652-3">do</span><span class="w">
+    </span><span class="s">&quot;/&quot;</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conn</span><span class="o">.</span><span class="n">request_path</span><span class="w">
+    </span><span class="nc">Plug.Conn</span><span class="o">.</span><span class="n">send_resp</span><span class="p" data-group-id="4112623652-4">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="p" data-group-id="4112623652-4">)</span><span class="w">
+  </span><span class="k" data-group-id="4112623652-3">end</span><span class="w">
+</span><span class="k" data-group-id="4112623652-1">end</span><span class="w">
+
+</span><span class="n">test</span><span class="w"> </span><span class="s">&quot;echo&quot;</span><span class="w"> </span><span class="k" data-group-id="4112623652-5">do</span><span class="w">
+  </span><span class="n">assert</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="4112623652-6">(</span><span class="s">&quot;http:///hello&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">plug</span><span class="p">:</span><span class="w"> </span><span class="nc">Echo</span><span class="p" data-group-id="4112623652-6">)</span><span class="o">.</span><span class="n">body</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;hello&quot;</span><span class="w">
+</span><span class="k" data-group-id="4112623652-5">end</span></code></pre><p>Here is the same example but with plug as an anonymous function:</p><pre><code class="makeup elixir" translate="no"><span class="n">test</span><span class="w"> </span><span class="s">&quot;echo&quot;</span><span class="w"> </span><span class="k" data-group-id="8763642596-1">do</span><span class="w">
+  </span><span class="n">echo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k" data-group-id="8763642596-2">fn</span><span class="w"> </span><span class="n">conn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+    </span><span class="s">&quot;/&quot;</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conn</span><span class="o">.</span><span class="n">request_path</span><span class="w">
+    </span><span class="nc">Plug.Conn</span><span class="o">.</span><span class="n">send_resp</span><span class="p" data-group-id="8763642596-3">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="p" data-group-id="8763642596-3">)</span><span class="w">
+  </span><span class="k" data-group-id="8763642596-2">end</span><span class="w">
+
+  </span><span class="n">assert</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="8763642596-4">(</span><span class="s">&quot;http:///hello&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">plug</span><span class="p">:</span><span class="w"> </span><span class="n">echo</span><span class="p" data-group-id="8763642596-4">)</span><span class="o">.</span><span class="n">body</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;hello&quot;</span><span class="w">
+</span><span class="k" data-group-id="8763642596-1">end</span></code></pre><p>Here is another example, let's run the request against <a href="https://hexdocs.pm/plug/1.13.6/Plug.Static.html"><code class="inline">Plug.Static</code></a> pointed to the Req's source
+code and fetch the README:</p><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">resp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="8886761347-1">(</span><span class="s">&quot;http:///README.md&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">plug</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="8886761347-2">{</span><span class="nc">Plug.Static</span><span class="p">,</span><span class="w"> </span><span class="ss">at</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">from</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;.&quot;</span><span class="p" data-group-id="8886761347-2">}</span><span class="p" data-group-id="8886761347-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">resp</span><span class="o">.</span><span class="n">body</span><span class="w"> </span><span class="o">=~</span><span class="w"> </span><span class="s">&quot;Req is a batteries-included HTTP client for Elixir.&quot;</span><span class="w">
+</span><span class="no">true</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="put_range/1">
+
+  <div class="detail-header">
+    <a href="#put_range/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">put_range(request)</h1>
+
+      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/steps.ex#L310" class="view-source" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Sets the &quot;Range&quot; request header.</p><h2 id="put_range/1-request-options" class="section-heading">
+  <a href="#put_range/1-request-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">request-options</p>
+  </a>
+  Request Options
+</h2>
+<ul><li><p><code class="inline">:range</code> - can be one of the following:</p><ul><li><p>a string - returned as is</p></li><li><p>a <code class="inline">first..last</code> range - converted to <code class="inline">&quot;bytes=&lt;first&gt;-&lt;last&gt;&quot;</code></p></li></ul></li></ul><h2 id="put_range/1-examples" class="section-heading">
+  <a href="#put_range/1-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">examples</p>
+  </a>
+  Examples
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="8312322320-1">(</span><span class="s">&quot;https://httpbin.org/range/100&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">range</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="o">..</span><span class="mi">3</span><span class="p" data-group-id="8312322320-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">response</span><span class="o">.</span><span class="n">status</span><span class="w">
+</span><span class="mi">206</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="w">
+</span><span class="s">&quot;abcd&quot;</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">List</span><span class="o">.</span><span class="n">keyfind</span><span class="p" data-group-id="8312322320-2">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;content-range&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p" data-group-id="8312322320-2">)</span><span class="w">
+</span><span class="p" data-group-id="8312322320-3">{</span><span class="s">&quot;content-range&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bytes 0-3/100&quot;</span><span class="p" data-group-id="8312322320-3">}</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="put_user_agent/1">
+
+  <div class="detail-header">
+    <a href="#put_user_agent/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">put_user_agent(request)</h1>
+
+      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/steps.ex#L170" class="view-source" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Sets the user-agent header.</p><h2 id="put_user_agent/1-request-options" class="section-heading">
+  <a href="#put_user_agent/1-request-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">request-options</p>
+  </a>
+  Request Options
+</h2>
+<ul><li><code class="inline">:user_agent</code> - sets the <code class="inline">user-agent</code> header. Defaults to <code class="inline">&quot;req/0.3.0-dev&quot;</code>.</li></ul><h2 id="put_user_agent/1-examples" class="section-heading">
+  <a href="#put_user_agent/1-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">examples</p>
+  </a>
+  Examples
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="1176325541-1">(</span><span class="s">&quot;https://httpbin.org/user-agent&quot;</span><span class="p" data-group-id="1176325541-1">)</span><span class="o">.</span><span class="n">body</span><span class="w">
+</span><span class="p" data-group-id="1176325541-2">%{</span><span class="s">&quot;user-agent&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;req/0.3.0-dev&quot;</span><span class="p" data-group-id="1176325541-2">}</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="1176325541-3">(</span><span class="s">&quot;https://httpbin.org/user-agent&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">user_agent</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;foo&quot;</span><span class="p" data-group-id="1176325541-3">)</span><span class="o">.</span><span class="n">body</span><span class="w">
+</span><span class="p" data-group-id="1176325541-4">%{</span><span class="s">&quot;user-agent&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;foo&quot;</span><span class="p" data-group-id="1176325541-4">}</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="run_finch/1">
+
+  <div class="detail-header">
+    <a href="#run_finch/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">run_finch(request)</h1>
+
+      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/steps.ex#L440" class="view-source" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Runs the request using <a href="https://hexdocs.pm/finch/0.11.0/Finch.html"><code class="inline">Finch</code></a>.</p><p>This is the default Req <em>adapter</em>. See
+<a href="Req.Request.html#module-adapter">&quot;Adapter&quot; section in the <code class="inline">Req.Request</code></a> module
+documentation for more information on adapters.</p><h2 id="run_finch/1-request-options" class="section-heading">
+  <a href="#run_finch/1-request-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">request-options</p>
+  </a>
+  Request Options
+</h2>
+<ul><li><p><code class="inline">:finch</code> - the name of the Finch pool. Defaults to a pool automatically started by
+Req. The default pool uses HTTP/1 although that may change in the future.
+This option takes precedence over <code class="inline">:http1</code> and <code class="inline">:http2</code> options mentioned below.</p></li><li><p><code class="inline">:finch_options</code> - options passed down to Finch when making the request, defaults to <code class="inline">[]</code>.
+ See <a href="https://hexdocs.pm/finch/0.11.0/Finch.html#request/3"><code class="inline">Finch.request/3</code></a> for a list of available options.</p></li><li><p><code class="inline">:http1</code> - if <code class="inline">true</code>, uses an HTTP/1 pool automatically started by Req.</p></li><li><p><code class="inline">:http2</code> - if <code class="inline">true</code>, uses an HTTP/2 pool automatically started by Req.</p></li><li><p><code class="inline">:unix_socket</code> - if set, connect through the given UNIX domain socket</p></li></ul><h2 id="run_finch/1-examples" class="section-heading">
+  <a href="#run_finch/1-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">examples</p>
+  </a>
+  Examples
+</h2>
+<p>Custom <code class="inline">:receive_timeout</code>:</p><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="8628405681-1">(</span><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="ss">finch_options</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="8628405681-2">[</span><span class="ss">receive_timeout</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p" data-group-id="8628405681-2">]</span><span class="p" data-group-id="8628405681-1">)</span></code></pre><p>Connecting through UNIX socket:</p><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="6833555050-1">(</span><span class="s">&quot;http:///v1.41/_ping&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">unix_socket</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/var/run/docker.sock&quot;</span><span class="p" data-group-id="6833555050-1">)</span><span class="o">.</span><span class="n">body</span><span class="w">
+</span><span class="s">&quot;OK&quot;</span></code></pre>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+  <section id="response-steps" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#response-steps">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+Response steps
+    </h1>
+    <div class="response-steps-list">
+<section class="detail" id="decode_body/1">
+
+  <div class="detail-header">
+    <a href="#decode_body/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">decode_body(request_response)</h1>
+
+      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/steps.ex#L692" class="view-source" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Decodes response body based on the detected format.</p><p>Supported formats:</p><table><thead><tr><th style="text-align: left;">Format</th><th style="text-align: left;">Decoder</th></tr></thead><tbody><tr><td style="text-align: left;">json</td><td style="text-align: left;"><a href="https://hexdocs.pm/jason/1.3.0/Jason.html#decode!/1"><code class="inline">Jason.decode!/1</code></a></td></tr><tr><td style="text-align: left;">gzip</td><td style="text-align: left;"><a href="https://www.erlang.org/doc/man/zlib.html#gunzip-1"><code class="inline">:zlib.gunzip/1</code></a></td></tr><tr><td style="text-align: left;">tar</td><td style="text-align: left;"><a href="https://www.erlang.org/doc/man/erl_tar.html#extract-2"><code class="inline">:erl_tar.extract/2</code></a></td></tr><tr><td style="text-align: left;">zip</td><td style="text-align: left;"><a href="https://www.erlang.org/doc/man/zip.html#unzip-2"><code class="inline">:zip.unzip/2</code></a></td></tr><tr><td style="text-align: left;">csv</td><td style="text-align: left;"><a href="https://hexdocs.pm/nimble_csv/1.2.0/NimbleCSV.RFC4180.html#parse_string/2"><code class="inline">NimbleCSV.RFC4180.parse_string/2</code></a> (if <a href="https://hexdocs.pm/nimble_csv/1.2.0/NimbleCSV.html"><code class="inline">NimbleCSV</code></a> is installed)</td></tr></tbody></table><h2 id="decode_body/1-request-options" class="section-heading">
+  <a href="#decode_body/1-request-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">request-options</p>
+  </a>
+  Request Options
+</h2>
+<ul><li><code class="inline">:decode_body</code> - if set to <code class="inline">false</code>, disables automatic response body decoding.
+Defaults to <code class="inline">true</code>.</li></ul><h2 id="decode_body/1-examples" class="section-heading">
+  <a href="#decode_body/1-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">examples</p>
+  </a>
+  Examples
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="8844142990-1">(</span><span class="s">&quot;https://httpbin.org/gzip&quot;</span><span class="p" data-group-id="8844142990-1">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="8844142990-2">[</span><span class="s">&quot;gzipped&quot;</span><span class="p" data-group-id="8844142990-2">]</span><span class="w">
+</span><span class="no">true</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="8844142990-3">(</span><span class="s">&quot;https://httpbin.org/json&quot;</span><span class="p" data-group-id="8844142990-3">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="8844142990-4">[</span><span class="s">&quot;slideshow&quot;</span><span class="p" data-group-id="8844142990-4">]</span><span class="p" data-group-id="8844142990-5">[</span><span class="s">&quot;title&quot;</span><span class="p" data-group-id="8844142990-5">]</span><span class="w">
+</span><span class="s">&quot;Sample Slide Show&quot;</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="decompress_body/1">
+
+  <div class="detail-header">
+    <a href="#decompress_body/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">decompress_body(request_response)</h1>
+
+      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/steps.ex#L570" class="view-source" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Decompresses the response body based on the <code class="inline">content-encoding</code> header.</p><h2 id="decompress_body/1-examples" class="section-heading">
+  <a href="#decompress_body/1-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">examples</p>
+  </a>
+  Examples
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="0773713131-1">(</span><span class="s">&quot;https://httpbin.org/gzip&quot;</span><span class="p" data-group-id="0773713131-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Enum</span><span class="o">.</span><span class="n">member?</span><span class="p" data-group-id="0773713131-2">(</span><span class="p" data-group-id="0773713131-3">{</span><span class="s">&quot;content-encoding&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;gzip&quot;</span><span class="p" data-group-id="0773713131-3">}</span><span class="p" data-group-id="0773713131-2">)</span><span class="w">
+</span><span class="no">true</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="0773713131-4">[</span><span class="s">&quot;gzipped&quot;</span><span class="p" data-group-id="0773713131-4">]</span><span class="w">
+</span><span class="no">true</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="follow_redirects/1">
+
+  <div class="detail-header">
+    <a href="#follow_redirects/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">follow_redirects(request_response)</h1>
+
+      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/steps.ex#L823" class="view-source" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Follows redirects.</p><p>The original request method may be changed to GET depending on the status code:</p><table><thead><tr><th style="text-align: left;">Code</th><th style="text-align: left;">Method handling</th></tr></thead><tbody><tr><td style="text-align: left;">301, 302, 303</td><td style="text-align: left;">Changed to GET</td></tr><tr><td style="text-align: left;">307, 308</td><td style="text-align: left;">Method not changed</td></tr></tbody></table><h2 id="follow_redirects/1-request-options" class="section-heading">
+  <a href="#follow_redirects/1-request-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">request-options</p>
+  </a>
+  Request Options
+</h2>
+<ul><li><p><code class="inline">:follow_redirects</code> - if set to <code class="inline">false</code>, disables automatic response redirects.
+Defaults to <code class="inline">true</code>.</p></li><li><p><code class="inline">:location_trusted</code> - by default, authorization credentials are only sent
+on redirects with the same host, scheme and port. If <code class="inline">:location_trusted</code> is set
+to <code class="inline">true</code>, credentials will be sent to any host.</p></li><li><p><code class="inline">:max_redirects</code> - the maximum number of redirects, defaults to <code class="inline">10</code>.
+If the limit is reached, an erorr is raised.</p></li></ul><h2 id="follow_redirects/1-examples" class="section-heading">
+  <a href="#follow_redirects/1-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">examples</p>
+  </a>
+  Examples
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="3033973098-1">(</span><span class="s">&quot;http://api.github.com&quot;</span><span class="p" data-group-id="3033973098-1">)</span><span class="o">.</span><span class="n">status</span><span class="w">
+</span><span class="c1"># 23:24:11.670 [debug]  follow_redirects: redirecting to https://api.github.com/</span><span class="w">
+</span><span class="mi">200</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="3033973098-2">(</span><span class="s">&quot;https://httpbin.org/redirect/4&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">max_redirects</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="3033973098-2">)</span><span class="w">
+</span><span class="c1"># 23:07:59.570 [debug] follow_redirects: redirecting to /relative-redirect/3</span><span class="w">
+</span><span class="c1"># 23:08:00.068 [debug] follow_redirects: redirecting to /relative-redirect/2</span><span class="w">
+</span><span class="c1"># 23:08:00.206 [debug] follow_redirects: redirecting to /relative-redirect/1</span><span class="w">
+</span><span class="gt">** (RuntimeError) too many redirects (3)</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="handle_http_errors/1">
+
+  <div class="detail-header">
+    <a href="#handle_http_errors/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">handle_http_errors(request_response)</h1>
+
+      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/steps.ex#L919" class="view-source" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Handles HTTP 4xx/5xx error responses.</p><h2 id="handle_http_errors/1-request-options" class="section-heading">
+  <a href="#handle_http_errors/1-request-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">request-options</p>
+  </a>
+  Request Options
+</h2>
+<ul><li><p><code class="inline">:http_errors</code> - how to handle HTTP 4xx/5xx error responses. Can be one of the following:</p><ul><li><p><code class="inline">:return</code> (default) - return the response</p></li><li><p><code class="inline">:raise</code> - raise an error</p></li></ul></li></ul><h2 id="handle_http_errors/1-examples" class="section-heading">
+  <a href="#handle_http_errors/1-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">examples</p>
+  </a>
+  Examples
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="1358489362-1">(</span><span class="s">&quot;https://httpbin.org/status/404&quot;</span><span class="p" data-group-id="1358489362-1">)</span><span class="o">.</span><span class="n">status</span><span class="w">
+</span><span class="mi">404</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="1358489362-2">(</span><span class="s">&quot;https://httpbin.org/status/404&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">http_errors</span><span class="p">:</span><span class="w"> </span><span class="ss">:raise</span><span class="p" data-group-id="1358489362-2">)</span><span class="w">
+</span><span class="gt">** (RuntimeError) The requested URL returned error: 404</span><span class="w">
+</span><span class="nc">Response</span><span class="w"> </span><span class="ss">body</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="output/1">
+
+  <div class="detail-header">
+    <a href="#output/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">output(arg)</h1>
+
+      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/steps.ex#L639" class="view-source" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Writes the response body to a file.</p><p>After the output file is written, the response body is set to <code class="inline">&quot;&quot;</code>.</p><h2 id="output/1-request-options" class="section-heading">
+  <a href="#output/1-request-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">request-options</p>
+  </a>
+  Request Options
+</h2>
+<ul><li><p><code class="inline">:output</code> - if set, writes the response body to a file. Can be one of:</p><ul><li><p><code class="inline">path</code> - writes to the given path</p></li><li><p><code class="inline">:remote_name</code> - uses the remote name as the filename in the current working directory</p></li></ul></li></ul><h2 id="output/1-examples" class="section-heading">
+  <a href="#output/1-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">examples</p>
+  </a>
+  Examples
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="8521999545-1">(</span><span class="s">&quot;https://elixir-lang.org/index.html&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">output</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/tmp/elixir_home.html&quot;</span><span class="p" data-group-id="8521999545-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">File</span><span class="o">.</span><span class="n">exists?</span><span class="p" data-group-id="8521999545-2">(</span><span class="s">&quot;/tmp/elixir_home.html&quot;</span><span class="p" data-group-id="8521999545-2">)</span><span class="w">
+</span><span class="no">true</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="8521999545-3">(</span><span class="s">&quot;https://elixir-lang.org/blog/index.html&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">output</span><span class="p">:</span><span class="w"> </span><span class="ss">:remote_name</span><span class="p" data-group-id="8521999545-3">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">File</span><span class="o">.</span><span class="n">exists?</span><span class="p" data-group-id="8521999545-4">(</span><span class="s">&quot;index.html&quot;</span><span class="p" data-group-id="8521999545-4">)</span><span class="w">
+</span><span class="no">true</span></code></pre>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+  <section id="error-steps" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#error-steps">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+Error steps
+    </h1>
+    <div class="error-steps-list">
+<section class="detail" id="retry/1">
+
+  <div class="detail-header">
+    <a href="#retry/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">retry(request_response_or_error)</h1>
+
+      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/steps.ex#L986" class="view-source" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Retries a request in face of errors.</p><p>This function can be used as either or both response and error step.</p><h2 id="retry/1-request-options" class="section-heading">
+  <a href="#retry/1-request-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">request-options</p>
+  </a>
+  Request Options
+</h2>
+<ul><li><p><code class="inline">:retry</code> - can be one of the following:</p><ul><li><p><code class="inline">:safe</code> (default) - retry GET/HEAD requests on HTTP 408/5xx responses or exceptions</p></li><li><p><code class="inline">:always</code> - always retry</p></li><li><p><code class="inline">:never</code> - never retry</p></li><li><p><code class="inline">fun</code> - a 1-arity function that accepts either a <a href="Req.Response.html"><code class="inline">Req.Response</code></a> or an exception struct
+and returns boolean whether to retry</p></li></ul></li><li><p><code class="inline">:retry_delay</code> - sleep this number of milliseconds before making another attempt, defaults
+to <code class="inline">2000</code></p></li><li><p><code class="inline">:max_retries</code> - maximum number of retry attempts, defaults to <code class="inline">2</code> (for a total of <code class="inline">3</code>
+requests to the server, including the initial one.)</p></li></ul><h2 id="retry/1-examples" class="section-heading">
+  <a href="#retry/1-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">examples</p>
+  </a>
+  Examples
+</h2>
+<p>With default options:</p><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="2729942955-1">(</span><span class="s">&quot;https://httpbin.org/status/500,200&quot;</span><span class="p" data-group-id="2729942955-1">)</span><span class="o">.</span><span class="n">status</span><span class="w">
+</span><span class="c1"># 19:02:08.463 [error] retry: got response with status 500, will retry in 2000ms, 2 attempts left</span><span class="w">
+</span><span class="c1"># 19:02:10.710 [error] retry: got response with status 500, will retry in 2000ms, 1 attempt left</span><span class="w">
+</span><span class="mi">200</span></code></pre><p>With custom options:</p><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="4729905232-1">(</span><span class="s">&quot;http://localhost:9999&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">retry_delay</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="ss">max_retries</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="4729905232-1">)</span><span class="w">
+</span><span class="c1"># 17:00:38.371 [error] retry: got exception, will retry in 100ms, 3 attempts left</span><span class="w">
+</span><span class="c1"># 17:00:38.371 [error] ** (Mint.TransportError) connection refused</span><span class="w">
+</span><span class="c1"># 17:00:38.473 [error] retry: got exception, will retry in 100ms, 2 attempts left</span><span class="w">
+</span><span class="c1"># 17:00:38.473 [error] ** (Mint.TransportError) connection refused</span><span class="w">
+</span><span class="c1"># 17:00:38.575 [error] retry: got exception, will retry in 100ms, 1 attempt left</span><span class="w">
+</span><span class="c1"># 17:00:38.575 [error] ** (Mint.TransportError) connection refused</span><span class="w">
+</span><span class="gt">** (Mint.TransportError) connection refused</span></code></pre>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+      <footer class="footer">
+
+          <p>
+            On Hex.pm:
+
+            <span class="line">
+              <a href="https://hex.pm/packages/req/0.3.0-dev" class="line footer-hex-package">Package</a>
+              <a href="https://preview.hex.pm/preview/req/0.3.0-dev" class="line">Preview</a>
+
+                <a href="https://preview.hex.pm/preview/req/0.3.0-dev/show/lib/req/steps.ex">(current file)</a>
+
+            </span>
+
+            <button class="line footer-button display-quick-switch">
+              Search
+            </button>
+          </p>
+
+        <p>
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.28.4) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>
