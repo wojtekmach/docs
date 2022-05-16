@@ -10,7 +10,7 @@
     <title>Req.Response — req v0.3.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-b6f1ed5df9b1d42a7309.css" />
 
-    <script src="dist/sidebar_items-79e87980dd.js"></script>
+    <script src="dist/sidebar_items-7c4eb7eafe.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -163,6 +163,17 @@ conflicts. Only accepts <a href="https://hexdocs.pm/elixir/typespecs.html#basic-
 
       <div class="summary-row">
         <div class="summary-signature">
+          <a href="#put_header/3" translate="no">put_header(response, key, value)</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Adds a new response header (<code class="inline">key</code>) if not present, otherwise replaces the
+previous value of that header with <code class="inline">value</code>.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
           <a href="#put_private/3" translate="no">put_private(response, key, value)</a>
 
         </div>
@@ -240,7 +251,7 @@ Functions
     </a>
     <h1 class="signature" translate="no">get_header(response, key)</h1>
 
-      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/response.ex#L54" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/response.ex#L55" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -250,14 +261,20 @@ Functions
 
   <section class="docstring">
 
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> get_header(<a href="#t:t/0">t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>()) :: [<a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>()]</pre>
+
+      </div>
+
 <p>Returns the values of the header specified by <code class="inline">key</code>.</p><h2 id="get_header/2-examples" class="section-heading">
   <a href="#get_header/2-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
   <p class="sr-only">examples</p>
   </a>
   Examples
 </h2>
-<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Response</span><span class="o">.</span><span class="n">get_header</span><span class="p" data-group-id="5546001074-1">(</span><span class="n">response</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;content-type&quot;</span><span class="p" data-group-id="5546001074-1">)</span><span class="w">
-</span><span class="p" data-group-id="5546001074-2">[</span><span class="s">&quot;application/json&quot;</span><span class="p" data-group-id="5546001074-2">]</span></code></pre>
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Response</span><span class="o">.</span><span class="n">get_header</span><span class="p" data-group-id="4664201298-1">(</span><span class="n">response</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;content-type&quot;</span><span class="p" data-group-id="4664201298-1">)</span><span class="w">
+</span><span class="p" data-group-id="4664201298-2">[</span><span class="s">&quot;application/json&quot;</span><span class="p" data-group-id="4664201298-2">]</span></code></pre>
   </section>
 </section>
 <section class="detail" id="get_private/3">
@@ -282,6 +299,42 @@ Functions
   <section class="docstring">
 
 <p>Gets the value for a specific private <code class="inline">key</code>.</p>
+  </section>
+</section>
+<section class="detail" id="put_header/3">
+
+  <div class="detail-header">
+    <a href="#put_header/3" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">put_header(response, key, value)</h1>
+
+      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/response.ex#L70" class="view-source" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> put_header(<a href="#t:t/0">t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>()) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+<p>Adds a new response header (<code class="inline">key</code>) if not present, otherwise replaces the
+previous value of that header with <code class="inline">value</code>.</p><h2 id="put_header/3-examples" class="section-heading">
+  <a href="#put_header/3-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">examples</p>
+  </a>
+  Examples
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Response</span><span class="o">.</span><span class="n">put_header</span><span class="p" data-group-id="8447623345-1">(</span><span class="n">response</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;content-type&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;application/json&quot;</span><span class="p" data-group-id="8447623345-1">)</span><span class="o">.</span><span class="n">headers</span><span class="w">
+</span><span class="p" data-group-id="8447623345-2">[</span><span class="p" data-group-id="8447623345-3">{</span><span class="s">&quot;content-type&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;application/json&quot;</span><span class="p" data-group-id="8447623345-3">}</span><span class="p" data-group-id="8447623345-2">]</span></code></pre>
   </section>
 </section>
 <section class="detail" id="put_private/3">
