@@ -116,27 +116,27 @@ See <a href="#module-writing-plugins">&quot;Wriging Plugins&quot;</a> section fo
   </a>
   The Low-level API
 </h2>
-<p>Most Req users would use it like this:</p><pre><code class="makeup elixir" translate="no"><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="7990896757-1">(</span><span class="s">&quot;https://api.github.com/repos/elixir-lang/elixir&quot;</span><span class="p" data-group-id="7990896757-1">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="7990896757-2">[</span><span class="s">&quot;description&quot;</span><span class="p" data-group-id="7990896757-2">]</span><span class="w">
+<p>Most Req users would use it like this:</p><pre><code class="makeup elixir" translate="no"><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="4134643995-1">(</span><span class="s">&quot;https://api.github.com/repos/elixir-lang/elixir&quot;</span><span class="p" data-group-id="4134643995-1">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="4134643995-2">[</span><span class="s">&quot;description&quot;</span><span class="p" data-group-id="4134643995-2">]</span><span class="w">
 </span><span class="c1">#=&gt; &quot;Elixir is a dynamic, functional language designed for building scalable and maintainable applications&quot;</span></code></pre><p>Here is the equivalent using the low-level API:</p><pre><code class="makeup elixir" translate="no"><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;https://api.github.com/repos/elixir-lang/elixir&quot;</span><span class="w">
 
 </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w">
-  </span><span class="p" data-group-id="2027069707-1">%</span><span class="nc" data-group-id="2027069707-1">Req.Request</span><span class="p" data-group-id="2027069707-1">{</span><span class="ss">method</span><span class="p">:</span><span class="w"> </span><span class="ss">:get</span><span class="p">,</span><span class="w"> </span><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="n">url</span><span class="p" data-group-id="2027069707-1">}</span><span class="w">
-  </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">append_request_steps</span><span class="p" data-group-id="2027069707-2">(</span><span class="w">
+  </span><span class="p" data-group-id="2179996425-1">%</span><span class="nc" data-group-id="2179996425-1">Req.Request</span><span class="p" data-group-id="2179996425-1">{</span><span class="ss">method</span><span class="p">:</span><span class="w"> </span><span class="ss">:get</span><span class="p">,</span><span class="w"> </span><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="n">url</span><span class="p" data-group-id="2179996425-1">}</span><span class="w">
+  </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">append_request_steps</span><span class="p" data-group-id="2179996425-2">(</span><span class="w">
     </span><span class="ss">put_user_agent</span><span class="p">:</span><span class="w"> </span><span class="o">&amp;</span><span class="nc">Req.Steps</span><span class="o">.</span><span class="n">put_user_agent</span><span class="o">/</span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="c1"># ...</span><span class="w">
-  </span><span class="p" data-group-id="2027069707-2">)</span><span class="w">
-  </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">append_response_steps</span><span class="p" data-group-id="2027069707-3">(</span><span class="w">
+  </span><span class="p" data-group-id="2179996425-2">)</span><span class="w">
+  </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">append_response_steps</span><span class="p" data-group-id="2179996425-3">(</span><span class="w">
     </span><span class="c1"># ...</span><span class="w">
     </span><span class="ss">decompress_body</span><span class="p">:</span><span class="w"> </span><span class="o">&amp;</span><span class="nc">Req.Steps</span><span class="o">.</span><span class="n">decompress_body</span><span class="o">/</span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="ss">decode_body</span><span class="p">:</span><span class="w"> </span><span class="o">&amp;</span><span class="nc">Req.Steps</span><span class="o">.</span><span class="n">decode_body</span><span class="o">/</span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="c1"># ...</span><span class="w">
-  </span><span class="p" data-group-id="2027069707-3">)</span><span class="w">
-  </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">append_error_steps</span><span class="p" data-group-id="2027069707-4">(</span><span class="w">
+  </span><span class="p" data-group-id="2179996425-3">)</span><span class="w">
+  </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">append_error_steps</span><span class="p" data-group-id="2179996425-4">(</span><span class="w">
     </span><span class="ss">retry</span><span class="p">:</span><span class="w"> </span><span class="o">&amp;</span><span class="nc">Req.Steps</span><span class="o">.</span><span class="n">retry</span><span class="o">/</span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="c1"># ...</span><span class="w">
-  </span><span class="p" data-group-id="2027069707-4">)</span><span class="w">
+  </span><span class="p" data-group-id="2179996425-4">)</span><span class="w">
 
-</span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">run!</span><span class="p" data-group-id="2027069707-5">(</span><span class="n">req</span><span class="p" data-group-id="2027069707-5">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="2027069707-6">[</span><span class="s">&quot;description&quot;</span><span class="p" data-group-id="2027069707-6">]</span><span class="w">
+</span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">run!</span><span class="p" data-group-id="2179996425-5">(</span><span class="n">req</span><span class="p" data-group-id="2179996425-5">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="2179996425-6">[</span><span class="s">&quot;description&quot;</span><span class="p" data-group-id="2179996425-6">]</span><span class="w">
 </span><span class="c1">#=&gt; &quot;Elixir is a dynamic, functional language designed for building scalable and maintainable applications&quot;</span></code></pre><p>By putting the request pipeline yourself you have precise control of exactly what is running and in what order.</p><h2 id="module-the-request-struct" class="section-heading">
   <a href="#module-the-request-struct" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
   <p class="sr-only">the-request-struct</p>
@@ -162,16 +162,16 @@ error steps, respectively.</p><p>Nothing is actually executed until we run the p
   Request steps
 </h3>
 <p>A request step is a function that accepts a <code class="inline">request</code> and returns one of the following:</p><ul><li><p>A <code class="inline">request</code></p></li><li><p>A <code class="inline">{request, response_or_error}</code> tuple. In that case no further request steps are executed
-and the return value goes through response or error steps</p></li></ul><p>Examples:</p><pre><code class="makeup elixir" translate="no"><span class="kd">def</span><span class="w"> </span><span class="nf">put_default_headers</span><span class="p" data-group-id="7659848717-1">(</span><span class="n">request</span><span class="p" data-group-id="7659848717-1">)</span><span class="w"> </span><span class="k" data-group-id="7659848717-2">do</span><span class="w">
-  </span><span class="n">update_in</span><span class="p" data-group-id="7659848717-3">(</span><span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="p" data-group-id="7659848717-4">[</span><span class="p" data-group-id="7659848717-5">{</span><span class="s">&quot;user-agent&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;req&quot;</span><span class="p" data-group-id="7659848717-5">}</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="ni">&amp;1</span><span class="p" data-group-id="7659848717-4">]</span><span class="p" data-group-id="7659848717-3">)</span><span class="w">
-</span><span class="k" data-group-id="7659848717-2">end</span><span class="w">
+and the return value goes through response or error steps</p></li></ul><p>Examples:</p><pre><code class="makeup elixir" translate="no"><span class="kd">def</span><span class="w"> </span><span class="nf">put_default_headers</span><span class="p" data-group-id="1577980932-1">(</span><span class="n">request</span><span class="p" data-group-id="1577980932-1">)</span><span class="w"> </span><span class="k" data-group-id="1577980932-2">do</span><span class="w">
+  </span><span class="n">update_in</span><span class="p" data-group-id="1577980932-3">(</span><span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="p" data-group-id="1577980932-4">[</span><span class="p" data-group-id="1577980932-5">{</span><span class="s">&quot;user-agent&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;req&quot;</span><span class="p" data-group-id="1577980932-5">}</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="ni">&amp;1</span><span class="p" data-group-id="1577980932-4">]</span><span class="p" data-group-id="1577980932-3">)</span><span class="w">
+</span><span class="k" data-group-id="1577980932-2">end</span><span class="w">
 
-</span><span class="kd">def</span><span class="w"> </span><span class="nf">read_from_cache</span><span class="p" data-group-id="7659848717-6">(</span><span class="n">request</span><span class="p" data-group-id="7659848717-6">)</span><span class="w"> </span><span class="k" data-group-id="7659848717-7">do</span><span class="w">
-  </span><span class="k">case</span><span class="w"> </span><span class="nc">ResponseCache</span><span class="o">.</span><span class="n">fetch</span><span class="p" data-group-id="7659848717-8">(</span><span class="n">request</span><span class="p" data-group-id="7659848717-8">)</span><span class="w"> </span><span class="k" data-group-id="7659848717-9">do</span><span class="w">
-    </span><span class="p" data-group-id="7659848717-10">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="7659848717-10">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p" data-group-id="7659848717-11">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="7659848717-11">}</span><span class="w">
+</span><span class="kd">def</span><span class="w"> </span><span class="nf">read_from_cache</span><span class="p" data-group-id="1577980932-6">(</span><span class="n">request</span><span class="p" data-group-id="1577980932-6">)</span><span class="w"> </span><span class="k" data-group-id="1577980932-7">do</span><span class="w">
+  </span><span class="k">case</span><span class="w"> </span><span class="nc">ResponseCache</span><span class="o">.</span><span class="n">fetch</span><span class="p" data-group-id="1577980932-8">(</span><span class="n">request</span><span class="p" data-group-id="1577980932-8">)</span><span class="w"> </span><span class="k" data-group-id="1577980932-9">do</span><span class="w">
+    </span><span class="p" data-group-id="1577980932-10">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="1577980932-10">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p" data-group-id="1577980932-11">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="1577980932-11">}</span><span class="w">
     </span><span class="ss">:error</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">request</span><span class="w">
-  </span><span class="k" data-group-id="7659848717-9">end</span><span class="w">
-</span><span class="k" data-group-id="7659848717-7">end</span></code></pre><h3 id="module-response-and-error-steps" class="section-heading">
+  </span><span class="k" data-group-id="1577980932-9">end</span><span class="w">
+</span><span class="k" data-group-id="1577980932-7">end</span></code></pre><h3 id="module-response-and-error-steps" class="section-heading">
   <a href="#module-response-and-error-steps" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
   <p class="sr-only">response-and-error-steps</p>
   </a>
@@ -181,39 +181,39 @@ and the return value goes through response or error steps</p></li></ul><p>Exampl
 following:</p><ul><li><p>A <code class="inline">{request, response}</code> tuple</p></li><li><p>A <code class="inline">{request, exception}</code> tuple. In that case, no further response steps are executed but the
 exception goes through error steps</p></li></ul><p>Similarly, an error step is a function that accepts a <code class="inline">{request, exception}</code> tuple and returns one
 of the following:</p><ul><li><p>A <code class="inline">{request, exception}</code> tuple</p></li><li><p>A <code class="inline">{request, response}</code> tuple. In that case, no further error steps are executed but the
-response goes through response steps</p></li></ul><p>Examples:</p><pre><code class="makeup elixir" translate="no"><span class="kd">def</span><span class="w"> </span><span class="nf">decode</span><span class="p" data-group-id="3250061935-1">(</span><span class="p" data-group-id="3250061935-2">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="3250061935-2">}</span><span class="p" data-group-id="3250061935-1">)</span><span class="w"> </span><span class="k" data-group-id="3250061935-3">do</span><span class="w">
-  </span><span class="k">case</span><span class="w"> </span><span class="nc">List</span><span class="o">.</span><span class="n">keyfind</span><span class="p" data-group-id="3250061935-4">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;content-type&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p" data-group-id="3250061935-4">)</span><span class="w"> </span><span class="k" data-group-id="3250061935-5">do</span><span class="w">
-    </span><span class="p" data-group-id="3250061935-6">{</span><span class="bp">_</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;application/json&quot;</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="bp">_</span><span class="p" data-group-id="3250061935-6">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
-      </span><span class="p" data-group-id="3250061935-7">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">update_in</span><span class="p" data-group-id="3250061935-8">(</span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="nc">Jason</span><span class="o">.</span><span class="n">decode!</span><span class="o">/</span><span class="mi">1</span><span class="p" data-group-id="3250061935-8">)</span><span class="p" data-group-id="3250061935-7">}</span><span class="w">
+response goes through response steps</p></li></ul><p>Examples:</p><pre><code class="makeup elixir" translate="no"><span class="kd">def</span><span class="w"> </span><span class="nf">decode</span><span class="p" data-group-id="0539655697-1">(</span><span class="p" data-group-id="0539655697-2">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="0539655697-2">}</span><span class="p" data-group-id="0539655697-1">)</span><span class="w"> </span><span class="k" data-group-id="0539655697-3">do</span><span class="w">
+  </span><span class="k">case</span><span class="w"> </span><span class="nc">List</span><span class="o">.</span><span class="n">keyfind</span><span class="p" data-group-id="0539655697-4">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;content-type&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p" data-group-id="0539655697-4">)</span><span class="w"> </span><span class="k" data-group-id="0539655697-5">do</span><span class="w">
+    </span><span class="p" data-group-id="0539655697-6">{</span><span class="bp">_</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;application/json&quot;</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="bp">_</span><span class="p" data-group-id="0539655697-6">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+      </span><span class="p" data-group-id="0539655697-7">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">update_in</span><span class="p" data-group-id="0539655697-8">(</span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="nc">Jason</span><span class="o">.</span><span class="n">decode!</span><span class="o">/</span><span class="mi">1</span><span class="p" data-group-id="0539655697-8">)</span><span class="p" data-group-id="0539655697-7">}</span><span class="w">
 
     </span><span class="bp">_</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
-      </span><span class="p" data-group-id="3250061935-9">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="3250061935-9">}</span><span class="w">
-  </span><span class="k" data-group-id="3250061935-5">end</span><span class="w">
-</span><span class="k" data-group-id="3250061935-3">end</span><span class="w">
+      </span><span class="p" data-group-id="0539655697-9">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="0539655697-9">}</span><span class="w">
+  </span><span class="k" data-group-id="0539655697-5">end</span><span class="w">
+</span><span class="k" data-group-id="0539655697-3">end</span><span class="w">
 
-</span><span class="kd">def</span><span class="w"> </span><span class="nf">log_error</span><span class="p" data-group-id="3250061935-10">(</span><span class="p" data-group-id="3250061935-11">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">exception</span><span class="p" data-group-id="3250061935-11">}</span><span class="p" data-group-id="3250061935-10">)</span><span class="w"> </span><span class="k" data-group-id="3250061935-12">do</span><span class="w">
-  </span><span class="nc">Logger</span><span class="o">.</span><span class="n">error</span><span class="p" data-group-id="3250061935-13">(</span><span class="p" data-group-id="3250061935-14">[</span><span class="s">&quot;</span><span class="si" data-group-id="3250061935-15">#{</span><span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="si" data-group-id="3250061935-15">}</span><span class="s"> </span><span class="si" data-group-id="3250061935-16">#{</span><span class="n">request</span><span class="o">.</span><span class="n">uri</span><span class="si" data-group-id="3250061935-16">}</span><span class="s">: &quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">Exception</span><span class="o">.</span><span class="n">message</span><span class="p" data-group-id="3250061935-17">(</span><span class="n">exception</span><span class="p" data-group-id="3250061935-17">)</span><span class="p" data-group-id="3250061935-14">]</span><span class="p" data-group-id="3250061935-13">)</span><span class="w">
-  </span><span class="p" data-group-id="3250061935-18">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">exception</span><span class="p" data-group-id="3250061935-18">}</span><span class="w">
-</span><span class="k" data-group-id="3250061935-12">end</span></code></pre><h3 id="module-halting" class="section-heading">
+</span><span class="kd">def</span><span class="w"> </span><span class="nf">log_error</span><span class="p" data-group-id="0539655697-10">(</span><span class="p" data-group-id="0539655697-11">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">exception</span><span class="p" data-group-id="0539655697-11">}</span><span class="p" data-group-id="0539655697-10">)</span><span class="w"> </span><span class="k" data-group-id="0539655697-12">do</span><span class="w">
+  </span><span class="nc">Logger</span><span class="o">.</span><span class="n">error</span><span class="p" data-group-id="0539655697-13">(</span><span class="p" data-group-id="0539655697-14">[</span><span class="s">&quot;</span><span class="si" data-group-id="0539655697-15">#{</span><span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="si" data-group-id="0539655697-15">}</span><span class="s"> </span><span class="si" data-group-id="0539655697-16">#{</span><span class="n">request</span><span class="o">.</span><span class="n">uri</span><span class="si" data-group-id="0539655697-16">}</span><span class="s">: &quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">Exception</span><span class="o">.</span><span class="n">message</span><span class="p" data-group-id="0539655697-17">(</span><span class="n">exception</span><span class="p" data-group-id="0539655697-17">)</span><span class="p" data-group-id="0539655697-14">]</span><span class="p" data-group-id="0539655697-13">)</span><span class="w">
+  </span><span class="p" data-group-id="0539655697-18">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">exception</span><span class="p" data-group-id="0539655697-18">}</span><span class="w">
+</span><span class="k" data-group-id="0539655697-12">end</span></code></pre><h3 id="module-halting" class="section-heading">
   <a href="#module-halting" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
   <p class="sr-only">halting</p>
   </a>
   Halting
 </h3>
 <p>Any step can call <a href="#halt/1"><code class="inline">halt/1</code></a> to halt the pipeline. This will prevent any further steps
-from being invoked.</p><p>Examples:</p><pre><code class="makeup elixir" translate="no"><span class="kd">def</span><span class="w"> </span><span class="nf">circuit_breaker</span><span class="p" data-group-id="5589053961-1">(</span><span class="n">request</span><span class="p" data-group-id="5589053961-1">)</span><span class="w"> </span><span class="k" data-group-id="5589053961-2">do</span><span class="w">
-  </span><span class="k">if</span><span class="w"> </span><span class="nc">CircuitBreaker</span><span class="o">.</span><span class="n">open?</span><span class="p" data-group-id="5589053961-3">(</span><span class="p" data-group-id="5589053961-3">)</span><span class="w"> </span><span class="k" data-group-id="5589053961-4">do</span><span class="w">
-    </span><span class="p" data-group-id="5589053961-5">{</span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">halt</span><span class="p" data-group-id="5589053961-6">(</span><span class="n">request</span><span class="p" data-group-id="5589053961-6">)</span><span class="p">,</span><span class="w"> </span><span class="nc">RuntimeError</span><span class="o">.</span><span class="n">exception</span><span class="p" data-group-id="5589053961-7">(</span><span class="s">&quot;circuit breaker is open&quot;</span><span class="p" data-group-id="5589053961-7">)</span><span class="p" data-group-id="5589053961-5">}</span><span class="w">
-  </span><span class="k" data-group-id="5589053961-4">else</span><span class="w">
+from being invoked.</p><p>Examples:</p><pre><code class="makeup elixir" translate="no"><span class="kd">def</span><span class="w"> </span><span class="nf">circuit_breaker</span><span class="p" data-group-id="7554021384-1">(</span><span class="n">request</span><span class="p" data-group-id="7554021384-1">)</span><span class="w"> </span><span class="k" data-group-id="7554021384-2">do</span><span class="w">
+  </span><span class="k">if</span><span class="w"> </span><span class="nc">CircuitBreaker</span><span class="o">.</span><span class="n">open?</span><span class="p" data-group-id="7554021384-3">(</span><span class="p" data-group-id="7554021384-3">)</span><span class="w"> </span><span class="k" data-group-id="7554021384-4">do</span><span class="w">
+    </span><span class="p" data-group-id="7554021384-5">{</span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">halt</span><span class="p" data-group-id="7554021384-6">(</span><span class="n">request</span><span class="p" data-group-id="7554021384-6">)</span><span class="p">,</span><span class="w"> </span><span class="nc">RuntimeError</span><span class="o">.</span><span class="n">exception</span><span class="p" data-group-id="7554021384-7">(</span><span class="s">&quot;circuit breaker is open&quot;</span><span class="p" data-group-id="7554021384-7">)</span><span class="p" data-group-id="7554021384-5">}</span><span class="w">
+  </span><span class="k" data-group-id="7554021384-4">else</span><span class="w">
     </span><span class="n">request</span><span class="w">
-  </span><span class="k" data-group-id="5589053961-4">end</span><span class="w">
-</span><span class="k" data-group-id="5589053961-2">end</span></code></pre><h2 id="module-writing-plugins" class="section-heading">
+  </span><span class="k" data-group-id="7554021384-4">end</span><span class="w">
+</span><span class="k" data-group-id="7554021384-2">end</span></code></pre><h2 id="module-writing-plugins" class="section-heading">
   <a href="#module-writing-plugins" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
   <p class="sr-only">writing-plugins</p>
   </a>
   Writing Plugins
 </h2>
-<p>Custom steps can be packaged into plugins so that they are even easier to use by others.</p><p>Here's an example plugin:</p><pre><code class="makeup elixir" translate="no"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">PrintHeaders</span><span class="w"> </span><span class="k" data-group-id="0673121102-1">do</span><span class="w">
+<p>Custom steps can be packaged into plugins so that they are even easier to use by others.</p><p>Here's an example plugin:</p><pre><code class="makeup elixir" translate="no"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">PrintHeaders</span><span class="w"> </span><span class="k" data-group-id="7225455661-1">do</span><span class="w">
   </span><span class="na">@doc</span><span class="w"> </span><span class="s">&quot;&quot;&quot;
   Prints request and response headers.
 
@@ -221,41 +221,41 @@ from being invoked.</p><p>Examples:</p><pre><code class="makeup elixir" translat
 
     * `:print_headers` - if `true`, prints the headers. Defaults to `false`.
   &quot;&quot;&quot;</span><span class="w">
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">attach</span><span class="p" data-group-id="0673121102-2">(</span><span class="p" data-group-id="0673121102-3">%</span><span class="nc" data-group-id="0673121102-3">Req.Request</span><span class="p" data-group-id="0673121102-3">{</span><span class="p" data-group-id="0673121102-3">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">options</span><span class="w"> </span><span class="o">\\</span><span class="w"> </span><span class="p" data-group-id="0673121102-4">[</span><span class="p" data-group-id="0673121102-4">]</span><span class="p" data-group-id="0673121102-2">)</span><span class="w"> </span><span class="k" data-group-id="0673121102-5">do</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">attach</span><span class="p" data-group-id="7225455661-2">(</span><span class="p" data-group-id="7225455661-3">%</span><span class="nc" data-group-id="7225455661-3">Req.Request</span><span class="p" data-group-id="7225455661-3">{</span><span class="p" data-group-id="7225455661-3">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">options</span><span class="w"> </span><span class="o">\\</span><span class="w"> </span><span class="p" data-group-id="7225455661-4">[</span><span class="p" data-group-id="7225455661-4">]</span><span class="p" data-group-id="7225455661-2">)</span><span class="w"> </span><span class="k" data-group-id="7225455661-5">do</span><span class="w">
     </span><span class="n">request</span><span class="w">
-    </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">register_options</span><span class="p" data-group-id="0673121102-6">(</span><span class="p" data-group-id="0673121102-7">[</span><span class="ss">:print_headers</span><span class="p" data-group-id="0673121102-7">]</span><span class="p" data-group-id="0673121102-6">)</span><span class="w">
-    </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">merge_options</span><span class="p" data-group-id="0673121102-8">(</span><span class="n">options</span><span class="p" data-group-id="0673121102-8">)</span><span class="w">
-    </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">append_request_steps</span><span class="p" data-group-id="0673121102-9">(</span><span class="ss">print_headers</span><span class="p">:</span><span class="w"> </span><span class="o">&amp;</span><span class="n">print_request_headers</span><span class="o">/</span><span class="mi">1</span><span class="p" data-group-id="0673121102-9">)</span><span class="w">
-    </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">prepend_response_steps</span><span class="p" data-group-id="0673121102-10">(</span><span class="ss">print_headers</span><span class="p">:</span><span class="w"> </span><span class="o">&amp;</span><span class="n">print_response_headers</span><span class="o">/</span><span class="mi">1</span><span class="p" data-group-id="0673121102-10">)</span><span class="w">
-  </span><span class="k" data-group-id="0673121102-5">end</span><span class="w">
+    </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">register_options</span><span class="p" data-group-id="7225455661-6">(</span><span class="p" data-group-id="7225455661-7">[</span><span class="ss">:print_headers</span><span class="p" data-group-id="7225455661-7">]</span><span class="p" data-group-id="7225455661-6">)</span><span class="w">
+    </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">merge_options</span><span class="p" data-group-id="7225455661-8">(</span><span class="n">options</span><span class="p" data-group-id="7225455661-8">)</span><span class="w">
+    </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">append_request_steps</span><span class="p" data-group-id="7225455661-9">(</span><span class="ss">print_headers</span><span class="p">:</span><span class="w"> </span><span class="o">&amp;</span><span class="n">print_request_headers</span><span class="o">/</span><span class="mi">1</span><span class="p" data-group-id="7225455661-9">)</span><span class="w">
+    </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">prepend_response_steps</span><span class="p" data-group-id="7225455661-10">(</span><span class="ss">print_headers</span><span class="p">:</span><span class="w"> </span><span class="o">&amp;</span><span class="n">print_response_headers</span><span class="o">/</span><span class="mi">1</span><span class="p" data-group-id="7225455661-10">)</span><span class="w">
+  </span><span class="k" data-group-id="7225455661-5">end</span><span class="w">
 
-  </span><span class="kd">defp</span><span class="w"> </span><span class="nf">print_request_headers</span><span class="p" data-group-id="0673121102-11">(</span><span class="n">request</span><span class="p" data-group-id="0673121102-11">)</span><span class="w"> </span><span class="k" data-group-id="0673121102-12">do</span><span class="w">
-    </span><span class="k">if</span><span class="w"> </span><span class="n">request</span><span class="o">.</span><span class="n">options</span><span class="p" data-group-id="0673121102-13">[</span><span class="ss">:print_headers</span><span class="p" data-group-id="0673121102-13">]</span><span class="w"> </span><span class="k" data-group-id="0673121102-14">do</span><span class="w">
-      </span><span class="n">print_headers</span><span class="p" data-group-id="0673121102-15">(</span><span class="s">&quot;&gt; &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="p" data-group-id="0673121102-15">)</span><span class="w">
-    </span><span class="k" data-group-id="0673121102-14">end</span><span class="w">
+  </span><span class="kd">defp</span><span class="w"> </span><span class="nf">print_request_headers</span><span class="p" data-group-id="7225455661-11">(</span><span class="n">request</span><span class="p" data-group-id="7225455661-11">)</span><span class="w"> </span><span class="k" data-group-id="7225455661-12">do</span><span class="w">
+    </span><span class="k">if</span><span class="w"> </span><span class="n">request</span><span class="o">.</span><span class="n">options</span><span class="p" data-group-id="7225455661-13">[</span><span class="ss">:print_headers</span><span class="p" data-group-id="7225455661-13">]</span><span class="w"> </span><span class="k" data-group-id="7225455661-14">do</span><span class="w">
+      </span><span class="n">print_headers</span><span class="p" data-group-id="7225455661-15">(</span><span class="s">&quot;&gt; &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="p" data-group-id="7225455661-15">)</span><span class="w">
+    </span><span class="k" data-group-id="7225455661-14">end</span><span class="w">
 
     </span><span class="n">request</span><span class="w">
-  </span><span class="k" data-group-id="0673121102-12">end</span><span class="w">
+  </span><span class="k" data-group-id="7225455661-12">end</span><span class="w">
 
-  </span><span class="kd">defp</span><span class="w"> </span><span class="nf">print_response_headers</span><span class="p" data-group-id="0673121102-16">(</span><span class="p" data-group-id="0673121102-17">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="0673121102-17">}</span><span class="p" data-group-id="0673121102-16">)</span><span class="w"> </span><span class="k" data-group-id="0673121102-18">do</span><span class="w">
-    </span><span class="k">if</span><span class="w"> </span><span class="n">request</span><span class="o">.</span><span class="n">options</span><span class="p" data-group-id="0673121102-19">[</span><span class="ss">:print_headers</span><span class="p" data-group-id="0673121102-19">]</span><span class="w"> </span><span class="k" data-group-id="0673121102-20">do</span><span class="w">
-      </span><span class="n">print_headers</span><span class="p" data-group-id="0673121102-21">(</span><span class="s">&quot;&lt; &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p" data-group-id="0673121102-21">)</span><span class="w">
-    </span><span class="k" data-group-id="0673121102-20">end</span><span class="w">
+  </span><span class="kd">defp</span><span class="w"> </span><span class="nf">print_response_headers</span><span class="p" data-group-id="7225455661-16">(</span><span class="p" data-group-id="7225455661-17">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="7225455661-17">}</span><span class="p" data-group-id="7225455661-16">)</span><span class="w"> </span><span class="k" data-group-id="7225455661-18">do</span><span class="w">
+    </span><span class="k">if</span><span class="w"> </span><span class="n">request</span><span class="o">.</span><span class="n">options</span><span class="p" data-group-id="7225455661-19">[</span><span class="ss">:print_headers</span><span class="p" data-group-id="7225455661-19">]</span><span class="w"> </span><span class="k" data-group-id="7225455661-20">do</span><span class="w">
+      </span><span class="n">print_headers</span><span class="p" data-group-id="7225455661-21">(</span><span class="s">&quot;&lt; &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p" data-group-id="7225455661-21">)</span><span class="w">
+    </span><span class="k" data-group-id="7225455661-20">end</span><span class="w">
 
-    </span><span class="p" data-group-id="0673121102-22">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="0673121102-22">}</span><span class="w">
-  </span><span class="k" data-group-id="0673121102-18">end</span><span class="w">
+    </span><span class="p" data-group-id="7225455661-22">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="7225455661-22">}</span><span class="w">
+  </span><span class="k" data-group-id="7225455661-18">end</span><span class="w">
 
-  </span><span class="kd">defp</span><span class="w"> </span><span class="nf">print_headers</span><span class="p" data-group-id="0673121102-23">(</span><span class="n">prefix</span><span class="p">,</span><span class="w"> </span><span class="n">headers</span><span class="p" data-group-id="0673121102-23">)</span><span class="w"> </span><span class="k" data-group-id="0673121102-24">do</span><span class="w">
-    </span><span class="k">for</span><span class="w"> </span><span class="p" data-group-id="0673121102-25">{</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p" data-group-id="0673121102-25">}</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">headers</span><span class="w"> </span><span class="k" data-group-id="0673121102-26">do</span><span class="w">
-      </span><span class="nc">IO</span><span class="o">.</span><span class="n">puts</span><span class="p" data-group-id="0673121102-27">(</span><span class="p" data-group-id="0673121102-28">[</span><span class="n">prefix</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p" data-group-id="0673121102-28">]</span><span class="p" data-group-id="0673121102-27">)</span><span class="w">
-    </span><span class="k" data-group-id="0673121102-26">end</span><span class="w">
-  </span><span class="k" data-group-id="0673121102-24">end</span><span class="w">
-</span><span class="k" data-group-id="0673121102-1">end</span></code></pre><p>And here is how we can use it:</p><pre><code class="makeup elixir" translate="no"><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="4485821706-1">(</span><span class="p" data-group-id="4485821706-1">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">PrintHeaders</span><span class="o">.</span><span class="n">attach</span><span class="p" data-group-id="4485821706-2">(</span><span class="p" data-group-id="4485821706-2">)</span><span class="w">
+  </span><span class="kd">defp</span><span class="w"> </span><span class="nf">print_headers</span><span class="p" data-group-id="7225455661-23">(</span><span class="n">prefix</span><span class="p">,</span><span class="w"> </span><span class="n">headers</span><span class="p" data-group-id="7225455661-23">)</span><span class="w"> </span><span class="k" data-group-id="7225455661-24">do</span><span class="w">
+    </span><span class="k">for</span><span class="w"> </span><span class="p" data-group-id="7225455661-25">{</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p" data-group-id="7225455661-25">}</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">headers</span><span class="w"> </span><span class="k" data-group-id="7225455661-26">do</span><span class="w">
+      </span><span class="nc">IO</span><span class="o">.</span><span class="n">puts</span><span class="p" data-group-id="7225455661-27">(</span><span class="p" data-group-id="7225455661-28">[</span><span class="n">prefix</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p" data-group-id="7225455661-28">]</span><span class="p" data-group-id="7225455661-27">)</span><span class="w">
+    </span><span class="k" data-group-id="7225455661-26">end</span><span class="w">
+  </span><span class="k" data-group-id="7225455661-24">end</span><span class="w">
+</span><span class="k" data-group-id="7225455661-1">end</span></code></pre><p>And here is how we can use it:</p><pre><code class="makeup elixir" translate="no"><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="9246058364-1">(</span><span class="p" data-group-id="9246058364-1">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">PrintHeaders</span><span class="o">.</span><span class="n">attach</span><span class="p" data-group-id="9246058364-2">(</span><span class="p" data-group-id="9246058364-2">)</span><span class="w">
 
-</span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="4485821706-3">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://httpbin.org/json&quot;</span><span class="p" data-group-id="4485821706-3">)</span><span class="o">.</span><span class="n">status</span><span class="w">
+</span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="9246058364-3">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://httpbin.org/json&quot;</span><span class="p" data-group-id="9246058364-3">)</span><span class="o">.</span><span class="n">status</span><span class="w">
 </span><span class="mi">200</span><span class="w">
 
-</span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="4485821706-4">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://httpbin.org/json&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">print_headers</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="4485821706-4">)</span><span class="o">.</span><span class="n">status</span><span class="w">
+</span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="9246058364-4">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://httpbin.org/json&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">print_headers</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="9246058364-4">)</span><span class="o">.</span><span class="n">status</span><span class="w">
 </span><span class="c1"># Outputs:</span><span class="w">
 </span><span class="c1"># &gt; accept-encoding: br, gzip, deflate</span><span class="w">
 </span><span class="c1"># &gt; user-agent: req/0.3.0-dev</span><span class="w">
@@ -264,8 +264,8 @@ from being invoked.</p><p>Examples:</p><pre><code class="makeup elixir" translat
 </span><span class="c1"># ...</span><span class="w">
 </span><span class="mi">200</span><span class="w">
 
-</span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="4485821706-5">(</span><span class="p" data-group-id="4485821706-5">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">PrintHeaders</span><span class="o">.</span><span class="n">attach</span><span class="p" data-group-id="4485821706-6">(</span><span class="ss">print_headers</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="4485821706-6">)</span><span class="w">
-</span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="4485821706-7">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://httpbin.org/json&quot;</span><span class="p" data-group-id="4485821706-7">)</span><span class="o">.</span><span class="n">status</span><span class="w">
+</span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="9246058364-5">(</span><span class="p" data-group-id="9246058364-5">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">PrintHeaders</span><span class="o">.</span><span class="n">attach</span><span class="p" data-group-id="9246058364-6">(</span><span class="ss">print_headers</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="9246058364-6">)</span><span class="w">
+</span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="9246058364-7">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://httpbin.org/json&quot;</span><span class="p" data-group-id="9246058364-7">)</span><span class="o">.</span><span class="n">status</span><span class="w">
 </span><span class="c1"># Outputs:</span><span class="w">
 </span><span class="c1"># &gt; accept-encoding: br, gzip, deflate</span><span class="w">
 </span><span class="c1"># ...</span><span class="w">
@@ -284,31 +284,41 @@ options before merging!</p></li></ul><h2 id="module-adapter" class="section-head
 </h2>
 <p>As noted in the <a href="#module-request-steps">&quot;Request steps&quot;</a> section, a request step besides returning the request,
 might also return <code class="inline">{request, response}</code> or <code class="inline">{request, exception}</code>, thus invoking either response or error steps next.
-This is exactly how Req makes the underlying HTTP call, by invoking a request step that follows this contract.</p><p>The default adapter is using Finch via the <a href="Req.Steps.html#run_finch/1"><code class="inline">Req.Steps.run_finch/1</code></a> step.</p><p>Here is a mock adapter that always returns a successful response:</p><pre><code class="makeup elixir" translate="no"><span class="n">adapter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k" data-group-id="4217401696-1">fn</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
-  </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="4217401696-2">%</span><span class="nc" data-group-id="4217401696-2">Req.Response</span><span class="p" data-group-id="4217401696-2">{</span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="ss">body</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;it works!&quot;</span><span class="p" data-group-id="4217401696-2">}</span><span class="w">
-  </span><span class="p" data-group-id="4217401696-3">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="4217401696-3">}</span><span class="w">
-</span><span class="k" data-group-id="4217401696-1">end</span><span class="w">
+This is exactly how Req makes the underlying HTTP call, by invoking a request step that follows this contract.</p><p>The default adapter is using Finch via the <a href="Req.Steps.html#run_finch/1"><code class="inline">Req.Steps.run_finch/1</code></a> step.</p><p>Here is a mock adapter that always returns a successful response:</p><pre><code class="makeup elixir" translate="no"><span class="n">adapter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k" data-group-id="1642705623-1">fn</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+  </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="1642705623-2">%</span><span class="nc" data-group-id="1642705623-2">Req.Response</span><span class="p" data-group-id="1642705623-2">{</span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="ss">body</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;it works!&quot;</span><span class="p" data-group-id="1642705623-2">}</span><span class="w">
+  </span><span class="p" data-group-id="1642705623-3">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="1642705623-3">}</span><span class="w">
+</span><span class="k" data-group-id="1642705623-1">end</span><span class="w">
 
-</span><span class="nc">Req</span><span class="o">.</span><span class="n">request!</span><span class="p" data-group-id="4217401696-4">(</span><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http://example&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">adapter</span><span class="p">:</span><span class="w"> </span><span class="n">adapter</span><span class="p" data-group-id="4217401696-4">)</span><span class="o">.</span><span class="n">body</span><span class="w">
-</span><span class="c1">#=&gt; &quot;it works!&quot;</span></code></pre><p>And here is a naive Hackney-based implementation:</p><pre><code class="makeup elixir" translate="no"><span class="n">hackney</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k" data-group-id="6939491579-1">fn</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
-  </span><span class="k">case</span><span class="w"> </span><span class="nc">:hackney</span><span class="o">.</span><span class="n">request</span><span class="p" data-group-id="6939491579-2">(</span><span class="w">
+</span><span class="nc">Req</span><span class="o">.</span><span class="n">request!</span><span class="p" data-group-id="1642705623-4">(</span><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http://example&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">adapter</span><span class="p">:</span><span class="w"> </span><span class="n">adapter</span><span class="p" data-group-id="1642705623-4">)</span><span class="o">.</span><span class="n">body</span><span class="w">
+</span><span class="c1">#=&gt; &quot;it works!&quot;</span></code></pre><p>Here is another one that uses the <a href="Req.Response.html#json/2"><code class="inline">Req.Response.json/2</code></a> function to conveniently
+return a JSON response:</p><pre><code class="makeup elixir" translate="no"><span class="n">adapter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k" data-group-id="2533942027-1">fn</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+  </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req.Response</span><span class="o">.</span><span class="n">json</span><span class="p" data-group-id="2533942027-2">(</span><span class="p" data-group-id="2533942027-3">%{</span><span class="ss">hello</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p" data-group-id="2533942027-3">}</span><span class="p" data-group-id="2533942027-2">)</span><span class="w">
+  </span><span class="p" data-group-id="2533942027-4">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="2533942027-4">}</span><span class="w">
+</span><span class="k" data-group-id="2533942027-1">end</span><span class="w">
+
+</span><span class="n">resp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">request!</span><span class="p" data-group-id="2533942027-5">(</span><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http://example&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">adapter</span><span class="p">:</span><span class="w"> </span><span class="n">adapter</span><span class="p" data-group-id="2533942027-5">)</span><span class="w">
+</span><span class="n">resp</span><span class="o">.</span><span class="n">headers</span><span class="w">
+</span><span class="c1">#=&gt; [{&quot;content-type&quot;, &quot;application/json&quot;}]</span><span class="w">
+</span><span class="n">resp</span><span class="o">.</span><span class="n">body</span><span class="w">
+</span><span class="c1">#=&gt; %{&quot;hello&quot; =&gt; 42}</span></code></pre><p>And here is a naive Hackney-based adapter:</p><pre><code class="makeup elixir" translate="no"><span class="n">hackney</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k" data-group-id="9803233832-1">fn</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+  </span><span class="k">case</span><span class="w"> </span><span class="nc">:hackney</span><span class="o">.</span><span class="n">request</span><span class="p" data-group-id="9803233832-2">(</span><span class="w">
          </span><span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="p">,</span><span class="w">
-         </span><span class="nc">URI</span><span class="o">.</span><span class="n">to_string</span><span class="p" data-group-id="6939491579-3">(</span><span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="p" data-group-id="6939491579-3">)</span><span class="p">,</span><span class="w">
+         </span><span class="nc">URI</span><span class="o">.</span><span class="n">to_string</span><span class="p" data-group-id="9803233832-3">(</span><span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="p" data-group-id="9803233832-3">)</span><span class="p">,</span><span class="w">
          </span><span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span><span class="w">
          </span><span class="n">request</span><span class="o">.</span><span class="n">body</span><span class="p">,</span><span class="w">
-         </span><span class="p" data-group-id="6939491579-4">[</span><span class="ss">:with_body</span><span class="p" data-group-id="6939491579-4">]</span><span class="w">
-       </span><span class="p" data-group-id="6939491579-2">)</span><span class="w"> </span><span class="k" data-group-id="6939491579-5">do</span><span class="w">
-    </span><span class="p" data-group-id="6939491579-6">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">,</span><span class="w"> </span><span class="n">headers</span><span class="p">,</span><span class="w"> </span><span class="n">body</span><span class="p" data-group-id="6939491579-6">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
-      </span><span class="n">headers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="p" data-group-id="6939491579-7">{</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p" data-group-id="6939491579-7">}</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">headers</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6939491579-8">{</span><span class="nc">String</span><span class="o">.</span><span class="n">downcase</span><span class="p" data-group-id="6939491579-9">(</span><span class="n">name</span><span class="p" data-group-id="6939491579-9">)</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p" data-group-id="6939491579-8">}</span><span class="w">
-      </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="6939491579-10">%</span><span class="nc" data-group-id="6939491579-10">Req.Response</span><span class="p" data-group-id="6939491579-10">{</span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="n">status</span><span class="p">,</span><span class="w"> </span><span class="ss">headers</span><span class="p">:</span><span class="w"> </span><span class="n">headers</span><span class="p">,</span><span class="w"> </span><span class="ss">body</span><span class="p">:</span><span class="w"> </span><span class="n">body</span><span class="p" data-group-id="6939491579-10">}</span><span class="w">
-      </span><span class="p" data-group-id="6939491579-11">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="6939491579-11">}</span><span class="w">
+         </span><span class="p" data-group-id="9803233832-4">[</span><span class="ss">:with_body</span><span class="p" data-group-id="9803233832-4">]</span><span class="w">
+       </span><span class="p" data-group-id="9803233832-2">)</span><span class="w"> </span><span class="k" data-group-id="9803233832-5">do</span><span class="w">
+    </span><span class="p" data-group-id="9803233832-6">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">,</span><span class="w"> </span><span class="n">headers</span><span class="p">,</span><span class="w"> </span><span class="n">body</span><span class="p" data-group-id="9803233832-6">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+      </span><span class="n">headers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="p" data-group-id="9803233832-7">{</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p" data-group-id="9803233832-7">}</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">headers</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="9803233832-8">{</span><span class="nc">String</span><span class="o">.</span><span class="n">downcase</span><span class="p" data-group-id="9803233832-9">(</span><span class="n">name</span><span class="p" data-group-id="9803233832-9">)</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p" data-group-id="9803233832-8">}</span><span class="w">
+      </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="9803233832-10">%</span><span class="nc" data-group-id="9803233832-10">Req.Response</span><span class="p" data-group-id="9803233832-10">{</span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="n">status</span><span class="p">,</span><span class="w"> </span><span class="ss">headers</span><span class="p">:</span><span class="w"> </span><span class="n">headers</span><span class="p">,</span><span class="w"> </span><span class="ss">body</span><span class="p">:</span><span class="w"> </span><span class="n">body</span><span class="p" data-group-id="9803233832-10">}</span><span class="w">
+      </span><span class="p" data-group-id="9803233832-11">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="9803233832-11">}</span><span class="w">
 
-    </span><span class="p" data-group-id="6939491579-12">{</span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="n">reason</span><span class="p" data-group-id="6939491579-12">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
-      </span><span class="p" data-group-id="6939491579-13">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="nc">RuntimeError</span><span class="o">.</span><span class="n">exception</span><span class="p" data-group-id="6939491579-14">(</span><span class="n">inspect</span><span class="p" data-group-id="6939491579-15">(</span><span class="n">reason</span><span class="p" data-group-id="6939491579-15">)</span><span class="p" data-group-id="6939491579-14">)</span><span class="p" data-group-id="6939491579-13">}</span><span class="w">
-  </span><span class="k" data-group-id="6939491579-5">end</span><span class="w">
-</span><span class="k" data-group-id="6939491579-1">end</span><span class="w">
+    </span><span class="p" data-group-id="9803233832-12">{</span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="n">reason</span><span class="p" data-group-id="9803233832-12">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+      </span><span class="p" data-group-id="9803233832-13">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="nc">RuntimeError</span><span class="o">.</span><span class="n">exception</span><span class="p" data-group-id="9803233832-14">(</span><span class="n">inspect</span><span class="p" data-group-id="9803233832-15">(</span><span class="n">reason</span><span class="p" data-group-id="9803233832-15">)</span><span class="p" data-group-id="9803233832-14">)</span><span class="p" data-group-id="9803233832-13">}</span><span class="w">
+  </span><span class="k" data-group-id="9803233832-5">end</span><span class="w">
+</span><span class="k" data-group-id="9803233832-1">end</span><span class="w">
 
-</span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="6939491579-16">(</span><span class="s">&quot;https://api.github.com/repos/elixir-lang/elixir&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">adapter</span><span class="p">:</span><span class="w"> </span><span class="n">hackney</span><span class="p" data-group-id="6939491579-16">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="6939491579-17">[</span><span class="s">&quot;description&quot;</span><span class="p" data-group-id="6939491579-17">]</span><span class="w">
+</span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="9803233832-16">(</span><span class="s">&quot;https://api.github.com/repos/elixir-lang/elixir&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">adapter</span><span class="p">:</span><span class="w"> </span><span class="n">hackney</span><span class="p" data-group-id="9803233832-16">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="9803233832-17">[</span><span class="s">&quot;description&quot;</span><span class="p" data-group-id="9803233832-17">]</span><span class="w">
 </span><span class="s">&quot;Elixir is a dynamic, functional language designed for building scalable and maintainable applications&quot;</span></code></pre>
   </section>
 
@@ -516,7 +526,7 @@ Types
     </a>
     <h1 class="signature" translate="no">t()</h1>
 
-      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/request.ex#L295" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/request.ex#L309" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -570,7 +580,7 @@ Functions
     </a>
     <h1 class="signature" translate="no">append_error_steps(request, steps)</h1>
 
-      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/request.ex#L414" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/request.ex#L428" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -586,10 +596,10 @@ Functions
   </a>
   Examples
 </h2>
-<pre><code class="makeup elixir" translate="no"><span class="nc">Req.Request</span><span class="o">.</span><span class="n">append_error_steps</span><span class="p" data-group-id="7294098204-1">(</span><span class="n">request</span><span class="p">,</span><span class="w">
-  </span><span class="ss">noop</span><span class="p">:</span><span class="w"> </span><span class="k" data-group-id="7294098204-2">fn</span><span class="w"> </span><span class="p" data-group-id="7294098204-3">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">exception</span><span class="p" data-group-id="7294098204-3">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p" data-group-id="7294098204-4">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">exception</span><span class="p" data-group-id="7294098204-4">}</span><span class="w"> </span><span class="k" data-group-id="7294098204-2">end</span><span class="p">,</span><span class="w">
+<pre><code class="makeup elixir" translate="no"><span class="nc">Req.Request</span><span class="o">.</span><span class="n">append_error_steps</span><span class="p" data-group-id="5029539876-1">(</span><span class="n">request</span><span class="p">,</span><span class="w">
+  </span><span class="ss">noop</span><span class="p">:</span><span class="w"> </span><span class="k" data-group-id="5029539876-2">fn</span><span class="w"> </span><span class="p" data-group-id="5029539876-3">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">exception</span><span class="p" data-group-id="5029539876-3">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p" data-group-id="5029539876-4">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">exception</span><span class="p" data-group-id="5029539876-4">}</span><span class="w"> </span><span class="k" data-group-id="5029539876-2">end</span><span class="p">,</span><span class="w">
   </span><span class="ss">inspect</span><span class="p">:</span><span class="w"> </span><span class="o">&amp;</span><span class="nc">IO</span><span class="o">.</span><span class="n">inspect</span><span class="o">/</span><span class="mi">1</span><span class="w">
-</span><span class="p" data-group-id="7294098204-1">)</span></code></pre>
+</span><span class="p" data-group-id="5029539876-1">)</span></code></pre>
   </section>
 </section>
 <section class="detail" id="append_request_steps/2">
@@ -601,7 +611,7 @@ Functions
     </a>
     <h1 class="signature" translate="no">append_request_steps(request, steps)</h1>
 
-      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/request.ex#L358" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/request.ex#L372" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -617,10 +627,10 @@ Functions
   </a>
   Examples
 </h2>
-<pre><code class="makeup elixir" translate="no"><span class="nc">Req.Request</span><span class="o">.</span><span class="n">append_request_steps</span><span class="p" data-group-id="2442920672-1">(</span><span class="n">request</span><span class="p">,</span><span class="w">
-  </span><span class="ss">noop</span><span class="p">:</span><span class="w"> </span><span class="k" data-group-id="2442920672-2">fn</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="k" data-group-id="2442920672-2">end</span><span class="p">,</span><span class="w">
+<pre><code class="makeup elixir" translate="no"><span class="nc">Req.Request</span><span class="o">.</span><span class="n">append_request_steps</span><span class="p" data-group-id="3361772347-1">(</span><span class="n">request</span><span class="p">,</span><span class="w">
+  </span><span class="ss">noop</span><span class="p">:</span><span class="w"> </span><span class="k" data-group-id="3361772347-2">fn</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="k" data-group-id="3361772347-2">end</span><span class="p">,</span><span class="w">
   </span><span class="ss">inspect</span><span class="p">:</span><span class="w"> </span><span class="o">&amp;</span><span class="nc">IO</span><span class="o">.</span><span class="n">inspect</span><span class="o">/</span><span class="mi">1</span><span class="w">
-</span><span class="p" data-group-id="2442920672-1">)</span></code></pre>
+</span><span class="p" data-group-id="3361772347-1">)</span></code></pre>
   </section>
 </section>
 <section class="detail" id="append_response_steps/2">
@@ -632,7 +642,7 @@ Functions
     </a>
     <h1 class="signature" translate="no">append_response_steps(request, steps)</h1>
 
-      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/request.ex#L386" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/request.ex#L400" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -648,10 +658,10 @@ Functions
   </a>
   Examples
 </h2>
-<pre><code class="makeup elixir" translate="no"><span class="nc">Req.Request</span><span class="o">.</span><span class="n">append_request_steps</span><span class="p" data-group-id="3912038683-1">(</span><span class="n">request</span><span class="p">,</span><span class="w">
-  </span><span class="ss">noop</span><span class="p">:</span><span class="w"> </span><span class="k" data-group-id="3912038683-2">fn</span><span class="w"> </span><span class="p" data-group-id="3912038683-3">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="3912038683-3">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p" data-group-id="3912038683-4">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="3912038683-4">}</span><span class="w"> </span><span class="k" data-group-id="3912038683-2">end</span><span class="p">,</span><span class="w">
+<pre><code class="makeup elixir" translate="no"><span class="nc">Req.Request</span><span class="o">.</span><span class="n">append_request_steps</span><span class="p" data-group-id="7660515198-1">(</span><span class="n">request</span><span class="p">,</span><span class="w">
+  </span><span class="ss">noop</span><span class="p">:</span><span class="w"> </span><span class="k" data-group-id="7660515198-2">fn</span><span class="w"> </span><span class="p" data-group-id="7660515198-3">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="7660515198-3">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p" data-group-id="7660515198-4">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="7660515198-4">}</span><span class="w"> </span><span class="k" data-group-id="7660515198-2">end</span><span class="p">,</span><span class="w">
   </span><span class="ss">inspect</span><span class="p">:</span><span class="w"> </span><span class="o">&amp;</span><span class="nc">IO</span><span class="o">.</span><span class="n">inspect</span><span class="o">/</span><span class="mi">1</span><span class="w">
-</span><span class="p" data-group-id="3912038683-1">)</span></code></pre>
+</span><span class="p" data-group-id="7660515198-1">)</span></code></pre>
   </section>
 </section>
 <section class="detail" id="get_header/2">
@@ -663,7 +673,7 @@ Functions
     </a>
     <h1 class="signature" translate="no">get_header(request, key)</h1>
 
-      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/request.ex#L475" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/request.ex#L489" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -685,9 +695,9 @@ Functions
   </a>
   Examples
 </h2>
-<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="1843419284-1">(</span><span class="ss">headers</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="1843419284-2">[</span><span class="p" data-group-id="1843419284-3">{</span><span class="s">&quot;accept&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;application/json&quot;</span><span class="p" data-group-id="1843419284-3">}</span><span class="p" data-group-id="1843419284-2">]</span><span class="p" data-group-id="1843419284-1">)</span><span class="w">
-</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">get_header</span><span class="p" data-group-id="1843419284-4">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;accept&quot;</span><span class="p" data-group-id="1843419284-4">)</span><span class="w">
-</span><span class="p" data-group-id="1843419284-5">[</span><span class="s">&quot;application/json&quot;</span><span class="p" data-group-id="1843419284-5">]</span></code></pre>
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="1687965875-1">(</span><span class="ss">headers</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="1687965875-2">[</span><span class="p" data-group-id="1687965875-3">{</span><span class="s">&quot;accept&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;application/json&quot;</span><span class="p" data-group-id="1687965875-3">}</span><span class="p" data-group-id="1687965875-2">]</span><span class="p" data-group-id="1687965875-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">get_header</span><span class="p" data-group-id="1687965875-4">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;accept&quot;</span><span class="p" data-group-id="1687965875-4">)</span><span class="w">
+</span><span class="p" data-group-id="1687965875-5">[</span><span class="s">&quot;application/json&quot;</span><span class="p" data-group-id="1687965875-5">]</span></code></pre>
   </section>
 </section>
 <section class="detail" id="get_private/3">
@@ -701,7 +711,7 @@ Functions
     </a>
     <h1 class="signature" translate="no">get_private(request, key, default \\ nil)</h1>
 
-      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/request.ex#L330" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/request.ex#L344" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -723,7 +733,7 @@ Functions
     </a>
     <h1 class="signature" translate="no">halt(request)</h1>
 
-      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/request.ex#L344" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/request.ex#L358" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -745,7 +755,7 @@ Functions
     </a>
     <h1 class="signature" translate="no">merge_options(request, options)</h1>
 
-      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/request.ex#L459" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/request.ex#L473" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -770,10 +780,10 @@ Functions
   </a>
   Examples
 </h2>
-<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="5342379852-1">(</span><span class="ss">auth</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5342379852-2">{</span><span class="s">&quot;alice&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;secret&quot;</span><span class="p" data-group-id="5342379852-2">}</span><span class="p">,</span><span class="w"> </span><span class="ss">http_errors</span><span class="p">:</span><span class="w"> </span><span class="ss">:raise</span><span class="p" data-group-id="5342379852-1">)</span><span class="w">
-</span><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">merge_options</span><span class="p" data-group-id="5342379852-3">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="ss">auth</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5342379852-4">{</span><span class="ss">:bearer</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;abcd&quot;</span><span class="p" data-group-id="5342379852-4">}</span><span class="p">,</span><span class="w"> </span><span class="ss">base_url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://example.com&quot;</span><span class="p" data-group-id="5342379852-3">)</span><span class="w">
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="1997918014-1">(</span><span class="ss">auth</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="1997918014-2">{</span><span class="s">&quot;alice&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;secret&quot;</span><span class="p" data-group-id="1997918014-2">}</span><span class="p">,</span><span class="w"> </span><span class="ss">http_errors</span><span class="p">:</span><span class="w"> </span><span class="ss">:raise</span><span class="p" data-group-id="1997918014-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">merge_options</span><span class="p" data-group-id="1997918014-3">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="ss">auth</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="1997918014-4">{</span><span class="ss">:bearer</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;abcd&quot;</span><span class="p" data-group-id="1997918014-4">}</span><span class="p">,</span><span class="w"> </span><span class="ss">base_url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://example.com&quot;</span><span class="p" data-group-id="1997918014-3">)</span><span class="w">
 </span><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="o">.</span><span class="n">options</span><span class="w">
-</span><span class="p" data-group-id="5342379852-5">%{</span><span class="ss">auth</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5342379852-6">{</span><span class="ss">:bearer</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;abcd&quot;</span><span class="p" data-group-id="5342379852-6">}</span><span class="p">,</span><span class="w"> </span><span class="ss">base_url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://example.com&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">http_errors</span><span class="p">:</span><span class="w"> </span><span class="ss">:raise</span><span class="p" data-group-id="5342379852-5">}</span></code></pre>
+</span><span class="p" data-group-id="1997918014-5">%{</span><span class="ss">auth</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="1997918014-6">{</span><span class="ss">:bearer</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;abcd&quot;</span><span class="p" data-group-id="1997918014-6">}</span><span class="p">,</span><span class="w"> </span><span class="ss">base_url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://example.com&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">http_errors</span><span class="p">:</span><span class="w"> </span><span class="ss">:raise</span><span class="p" data-group-id="1997918014-5">}</span></code></pre>
   </section>
 </section>
 <section class="detail" id="prepend_error_steps/2">
@@ -785,7 +795,7 @@ Functions
     </a>
     <h1 class="signature" translate="no">prepend_error_steps(request, steps)</h1>
 
-      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/request.ex#L428" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/request.ex#L442" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -801,10 +811,10 @@ Functions
   </a>
   Examples
 </h2>
-<pre><code class="makeup elixir" translate="no"><span class="nc">Req.Request</span><span class="o">.</span><span class="n">prepend_error_steps</span><span class="p" data-group-id="7202668117-1">(</span><span class="n">request</span><span class="p">,</span><span class="w">
-  </span><span class="ss">noop</span><span class="p">:</span><span class="w"> </span><span class="k" data-group-id="7202668117-2">fn</span><span class="w"> </span><span class="p" data-group-id="7202668117-3">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">exception</span><span class="p" data-group-id="7202668117-3">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p" data-group-id="7202668117-4">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">exception</span><span class="p" data-group-id="7202668117-4">}</span><span class="w"> </span><span class="k" data-group-id="7202668117-2">end</span><span class="p">,</span><span class="w">
+<pre><code class="makeup elixir" translate="no"><span class="nc">Req.Request</span><span class="o">.</span><span class="n">prepend_error_steps</span><span class="p" data-group-id="2149611877-1">(</span><span class="n">request</span><span class="p">,</span><span class="w">
+  </span><span class="ss">noop</span><span class="p">:</span><span class="w"> </span><span class="k" data-group-id="2149611877-2">fn</span><span class="w"> </span><span class="p" data-group-id="2149611877-3">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">exception</span><span class="p" data-group-id="2149611877-3">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p" data-group-id="2149611877-4">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">exception</span><span class="p" data-group-id="2149611877-4">}</span><span class="w"> </span><span class="k" data-group-id="2149611877-2">end</span><span class="p">,</span><span class="w">
   </span><span class="ss">inspect</span><span class="p">:</span><span class="w"> </span><span class="o">&amp;</span><span class="nc">IO</span><span class="o">.</span><span class="n">inspect</span><span class="o">/</span><span class="mi">1</span><span class="w">
-</span><span class="p" data-group-id="7202668117-1">)</span></code></pre>
+</span><span class="p" data-group-id="2149611877-1">)</span></code></pre>
   </section>
 </section>
 <section class="detail" id="prepend_request_steps/2">
@@ -816,7 +826,7 @@ Functions
     </a>
     <h1 class="signature" translate="no">prepend_request_steps(request, steps)</h1>
 
-      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/request.ex#L372" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/request.ex#L386" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -832,10 +842,10 @@ Functions
   </a>
   Examples
 </h2>
-<pre><code class="makeup elixir" translate="no"><span class="nc">Req.Request</span><span class="o">.</span><span class="n">prepend_request_steps</span><span class="p" data-group-id="1750545828-1">(</span><span class="n">request</span><span class="p">,</span><span class="w">
-  </span><span class="ss">noop</span><span class="p">:</span><span class="w"> </span><span class="k" data-group-id="1750545828-2">fn</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="k" data-group-id="1750545828-2">end</span><span class="p">,</span><span class="w">
+<pre><code class="makeup elixir" translate="no"><span class="nc">Req.Request</span><span class="o">.</span><span class="n">prepend_request_steps</span><span class="p" data-group-id="2164637752-1">(</span><span class="n">request</span><span class="p">,</span><span class="w">
+  </span><span class="ss">noop</span><span class="p">:</span><span class="w"> </span><span class="k" data-group-id="2164637752-2">fn</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="k" data-group-id="2164637752-2">end</span><span class="p">,</span><span class="w">
   </span><span class="ss">inspect</span><span class="p">:</span><span class="w"> </span><span class="o">&amp;</span><span class="nc">IO</span><span class="o">.</span><span class="n">inspect</span><span class="o">/</span><span class="mi">1</span><span class="w">
-</span><span class="p" data-group-id="1750545828-1">)</span></code></pre>
+</span><span class="p" data-group-id="2164637752-1">)</span></code></pre>
   </section>
 </section>
 <section class="detail" id="prepend_response_steps/2">
@@ -847,7 +857,7 @@ Functions
     </a>
     <h1 class="signature" translate="no">prepend_response_steps(request, steps)</h1>
 
-      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/request.ex#L400" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/request.ex#L414" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -863,10 +873,10 @@ Functions
   </a>
   Examples
 </h2>
-<pre><code class="makeup elixir" translate="no"><span class="nc">Req.Request</span><span class="o">.</span><span class="n">prepend_request_steps</span><span class="p" data-group-id="4428848654-1">(</span><span class="n">request</span><span class="p">,</span><span class="w">
-  </span><span class="ss">noop</span><span class="p">:</span><span class="w"> </span><span class="k" data-group-id="4428848654-2">fn</span><span class="w"> </span><span class="p" data-group-id="4428848654-3">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="4428848654-3">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p" data-group-id="4428848654-4">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="4428848654-4">}</span><span class="w"> </span><span class="k" data-group-id="4428848654-2">end</span><span class="p">,</span><span class="w">
+<pre><code class="makeup elixir" translate="no"><span class="nc">Req.Request</span><span class="o">.</span><span class="n">prepend_request_steps</span><span class="p" data-group-id="2977549806-1">(</span><span class="n">request</span><span class="p">,</span><span class="w">
+  </span><span class="ss">noop</span><span class="p">:</span><span class="w"> </span><span class="k" data-group-id="2977549806-2">fn</span><span class="w"> </span><span class="p" data-group-id="2977549806-3">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="2977549806-3">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p" data-group-id="2977549806-4">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="2977549806-4">}</span><span class="w"> </span><span class="k" data-group-id="2977549806-2">end</span><span class="p">,</span><span class="w">
   </span><span class="ss">inspect</span><span class="p">:</span><span class="w"> </span><span class="o">&amp;</span><span class="nc">IO</span><span class="o">.</span><span class="n">inspect</span><span class="o">/</span><span class="mi">1</span><span class="w">
-</span><span class="p" data-group-id="4428848654-1">)</span></code></pre>
+</span><span class="p" data-group-id="2977549806-1">)</span></code></pre>
   </section>
 </section>
 <section class="detail" id="put_header/3">
@@ -878,7 +888,7 @@ Functions
     </a>
     <h1 class="signature" translate="no">put_header(request, key, value)</h1>
 
-      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/request.ex#L498" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/request.ex#L512" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -904,9 +914,9 @@ considered valid by common clients, resulting in dropped requests.</p><h2 id="pu
   </a>
   Examples
 </h2>
-<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="9032673039-1">(</span><span class="p" data-group-id="9032673039-1">)</span><span class="w">
-</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">put_header</span><span class="p" data-group-id="9032673039-2">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;accept&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;application/json&quot;</span><span class="p" data-group-id="9032673039-2">)</span><span class="o">.</span><span class="n">headers</span><span class="w">
-</span><span class="p" data-group-id="9032673039-3">[</span><span class="p" data-group-id="9032673039-4">{</span><span class="s">&quot;accept&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;application/json&quot;</span><span class="p" data-group-id="9032673039-4">}</span><span class="p" data-group-id="9032673039-3">]</span></code></pre>
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="2404400443-1">(</span><span class="p" data-group-id="2404400443-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">put_header</span><span class="p" data-group-id="2404400443-2">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;accept&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;application/json&quot;</span><span class="p" data-group-id="2404400443-2">)</span><span class="o">.</span><span class="n">headers</span><span class="w">
+</span><span class="p" data-group-id="2404400443-3">[</span><span class="p" data-group-id="2404400443-4">{</span><span class="s">&quot;accept&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;application/json&quot;</span><span class="p" data-group-id="2404400443-4">}</span><span class="p" data-group-id="2404400443-3">]</span></code></pre>
   </section>
 </section>
 <section class="detail" id="put_private/3">
@@ -918,7 +928,7 @@ considered valid by common clients, resulting in dropped requests.</p><h2 id="pu
     </a>
     <h1 class="signature" translate="no">put_private(request, key, value)</h1>
 
-      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/request.ex#L337" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/request.ex#L351" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -940,7 +950,7 @@ considered valid by common clients, resulting in dropped requests.</p><h2 id="pu
     </a>
     <h1 class="signature" translate="no">register_options(request, options)</h1>
 
-      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/request.ex#L536" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/request.ex#L550" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -958,17 +968,17 @@ that are accepting options, call this function to register them.</p><h2 id="regi
   </a>
   Examples
 </h2>
-<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">request!</span><span class="p" data-group-id="3986847524-1">(</span><span class="ss">urll</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://httpbin.org&quot;</span><span class="p" data-group-id="3986847524-1">)</span><span class="w">
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">request!</span><span class="p" data-group-id="1443962110-1">(</span><span class="ss">urll</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://httpbin.org&quot;</span><span class="p" data-group-id="1443962110-1">)</span><span class="w">
 </span><span class="gt">** (ArgumentError) unknown option :urll. Did you mean :url?</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="3986847524-2">(</span><span class="ss">bas_url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://httpbin.org&quot;</span><span class="p" data-group-id="3986847524-2">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="1443962110-2">(</span><span class="ss">bas_url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://httpbin.org&quot;</span><span class="p" data-group-id="1443962110-2">)</span><span class="w">
 </span><span class="gt">** (ArgumentError) unknown option :bas_url. Did you mean :base_url?</span><span class="w">
 
 </span><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w">
-</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="nc">Req</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="3986847524-3">(</span><span class="ss">base_url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://httpbin.org&quot;</span><span class="p" data-group-id="3986847524-3">)</span><span class="w">
-</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">register_options</span><span class="p" data-group-id="3986847524-4">(</span><span class="p" data-group-id="3986847524-5">[</span><span class="ss">:foo</span><span class="p" data-group-id="3986847524-5">]</span><span class="p" data-group-id="3986847524-4">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="nc">Req</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="1443962110-3">(</span><span class="ss">base_url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://httpbin.org&quot;</span><span class="p" data-group-id="1443962110-3">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">register_options</span><span class="p" data-group-id="1443962110-4">(</span><span class="p" data-group-id="1443962110-5">[</span><span class="ss">:foo</span><span class="p" data-group-id="1443962110-5">]</span><span class="p" data-group-id="1443962110-4">)</span><span class="w">
 </span><span class="gp unselectable">...&gt;</span><span class="w">
-</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="3986847524-6">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/status/201&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">foo</span><span class="p">:</span><span class="w"> </span><span class="ss">:bar</span><span class="p" data-group-id="3986847524-6">)</span><span class="o">.</span><span class="n">status</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="1443962110-6">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/status/201&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">foo</span><span class="p">:</span><span class="w"> </span><span class="ss">:bar</span><span class="p" data-group-id="1443962110-6">)</span><span class="o">.</span><span class="n">status</span><span class="w">
 </span><span class="mi">201</span></code></pre>
   </section>
 </section>
@@ -981,7 +991,7 @@ that are accepting options, call this function to register them.</p><h2 id="regi
     </a>
     <h1 class="signature" translate="no">run!(request)</h1>
 
-      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/request.ex#L584" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/request.ex#L598" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -1003,7 +1013,7 @@ that are accepting options, call this function to register them.</p><h2 id="regi
     </a>
     <h1 class="signature" translate="no">run(request)</h1>
 
-      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/request.ex#L545" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/request.ex#L559" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
