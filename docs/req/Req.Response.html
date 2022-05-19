@@ -10,7 +10,7 @@
     <title>Req.Response — req v0.3.0-dev</title>
     <link rel="stylesheet" href="dist/elixir-b6f1ed5df9b1d42a7309.css" />
 
-    <script src="dist/sidebar_items-7c4eb7eafe.js"></script>
+    <script src="dist/sidebar_items-25cffca7a0.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -163,6 +163,26 @@ conflicts. Only accepts <a href="https://hexdocs.pm/elixir/typespecs.html#basic-
 
       <div class="summary-row">
         <div class="summary-signature">
+          <a href="#json/2" translate="no">json(response \\ new(), body)</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Builds or updates a response with JSON body.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
+          <a href="#new/1" translate="no">new(options \\ [])</a>
+
+        </div>
+
+          <div class="summary-synopsis"><p>Returns a new response.</p></div>
+
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-signature">
           <a href="#put_header/3" translate="no">put_header(response, key, value)</a>
 
         </div>
@@ -251,7 +271,7 @@ Functions
     </a>
     <h1 class="signature" translate="no">get_header(response, key)</h1>
 
-      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/response.ex#L55" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/response.ex#L90" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -273,8 +293,8 @@ Functions
   </a>
   Examples
 </h2>
-<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Response</span><span class="o">.</span><span class="n">get_header</span><span class="p" data-group-id="8558998661-1">(</span><span class="n">response</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;content-type&quot;</span><span class="p" data-group-id="8558998661-1">)</span><span class="w">
-</span><span class="p" data-group-id="8558998661-2">[</span><span class="s">&quot;application/json&quot;</span><span class="p" data-group-id="8558998661-2">]</span></code></pre>
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Response</span><span class="o">.</span><span class="n">get_header</span><span class="p" data-group-id="6294111660-1">(</span><span class="n">response</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;content-type&quot;</span><span class="p" data-group-id="6294111660-1">)</span><span class="w">
+</span><span class="p" data-group-id="6294111660-2">[</span><span class="s">&quot;application/json&quot;</span><span class="p" data-group-id="6294111660-2">]</span></code></pre>
   </section>
 </section>
 <section class="detail" id="get_private/3">
@@ -288,7 +308,7 @@ Functions
     </a>
     <h1 class="signature" translate="no">get_private(response, key, default \\ nil)</h1>
 
-      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/response.ex#L35" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/response.ex#L69" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -298,7 +318,92 @@ Functions
 
   <section class="docstring">
 
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> get_private(<a href="#t:t/0">t</a>(), key :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), default :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()</pre>
+
+      </div>
+
 <p>Gets the value for a specific private <code class="inline">key</code>.</p>
+  </section>
+</section>
+<section class="detail" id="json/2">
+
+    <span id="json/1"></span>
+
+  <div class="detail-header">
+    <a href="#json/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">json(response \\ new(), body)</h1>
+
+      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/response.ex#L59" class="view-source" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> json(<a href="#t:t/0">t</a>(), body :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+<p>Builds or updates a response with JSON body.</p><h2 id="json/2-example" class="section-heading">
+  <a href="#json/2-example" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">example</p>
+  </a>
+  Example
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Response</span><span class="o">.</span><span class="n">json</span><span class="p" data-group-id="2731795226-1">(</span><span class="p" data-group-id="2731795226-2">%{</span><span class="ss">hello</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p" data-group-id="2731795226-2">}</span><span class="p" data-group-id="2731795226-1">)</span><span class="w">
+</span><span class="p" data-group-id="2731795226-3">%</span><span class="nc" data-group-id="2731795226-3">Req.Response</span><span class="p" data-group-id="2731795226-3">{</span><span class="w">
+  </span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="ss">headers</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2731795226-4">[</span><span class="p" data-group-id="2731795226-5">{</span><span class="s">&quot;content-type&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;application/json&quot;</span><span class="p" data-group-id="2731795226-5">}</span><span class="p" data-group-id="2731795226-4">]</span><span class="p">,</span><span class="w">
+  </span><span class="ss">body</span><span class="p">:</span><span class="w"> </span><span class="s">~s|{&quot;hello&quot;:42}|</span><span class="w">
+</span><span class="p" data-group-id="2731795226-3">}</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="n">resp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req.Response</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="2731795226-6">(</span><span class="p" data-group-id="2731795226-6">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Response</span><span class="o">.</span><span class="n">json</span><span class="p" data-group-id="2731795226-7">(</span><span class="n">resp</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2731795226-8">%{</span><span class="ss">hello</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p" data-group-id="2731795226-8">}</span><span class="p" data-group-id="2731795226-7">)</span><span class="w">
+</span><span class="p" data-group-id="2731795226-9">%</span><span class="nc" data-group-id="2731795226-9">Req.Response</span><span class="p" data-group-id="2731795226-9">{</span><span class="w">
+  </span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="ss">headers</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2731795226-10">[</span><span class="p" data-group-id="2731795226-11">{</span><span class="s">&quot;content-type&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;application/json&quot;</span><span class="p" data-group-id="2731795226-11">}</span><span class="p" data-group-id="2731795226-10">]</span><span class="p">,</span><span class="w">
+  </span><span class="ss">body</span><span class="p">:</span><span class="w"> </span><span class="s">~s|{&quot;hello&quot;:42}|</span><span class="w">
+</span><span class="p" data-group-id="2731795226-9">}</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="new/1">
+
+    <span id="new/0"></span>
+
+  <div class="detail-header">
+    <a href="#new/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">new(options \\ [])</h1>
+
+      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/response.ex#L34" class="view-source" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> new(options :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">keyword</a>()) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+<p>Returns a new response.</p>
   </section>
 </section>
 <section class="detail" id="put_header/3">
@@ -310,7 +415,7 @@ Functions
     </a>
     <h1 class="signature" translate="no">put_header(response, key, value)</h1>
 
-      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/response.ex#L70" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/response.ex#L105" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -333,8 +438,8 @@ previous value of that header with <code class="inline">value</code>.</p><h2 id=
   </a>
   Examples
 </h2>
-<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Response</span><span class="o">.</span><span class="n">put_header</span><span class="p" data-group-id="1639233898-1">(</span><span class="n">response</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;content-type&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;application/json&quot;</span><span class="p" data-group-id="1639233898-1">)</span><span class="o">.</span><span class="n">headers</span><span class="w">
-</span><span class="p" data-group-id="1639233898-2">[</span><span class="p" data-group-id="1639233898-3">{</span><span class="s">&quot;content-type&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;application/json&quot;</span><span class="p" data-group-id="1639233898-3">}</span><span class="p" data-group-id="1639233898-2">]</span></code></pre>
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Response</span><span class="o">.</span><span class="n">put_header</span><span class="p" data-group-id="4479580906-1">(</span><span class="n">response</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;content-type&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;application/json&quot;</span><span class="p" data-group-id="4479580906-1">)</span><span class="o">.</span><span class="n">headers</span><span class="w">
+</span><span class="p" data-group-id="4479580906-2">[</span><span class="p" data-group-id="4479580906-3">{</span><span class="s">&quot;content-type&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;application/json&quot;</span><span class="p" data-group-id="4479580906-3">}</span><span class="p" data-group-id="4479580906-2">]</span></code></pre>
   </section>
 </section>
 <section class="detail" id="put_private/3">
@@ -346,7 +451,7 @@ previous value of that header with <code class="inline">value</code>.</p><h2 id=
     </a>
     <h1 class="signature" translate="no">put_private(response, key, value)</h1>
 
-      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/response.ex#L42" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/wojtekmach/req/blob/v0.3.0-dev/lib/req/response.ex#L77" class="view-source" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -355,6 +460,12 @@ previous value of that header with <code class="inline">value</code>.</p><h2 id=
   </div>
 
   <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> put_private(<a href="#t:t/0">t</a>(), key :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), value :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
 
 <p>Assigns a private <code class="inline">key</code> to <code class="inline">value</code>.</p>
   </section>
