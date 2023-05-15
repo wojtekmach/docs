@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.29.4">
+    <meta name="project" content="ExUnit v1.15.0-dev">
+
+    <title>ExUnit.CaptureIO — ExUnit v1.15.0-dev</title>
+    <link rel="stylesheet" href="dist/html-elixir-R7PT35Y2.css" />
+
+
+      <link rel="canonical" href="https://hexdocs.pm/ex_unit/main/ExUnit.CaptureIO.html" />
+
+    <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
+    <script src="dist/handlebars.templates-OHVEJKU6.js"></script>
+    <script src="dist/sidebar_items-C18C357C.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/html-ZKIIOKLS.js"></script>
+
+
+  </head>
+  <body data-type="modules" class="page-module">
+    <script>
+
+      try {
+        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+
+        if (settings.theme === 'dark' ||
+           ((settings.theme === 'system' || settings.theme == null) &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches)
+           ) {
+          document.body.classList.add('dark')
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <i class="ri-search-2-line" aria-hidden="true" title="Submit search"></i>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <i class="ri-close-line ri-lg" aria-hidden="true" title="Cancel search"></i>
+    </button>
+    <label class="search-label">
+      <p class="sr-only">Search</p>
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName" translate="no">
+ExUnit
+      </a>
+      <div class="sidebar-projectVersion" translate="no">
+        v1.15.0-dev
+      </div>
+    </div>
+    <ul class="sidebar-listNav">
+      <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+        <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+    </ul>
+  </div>
+
+  <div class="gradient"></div>
+  <ul id="full-list"></ul>
+</section>
+
+<section class="content">
+  <output role="status" id="toast"></output>
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>
+<button class="icon-action display-settings">
+  <i class="ri-settings-3-line"></i>
+  <span class="sr-only">Settings</span>
+</button>
+
+
+    <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/ex_unit/lib/ex_unit/capture_io.ex#L1" title="View Source" class="icon-action" rel="help">
+      <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+      <span class="sr-only">View Source</span>
+    </a>
+
+  <span translate="no">ExUnit.CaptureIO</span> 
+  <small class="app-vsn" translate="no">(ExUnit v1.15.0-dev)</small>
+
+</h1>
+
+
+  <section id="moduledoc">
+<p>Functionality to capture IO for testing.</p><h2 id="module-examples" class="section-heading">
+  <a href="#module-examples">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Examples
+  </a>
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">AssertionTest</span><span class="w"> </span><span class="k" data-group-id="4446105766-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">ExUnit.Case</span><span class="w">
+
+  </span><span class="kn">import</span><span class="w"> </span><span class="nc">ExUnit.CaptureIO</span><span class="w">
+
+  </span><span class="n">test</span><span class="w"> </span><span class="s">&quot;example&quot;</span><span class="w"> </span><span class="k" data-group-id="4446105766-2">do</span><span class="w">
+    </span><span class="n">assert</span><span class="w"> </span><span class="n">capture_io</span><span class="p" data-group-id="4446105766-3">(</span><span class="k" data-group-id="4446105766-4">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nc">IO</span><span class="o">.</span><span class="n">puts</span><span class="p" data-group-id="4446105766-5">(</span><span class="s">&quot;a&quot;</span><span class="p" data-group-id="4446105766-5">)</span><span class="w"> </span><span class="k" data-group-id="4446105766-4">end</span><span class="p" data-group-id="4446105766-3">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;a</span><span class="se">\n</span><span class="s">&quot;</span><span class="w">
+  </span><span class="k" data-group-id="4446105766-2">end</span><span class="w">
+
+  </span><span class="n">test</span><span class="w"> </span><span class="s">&quot;another example&quot;</span><span class="w"> </span><span class="k" data-group-id="4446105766-6">do</span><span class="w">
+    </span><span class="n">assert</span><span class="w"> </span><span class="n">with_io</span><span class="p" data-group-id="4446105766-7">(</span><span class="k" data-group-id="4446105766-8">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+      </span><span class="nc">IO</span><span class="o">.</span><span class="n">puts</span><span class="p" data-group-id="4446105766-9">(</span><span class="s">&quot;a&quot;</span><span class="p" data-group-id="4446105766-9">)</span><span class="w">
+      </span><span class="nc">IO</span><span class="o">.</span><span class="n">puts</span><span class="p" data-group-id="4446105766-10">(</span><span class="s">&quot;b&quot;</span><span class="p" data-group-id="4446105766-10">)</span><span class="w">
+      </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="w">
+    </span><span class="k" data-group-id="4446105766-8">end</span><span class="p" data-group-id="4446105766-7">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p" data-group-id="4446105766-11">{</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;a</span><span class="se">\n</span><span class="s">b</span><span class="se">\n</span><span class="s">&quot;</span><span class="p" data-group-id="4446105766-11">}</span><span class="w">
+  </span><span class="k" data-group-id="4446105766-6">end</span><span class="w">
+</span><span class="k" data-group-id="4446105766-1">end</span></code></pre>
+  </section>
+
+
+  <section id="summary" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+      Summary
+    </h1>
+<div class="summary-functions summary">
+  <h2>
+    <a href="#functions">Functions</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#capture_io/1" translate="no">capture_io(fun)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Captures IO generated when evaluating <code class="inline">fun</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#capture_io/2" translate="no">capture_io(device_input_or_options, fun)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Captures IO generated when evaluating <code class="inline">fun</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#capture_io/3" translate="no">capture_io(device, input_or_options, fun)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Captures IO generated when evaluating <code class="inline">fun</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#with_io/1" translate="no">with_io(fun)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Invokes the given <code class="inline">fun</code> and returns the result and captured output.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#with_io/2" translate="no">with_io(device_input_or_options, fun)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Invokes the given <code class="inline">fun</code> and returns the result and captured output.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#with_io/3" translate="no">with_io(device, input_or_options, fun)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Invokes the given <code class="inline">fun</code> and returns the result and captured output.</p></div>
+
+    </div>
+
+</div>
+
+  </section>
+
+
+  <section id="functions" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+Functions
+    </h1>
+    <div class="functions-list">
+<section class="detail" id="capture_io/1">
+
+  <div class="detail-header">
+    <a href="#capture_io/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">capture_io(fun)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/ex_unit/lib/ex_unit/capture_io.ex#L120" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> capture_io((-&gt; <a href="https://hexdocs.pm/elixir/main/typespecs.html#basic-types">any</a>())) :: <a href="https://hexdocs.pm/elixir/main/String.html#t:t/0">String.t</a>()</pre>
+
+      </div>
+
+<p>Captures IO generated when evaluating <code class="inline">fun</code>.</p><p>Returns the binary which is the captured output.</p><p>By default, <code class="inline">capture_io</code> replaces the <code class="inline">group_leader</code> (<code class="inline">:stdio</code>)
+for the current process. Capturing the group leader is done per
+process and therefore can be done concurrently.</p><p>However, the capturing of any other named device, such as <code class="inline">:stderr</code>,
+happens globally and persists until the function has ended. While this means
+it is safe to run your tests with <code class="inline">async: true</code> in many cases, captured output
+may include output from a different test and care must be taken when using
+<code class="inline">capture_io</code> with a named process asynchronously.</p><p>A developer can set a string as an input. The default input is an empty
+string. If capturing a named device asynchronously, an input can only be given
+to the first capture. Any further capture that is given to a capture on that
+device will raise an exception and would indicate that the test should be run
+synchronously.</p><p>Similarly, once a capture on a named device has begun, the encoding on that
+device cannot be changed in a subsequent concurrent capture. An error will
+be raised in this case.</p><h2 id="capture_io/1-io-devices" class="section-heading">
+  <a href="#capture_io/1-io-devices">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    IO devices
+  </a>
+</h2>
+<p>You may capture the IO from any registered IO device. The device name given
+must be an atom representing the name of a registered process. In addition,
+Elixir provides two shortcuts:</p><ul><li><p><code class="inline">:stdio</code> - a shortcut for <code class="inline">:standard_io</code>, which maps to
+the current <a href="https://hexdocs.pm/elixir/main/Process.html#group_leader/0"><code class="inline">Process.group_leader/0</code></a> in Erlang</p></li><li><p><code class="inline">:stderr</code> - a shortcut for the named process <code class="inline">:standard_error</code>
+provided in Erlang</p></li></ul><h2 id="capture_io/1-options" class="section-heading">
+  <a href="#capture_io/1-options">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Options
+  </a>
+</h2>
+<ul><li><p><code class="inline">:input</code> - An input to the IO device, defaults to <code class="inline">&quot;&quot;</code>.</p></li><li><p><code class="inline">:capture_prompt</code> - Define if prompts (specified as arguments to
+<code class="inline">IO.get*</code> functions) should be captured. Defaults to <code class="inline">true</code>. For
+IO devices other than <code class="inline">:stdio</code>, the option is ignored.</p></li><li><p><code class="inline">:encoding</code> (since v1.10.0) - encoding of the IO device. Allowed
+values are <code class="inline">:unicode</code> (default) and <code class="inline">:latin1</code>.</p></li></ul><h2 id="capture_io/1-examples" class="section-heading">
+  <a href="#capture_io/1-examples">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Examples
+  </a>
+</h2>
+<p>To capture the standard io:</p><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">capture_io</span><span class="p" data-group-id="1637556207-1">(</span><span class="k" data-group-id="1637556207-2">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nc">IO</span><span class="o">.</span><span class="n">write</span><span class="p" data-group-id="1637556207-3">(</span><span class="s">&quot;john&quot;</span><span class="p" data-group-id="1637556207-3">)</span><span class="w"> </span><span class="k" data-group-id="1637556207-2">end</span><span class="p" data-group-id="1637556207-1">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;john&quot;</span><span class="w">
+</span><span class="no">true</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="n">capture_io</span><span class="p" data-group-id="1637556207-4">(</span><span class="s">&quot;this is input&quot;</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="1637556207-5">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="n">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">IO</span><span class="o">.</span><span class="n">gets</span><span class="p" data-group-id="1637556207-6">(</span><span class="s">&quot;&gt; &quot;</span><span class="p" data-group-id="1637556207-6">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="nc">IO</span><span class="o">.</span><span class="n">write</span><span class="p" data-group-id="1637556207-7">(</span><span class="n">input</span><span class="p" data-group-id="1637556207-7">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="k" data-group-id="1637556207-5">end</span><span class="p" data-group-id="1637556207-4">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;&gt; this is input&quot;</span><span class="w">
+</span><span class="no">true</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="n">capture_io</span><span class="p" data-group-id="1637556207-8">(</span><span class="p" data-group-id="1637556207-9">[</span><span class="ss">input</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;this is input&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">capture_prompt</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="p" data-group-id="1637556207-9">]</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="1637556207-10">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="n">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">IO</span><span class="o">.</span><span class="n">gets</span><span class="p" data-group-id="1637556207-11">(</span><span class="s">&quot;&gt; &quot;</span><span class="p" data-group-id="1637556207-11">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="nc">IO</span><span class="o">.</span><span class="n">write</span><span class="p" data-group-id="1637556207-12">(</span><span class="n">input</span><span class="p" data-group-id="1637556207-12">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="k" data-group-id="1637556207-10">end</span><span class="p" data-group-id="1637556207-8">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;this is input&quot;</span><span class="w">
+</span><span class="no">true</span></code></pre><p>Note it is fine to use <code class="inline">==</code> with standard IO, because the content is captured
+per test process. However, <code class="inline">:stderr</code> is shared across all tests, so you will
+want to use <code class="inline">=~</code> instead of <code class="inline">==</code> for assertions on <code class="inline">:stderr</code> if your tests
+are async:</p><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">capture_io</span><span class="p" data-group-id="4629096192-1">(</span><span class="ss">:stderr</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="4629096192-2">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nc">IO</span><span class="o">.</span><span class="n">write</span><span class="p" data-group-id="4629096192-3">(</span><span class="ss">:stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;john&quot;</span><span class="p" data-group-id="4629096192-3">)</span><span class="w"> </span><span class="k" data-group-id="4629096192-2">end</span><span class="p" data-group-id="4629096192-1">)</span><span class="w"> </span><span class="o">=~</span><span class="w"> </span><span class="s">&quot;john&quot;</span><span class="w">
+</span><span class="no">true</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="n">capture_io</span><span class="p" data-group-id="4629096192-4">(</span><span class="ss">:standard_error</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="4629096192-5">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nc">IO</span><span class="o">.</span><span class="n">write</span><span class="p" data-group-id="4629096192-6">(</span><span class="ss">:stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;john&quot;</span><span class="p" data-group-id="4629096192-6">)</span><span class="w"> </span><span class="k" data-group-id="4629096192-5">end</span><span class="p" data-group-id="4629096192-4">)</span><span class="w"> </span><span class="o">=~</span><span class="w"> </span><span class="s">&quot;john&quot;</span><span class="w">
+</span><span class="no">true</span></code></pre><p>In particular, avoid empty captures on <code class="inline">:stderr</code> with async tests:</p><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">capture_io</span><span class="p" data-group-id="8048286494-1">(</span><span class="ss">:stderr</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="8048286494-2">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="ss">:nothing</span><span class="w"> </span><span class="k" data-group-id="8048286494-2">end</span><span class="p" data-group-id="8048286494-1">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w">
+</span><span class="no">true</span></code></pre><p>Otherwise, if the standard error of any other test is captured, the test will
+fail.</p><h2 id="capture_io/1-returning-values" class="section-heading">
+  <a href="#capture_io/1-returning-values">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Returning values
+  </a>
+</h2>
+<p>As seen in the examples above, <code class="inline">capture_io</code> returns the captured output.
+If you want to also capture the result of the function executed,
+use <a href="#with_io/2"><code class="inline">with_io/2</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="capture_io/2">
+
+  <div class="detail-header">
+    <a href="#capture_io/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">capture_io(device_input_or_options, fun)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/ex_unit/lib/ex_unit/capture_io.ex#L131" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> capture_io(<a href="https://hexdocs.pm/elixir/main/typespecs.html#basic-types">atom</a>() | <a href="https://hexdocs.pm/elixir/main/String.html#t:t/0">String.t</a>() | <a href="https://hexdocs.pm/elixir/main/typespecs.html#built-in-types">keyword</a>(), (-&gt; <a href="https://hexdocs.pm/elixir/main/typespecs.html#basic-types">any</a>())) :: <a href="https://hexdocs.pm/elixir/main/String.html#t:t/0">String.t</a>()</pre>
+
+      </div>
+
+<p>Captures IO generated when evaluating <code class="inline">fun</code>.</p><p>See <a href="#capture_io/1"><code class="inline">capture_io/1</code></a> for more information.</p>
+  </section>
+</section>
+<section class="detail" id="capture_io/3">
+
+  <div class="detail-header">
+    <a href="#capture_io/3" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">capture_io(device, input_or_options, fun)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/ex_unit/lib/ex_unit/capture_io.ex#L154" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> capture_io(<a href="https://hexdocs.pm/elixir/main/typespecs.html#basic-types">atom</a>(), <a href="https://hexdocs.pm/elixir/main/String.html#t:t/0">String.t</a>() | <a href="https://hexdocs.pm/elixir/main/typespecs.html#built-in-types">keyword</a>(), (-&gt; <a href="https://hexdocs.pm/elixir/main/typespecs.html#basic-types">any</a>())) :: <a href="https://hexdocs.pm/elixir/main/String.html#t:t/0">String.t</a>()</pre>
+
+      </div>
+
+<p>Captures IO generated when evaluating <code class="inline">fun</code>.</p><p>See <a href="#capture_io/1"><code class="inline">capture_io/1</code></a> for more information.</p>
+  </section>
+</section>
+<section class="detail" id="with_io/1">
+
+  <div class="detail-header">
+    <a href="#with_io/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">with_io(fun)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/ex_unit/lib/ex_unit/capture_io.ex#L187" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.13.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> with_io((-&gt; <a href="https://hexdocs.pm/elixir/main/typespecs.html#basic-types">any</a>())) :: {<a href="https://hexdocs.pm/elixir/main/typespecs.html#basic-types">any</a>(), <a href="https://hexdocs.pm/elixir/main/String.html#t:t/0">String.t</a>()}</pre>
+
+      </div>
+
+<p>Invokes the given <code class="inline">fun</code> and returns the result and captured output.</p><p>It accepts the same arguments and options as <a href="#capture_io/1"><code class="inline">capture_io/1</code></a>.</p><h2 id="with_io/1-examples" class="section-heading">
+  <a href="#with_io/1-examples">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Examples
+  </a>
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="p" data-group-id="5451054253-1">{</span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="n">output</span><span class="p" data-group-id="5451054253-1">}</span><span class="w"> </span><span class="o">=</span><span class="w">
+  </span><span class="n">with_io</span><span class="p" data-group-id="5451054253-2">(</span><span class="k" data-group-id="5451054253-3">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+    </span><span class="nc">IO</span><span class="o">.</span><span class="n">puts</span><span class="p" data-group-id="5451054253-4">(</span><span class="s">&quot;a&quot;</span><span class="p" data-group-id="5451054253-4">)</span><span class="w">
+    </span><span class="nc">IO</span><span class="o">.</span><span class="n">puts</span><span class="p" data-group-id="5451054253-5">(</span><span class="s">&quot;b&quot;</span><span class="p" data-group-id="5451054253-5">)</span><span class="w">
+    </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="w">
+  </span><span class="k" data-group-id="5451054253-3">end</span><span class="p" data-group-id="5451054253-2">)</span><span class="w">
+
+</span><span class="n">assert</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">4</span><span class="w">
+</span><span class="n">assert</span><span class="w"> </span><span class="n">output</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;a</span><span class="se">\n</span><span class="s">b</span><span class="se">\n</span><span class="s">&quot;</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="with_io/2">
+
+  <div class="detail-header">
+    <a href="#with_io/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">with_io(device_input_or_options, fun)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/ex_unit/lib/ex_unit/capture_io.ex#L198" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.13.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> with_io(<a href="https://hexdocs.pm/elixir/main/typespecs.html#basic-types">atom</a>() | <a href="https://hexdocs.pm/elixir/main/String.html#t:t/0">String.t</a>() | <a href="https://hexdocs.pm/elixir/main/typespecs.html#built-in-types">keyword</a>(), (-&gt; <a href="https://hexdocs.pm/elixir/main/typespecs.html#basic-types">any</a>())) :: {<a href="https://hexdocs.pm/elixir/main/typespecs.html#basic-types">any</a>(), <a href="https://hexdocs.pm/elixir/main/String.html#t:t/0">String.t</a>()}</pre>
+
+      </div>
+
+<p>Invokes the given <code class="inline">fun</code> and returns the result and captured output.</p><p>See <a href="#with_io/1"><code class="inline">with_io/1</code></a> for more information.</p>
+  </section>
+</section>
+<section class="detail" id="with_io/3">
+
+  <div class="detail-header">
+    <a href="#with_io/3" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">with_io(device, input_or_options, fun)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/ex_unit/lib/ex_unit/capture_io.ex#L219" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.13.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> with_io(<a href="https://hexdocs.pm/elixir/main/typespecs.html#basic-types">atom</a>(), <a href="https://hexdocs.pm/elixir/main/String.html#t:t/0">String.t</a>() | <a href="https://hexdocs.pm/elixir/main/typespecs.html#built-in-types">keyword</a>(), (-&gt; <a href="https://hexdocs.pm/elixir/main/typespecs.html#basic-types">any</a>())) :: {<a href="https://hexdocs.pm/elixir/main/typespecs.html#basic-types">any</a>(), <a href="https://hexdocs.pm/elixir/main/String.html#t:t/0">String.t</a>()}</pre>
+
+      </div>
+
+<p>Invokes the given <code class="inline">fun</code> and returns the result and captured output.</p><p>See <a href="#with_io/1"><code class="inline">with_io/1</code></a> for more information.</p>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+      <footer class="footer">
+        <p>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Search HexDocs packages">
+              Search HexDocs
+            </button>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.29.4) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

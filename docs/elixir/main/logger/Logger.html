@@ -1,0 +1,2180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.29.4">
+    <meta name="project" content="Logger v1.15.0-dev">
+
+    <title>Logger — Logger v1.15.0-dev</title>
+    <link rel="stylesheet" href="dist/html-elixir-R7PT35Y2.css" />
+
+
+      <link rel="canonical" href="https://hexdocs.pm/logger/main/Logger.html" />
+
+    <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
+    <script src="dist/handlebars.templates-OHVEJKU6.js"></script>
+    <script src="dist/sidebar_items-04E9F4E6.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/html-ZKIIOKLS.js"></script>
+
+
+  </head>
+  <body data-type="modules" class="page-module">
+    <script>
+
+      try {
+        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+
+        if (settings.theme === 'dark' ||
+           ((settings.theme === 'system' || settings.theme == null) &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches)
+           ) {
+          document.body.classList.add('dark')
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <i class="ri-search-2-line" aria-hidden="true" title="Submit search"></i>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <i class="ri-close-line ri-lg" aria-hidden="true" title="Cancel search"></i>
+    </button>
+    <label class="search-label">
+      <p class="sr-only">Search</p>
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName" translate="no">
+Logger
+      </a>
+      <div class="sidebar-projectVersion" translate="no">
+        v1.15.0-dev
+      </div>
+    </div>
+    <ul class="sidebar-listNav">
+      <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+        <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+    </ul>
+  </div>
+
+  <div class="gradient"></div>
+  <ul id="full-list"></ul>
+</section>
+
+<section class="content">
+  <output role="status" id="toast"></output>
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>
+<button class="icon-action display-settings">
+  <i class="ri-settings-3-line"></i>
+  <span class="sr-only">Settings</span>
+</button>
+
+
+    <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L1" title="View Source" class="icon-action" rel="help">
+      <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+      <span class="sr-only">View Source</span>
+    </a>
+
+  <span translate="no">Logger</span> 
+  <small class="app-vsn" translate="no">(Logger v1.15.0-dev)</small>
+
+</h1>
+
+
+  <section id="moduledoc">
+<p>A logger for Elixir applications.</p><p>This application is mostly a wrapper around Erlang's
+<a href="https://www.erlang.org/doc/man/logger.html"><code class="inline">:logger</code></a> functionality, to provide message
+translation and formatting to Elixir terms.</p><p>Overall, you will find that <a href="Logger.html#content"><code class="inline">Logger</code></a>:</p><ul><li><p>Provides all 7 syslog levels
+(although debug, info, warning, and error are the most commonly used).</p></li><li><p>Supports both message-based and structural logging.</p></li><li><p>Formats and truncates messages on the client
+to avoid clogging <a href="Logger.html#content"><code class="inline">Logger</code></a> backends.</p></li><li><p>Alternates between sync and async modes to remain
+performant when required but also apply backpressure
+when under stress.</p></li><li><p>Support for custom filters and handlers as provided by
+Erlang's <code class="inline">:logger</code>.</p></li><li><p>Allows overriding the logging level for a specific module,
+application or process.</p></li></ul><p>Logging is useful for tracking when an event of interest happens in your
+system. For example, it may be helpful to log whenever a user is deleted.</p><pre><code class="makeup elixir" translate="no"><span class="kd">def</span><span class="w"> </span><span class="nf">delete_user</span><span class="p" data-group-id="6479687705-1">(</span><span class="n">user</span><span class="p" data-group-id="6479687705-1">)</span><span class="w"> </span><span class="k" data-group-id="6479687705-2">do</span><span class="w">
+  </span><span class="nc">Logger</span><span class="o">.</span><span class="n">info</span><span class="p" data-group-id="6479687705-3">(</span><span class="s">&quot;Deleting user from the system: </span><span class="si" data-group-id="6479687705-4">#{</span><span class="n">inspect</span><span class="p" data-group-id="6479687705-5">(</span><span class="n">user</span><span class="p" data-group-id="6479687705-5">)</span><span class="si" data-group-id="6479687705-4">}</span><span class="s">&quot;</span><span class="p" data-group-id="6479687705-3">)</span><span class="w">
+  </span><span class="c1"># ...</span><span class="w">
+</span><span class="k" data-group-id="6479687705-2">end</span></code></pre><p>The <a href="#info/2"><code class="inline">Logger.info/2</code></a> macro emits the provided message at the <code class="inline">:info</code>
+level. Note the arguments given to <a href="#info/2"><code class="inline">info/2</code></a> will only be evaluated
+if a message is logged. For instance, if the Logger level is
+set to <code class="inline">:warning</code>, <code class="inline">:info</code> messages are never logged and therefore
+the arguments given above won't even be executed.</p><p>There are additional macros for other levels.</p><p>Logger also allows log commands to be removed altogether via the
+<code class="inline">:compile_time_purge_matching</code> option (see below).</p><p>For dynamically logging messages, see <a href="#bare_log/3"><code class="inline">bare_log/3</code></a>. But note that
+<a href="#bare_log/3"><code class="inline">bare_log/3</code></a> always evaluates its arguments (unless the argument
+is an anonymous function).</p><h2 id="module-levels" class="section-heading">
+  <a href="#module-levels">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Levels
+  </a>
+</h2>
+<p>The supported levels, ordered by importance, are:</p><ul><li><code class="inline">:emergency</code> - when system is unusable, panics</li><li><code class="inline">:alert</code> - for alerts, actions that must be taken immediately,
+ex. corrupted database</li><li><code class="inline">:critical</code> - for critical conditions</li><li><code class="inline">:error</code> - for errors</li><li><code class="inline">:warning</code> - for warnings</li><li><code class="inline">:notice</code> - for normal, but significant, messages</li><li><code class="inline">:info</code> - for information of any kind</li><li><code class="inline">:debug</code> - for debug-related messages</li></ul><p>For example, <code class="inline">:info</code> takes precedence over <code class="inline">:debug</code>. If your log
+level is set to <code class="inline">:info</code>, then all <code class="inline">:info</code>, <code class="inline">:notice</code> and above will
+be passed to backends. If your log level is set to <code class="inline">:alert</code>, only
+<code class="inline">:alert</code> and <code class="inline">:emergency</code> will be printed.</p><h2 id="module-message" class="section-heading">
+  <a href="#module-message">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Message
+  </a>
+</h2>
+<p>Logger can be used for logging both unstructured and structured data.</p><p>Unstructured data is a string or a list of strings:</p><pre><code class="makeup elixir" translate="no"><span class="nc">Logger</span><span class="o">.</span><span class="n">info</span><span class="p" data-group-id="2995589007-1">(</span><span class="s">&quot;hello world!&quot;</span><span class="p" data-group-id="2995589007-1">)</span><span class="w">
+</span><span class="nc">Logger</span><span class="o">.</span><span class="n">info</span><span class="p" data-group-id="2995589007-2">(</span><span class="p" data-group-id="2995589007-3">[</span><span class="s">&quot;hello &quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;world!&quot;</span><span class="p" data-group-id="2995589007-3">]</span><span class="p" data-group-id="2995589007-2">)</span></code></pre><p>Structured data, also known as reports, are keyword lists and maps:</p><pre><code class="makeup elixir" translate="no"><span class="nc">Logger</span><span class="o">.</span><span class="n">info</span><span class="p" data-group-id="6489138859-1">(</span><span class="p" data-group-id="6489138859-2">[</span><span class="ss">new_user</span><span class="p">:</span><span class="w"> </span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="ss">account_type</span><span class="p">:</span><span class="w"> </span><span class="ss">:admin</span><span class="p" data-group-id="6489138859-2">]</span><span class="p" data-group-id="6489138859-1">)</span><span class="w">
+</span><span class="nc">Logger</span><span class="o">.</span><span class="n">info</span><span class="p" data-group-id="6489138859-3">(</span><span class="p" data-group-id="6489138859-4">%{</span><span class="ss">new_user</span><span class="p">:</span><span class="w"> </span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="ss">account_type</span><span class="p">:</span><span class="w"> </span><span class="ss">:admin</span><span class="p" data-group-id="6489138859-4">}</span><span class="p" data-group-id="6489138859-3">)</span></code></pre><p>Log functions also accept a zero-arity anonymous function as a message:</p><pre><code class="makeup elixir" translate="no"><span class="nc">Logger</span><span class="o">.</span><span class="n">info</span><span class="p" data-group-id="0180812693-1">(</span><span class="k" data-group-id="0180812693-2">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;hello world!&quot;</span><span class="w"> </span><span class="k" data-group-id="0180812693-2">end</span><span class="p" data-group-id="0180812693-1">)</span></code></pre><p>The anonymous function can return a message or a tuple containing
+the message and additional metadata (to be described in the next
+section).</p><p>In all cases, the arguments given to the <a href="Logger.html#content"><code class="inline">Logger</code></a> macros are only
+evaluated if required by the current log level. The exception is
+the <a href="#bare_log/3"><code class="inline">bare_log/3</code></a> function, which is the raw mechanism for logging.</p><h2 id="module-metadata" class="section-heading">
+  <a href="#module-metadata">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Metadata
+  </a>
+</h2>
+<p>Whenever a message is logged, additional information can be given
+via metadata. Each log operation, such as <a href="#info/2"><code class="inline">Logger.info/2</code></a>, allows
+metadata to be given as an argument.</p><p>Furthermore, metadata can be set per process with <a href="#metadata/1"><code class="inline">Logger.metadata/1</code></a>.</p><p>Some metadata, however, is always added automatically by Logger
+whenever possible. Those are:</p><ul><li><p><code class="inline">:application</code> - the current application</p></li><li><p><code class="inline">:mfa</code> - the current module, function and arity</p></li><li><p><code class="inline">:file</code> - the current file</p></li><li><p><code class="inline">:line</code> - the current line</p></li><li><p><code class="inline">:pid</code> - the current process identifier</p></li><li><p><code class="inline">:initial_call</code> - the initial call that started the process</p></li><li><p><code class="inline">:registered_name</code> - the process registered name as an atom</p></li><li><p><code class="inline">:domain</code> - a list of domains for the logged message. For example,
+all Elixir reports default to <code class="inline">[:elixir]</code>. Erlang reports may start
+with <code class="inline">[:otp]</code> or <code class="inline">[:sasl]</code></p></li><li><p><code class="inline">:crash_reason</code> - a two-element tuple with the throw/error/exit reason
+as first argument and the stacktrace as second. A throw will always be
+<code class="inline">{:nocatch, term}</code>. An error is always an <a href="https://hexdocs.pm/elixir/main/Exception.html"><code class="inline">Exception</code></a> struct. All other
+entries are exits. The console backend ignores this metadata by default
+but it can be useful to other backends, such as the ones that report
+errors to third-party services</p></li></ul><p>There are two special metadata keys, <code class="inline">:module</code> and <code class="inline">:function</code>, which
+extract the relevant bits from <code class="inline">:mfa</code>.</p><p>Note that all metadata is optional and may not always be available.
+The <code class="inline">:mfa</code>, <code class="inline">:file</code>, <code class="inline">:line</code>, and similar metadata are automatically
+included when using <a href="Logger.html#content"><code class="inline">Logger</code></a> macros. <a href="#bare_log/3"><code class="inline">Logger.bare_log/3</code></a> does not include
+any metadata beyond the <code class="inline">:pid</code> by default. Other metadata, such as
+<code class="inline">:crash_reason</code>, <code class="inline">:initial_call</code>, and <code class="inline">:registered_name</code> are available
+only inside behaviours such as GenServer, Supervisor, and others.</p><p>For example, you might wish to include a custom <code class="inline">:error_code</code> metadata in
+your logs:</p><pre><code class="makeup elixir" translate="no"><span class="nc">Logger</span><span class="o">.</span><span class="n">error</span><span class="p" data-group-id="5838755134-1">(</span><span class="s">&quot;We have a problem&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5838755134-2">[</span><span class="ss">error_code</span><span class="p">:</span><span class="w"> </span><span class="ss">:pc_load_letter</span><span class="p" data-group-id="5838755134-2">]</span><span class="p" data-group-id="5838755134-1">)</span></code></pre><p>By default, no metadata is logged. We will learn how to enable that
+over the next sections.</p><h2 id="module-configuration" class="section-heading">
+  <a href="#module-configuration">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Configuration
+  </a>
+</h2>
+<p><a href="Logger.html#content"><code class="inline">Logger</code></a> supports a wide range of configurations.</p><p>This configuration is split in three categories:</p><ul><li><p>Boot configuration - this configuration is read when logger
+starts and configures how Elixir hooks into Erlang's own logger</p></li><li><p>Compile configuration - this must be set before your code
+is compiled</p></li><li><p>Runtime configuration - can be set before the <code class="inline">:logger</code>
+application is started, but may be changed during runtime</p></li></ul><h3 id="module-boot-configuration" class="section-heading">
+  <a href="#module-boot-configuration">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Boot configuration
+  </a>
+</h3>
+<p>When <a href="Logger.html#content"><code class="inline">Logger</code></a> starts, it configures the <code class="inline">:default</code> log handler from
+Erlang to translate and format Elixir terms. As a developer, you
+are able to customize the default handler, the default formatter,
+and many other options.</p><p>The following configuration must be set via config files (such as
+<code class="inline">config/config.exs</code>), under the <code class="inline">:logger</code> key, before your application
+is started:</p><ul><li><p><code class="inline">:default_formatter</code> - a keyword list which configures the
+default formatter used by the default handler. See <a href="Logger.Formatter.html"><code class="inline">Logger.Formatter</code></a>
+for the full list of configuration.</p></li><li><p><code class="inline">:default_handler</code> - this option configures the default handler
+used for logging. The default handler is a <a href="https://www.erlang.org/doc/man/logger_std_h.html"><code class="inline">:logger_std_h</code></a>
+instance which also supports file logging and log rotation.
+You can set it to <code class="inline">false</code> to disable the default logging altogether.
+See the examples below for more information.</p></li><li><p><code class="inline">:handle_otp_reports</code> - if Erlang/OTP message should be logged.
+Defaults to <code class="inline">true</code>.</p></li><li><p><code class="inline">:handle_sasl_reports</code> - if supervisor, crash, and progress reports
+should be logged. Defaults to <code class="inline">false</code>. This option only has an effect
+if <code class="inline">:handle_otp_reports</code> is true.</p></li><li><p><code class="inline">:metadata</code> - global primary metadata to be included in all log messages.
+Defaults to <code class="inline">[]</code>. This can be overridden at the process level with <a href="#metadata/1"><code class="inline">metadata/1</code></a>
+or each on log call as desired.</p></li></ul><p>For example, to configure <a href="Logger.html#content"><code class="inline">Logger</code></a> to redirect all Erlang messages using a
+<code class="inline">config/config.exs</code> file:</p><pre><code class="makeup elixir" translate="no"><span class="n">config</span><span class="w"> </span><span class="ss">:logger</span><span class="p">,</span><span class="w">
+  </span><span class="ss">handle_otp_reports</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p">,</span><span class="w">
+  </span><span class="ss">handle_sasl_reports</span><span class="p">:</span><span class="w"> </span><span class="no">true</span></code></pre><p>To configure the default formatter, for example, to use a different format
+and include some metadata:</p><pre><code class="makeup elixir" translate="no"><span class="n">config</span><span class="w"> </span><span class="ss">:logger</span><span class="p">,</span><span class="w"> </span><span class="ss">:default_formatter</span><span class="p">,</span><span class="w">
+  </span><span class="ss">format</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;[$level] $message $metadata</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w">
+  </span><span class="ss">metadata</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5446620515-1">[</span><span class="ss">:error_code</span><span class="p">,</span><span class="w"> </span><span class="ss">:file</span><span class="p" data-group-id="5446620515-1">]</span></code></pre><p>Or to configure default handler, for instance, to log into a file with
+built-in support for log rotation:</p><pre><code class="makeup elixir" translate="no"><span class="n">config</span><span class="w"> </span><span class="ss">:logger</span><span class="p">,</span><span class="w"> </span><span class="ss">:default_handler</span><span class="p">,</span><span class="w">
+  </span><span class="ss">config</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5616396013-1">[</span><span class="w">
+    </span><span class="ss">file</span><span class="p">:</span><span class="w"> </span><span class="s">~c&quot;system.log&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="ss">filesync_repeat_interval</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+    </span><span class="ss">file_check</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+    </span><span class="ss">max_no_bytes</span><span class="p">:</span><span class="w"> </span><span class="mi">10_000_000</span><span class="p">,</span><span class="w">
+    </span><span class="ss">max_no_files</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w">
+  </span><span class="p" data-group-id="5616396013-1">]</span></code></pre><blockquote><h4 class="tip">Keywords or maps</h4><p>While Erlang's logger expects <code class="inline">:config</code> to be a map, Elixir's Logger
+allows the default handler configuration to be set with keyword lists.
+For example, this allows your <code class="inline">config/*.exs</code> files, such as <code class="inline">config/dev.exs</code>,
+to override individual keys defined in <code class="inline">config/config.exs</code>.</p><p>When reading the handler configuration using Erlang's APIs,
+the configuration will always be read (and written) as a map.</p></blockquote><p>See <a href="https://www.erlang.org/doc/man/logger_std_h.html"><code class="inline">:logger_std_h</code></a> for all relevant configuration,
+including overload protection. Or set <code class="inline">:default_handler</code> to false to
+disable the default logging altogether:</p><pre><code class="makeup elixir" translate="no"><span class="n">config</span><span class="w"> </span><span class="ss">:logger</span><span class="p">,</span><span class="w"> </span><span class="ss">:default_handler</span><span class="p">,</span><span class="w"> </span><span class="no">false</span></code></pre><p>How to add new handlers is covered in later sections.</p><h3 id="module-compile-configuration" class="section-heading">
+  <a href="#module-compile-configuration">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Compile configuration
+  </a>
+</h3>
+<p>The following configuration must be set via config files (such as
+<code class="inline">config/config.exs</code>) under the <code class="inline">:logger</code> application before your code
+is compiled:</p><ul><li><p><code class="inline">:always_evaluate_messages</code> - if messages should be <em>evaluated</em> even if
+the log level is lower than the minimum configured level. Defaults to <code class="inline">false</code>.
+This is useful for cases where the log level in your <em>test environment</em>
+is high (such as <code class="inline">:error</code>), which is common in order to avoid logs mixed
+with the test output. In such, cases, you might discover log messages
+that contain runtime errors only when your code is deployed to production,
+where the log level is lower (such as <code class="inline">:info</code>). These runtime errors could
+be caused by, for example, interpolating something that doesn't implement
+the <a href="https://hexdocs.pm/elixir/main/String.Chars.html"><code class="inline">String.Chars</code></a> protocol in the log message, such as <code class="inline">&quot;PID: #{self()}&quot;</code>
+(since PIDs cannot be converted to strings with <a href="https://hexdocs.pm/elixir/main/String.Chars.html"><code class="inline">String.Chars</code></a>).</p></li><li><p><code class="inline">:compile_time_application</code> - sets the <code class="inline">:application</code> metadata value
+to the configured value at compilation time. This configuration is
+automatically set by Mix and made available as metadata when logging.</p></li><li><p><code class="inline">:compile_time_purge_matching</code> - purges <em>at compilation time</em> all calls
+that match the given conditions. This means that <a href="Logger.html#content"><code class="inline">Logger</code></a> calls with
+level lower than this option will be completely removed at compile time,
+accruing no overhead at runtime. This configuration expects a list of
+keyword lists. Each keyword list contains a metadata key and the matching
+value that should be purged. Some special keys are supported:</p><ul><li><code class="inline">:level_lower_than</code> - purges all messages with a lower logger level</li><li><code class="inline">:module</code> - purges all messages with the matching module</li><li><code class="inline">:function</code> - purges all messages with the &quot;function/arity&quot;</li></ul><p>Remember that if you want to purge log calls from a dependency, the
+dependency must be recompiled.</p></li></ul><p>For example, to configure the <code class="inline">:backends</code> and purge all calls that happen
+at compile time with level lower than <code class="inline">:info</code> in a <code class="inline">config/config.exs</code> file:</p><pre><code class="makeup elixir" translate="no"><span class="n">config</span><span class="w"> </span><span class="ss">:logger</span><span class="p">,</span><span class="w">
+  </span><span class="ss">compile_time_purge_matching</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3704208178-1">[</span><span class="w">
+    </span><span class="p" data-group-id="3704208178-2">[</span><span class="ss">level_lower_than</span><span class="p">:</span><span class="w"> </span><span class="ss">:info</span><span class="p" data-group-id="3704208178-2">]</span><span class="w">
+  </span><span class="p" data-group-id="3704208178-1">]</span></code></pre><p>If you want to purge all log calls from an application named <code class="inline">:foo</code> and only
+keep errors from <code class="inline">Bar.foo/3</code>, you can set up two different matches:</p><pre><code class="makeup elixir" translate="no"><span class="n">config</span><span class="w"> </span><span class="ss">:logger</span><span class="p">,</span><span class="w">
+  </span><span class="ss">compile_time_purge_matching</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="4887564184-1">[</span><span class="w">
+    </span><span class="p" data-group-id="4887564184-2">[</span><span class="ss">application</span><span class="p">:</span><span class="w"> </span><span class="ss">:foo</span><span class="p" data-group-id="4887564184-2">]</span><span class="p">,</span><span class="w">
+    </span><span class="p" data-group-id="4887564184-3">[</span><span class="ss">module</span><span class="p">:</span><span class="w"> </span><span class="nc">Bar</span><span class="p">,</span><span class="w"> </span><span class="ss">function</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;foo/3&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">level_lower_than</span><span class="p">:</span><span class="w"> </span><span class="ss">:error</span><span class="p" data-group-id="4887564184-3">]</span><span class="w">
+  </span><span class="p" data-group-id="4887564184-1">]</span></code></pre><h3 id="module-runtime-configuration" class="section-heading">
+  <a href="#module-runtime-configuration">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Runtime Configuration
+  </a>
+</h3>
+<p>All configuration below can be set via config files (such as
+<code class="inline">config/config.exs</code>) but also changed dynamically during runtime via
+<a href="#configure/1"><code class="inline">Logger.configure/1</code></a>.</p><ul><li><p><code class="inline">:level</code> - the logging level. Attempting to log any message
+with severity less than the configured level will simply
+cause the message to be ignored. Keep in mind that each backend
+may have its specific level, too. In addition to levels mentioned
+above it also supports 2 &quot;meta-levels&quot;:</p><ul><li><code class="inline">:all</code> - all messages will be logged, conceptually identical to
+<code class="inline">:debug</code></li><li><code class="inline">:none</code> - no messages will be logged at all</li></ul></li><li><p><code class="inline">:translator_inspect_opts</code> - when translating OTP reports and
+errors, the last message and state must be inspected in the
+error reports. This configuration allow developers to change
+how much and how the data should be inspected.</p></li></ul><p>For example, to configure the <code class="inline">:level</code> options in a <code class="inline">config/config.exs</code>
+file:</p><pre><code class="makeup elixir" translate="no"><span class="n">config</span><span class="w"> </span><span class="ss">:logger</span><span class="p">,</span><span class="w"> </span><span class="ss">level</span><span class="p">:</span><span class="w"> </span><span class="ss">:warning</span></code></pre><p>Furthermore, <a href="Logger.html#content"><code class="inline">Logger</code></a> allows messages sent by Erlang to be translated
+into an Elixir format via translators. Translators can be added at any
+time with the <a href="#add_translator/1"><code class="inline">add_translator/1</code></a> and <a href="#remove_translator/1"><code class="inline">remove_translator/1</code></a> APIs. Check
+<a href="Logger.Translator.html"><code class="inline">Logger.Translator</code></a> for more information.</p><h2 id="module-erlang-otp-handlers" class="section-heading">
+  <a href="#module-erlang-otp-handlers">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Erlang/OTP handlers
+  </a>
+</h2>
+<p>Handlers represent the ability to integrate into the logging system to
+handle each logged message/event. Elixir automatically configures the
+default handler, but you can use Erlang's <a href="https://www.erlang.org/doc/man/logger.html"><code class="inline">:logger</code></a> module
+to add other handlers too.</p><p>Erlang/OTP handlers must be listed under your own application. For example,
+to setup an additional handler that writes to disk:</p><pre><code class="makeup elixir" translate="no"><span class="n">config</span><span class="w"> </span><span class="ss">:my_app</span><span class="p">,</span><span class="w"> </span><span class="ss">:logger</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="6353590279-1">[</span><span class="w">
+  </span><span class="p" data-group-id="6353590279-2">{</span><span class="ss">:handler</span><span class="p">,</span><span class="w"> </span><span class="ss">:disk_log</span><span class="p">,</span><span class="w"> </span><span class="ss">:logger_disk_log_h</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="6353590279-3">%{</span><span class="w">
+     </span><span class="ss">config</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6353590279-4">%{</span><span class="w">
+       </span><span class="ss">file</span><span class="p">:</span><span class="w"> </span><span class="sc">&#39;system.log&#39;</span><span class="p">,</span><span class="w">
+       </span><span class="ss">filesync_repeat_interval</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+       </span><span class="ss">max_no_bytes</span><span class="p">:</span><span class="w"> </span><span class="mi">10_000_000</span><span class="p">,</span><span class="w">
+       </span><span class="ss">max_no_files</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w">
+     </span><span class="p" data-group-id="6353590279-4">}</span><span class="p">,</span><span class="w">
+     </span><span class="ss">formatter</span><span class="p">:</span><span class="w"> </span><span class="nc">Logger.Formatter</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="6353590279-5">(</span><span class="p" data-group-id="6353590279-5">)</span><span class="w">
+   </span><span class="p" data-group-id="6353590279-3">}</span><span class="p" data-group-id="6353590279-2">}</span><span class="w">
+</span><span class="p" data-group-id="6353590279-1">]</span></code></pre><p>Each handler has the shape <code class="inline">{:handler, name, handler_module, config_map}</code>.
+Once defined, a handler can be explicitly attached in your
+<a href="https://hexdocs.pm/elixir/main/Application.html#c:start/2"><code class="inline">Application.start/2</code></a> callback with <a href="#add_handlers/1"><code class="inline">add_handlers/1</code></a>:</p><pre><code class="makeup elixir" translate="no"><span class="nc">Logger</span><span class="o">.</span><span class="n">add_handlers</span><span class="p" data-group-id="2609650675-1">(</span><span class="ss">:my_app</span><span class="p" data-group-id="2609650675-1">)</span></code></pre><p>You can also develop your own handlers. Handlers run in the same
+process as the process logging the message/event. This gives developers
+flexibility but they should avoid performing any long running action in
+such handlers, as it may slow down the action being executed considerably.
+At the moment, there is no built-in overload protection for Erlang handlers,
+so it is your responsibility to implement it. Alternatively, you can use the
+<a href="https://github.com/elixir-lang/logger_backends"><code class="inline">:logger_backends</code></a>
+project.</p><h2 id="module-backends-and-backwards-compatibility" class="section-heading">
+  <a href="#module-backends-and-backwards-compatibility">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Backends and backwards compatibility
+  </a>
+</h2>
+<p>Prior to Elixir v1.15, custom logging could be achieved with Logger
+backends. The main API for writing Logger backends have been moved to
+the <a href="https://github.com/elixir-lang/logger_backends"><code class="inline">:logger_backends</code></a>
+project. However, the backends are still part of Elixir for backwards
+compatibility.</p><p>Important remarks:</p><ul><li><p>If the <code class="inline">:backends</code> key is set and it doesn't have the <code class="inline">:console</code> entry,
+we assume that you want to disable the built-in logging. You can force
+logging by setting <code class="inline">config :logger, :default_handler, []</code></p></li><li><p>The <code class="inline">:console</code> backend configuration is automatically maped to the default
+handler and default formatter. Previously, you would set:</p><pre><code class="makeup elixir" translate="no"><span class="n">config</span><span class="w"> </span><span class="ss">:logger</span><span class="p">,</span><span class="w"> </span><span class="ss">:console</span><span class="p">,</span><span class="w">
+  </span><span class="ss">level</span><span class="p">:</span><span class="w"> </span><span class="ss">:error</span><span class="p">,</span><span class="w">
+  </span><span class="ss">format</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;$time $message $metadata&quot;</span></code></pre><p>This is now equivalent to:</p><pre><code class="makeup elixir" translate="no"><span class="n">config</span><span class="w"> </span><span class="ss">:logger</span><span class="p">,</span><span class="w"> </span><span class="ss">:default_handler</span><span class="p">,</span><span class="w">
+  </span><span class="ss">level</span><span class="p">:</span><span class="w"> </span><span class="ss">:error</span><span class="w">
+
+</span><span class="n">config</span><span class="w"> </span><span class="ss">:logger</span><span class="p">,</span><span class="w"> </span><span class="ss">:default_formatter</span><span class="p">,</span><span class="w">
+  </span><span class="ss">format</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;$time $message $metadata&quot;</span></code></pre><p>All previous console configuration, except for <code class="inline">:level</code>, now go under
+<code class="inline">:default_formatter</code>.</p></li><li><p>If you want to use the previous <code class="inline">:console</code> implementation based on Logger
+Backends, you can still set <code class="inline">backends: [Logger.Backends.Console]</code> and place
+the configuration under <code class="inline">config :logger, Logger.Backends.Console</code>. Although
+consider using the <a href="https://github.com/elixir-lang/logger_backends"><code class="inline">:logger_backends</code></a>
+project in such case, as <a href="Logger.Backends.Console.html"><code class="inline">Logger.Backends.Console</code></a> itself will be deprecated
+in future releases</p></li></ul>
+  </section>
+
+
+  <section id="summary" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+      Summary
+    </h1>
+<div class="summary-types summary">
+  <h2>
+    <a href="#types">Types</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:level/0" translate="no">level()</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:message/0" translate="no">message()</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:metadata/0" translate="no">metadata()</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:report/0" translate="no">report()</a>
+
+      </div>
+
+    </div>
+
+</div>
+<div class="summary-functions summary">
+  <h2>
+    <a href="#functions">Functions</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#add_backend/2" translate="no">add_backend(backend, opts \\ [])</a>
+
+          <span class="deprecated" title="Use LoggerBackends.add/2 from :logger_backends dependency">deprecated</span>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Adds a new backend.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#add_handlers/1" translate="no">add_handlers(app)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Adds the handlers configured in the <code class="inline">:logger</code> application parameter
+of the given <code class="inline">app</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#add_translator/1" translate="no">add_translator(translator)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Adds a new translator.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#alert/2" translate="no">alert(message_or_fun, metadata \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Logs a alert message.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#bare_log/3" translate="no">bare_log(level, message_or_fun, metadata \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Logs a message dynamically.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#compare_levels/2" translate="no">compare_levels(left, right)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Compares log levels.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#configure/1" translate="no">configure(options)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Configures the logger.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#configure_backend/2" translate="no">configure_backend(backend, options)</a>
+
+          <span class="deprecated" title="Use LoggerBackends.configure/2 from :logger_backends dependency">deprecated</span>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Configures the given backend.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#critical/2" translate="no">critical(message_or_fun, metadata \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Logs a critical message.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#debug/2" translate="no">debug(message_or_fun, metadata \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Logs a debug message.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#default_formatter/1" translate="no">default_formatter(overrides \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Returns the default formatter used by Logger.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#delete_all_module_levels/0" translate="no">delete_all_module_levels()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Resets the logging level for all modules to the primary level.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#delete_application_level/1" translate="no">delete_application_level(appname)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Resets logging level for all modules in the given application to the primary level.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#delete_module_level/1" translate="no">delete_module_level(module)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Resets the logging level for a given module to the primary level.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#delete_process_level/1" translate="no">delete_process_level(pid)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Resets logging level for the current process to the primary level.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#disable/1" translate="no">disable(pid)</a>
+
+          <span class="deprecated" title="Use Logger.put_process_level(pid, :none) instead">deprecated</span>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Disables logging for the current process.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#emergency/2" translate="no">emergency(message_or_fun, metadata \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Logs a emergency message.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enable/1" translate="no">enable(pid)</a>
+
+          <span class="deprecated" title="Use Logger.delete_process_level(pid) instead">deprecated</span>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Enables logging for the current process.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enabled?/1" translate="no">enabled?(pid)</a>
+
+          <span class="deprecated" title="Use Logger.get_process_level(pid) instead">deprecated</span>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Returns whether the logging is enabled for a given process.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#error/2" translate="no">error(message_or_fun, metadata \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Logs a error message.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#flush/0" translate="no">flush()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Flushes the logger.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#get_module_level/1" translate="no">get_module_level(mod)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Gets logging level for given module.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#get_process_level/1" translate="no">get_process_level(pid)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Gets logging level for the current process.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#info/2" translate="no">info(message_or_fun, metadata \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Logs a info message.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#level/0" translate="no">level()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Retrieves the <a href="Logger.html#content"><code class="inline">Logger</code></a> level.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#log/3" translate="no">log(level, message_or_fun, metadata \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Logs a message with the given <code class="inline">level</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#metadata/0" translate="no">metadata()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Reads the current process metadata.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#metadata/1" translate="no">metadata(keyword)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Alters the current process metadata according to the given keyword list.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#notice/2" translate="no">notice(message_or_fun, metadata \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Logs a notice message.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#put_application_level/2" translate="no">put_application_level(appname, level)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Puts logging level for modules in a given application.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#put_module_level/2" translate="no">put_module_level(mod, level)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Puts logging level for given module.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#put_process_level/2" translate="no">put_process_level(pid, level)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Puts logging level for the current process.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#remove_backend/2" translate="no">remove_backend(backend, opts \\ [])</a>
+
+          <span class="deprecated" title="Use LoggerBackends.remove/2 from :logger_backends dependency">deprecated</span>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Removes a backend.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#remove_translator/1" translate="no">remove_translator(translator)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Removes a translator.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#reset_metadata/1" translate="no">reset_metadata(keyword \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Resets the current process metadata to the given keyword list.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#warn/2" translate="no">warn(message_or_fun, metadata \\ [])</a>
+
+          <span class="deprecated" title="Use Logger.warning/2 instead">deprecated</span>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#warning/2" translate="no">warning(message_or_fun, metadata \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Logs a warning message.</p></div>
+
+    </div>
+
+</div>
+
+  </section>
+
+
+  <section id="types" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#types">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+Types
+    </h1>
+    <div class="types-list">
+<section class="detail" id="t:level/0">
+
+  <div class="detail-header">
+    <a href="#t:level/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">level()</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L403" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@type</span> level() ::
+  :emergency
+  | :alert
+  | :critical
+  | :error
+  | :warning
+  | :warn
+  | :notice
+  | :info
+  | :debug</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:message/0">
+
+  <div class="detail-header">
+    <a href="#t:message/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">message()</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L406" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@type</span> message() :: <a href="https://www.erlang.org/doc/man/unicode.html#type-chardata">:unicode.chardata</a>() | <a href="https://hexdocs.pm/elixir/main/String.Chars.html#t:t/0">String.Chars.t</a>() | <a href="#t:report/0">report</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:metadata/0">
+
+  <div class="detail-header">
+    <a href="#t:metadata/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">metadata()</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L407" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@type</span> metadata() :: <a href="https://hexdocs.pm/elixir/main/typespecs.html#built-in-types">keyword</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:report/0">
+
+  <div class="detail-header">
+    <a href="#t:report/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">report()</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L405" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@type</span> report() :: <a href="https://hexdocs.pm/elixir/main/typespecs.html#basic-types">map</a>() | <a href="https://hexdocs.pm/elixir/main/typespecs.html#built-in-types">keyword</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+
+    </div>
+  </section>
+
+  <section id="functions" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+Functions
+    </h1>
+    <div class="functions-list">
+<section class="detail" id="add_backend/2">
+
+    <span id="add_backend/1"></span>
+
+  <div class="detail-header">
+    <a href="#add_backend/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">add_backend(backend, opts \\ [])</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L779" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+    <div class="deprecated">
+      This function is deprecated. Use LoggerBackends.add/2 from :logger_backends dependency.
+    </div>
+
+  <section class="docstring">
+
+<p>Adds a new backend.</p>
+  </section>
+</section>
+<section class="detail" id="add_handlers/1">
+
+  <div class="detail-header">
+    <a href="#add_handlers/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">add_handlers(app)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L770" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.15.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> add_handlers(<a href="https://hexdocs.pm/elixir/main/typespecs.html#basic-types">atom</a>()) :: :ok | {:error, <a href="https://hexdocs.pm/elixir/main/typespecs.html#built-in-types">term</a>()}</pre>
+
+      </div>
+
+<p>Adds the handlers configured in the <code class="inline">:logger</code> application parameter
+of the given <code class="inline">app</code>.</p><p>This is used to register new handlers into the logging system.
+See <a href="#module-erlang-otp-handlers">the module documentation</a> for
+more information.</p>
+  </section>
+</section>
+<section class="detail" id="add_translator/1">
+
+  <div class="detail-header">
+    <a href="#add_translator/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">add_translator(translator)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L813" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> add_translator({<a href="https://hexdocs.pm/elixir/main/typespecs.html#built-in-types">module</a>(), function :: <a href="https://hexdocs.pm/elixir/main/typespecs.html#basic-types">atom</a>()}) :: :ok</pre>
+
+      </div>
+
+<p>Adds a new translator.</p>
+  </section>
+</section>
+<section class="detail" id="alert/2">
+
+    <span id="alert/1"></span>
+
+  <div class="detail-header">
+    <a href="#alert/2" class="detail-link" title="Link to this macro">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature" translate="no">alert(message_or_fun, metadata \\ [])</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L951" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.11.0)</span>
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Logs a alert message.</p><p>Returns <code class="inline">:ok</code>.</p><p>This is reported as &quot;error&quot; in Elixir's
+logger backends for backwards compatibility reasons.</p><h2 id="alert/2-examples" class="section-heading">
+  <a href="#alert/2-examples">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Examples
+  </a>
+</h2>
+<p>Logging a message (string or iodata):</p><pre><code class="makeup elixir" translate="no"><span class="nc">Logger</span><span class="o">.</span><span class="n">alert</span><span class="p" data-group-id="6415674259-1">(</span><span class="s">&quot;this is a alert message&quot;</span><span class="p" data-group-id="6415674259-1">)</span></code></pre><p>Report message (maps or keywords):</p><pre><code class="makeup elixir" translate="no"><span class="c1"># as keyword list</span><span class="w">
+</span><span class="nc">Logger</span><span class="o">.</span><span class="n">alert</span><span class="p" data-group-id="6779537957-1">(</span><span class="p" data-group-id="6779537957-2">[</span><span class="ss">something</span><span class="p">:</span><span class="w"> </span><span class="ss">:reported</span><span class="p">,</span><span class="w"> </span><span class="ss">this</span><span class="p">:</span><span class="w"> </span><span class="ss">:alert</span><span class="p" data-group-id="6779537957-2">]</span><span class="p" data-group-id="6779537957-1">)</span><span class="w">
+
+</span><span class="c1"># as map</span><span class="w">
+</span><span class="nc">Logger</span><span class="o">.</span><span class="n">alert</span><span class="p" data-group-id="6779537957-3">(</span><span class="p" data-group-id="6779537957-4">%{</span><span class="ss">something</span><span class="p">:</span><span class="w"> </span><span class="ss">:reported</span><span class="p">,</span><span class="w"> </span><span class="ss">this</span><span class="p">:</span><span class="w"> </span><span class="ss">:alert</span><span class="p" data-group-id="6779537957-4">}</span><span class="p" data-group-id="6779537957-3">)</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="bare_log/3">
+
+    <span id="bare_log/2"></span>
+
+  <div class="detail-header">
+    <a href="#bare_log/3" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">bare_log(level, message_or_fun, metadata \\ [])</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L846" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> bare_log(
+  <a href="#t:level/0">level</a>(),
+  <a href="#t:message/0">message</a>() | (-&gt; <a href="#t:message/0">message</a>() | {<a href="#t:message/0">message</a>(), <a href="https://hexdocs.pm/elixir/main/typespecs.html#built-in-types">keyword</a>()}),
+  <a href="https://hexdocs.pm/elixir/main/typespecs.html#built-in-types">keyword</a>()
+) :: :ok</pre>
+
+      </div>
+
+<p>Logs a message dynamically.</p><p>Opposite to <a href="#log/3"><code class="inline">log/3</code></a>, <a href="#debug/2"><code class="inline">debug/2</code></a>, <a href="#info/2"><code class="inline">info/2</code></a>, and friends, the arguments
+given to <a href="#bare_log/3"><code class="inline">bare_log/3</code></a> are always evaluated. However, you can pass
+anonymous functions to <a href="#bare_log/3"><code class="inline">bare_log/3</code></a> and they will only be evaluated
+if there is something to be logged.</p>
+  </section>
+</section>
+<section class="detail" id="compare_levels/2">
+
+  <div class="detail-header">
+    <a href="#compare_levels/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">compare_levels(left, right)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L582" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> compare_levels(<a href="#t:level/0">level</a>(), <a href="#t:level/0">level</a>()) :: :lt | :eq | :gt</pre>
+
+      </div>
+
+<p>Compares log levels.</p><p>Receives two log levels and compares the <code class="inline">left</code> level
+against the <code class="inline">right</code> level and returns:</p><ul><li><code class="inline">:lt</code> if <code class="inline">left</code> is less than <code class="inline">right</code></li><li><code class="inline">:eq</code> if <code class="inline">left</code> and <code class="inline">right</code> are equal</li><li><code class="inline">:gt</code> if <code class="inline">left</code> is greater than <code class="inline">right</code></li></ul><h2 id="compare_levels/2-examples" class="section-heading">
+  <a href="#compare_levels/2-examples">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Examples
+  </a>
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="nc">Logger</span><span class="o">.</span><span class="n">compare_levels</span><span class="p" data-group-id="7449750315-1">(</span><span class="ss">:debug</span><span class="p">,</span><span class="w"> </span><span class="ss">:warning</span><span class="p" data-group-id="7449750315-1">)</span><span class="w">
+</span><span class="ss">:lt</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Logger</span><span class="o">.</span><span class="n">compare_levels</span><span class="p" data-group-id="7449750315-2">(</span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="ss">:info</span><span class="p" data-group-id="7449750315-2">)</span><span class="w">
+</span><span class="ss">:gt</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="configure/1">
+
+  <div class="detail-header">
+    <a href="#configure/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">configure(options)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L608" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> configure(<a href="https://hexdocs.pm/elixir/main/typespecs.html#built-in-types">keyword</a>()) :: :ok</pre>
+
+      </div>
+
+<p>Configures the logger.</p><p>See the &quot;Runtime Configuration&quot; section in the <a href="Logger.html#content"><code class="inline">Logger</code></a> module
+documentation for the available options. The changes done here
+are automatically persisted to the <code class="inline">:logger</code> application
+environment.</p>
+  </section>
+</section>
+<section class="detail" id="configure_backend/2">
+
+  <div class="detail-header">
+    <a href="#configure_backend/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">configure_backend(backend, options)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L797" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+    <div class="deprecated">
+      This function is deprecated. Use LoggerBackends.configure/2 from :logger_backends dependency.
+    </div>
+
+  <section class="docstring">
+
+<p>Configures the given backend.</p>
+  </section>
+</section>
+<section class="detail" id="critical/2">
+
+    <span id="critical/1"></span>
+
+  <div class="detail-header">
+    <a href="#critical/2" class="detail-link" title="Link to this macro">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature" translate="no">critical(message_or_fun, metadata \\ [])</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L951" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.11.0)</span>
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Logs a critical message.</p><p>Returns <code class="inline">:ok</code>.</p><p>This is reported as &quot;error&quot; in Elixir's
+logger backends for backwards compatibility reasons.</p><h2 id="critical/2-examples" class="section-heading">
+  <a href="#critical/2-examples">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Examples
+  </a>
+</h2>
+<p>Logging a message (string or iodata):</p><pre><code class="makeup elixir" translate="no"><span class="nc">Logger</span><span class="o">.</span><span class="n">critical</span><span class="p" data-group-id="4815207425-1">(</span><span class="s">&quot;this is a critical message&quot;</span><span class="p" data-group-id="4815207425-1">)</span></code></pre><p>Report message (maps or keywords):</p><pre><code class="makeup elixir" translate="no"><span class="c1"># as keyword list</span><span class="w">
+</span><span class="nc">Logger</span><span class="o">.</span><span class="n">critical</span><span class="p" data-group-id="2772250842-1">(</span><span class="p" data-group-id="2772250842-2">[</span><span class="ss">something</span><span class="p">:</span><span class="w"> </span><span class="ss">:reported</span><span class="p">,</span><span class="w"> </span><span class="ss">this</span><span class="p">:</span><span class="w"> </span><span class="ss">:critical</span><span class="p" data-group-id="2772250842-2">]</span><span class="p" data-group-id="2772250842-1">)</span><span class="w">
+
+</span><span class="c1"># as map</span><span class="w">
+</span><span class="nc">Logger</span><span class="o">.</span><span class="n">critical</span><span class="p" data-group-id="2772250842-3">(</span><span class="p" data-group-id="2772250842-4">%{</span><span class="ss">something</span><span class="p">:</span><span class="w"> </span><span class="ss">:reported</span><span class="p">,</span><span class="w"> </span><span class="ss">this</span><span class="p">:</span><span class="w"> </span><span class="ss">:critical</span><span class="p" data-group-id="2772250842-4">}</span><span class="p" data-group-id="2772250842-3">)</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="debug/2">
+
+    <span id="debug/1"></span>
+
+  <div class="detail-header">
+    <a href="#debug/2" class="detail-link" title="Link to this macro">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature" translate="no">debug(message_or_fun, metadata \\ [])</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L951" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Logs a debug message.</p><p>Returns <code class="inline">:ok</code>.</p><h2 id="debug/2-examples" class="section-heading">
+  <a href="#debug/2-examples">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Examples
+  </a>
+</h2>
+<p>Logging a message (string or iodata):</p><pre><code class="makeup elixir" translate="no"><span class="nc">Logger</span><span class="o">.</span><span class="n">debug</span><span class="p" data-group-id="4315448403-1">(</span><span class="s">&quot;this is a debug message&quot;</span><span class="p" data-group-id="4315448403-1">)</span></code></pre><p>Report message (maps or keywords):</p><pre><code class="makeup elixir" translate="no"><span class="c1"># as keyword list</span><span class="w">
+</span><span class="nc">Logger</span><span class="o">.</span><span class="n">debug</span><span class="p" data-group-id="7030752094-1">(</span><span class="p" data-group-id="7030752094-2">[</span><span class="ss">something</span><span class="p">:</span><span class="w"> </span><span class="ss">:reported</span><span class="p">,</span><span class="w"> </span><span class="ss">this</span><span class="p">:</span><span class="w"> </span><span class="ss">:debug</span><span class="p" data-group-id="7030752094-2">]</span><span class="p" data-group-id="7030752094-1">)</span><span class="w">
+
+</span><span class="c1"># as map</span><span class="w">
+</span><span class="nc">Logger</span><span class="o">.</span><span class="n">debug</span><span class="p" data-group-id="7030752094-3">(</span><span class="p" data-group-id="7030752094-4">%{</span><span class="ss">something</span><span class="p">:</span><span class="w"> </span><span class="ss">:reported</span><span class="p">,</span><span class="w"> </span><span class="ss">this</span><span class="p">:</span><span class="w"> </span><span class="ss">:debug</span><span class="p" data-group-id="7030752094-4">}</span><span class="p" data-group-id="7030752094-3">)</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="default_formatter/1">
+
+    <span id="default_formatter/0"></span>
+
+  <div class="detail-header">
+    <a href="#default_formatter/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">default_formatter(overrides \\ [])</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L447" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.15.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> default_formatter(<a href="https://hexdocs.pm/elixir/main/typespecs.html#built-in-types">keyword</a>()) :: {<a href="https://hexdocs.pm/elixir/main/typespecs.html#built-in-types">module</a>(), <a href="https://www.erlang.org/doc/man/logger.html#type-formatter_config">:logger.formatter_config</a>()}</pre>
+
+      </div>
+
+<p>Returns the default formatter used by Logger.</p><p>It returns a <a href="Logger.Formatter.html"><code class="inline">Logger.Formatter</code></a> built on the <code class="inline">:default_formatter</code> configuration:</p><pre><code class="makeup elixir" translate="no"><span class="n">config</span><span class="w"> </span><span class="ss">:logger</span><span class="p">,</span><span class="w"> </span><span class="ss">:default_formatter</span><span class="p">,</span><span class="w">
+  </span><span class="ss">format</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">$time $metadata[$level] $message</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w">
+  </span><span class="ss">metadata</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="9655896002-1">[</span><span class="ss">:user_id</span><span class="p" data-group-id="9655896002-1">]</span></code></pre><p>In case of a list, a set of <code class="inline">overrides</code> can be given to merge into the list.
+See <a href="Logger.Formatter.html#new/1"><code class="inline">Logger.Formatter.new/1</code></a> for all options.</p><h2 id="default_formatter/1-examples" class="section-heading">
+  <a href="#default_formatter/1-examples">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Examples
+  </a>
+</h2>
+<p><a href="Logger.html#content"><code class="inline">Logger</code></a> will automatically load a default formatter into the default handler
+on boot. However, you can use this function if you wish to programatically replace
+a handler formatter. For example, inside tests, you might want to change the formatter
+settings:</p><pre><code class="makeup elixir" translate="no"><span class="n">setup</span><span class="w"> </span><span class="n">tags</span><span class="w"> </span><span class="k" data-group-id="7490791454-1">do</span><span class="w">
+  </span><span class="n">formatter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Logger</span><span class="o">.</span><span class="n">default_formatter</span><span class="p" data-group-id="7490791454-2">(</span><span class="ss">colors</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="7490791454-3">[</span><span class="ss">enabled</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="p" data-group-id="7490791454-3">]</span><span class="p" data-group-id="7490791454-2">)</span><span class="w">
+  </span><span class="nc">:logger</span><span class="o">.</span><span class="n">update_handler_config</span><span class="p" data-group-id="7490791454-4">(</span><span class="ss">:default</span><span class="p">,</span><span class="w"> </span><span class="ss">:formatter</span><span class="p">,</span><span class="w"> </span><span class="n">formatter</span><span class="p" data-group-id="7490791454-4">)</span><span class="w">
+
+  </span><span class="n">on_exit</span><span class="p" data-group-id="7490791454-5">(</span><span class="k" data-group-id="7490791454-6">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+    </span><span class="nc">:logger</span><span class="o">.</span><span class="n">update_handler_config</span><span class="p" data-group-id="7490791454-7">(</span><span class="ss">:default</span><span class="p">,</span><span class="w"> </span><span class="ss">:formatter</span><span class="p">,</span><span class="w"> </span><span class="nc">Logger</span><span class="o">.</span><span class="n">default_formatter</span><span class="p" data-group-id="7490791454-8">(</span><span class="p" data-group-id="7490791454-8">)</span><span class="p" data-group-id="7490791454-7">)</span><span class="w">
+  </span><span class="k" data-group-id="7490791454-6">end</span><span class="p" data-group-id="7490791454-5">)</span><span class="w">
+</span><span class="k" data-group-id="7490791454-1">end</span></code></pre><p>However, note you should not invoke this function inside <code class="inline">config</code> files,
+as this function expects <a href="Logger.html#content"><code class="inline">Logger</code></a> to already be configured and started.
+To start a brand new handler with this formatter, use <a href="Logger.Formatter.html#new/1"><code class="inline">Logger.Formatter.new/1</code></a>
+instead.</p>
+  </section>
+</section>
+<section class="detail" id="delete_all_module_levels/0">
+
+  <div class="detail-header">
+    <a href="#delete_all_module_levels/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">delete_all_module_levels()</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L694" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.11.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> delete_all_module_levels() :: :ok</pre>
+
+      </div>
+
+<p>Resets the logging level for all modules to the primary level.</p>
+  </section>
+</section>
+<section class="detail" id="delete_application_level/1">
+
+  <div class="detail-header">
+    <a href="#delete_application_level/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">delete_application_level(appname)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L720" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.13.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> delete_application_level(application) ::
+  :ok | {:error, {:not_loaded, application}}
+when application: <a href="https://hexdocs.pm/elixir/main/typespecs.html#basic-types">atom</a>()</pre>
+
+      </div>
+
+<p>Resets logging level for all modules in the given application to the primary level.</p><p>Equivalent of:</p><pre><code class="makeup elixir" translate="no"><span class="n">appname</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Application</span><span class="o">.</span><span class="n">spec</span><span class="p" data-group-id="9103545605-1">(</span><span class="ss">:modules</span><span class="p" data-group-id="9103545605-1">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Logger</span><span class="o">.</span><span class="n">delete_module_level</span><span class="p" data-group-id="9103545605-2">(</span><span class="p" data-group-id="9103545605-2">)</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="delete_module_level/1">
+
+  <div class="detail-header">
+    <a href="#delete_module_level/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">delete_module_level(module)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L687" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.11.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> delete_module_level(<a href="https://hexdocs.pm/elixir/main/typespecs.html#built-in-types">module</a>() | [<a href="https://hexdocs.pm/elixir/main/typespecs.html#built-in-types">module</a>()]) :: :ok</pre>
+
+      </div>
+
+<p>Resets the logging level for a given module to the primary level.</p>
+  </section>
+</section>
+<section class="detail" id="delete_process_level/1">
+
+  <div class="detail-header">
+    <a href="#delete_process_level/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">delete_process_level(pid)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L755" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> delete_process_level(<a href="https://hexdocs.pm/elixir/main/typespecs.html#basic-types">pid</a>()) :: :ok</pre>
+
+      </div>
+
+<p>Resets logging level for the current process to the primary level.</p><p>Currently the only accepted PID is <code class="inline">self()</code>.</p>
+  </section>
+</section>
+<section class="detail" id="disable/1">
+
+  <div class="detail-header">
+    <a href="#disable/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">disable(pid)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L535" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+    <div class="deprecated">
+      This function is deprecated. Use Logger.put_process_level(pid, :none) instead.
+    </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> disable(<a href="https://hexdocs.pm/elixir/main/typespecs.html#basic-types">pid</a>()) :: :ok</pre>
+
+      </div>
+
+<p>Disables logging for the current process.</p><p>Currently the only accepted PID is <code class="inline">self()</code>.</p><p>Equivalent of:</p><pre><code class="makeup elixir" translate="no"><span class="n">put_process_level</span><span class="p" data-group-id="9719000467-1">(</span><span class="n">pid</span><span class="p">,</span><span class="w"> </span><span class="ss">:none</span><span class="p" data-group-id="9719000467-1">)</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="emergency/2">
+
+    <span id="emergency/1"></span>
+
+  <div class="detail-header">
+    <a href="#emergency/2" class="detail-link" title="Link to this macro">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature" translate="no">emergency(message_or_fun, metadata \\ [])</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L951" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.11.0)</span>
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Logs a emergency message.</p><p>Returns <code class="inline">:ok</code>.</p><p>This is reported as &quot;error&quot; in Elixir's
+logger backends for backwards compatibility reasons.</p><h2 id="emergency/2-examples" class="section-heading">
+  <a href="#emergency/2-examples">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Examples
+  </a>
+</h2>
+<p>Logging a message (string or iodata):</p><pre><code class="makeup elixir" translate="no"><span class="nc">Logger</span><span class="o">.</span><span class="n">emergency</span><span class="p" data-group-id="5634417025-1">(</span><span class="s">&quot;this is a emergency message&quot;</span><span class="p" data-group-id="5634417025-1">)</span></code></pre><p>Report message (maps or keywords):</p><pre><code class="makeup elixir" translate="no"><span class="c1"># as keyword list</span><span class="w">
+</span><span class="nc">Logger</span><span class="o">.</span><span class="n">emergency</span><span class="p" data-group-id="9233806843-1">(</span><span class="p" data-group-id="9233806843-2">[</span><span class="ss">something</span><span class="p">:</span><span class="w"> </span><span class="ss">:reported</span><span class="p">,</span><span class="w"> </span><span class="ss">this</span><span class="p">:</span><span class="w"> </span><span class="ss">:emergency</span><span class="p" data-group-id="9233806843-2">]</span><span class="p" data-group-id="9233806843-1">)</span><span class="w">
+
+</span><span class="c1"># as map</span><span class="w">
+</span><span class="nc">Logger</span><span class="o">.</span><span class="n">emergency</span><span class="p" data-group-id="9233806843-3">(</span><span class="p" data-group-id="9233806843-4">%{</span><span class="ss">something</span><span class="p">:</span><span class="w"> </span><span class="ss">:reported</span><span class="p">,</span><span class="w"> </span><span class="ss">this</span><span class="p">:</span><span class="w"> </span><span class="ss">:emergency</span><span class="p" data-group-id="9233806843-4">}</span><span class="p" data-group-id="9233806843-3">)</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="enable/1">
+
+  <div class="detail-header">
+    <a href="#enable/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enable(pid)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L519" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+    <div class="deprecated">
+      This function is deprecated. Use Logger.delete_process_level(pid) instead.
+    </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> enable(<a href="https://hexdocs.pm/elixir/main/typespecs.html#basic-types">pid</a>()) :: :ok</pre>
+
+      </div>
+
+<p>Enables logging for the current process.</p><p>Currently the only accepted PID is <code class="inline">self()</code>.</p><p>Equivalent of:</p><pre><code class="makeup elixir" translate="no"><span class="n">delete_process_level</span><span class="p" data-group-id="3799180335-1">(</span><span class="n">pid</span><span class="p" data-group-id="3799180335-1">)</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="enabled?/1">
+
+  <div class="detail-header">
+    <a href="#enabled?/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enabled?(pid)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L547" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+    <div class="deprecated">
+      This function is deprecated. Use Logger.get_process_level(pid) instead.
+    </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> enabled?(<a href="https://hexdocs.pm/elixir/main/typespecs.html#basic-types">pid</a>()) :: <a href="https://hexdocs.pm/elixir/main/typespecs.html#built-in-types">boolean</a>()</pre>
+
+      </div>
+
+<p>Returns whether the logging is enabled for a given process.</p><p>Currently the only accepted PID is <code class="inline">self()</code>.</p>
+  </section>
+</section>
+<section class="detail" id="error/2">
+
+    <span id="error/1"></span>
+
+  <div class="detail-header">
+    <a href="#error/2" class="detail-link" title="Link to this macro">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature" translate="no">error(message_or_fun, metadata \\ [])</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L951" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Logs a error message.</p><p>Returns <code class="inline">:ok</code>.</p><h2 id="error/2-examples" class="section-heading">
+  <a href="#error/2-examples">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Examples
+  </a>
+</h2>
+<p>Logging a message (string or iodata):</p><pre><code class="makeup elixir" translate="no"><span class="nc">Logger</span><span class="o">.</span><span class="n">error</span><span class="p" data-group-id="2096331823-1">(</span><span class="s">&quot;this is a error message&quot;</span><span class="p" data-group-id="2096331823-1">)</span></code></pre><p>Report message (maps or keywords):</p><pre><code class="makeup elixir" translate="no"><span class="c1"># as keyword list</span><span class="w">
+</span><span class="nc">Logger</span><span class="o">.</span><span class="n">error</span><span class="p" data-group-id="4116226408-1">(</span><span class="p" data-group-id="4116226408-2">[</span><span class="ss">something</span><span class="p">:</span><span class="w"> </span><span class="ss">:reported</span><span class="p">,</span><span class="w"> </span><span class="ss">this</span><span class="p">:</span><span class="w"> </span><span class="ss">:error</span><span class="p" data-group-id="4116226408-2">]</span><span class="p" data-group-id="4116226408-1">)</span><span class="w">
+
+</span><span class="c1"># as map</span><span class="w">
+</span><span class="nc">Logger</span><span class="o">.</span><span class="n">error</span><span class="p" data-group-id="4116226408-3">(</span><span class="p" data-group-id="4116226408-4">%{</span><span class="ss">something</span><span class="p">:</span><span class="w"> </span><span class="ss">:reported</span><span class="p">,</span><span class="w"> </span><span class="ss">this</span><span class="p">:</span><span class="w"> </span><span class="ss">:error</span><span class="p" data-group-id="4116226408-4">}</span><span class="p" data-group-id="4116226408-3">)</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="flush/0">
+
+  <div class="detail-header">
+    <a href="#flush/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">flush()</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L633" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> flush() :: :ok</pre>
+
+      </div>
+
+<p>Flushes the logger.</p><p>This guarantees all log handlers are flushed. This is useful
+for testing and it should not be called in production code.</p>
+  </section>
+</section>
+<section class="detail" id="get_module_level/1">
+
+  <div class="detail-header">
+    <a href="#get_module_level/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">get_module_level(mod)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L680" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.11.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> get_module_level(<a href="https://hexdocs.pm/elixir/main/typespecs.html#built-in-types">module</a>() | [<a href="https://hexdocs.pm/elixir/main/typespecs.html#built-in-types">module</a>()]) :: [{<a href="https://hexdocs.pm/elixir/main/typespecs.html#built-in-types">module</a>(), <a href="#t:level/0">level</a>() | :all | :none}]</pre>
+
+      </div>
+
+<p>Gets logging level for given module.</p><p>The returned value will be the effective value used. If no value
+was set for a given module, then it will not be present in
+the returned list.</p>
+  </section>
+</section>
+<section class="detail" id="get_process_level/1">
+
+  <div class="detail-header">
+    <a href="#get_process_level/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">get_process_level(pid)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L745" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> get_process_level(<a href="https://hexdocs.pm/elixir/main/typespecs.html#basic-types">pid</a>()) :: <a href="#t:level/0">level</a>() | :all | :none | nil</pre>
+
+      </div>
+
+<p>Gets logging level for the current process.</p><p>Currently the only accepted PID is <code class="inline">self()</code>.</p><p>The returned value will be the effective value used. If no value
+was set for a given process, then <code class="inline">nil</code> is returned.</p>
+  </section>
+</section>
+<section class="detail" id="info/2">
+
+    <span id="info/1"></span>
+
+  <div class="detail-header">
+    <a href="#info/2" class="detail-link" title="Link to this macro">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature" translate="no">info(message_or_fun, metadata \\ [])</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L951" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Logs a info message.</p><p>Returns <code class="inline">:ok</code>.</p><h2 id="info/2-examples" class="section-heading">
+  <a href="#info/2-examples">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Examples
+  </a>
+</h2>
+<p>Logging a message (string or iodata):</p><pre><code class="makeup elixir" translate="no"><span class="nc">Logger</span><span class="o">.</span><span class="n">info</span><span class="p" data-group-id="7026198942-1">(</span><span class="s">&quot;this is a info message&quot;</span><span class="p" data-group-id="7026198942-1">)</span></code></pre><p>Report message (maps or keywords):</p><pre><code class="makeup elixir" translate="no"><span class="c1"># as keyword list</span><span class="w">
+</span><span class="nc">Logger</span><span class="o">.</span><span class="n">info</span><span class="p" data-group-id="8837372162-1">(</span><span class="p" data-group-id="8837372162-2">[</span><span class="ss">something</span><span class="p">:</span><span class="w"> </span><span class="ss">:reported</span><span class="p">,</span><span class="w"> </span><span class="ss">this</span><span class="p">:</span><span class="w"> </span><span class="ss">:info</span><span class="p" data-group-id="8837372162-2">]</span><span class="p" data-group-id="8837372162-1">)</span><span class="w">
+
+</span><span class="c1"># as map</span><span class="w">
+</span><span class="nc">Logger</span><span class="o">.</span><span class="n">info</span><span class="p" data-group-id="8837372162-3">(</span><span class="p" data-group-id="8837372162-4">%{</span><span class="ss">something</span><span class="p">:</span><span class="w"> </span><span class="ss">:reported</span><span class="p">,</span><span class="w"> </span><span class="ss">this</span><span class="p">:</span><span class="w"> </span><span class="ss">:info</span><span class="p" data-group-id="8837372162-4">}</span><span class="p" data-group-id="8837372162-3">)</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="level/0">
+
+  <div class="detail-header">
+    <a href="#level/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">level()</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L557" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> level() :: <a href="#t:level/0">level</a>()</pre>
+
+      </div>
+
+<p>Retrieves the <a href="Logger.html#content"><code class="inline">Logger</code></a> level.</p><p>The <a href="Logger.html#content"><code class="inline">Logger</code></a> level can be changed via <a href="#configure/1"><code class="inline">configure/1</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="log/3">
+
+    <span id="log/2"></span>
+
+  <div class="detail-header">
+    <a href="#log/3" class="detail-link" title="Link to this macro">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature" translate="no">log(level, message_or_fun, metadata \\ [])</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L972" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Logs a message with the given <code class="inline">level</code>.</p><p>Returns <code class="inline">:ok</code>.</p><p>The macros <a href="#debug/2"><code class="inline">debug/2</code></a>, <a href="#info/2"><code class="inline">info/2</code></a>, <a href="#notice/2"><code class="inline">notice/2</code></a>, <a href="#warning/2"><code class="inline">warning/2</code></a>,
+<a href="#error/2"><code class="inline">error/2</code></a>, <a href="#critical/2"><code class="inline">critical/2</code></a>, <a href="#alert/2"><code class="inline">alert/2</code></a>, and <a href="#emergency/2"><code class="inline">emergency/2</code></a> are
+preferred over this macro as they can automatically eliminate
+the call to <a href="Logger.html#content"><code class="inline">Logger</code></a> altogether at compile time if desired
+(see the documentation for the <a href="Logger.html#content"><code class="inline">Logger</code></a> module).</p>
+  </section>
+</section>
+<section class="detail" id="metadata/0">
+
+  <div class="detail-header">
+    <a href="#metadata/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">metadata()</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L488" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> metadata() :: <a href="#t:metadata/0">metadata</a>()</pre>
+
+      </div>
+
+<p>Reads the current process metadata.</p><p>This does not return the &quot;global&quot; logger metadata (set via the <code class="inline">:metadata</code> key in the
+<code class="inline">:logger</code> application config), but only the process metadata.</p>
+  </section>
+</section>
+<section class="detail" id="metadata/1">
+
+  <div class="detail-header">
+    <a href="#metadata/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">metadata(keyword)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L465" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> metadata(<a href="#t:metadata/0">metadata</a>()) :: :ok</pre>
+
+      </div>
+
+<p>Alters the current process metadata according to the given keyword list.</p><p>This function will merge the given keyword list into the existing metadata,
+with the exception of setting a key to <code class="inline">nil</code>, which will remove that key
+from the metadata.</p><p>Note not all keys can be set as metadata. The metadata automatically added
+by Logger, as declared in the module documentation, will always override
+custom one.</p>
+  </section>
+</section>
+<section class="detail" id="notice/2">
+
+    <span id="notice/1"></span>
+
+  <div class="detail-header">
+    <a href="#notice/2" class="detail-link" title="Link to this macro">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature" translate="no">notice(message_or_fun, metadata \\ [])</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L951" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.11.0)</span>
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Logs a notice message.</p><p>Returns <code class="inline">:ok</code>.</p><p>This is reported as &quot;info&quot; in Elixir's
+logger backends for backwards compatibility reasons.</p><h2 id="notice/2-examples" class="section-heading">
+  <a href="#notice/2-examples">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Examples
+  </a>
+</h2>
+<p>Logging a message (string or iodata):</p><pre><code class="makeup elixir" translate="no"><span class="nc">Logger</span><span class="o">.</span><span class="n">notice</span><span class="p" data-group-id="7463308074-1">(</span><span class="s">&quot;this is a notice message&quot;</span><span class="p" data-group-id="7463308074-1">)</span></code></pre><p>Report message (maps or keywords):</p><pre><code class="makeup elixir" translate="no"><span class="c1"># as keyword list</span><span class="w">
+</span><span class="nc">Logger</span><span class="o">.</span><span class="n">notice</span><span class="p" data-group-id="3916727575-1">(</span><span class="p" data-group-id="3916727575-2">[</span><span class="ss">something</span><span class="p">:</span><span class="w"> </span><span class="ss">:reported</span><span class="p">,</span><span class="w"> </span><span class="ss">this</span><span class="p">:</span><span class="w"> </span><span class="ss">:notice</span><span class="p" data-group-id="3916727575-2">]</span><span class="p" data-group-id="3916727575-1">)</span><span class="w">
+
+</span><span class="c1"># as map</span><span class="w">
+</span><span class="nc">Logger</span><span class="o">.</span><span class="n">notice</span><span class="p" data-group-id="3916727575-3">(</span><span class="p" data-group-id="3916727575-4">%{</span><span class="ss">something</span><span class="p">:</span><span class="w"> </span><span class="ss">:reported</span><span class="p">,</span><span class="w"> </span><span class="ss">this</span><span class="p">:</span><span class="w"> </span><span class="ss">:notice</span><span class="p" data-group-id="3916727575-4">}</span><span class="p" data-group-id="3916727575-3">)</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="put_application_level/2">
+
+  <div class="detail-header">
+    <a href="#put_application_level/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">put_application_level(appname, level)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L708" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.13.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> put_application_level(<a href="https://hexdocs.pm/elixir/main/typespecs.html#basic-types">atom</a>(), <a href="#t:level/0">level</a>() | :all | :none) ::
+  :ok | {:error, :not_loaded}</pre>
+
+      </div>
+
+<p>Puts logging level for modules in a given application.</p><p>This will take priority over the primary level set, so it can be
+used to increase or decrease verbosity of some parts of the project.</p><p>Equivalent of:</p><pre><code class="makeup elixir" translate="no"><span class="n">appname</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Application</span><span class="o">.</span><span class="n">spec</span><span class="p" data-group-id="9731204532-1">(</span><span class="ss">:modules</span><span class="p" data-group-id="9731204532-1">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Logger</span><span class="o">.</span><span class="n">put_module_level</span><span class="p" data-group-id="9731204532-2">(</span><span class="n">level</span><span class="p" data-group-id="9731204532-2">)</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="put_module_level/2">
+
+  <div class="detail-header">
+    <a href="#put_module_level/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">put_module_level(mod, level)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L669" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.11.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> put_module_level(<a href="https://hexdocs.pm/elixir/main/typespecs.html#built-in-types">module</a>() | [<a href="https://hexdocs.pm/elixir/main/typespecs.html#built-in-types">module</a>()], <a href="#t:level/0">level</a>() | :all | :none) ::
+  :ok | {:error, <a href="https://hexdocs.pm/elixir/main/typespecs.html#built-in-types">term</a>()}</pre>
+
+      </div>
+
+<p>Puts logging level for given module.</p><p>This will take priority over the primary level set, so it can be
+used to increase or decrease verbosity of some parts of the project.</p><h2 id="put_module_level/2-example" class="section-heading">
+  <a href="#put_module_level/2-example">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Example
+  </a>
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Foo</span><span class="w"> </span><span class="k" data-group-id="1806830735-1">do</span><span class="w">
+  </span><span class="kn">require</span><span class="w"> </span><span class="nc">Logger</span><span class="w">
+
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">log</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="nc">Logger</span><span class="o">.</span><span class="n">debug</span><span class="p" data-group-id="1806830735-2">(</span><span class="s">&quot;foo&quot;</span><span class="p" data-group-id="1806830735-2">)</span><span class="w">
+</span><span class="k" data-group-id="1806830735-1">end</span><span class="w">
+
+</span><span class="nc">Logger</span><span class="o">.</span><span class="n">configure</span><span class="p" data-group-id="1806830735-3">(</span><span class="ss">level</span><span class="p">:</span><span class="w"> </span><span class="ss">:error</span><span class="p" data-group-id="1806830735-3">)</span><span class="w">
+</span><span class="nc">Logger</span><span class="o">.</span><span class="n">put_module_level</span><span class="p" data-group-id="1806830735-4">(</span><span class="nc">Foo</span><span class="p">,</span><span class="w"> </span><span class="ss">:all</span><span class="p" data-group-id="1806830735-4">)</span><span class="w">
+
+</span><span class="nc">Foo</span><span class="o">.</span><span class="n">log</span><span class="p" data-group-id="1806830735-5">(</span><span class="p" data-group-id="1806830735-5">)</span><span class="w">
+</span><span class="c1"># This will print the message even if global level is :error</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="put_process_level/2">
+
+  <div class="detail-header">
+    <a href="#put_process_level/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">put_process_level(pid, level)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L731" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> put_process_level(<a href="https://hexdocs.pm/elixir/main/typespecs.html#basic-types">pid</a>(), <a href="#t:level/0">level</a>() | :all | :none) :: :ok</pre>
+
+      </div>
+
+<p>Puts logging level for the current process.</p><p>Currently the only accepted PID is <code class="inline">self()</code>.</p><p>This will take priority over the primary level set, so it can be
+used to increase or decrease verbosity of some parts of the running system.</p>
+  </section>
+</section>
+<section class="detail" id="remove_backend/2">
+
+    <span id="remove_backend/1"></span>
+
+  <div class="detail-header">
+    <a href="#remove_backend/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">remove_backend(backend, opts \\ [])</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L788" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+    <div class="deprecated">
+      This function is deprecated. Use LoggerBackends.remove/2 from :logger_backends dependency.
+    </div>
+
+  <section class="docstring">
+
+<p>Removes a backend.</p>
+  </section>
+</section>
+<section class="detail" id="remove_translator/1">
+
+  <div class="detail-header">
+    <a href="#remove_translator/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">remove_translator(translator)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L821" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> remove_translator({<a href="https://hexdocs.pm/elixir/main/typespecs.html#built-in-types">module</a>(), function :: <a href="https://hexdocs.pm/elixir/main/typespecs.html#basic-types">atom</a>()}) :: :ok</pre>
+
+      </div>
+
+<p>Removes a translator.</p>
+  </section>
+</section>
+<section class="detail" id="reset_metadata/1">
+
+    <span id="reset_metadata/0"></span>
+
+  <div class="detail-header">
+    <a href="#reset_metadata/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">reset_metadata(keyword \\ [])</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L499" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> reset_metadata(<a href="#t:metadata/0">metadata</a>()) :: :ok</pre>
+
+      </div>
+
+<p>Resets the current process metadata to the given keyword list.</p>
+  </section>
+</section>
+<section class="detail" id="warn/2">
+
+    <span id="warn/1"></span>
+
+  <div class="detail-header">
+    <a href="#warn/2" class="detail-link" title="Link to this macro">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature" translate="no">warn(message_or_fun, metadata \\ [])</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L957" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+    <div class="deprecated">
+      This macro is deprecated. Use Logger.warning/2 instead.
+    </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="warning/2">
+
+    <span id="warning/1"></span>
+
+  <div class="detail-header">
+    <a href="#warning/2" class="detail-link" title="Link to this macro">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature" translate="no">warning(message_or_fun, metadata \\ [])</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/logger/lib/logger.ex#L951" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.11.0)</span>
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Logs a warning message.</p><p>Returns <code class="inline">:ok</code>.</p><h2 id="warning/2-examples" class="section-heading">
+  <a href="#warning/2-examples">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Examples
+  </a>
+</h2>
+<p>Logging a message (string or iodata):</p><pre><code class="makeup elixir" translate="no"><span class="nc">Logger</span><span class="o">.</span><span class="n">warning</span><span class="p" data-group-id="3960795520-1">(</span><span class="s">&quot;this is a warning message&quot;</span><span class="p" data-group-id="3960795520-1">)</span></code></pre><p>Report message (maps or keywords):</p><pre><code class="makeup elixir" translate="no"><span class="c1"># as keyword list</span><span class="w">
+</span><span class="nc">Logger</span><span class="o">.</span><span class="n">warning</span><span class="p" data-group-id="8040953998-1">(</span><span class="p" data-group-id="8040953998-2">[</span><span class="ss">something</span><span class="p">:</span><span class="w"> </span><span class="ss">:reported</span><span class="p">,</span><span class="w"> </span><span class="ss">this</span><span class="p">:</span><span class="w"> </span><span class="ss">:warning</span><span class="p" data-group-id="8040953998-2">]</span><span class="p" data-group-id="8040953998-1">)</span><span class="w">
+
+</span><span class="c1"># as map</span><span class="w">
+</span><span class="nc">Logger</span><span class="o">.</span><span class="n">warning</span><span class="p" data-group-id="8040953998-3">(</span><span class="p" data-group-id="8040953998-4">%{</span><span class="ss">something</span><span class="p">:</span><span class="w"> </span><span class="ss">:reported</span><span class="p">,</span><span class="w"> </span><span class="ss">this</span><span class="p">:</span><span class="w"> </span><span class="ss">:warning</span><span class="p" data-group-id="8040953998-4">}</span><span class="p" data-group-id="8040953998-3">)</span></code></pre>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+      <footer class="footer">
+        <p>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Search HexDocs packages">
+              Search HexDocs
+            </button>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.29.4) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

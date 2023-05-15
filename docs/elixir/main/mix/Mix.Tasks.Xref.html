@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.29.4">
+    <meta name="project" content="Mix v1.15.0-dev">
+
+    <title>mix xref — Mix v1.15.0-dev</title>
+    <link rel="stylesheet" href="dist/html-elixir-R7PT35Y2.css" />
+
+
+      <link rel="canonical" href="https://hexdocs.pm/mix/main/Mix.Tasks.Xref.html" />
+
+    <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
+    <script src="dist/handlebars.templates-OHVEJKU6.js"></script>
+    <script src="dist/sidebar_items-310F6449.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/html-ZKIIOKLS.js"></script>
+
+
+  </head>
+  <body data-type="tasks" class="page-task">
+    <script>
+
+      try {
+        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+
+        if (settings.theme === 'dark' ||
+           ((settings.theme === 'system' || settings.theme == null) &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches)
+           ) {
+          document.body.classList.add('dark')
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <i class="ri-search-2-line" aria-hidden="true" title="Submit search"></i>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <i class="ri-close-line ri-lg" aria-hidden="true" title="Cancel search"></i>
+    </button>
+    <label class="search-label">
+      <p class="sr-only">Search</p>
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName" translate="no">
+Mix
+      </a>
+      <div class="sidebar-projectVersion" translate="no">
+        v1.15.0-dev
+      </div>
+    </div>
+    <ul class="sidebar-listNav">
+      <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+        <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+        <li><a id="tasks-list-link" href="#full-list"><span translate="no">Mix</span> Tasks</a></li>
+
+    </ul>
+  </div>
+
+  <div class="gradient"></div>
+  <ul id="full-list"></ul>
+</section>
+
+<section class="content">
+  <output role="status" id="toast"></output>
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>
+<button class="icon-action display-settings">
+  <i class="ri-settings-3-line"></i>
+  <span class="sr-only">Settings</span>
+</button>
+
+
+    <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/mix/lib/mix/tasks/xref.ex#L1" title="View Source" class="icon-action" rel="help">
+      <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+      <span class="sr-only">View Source</span>
+    </a>
+
+  <span translate="no">mix xref</span> 
+  <small class="app-vsn" translate="no">(Mix v1.15.0-dev)</small>
+
+</h1>
+
+
+  <section id="moduledoc">
+<p>Prints cross reference information between modules.</p><p>The <code class="inline">xref</code> task expects a mode as first argument:</p><pre><code class="makeup shell" translate="no"><span class="gp unselectable">$ </span><span class="">mix xref MODE
+</span></code></pre><p>All available modes are discussed below.</p><p>This task is automatically re-enabled, so you can print
+information multiple times in the same Mix invocation.</p><h2 id="module-mix-xref-callers-module" class="section-heading">
+  <a href="#module-mix-xref-callers-module">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    mix xref callers MODULE
+  </a>
+</h2>
+<p>Prints all callers of the given module. Example:</p><pre><code class="makeup shell" translate="no"><span class="gp unselectable">$ </span><span class="">mix xref callers MyMod
+</span></code></pre><h2 id="module-mix-xref-trace-file" class="section-heading">
+  <a href="#module-mix-xref-trace-file">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    mix xref trace FILE
+  </a>
+</h2>
+<p>Compiles the given file listing all dependencies within the same app.
+It includes the type and line for each one. Example:</p><pre><code class="makeup shell" translate="no"><span class="gp unselectable">$ </span><span class="">mix xref trace lib/my_app/router.ex
+</span></code></pre><p>The <code class="inline">--label</code> option may be given to keep only certain traces
+(compile, runtime or export):</p><pre><code class="makeup shell" translate="no"><span class="gp unselectable">$ </span><span class="">mix xref trace lib/my_app/router.ex --label compile
+</span></code></pre><p>If you have an umbrella application, we also recommend using the
+<code class="inline">--include-siblings</code> flag to see the dependencies on other
+umbrella applications.</p><h3 id="module-example" class="section-heading">
+  <a href="#module-example">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Example
+  </a>
+</h3>
+<p>Imagine the given file lib/b.ex:</p><pre><code class="makeup elixir" translate="no"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">B</span><span class="w"> </span><span class="k" data-group-id="4469117422-1">do</span><span class="w">
+  </span><span class="kn">import</span><span class="w"> </span><span class="nc">A</span><span class="w">
+  </span><span class="nc">A</span><span class="o">.</span><span class="n">macro</span><span class="p" data-group-id="4469117422-2">(</span><span class="p" data-group-id="4469117422-2">)</span><span class="w">
+  </span><span class="n">macro</span><span class="p" data-group-id="4469117422-3">(</span><span class="p" data-group-id="4469117422-3">)</span><span class="w">
+  </span><span class="nc">A</span><span class="o">.</span><span class="n">fun</span><span class="p" data-group-id="4469117422-4">(</span><span class="p" data-group-id="4469117422-4">)</span><span class="w">
+  </span><span class="n">fun</span><span class="p" data-group-id="4469117422-5">(</span><span class="p" data-group-id="4469117422-5">)</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">calls_macro</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="nc">A</span><span class="o">.</span><span class="n">macro</span><span class="p" data-group-id="4469117422-6">(</span><span class="p" data-group-id="4469117422-6">)</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">calls_fun</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="nc">A</span><span class="o">.</span><span class="n">fun</span><span class="p" data-group-id="4469117422-7">(</span><span class="p" data-group-id="4469117422-7">)</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">calls_struct</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="4469117422-8">%</span><span class="nc" data-group-id="4469117422-8">A</span><span class="p" data-group-id="4469117422-8">{</span><span class="p" data-group-id="4469117422-8">}</span><span class="w">
+</span><span class="k" data-group-id="4469117422-1">end</span></code></pre><p><code class="inline">mix xref trace</code> will print:</p><pre><code class="makeup elixir" translate="no"><span class="n">lib</span><span class="o">/</span><span class="n">b</span><span class="o">.</span><span class="n">ex</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="w"> </span><span class="kn">require</span><span class="w"> </span><span class="nc">A</span><span class="w"> </span><span class="p" data-group-id="6593101678-1">(</span><span class="n">export</span><span class="p" data-group-id="6593101678-1">)</span><span class="w">
+</span><span class="n">lib</span><span class="o">/</span><span class="n">b</span><span class="o">.</span><span class="n">ex</span><span class="p">:</span><span class="mi">3</span><span class="p">:</span><span class="w"> </span><span class="n">call</span><span class="w"> </span><span class="nc">A</span><span class="o">.</span><span class="n">macro</span><span class="o">/</span><span class="mi">0</span><span class="w"> </span><span class="p" data-group-id="6593101678-2">(</span><span class="n">compile</span><span class="p" data-group-id="6593101678-2">)</span><span class="w">
+</span><span class="n">lib</span><span class="o">/</span><span class="n">b</span><span class="o">.</span><span class="n">ex</span><span class="p">:</span><span class="mi">4</span><span class="p">:</span><span class="w"> </span><span class="kn">import</span><span class="w"> </span><span class="nc">A</span><span class="o">.</span><span class="n">macro</span><span class="o">/</span><span class="mi">0</span><span class="w"> </span><span class="p" data-group-id="6593101678-3">(</span><span class="n">compile</span><span class="p" data-group-id="6593101678-3">)</span><span class="w">
+</span><span class="n">lib</span><span class="o">/</span><span class="n">b</span><span class="o">.</span><span class="n">ex</span><span class="p">:</span><span class="mi">5</span><span class="p">:</span><span class="w"> </span><span class="n">call</span><span class="w"> </span><span class="nc">A</span><span class="o">.</span><span class="n">fun</span><span class="o">/</span><span class="mi">0</span><span class="w"> </span><span class="p" data-group-id="6593101678-4">(</span><span class="n">compile</span><span class="p" data-group-id="6593101678-4">)</span><span class="w">
+</span><span class="n">lib</span><span class="o">/</span><span class="n">b</span><span class="o">.</span><span class="n">ex</span><span class="p">:</span><span class="mi">6</span><span class="p">:</span><span class="w"> </span><span class="n">call</span><span class="w"> </span><span class="nc">A</span><span class="o">.</span><span class="n">fun</span><span class="o">/</span><span class="mi">0</span><span class="w"> </span><span class="p" data-group-id="6593101678-5">(</span><span class="n">compile</span><span class="p" data-group-id="6593101678-5">)</span><span class="w">
+</span><span class="n">lib</span><span class="o">/</span><span class="n">b</span><span class="o">.</span><span class="n">ex</span><span class="p">:</span><span class="mi">6</span><span class="p">:</span><span class="w"> </span><span class="kn">import</span><span class="w"> </span><span class="nc">A</span><span class="o">.</span><span class="n">fun</span><span class="o">/</span><span class="mi">0</span><span class="w"> </span><span class="p" data-group-id="6593101678-6">(</span><span class="n">compile</span><span class="p" data-group-id="6593101678-6">)</span><span class="w">
+</span><span class="n">lib</span><span class="o">/</span><span class="n">b</span><span class="o">.</span><span class="n">ex</span><span class="p">:</span><span class="mi">7</span><span class="p">:</span><span class="w"> </span><span class="n">call</span><span class="w"> </span><span class="nc">A</span><span class="o">.</span><span class="n">macro</span><span class="o">/</span><span class="mi">0</span><span class="w"> </span><span class="p" data-group-id="6593101678-7">(</span><span class="n">compile</span><span class="p" data-group-id="6593101678-7">)</span><span class="w">
+</span><span class="n">lib</span><span class="o">/</span><span class="n">b</span><span class="o">.</span><span class="n">ex</span><span class="p">:</span><span class="mi">8</span><span class="p">:</span><span class="w"> </span><span class="n">call</span><span class="w"> </span><span class="nc">A</span><span class="o">.</span><span class="n">fun</span><span class="o">/</span><span class="mi">0</span><span class="w"> </span><span class="p" data-group-id="6593101678-8">(</span><span class="n">runtime</span><span class="p" data-group-id="6593101678-8">)</span><span class="w">
+</span><span class="n">lib</span><span class="o">/</span><span class="n">b</span><span class="o">.</span><span class="n">ex</span><span class="p">:</span><span class="mi">9</span><span class="p">:</span><span class="w"> </span><span class="n">struct</span><span class="w"> </span><span class="nc">A</span><span class="w"> </span><span class="p" data-group-id="6593101678-9">(</span><span class="n">export</span><span class="p" data-group-id="6593101678-9">)</span></code></pre><h2 id="module-mix-xref-graph" class="section-heading">
+  <a href="#module-mix-xref-graph">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    mix xref graph
+  </a>
+</h2>
+<p>Prints a file dependency graph where an edge from <code class="inline">A</code> to <code class="inline">B</code> indicates
+that <code class="inline">A</code> (source) depends on <code class="inline">B</code> (sink).</p><pre><code class="makeup shell" translate="no"><span class="gp unselectable">$ </span><span class="">mix xref graph --format stats
+</span></code></pre><p>The following options are accepted:</p><ul><li><p><code class="inline">--exclude</code> - path to exclude. Can be repeated to exclude multiple paths.</p></li><li><p><code class="inline">--label</code> - only shows relationships with the given label.
+The labels are &quot;compile&quot;, &quot;export&quot; and &quot;runtime&quot;. By default,
+the <code class="inline">--label</code> option simply filters the printed graph to show
+only relationships with the given label. You can pass <code class="inline">--only-direct</code>
+to trim the graph to only the nodes that have the direct
+relationship given by label. There is also a special label
+called &quot;compile-connected&quot; that keeps only compile-time files
+with at least one transitive dependency. See &quot;Dependency types&quot;
+section below.</p></li><li><p><code class="inline">--group</code> - provide comma-separated paths to consider as a group. Dependencies
+from and into multiple files of the group are considered a single dependency.
+Dependencies between the group elements are ignored. This is useful when you
+are computing compile and compile-connected dependencies and you want a
+series of files to be treated as one. The group is printed using the first path,
+with a <code class="inline">+</code> suffix. Can be repeated to create multiple groups.</p></li><li><p><code class="inline">--only-direct</code> - keeps only files with the direct relationship
+given by <code class="inline">--label</code></p></li><li><p><code class="inline">--only-nodes</code> - only shows the node names (no edges).
+Generally useful with the <code class="inline">--sink</code> flag</p></li><li><p><code class="inline">--source</code> - displays all files that the given source file
+references (directly or indirectly). Can be repeated to display
+references from multiple sources.</p></li><li><p><code class="inline">--sink</code> - displays all files that reference the given file
+(directly or indirectly). Can be repeated.</p></li><li><p><code class="inline">--min-cycle-size</code> - controls the minimum cycle size on formats
+like <code class="inline">stats</code> and <code class="inline">cycles</code></p></li><li><p><code class="inline">--format</code> - can be set to one of:</p><ul><li><p><code class="inline">pretty</code> - prints the graph to the terminal using Unicode characters.
+Each prints each file followed by the files it depends on. This is the
+default except on Windows;</p></li><li><p><code class="inline">plain</code> - the same as pretty except ASCII characters are used instead of
+Unicode characters. This is the default on Windows;</p></li><li><p><code class="inline">stats</code> - prints general statistics about the graph;</p></li><li><p><code class="inline">cycles</code> - prints all cycles in the graph;</p></li><li><p><code class="inline">dot</code> - produces a DOT graph description in <code class="inline">xref_graph.dot</code> in the
+current directory. Warning: this will override any previously generated file</p></li></ul></li><li><p><code class="inline">--output</code> (since v1.15.0) - can be set to one of</p><ul><li><p><code class="inline">-</code> - prints the output to standard output;</p></li><li><p>a path - writes the output graph to the given path</p></li></ul><p>Defaults to <code class="inline">xref_graph.dot</code> in the current directory.</p></li></ul><p>The <code class="inline">--source</code> and <code class="inline">--sink</code> options are particularly useful when trying to understand
+how the modules in a particular file interact with the whole system. You can combine
+those options with <code class="inline">--label</code> and <code class="inline">--only-nodes</code> to get all files that exhibit a certain
+property, for example:</p><pre><code class="makeup elixir" translate="no"><span class="c1"># To show all compile-time relationships</span><span class="w">
+</span><span class="err">$</span><span class="w"> </span><span class="n">mix</span><span class="w"> </span><span class="n">xref</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">--</span><span class="n">label</span><span class="w"> </span><span class="n">compile</span><span class="w">
+
+</span><span class="c1"># To get the tree that depend on lib/foo.ex at compile time</span><span class="w">
+</span><span class="err">$</span><span class="w"> </span><span class="n">mix</span><span class="w"> </span><span class="n">xref</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">--</span><span class="n">label</span><span class="w"> </span><span class="n">compile</span><span class="w"> </span><span class="o">--</span><span class="n">sink</span><span class="w"> </span><span class="n">lib</span><span class="o">/</span><span class="n">foo</span><span class="o">.</span><span class="n">ex</span><span class="w">
+
+</span><span class="c1"># To get all files that depend on lib/foo.ex at compile time</span><span class="w">
+</span><span class="err">$</span><span class="w"> </span><span class="n">mix</span><span class="w"> </span><span class="n">xref</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">--</span><span class="n">label</span><span class="w"> </span><span class="n">compile</span><span class="w"> </span><span class="o">--</span><span class="n">sink</span><span class="w"> </span><span class="n">lib</span><span class="o">/</span><span class="n">foo</span><span class="o">.</span><span class="n">ex</span><span class="w"> </span><span class="o">--</span><span class="n">only</span><span class="o">-</span><span class="n">nodes</span><span class="w">
+
+</span><span class="c1"># To get all paths between two files</span><span class="w">
+</span><span class="err">$</span><span class="w"> </span><span class="n">mix</span><span class="w"> </span><span class="n">xref</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">--</span><span class="n">source</span><span class="w"> </span><span class="n">lib</span><span class="o">/</span><span class="n">foo</span><span class="o">.</span><span class="n">ex</span><span class="w"> </span><span class="o">--</span><span class="n">sink</span><span class="w"> </span><span class="n">lib</span><span class="o">/</span><span class="n">bar</span><span class="o">.</span><span class="n">ex</span><span class="w">
+
+</span><span class="c1"># To show general statistics about the graph</span><span class="w">
+</span><span class="err">$</span><span class="w"> </span><span class="n">mix</span><span class="w"> </span><span class="n">xref</span><span class="w"> </span><span class="n">graph</span><span class="w"> </span><span class="o">--</span><span class="n">format</span><span class="w"> </span><span class="n">stats</span></code></pre><h3 id="module-understanding-the-printed-graph" class="section-heading">
+  <a href="#module-understanding-the-printed-graph">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Understanding the printed graph
+  </a>
+</h3>
+<p>When <code class="inline">mix xref graph</code> runs, it will print a tree of the following
+format. Imagine the following code:</p><pre><code class="makeup elixir" translate="no"><span class="c1"># lib/a.ex</span><span class="w">
+</span><span class="kd">defmodule</span><span class="w"> </span><span class="nc">A</span><span class="w"> </span><span class="k" data-group-id="9844753870-1">do</span><span class="w">
+  </span><span class="nc">IO</span><span class="o">.</span><span class="n">puts</span><span class="w"> </span><span class="nc">B</span><span class="o">.</span><span class="n">hello</span><span class="p" data-group-id="9844753870-2">(</span><span class="p" data-group-id="9844753870-2">)</span><span class="w">
+</span><span class="k" data-group-id="9844753870-1">end</span><span class="w">
+
+</span><span class="c1"># lib/b.ex</span><span class="w">
+</span><span class="kd">defmodule</span><span class="w"> </span><span class="nc">B</span><span class="w"> </span><span class="k" data-group-id="9844753870-3">do</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">hello</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="nc">C</span><span class="o">.</span><span class="n">world</span><span class="p" data-group-id="9844753870-4">(</span><span class="p" data-group-id="9844753870-4">)</span><span class="w">
+</span><span class="k" data-group-id="9844753870-3">end</span><span class="w">
+
+</span><span class="c1"># lib/c.ex</span><span class="w">
+</span><span class="kd">defmodule</span><span class="w"> </span><span class="nc">C</span><span class="w"> </span><span class="k" data-group-id="9844753870-5">do</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">world</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hello world&quot;</span><span class="w">
+</span><span class="k" data-group-id="9844753870-5">end</span></code></pre><p>It will print:</p><pre><code class="makeup shell" translate="no"><span class="gp unselectable">$ </span><span class="">mix xref graph
+</span><span class="">lib/a.ex
+</span><span class="">└── lib/b.ex (compile)
+</span><span class="">lib/b.ex
+</span><span class="">└── lib/c.ex
+</span><span class="">lib/c.ex
+</span></code></pre><p>This tree means that <code class="inline">lib/a.ex</code> depends on <code class="inline">lib/b.ex</code> at compile
+time. And <code class="inline">lib/b.ex</code> depends on <code class="inline">lib/c.ex</code> at runtime. This is often
+problematic because if <code class="inline">lib/c.ex</code> changes, <code class="inline">lib/a.ex</code> also has to
+recompile due to this indirect compile time dependency. When you pass
+<code class="inline">--label compile</code>, the graph shows only the compile-time dependencies:</p><pre><code class="makeup shell" translate="no"><span class="gp unselectable">$ </span><span class="">mix xref graph --label compile
+</span><span class="">lib/a.ex
+</span><span class="">└── lib/b.ex (compile)
+</span></code></pre><p>The <code class="inline">--label compile</code> flag removes all non-compile dependencies. However,
+this can be misleading because having direct compile time dependencies is
+not necessarily an issue. The biggest concern, as mentioned above, are the
+transitive compile time dependencies. You can get all compile time
+dependencies that cause transitive compile time dependencies by using
+<code class="inline">--label compile-connected</code>:</p><pre><code class="makeup shell" translate="no"><span class="gp unselectable">$ </span><span class="">mix xref graph --label compile-connected
+</span><span class="">lib/a.ex
+</span><span class="">└── lib/b.ex (compile)
+</span></code></pre><p>The above says <code class="inline">lib/a.ex</code> depends on <code class="inline">lib/b.ex</code> and that causes transitive
+compile time dependencies - as we know, <code class="inline">lib/a.ex</code> also depends on <code class="inline">lib/c.ex</code>.
+We can retrieve those transitive dependencies by passing <code class="inline">lib/b.ex</code> as
+<code class="inline">--source</code> to <code class="inline">mix xref graph</code>:</p><pre><code class="makeup shell" translate="no"><span class="gp unselectable">$ </span><span class="">mix xref graph --source lib/b.ex
+</span><span class="">lib/b.ex
+</span><span class="">└── lib/c.ex
+</span></code></pre><p>Similarly, you can use the <code class="inline">--label compile</code> and the <code class="inline">--sink</code> flag to find
+all compile time dependencies that will recompile once the sink changes:</p><pre><code class="makeup shell" translate="no"><span class="gp unselectable">$ </span><span class="">mix xref graph --label compile --sink lib/c.ex
+</span><span class="">lib/a.ex
+</span><span class="">└── lib/b.ex (compile)
+</span></code></pre><h3 id="module-dependency-types" class="section-heading">
+  <a href="#module-dependency-types">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Dependency types
+  </a>
+</h3>
+<p>Elixir tracks three types of dependencies between modules: compile,
+exports, and runtime. If a module has a compile time dependency on
+another module, the caller module has to be recompiled whenever the
+callee changes. Compile-time dependencies are typically added when
+using macros or when invoking functions in the module body (outside
+of functions). You can list all dependencies in a file by running
+<code class="inline">mix xref trace path/to/file.ex</code>.</p><p>Export dependencies are compile time dependencies on the module API,
+namely structs and its public definitions. For example, if you import
+a module but only use its functions, it is an export dependency. If
+you use a struct, it is an export dependency too. Export dependencies
+are only recompiled if the module API changes. Note, however, that compile
+time dependencies have higher precedence than exports. Therefore if
+you import a module and use its macros, it is a compile time dependency.</p><p>Runtime dependencies are added whenever you invoke another module
+inside a function. Modules with runtime dependencies do not have
+to be compiled when the callee changes, unless there is a transitive
+compile or an outdated export time dependency between them. The option
+<code class="inline">--label compile-connected</code> can be used to find the first case.</p><h2 id="module-shared-options" class="section-heading">
+  <a href="#module-shared-options">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Shared options
+  </a>
+</h2>
+<p>Those options are shared across all modes:</p><ul><li><p><code class="inline">--fail-above</code> - generates a failure if the relevant metric is above the
+given threshold. Applies to all modes except <code class="inline">mix xref graph --format stats</code>.</p></li><li><p><code class="inline">--include-siblings</code> - includes dependencies that have <code class="inline">:in_umbrella</code> set
+to true in the current project in the reports. This can be used to find
+callers or to analyze graphs between projects</p></li><li><p><code class="inline">--no-compile</code> - does not compile even if files require compilation</p></li><li><p><code class="inline">--no-deps-check</code> - does not check dependencies</p></li><li><p><code class="inline">--no-archives-check</code> - does not check archives</p></li><li><p><code class="inline">--no-elixir-version-check</code> - does not check the Elixir version from mix.exs</p></li></ul>
+  </section>
+
+
+  <section id="summary" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+      Summary
+    </h1>
+<div class="summary-functions summary">
+  <h2>
+    <a href="#functions">Functions</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#calls/1" translate="no">calls(opts \\ [])</a>
+
+          <span class="deprecated" title="Use compilation tracers described in the Code module">deprecated</span>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Returns a list of information of all the runtime function calls in the project.</p></div>
+
+    </div>
+
+</div>
+
+  </section>
+
+
+  <section id="functions" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+Functions
+    </h1>
+    <div class="functions-list">
+<section class="detail" id="calls/1">
+
+    <span id="calls/0"></span>
+
+  <div class="detail-header">
+    <a href="#calls/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">calls(opts \\ [])</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/mix/lib/mix/tasks/xref.ex#L347" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+    <div class="deprecated">
+      This function is deprecated. Use compilation tracers described in the Code module.
+    </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> calls(<a href="https://hexdocs.pm/elixir/main/typespecs.html#built-in-types">keyword</a>()) :: [
+  %{callee: {<a href="https://hexdocs.pm/elixir/main/typespecs.html#built-in-types">module</a>(), <a href="https://hexdocs.pm/elixir/main/typespecs.html#basic-types">atom</a>(), <a href="https://hexdocs.pm/elixir/main/typespecs.html#built-in-types">arity</a>()}, line: <a href="https://hexdocs.pm/elixir/main/typespecs.html#basic-types">integer</a>(), file: <a href="https://hexdocs.pm/elixir/main/String.html#t:t/0">String.t</a>()}
+]</pre>
+
+      </div>
+
+<p>Returns a list of information of all the runtime function calls in the project.</p><p>Each item in the list is a map with the following keys:</p><ul><li><code class="inline">:callee</code> - a tuple containing the module, function, and arity of the call</li><li><code class="inline">:line</code> - an integer representing the line where the function is called</li><li><code class="inline">:file</code> - a binary representing the file where the function is called</li><li><code class="inline">:caller_module</code> - the module where the function is called</li></ul><p>This function returns an empty list when used at the root of an umbrella
+project because there is no compile manifest to extract the function call
+information from. To get the function calls of each child in an umbrella,
+execute the function at the root of each individual application.</p>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+      <footer class="footer">
+        <p>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Search HexDocs packages">
+              Search HexDocs
+            </button>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.29.4) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

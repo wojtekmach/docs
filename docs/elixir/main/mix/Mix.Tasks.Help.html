@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.29.4">
+    <meta name="project" content="Mix v1.15.0-dev">
+
+    <title>mix help — Mix v1.15.0-dev</title>
+    <link rel="stylesheet" href="dist/html-elixir-R7PT35Y2.css" />
+
+
+      <link rel="canonical" href="https://hexdocs.pm/mix/main/Mix.Tasks.Help.html" />
+
+    <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
+    <script src="dist/handlebars.templates-OHVEJKU6.js"></script>
+    <script src="dist/sidebar_items-310F6449.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/html-ZKIIOKLS.js"></script>
+
+
+  </head>
+  <body data-type="tasks" class="page-task">
+    <script>
+
+      try {
+        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+
+        if (settings.theme === 'dark' ||
+           ((settings.theme === 'system' || settings.theme == null) &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches)
+           ) {
+          document.body.classList.add('dark')
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <i class="ri-search-2-line" aria-hidden="true" title="Submit search"></i>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <i class="ri-close-line ri-lg" aria-hidden="true" title="Cancel search"></i>
+    </button>
+    <label class="search-label">
+      <p class="sr-only">Search</p>
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName" translate="no">
+Mix
+      </a>
+      <div class="sidebar-projectVersion" translate="no">
+        v1.15.0-dev
+      </div>
+    </div>
+    <ul class="sidebar-listNav">
+      <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+        <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+        <li><a id="tasks-list-link" href="#full-list"><span translate="no">Mix</span> Tasks</a></li>
+
+    </ul>
+  </div>
+
+  <div class="gradient"></div>
+  <ul id="full-list"></ul>
+</section>
+
+<section class="content">
+  <output role="status" id="toast"></output>
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>
+<button class="icon-action display-settings">
+  <i class="ri-settings-3-line"></i>
+  <span class="sr-only">Settings</span>
+</button>
+
+
+    <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/mix/lib/mix/tasks/help.ex#L1" title="View Source" class="icon-action" rel="help">
+      <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+      <span class="sr-only">View Source</span>
+    </a>
+
+  <span translate="no">mix help</span> 
+  <small class="app-vsn" translate="no">(Mix v1.15.0-dev)</small>
+
+</h1>
+
+
+  <section id="moduledoc">
+<p>Lists all tasks and aliases or prints the documentation for a given task or alias.</p><h2 id="module-arguments" class="section-heading">
+  <a href="#module-arguments">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Arguments
+  </a>
+</h2>
+<pre><code class="makeup shell" translate="no"><span class="gp unselectable">$ </span><span class="">mix help                  - prints all aliases, tasks and their short descriptions
+</span><span class="gp unselectable">$ </span><span class="">mix help ALIAS            - prints the definition for the given alias
+</span><span class="gp unselectable">$ </span><span class="">mix help TASK             - prints full docs for the given task
+</span><span class="gp unselectable">$ </span><span class="">mix help --search PATTERN - prints all tasks and aliases that contain PATTERN in the name
+</span><span class="gp unselectable">$ </span><span class="">mix help --names          - prints all task names and aliases
+</span><span class="">                            (useful for autocompleting)
+</span></code></pre><h2 id="module-colors" class="section-heading">
+  <a href="#module-colors">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Colors
+  </a>
+</h2>
+<p>When possible, <a href="Mix.Tasks.Help.html#content"><code class="inline">mix help</code></a> is going to use coloring for formatting
+the help information. The formatting can be customized by configuring
+the Mix application either inside your project (in <code class="inline">config/config.exs</code>)
+or by using the local config (in <code class="inline">~/.mix/config.exs</code>).</p><p>For example, to disable color, one may use the configuration:</p><pre><code class="makeup elixir" translate="no"><span class="p" data-group-id="2075566991-1">[</span><span class="ss">mix</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2075566991-2">[</span><span class="ss">colors</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2075566991-3">[</span><span class="ss">enabled</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="p" data-group-id="2075566991-3">]</span><span class="p" data-group-id="2075566991-2">]</span><span class="p" data-group-id="2075566991-1">]</span></code></pre><p>The available color options are:</p><ul><li><code class="inline">:enabled</code>         - shows ANSI formatting (defaults to <a href="https://hexdocs.pm/elixir/main/IO.ANSI.html#enabled?/0"><code class="inline">IO.ANSI.enabled?/0</code></a>)</li><li><code class="inline">:doc_code</code>        - the attributes for code blocks (cyan, bright)</li><li><code class="inline">:doc_inline_code</code> - inline code (cyan)</li><li><code class="inline">:doc_headings</code>    - h1 and h2 (yellow, bright)</li><li><code class="inline">:doc_title</code>       - the overall heading for the output (reverse, yellow, bright)</li><li><code class="inline">:doc_bold</code>        - (bright)</li><li><code class="inline">:doc_underline</code>   - (underline)</li></ul>
+  </section>
+
+
+
+      <footer class="footer">
+        <p>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Search HexDocs packages">
+              Search HexDocs
+            </button>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.29.4) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

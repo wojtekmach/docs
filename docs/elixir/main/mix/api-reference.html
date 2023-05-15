@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.29.4">
+    <meta name="project" content="Mix v1.15.0-dev">
+
+    <title>API Reference — Mix v1.15.0-dev</title>
+    <link rel="stylesheet" href="dist/html-elixir-R7PT35Y2.css" />
+
+
+      <link rel="canonical" href="https://hexdocs.pm/mix/main/api-reference.html" />
+
+    <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
+    <script src="dist/handlebars.templates-OHVEJKU6.js"></script>
+    <script src="dist/sidebar_items-310F6449.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/html-ZKIIOKLS.js"></script>
+
+
+  </head>
+  <body data-type="extras" class="page-extra">
+    <script>
+
+      try {
+        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+
+        if (settings.theme === 'dark' ||
+           ((settings.theme === 'system' || settings.theme == null) &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches)
+           ) {
+          document.body.classList.add('dark')
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <i class="ri-search-2-line" aria-hidden="true" title="Submit search"></i>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <i class="ri-close-line ri-lg" aria-hidden="true" title="Cancel search"></i>
+    </button>
+    <label class="search-label">
+      <p class="sr-only">Search</p>
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName" translate="no">
+Mix
+      </a>
+      <div class="sidebar-projectVersion" translate="no">
+        v1.15.0-dev
+      </div>
+    </div>
+    <ul class="sidebar-listNav">
+      <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+        <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+        <li><a id="tasks-list-link" href="#full-list"><span translate="no">Mix</span> Tasks</a></li>
+
+    </ul>
+  </div>
+
+  <div class="gradient"></div>
+  <ul id="full-list"></ul>
+</section>
+
+<section class="content">
+  <output role="status" id="toast"></output>
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>
+<button class="icon-action display-settings">
+  <i class="ri-settings-3-line"></i>
+  <span class="sr-only">Settings</span>
+</button>
+
+
+
+  <span>API Reference <small class="app-vsn">Mix v1.15.0-dev</small></span>
+</h1>
+
+
+  <section class="details-list">
+    <h2 id="modules" class="section-heading">
+  <a href="#modules">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Modules
+  </a>
+</h2>
+
+    <div class="summary">
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.html" translate="no">Mix</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Mix is a build tool that provides tasks for creating, compiling,
+and testing Elixir projects, managing its dependencies, and more.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.ElixirVersionError.html" translate="no">Mix.ElixirVersionError</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Error.html" translate="no">Mix.Error</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Generator.html" translate="no">Mix.Generator</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Conveniences for working with paths and generating content.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.InvalidTaskError.html" translate="no">Mix.InvalidTaskError</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.NoProjectError.html" translate="no">Mix.NoProjectError</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.NoTaskError.html" translate="no">Mix.NoTaskError</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Project.html" translate="no">Mix.Project</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Defines and manipulates Mix projects.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Release.html" translate="no">Mix.Release</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Defines the release structure and convenience for assembling releases.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.SCM.html" translate="no">Mix.SCM</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>This module provides helper functions and defines the
+behaviour required by any source code manager (SCM) used by Mix.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Shell.html" translate="no">Mix.Shell</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Defines <a href="Mix.Shell.html#content"><code class="inline">Mix.Shell</code></a> contract.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Shell.IO.html" translate="no">Mix.Shell.IO</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>This is Mix's default shell.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Shell.Process.html" translate="no">Mix.Shell.Process</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Mix shell that uses the current process mailbox for communication.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Shell.Quiet.html" translate="no">Mix.Shell.Quiet</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>This is Mix's default shell when the <code class="inline">MIX_QUIET</code> environment
+variable is set.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Task.html" translate="no">Mix.Task</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Provides conveniences for creating, loading, and manipulating Mix tasks.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Task.Compiler.html" translate="no">Mix.Task.Compiler</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>This module defines the behaviour for a Mix task that does compilation.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Task.Compiler.Diagnostic.html" translate="no">Mix.Task.Compiler.Diagnostic</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Diagnostic information such as a warning or compilation error.</p></div>
+
+</div>
+
+    </div>
+  </section>
+
+
+  <section class="details-list">
+    <h2 id="mix-tasks" class="section-heading">
+  <a href="#mix-tasks">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Mix Tasks
+  </a>
+</h2>
+
+    <div class="summary">
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.App.Config.html" translate="no">mix app.config</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Loads and configures all registered apps.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.App.Start.html" translate="no">mix app.start</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Starts all registered apps.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.App.Tree.html" translate="no">mix app.tree</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Prints the application tree.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Archive.html" translate="no">mix archive</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Lists all installed archives.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Archive.Build.html" translate="no">mix archive.build</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Builds an archive according to the specification of the
+<a href="https://www.erlang.org/doc/man/code.html">Erlang archive format</a>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Archive.Check.html" translate="no">mix archive.check</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Checks all archives are available.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Archive.Install.html" translate="no">mix archive.install</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Installs an archive locally.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Archive.Uninstall.html" translate="no">mix archive.uninstall</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Uninstalls local archives.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Clean.html" translate="no">mix clean</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Deletes generated application files.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Cmd.html" translate="no">mix cmd</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Executes the given command.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Compile.html" translate="no">mix compile</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The main entry point to compile source files.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Compile.App.html" translate="no">mix compile.app</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Writes an .app file.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Compile.Elixir.html" translate="no">mix compile.elixir</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Compiles Elixir source files.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Compile.Erlang.html" translate="no">mix compile.erlang</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Compiles Erlang source files.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Compile.Leex.html" translate="no">mix compile.leex</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Compiles Leex source files.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Compile.Protocols.html" translate="no">mix compile.protocols</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Consolidates all protocols in all paths.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Compile.Yecc.html" translate="no">mix compile.yecc</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Compiles Yecc source files.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Deps.html" translate="no">mix deps</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Lists all dependencies and their status.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Deps.Clean.html" translate="no">mix deps.clean</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Deletes the given dependencies' files, including build artifacts and fetched
+sources.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Deps.Compile.html" translate="no">mix deps.compile</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Compiles dependencies.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Deps.Get.html" translate="no">mix deps.get</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Gets all out of date dependencies, i.e. dependencies
+that are not available or have an invalid lock.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Deps.Loadpaths.html" translate="no">mix deps.loadpaths</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Checks, compiles, and loads all dependencies along the way.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Deps.Precompile.html" translate="no">mix deps.precompile</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Extension point for precompiling dependencies.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Deps.Tree.html" translate="no">mix deps.tree</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Prints the dependency tree.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Deps.Unlock.html" translate="no">mix deps.unlock</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Unlocks the given dependencies.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Deps.Update.html" translate="no">mix deps.update</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Updates the given dependencies.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Do.html" translate="no">mix do</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Executes the tasks separated by <code class="inline">+</code></p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Escript.html" translate="no">mix escript</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Lists all installed escripts.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Escript.Build.html" translate="no">mix escript.build</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Builds an escript for the project.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Escript.Install.html" translate="no">mix escript.install</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Installs an escript locally.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Escript.Uninstall.html" translate="no">mix escript.uninstall</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Uninstalls local escripts</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Eval.html" translate="no">mix eval</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Evaluates the given code within a configured application.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Format.html" translate="no">mix format</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Formats the given files and patterns.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Help.html" translate="no">mix help</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Lists all tasks and aliases or prints the documentation for a given task or alias.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Iex.html" translate="no">mix iex</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>A task that simply instructs users to run <code class="inline">iex -S mix</code>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Loadconfig.html" translate="no">mix loadconfig</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Loads and persists the given configuration.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Loadpaths.html" translate="no">mix loadpaths</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Loads the application and its dependencies paths.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Local.html" translate="no">mix local</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Lists tasks installed locally via archives.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Local.Hex.html" translate="no">mix local.hex</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Installs Hex locally.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Local.PublicKeys.html" translate="no">mix local.public_keys</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Public keys are used by Mix to install packages like Rebar and Hex.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Local.Rebar.html" translate="no">mix local.rebar</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Fetches a copy of <code class="inline">rebar3</code> from the given path or URL.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.New.html" translate="no">mix new</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Creates a new Elixir project.
+It expects the path of the project as argument.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Profile.Cprof.html" translate="no">mix profile.cprof</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Profiles the given file or expression using Erlang's <code class="inline">cprof</code> tool.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Profile.Eprof.html" translate="no">mix profile.eprof</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Profiles the given file or expression using Erlang's <code class="inline">eprof</code> tool.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Profile.Fprof.html" translate="no">mix profile.fprof</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Profiles the given file or expression using Erlang's <code class="inline">fprof</code> tool.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Release.html" translate="no">mix release</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Assembles a self-contained release for the current project</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Release.Init.html" translate="no">mix release.init</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Generates sample files for releases.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Run.html" translate="no">mix run</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Runs the current application.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Test.html" translate="no">mix test</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Runs the tests for a project.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Test.Coverage.html" translate="no">mix test.coverage</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Build reports from exported test coverage.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Mix.Tasks.Xref.html" translate="no">mix xref</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Prints cross reference information between modules.</p></div>
+
+</div>
+
+    </div>
+  </section>
+
+<div class="bottom-actions">
+  <div class="bottom-actions-item">
+
+  </div>
+  <div class="bottom-actions-item">
+
+  </div>
+</div>
+      <footer class="footer">
+        <p>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Search HexDocs packages">
+              Search HexDocs
+            </button>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.29.4) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

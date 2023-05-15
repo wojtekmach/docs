@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.29.4">
+    <meta name="project" content="Mix v1.15.0-dev">
+
+    <title>Mix.Task.Compiler — Mix v1.15.0-dev</title>
+    <link rel="stylesheet" href="dist/html-elixir-R7PT35Y2.css" />
+
+
+      <link rel="canonical" href="https://hexdocs.pm/mix/main/Mix.Task.Compiler.html" />
+
+    <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
+    <script src="dist/handlebars.templates-OHVEJKU6.js"></script>
+    <script src="dist/sidebar_items-310F6449.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/html-ZKIIOKLS.js"></script>
+
+
+  </head>
+  <body data-type="modules" class="page-behaviour">
+    <script>
+
+      try {
+        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+
+        if (settings.theme === 'dark' ||
+           ((settings.theme === 'system' || settings.theme == null) &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches)
+           ) {
+          document.body.classList.add('dark')
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <i class="ri-search-2-line" aria-hidden="true" title="Submit search"></i>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <i class="ri-close-line ri-lg" aria-hidden="true" title="Cancel search"></i>
+    </button>
+    <label class="search-label">
+      <p class="sr-only">Search</p>
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName" translate="no">
+Mix
+      </a>
+      <div class="sidebar-projectVersion" translate="no">
+        v1.15.0-dev
+      </div>
+    </div>
+    <ul class="sidebar-listNav">
+      <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+        <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+        <li><a id="tasks-list-link" href="#full-list"><span translate="no">Mix</span> Tasks</a></li>
+
+    </ul>
+  </div>
+
+  <div class="gradient"></div>
+  <ul id="full-list"></ul>
+</section>
+
+<section class="content">
+  <output role="status" id="toast"></output>
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>
+<button class="icon-action display-settings">
+  <i class="ri-settings-3-line"></i>
+  <span class="sr-only">Settings</span>
+</button>
+
+
+    <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/mix/lib/mix/task.compiler.ex#L1" title="View Source" class="icon-action" rel="help">
+      <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+      <span class="sr-only">View Source</span>
+    </a>
+
+  <span translate="no">Mix.Task.Compiler</span> <small>behaviour</small>
+  <small class="app-vsn" translate="no">(Mix v1.15.0-dev)</small>
+
+</h1>
+
+
+  <section id="moduledoc">
+<p>This module defines the behaviour for a Mix task that does compilation.</p><p>A Mix compiler task can be defined by simply using <a href="Mix.Task.Compiler.html#content"><code class="inline">Mix.Task.Compiler</code></a>
+in a module whose name starts with <code class="inline">Mix.Tasks.Compile.</code> and defining
+the <a href="#c:run/1"><code class="inline">run/1</code></a> function:</p><pre><code class="makeup elixir" translate="no"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Mix.Tasks.Compile.MyLanguage</span><span class="w"> </span><span class="k" data-group-id="3858361074-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">Mix.Task.Compiler</span><span class="w">
+
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">run</span><span class="p" data-group-id="3858361074-2">(</span><span class="c">_args</span><span class="p" data-group-id="3858361074-2">)</span><span class="w"> </span><span class="k" data-group-id="3858361074-3">do</span><span class="w">
+    </span><span class="ss">:ok</span><span class="w">
+  </span><span class="k" data-group-id="3858361074-3">end</span><span class="w">
+</span><span class="k" data-group-id="3858361074-1">end</span></code></pre><p>The <a href="#c:run/1"><code class="inline">run/1</code></a> function returns an atom indicating the status of the
+compilation, and optionally can also return a list of &quot;diagnostics&quot;
+such as warnings or compilation errors. Doing this enables code
+editors to display issues inline without having to analyze the
+command-line output.</p><p>If the compiler uses manifest files to track stale sources, it should
+define <code class="inline">manifests/0</code>, and if it writes any output to disk it should
+also define <code class="inline">clean/0</code>.</p><p>A compiler supports the same attributes for configuration and
+documentation as a regular Mix task. See <a href="Mix.Task.html"><code class="inline">Mix.Task</code></a> for more information.</p>
+  </section>
+
+
+  <section id="summary" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+      Summary
+    </h1>
+<div class="summary-types summary">
+  <h2>
+    <a href="#types">Types</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:status/0" translate="no">status()</a>
+
+      </div>
+
+    </div>
+
+</div>
+<div class="summary-callbacks summary">
+  <h2>
+    <a href="#callbacks">Callbacks</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#c:clean/0" translate="no">clean()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Removes build artifacts and manifests.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#c:manifests/0" translate="no">manifests()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Lists manifest files for the compiler.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#c:run/1" translate="no">run(list)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Receives command-line arguments and performs compilation. If it
+produces errors, warnings, or any other diagnostic information,
+it should return a tuple with the status and a list of diagnostics.</p></div>
+
+    </div>
+
+</div>
+<div class="summary-functions summary">
+  <h2>
+    <a href="#functions">Functions</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#after_compiler/2" translate="no">after_compiler(name, fun)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Adds a callback that runs after a given compiler.</p></div>
+
+    </div>
+
+</div>
+
+  </section>
+
+
+  <section id="types" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#types">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+Types
+    </h1>
+    <div class="types-list">
+<section class="detail" id="t:status/0">
+
+  <div class="detail-header">
+    <a href="#t:status/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">status()</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/mix/lib/mix/task.compiler.ex#L81" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@type</span> status() :: :ok | :noop | :error</pre>
+
+      </div>
+
+
+  </section>
+</section>
+
+    </div>
+  </section>
+
+  <section id="callbacks" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#callbacks">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+Callbacks
+    </h1>
+    <div class="callbacks-list">
+<section class="detail" id="c:clean/0">
+
+  <div class="detail-header">
+    <a href="#c:clean/0" class="detail-link" title="Link to this callback">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature" translate="no">clean()</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/mix/lib/mix/task.compiler.ex#L98" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(optional)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@callback</span> clean() :: <a href="https://hexdocs.pm/elixir/main/typespecs.html#basic-types">any</a>()</pre>
+
+      </div>
+
+<p>Removes build artifacts and manifests.</p>
+  </section>
+</section>
+<section class="detail" id="c:manifests/0">
+
+  <div class="detail-header">
+    <a href="#c:manifests/0" class="detail-link" title="Link to this callback">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature" translate="no">manifests()</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/mix/lib/mix/task.compiler.ex#L93" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(optional)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@callback</span> manifests() :: [<a href="https://hexdocs.pm/elixir/main/Path.html#t:t/0">Path.t</a>()]</pre>
+
+      </div>
+
+<p>Lists manifest files for the compiler.</p>
+  </section>
+</section>
+<section class="detail" id="c:run/1">
+
+  <div class="detail-header">
+    <a href="#c:run/1" class="detail-link" title="Link to this callback">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature" translate="no">run(list)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/mix/lib/mix/task.compiler.ex#L88" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@callback</span> run([<a href="https://hexdocs.pm/elixir/main/typespecs.html#built-in-types">binary</a>()]) :: <a href="#t:status/0">status</a>() | {<a href="#t:status/0">status</a>(), [<a href="Mix.Task.Compiler.Diagnostic.html#t:t/0">Mix.Task.Compiler.Diagnostic.t</a>()]}</pre>
+
+      </div>
+
+<p>Receives command-line arguments and performs compilation. If it
+produces errors, warnings, or any other diagnostic information,
+it should return a tuple with the status and a list of diagnostics.</p>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+  <section id="functions" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+Functions
+    </h1>
+    <div class="functions-list">
+<section class="detail" id="after_compiler/2">
+
+  <div class="detail-header">
+    <a href="#after_compiler/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">after_compiler(name, fun)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/mix/lib/mix/task.compiler.ex#L116" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.10.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> after_compiler(
+  <a href="https://hexdocs.pm/elixir/main/typespecs.html#basic-types">atom</a>(),
+  ({<a href="#t:status/0">status</a>(), [<a href="Mix.Task.Compiler.Diagnostic.html#t:t/0">Mix.Task.Compiler.Diagnostic.t</a>()]} -&gt;
+     {<a href="#t:status/0">status</a>(), [<a href="Mix.Task.Compiler.Diagnostic.html#t:t/0">Mix.Task.Compiler.Diagnostic.t</a>()]})
+) :: :ok</pre>
+
+      </div>
+
+<p>Adds a callback that runs after a given compiler.</p><p>The callback is invoked after the compiler runs and
+it receives a tuple with current status and the list
+of diagnostic. It must return the updated status and
+diagnostics.</p><p>If the given compiler does not run (for instance,
+because an earlier compiler in the stack has aborted),
+the callback will not be executed.</p>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+      <footer class="footer">
+        <p>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Search HexDocs packages">
+              Search HexDocs
+            </button>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.29.4) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

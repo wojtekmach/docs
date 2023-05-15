@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.29.4">
+    <meta name="project" content="Mix v1.15.0-dev">
+
+    <title>mix do — Mix v1.15.0-dev</title>
+    <link rel="stylesheet" href="dist/html-elixir-R7PT35Y2.css" />
+
+
+      <link rel="canonical" href="https://hexdocs.pm/mix/main/Mix.Tasks.Do.html" />
+
+    <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
+    <script src="dist/handlebars.templates-OHVEJKU6.js"></script>
+    <script src="dist/sidebar_items-310F6449.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/html-ZKIIOKLS.js"></script>
+
+
+  </head>
+  <body data-type="tasks" class="page-task">
+    <script>
+
+      try {
+        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+
+        if (settings.theme === 'dark' ||
+           ((settings.theme === 'system' || settings.theme == null) &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches)
+           ) {
+          document.body.classList.add('dark')
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <i class="ri-search-2-line" aria-hidden="true" title="Submit search"></i>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <i class="ri-close-line ri-lg" aria-hidden="true" title="Cancel search"></i>
+    </button>
+    <label class="search-label">
+      <p class="sr-only">Search</p>
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName" translate="no">
+Mix
+      </a>
+      <div class="sidebar-projectVersion" translate="no">
+        v1.15.0-dev
+      </div>
+    </div>
+    <ul class="sidebar-listNav">
+      <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+        <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+        <li><a id="tasks-list-link" href="#full-list"><span translate="no">Mix</span> Tasks</a></li>
+
+    </ul>
+  </div>
+
+  <div class="gradient"></div>
+  <ul id="full-list"></ul>
+</section>
+
+<section class="content">
+  <output role="status" id="toast"></output>
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>
+<button class="icon-action display-settings">
+  <i class="ri-settings-3-line"></i>
+  <span class="sr-only">Settings</span>
+</button>
+
+
+    <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/mix/lib/mix/tasks/do.ex#L1" title="View Source" class="icon-action" rel="help">
+      <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+      <span class="sr-only">View Source</span>
+    </a>
+
+  <span translate="no">mix do</span> 
+  <small class="app-vsn" translate="no">(Mix v1.15.0-dev)</small>
+
+</h1>
+
+
+  <section id="moduledoc">
+<p>Executes the tasks separated by <code class="inline">+</code>:</p><pre><code class="makeup shell" translate="no"><span class="gp unselectable">$ </span><span class="">mix do compile --list + deps
+</span></code></pre><p>The plus should be followed by at least one space before and after.</p><h2 id="module-examples" class="section-heading">
+  <a href="#module-examples">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Examples
+  </a>
+</h2>
+<p>The example below prints the available compilers and
+then the list of dependencies.</p><pre><code class="makeup shell" translate="no"><span class="gp unselectable">$ </span><span class="">mix do compile --list + deps
+</span></code></pre><p>Note that the majority of Mix tasks are only executed once
+per invocation. So for example, the following command will
+only compile once:</p><pre><code class="makeup shell" translate="no"><span class="gp unselectable">$ </span><span class="">mix do compile + some_other_command + compile
+</span></code></pre><p>When <code class="inline">compile</code> is executed again, Mix will notice the task
+has already ran, and skip it.</p><p>Inside umbrella projects, you can limit recursive tasks
+(the ones that run inside every app) by selecting the
+desired application via the <code class="inline">--app</code> flag after <code class="inline">do</code> and
+before the first task:</p><pre><code class="makeup shell" translate="no"><span class="gp unselectable">$ </span><span class="">mix do --app app1 --app app2 compile --list + deps
+</span></code></pre><p>Elixir versions prior to v1.14 used the comma exclusively
+to separate commands:</p><pre><code class="makeup shell" translate="no"><span class="gp unselectable">$ </span><span class="">mix do compile --list, deps
+</span></code></pre><p>Since then, the <code class="inline">+</code> operator has been introduced as a
+separator for better support on Windows terminals.</p><h2 id="module-command-line-options" class="section-heading">
+  <a href="#module-command-line-options">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Command line options
+  </a>
+</h2>
+<ul><li><code class="inline">--app</code> - limit recursive tasks to the given apps.
+This option may be given multiple times and must come
+before any of the tasks.</li></ul>
+  </section>
+
+
+
+      <footer class="footer">
+        <p>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Search HexDocs packages">
+              Search HexDocs
+            </button>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.29.4) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

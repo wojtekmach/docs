@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.29.4">
+    <meta name="project" content="ExUnit v1.15.0-dev">
+
+    <title>ExUnit.DocTest — ExUnit v1.15.0-dev</title>
+    <link rel="stylesheet" href="dist/html-elixir-R7PT35Y2.css" />
+
+
+      <link rel="canonical" href="https://hexdocs.pm/ex_unit/main/ExUnit.DocTest.html" />
+
+    <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
+    <script src="dist/handlebars.templates-OHVEJKU6.js"></script>
+    <script src="dist/sidebar_items-C18C357C.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/html-ZKIIOKLS.js"></script>
+
+
+  </head>
+  <body data-type="modules" class="page-module">
+    <script>
+
+      try {
+        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+
+        if (settings.theme === 'dark' ||
+           ((settings.theme === 'system' || settings.theme == null) &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches)
+           ) {
+          document.body.classList.add('dark')
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <i class="ri-search-2-line" aria-hidden="true" title="Submit search"></i>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <i class="ri-close-line ri-lg" aria-hidden="true" title="Cancel search"></i>
+    </button>
+    <label class="search-label">
+      <p class="sr-only">Search</p>
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName" translate="no">
+ExUnit
+      </a>
+      <div class="sidebar-projectVersion" translate="no">
+        v1.15.0-dev
+      </div>
+    </div>
+    <ul class="sidebar-listNav">
+      <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+        <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+    </ul>
+  </div>
+
+  <div class="gradient"></div>
+  <ul id="full-list"></ul>
+</section>
+
+<section class="content">
+  <output role="status" id="toast"></output>
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>
+<button class="icon-action display-settings">
+  <i class="ri-settings-3-line"></i>
+  <span class="sr-only">Settings</span>
+</button>
+
+
+    <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/ex_unit/lib/ex_unit/doc_test.ex#L1" title="View Source" class="icon-action" rel="help">
+      <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+      <span class="sr-only">View Source</span>
+    </a>
+
+  <span translate="no">ExUnit.DocTest</span> 
+  <small class="app-vsn" translate="no">(ExUnit v1.15.0-dev)</small>
+
+</h1>
+
+
+  <section id="moduledoc">
+<p>Extract test cases from the documentation.</p><p>Doctests allow us to generate tests from code examples found
+in <code class="inline">@moduledoc</code> and <code class="inline">@doc</code> attributes. To do this, invoke the
+<a href="#doctest/1"><code class="inline">doctest/1</code></a> macro from within your test case and ensure your
+code examples are written according to the syntax and guidelines
+below.</p><h2 id="module-syntax" class="section-heading">
+  <a href="#module-syntax">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Syntax
+  </a>
+</h2>
+<p>Every new test starts on a new line, with an <code class="inline">iex&gt;</code> prefix.
+Multiline expressions can be used by prefixing subsequent lines
+with either <code class="inline">...&gt;</code> (recommended) or <code class="inline">iex&gt;</code>.</p><p>The expected result should start the line after the <code class="inline">iex&gt;</code>
+and <code class="inline">...&gt;</code> line(s) and be terminated by a newline.</p><h2 id="module-examples" class="section-heading">
+  <a href="#module-examples">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Examples
+  </a>
+</h2>
+<p>To run doctests include them in an ExUnit case with a <code class="inline">doctest</code> macro:</p><pre><code class="makeup elixir" translate="no"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyModuleTest</span><span class="w"> </span><span class="k" data-group-id="2988337393-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">ExUnit.Case</span><span class="p">,</span><span class="w"> </span><span class="ss">async</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="w">
+  </span><span class="n">doctest</span><span class="w"> </span><span class="nc">MyModule</span><span class="w">
+</span><span class="k" data-group-id="2988337393-1">end</span></code></pre><p>The <code class="inline">doctest</code> macro loops through all functions and
+macros defined in <code class="inline">MyModule</code>, parsing their documentation in
+search of code examples.</p><p>A very basic example is:</p><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="mi">2</span></code></pre><p>Expressions on multiple lines are also supported:</p><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="nc">Enum</span><span class="o">.</span><span class="n">map</span><span class="p" data-group-id="2610487639-1">(</span><span class="p" data-group-id="2610487639-2">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="2610487639-2">]</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="2610487639-3">fn</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="k" data-group-id="2610487639-3">end</span><span class="p" data-group-id="2610487639-1">)</span><span class="w">
+</span><span class="p" data-group-id="2610487639-4">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p" data-group-id="2610487639-4">]</span></code></pre><p>Multiple results can be checked within the same test:</p><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="mi">1</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="mi">2</span></code></pre><p>If you want to keep any two tests separate,
+add an empty line between them:</p><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="mi">1</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="c1"># will fail with a `undefined variable &quot;a&quot;` error</span><span class="w">
+</span><span class="mi">2</span></code></pre><p>If you don't want to assert for every result in a doctest, you can omit
+the result. You can do so between expressions:</p><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">pid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spawn</span><span class="p" data-group-id="8985225836-1">(</span><span class="k" data-group-id="8985225836-2">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="ss">:ok</span><span class="w"> </span><span class="k" data-group-id="8985225836-2">end</span><span class="p" data-group-id="8985225836-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">is_pid</span><span class="p" data-group-id="8985225836-3">(</span><span class="n">pid</span><span class="p" data-group-id="8985225836-3">)</span><span class="w">
+</span><span class="no">true</span></code></pre><p>As well as at the end:</p><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="nc">Mod</span><span class="o">.</span><span class="n">do_a_call_that_should_not_raise!</span><span class="p" data-group-id="7002794351-1">(</span><span class="n">...</span><span class="p" data-group-id="7002794351-1">)</span></code></pre><p>This is useful when the result is something variable (like a PID in the
+example above) or when the result is a complicated data structure and you
+don't want to show it all, but just parts of it or some of its properties.</p><p>Similarly to IEx you can use numbers in your &quot;prompts&quot;:</p><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex(1)&gt; </span><span class="p" data-group-id="4753390475-1">[</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+</span><span class="gp unselectable">...(1)&gt; </span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="4753390475-1">]</span><span class="w">
+</span><span class="p" data-group-id="4753390475-2">[</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="4753390475-2">]</span></code></pre><p>This is useful in two cases:</p><ul><li>being able to refer to specific numbered scenarios</li><li>copy-pasting examples from an actual IEx session</li></ul><p>You can also select or skip functions when calling
+<code class="inline">doctest</code>. See the documentation on the <code class="inline">:except</code> and <code class="inline">:only</code> options below
+for more information.</p><h2 id="module-opaque-types" class="section-heading">
+  <a href="#module-opaque-types">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Opaque types
+  </a>
+</h2>
+<p>Some types' internal structures are kept hidden and instead show a
+user-friendly structure when inspected. The idiom in
+Elixir is to print those data types in the format <code class="inline">#Name&lt;...&gt;</code>. Because those
+values are treated as comments in Elixir code due to the leading
+<code class="inline">#</code> sign, they require special care when being used in doctests.</p><p>Imagine you have a map that contains a MapSet and is printed as:</p><pre><code class="makeup elixir" translate="no"><span class="p" data-group-id="6965771392-1">%{</span><span class="ss">users</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6965771392-2">#</span><span class="nc" data-group-id="6965771392-2">MapSet</span><span class="p" data-group-id="6965771392-2">&lt;</span><span class="p" data-group-id="6965771392-3">[</span><span class="ss">:foo</span><span class="p">,</span><span class="w"> </span><span class="ss">:bar</span><span class="p" data-group-id="6965771392-3">]</span><span class="p" data-group-id="6965771392-2">&gt;</span><span class="p" data-group-id="6965771392-1">}</span></code></pre><p>If you try to match on such an expression, <code class="inline">doctest</code> will fail to compile.
+There are two ways to resolve this.</p><p>The first is to rely on the fact that doctest can compare internal
+structures as long as they are at the root. So one could write:</p><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="3391661475-1">%{</span><span class="ss">users</span><span class="p">:</span><span class="w"> </span><span class="nc">Enum</span><span class="o">.</span><span class="n">into</span><span class="p" data-group-id="3391661475-2">(</span><span class="p" data-group-id="3391661475-3">[</span><span class="ss">:foo</span><span class="p">,</span><span class="w"> </span><span class="ss">:bar</span><span class="p" data-group-id="3391661475-3">]</span><span class="p">,</span><span class="w"> </span><span class="nc">MapSet</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="3391661475-4">(</span><span class="p" data-group-id="3391661475-4">)</span><span class="p" data-group-id="3391661475-2">)</span><span class="p" data-group-id="3391661475-1">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">map</span><span class="o">.</span><span class="n">users</span><span class="w">
+</span><span class="p" data-group-id="3391661475-5">#</span><span class="nc" data-group-id="3391661475-5">MapSet</span><span class="p" data-group-id="3391661475-5">&lt;</span><span class="p" data-group-id="3391661475-6">[</span><span class="ss">:foo</span><span class="p">,</span><span class="w"> </span><span class="ss">:bar</span><span class="p" data-group-id="3391661475-6">]</span><span class="p" data-group-id="3391661475-5">&gt;</span></code></pre><p>Whenever a doctest starts with &quot;#Name&lt;&quot;, <code class="inline">doctest</code> will perform a string
+comparison. For example, the above test will perform the following match:</p><pre><code class="makeup elixir" translate="no"><span class="n">inspect</span><span class="p" data-group-id="6252933884-1">(</span><span class="n">map</span><span class="o">.</span><span class="n">users</span><span class="p" data-group-id="6252933884-1">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;#MapSet&lt;[:foo, :bar]&gt;&quot;</span></code></pre><p>Alternatively, since doctest results are actually evaluated, you can have
+the MapSet building expression as the doctest result:</p><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="1060338229-1">%{</span><span class="ss">users</span><span class="p">:</span><span class="w"> </span><span class="nc">Enum</span><span class="o">.</span><span class="n">into</span><span class="p" data-group-id="1060338229-2">(</span><span class="p" data-group-id="1060338229-3">[</span><span class="ss">:foo</span><span class="p">,</span><span class="w"> </span><span class="ss">:bar</span><span class="p" data-group-id="1060338229-3">]</span><span class="p">,</span><span class="w"> </span><span class="nc">MapSet</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="1060338229-4">(</span><span class="p" data-group-id="1060338229-4">)</span><span class="p" data-group-id="1060338229-2">)</span><span class="p" data-group-id="1060338229-1">}</span><span class="w">
+</span><span class="p" data-group-id="1060338229-5">%{</span><span class="ss">users</span><span class="p">:</span><span class="w"> </span><span class="nc">Enum</span><span class="o">.</span><span class="n">into</span><span class="p" data-group-id="1060338229-6">(</span><span class="p" data-group-id="1060338229-7">[</span><span class="ss">:foo</span><span class="p">,</span><span class="w"> </span><span class="ss">:bar</span><span class="p" data-group-id="1060338229-7">]</span><span class="p">,</span><span class="w"> </span><span class="nc">MapSet</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="1060338229-8">(</span><span class="p" data-group-id="1060338229-8">)</span><span class="p" data-group-id="1060338229-6">)</span><span class="p" data-group-id="1060338229-5">}</span></code></pre><p>The downside of this approach is that the doctest result is not really
+what users would see in the terminal.</p><h2 id="module-exceptions" class="section-heading">
+  <a href="#module-exceptions">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Exceptions
+  </a>
+</h2>
+<p>You can also showcase expressions raising an exception, for example:</p><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex(1)&gt; </span><span class="k">raise</span><span class="w"> </span><span class="s">&quot;some error&quot;</span><span class="w">
+</span><span class="gt">** (RuntimeError) some error</span></code></pre><p>Doctest will look for a line starting with <code class="inline">** (</code> and it will parse it
+accordingly to extract the exception name and message. The exception parser
+will consider all following lines part of the exception message until there
+is an empty line or there is a new expression prefixed with <code class="inline">iex&gt;</code>.
+Therefore, it is possible to match on multiline messages as long as there
+are no empty lines on the message itself.</p><h2 id="module-when-not-to-use-doctest" class="section-heading">
+  <a href="#module-when-not-to-use-doctest">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    When not to use doctest
+  </a>
+</h2>
+<p>In general, doctests are not recommended when your code examples contain
+side effects. For example, if a doctest prints to standard output, doctest
+will not try to capture the output.</p><p>Similarly, doctests do not run in any kind of sandbox. So any module
+defined in a code example is going to linger throughout the whole test
+suite run.</p>
+  </section>
+
+
+  <section id="summary" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+      Summary
+    </h1>
+<div class="summary-functions summary">
+  <h2>
+    <a href="#functions">Functions</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#doctest/2" translate="no">doctest(module, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Generate test cases from module documentation.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#doctest_file/2" translate="no">doctest_file(file, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Generate test cases from a markdown file.</p></div>
+
+    </div>
+
+</div>
+
+  </section>
+
+
+  <section id="functions" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+Functions
+    </h1>
+    <div class="functions-list">
+<section class="detail" id="doctest/2">
+
+    <span id="doctest/1"></span>
+
+  <div class="detail-header">
+    <a href="#doctest/2" class="detail-link" title="Link to this macro">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature" translate="no">doctest(module, opts \\ [])</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/ex_unit/lib/ex_unit/doc_test.ex#L198" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Generate test cases from module documentation.</p><p>Calling <code class="inline">doctest(Module)</code> will generate tests for all doctests found
+in the <code class="inline">module</code>.</p><h2 id="doctest/2-options" class="section-heading">
+  <a href="#doctest/2-options">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Options
+  </a>
+</h2>
+<ul><li><p><code class="inline">:except</code> - generates tests for all functions except those listed
+(list of <code class="inline">{function, arity}</code> tuples, and/or <code class="inline">:moduledoc</code>).</p></li><li><p><code class="inline">:only</code> - generates tests only for functions listed
+(list of <code class="inline">{function, arity}</code> tuples, and/or <code class="inline">:moduledoc</code>).</p></li><li><p><code class="inline">:import</code> - when <code class="inline">true</code>, one can test a function defined in the module
+without referring to the module name. However, this is not feasible when
+there is a clash with a module like <a href="https://hexdocs.pm/elixir/main/Kernel.html"><code class="inline">Kernel</code></a>. In these cases, <code class="inline">:import</code>
+should be set to <code class="inline">false</code> and <code class="inline">Module.function(...)</code> should be used instead.</p></li><li><p><code class="inline">:tags</code> - a list of tags to apply to all generated doctests.</p></li></ul><h2 id="doctest/2-examples" class="section-heading">
+  <a href="#doctest/2-examples">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Examples
+  </a>
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyModuleTest</span><span class="w"> </span><span class="k" data-group-id="3909434557-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">ExUnit.Case</span><span class="w">
+  </span><span class="n">doctest</span><span class="w"> </span><span class="nc">MyModule</span><span class="p">,</span><span class="w"> </span><span class="ss">except</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3909434557-2">[</span><span class="ss">:moduledoc</span><span class="p">,</span><span class="w"> </span><span class="ss">trick_fun</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="3909434557-2">]</span><span class="w">
+</span><span class="k" data-group-id="3909434557-1">end</span></code></pre><p>This macro is auto-imported with every <a href="ExUnit.Case.html"><code class="inline">ExUnit.Case</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="doctest_file/2">
+
+    <span id="doctest_file/1"></span>
+
+  <div class="detail-header">
+    <a href="#doctest_file/2" class="detail-link" title="Link to this macro">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature" translate="no">doctest_file(file, opts \\ [])</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/ex_unit/lib/ex_unit/doc_test.ex#L244" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.15.0)</span>
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Generate test cases from a markdown file.</p><h2 id="doctest_file/2-options" class="section-heading">
+  <a href="#doctest_file/2-options">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Options
+  </a>
+</h2>
+<ul><li><code class="inline">:tags</code> - a list of tags to apply to all generated doctests.</li></ul><h2 id="doctest_file/2-examples" class="section-heading">
+  <a href="#doctest_file/2-examples">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Examples
+  </a>
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">ReadmeTest</span><span class="w"> </span><span class="k" data-group-id="6408086511-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">ExUnit.Case</span><span class="w">
+  </span><span class="n">doctest_file</span><span class="w"> </span><span class="s">&quot;README.md&quot;</span><span class="w">
+</span><span class="k" data-group-id="6408086511-1">end</span></code></pre><p>This macro is auto-imported with every <a href="ExUnit.Case.html"><code class="inline">ExUnit.Case</code></a>.</p>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+      <footer class="footer">
+        <p>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Search HexDocs packages">
+              Search HexDocs
+            </button>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.29.4) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

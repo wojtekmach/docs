@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.29.4">
+    <meta name="project" content="Mix v1.15.0-dev">
+
+    <title>mix profile.cprof — Mix v1.15.0-dev</title>
+    <link rel="stylesheet" href="dist/html-elixir-R7PT35Y2.css" />
+
+
+      <link rel="canonical" href="https://hexdocs.pm/mix/main/Mix.Tasks.Profile.Cprof.html" />
+
+    <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
+    <script src="dist/handlebars.templates-OHVEJKU6.js"></script>
+    <script src="dist/sidebar_items-310F6449.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/html-ZKIIOKLS.js"></script>
+
+
+  </head>
+  <body data-type="tasks" class="page-task">
+    <script>
+
+      try {
+        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+
+        if (settings.theme === 'dark' ||
+           ((settings.theme === 'system' || settings.theme == null) &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches)
+           ) {
+          document.body.classList.add('dark')
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <i class="ri-search-2-line" aria-hidden="true" title="Submit search"></i>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <i class="ri-close-line ri-lg" aria-hidden="true" title="Cancel search"></i>
+    </button>
+    <label class="search-label">
+      <p class="sr-only">Search</p>
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName" translate="no">
+Mix
+      </a>
+      <div class="sidebar-projectVersion" translate="no">
+        v1.15.0-dev
+      </div>
+    </div>
+    <ul class="sidebar-listNav">
+      <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+        <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+        <li><a id="tasks-list-link" href="#full-list"><span translate="no">Mix</span> Tasks</a></li>
+
+    </ul>
+  </div>
+
+  <div class="gradient"></div>
+  <ul id="full-list"></ul>
+</section>
+
+<section class="content">
+  <output role="status" id="toast"></output>
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>
+<button class="icon-action display-settings">
+  <i class="ri-settings-3-line"></i>
+  <span class="sr-only">Settings</span>
+</button>
+
+
+    <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/mix/lib/mix/tasks/profile.cprof.ex#L1" title="View Source" class="icon-action" rel="help">
+      <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+      <span class="sr-only">View Source</span>
+    </a>
+
+  <span translate="no">mix profile.cprof</span> 
+  <small class="app-vsn" translate="no">(Mix v1.15.0-dev)</small>
+
+</h1>
+
+
+  <section id="moduledoc">
+<p>Profiles the given file or expression using Erlang's <code class="inline">cprof</code> tool.</p><p><code class="inline">cprof</code> can be useful when you want to discover the bottlenecks related
+to function calls.</p><p>Before running the code, it invokes the <code class="inline">app.start</code> task which compiles
+and loads your project. After that, the target expression is profiled together
+with all matching function calls, by setting breakpoints containing
+counters. These can only be set on BEAM code so BIFs cannot be call
+count traced.</p><p>To profile the code, you can use syntax similar to the <a href="Mix.Tasks.Run.html"><code class="inline">mix run</code></a> task:</p><pre><code class="makeup shell" translate="no"><span class="gp unselectable">$ </span><span class="">mix profile.cprof -e Hello.world
+</span><span class="gp unselectable">$ </span><span class="">mix profile.cprof -e &quot;[1, 2, 3] |&gt; Enum.reverse |&gt; Enum.map(&amp;Integer.to_string/1)&quot;
+</span><span class="gp unselectable">$ </span><span class="">mix profile.cprof my_script.exs arg1 arg2 arg3
+</span></code></pre><p>This task is automatically re-enabled, so you can profile multiple times
+in the same Mix invocation.</p><h2 id="module-command-line-options" class="section-heading">
+  <a href="#module-command-line-options">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Command line options
+  </a>
+</h2>
+<ul><li><code class="inline">--matching</code> - only profile calls matching the given <code class="inline">Module.function/arity</code> pattern</li><li><code class="inline">--limit</code> - filters out any results with a call count less than the limit</li><li><code class="inline">--module</code> - filters out any results not pertaining to the given module</li><li><code class="inline">--eval</code>, <code class="inline">-e</code> - evaluate the given code</li><li><code class="inline">--require</code>, <code class="inline">-r</code> - requires pattern before running the command</li><li><code class="inline">--parallel</code>, <code class="inline">-p</code> - makes all requires parallel</li><li><code class="inline">--no-compile</code> - does not compile even if files require compilation</li><li><code class="inline">--no-deps-check</code> - does not check dependencies</li><li><code class="inline">--no-archives-check</code> - does not check archives</li><li><code class="inline">--no-halt</code> - does not halt the system after running the command</li><li><code class="inline">--no-start</code> - does not start applications after compilation</li><li><code class="inline">--no-elixir-version-check</code> - does not check the Elixir version from mix.exs</li></ul><h2 id="module-profile-output" class="section-heading">
+  <a href="#module-profile-output">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Profile output
+  </a>
+</h2>
+<p>Example output:</p><pre><code class="makeup elixir" translate="no"><span class="w">                                                                     </span><span class="nc">CNT</span><span class="w">
+</span><span class="nc">Total</span><span class="w">                                                                 </span><span class="mi">15</span><span class="w">
+</span><span class="nc">Enum</span><span class="w">                                                                   </span><span class="mi">6</span><span class="w">  </span><span class="o">&lt;-</span><span class="o">-</span><span class="w">
+  </span><span class="nc">Enum</span><span class="o">.</span><span class="s">&quot;-map/2-lists^map/1-0-&quot;</span><span class="o">/</span><span class="mi">2</span><span class="w">                                       </span><span class="mi">4</span><span class="w">
+  </span><span class="nc">Enum</span><span class="o">.</span><span class="n">reverse</span><span class="o">/</span><span class="mi">1</span><span class="w">                                                       </span><span class="mi">1</span><span class="w">
+  </span><span class="nc">Enum</span><span class="o">.</span><span class="n">map</span><span class="o">/</span><span class="mi">2</span><span class="w">                                                           </span><span class="mi">1</span><span class="w">
+</span><span class="ss">:elixir_compiler</span><span class="w">                                                       </span><span class="mi">4</span><span class="w">  </span><span class="o">&lt;-</span><span class="o">-</span><span class="w">
+  </span><span class="n">anonymous</span><span class="w"> </span><span class="k" data-group-id="5482248924-1">fn</span><span class="o">/</span><span class="mi">1</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nc">:elixir_compiler</span><span class="o">.</span><span class="n">__FILE__</span><span class="o">/</span><span class="mi">1</span><span class="w">                        </span><span class="mi">3</span><span class="w">
+  </span><span class="n">anonymous</span><span class="w"> </span><span class="k" data-group-id="5482248924-2">fn</span><span class="o">/</span><span class="mi">0</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nc">:elixir_compiler</span><span class="o">.</span><span class="n">__FILE__</span><span class="o">/</span><span class="mi">1</span><span class="w">                        </span><span class="mi">1</span><span class="w">
+</span><span class="nc">String.Chars.Integer</span><span class="w">                                                   </span><span class="mi">3</span><span class="w">  </span><span class="o">&lt;-</span><span class="o">-</span><span class="w">
+  </span><span class="nc">String.Chars.Integer</span><span class="o">.</span><span class="n">to_string</span><span class="o">/</span><span class="mi">1</span><span class="w">                                     </span><span class="mi">3</span><span class="w">
+</span><span class="ss">:erlang</span><span class="w">                                                                </span><span class="mi">2</span><span class="w">  </span><span class="o">&lt;-</span><span class="o">-</span><span class="w">
+  </span><span class="nc">:erlang</span><span class="o">.</span><span class="n">trace_pattern</span><span class="o">/</span><span class="mi">3</span><span class="w">                                              </span><span class="mi">2</span><span class="w">
+</span><span class="nc">Profile</span><span class="w"> </span><span class="n">done</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="mi">20229</span><span class="w"> </span><span class="n">matching</span><span class="w"> </span><span class="n">functions</span></code></pre><p>The default output contains data gathered from all matching functions. The left
+column structures each module and its total call count trace is presented on the right.
+Each module has its count discriminated by function below. The <code class="inline">&lt;--</code> symbol is meant to
+help visualize where a new module call count begins.</p><p>The first row (Total) is the sum of all function calls. In the last row the number of
+matching functions that were considered for profiling is presented.</p><p>When <code class="inline">--matching</code> option is specified, call count tracing will be started only for
+the functions matching the given pattern:</p><pre><code class="makeup elixir" translate="no"><span class="nc">String.Chars.Integer</span><span class="w">                                                   </span><span class="mi">3</span><span class="w">  </span><span class="o">&lt;-</span><span class="o">-</span><span class="w">
+  </span><span class="nc">String.Chars.Integer</span><span class="o">.</span><span class="n">to_string</span><span class="o">/</span><span class="mi">1</span><span class="w">                                     </span><span class="mi">3</span><span class="w">
+</span><span class="nc">Profile</span><span class="w"> </span><span class="n">done</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">matching</span><span class="w"> </span><span class="n">functions</span></code></pre><p>The pattern can be a module name, such as <a href="https://hexdocs.pm/elixir/main/String.html"><code class="inline">String</code></a> to count all calls to that module,
+a call without arity, such as <code class="inline">String.split</code>, to count all calls to that function
+regardless of arity, or a call with arity, such as <a href="https://hexdocs.pm/elixir/main/String.html#split/3"><code class="inline">String.split/3</code></a>, to count all
+calls to that exact module, function and arity.</p><h2 id="module-caveats" class="section-heading">
+  <a href="#module-caveats">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Caveats
+  </a>
+</h2>
+<p>You should be aware the profiler is stopped as soon as the code has finished running. This
+may need special attention, when:  running asynchronous code as function calls which were
+called before the profiler stopped will not be counted; running synchronous code as long
+running computations and a profiler without a proper MFA trace pattern or filter may
+lead to a result set which is difficult to comprehend.</p><p>Other caveats are the impossibility to call count trace BIFs, since breakpoints can
+only be set on BEAM code; functions calls performed by <code class="inline">:cprof</code> are not traced; the
+maximum size of a call counter is equal to the host machine's word size
+(for example, 2147483647 in a 32-bit host).</p>
+  </section>
+
+
+  <section id="summary" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+      Summary
+    </h1>
+<div class="summary-functions summary">
+  <h2>
+    <a href="#functions">Functions</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#profile/2" translate="no">profile(fun, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Allows to programmatically run the <code class="inline">cprof</code> profiler on expression in <code class="inline">fun</code>.</p></div>
+
+    </div>
+
+</div>
+
+  </section>
+
+
+  <section id="functions" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+Functions
+    </h1>
+    <div class="functions-list">
+<section class="detail" id="profile/2">
+
+    <span id="profile/1"></span>
+
+  <div class="detail-header">
+    <a href="#profile/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">profile(fun, opts \\ [])</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/mix/lib/mix/tasks/profile.cprof.ex#L172" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> profile(
+  (-&gt; <a href="https://hexdocs.pm/elixir/main/typespecs.html#basic-types">any</a>()),
+  <a href="https://hexdocs.pm/elixir/main/typespecs.html#built-in-types">keyword</a>()
+) :: <a href="https://hexdocs.pm/elixir/main/typespecs.html#basic-types">any</a>()</pre>
+
+      </div>
+
+<p>Allows to programmatically run the <code class="inline">cprof</code> profiler on expression in <code class="inline">fun</code>.</p><p>Returns the return value of <code class="inline">fun</code>.</p><h2 id="profile/2-options" class="section-heading">
+  <a href="#profile/2-options">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Options
+  </a>
+</h2>
+<ul><li><code class="inline">:matching</code> - only profile calls matching the given pattern in form of
+<code class="inline">{module, function, arity}</code>, where each element may be replaced by <code class="inline">:_</code>
+to allow any value</li><li><code class="inline">:limit</code> - filters out any results with a call count less than the limit</li><li><code class="inline">:module</code> - filters out any results not pertaining to the given module</li></ul>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+      <footer class="footer">
+        <p>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Search HexDocs packages">
+              Search HexDocs
+            </button>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.29.4) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

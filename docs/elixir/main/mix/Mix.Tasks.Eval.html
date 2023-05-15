@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.29.4">
+    <meta name="project" content="Mix v1.15.0-dev">
+
+    <title>mix eval — Mix v1.15.0-dev</title>
+    <link rel="stylesheet" href="dist/html-elixir-R7PT35Y2.css" />
+
+
+      <link rel="canonical" href="https://hexdocs.pm/mix/main/Mix.Tasks.Eval.html" />
+
+    <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
+    <script src="dist/handlebars.templates-OHVEJKU6.js"></script>
+    <script src="dist/sidebar_items-310F6449.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/html-ZKIIOKLS.js"></script>
+
+
+  </head>
+  <body data-type="tasks" class="page-task">
+    <script>
+
+      try {
+        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+
+        if (settings.theme === 'dark' ||
+           ((settings.theme === 'system' || settings.theme == null) &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches)
+           ) {
+          document.body.classList.add('dark')
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <i class="ri-search-2-line" aria-hidden="true" title="Submit search"></i>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <i class="ri-close-line ri-lg" aria-hidden="true" title="Cancel search"></i>
+    </button>
+    <label class="search-label">
+      <p class="sr-only">Search</p>
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName" translate="no">
+Mix
+      </a>
+      <div class="sidebar-projectVersion" translate="no">
+        v1.15.0-dev
+      </div>
+    </div>
+    <ul class="sidebar-listNav">
+      <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+        <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+        <li><a id="tasks-list-link" href="#full-list"><span translate="no">Mix</span> Tasks</a></li>
+
+    </ul>
+  </div>
+
+  <div class="gradient"></div>
+  <ul id="full-list"></ul>
+</section>
+
+<section class="content">
+  <output role="status" id="toast"></output>
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>
+<button class="icon-action display-settings">
+  <i class="ri-settings-3-line"></i>
+  <span class="sr-only">Settings</span>
+</button>
+
+
+    <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/mix/lib/mix/tasks/eval.ex#L1" title="View Source" class="icon-action" rel="help">
+      <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+      <span class="sr-only">View Source</span>
+    </a>
+
+  <span translate="no">mix eval</span> 
+  <small class="app-vsn" translate="no">(Mix v1.15.0-dev)</small>
+
+</h1>
+
+
+  <section id="moduledoc">
+<p>Evaluates the given code within a configured application.</p><pre><code class="makeup shell" translate="no"><span class="gp unselectable">$ </span><span class="">mix eval &quot;IO.puts(1 + 2)&quot;
+</span></code></pre><p>The given code is evaluated after the current application
+has been configured but without loading or starting them
+(some applications may be loaded as part of booting but
+that's not guaranteed). See <a href="Mix.Tasks.Run.html"><code class="inline">mix run</code></a> for running your
+application and scripts within a started application.</p><p>This task is designed to mirror the <code class="inline">bin/my_app eval</code> command
+in releases. It is typically used to invoke functions already
+defined within your application. For example, you may have a
+module such as:</p><pre><code class="makeup elixir" translate="no"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyApp.ReleaseTasks</span><span class="w"> </span><span class="k" data-group-id="9111513512-1">do</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">migrate_database</span><span class="w"> </span><span class="k" data-group-id="9111513512-2">do</span><span class="w">
+    </span><span class="nc">Application</span><span class="o">.</span><span class="n">load</span><span class="p" data-group-id="9111513512-3">(</span><span class="ss">:my_app</span><span class="p" data-group-id="9111513512-3">)</span><span class="w">
+    </span><span class="n">...</span><span class="w">
+  </span><span class="k" data-group-id="9111513512-2">end</span><span class="w">
+</span><span class="k" data-group-id="9111513512-1">end</span></code></pre><p>Once defined, you can invoke this function either via <a href="Mix.Tasks.Eval.html#content"><code class="inline">mix eval</code></a> or
+via <code class="inline">bin/my_app eval</code> inside a release as follows:</p><pre><code class="makeup shell" translate="no"><span class="gp unselectable">$ </span><span class="">mix eval MyApp.ReleaseTasks.migrate_database
+</span><span class="gp unselectable">$ </span><span class="">bin/my_app eval MyApp.ReleaseTasks.migrate_database
+</span></code></pre><p>As you can see, the current application has to be either explicitly
+loaded or started in your tasks, either by calling <a href="https://hexdocs.pm/elixir/main/Application.html#load/1"><code class="inline">Application.load/1</code></a>
+or <a href="https://hexdocs.pm/elixir/main/Application.html#ensure_all_started/1"><code class="inline">Application.ensure_all_started/1</code></a>. This gives you full control over
+the application booting life-cycle. For more information, see the
+<a href="https://hexdocs.pm/elixir/main/Application.html"><code class="inline">Application</code></a> module.</p><p>This task is automatically re-enabled, so it can be called multiple
+times with different arguments.</p><h2 id="module-command-line-options" class="section-heading">
+  <a href="#module-command-line-options">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Command-line options
+  </a>
+</h2>
+<ul><li><code class="inline">--no-archives-check</code> - does not check archives</li><li><code class="inline">--no-compile</code> - does not compile even if files require compilation</li><li><code class="inline">--no-deps-check</code> - does not check dependencies</li><li><code class="inline">--no-elixir-version-check</code> - does not check the Elixir version from mix.exs</li><li><code class="inline">--no-mix-exs</code> - allows the command to run even if there is no mix.exs</li></ul>
+  </section>
+
+
+
+      <footer class="footer">
+        <p>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Search HexDocs packages">
+              Search HexDocs
+            </button>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.29.4) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

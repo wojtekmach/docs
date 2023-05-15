@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.29.4">
+    <meta name="project" content="ExUnit v1.15.0-dev">
+
+    <title>ExUnit.CaseTemplate — ExUnit v1.15.0-dev</title>
+    <link rel="stylesheet" href="dist/html-elixir-R7PT35Y2.css" />
+
+
+      <link rel="canonical" href="https://hexdocs.pm/ex_unit/main/ExUnit.CaseTemplate.html" />
+
+    <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
+    <script src="dist/handlebars.templates-OHVEJKU6.js"></script>
+    <script src="dist/sidebar_items-C18C357C.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/html-ZKIIOKLS.js"></script>
+
+
+  </head>
+  <body data-type="modules" class="page-module">
+    <script>
+
+      try {
+        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+
+        if (settings.theme === 'dark' ||
+           ((settings.theme === 'system' || settings.theme == null) &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches)
+           ) {
+          document.body.classList.add('dark')
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <i class="ri-search-2-line" aria-hidden="true" title="Submit search"></i>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <i class="ri-close-line ri-lg" aria-hidden="true" title="Cancel search"></i>
+    </button>
+    <label class="search-label">
+      <p class="sr-only">Search</p>
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName" translate="no">
+ExUnit
+      </a>
+      <div class="sidebar-projectVersion" translate="no">
+        v1.15.0-dev
+      </div>
+    </div>
+    <ul class="sidebar-listNav">
+      <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+        <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+    </ul>
+  </div>
+
+  <div class="gradient"></div>
+  <ul id="full-list"></ul>
+</section>
+
+<section class="content">
+  <output role="status" id="toast"></output>
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>
+<button class="icon-action display-settings">
+  <i class="ri-settings-3-line"></i>
+  <span class="sr-only">Settings</span>
+</button>
+
+
+    <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/ex_unit/lib/ex_unit/case_template.ex#L1" title="View Source" class="icon-action" rel="help">
+      <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+      <span class="sr-only">View Source</span>
+    </a>
+
+  <span translate="no">ExUnit.CaseTemplate</span> 
+  <small class="app-vsn" translate="no">(ExUnit v1.15.0-dev)</small>
+
+</h1>
+
+
+  <section id="moduledoc">
+<p>Defines a module template to be used throughout your test suite.</p><p>This is useful when there are a set of setup callbacks or a set
+of functions that should be shared between test modules.</p><p>Let's imagine that you create a <code class="inline">MyCase</code> module that calls <code class="inline">use ExUnit.CaseTemplate</code>. When a test case module calls <code class="inline">use MyCase</code>, the
+following things hold true:</p><ul><li><p>All the functionality that <code class="inline">MyCase</code> would have had available from
+<code class="inline">use ExUnit.Case</code> is available (same as if <code class="inline">MyCase</code> called <code class="inline">use ExUnit.Case</code> directly)</p></li><li><p>The <code class="inline">setup</code> and <code class="inline">setup_all</code> callbacks that you define in <code class="inline">MyCase</code>
+get used in the test case module</p></li></ul><p>The options that you pass to <code class="inline">use MyCase</code> get also passed to <code class="inline">use ExUnit.Case</code> under the hood. This means you can do things like <code class="inline">use MyCase, async: true</code>. You can also access this options in <a href="#using/2"><code class="inline">using/2</code></a>.</p><h2 id="module-example" class="section-heading">
+  <a href="#module-example">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Example
+  </a>
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyCase</span><span class="w"> </span><span class="k" data-group-id="7938912109-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">ExUnit.CaseTemplate</span><span class="w">
+
+  </span><span class="n">setup</span><span class="w"> </span><span class="k" data-group-id="7938912109-2">do</span><span class="w">
+    </span><span class="nc">IO</span><span class="o">.</span><span class="n">puts</span><span class="p" data-group-id="7938912109-3">(</span><span class="s">&quot;This will run before each test that uses this case&quot;</span><span class="p" data-group-id="7938912109-3">)</span><span class="w">
+  </span><span class="k" data-group-id="7938912109-2">end</span><span class="w">
+</span><span class="k" data-group-id="7938912109-1">end</span><span class="w">
+
+</span><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyTest</span><span class="w"> </span><span class="k" data-group-id="7938912109-4">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">MyCase</span><span class="p">,</span><span class="w"> </span><span class="ss">async</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="w">
+
+  </span><span class="n">test</span><span class="w"> </span><span class="s">&quot;truth&quot;</span><span class="w"> </span><span class="k" data-group-id="7938912109-5">do</span><span class="w">
+    </span><span class="n">assert</span><span class="w"> </span><span class="no">true</span><span class="w">
+  </span><span class="k" data-group-id="7938912109-5">end</span><span class="w">
+</span><span class="k" data-group-id="7938912109-4">end</span></code></pre><p>If you need to &quot;hook&quot; into <code class="inline">use MyCase</code> and do other things as well,
+you can use the <a href="#using/2"><code class="inline">using/2</code></a> macro. See its documentation for more
+information and examples.</p><pre><code class="makeup elixir" translate="no"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyCase</span><span class="w"> </span><span class="k" data-group-id="6849157031-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">ExUnit.CaseTemplate</span><span class="w">
+
+  </span><span class="n">using</span><span class="w"> </span><span class="k" data-group-id="6849157031-2">do</span><span class="w">
+    </span><span class="k">quote</span><span class="w"> </span><span class="k" data-group-id="6849157031-3">do</span><span class="w">
+      </span><span class="kn">import</span><span class="w"> </span><span class="nc">MyApp.TestHelpers</span><span class="w">
+    </span><span class="k" data-group-id="6849157031-3">end</span><span class="w">
+  </span><span class="k" data-group-id="6849157031-2">end</span><span class="w">
+</span><span class="k" data-group-id="6849157031-1">end</span></code></pre>
+  </section>
+
+
+  <section id="summary" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+      Summary
+    </h1>
+<div class="summary-functions summary">
+  <h2>
+    <a href="#functions">Functions</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#using/2" translate="no">using(var \\ quote do
+  _
+end, list)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Allows a developer to customize the using block
+when the case template is used.</p></div>
+
+    </div>
+
+</div>
+
+  </section>
+
+
+  <section id="functions" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+Functions
+    </h1>
+    <div class="functions-list">
+<section class="detail" id="using/2">
+
+    <span id="using/1"></span>
+
+  <div class="detail-header">
+    <a href="#using/2" class="detail-link" title="Link to this macro">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature" translate="no">using(var \\ quote do
+  _
+end, list)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/ex_unit/lib/ex_unit/case_template.ex#L140" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Allows a developer to customize the using block
+when the case template is used.</p><p>You can use an optional <code class="inline">var</code> argument when calling <a href="#using/2"><code class="inline">using/2</code></a>. ExUnit
+will pass whatever argument you pass to <code class="inline">use MyCase</code> as this <code class="inline">var</code> argument. See the examples below for clarification.</p><h2 id="using/2-example" class="section-heading">
+  <a href="#using/2-example">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Example
+  </a>
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyCase</span><span class="w"> </span><span class="k" data-group-id="0393362821-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">ExUnit.CaseTemplate</span><span class="w">
+
+  </span><span class="n">using</span><span class="w"> </span><span class="k" data-group-id="0393362821-2">do</span><span class="w">
+    </span><span class="k">quote</span><span class="w"> </span><span class="k" data-group-id="0393362821-3">do</span><span class="w">
+      </span><span class="c1"># This code is injected into every case that calls &quot;use MyCase&quot;</span><span class="w">
+      </span><span class="kn">alias</span><span class="w"> </span><span class="nc">MyApp.FunModule</span><span class="w">
+    </span><span class="k" data-group-id="0393362821-3">end</span><span class="w">
+  </span><span class="k" data-group-id="0393362821-2">end</span><span class="w">
+</span><span class="k" data-group-id="0393362821-1">end</span></code></pre><p>You can specify an argument to <a href="#using/2"><code class="inline">using/2</code></a>:</p><pre><code class="makeup elixir" translate="no"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyCase</span><span class="w"> </span><span class="k" data-group-id="7423127900-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">ExUnit.CaseTemplate</span><span class="w">
+
+  </span><span class="n">using</span><span class="w"> </span><span class="n">options</span><span class="w"> </span><span class="k" data-group-id="7423127900-2">do</span><span class="w">
+    </span><span class="k">quote</span><span class="w"> </span><span class="k" data-group-id="7423127900-3">do</span><span class="w">
+      </span><span class="k">if</span><span class="w"> </span><span class="k">unquote</span><span class="p" data-group-id="7423127900-4">(</span><span class="n">options</span><span class="p" data-group-id="7423127900-4">)</span><span class="p" data-group-id="7423127900-5">[</span><span class="ss">:import_helpers</span><span class="p" data-group-id="7423127900-5">]</span><span class="w"> </span><span class="k" data-group-id="7423127900-6">do</span><span class="w">
+        </span><span class="kn">import</span><span class="w"> </span><span class="nc">MyApp.TestHelpers</span><span class="w">
+      </span><span class="k" data-group-id="7423127900-6">end</span><span class="w">
+    </span><span class="k" data-group-id="7423127900-3">end</span><span class="w">
+  </span><span class="k" data-group-id="7423127900-2">end</span><span class="w">
+</span><span class="k" data-group-id="7423127900-1">end</span></code></pre><p>The second argument passed to <code class="inline">use MyCase</code> gets forwarded to <a href="#using/2"><code class="inline">using/2</code></a> too:</p><pre><code class="makeup elixir" translate="no"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">SomeTestCase</span><span class="w"> </span><span class="k" data-group-id="9688762502-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">MyCase</span><span class="p">,</span><span class="w"> </span><span class="ss">async</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p">,</span><span class="w"> </span><span class="ss">import_helpers</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p">,</span><span class="w"> </span><span class="ss">async</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="w">
+
+  </span><span class="n">test</span><span class="w"> </span><span class="s">&quot;the truth&quot;</span><span class="w"> </span><span class="k" data-group-id="9688762502-2">do</span><span class="w">
+    </span><span class="c1"># truth/0 comes from MyApp.TestHelpers:</span><span class="w">
+    </span><span class="n">assert</span><span class="w"> </span><span class="n">truth</span><span class="p" data-group-id="9688762502-3">(</span><span class="p" data-group-id="9688762502-3">)</span><span class="w">
+  </span><span class="k" data-group-id="9688762502-2">end</span><span class="w">
+</span><span class="k" data-group-id="9688762502-1">end</span></code></pre><blockquote><h4 class="warning">Sharing options with <code class="inline">use ExUnit.Case</code></h4><p>The second argument that you pass to <code class="inline">use MyCase</code> is <em>also</em> passed
+as the second argument to <code class="inline">use ExUnit.Case</code>.</p></blockquote>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+      <footer class="footer">
+        <p>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Search HexDocs packages">
+              Search HexDocs
+            </button>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.29.4) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

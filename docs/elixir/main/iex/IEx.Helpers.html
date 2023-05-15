@@ -1,0 +1,1952 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.29.4">
+    <meta name="project" content="IEx v1.15.0-dev">
+
+    <title>IEx.Helpers — IEx v1.15.0-dev</title>
+    <link rel="stylesheet" href="dist/html-elixir-R7PT35Y2.css" />
+
+
+      <link rel="canonical" href="https://hexdocs.pm/iex/main/IEx.Helpers.html" />
+
+    <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
+    <script src="dist/handlebars.templates-OHVEJKU6.js"></script>
+    <script src="dist/sidebar_items-35A69008.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/html-ZKIIOKLS.js"></script>
+
+
+  </head>
+  <body data-type="modules" class="page-module">
+    <script>
+
+      try {
+        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+
+        if (settings.theme === 'dark' ||
+           ((settings.theme === 'system' || settings.theme == null) &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches)
+           ) {
+          document.body.classList.add('dark')
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <i class="ri-search-2-line" aria-hidden="true" title="Submit search"></i>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <i class="ri-close-line ri-lg" aria-hidden="true" title="Cancel search"></i>
+    </button>
+    <label class="search-label">
+      <p class="sr-only">Search</p>
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName" translate="no">
+IEx
+      </a>
+      <div class="sidebar-projectVersion" translate="no">
+        v1.15.0-dev
+      </div>
+    </div>
+    <ul class="sidebar-listNav">
+      <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+        <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+    </ul>
+  </div>
+
+  <div class="gradient"></div>
+  <ul id="full-list"></ul>
+</section>
+
+<section class="content">
+  <output role="status" id="toast"></output>
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>
+<button class="icon-action display-settings">
+  <i class="ri-settings-3-line"></i>
+  <span class="sr-only">Settings</span>
+</button>
+
+
+    <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L1" title="View Source" class="icon-action" rel="help">
+      <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+      <span class="sr-only">View Source</span>
+    </a>
+
+  <span translate="no">IEx.Helpers</span> 
+  <small class="app-vsn" translate="no">(IEx v1.15.0-dev)</small>
+
+</h1>
+
+
+  <section id="moduledoc">
+<p>Welcome to Interactive Elixir. You are currently
+seeing the documentation for the module <a href="IEx.Helpers.html#content"><code class="inline">IEx.Helpers</code></a>
+which provides many helpers to make Elixir's shell
+more joyful to work with.</p><p>This message was triggered by invoking the helper <code class="inline">h()</code>,
+usually referred to as <a href="#h/0"><code class="inline">h/0</code></a> (since it expects 0 arguments).</p><p>You can use the <a href="#h/1"><code class="inline">h/1</code></a> function to invoke the documentation
+for any Elixir module or function:</p><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">h</span><span class="p" data-group-id="5867832586-1">(</span><span class="nc">Enum</span><span class="p" data-group-id="5867832586-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">h</span><span class="p" data-group-id="5867832586-2">(</span><span class="nc">Enum</span><span class="o">.</span><span class="n">map</span><span class="p" data-group-id="5867832586-2">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">h</span><span class="p" data-group-id="5867832586-3">(</span><span class="nc">Enum</span><span class="o">.</span><span class="n">reverse</span><span class="o">/</span><span class="mi">1</span><span class="p" data-group-id="5867832586-3">)</span></code></pre><p>You can also use the <a href="#i/1"><code class="inline">i/1</code></a> function to introspect any value
+you have in the shell:</p><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">i</span><span class="p" data-group-id="0568998655-1">(</span><span class="s">&quot;hello&quot;</span><span class="p" data-group-id="0568998655-1">)</span></code></pre><p>There are many other helpers available, here are some examples:</p><ul><li><a href="#b/1"><code class="inline">b/1</code></a>            - prints callbacks info and docs for a given module</li><li><a href="#c/1"><code class="inline">c/1</code></a>            - compiles a file</li><li><a href="#c/2"><code class="inline">c/2</code></a>            - compiles a file and writes bytecode to the given path</li><li><a href="#cd/1"><code class="inline">cd/1</code></a>           - changes the current directory</li><li><a href="#clear/0"><code class="inline">clear/0</code></a>        - clears the screen</li><li><a href="#exports/1"><code class="inline">exports/1</code></a>      - shows all exports (functions + macros) in a module</li><li><a href="#flush/0"><code class="inline">flush/0</code></a>        - flushes all messages sent to the shell</li><li><a href="#h/0"><code class="inline">h/0</code></a>            - prints this help message</li><li><a href="#h/1"><code class="inline">h/1</code></a>            - prints help for the given module, function or macro</li><li><a href="#i/0"><code class="inline">i/0</code></a>            - prints information about the last value</li><li><a href="#i/1"><code class="inline">i/1</code></a>            - prints information about the given term</li><li><a href="#ls/0"><code class="inline">ls/0</code></a>           - lists the contents of the current directory</li><li><a href="#ls/1"><code class="inline">ls/1</code></a>           - lists the contents of the specified directory</li><li><a href="#open/1"><code class="inline">open/1</code></a>         - opens the source for the given module or function in your editor</li><li><a href="#pid/1"><code class="inline">pid/1</code></a>          - creates a PID from a string</li><li><a href="#pid/3"><code class="inline">pid/3</code></a>          - creates a PID with the 3 integer arguments passed</li><li><a href="#port/1"><code class="inline">port/1</code></a>         - creates a port from a string</li><li><a href="#port/2"><code class="inline">port/2</code></a>         - creates a port with the 2 non-negative integers passed</li><li><a href="#pwd/0"><code class="inline">pwd/0</code></a>          - prints the current working directory</li><li><a href="#r/1"><code class="inline">r/1</code></a>            - recompiles the given module's source file</li><li><a href="#recompile/0"><code class="inline">recompile/0</code></a>    - recompiles the current project</li><li><a href="#ref/1"><code class="inline">ref/1</code></a>          - creates a reference from a string</li><li><a href="#ref/4"><code class="inline">ref/4</code></a>          - creates a reference with the 4 integer arguments passed</li><li><a href="#runtime_info/0"><code class="inline">runtime_info/0</code></a> - prints runtime info (versions, memory usage, stats)</li><li><a href="#t/1"><code class="inline">t/1</code></a>            - prints the types for the given module or function</li><li><a href="#v/0"><code class="inline">v/0</code></a>            - retrieves the last value from the history</li><li><a href="#v/1"><code class="inline">v/1</code></a>            - retrieves the nth value from the history</li></ul><p>Help for all of those functions can be consulted directly from
+the command line using the <a href="#h/1"><code class="inline">h/1</code></a> helper itself. Try:</p><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">h</span><span class="p" data-group-id="7429684481-1">(</span><span class="n">v</span><span class="o">/</span><span class="mi">0</span><span class="p" data-group-id="7429684481-1">)</span></code></pre><p>To list all IEx helpers available, which is effectively all
+exports (functions and macros) in the <a href="IEx.Helpers.html#content"><code class="inline">IEx.Helpers</code></a> module:</p><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">exports</span><span class="p" data-group-id="9360537510-1">(</span><span class="nc">IEx.Helpers</span><span class="p" data-group-id="9360537510-1">)</span></code></pre><p>This module also includes helpers for debugging purposes, see
+<a href="IEx.html#break!/4"><code class="inline">IEx.break!/4</code></a> for more information.</p><p>To learn more about IEx as a whole, type <code class="inline">h(IEx)</code>.</p>
+  </section>
+
+
+  <section id="summary" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+      Summary
+    </h1>
+<div class="summary-functions summary">
+  <h2>
+    <a href="#functions">Functions</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#b/1" translate="no">b(term)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Prints the documentation for the given callback function.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#break!/2" translate="no">break!(ast, stops \\ 1)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Sets up a breakpoint in the AST of shape <code class="inline">Module.function/arity</code>
+with the given number of <code class="inline">stops</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#break!/4" translate="no">break!(module, function, arity, stops \\ 1)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Sets up a breakpoint in <code class="inline">module</code>, <code class="inline">function</code> and <code class="inline">arity</code>
+with the given number of <code class="inline">stops</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#breaks/0" translate="no">breaks()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Prints all breakpoints to the terminal.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#c/2" translate="no">c(files, path \\ :in_memory)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Compiles the given files.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#cd/1" translate="no">cd(directory)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Changes the current working directory to the given path.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#clear/0" translate="no">clear()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Clears the console screen.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#continue/0" translate="no">continue()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Continues execution of the current process.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#exports/1" translate="no">exports(module \\ Kernel)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Prints a list of all the functions and macros exported by the given module.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#flush/0" translate="no">flush()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Clears out all messages sent to the shell's inbox and prints them out.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#h/0" translate="no">h()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Prints the documentation for <a href="IEx.Helpers.html#content"><code class="inline">IEx.Helpers</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#h/1" translate="no">h(term)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Prints the documentation for the given module
+or for the given <code class="inline">function/arity</code> pair.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#i/1" translate="no">i(term \\ v(-1))</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Prints information about the data type of any given term.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#import_file/1" translate="no">import_file(path)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Injects the contents of the file at <code class="inline">path</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#import_file_if_available/1" translate="no">import_file_if_available(path)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Similar to <code class="inline">import_file</code> but only imports the file if it is available.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#import_if_available/2" translate="no">import_if_available(quoted_module, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Calls <a href="https://hexdocs.pm/elixir/main/Kernel.SpecialForms.html#import/2"><code class="inline">import/2</code></a> with the given arguments, but only if the module is available.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#l/1" translate="no">l(module)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Loads the given module's BEAM code (and ensures any previous
+old version was properly purged before).</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#ls/1" translate="no">ls(path \\ &quot;.&quot;)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Prints a list of the given directory's contents.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#n/0" translate="no">n()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>A shortcut for <a href="#next/0"><code class="inline">next/0</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#next/0" translate="no">next()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Goes to the next line of the current breakpoint.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#nl/2" translate="no">nl(nodes \\ Node.list(), module)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Deploys a given module's BEAM code to a list of nodes.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#open/0" translate="no">open()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Opens the current prying location.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#open/1" translate="no">open(term)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Opens the given <code class="inline">module</code>, <code class="inline">module.function/arity</code>, or <code class="inline">{file, line}</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#pid/1" translate="no">pid(string)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Creates a PID from <code class="inline">string</code> or <code class="inline">atom</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#pid/3" translate="no">pid(x, y, z)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Creates a PID with 3 non-negative integers passed as arguments
+to the function.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#port/1" translate="no">port(string)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Creates a Port from <code class="inline">string</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#port/2" translate="no">port(major, minor)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Creates a Port from two non-negative integers.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#pwd/0" translate="no">pwd()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Prints the current working directory.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#r/1" translate="no">r(module_or_modules)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Recompiles and reloads the given <code class="inline">module</code> or <code class="inline">modules</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#recompile/1" translate="no">recompile(options \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Recompiles the current Mix project.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#ref/1" translate="no">ref(string)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Creates a Reference from <code class="inline">string</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#ref/4" translate="no">ref(w, x, y, z)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Creates a Reference from its 4 non-negative integers components.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#remove_breaks/0" translate="no">remove_breaks()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Removes all breakpoints and instrumentation from all modules.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#remove_breaks/1" translate="no">remove_breaks(module)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Removes all breakpoints and instrumentation from <code class="inline">module</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#reset_break/1" translate="no">reset_break(id)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Sets the number of pending stops in the breakpoint
+with the given <code class="inline">id</code> to zero.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#reset_break/3" translate="no">reset_break(module, function, arity)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Sets the number of pending stops in the given module,
+function and arity to zero.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#respawn/0" translate="no">respawn()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Respawns the current shell by starting a new shell process.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#runtime_info/0" translate="no">runtime_info()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Prints VM/runtime information such as versions, memory usage and statistics.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#runtime_info/1" translate="no">runtime_info(topic)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Just like <a href="#runtime_info/0"><code class="inline">runtime_info/0</code></a>, except accepts topic or a list of topics.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t/1" translate="no">t(term)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Prints the types for the given module or for the given function/arity pair.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#use_if_available/2" translate="no">use_if_available(quoted_module, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Calls <a href="https://hexdocs.pm/elixir/main/Kernel.html#use/2"><code class="inline">use/2</code></a> with the given arguments, but only if the module is available.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#v/1" translate="no">v(n \\ -1)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Returns the value of the <code class="inline">n</code>th expression in the history.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#whereami/1" translate="no">whereami(radius \\ 2)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Prints the current location and stacktrace in a pry session.</p></div>
+
+    </div>
+
+</div>
+
+  </section>
+
+
+  <section id="functions" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+Functions
+    </h1>
+    <div class="functions-list">
+<section class="detail" id="b/1">
+
+  <div class="detail-header">
+    <a href="#b/1" class="detail-link" title="Link to this macro">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature" translate="no">b(term)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L325" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Prints the documentation for the given callback function.</p><p>It also accepts single module argument to list
+all available behaviour callbacks.</p><h2 id="b/1-examples" class="section-heading">
+  <a href="#b/1-examples">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Examples
+  </a>
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">b</span><span class="p" data-group-id="6377457199-1">(</span><span class="nc">Mix.Task</span><span class="o">.</span><span class="n">run</span><span class="o">/</span><span class="mi">1</span><span class="p" data-group-id="6377457199-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">b</span><span class="p" data-group-id="6377457199-2">(</span><span class="nc">Mix.Task</span><span class="o">.</span><span class="n">run</span><span class="p" data-group-id="6377457199-2">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">b</span><span class="p" data-group-id="6377457199-3">(</span><span class="nc">GenServer</span><span class="p" data-group-id="6377457199-3">)</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="break!/2">
+
+    <span id="break!/1"></span>
+
+  <div class="detail-header">
+    <a href="#break!/2" class="detail-link" title="Link to this macro">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature" translate="no">break!(ast, stops \\ 1)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L989" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.5.0)</span>
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Sets up a breakpoint in the AST of shape <code class="inline">Module.function/arity</code>
+with the given number of <code class="inline">stops</code>.</p><p>See <a href="IEx.html#break!/4"><code class="inline">IEx.break!/4</code></a> for a complete description of breakpoints
+in IEx.</p><h2 id="break!/2-examples" class="section-heading">
+  <a href="#break!/2-examples">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Examples
+  </a>
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="n">break!</span><span class="w"> </span><span class="nc">URI</span><span class="o">.</span><span class="n">decode_query</span><span class="o">/</span><span class="mi">2</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="break!/4">
+
+    <span id="break!/3"></span>
+
+  <div class="detail-header">
+    <a href="#break!/4" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">break!(module, function, arity, stops \\ 1)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L1009" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.5.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Sets up a breakpoint in <code class="inline">module</code>, <code class="inline">function</code> and <code class="inline">arity</code>
+with the given number of <code class="inline">stops</code>.</p><p>See <a href="IEx.html#break!/4"><code class="inline">IEx.break!/4</code></a> for a complete description of breakpoints
+in IEx.</p><h2 id="break!/4-examples" class="section-heading">
+  <a href="#break!/4-examples">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Examples
+  </a>
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="n">break!</span><span class="w"> </span><span class="nc">URI</span><span class="p">,</span><span class="w"> </span><span class="ss">:decode_query</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="breaks/0">
+
+  <div class="detail-header">
+    <a href="#breaks/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">breaks()</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L1015" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.5.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Prints all breakpoints to the terminal.</p>
+  </section>
+</section>
+<section class="detail" id="c/2">
+
+    <span id="c/1"></span>
+
+  <div class="detail-header">
+    <a href="#c/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">c(files, path \\ :in_memory)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L152" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Compiles the given files.</p><p>It expects a list of files to compile and an optional path to write
+the compiled code to. By default files are in-memory compiled.
+To write compiled files to the current directory, an empty string
+can be given.</p><p>It returns the names of the compiled modules.</p><p>If you want to recompile an existing module, check <a href="#r/1"><code class="inline">r/1</code></a> instead.</p><h2 id="c/2-examples" class="section-heading">
+  <a href="#c/2-examples">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Examples
+  </a>
+</h2>
+<p>In the example below, we pass a directory to where the <a href="#c/2"><code class="inline">c/2</code></a> function will
+write the compiled <code class="inline">.beam</code> files to. This directory is typically named &quot;ebin&quot;
+in Erlang/Elixir systems:</p><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">c</span><span class="p" data-group-id="4790994037-1">(</span><span class="p" data-group-id="4790994037-2">[</span><span class="s">&quot;foo.ex&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bar.ex&quot;</span><span class="p" data-group-id="4790994037-2">]</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ebin&quot;</span><span class="p" data-group-id="4790994037-1">)</span><span class="w">
+</span><span class="p" data-group-id="4790994037-3">[</span><span class="nc">Foo</span><span class="p">,</span><span class="w"> </span><span class="nc">Bar</span><span class="p" data-group-id="4790994037-3">]</span></code></pre><p>When compiling one file, there is no need to wrap it in a list:</p><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">c</span><span class="p" data-group-id="9670252791-1">(</span><span class="s">&quot;baz.ex&quot;</span><span class="p" data-group-id="9670252791-1">)</span><span class="w">
+</span><span class="p" data-group-id="9670252791-2">[</span><span class="nc">Baz</span><span class="p" data-group-id="9670252791-2">]</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="cd/1">
+
+  <div class="detail-header">
+    <a href="#cd/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">cd(directory)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L797" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Changes the current working directory to the given path.</p>
+  </section>
+</section>
+<section class="detail" id="clear/0">
+
+  <div class="detail-header">
+    <a href="#clear/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">clear()</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L195" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Clears the console screen.</p><p>This function only works if ANSI escape codes are enabled
+on the shell, which means this function is by default
+unavailable on Windows machines.</p>
+  </section>
+</section>
+<section class="detail" id="continue/0">
+
+  <div class="detail-header">
+    <a href="#continue/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">continue()</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L940" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.5.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Continues execution of the current process.</p><p>This is usually called by sessions started with <a href="IEx.html#pry/0"><code class="inline">IEx.pry/0</code></a>
+or <a href="IEx.html#break!/4"><code class="inline">IEx.break!/4</code></a>. This allows the current process to execute
+until the next breakpoint, which will automatically yield control
+back to IEx without requesting permission to pry.</p><p>If you simply want to move to the next line of the current breakpoint,
+use <a href="#n/0"><code class="inline">n/0</code></a> or <a href="#next/0"><code class="inline">next/0</code></a> instead.</p><p>If the running process terminates, a new IEx session is
+started.</p><p>While the process executes, the user will no longer have
+control of the shell. If you would rather start a new shell,
+use <a href="#respawn/0"><code class="inline">respawn/0</code></a> instead.</p>
+  </section>
+</section>
+<section class="detail" id="exports/1">
+
+    <span id="exports/0"></span>
+
+  <div class="detail-header">
+    <a href="#exports/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">exports(module \\ Kernel)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L813" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.5.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Prints a list of all the functions and macros exported by the given module.</p>
+  </section>
+</section>
+<section class="detail" id="flush/0">
+
+  <div class="detail-header">
+    <a href="#flush/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">flush()</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L763" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Clears out all messages sent to the shell's inbox and prints them out.</p>
+  </section>
+</section>
+<section class="detail" id="h/0">
+
+  <div class="detail-header">
+    <a href="#h/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">h()</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L286" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Prints the documentation for <a href="IEx.Helpers.html#content"><code class="inline">IEx.Helpers</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="h/1">
+
+  <div class="detail-header">
+    <a href="#h/1" class="detail-link" title="Link to this macro">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature" translate="no">h(term)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L306" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Prints the documentation for the given module
+or for the given <code class="inline">function/arity</code> pair.</p><h2 id="h/1-examples" class="section-heading">
+  <a href="#h/1-examples">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Examples
+  </a>
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">h</span><span class="p" data-group-id="0867648596-1">(</span><span class="nc">Enum</span><span class="p" data-group-id="0867648596-1">)</span></code></pre><p>It also accepts functions in the format <code class="inline">function/arity</code>
+and <code class="inline">module.function/arity</code>, for example:</p><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">h</span><span class="p" data-group-id="5735904742-1">(</span><span class="k">receive</span><span class="o">/</span><span class="mi">1</span><span class="p" data-group-id="5735904742-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">h</span><span class="p" data-group-id="5735904742-2">(</span><span class="nc">Enum</span><span class="o">.</span><span class="n">all?</span><span class="o">/</span><span class="mi">2</span><span class="p" data-group-id="5735904742-2">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">h</span><span class="p" data-group-id="5735904742-3">(</span><span class="nc">Enum</span><span class="o">.</span><span class="n">all?</span><span class="p" data-group-id="5735904742-3">)</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="i/1">
+
+    <span id="i/0"></span>
+
+  <div class="detail-header">
+    <a href="#i/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">i(term \\ v(-1))</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L484" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Prints information about the data type of any given term.</p><p>If no argument is given, the value of the previous expression
+is used.</p><h2 id="i/1-examples" class="section-heading">
+  <a href="#i/1-examples">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Examples
+  </a>
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">i</span><span class="p" data-group-id="2815935174-1">(</span><span class="mi">1</span><span class="o">..</span><span class="mi">5</span><span class="p" data-group-id="2815935174-1">)</span></code></pre><p>Will print:</p><pre><code class="makeup elixir" translate="no"><span class="nc">Term</span><span class="w">
+  </span><span class="mi">1</span><span class="o">..</span><span class="mi">5</span><span class="w">
+</span><span class="nc">Data</span><span class="w"> </span><span class="n">type</span><span class="w">
+  </span><span class="nc">Range</span><span class="w">
+</span><span class="nc">Description</span><span class="w">
+  </span><span class="nc">This</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">struct</span><span class="o">.</span><span class="w"> </span><span class="nc">Structs</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="n">maps</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="c">__struct__</span><span class="w"> </span><span class="n">key</span><span class="o">.</span><span class="w">
+</span><span class="nc">Reference</span><span class="w"> </span><span class="n">modules</span><span class="w">
+  </span><span class="nc">Range</span><span class="p">,</span><span class="w"> </span><span class="nc">Map</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="import_file/1">
+
+  <div class="detail-header">
+    <a href="#import_file/1" class="detail-link" title="Link to this macro">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature" translate="no">import_file(path)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L1235" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.4.0)</span>
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Injects the contents of the file at <code class="inline">path</code>.</p><p>This would be the equivalent of getting all of the file contents and
+pasting it all at once in IEx and executing it.</p><p>By default, the contents of a <code class="inline">.iex.exs</code> file in the same directory
+as you are starting IEx are automatically imported. See the section
+for &quot;.iex.exs&quot; in the <a href="IEx.html"><code class="inline">IEx</code></a> module docs for more information.</p><p><code class="inline">path</code> has to be a literal string and is automatically expanded via
+<a href="https://hexdocs.pm/elixir/main/Path.html#expand/1"><code class="inline">Path.expand/1</code></a>.</p><h2 id="import_file/1-examples" class="section-heading">
+  <a href="#import_file/1-examples">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Examples
+  </a>
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="c1"># ~/file.exs</span><span class="w">
+</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">13</span><span class="w">
+
+</span><span class="c1"># in the shell</span><span class="w">
+</span><span class="gp unselectable">iex(1)&gt; </span><span class="n">import_file</span><span class="p" data-group-id="2045139851-1">(</span><span class="s">&quot;~/file.exs&quot;</span><span class="p" data-group-id="2045139851-1">)</span><span class="w">
+</span><span class="mi">13</span><span class="w">
+</span><span class="gp unselectable">iex(2)&gt; </span><span class="n">value</span><span class="w">
+</span><span class="mi">13</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="import_file_if_available/1">
+
+  <div class="detail-header">
+    <a href="#import_file_if_available/1" class="detail-link" title="Link to this macro">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature" translate="no">import_file_if_available(path)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L1184" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Similar to <code class="inline">import_file</code> but only imports the file if it is available.</p><p>By default, <a href="#import_file/1"><code class="inline">import_file/1</code></a> fails when the given file does not exist.
+However, since <a href="#import_file/1"><code class="inline">import_file/1</code></a> is expanded at compile-time, it's not
+possible to conditionally import a file since the macro is always
+expanded:</p><pre><code class="makeup elixir" translate="no"><span class="c1"># This raises a File.Error if ~/.iex.exs doesn&#39;t exist.</span><span class="w">
+</span><span class="k">if</span><span class="w"> </span><span class="s">&quot;~/.iex.exs&quot;</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Path</span><span class="o">.</span><span class="n">expand</span><span class="p" data-group-id="0226705101-1">(</span><span class="p" data-group-id="0226705101-1">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">File</span><span class="o">.</span><span class="n">exists?</span><span class="p" data-group-id="0226705101-2">(</span><span class="p" data-group-id="0226705101-2">)</span><span class="w"> </span><span class="k" data-group-id="0226705101-3">do</span><span class="w">
+  </span><span class="n">import_file</span><span class="p" data-group-id="0226705101-4">(</span><span class="s">&quot;~/.iex.exs&quot;</span><span class="p" data-group-id="0226705101-4">)</span><span class="w">
+</span><span class="k" data-group-id="0226705101-3">end</span></code></pre><p>This macro addresses this issue by checking if the file exists or not
+in behalf of the user.</p>
+  </section>
+</section>
+<section class="detail" id="import_if_available/2">
+
+    <span id="import_if_available/1"></span>
+
+  <div class="detail-header">
+    <a href="#import_if_available/2" class="detail-link" title="Link to this macro">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature" translate="no">import_if_available(quoted_module, opts \\ [])</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L1261" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Calls <a href="https://hexdocs.pm/elixir/main/Kernel.SpecialForms.html#import/2"><code class="inline">import/2</code></a> with the given arguments, but only if the module is available.</p><p>This lets you put imports in <code class="inline">.iex.exs</code> files (including <code class="inline">~/.iex.exs</code>) without
+getting compile errors if you open a console where the module is not available.</p><h2 id="import_if_available/2-example" class="section-heading">
+  <a href="#import_if_available/2-example">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Example
+  </a>
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="c1"># In ~/.iex.exs</span><span class="w">
+</span><span class="n">import_if_available</span><span class="p" data-group-id="6209554984-1">(</span><span class="nc">Ecto.Query</span><span class="p" data-group-id="6209554984-1">)</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="l/1">
+
+  <div class="detail-header">
+    <a href="#l/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">l(module)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L457" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Loads the given module's BEAM code (and ensures any previous
+old version was properly purged before).</p><p>This function is useful when you know the bytecode for module
+has been updated in the file system and you want to tell the VM
+to load it.</p>
+  </section>
+</section>
+<section class="detail" id="ls/1">
+
+    <span id="ls/0"></span>
+
+  <div class="detail-header">
+    <a href="#ls/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">ls(path \\ &quot;.&quot;)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L830" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Prints a list of the given directory's contents.</p><p>If <code class="inline">path</code> points to a file, prints its full path.</p>
+  </section>
+</section>
+<section class="detail" id="n/0">
+
+  <div class="detail-header">
+    <a href="#n/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">n()</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L972" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.14.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>A shortcut for <a href="#next/0"><code class="inline">next/0</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="next/0">
+
+  <div class="detail-header">
+    <a href="#next/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">next()</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L960" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.14.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Goes to the next line of the current breakpoint.</p><p>This is usually called by sessions started with <a href="IEx.html#break!/4"><code class="inline">IEx.break!/4</code></a>.
+If instead of the next line you want to move to the next breakpoint,
+call <a href="#continue/0"><code class="inline">continue/0</code></a> instead.</p><p>While the process executes, the user will no longer have
+control of the shell. If you would rather start a new shell,
+use <a href="#respawn/0"><code class="inline">respawn/0</code></a> instead.</p>
+  </section>
+</section>
+<section class="detail" id="nl/2">
+
+    <span id="nl/1"></span>
+
+  <div class="detail-header">
+    <a href="#nl/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">nl(nodes \\ Node.list(), module)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L1458" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Deploys a given module's BEAM code to a list of nodes.</p><p>This function is useful for development and debugging when you have code that
+has been compiled or updated locally that you want to run on other nodes.</p><p>The node list defaults to a list of all connected nodes.</p><p>Returns <code class="inline">{:error, :nofile}</code> if the object code (i.e. &quot;.beam&quot; file) for the module
+could not be found locally.</p><h2 id="nl/2-examples" class="section-heading">
+  <a href="#nl/2-examples">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Examples
+  </a>
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">nl</span><span class="p" data-group-id="3488688279-1">(</span><span class="nc">HelloWorld</span><span class="p" data-group-id="3488688279-1">)</span><span class="w">
+</span><span class="p" data-group-id="3488688279-2">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w">
+ </span><span class="p" data-group-id="3488688279-3">[</span><span class="w">
+   </span><span class="p" data-group-id="3488688279-4">{</span><span class="ss">:node1@easthost</span><span class="p">,</span><span class="w"> </span><span class="ss">:loaded</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWorld</span><span class="p" data-group-id="3488688279-4">}</span><span class="p">,</span><span class="w">
+   </span><span class="p" data-group-id="3488688279-5">{</span><span class="ss">:node1@westhost</span><span class="p">,</span><span class="w"> </span><span class="ss">:loaded</span><span class="p">,</span><span class="w"> </span><span class="nc">HelloWorld</span><span class="p" data-group-id="3488688279-5">}</span><span class="w">
+ </span><span class="p" data-group-id="3488688279-3">]</span><span class="p" data-group-id="3488688279-2">}</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="n">nl</span><span class="p" data-group-id="3488688279-6">(</span><span class="nc">NoSuchModuleExists</span><span class="p" data-group-id="3488688279-6">)</span><span class="w">
+</span><span class="p" data-group-id="3488688279-7">{</span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="ss">:nofile</span><span class="p" data-group-id="3488688279-7">}</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="open/0">
+
+  <div class="detail-header">
+    <a href="#open/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">open()</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L218" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Opens the current prying location.</p><p>This command only works inside a pry session started manually
+via <a href="IEx.html#pry/0"><code class="inline">IEx.pry/0</code></a> or a breakpoint set via <a href="IEx.html#break!/4"><code class="inline">IEx.break!/4</code></a>. Calling
+this function during a regular <a href="IEx.html"><code class="inline">IEx</code></a> session will print an error.</p><p>Keep in mind the <a href="#open/0"><code class="inline">open/0</code></a> location may not exist when prying
+precompiled source code, such as Elixir itself.</p><p>For more information and to open any module or function, see
+<a href="#open/1"><code class="inline">open/1</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="open/1">
+
+  <div class="detail-header">
+    <a href="#open/1" class="detail-link" title="Link to this macro">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature" translate="no">open(term)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L277" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Opens the given <code class="inline">module</code>, <code class="inline">module.function/arity</code>, or <code class="inline">{file, line}</code>.</p><p>This function uses the <code class="inline">ELIXIR_EDITOR</code> environment variable
+and falls back to <code class="inline">EDITOR</code> if the former is not available.</p><p>By default, it attempts to open the file and line using the
+<code class="inline">file:line</code> notation. For example, for Sublime Text you can
+set it as:</p><pre><code class="makeup elixir" translate="no"><span class="nc">ELIXIR_EDITOR</span><span class="o">=</span><span class="s">&quot;subl&quot;</span></code></pre><p>Which will then try to open it as:</p><pre><code class="makeup elixir" translate="no"><span class="n">subl</span><span class="w"> </span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">file</span><span class="ss">:line</span></code></pre><p>For Visual Studio Code, once enabled on the command line,
+you can set it to:</p><pre><code class="makeup elixir" translate="no"><span class="nc">ELIXIR_EDITOR</span><span class="o">=</span><span class="s">&quot;code --goto&quot;</span></code></pre><p>It is important that you choose an editor command that does
+not block nor that attempts to run an editor directly in the
+terminal. Command-line based editors likely need extra
+configuration so they open up the given file and line in a
+separate window.</p><p>For more complex use cases, you can use the <code class="inline">__FILE__</code> and
+<code class="inline">__LINE__</code> notations to explicitly interpolate the file and
+line into the command:</p><pre><code class="makeup elixir" translate="no"><span class="nc">ELIXIR_EDITOR</span><span class="o">=</span><span class="s">&quot;my_editor +__LINE__ __FILE__&quot;</span></code></pre><p>Since this function prints the result returned by the editor,
+<code class="inline">ELIXIR_EDITOR</code> can be set &quot;echo&quot; if you prefer to display the
+location rather than opening it.</p><p>Keep in mind the location may not exist when opening precompiled
+source code.</p><h2 id="open/1-examples" class="section-heading">
+  <a href="#open/1-examples">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Examples
+  </a>
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">open</span><span class="p" data-group-id="8036894456-1">(</span><span class="nc">MyApp</span><span class="p" data-group-id="8036894456-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">open</span><span class="p" data-group-id="8036894456-2">(</span><span class="nc">MyApp</span><span class="o">.</span><span class="n">fun</span><span class="o">/</span><span class="mi">2</span><span class="p" data-group-id="8036894456-2">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">open</span><span class="p" data-group-id="8036894456-3">(</span><span class="p" data-group-id="8036894456-4">{</span><span class="s">&quot;path/to/file&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="8036894456-4">}</span><span class="p" data-group-id="8036894456-3">)</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="pid/1">
+
+  <div class="detail-header">
+    <a href="#pid/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">pid(string)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L1329" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Creates a PID from <code class="inline">string</code> or <code class="inline">atom</code>.</p><h2 id="pid/1-examples" class="section-heading">
+  <a href="#pid/1-examples">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Examples
+  </a>
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">pid</span><span class="p" data-group-id="7876198778-1">(</span><span class="s">&quot;0.21.32&quot;</span><span class="p" data-group-id="7876198778-1">)</span><span class="w">
+</span><span class="p" data-group-id="7876198778-2">#</span><span class="nc" data-group-id="7876198778-2">PID</span><span class="p" data-group-id="7876198778-2">&lt;</span><span class="mi">0</span><span class="o">.</span><span class="mi">21</span><span class="o">.</span><span class="mi">32</span><span class="p" data-group-id="7876198778-2">&gt;</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="n">pid</span><span class="p" data-group-id="7876198778-3">(</span><span class="s">&quot;#PID&lt;0.21.32&gt;&quot;</span><span class="p" data-group-id="7876198778-3">)</span><span class="w">
+</span><span class="p" data-group-id="7876198778-4">#</span><span class="nc" data-group-id="7876198778-4">PID</span><span class="p" data-group-id="7876198778-4">&lt;</span><span class="mi">0</span><span class="o">.</span><span class="mi">21</span><span class="o">.</span><span class="mi">32</span><span class="p" data-group-id="7876198778-4">&gt;</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="n">pid</span><span class="p" data-group-id="7876198778-5">(</span><span class="ss">:init</span><span class="p" data-group-id="7876198778-5">)</span><span class="w">
+</span><span class="p" data-group-id="7876198778-6">#</span><span class="nc" data-group-id="7876198778-6">PID</span><span class="p" data-group-id="7876198778-6">&lt;</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="p" data-group-id="7876198778-6">&gt;</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="pid/3">
+
+  <div class="detail-header">
+    <a href="#pid/3" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">pid(x, y, z)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L1356" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Creates a PID with 3 non-negative integers passed as arguments
+to the function.</p><h2 id="pid/3-examples" class="section-heading">
+  <a href="#pid/3-examples">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Examples
+  </a>
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">pid</span><span class="p" data-group-id="0123555775-1">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w"> </span><span class="mi">32</span><span class="p" data-group-id="0123555775-1">)</span><span class="w">
+</span><span class="p" data-group-id="0123555775-2">#</span><span class="nc" data-group-id="0123555775-2">PID</span><span class="p" data-group-id="0123555775-2">&lt;</span><span class="mi">0</span><span class="o">.</span><span class="mi">21</span><span class="o">.</span><span class="mi">32</span><span class="p" data-group-id="0123555775-2">&gt;</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">pid</span><span class="p" data-group-id="0123555775-3">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">64</span><span class="p">,</span><span class="w"> </span><span class="mi">2048</span><span class="p" data-group-id="0123555775-3">)</span><span class="w">
+</span><span class="p" data-group-id="0123555775-4">#</span><span class="nc" data-group-id="0123555775-4">PID</span><span class="p" data-group-id="0123555775-4">&lt;</span><span class="mi">0</span><span class="o">.</span><span class="mi">64</span><span class="o">.</span><span class="mi">2048</span><span class="p" data-group-id="0123555775-4">&gt;</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="port/1">
+
+  <div class="detail-header">
+    <a href="#port/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">port(string)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L1375" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.8.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Creates a Port from <code class="inline">string</code>.</p><h2 id="port/1-examples" class="section-heading">
+  <a href="#port/1-examples">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Examples
+  </a>
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">port</span><span class="p" data-group-id="1380356925-1">(</span><span class="s">&quot;0.4&quot;</span><span class="p" data-group-id="1380356925-1">)</span><span class="w">
+</span><span class="p" data-group-id="1380356925-2">#</span><span class="nc" data-group-id="1380356925-2">Port</span><span class="p" data-group-id="1380356925-2">&lt;</span><span class="mf">0.4</span><span class="p" data-group-id="1380356925-2">&gt;</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="port/2">
+
+  <div class="detail-header">
+    <a href="#port/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">port(major, minor)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L1391" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.8.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Creates a Port from two non-negative integers.</p><h2 id="port/2-examples" class="section-heading">
+  <a href="#port/2-examples">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Examples
+  </a>
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">port</span><span class="p" data-group-id="4270658766-1">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">8080</span><span class="p" data-group-id="4270658766-1">)</span><span class="w">
+</span><span class="p" data-group-id="4270658766-2">#</span><span class="nc" data-group-id="4270658766-2">Port</span><span class="p" data-group-id="4270658766-2">&lt;</span><span class="mf">0.8080</span><span class="p" data-group-id="4270658766-2">&gt;</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">port</span><span class="p" data-group-id="4270658766-3">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">443</span><span class="p" data-group-id="4270658766-3">)</span><span class="w">
+</span><span class="p" data-group-id="4270658766-4">#</span><span class="nc" data-group-id="4270658766-4">Port</span><span class="p" data-group-id="4270658766-4">&lt;</span><span class="mf">0.443</span><span class="p" data-group-id="4270658766-4">&gt;</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="pwd/0">
+
+  <div class="detail-header">
+    <a href="#pwd/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">pwd()</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L789" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Prints the current working directory.</p>
+  </section>
+</section>
+<section class="detail" id="r/1">
+
+  <div class="detail-header">
+    <a href="#r/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">r(module_or_modules)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L407" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Recompiles and reloads the given <code class="inline">module</code> or <code class="inline">modules</code>.</p><p>Please note that all the modules defined in the same file as
+<code class="inline">modules</code> are recompiled and reloaded. If you want to reload
+multiple modules, it is best to reload them at the same time,
+such as in <code class="inline">r [Foo, Bar]</code>. This is important to avoid false
+warnings, since the module is only reloaded in memory and its
+latest information is not persisted to disk. See the &quot;In-memory
+reloading&quot; section below.</p><p>This function is meant to be used for development and
+debugging purposes. Do not depend on it in production code.</p><h2 id="r/1-in-memory-reloading" class="section-heading">
+  <a href="#r/1-in-memory-reloading">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    In-memory reloading
+  </a>
+</h2>
+<p>When we reload the module in IEx, we recompile the module source
+code, updating its contents in memory. The original <code class="inline">.beam</code> file
+in disk, probably the one where the first definition of the module
+came from, does not change at all.</p><p>Since docs, typespecs, and exports information are loaded from the
+.beam file, they are not reloaded when you invoke this function.</p>
+  </section>
+</section>
+<section class="detail" id="recompile/1">
+
+    <span id="recompile/0"></span>
+
+  <div class="detail-header">
+    <a href="#recompile/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">recompile(options \\ [])</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L95" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Recompiles the current Mix project.</p><p>This helper only works when IEx is started with a Mix
+project, for example, <code class="inline">iex -S mix</code>. Note this function
+simply recompiles Elixir modules, without reloading
+configuration, recompiling dependencies, or restarting
+applications.</p><p>Therefore, any long running process may crash on recompilation,
+as changed modules will be temporarily removed and recompiled,
+without going through the proper code change callback.</p><p>If you want to reload a single module, consider using
+<code class="inline">r(ModuleName)</code> instead.</p><p>This function is meant to be used for development and
+debugging purposes. Do not depend on it in production code.</p><h2 id="recompile/1-options" class="section-heading">
+  <a href="#recompile/1-options">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Options
+  </a>
+</h2>
+<ul><li><code class="inline">:force</code> - when <code class="inline">true</code>, forces the application to recompile</li></ul>
+  </section>
+</section>
+<section class="detail" id="ref/1">
+
+  <div class="detail-header">
+    <a href="#ref/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">ref(string)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L1408" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.6.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Creates a Reference from <code class="inline">string</code>.</p><h2 id="ref/1-examples" class="section-heading">
+  <a href="#ref/1-examples">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Examples
+  </a>
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">ref</span><span class="p" data-group-id="3459370739-1">(</span><span class="s">&quot;0.1.2.3&quot;</span><span class="p" data-group-id="3459370739-1">)</span><span class="w">
+</span><span class="p" data-group-id="3459370739-2">#</span><span class="nc" data-group-id="3459370739-2">Reference</span><span class="p" data-group-id="3459370739-2">&lt;</span><span class="mf">0.1</span><span class="o">.</span><span class="mf">2.3</span><span class="p" data-group-id="3459370739-2">&gt;</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="ref/4">
+
+  <div class="detail-header">
+    <a href="#ref/4" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">ref(w, x, y, z)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L1422" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.6.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Creates a Reference from its 4 non-negative integers components.</p><h2 id="ref/4-examples" class="section-heading">
+  <a href="#ref/4-examples">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Examples
+  </a>
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">ref</span><span class="p" data-group-id="3106887926-1">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="3106887926-1">)</span><span class="w">
+</span><span class="p" data-group-id="3106887926-2">#</span><span class="nc" data-group-id="3106887926-2">Reference</span><span class="p" data-group-id="3106887926-2">&lt;</span><span class="mf">0.1</span><span class="o">.</span><span class="mf">2.3</span><span class="p" data-group-id="3106887926-2">&gt;</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="remove_breaks/0">
+
+  <div class="detail-header">
+    <a href="#remove_breaks/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">remove_breaks()</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L1114" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.5.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Removes all breakpoints and instrumentation from all modules.</p>
+  </section>
+</section>
+<section class="detail" id="remove_breaks/1">
+
+  <div class="detail-header">
+    <a href="#remove_breaks/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">remove_breaks(module)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L1108" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.5.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Removes all breakpoints and instrumentation from <code class="inline">module</code>.</p>
+  </section>
+</section>
+<section class="detail" id="reset_break/1">
+
+  <div class="detail-header">
+    <a href="#reset_break/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">reset_break(id)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L1087" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.5.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Sets the number of pending stops in the breakpoint
+with the given <code class="inline">id</code> to zero.</p><p>Returns <code class="inline">:ok</code> if there is such breakpoint ID. <code class="inline">:not_found</code>
+otherwise.</p><p>Note the module remains &quot;instrumented&quot; on reset. If you would
+like to effectively remove all breakpoints and instrumentation
+code from a module, use <a href="#remove_breaks/1"><code class="inline">remove_breaks/1</code></a> instead.</p>
+  </section>
+</section>
+<section class="detail" id="reset_break/3">
+
+  <div class="detail-header">
+    <a href="#reset_break/3" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">reset_break(module, function, arity)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L1102" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.5.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Sets the number of pending stops in the given module,
+function and arity to zero.</p><p>If the module is not instrumented or if the given function
+does not have a breakpoint, it is a no-op and it returns
+<code class="inline">:not_found</code>. Otherwise it returns <code class="inline">:ok</code>.</p><p>Note the module remains &quot;instrumented&quot; on reset. If you would
+like to effectively remove all breakpoints and instrumentation
+code from a module, use <a href="#remove_breaks/1"><code class="inline">remove_breaks/1</code></a> instead.</p>
+  </section>
+</section>
+<section class="detail" id="respawn/0">
+
+  <div class="detail-header">
+    <a href="#respawn/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">respawn()</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L913" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Respawns the current shell by starting a new shell process.</p>
+  </section>
+</section>
+<section class="detail" id="runtime_info/0">
+
+  <div class="detail-header">
+    <a href="#runtime_info/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">runtime_info()</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L522" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.5.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Prints VM/runtime information such as versions, memory usage and statistics.</p><p>Additional topics are available via <a href="#runtime_info/1"><code class="inline">runtime_info/1</code></a>.</p><p>For more metrics, info, and debugging facilities, see the
+<a href="https://github.com/ferd/recon">Recon</a> project.</p>
+  </section>
+</section>
+<section class="detail" id="runtime_info/1">
+
+  <div class="detail-header">
+    <a href="#runtime_info/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">runtime_info(topic)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L530" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.5.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Just like <a href="#runtime_info/0"><code class="inline">runtime_info/0</code></a>, except accepts topic or a list of topics.</p><p>For example, topic <code class="inline">:applications</code> will list the applications loaded.</p>
+  </section>
+</section>
+<section class="detail" id="t/1">
+
+  <div class="detail-header">
+    <a href="#t/1" class="detail-link" title="Link to this macro">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature" translate="no">t(term)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L350" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Prints the types for the given module or for the given function/arity pair.</p><h2 id="t/1-examples" class="section-heading">
+  <a href="#t/1-examples">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Examples
+  </a>
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">t</span><span class="p" data-group-id="8560094265-1">(</span><span class="nc">Enum</span><span class="p" data-group-id="8560094265-1">)</span><span class="w">
+</span><span class="na">@type</span><span class="w"> </span><span class="n">t</span><span class="p" data-group-id="8560094265-2">(</span><span class="p" data-group-id="8560094265-2">)</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="nc">Enumerable</span><span class="o">.</span><span class="n">t</span><span class="p" data-group-id="8560094265-3">(</span><span class="p" data-group-id="8560094265-3">)</span><span class="w">
+</span><span class="na">@type</span><span class="w"> </span><span class="n">acc</span><span class="p" data-group-id="8560094265-4">(</span><span class="p" data-group-id="8560094265-4">)</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="n">any</span><span class="p" data-group-id="8560094265-5">(</span><span class="p" data-group-id="8560094265-5">)</span><span class="w">
+</span><span class="na">@type</span><span class="w"> </span><span class="n">element</span><span class="p" data-group-id="8560094265-6">(</span><span class="p" data-group-id="8560094265-6">)</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="n">any</span><span class="p" data-group-id="8560094265-7">(</span><span class="p" data-group-id="8560094265-7">)</span><span class="w">
+</span><span class="na">@type</span><span class="w"> </span><span class="n">index</span><span class="p" data-group-id="8560094265-8">(</span><span class="p" data-group-id="8560094265-8">)</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="n">integer</span><span class="p" data-group-id="8560094265-9">(</span><span class="p" data-group-id="8560094265-9">)</span><span class="w">
+</span><span class="na">@type</span><span class="w"> </span><span class="n">default</span><span class="p" data-group-id="8560094265-10">(</span><span class="p" data-group-id="8560094265-10">)</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="n">any</span><span class="p" data-group-id="8560094265-11">(</span><span class="p" data-group-id="8560094265-11">)</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="n">t</span><span class="p" data-group-id="8560094265-12">(</span><span class="nc">Enum</span><span class="o">.</span><span class="n">t</span><span class="o">/</span><span class="mi">0</span><span class="p" data-group-id="8560094265-12">)</span><span class="w">
+</span><span class="na">@type</span><span class="w"> </span><span class="n">t</span><span class="p" data-group-id="8560094265-13">(</span><span class="p" data-group-id="8560094265-13">)</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="nc">Enumerable</span><span class="o">.</span><span class="n">t</span><span class="p" data-group-id="8560094265-14">(</span><span class="p" data-group-id="8560094265-14">)</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="n">t</span><span class="p" data-group-id="8560094265-15">(</span><span class="nc">Enum</span><span class="o">.</span><span class="n">t</span><span class="p" data-group-id="8560094265-15">)</span><span class="w">
+</span><span class="na">@type</span><span class="w"> </span><span class="n">t</span><span class="p" data-group-id="8560094265-16">(</span><span class="p" data-group-id="8560094265-16">)</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="nc">Enumerable</span><span class="o">.</span><span class="n">t</span><span class="p" data-group-id="8560094265-17">(</span><span class="p" data-group-id="8560094265-17">)</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="use_if_available/2">
+
+    <span id="use_if_available/1"></span>
+
+  <div class="detail-header">
+    <a href="#use_if_available/2" class="detail-link" title="Link to this macro">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature" translate="no">use_if_available(quoted_module, opts \\ [])</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L1284" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.7.0)</span>
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Calls <a href="https://hexdocs.pm/elixir/main/Kernel.html#use/2"><code class="inline">use/2</code></a> with the given arguments, but only if the module is available.</p><p>This lets you use the module in <code class="inline">.iex.exs</code> files (including <code class="inline">~/.iex.exs</code>) without
+getting compile errors if you open a console where the module is not available.</p><h2 id="use_if_available/2-example" class="section-heading">
+  <a href="#use_if_available/2-example">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Example
+  </a>
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="c1"># In ~/.iex.exs</span><span class="w">
+</span><span class="n">use_if_available</span><span class="p" data-group-id="6980186776-1">(</span><span class="nc">Phoenix.HTML</span><span class="p" data-group-id="6980186776-1">)</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="v/1">
+
+    <span id="v/0"></span>
+
+  <div class="detail-header">
+    <a href="#v/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">v(n \\ -1)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L379" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Returns the value of the <code class="inline">n</code>th expression in the history.</p><p><code class="inline">n</code> can be a negative value: if it is, the corresponding expression value
+relative to the current one is returned. For example, <code class="inline">v(-2)</code> returns the
+value of the expression evaluated before the last evaluated expression. In
+particular, <code class="inline">v(-1)</code> returns the result of the last evaluated expression and
+<code class="inline">v()</code> does the same.</p><h2 id="v/1-examples" class="section-heading">
+  <a href="#v/1-examples">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Examples
+  </a>
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex(1)&gt; </span><span class="s">&quot;hello&quot;</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="s">&quot; world&quot;</span><span class="w">
+</span><span class="s">&quot;hello world&quot;</span><span class="w">
+</span><span class="gp unselectable">iex(2)&gt; </span><span class="mi">40</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="w">
+</span><span class="mi">42</span><span class="w">
+</span><span class="gp unselectable">iex(3)&gt; </span><span class="n">v</span><span class="p" data-group-id="0400407551-1">(</span><span class="o">-</span><span class="mi">2</span><span class="p" data-group-id="0400407551-1">)</span><span class="w">
+</span><span class="s">&quot;hello world&quot;</span><span class="w">
+</span><span class="gp unselectable">iex(4)&gt; </span><span class="n">v</span><span class="p" data-group-id="0400407551-2">(</span><span class="mi">2</span><span class="p" data-group-id="0400407551-2">)</span><span class="w">
+</span><span class="mi">42</span><span class="w">
+</span><span class="gp unselectable">iex(5)&gt; </span><span class="n">v</span><span class="p" data-group-id="0400407551-3">(</span><span class="p" data-group-id="0400407551-3">)</span><span class="w">
+</span><span class="mi">42</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="whereami/1">
+
+    <span id="whereami/0"></span>
+
+  <div class="detail-header">
+    <a href="#whereami/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">whereami(radius \\ 2)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/iex/lib/iex/helpers.ex#L1141" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.5.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Prints the current location and stacktrace in a pry session.</p><p>It expects a <code class="inline">radius</code> which chooses how many lines before and after
+the current line we should print. By default the <code class="inline">radius</code> is of two
+lines:</p><pre><code class="makeup elixir" translate="no"><span class="ss">Location</span><span class="p">:</span><span class="w"> </span><span class="n">lib</span><span class="o">/</span><span class="n">iex</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">iex</span><span class="o">/</span><span class="n">helpers</span><span class="o">.</span><span class="n">ex</span><span class="p">:</span><span class="mi">79</span><span class="w">
+
+</span><span class="mi">77</span><span class="p">:</span><span class="w">
+</span><span class="mi">78</span><span class="p">:</span><span class="w">   </span><span class="kd">def</span><span class="w"> </span><span class="nf">recompile</span><span class="w"> </span><span class="k" data-group-id="2899220793-1">do</span><span class="w">
+</span><span class="mi">79</span><span class="p">:</span><span class="w">     </span><span class="kn">require</span><span class="w"> </span><span class="nc">IEx</span><span class="p">;</span><span class="w"> </span><span class="nc">IEx</span><span class="o">.</span><span class="n">pry</span><span class="p" data-group-id="2899220793-2">(</span><span class="p" data-group-id="2899220793-2">)</span><span class="w">
+</span><span class="mi">80</span><span class="p">:</span><span class="w">     </span><span class="k">if</span><span class="w"> </span><span class="n">mix_started?</span><span class="p" data-group-id="2899220793-3">(</span><span class="p" data-group-id="2899220793-3">)</span><span class="w"> </span><span class="k" data-group-id="2899220793-4">do</span><span class="w">
+</span><span class="mi">81</span><span class="p">:</span><span class="w">       </span><span class="n">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Mix.Project</span><span class="o">.</span><span class="n">config</span><span class="w">
+
+</span><span class="p" data-group-id="2899220793-5">(</span><span class="nc">IEx.Helpers</span><span class="p" data-group-id="2899220793-5">)</span><span class="w"> </span><span class="n">lib</span><span class="o">/</span><span class="n">iex</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">iex</span><span class="o">/</span><span class="n">helpers</span><span class="o">.</span><span class="n">ex</span><span class="p">:</span><span class="mi">78</span><span class="p">:</span><span class="w"> </span><span class="nc">IEx.Helpers</span><span class="o">.</span><span class="n">recompile</span><span class="o">/</span><span class="mi">0</span></code></pre><p>This command only works inside a pry session started manually
+via <a href="IEx.html#pry/0"><code class="inline">IEx.pry/0</code></a> or a breakpoint set via <a href="IEx.html#break!/4"><code class="inline">IEx.break!/4</code></a>. Calling
+this function during a regular <a href="IEx.html"><code class="inline">IEx</code></a> session will print an error.</p><p>Keep in mind the <a href="#whereami/1"><code class="inline">whereami/1</code></a> location may not exist when prying
+precompiled source code, such as Elixir itself.</p>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+      <footer class="footer">
+        <p>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Search HexDocs packages">
+              Search HexDocs
+            </button>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.29.4) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

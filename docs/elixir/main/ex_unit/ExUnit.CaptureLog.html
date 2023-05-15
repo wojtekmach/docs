@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.29.4">
+    <meta name="project" content="ExUnit v1.15.0-dev">
+
+    <title>ExUnit.CaptureLog — ExUnit v1.15.0-dev</title>
+    <link rel="stylesheet" href="dist/html-elixir-R7PT35Y2.css" />
+
+
+      <link rel="canonical" href="https://hexdocs.pm/ex_unit/main/ExUnit.CaptureLog.html" />
+
+    <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
+    <script src="dist/handlebars.templates-OHVEJKU6.js"></script>
+    <script src="dist/sidebar_items-C18C357C.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/html-ZKIIOKLS.js"></script>
+
+
+  </head>
+  <body data-type="modules" class="page-module">
+    <script>
+
+      try {
+        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+
+        if (settings.theme === 'dark' ||
+           ((settings.theme === 'system' || settings.theme == null) &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches)
+           ) {
+          document.body.classList.add('dark')
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <i class="ri-search-2-line" aria-hidden="true" title="Submit search"></i>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <i class="ri-close-line ri-lg" aria-hidden="true" title="Cancel search"></i>
+    </button>
+    <label class="search-label">
+      <p class="sr-only">Search</p>
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName" translate="no">
+ExUnit
+      </a>
+      <div class="sidebar-projectVersion" translate="no">
+        v1.15.0-dev
+      </div>
+    </div>
+    <ul class="sidebar-listNav">
+      <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+        <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+    </ul>
+  </div>
+
+  <div class="gradient"></div>
+  <ul id="full-list"></ul>
+</section>
+
+<section class="content">
+  <output role="status" id="toast"></output>
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>
+<button class="icon-action display-settings">
+  <i class="ri-settings-3-line"></i>
+  <span class="sr-only">Settings</span>
+</button>
+
+
+    <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/ex_unit/lib/ex_unit/capture_log.ex#L1" title="View Source" class="icon-action" rel="help">
+      <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+      <span class="sr-only">View Source</span>
+    </a>
+
+  <span translate="no">ExUnit.CaptureLog</span> 
+  <small class="app-vsn" translate="no">(ExUnit v1.15.0-dev)</small>
+
+</h1>
+
+
+  <section id="moduledoc">
+<p>Functionality to capture logs for testing.</p><h2 id="module-examples" class="section-heading">
+  <a href="#module-examples">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Examples
+  </a>
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">AssertionTest</span><span class="w"> </span><span class="k" data-group-id="0952368717-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">ExUnit.Case</span><span class="w">
+
+  </span><span class="kn">import</span><span class="w"> </span><span class="nc">ExUnit.CaptureLog</span><span class="w">
+  </span><span class="kn">require</span><span class="w"> </span><span class="nc">Logger</span><span class="w">
+
+  </span><span class="n">test</span><span class="w"> </span><span class="s">&quot;example&quot;</span><span class="w"> </span><span class="k" data-group-id="0952368717-2">do</span><span class="w">
+    </span><span class="p" data-group-id="0952368717-3">{</span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="n">log</span><span class="p" data-group-id="0952368717-3">}</span><span class="w"> </span><span class="o">=</span><span class="w">
+      </span><span class="n">with_log</span><span class="p" data-group-id="0952368717-4">(</span><span class="k" data-group-id="0952368717-5">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+        </span><span class="nc">Logger</span><span class="o">.</span><span class="n">error</span><span class="p" data-group-id="0952368717-6">(</span><span class="s">&quot;log msg&quot;</span><span class="p" data-group-id="0952368717-6">)</span><span class="w">
+        </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="w">
+      </span><span class="k" data-group-id="0952368717-5">end</span><span class="p" data-group-id="0952368717-4">)</span><span class="w">
+
+    </span><span class="n">assert</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">4</span><span class="w">
+    </span><span class="n">assert</span><span class="w"> </span><span class="n">log</span><span class="w"> </span><span class="o">=~</span><span class="w"> </span><span class="s">&quot;log msg&quot;</span><span class="w">
+  </span><span class="k" data-group-id="0952368717-2">end</span><span class="w">
+
+  </span><span class="n">test</span><span class="w"> </span><span class="s">&quot;check multiple captures concurrently&quot;</span><span class="w"> </span><span class="k" data-group-id="0952368717-7">do</span><span class="w">
+    </span><span class="n">fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k" data-group-id="0952368717-8">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+      </span><span class="k">for</span><span class="w"> </span><span class="n">msg</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p" data-group-id="0952368717-9">[</span><span class="s">&quot;hello&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hi&quot;</span><span class="p" data-group-id="0952368717-9">]</span><span class="w"> </span><span class="k" data-group-id="0952368717-10">do</span><span class="w">
+        </span><span class="n">assert</span><span class="w"> </span><span class="n">capture_log</span><span class="p" data-group-id="0952368717-11">(</span><span class="k" data-group-id="0952368717-12">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nc">Logger</span><span class="o">.</span><span class="n">error</span><span class="p" data-group-id="0952368717-13">(</span><span class="n">msg</span><span class="p" data-group-id="0952368717-13">)</span><span class="w"> </span><span class="k" data-group-id="0952368717-12">end</span><span class="p" data-group-id="0952368717-11">)</span><span class="w"> </span><span class="o">=~</span><span class="w"> </span><span class="n">msg</span><span class="w">
+      </span><span class="k" data-group-id="0952368717-10">end</span><span class="w">
+
+      </span><span class="nc">Logger</span><span class="o">.</span><span class="n">debug</span><span class="p" data-group-id="0952368717-14">(</span><span class="s">&quot;testing&quot;</span><span class="p" data-group-id="0952368717-14">)</span><span class="w">
+    </span><span class="k" data-group-id="0952368717-8">end</span><span class="w">
+
+    </span><span class="n">assert</span><span class="w"> </span><span class="n">capture_log</span><span class="p" data-group-id="0952368717-15">(</span><span class="n">fun</span><span class="p" data-group-id="0952368717-15">)</span><span class="w"> </span><span class="o">=~</span><span class="w"> </span><span class="s">&quot;hello&quot;</span><span class="w">
+    </span><span class="n">assert</span><span class="w"> </span><span class="n">capture_log</span><span class="p" data-group-id="0952368717-16">(</span><span class="n">fun</span><span class="p" data-group-id="0952368717-16">)</span><span class="w"> </span><span class="o">=~</span><span class="w"> </span><span class="s">&quot;testing&quot;</span><span class="w">
+  </span><span class="k" data-group-id="0952368717-7">end</span><span class="w">
+</span><span class="k" data-group-id="0952368717-1">end</span></code></pre>
+  </section>
+
+
+  <section id="summary" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+      Summary
+    </h1>
+<div class="summary-functions summary">
+  <h2>
+    <a href="#functions">Functions</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#capture_log/2" translate="no">capture_log(opts \\ [], fun)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Captures Logger messages generated when evaluating <code class="inline">fun</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#with_log/2" translate="no">with_log(opts \\ [], fun)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Invokes the given <code class="inline">fun</code> and returns the result and captured log.</p></div>
+
+    </div>
+
+</div>
+
+  </section>
+
+
+  <section id="functions" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+Functions
+    </h1>
+    <div class="functions-list">
+<section class="detail" id="capture_log/2">
+
+    <span id="capture_log/1"></span>
+
+  <div class="detail-header">
+    <a href="#capture_log/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">capture_log(opts \\ [], fun)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/ex_unit/lib/ex_unit/capture_log.ex#L74" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> capture_log(
+  <a href="https://hexdocs.pm/elixir/main/typespecs.html#built-in-types">keyword</a>(),
+  (-&gt; <a href="https://hexdocs.pm/elixir/main/typespecs.html#basic-types">any</a>())
+) :: <a href="https://hexdocs.pm/elixir/main/String.html#t:t/0">String.t</a>()</pre>
+
+      </div>
+
+<p>Captures Logger messages generated when evaluating <code class="inline">fun</code>.</p><p>Returns the binary which is the captured output.</p><p>This function mutes the <code class="inline">:console</code> backend and captures any log
+messages sent to Logger from the calling processes. It is possible
+to ensure explicit log messages from other processes are captured
+by waiting for their exit or monitor signal.</p><p>Note that when the <code class="inline">async</code> is set to <code class="inline">true</code>, the messages from another
+test might be captured. This is OK as long you consider such cases in
+your assertions.</p><p>It is possible to configure the level to capture with <code class="inline">:level</code>,
+which will set the capturing level for the duration of the
+capture, for instance, if the log level is set to <code class="inline">:error</code>, then
+any message with the lower level will be ignored.
+The default level is <code class="inline">nil</code>, which will capture all messages.
+Note this setting does not override the overall <a href="https://hexdocs.pm/logger/main/Logger.html#level/0"><code class="inline">Logger.level/0</code></a> value.
+Therefore, if <a href="https://hexdocs.pm/logger/main/Logger.html#level/0"><code class="inline">Logger.level/0</code></a> is set to a higher level than the one
+configured in this function, no message will be captured.
+The behaviour is undetermined if async tests change Logger level.</p><p>The format, metadata and colors can be configured with <code class="inline">:format</code>,
+<code class="inline">:metadata</code> and <code class="inline">:colors</code> respectively. These three options
+defaults to the <code class="inline">:console</code> backend configuration parameters.</p><p>To get the result of the evaluation along with the captured log,
+use <a href="#with_log/2"><code class="inline">with_log/2</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="with_log/2">
+
+    <span id="with_log/1"></span>
+
+  <div class="detail-header">
+    <a href="#with_log/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">with_log(opts \\ [], fun)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/ex_unit/lib/ex_unit/capture_log.ex#L98" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since 1.13.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> with_log(
+  <a href="https://hexdocs.pm/elixir/main/typespecs.html#built-in-types">keyword</a>(),
+  (-&gt; result)
+) :: {result, <a href="https://hexdocs.pm/elixir/main/String.html#t:t/0">String.t</a>()}
+when result: <a href="https://hexdocs.pm/elixir/main/typespecs.html#basic-types">any</a>()</pre>
+
+      </div>
+
+<p>Invokes the given <code class="inline">fun</code> and returns the result and captured log.</p><p>It accepts the same arguments and options as <a href="#capture_log/2"><code class="inline">capture_log/2</code></a>.</p><h2 id="with_log/2-examples" class="section-heading">
+  <a href="#with_log/2-examples">
+    <i class="ri-link-m" aria-hidden="true"></i>
+    Examples
+  </a>
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="p" data-group-id="4936383100-1">{</span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="n">log</span><span class="p" data-group-id="4936383100-1">}</span><span class="w"> </span><span class="o">=</span><span class="w">
+  </span><span class="n">with_log</span><span class="p" data-group-id="4936383100-2">(</span><span class="k" data-group-id="4936383100-3">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+    </span><span class="nc">Logger</span><span class="o">.</span><span class="n">error</span><span class="p" data-group-id="4936383100-4">(</span><span class="s">&quot;log msg&quot;</span><span class="p" data-group-id="4936383100-4">)</span><span class="w">
+    </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="w">
+  </span><span class="k" data-group-id="4936383100-3">end</span><span class="p" data-group-id="4936383100-2">)</span><span class="w">
+
+</span><span class="n">assert</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">4</span><span class="w">
+</span><span class="n">assert</span><span class="w"> </span><span class="n">log</span><span class="w"> </span><span class="o">=~</span><span class="w"> </span><span class="s">&quot;log msg&quot;</span></code></pre>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+      <footer class="footer">
+        <p>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Search HexDocs packages">
+              Search HexDocs
+            </button>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.29.4) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

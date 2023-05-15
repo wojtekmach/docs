@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.29.4">
+    <meta name="project" content="EEx v1.15.0-dev">
+
+    <title>EEx.Engine — EEx v1.15.0-dev</title>
+    <link rel="stylesheet" href="dist/html-elixir-R7PT35Y2.css" />
+
+
+      <link rel="canonical" href="https://hexdocs.pm/eex/main/EEx.Engine.html" />
+
+    <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
+    <script src="dist/handlebars.templates-OHVEJKU6.js"></script>
+    <script src="dist/sidebar_items-62D4B604.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/html-ZKIIOKLS.js"></script>
+
+
+  </head>
+  <body data-type="modules" class="page-behaviour">
+    <script>
+
+      try {
+        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+
+        if (settings.theme === 'dark' ||
+           ((settings.theme === 'system' || settings.theme == null) &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches)
+           ) {
+          document.body.classList.add('dark')
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <i class="ri-search-2-line" aria-hidden="true" title="Submit search"></i>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <i class="ri-close-line ri-lg" aria-hidden="true" title="Cancel search"></i>
+    </button>
+    <label class="search-label">
+      <p class="sr-only">Search</p>
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+
+    <div class="sidebar-projectDetails">
+      <a href="https://elixir-lang.org/docs.html" class="sidebar-projectName" translate="no">
+EEx
+      </a>
+      <div class="sidebar-projectVersion" translate="no">
+        v1.15.0-dev
+      </div>
+    </div>
+    <ul class="sidebar-listNav">
+      <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+        <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+    </ul>
+  </div>
+
+  <div class="gradient"></div>
+  <ul id="full-list"></ul>
+</section>
+
+<section class="content">
+  <output role="status" id="toast"></output>
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>
+<button class="icon-action display-settings">
+  <i class="ri-settings-3-line"></i>
+  <span class="sr-only">Settings</span>
+</button>
+
+
+    <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/eex/lib/eex/engine.ex#L1" title="View Source" class="icon-action" rel="help">
+      <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+      <span class="sr-only">View Source</span>
+    </a>
+
+  <span translate="no">EEx.Engine</span> <small>behaviour</small>
+  <small class="app-vsn" translate="no">(EEx v1.15.0-dev)</small>
+
+</h1>
+
+
+  <section id="moduledoc">
+<p>Basic EEx engine that ships with Elixir.</p><p>An engine needs to implement all callbacks below.</p><p>This module also ships with a default engine implementation
+you can delegate to. See <a href="EEx.SmartEngine.html"><code class="inline">EEx.SmartEngine</code></a> as an example.</p>
+  </section>
+
+
+  <section id="summary" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+      Summary
+    </h1>
+<div class="summary-types summary">
+  <h2>
+    <a href="#types">Types</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:state/0" translate="no">state()</a>
+
+      </div>
+
+    </div>
+
+</div>
+<div class="summary-callbacks summary">
+  <h2>
+    <a href="#callbacks">Callbacks</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#c:handle_begin/1" translate="no">handle_begin(state)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Invoked at the beginning of every nesting.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#c:handle_body/1" translate="no">handle_body(state)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Called at the end of every template.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#c:handle_end/1" translate="no">handle_end(state)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Invokes at the end of a nesting.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#c:handle_expr/3" translate="no">handle_expr(state, marker, expr)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Called for the dynamic/code parts of a template.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#c:handle_text/3" translate="no">handle_text(state, list, text)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Called for the text/static parts of a template.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#c:init/1" translate="no">init(opts)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Called at the beginning of every template.</p></div>
+
+    </div>
+
+</div>
+<div class="summary-functions summary">
+  <h2>
+    <a href="#functions">Functions</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#handle_assign/1" translate="no">handle_assign(arg)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Handles assigns in quoted expressions.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#handle_begin/1" translate="no">handle_begin(state)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Default implementation for <a href="#c:handle_begin/1"><code class="inline">handle_begin/1</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#handle_body/1" translate="no">handle_body(state)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Default implementation for <a href="#c:handle_body/1"><code class="inline">handle_body/1</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#handle_end/1" translate="no">handle_end(quoted)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Default implementation for <a href="#c:handle_end/1"><code class="inline">handle_end/1</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#handle_expr/3" translate="no">handle_expr(state, marker, ast)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Default implementation for <a href="#c:handle_expr/3"><code class="inline">handle_expr/3</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#handle_text/3" translate="no">handle_text(state, meta, text)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Default implementation for <a href="#c:handle_text/3"><code class="inline">handle_text/3</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#init/1" translate="no">init(opts)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Default implementation for <a href="#c:init/1"><code class="inline">init/1</code></a>.</p></div>
+
+    </div>
+
+</div>
+
+  </section>
+
+
+  <section id="types" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#types">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+Types
+    </h1>
+    <div class="types-list">
+<section class="detail" id="t:state/0">
+
+  <div class="detail-header">
+    <a href="#t:state/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">state()</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/eex/lib/eex/engine.ex#L11" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@type</span> state() :: <a href="https://hexdocs.pm/elixir/main/typespecs.html#built-in-types">term</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+
+    </div>
+  </section>
+
+  <section id="callbacks" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#callbacks">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+Callbacks
+    </h1>
+    <div class="callbacks-list">
+<section class="detail" id="c:handle_begin/1">
+
+  <div class="detail-header">
+    <a href="#c:handle_begin/1" class="detail-link" title="Link to this callback">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature" translate="no">handle_begin(state)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/eex/lib/eex/engine.ex#L61" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@callback</span> handle_begin(<a href="#t:state/0">state</a>()) :: <a href="#t:state/0">state</a>()</pre>
+
+      </div>
+
+<p>Invoked at the beginning of every nesting.</p><p>It must return a new state that is used only inside the nesting.
+Once the nesting terminates, the current <code class="inline">state</code> is resumed.</p>
+  </section>
+</section>
+<section class="detail" id="c:handle_body/1">
+
+  <div class="detail-header">
+    <a href="#c:handle_body/1" class="detail-link" title="Link to this callback">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature" translate="no">handle_body(state)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/eex/lib/eex/engine.ex#L25" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@callback</span> handle_body(<a href="#t:state/0">state</a>()) :: <a href="https://hexdocs.pm/elixir/main/Macro.html#t:t/0">Macro.t</a>()</pre>
+
+      </div>
+
+<p>Called at the end of every template.</p><p>It must return Elixir's quoted expressions for the template.</p>
+  </section>
+</section>
+<section class="detail" id="c:handle_end/1">
+
+  <div class="detail-header">
+    <a href="#c:handle_end/1" class="detail-link" title="Link to this callback">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature" translate="no">handle_end(state)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/eex/lib/eex/engine.ex#L68" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@callback</span> handle_end(<a href="#t:state/0">state</a>()) :: <a href="https://hexdocs.pm/elixir/main/Macro.html#t:t/0">Macro.t</a>()</pre>
+
+      </div>
+
+<p>Invokes at the end of a nesting.</p><p>It must return Elixir's quoted expressions for the nesting.</p>
+  </section>
+</section>
+<section class="detail" id="c:handle_expr/3">
+
+  <div class="detail-header">
+    <a href="#c:handle_expr/3" class="detail-link" title="Link to this callback">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature" translate="no">handle_expr(state, marker, expr)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/eex/lib/eex/engine.ex#L53" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@callback</span> handle_expr(<a href="#t:state/0">state</a>(), marker :: <a href="https://hexdocs.pm/elixir/main/String.html#t:t/0">String.t</a>(), expr :: <a href="https://hexdocs.pm/elixir/main/Macro.html#t:t/0">Macro.t</a>()) :: <a href="#t:state/0">state</a>()</pre>
+
+      </div>
+
+<p>Called for the dynamic/code parts of a template.</p><p>The marker is what follows exactly after <code class="inline">&lt;%</code>. For example,
+<code class="inline">&lt;% foo %&gt;</code> has an empty marker, but <code class="inline">&lt;%= foo %&gt;</code> has <code class="inline">&quot;=&quot;</code>
+as marker. The allowed markers so far are:</p><ul><li><code class="inline">&quot;&quot;</code></li><li><code class="inline">&quot;=&quot;</code></li><li><code class="inline">&quot;/&quot;</code></li><li><code class="inline">&quot;|&quot;</code></li></ul><p>Markers <code class="inline">&quot;/&quot;</code> and <code class="inline">&quot;|&quot;</code> are only for use in custom EEx engines
+and are not implemented by default. Using them without an
+appropriate implementation raises <a href="EEx.SyntaxError.html"><code class="inline">EEx.SyntaxError</code></a>.</p><p>It must return the updated state.</p>
+  </section>
+</section>
+<section class="detail" id="c:handle_text/3">
+
+  <div class="detail-header">
+    <a href="#c:handle_text/3" class="detail-link" title="Link to this callback">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature" translate="no">handle_text(state, list, text)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/eex/lib/eex/engine.ex#L32" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@callback</span> handle_text(
+  <a href="#t:state/0">state</a>(),
+  [line: <a href="https://hexdocs.pm/elixir/main/typespecs.html#basic-types">pos_integer</a>(), column: <a href="https://hexdocs.pm/elixir/main/typespecs.html#basic-types">pos_integer</a>()],
+  text :: <a href="https://hexdocs.pm/elixir/main/String.html#t:t/0">String.t</a>()
+) :: <a href="#t:state/0">state</a>()</pre>
+
+      </div>
+
+<p>Called for the text/static parts of a template.</p><p>It must return the updated state.</p>
+  </section>
+</section>
+<section class="detail" id="c:init/1">
+
+  <div class="detail-header">
+    <a href="#c:init/1" class="detail-link" title="Link to this callback">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature" translate="no">init(opts)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/eex/lib/eex/engine.ex#L18" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@callback</span> init(opts :: <a href="https://hexdocs.pm/elixir/main/typespecs.html#built-in-types">keyword</a>()) :: <a href="#t:state/0">state</a>()</pre>
+
+      </div>
+
+<p>Called at the beginning of every template.</p><p>It must return the initial state.</p>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+  <section id="functions" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+        <span class="sr-only">Link to this section</span>
+      </a>
+Functions
+    </h1>
+    <div class="functions-list">
+<section class="detail" id="handle_assign/1">
+
+  <div class="detail-header">
+    <a href="#handle_assign/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">handle_assign(arg)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/eex/lib/eex/engine.ex#L120" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> handle_assign(<a href="https://hexdocs.pm/elixir/main/Macro.html#t:t/0">Macro.t</a>()) :: <a href="https://hexdocs.pm/elixir/main/Macro.html#t:t/0">Macro.t</a>()</pre>
+
+      </div>
+
+<p>Handles assigns in quoted expressions.</p><p>A warning will be printed on missing assigns.
+Future versions will raise.</p><p>This can be added to any custom engine by invoking
+<a href="#handle_assign/1"><code class="inline">handle_assign/1</code></a> with <a href="https://hexdocs.pm/elixir/main/Macro.html#prewalk/2"><code class="inline">Macro.prewalk/2</code></a>:</p><pre><code class="makeup elixir" translate="no"><span class="kd">def</span><span class="w"> </span><span class="nf">handle_expr</span><span class="p" data-group-id="9500096907-1">(</span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="n">token</span><span class="p">,</span><span class="w"> </span><span class="n">expr</span><span class="p" data-group-id="9500096907-1">)</span><span class="w"> </span><span class="k" data-group-id="9500096907-2">do</span><span class="w">
+  </span><span class="n">expr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Macro</span><span class="o">.</span><span class="n">prewalk</span><span class="p" data-group-id="9500096907-3">(</span><span class="n">expr</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="nc">EEx.Engine</span><span class="o">.</span><span class="n">handle_assign</span><span class="o">/</span><span class="mi">1</span><span class="p" data-group-id="9500096907-3">)</span><span class="w">
+  </span><span class="k">super</span><span class="p" data-group-id="9500096907-4">(</span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="n">token</span><span class="p">,</span><span class="w"> </span><span class="n">expr</span><span class="p" data-group-id="9500096907-4">)</span><span class="w">
+</span><span class="k" data-group-id="9500096907-2">end</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="handle_begin/1">
+
+  <div class="detail-header">
+    <a href="#handle_begin/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">handle_begin(state)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/eex/lib/eex/engine.ex#L160" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Default implementation for <a href="#c:handle_begin/1"><code class="inline">handle_begin/1</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="handle_body/1">
+
+  <div class="detail-header">
+    <a href="#handle_body/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">handle_body(state)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/eex/lib/eex/engine.ex#L171" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Default implementation for <a href="#c:handle_body/1"><code class="inline">handle_body/1</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="handle_end/1">
+
+  <div class="detail-header">
+    <a href="#handle_end/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">handle_end(quoted)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/eex/lib/eex/engine.ex#L166" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Default implementation for <a href="#c:handle_end/1"><code class="inline">handle_end/1</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="handle_expr/3">
+
+  <div class="detail-header">
+    <a href="#handle_expr/3" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">handle_expr(state, marker, ast)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/eex/lib/eex/engine.ex#L187" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Default implementation for <a href="#c:handle_expr/3"><code class="inline">handle_expr/3</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="handle_text/3">
+
+  <div class="detail-header">
+    <a href="#handle_text/3" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">handle_text(state, meta, text)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/eex/lib/eex/engine.ex#L180" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Default implementation for <a href="#c:handle_text/3"><code class="inline">handle_text/3</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="init/1">
+
+  <div class="detail-header">
+    <a href="#init/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">init(opts)</h1>
+
+      <a href="https://github.com/elixir-lang/elixir/blob/6407215fb97ca6699776db771accc9523f4e4a1f/lib/eex/lib/eex/engine.ex#L151" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Default implementation for <a href="#c:init/1"><code class="inline">init/1</code></a>.</p>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+      <footer class="footer">
+        <p>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Search HexDocs packages">
+              Search HexDocs
+            </button>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.29.4) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>
