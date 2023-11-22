@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.30.9">
+    <meta name="project" content="reltool v1.0">
+
+
+    <title>Examples — reltool v1.0</title>
+    <link rel="stylesheet" href="dist/html-erlang-QW5RMTQD.css" />
+
+
+    <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
+    <script src="dist/handlebars.templates-43PMFBC7.js"></script>
+    <script src="dist/sidebar_items-D0500924.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/html-LRUIU55G.js"></script>
+
+<style>.dark img { background-color: white; }</style>
+  </head>
+  <body data-type="extras" class="page-extra">
+    <script>
+
+      try {
+        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+
+        if (settings.theme === 'dark' ||
+           ((settings.theme === 'system' || settings.theme == null) &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches)
+           ) {
+          document.body.classList.add('dark')
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
+
+        <a href="api-reference.html" class="sidebar-projectImage">
+          <img src="assets/logo.png" alt="reltool" />
+        </a>
+
+      <div>
+        <a href="api-reference.html" class="sidebar-projectName" translate="no">
+reltool
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v1.0
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-listNav" class="sidebar-listNav" role="tablist">
+      <li>
+        <button id="extras-list-tab-button" role="tab" data-type="extras" aria-controls="extras-tab-panel" aria-selected="true" tabindex="0">
+Pages
+        </button>
+      </li>
+
+        <li>
+          <button id="modules-list-tab-button" role="tab" data-type="modules" aria-controls="modules-tab-panel" aria-selected="false" tabindex="-1">
+            Modules
+          </button>
+        </li>
+
+
+    </ul>
+  </div>
+
+  <div id="extras-tab-panel" class="sidebar-tabpanel" role="tabpanel" aria-labelledby="extras-list-tab-button">
+    <ul id="extras-full-list" class="full-list"></ul>
+  </div>
+
+    <div id="modules-tab-panel" class="sidebar-tabpanel" role="tabpanel" aria-labelledby="modules-list-tab-button" hidden>
+      <ul id="modules-full-list" class="full-list"></ul>
+    </div>
+
+
+</nav>
+
+<main class="content">
+  <output role="status" id="toast"></output>
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+      <div class="top-search">
+        <div class="search-settings">
+          <form class="search-bar" action="search.html">
+            <label class="search-label">
+              <span class="sr-only">Search documentation of reltool</span>
+              <input name="q" type="text" class="search-input" placeholder="Search Documentation (press /)" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+            </label>
+            <button type="submit" class="search-button" aria-label="Submit Search">
+              <i class="ri-search-2-line ri-lg" aria-hidden="true" title="Submit search"></i>
+            </button>
+            <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+              <i class="ri-close-line ri-lg" title="Cancel search"></i>
+            </button>
+          </form>
+          <button class="icon-settings display-settings">
+            <i class="ri-settings-3-line"></i>
+            <span class="sr-only">Settings</span>
+          </button>
+        </div>
+      </div>
+      <div class="autocomplete">
+        <div class="autocomplete-results">
+        </div>
+      </div>
+
+<h1>
+
+    <a href="https://github.com/erlang/otp/blob/master/lib/reltool/doc/guides/reltool_examples.md#L1" title="View Source" class="icon-action" rel="help">
+      <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+      <span class="sr-only">View Source</span>
+    </a>
+
+
+  <span>Examples</span>
+</h1>
+
+<h2 id="start-and-stop-windows-and-servers" class="section-heading">
+  <a href="#start-and-stop-windows-and-servers" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">Start and stop windows and servers</span>
+</h2>
+<p>The main process in Reltool is the server. It can be used as it is or be used
+via the GUI frontend process. When the GUI is started, a server process will
+automatically be started. The GUI process is started with <a href="reltool.html#start/0"><code class="inline">reltool:start/0</code></a>,
+<a href="reltool.html#start/1"><code class="inline">reltool:start/1</code></a> or <a href="reltool.html#start_link/1"><code class="inline">reltool:start_link/1</code></a>. The pid of its server can be
+obtained with <a href="reltool.html#start_link/1"><code class="inline">reltool:get_server/1</code></a></p><pre><code class="text">Erlang/OTP 20 [erts-9.0] [source-c13b302] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10]
+[hipe] [kernel-poll:false]
+Eshell V9.0  (abort with ^G)
+1&gt;
+1&gt; {ok, Win} = reltool:start([]).
+{ok,&lt;0.36.01&gt;}
+2&gt; {ok, Server} = reltool:get_server(Win).
+{ok,&lt;0.37.01&gt;}
+3&gt; reltool:get_config(Server).
+{ok,{sys,[]}}
+4&gt;
+4&gt; {ok, Server2} = reltool:start_server([]).
+{ok,&lt;0.6535.01&gt;}
+5&gt; reltool:get_config(Server2).
+{ok,{sys,[]}}
+6&gt; reltool:stop(Server2).
+ok</code></pre><h2 id="inspecting-the-configuration" class="section-heading">
+  <a href="#inspecting-the-configuration" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">Inspecting the configuration</span>
+</h2>
+<pre><code class="text">Erlang/OTP 20 [erts-9.0] [source-c13b302] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10]
+[hipe] [kernel-poll:false]
+Eshell V9.0  (abort with ^G)
+1&gt;
+1&gt; Config = {sys, [{escript, &quot;examples/display_args&quot;, [{incl_cond, include}]},
+		   {app, inets, [{incl_cond, include}]},
+		   {app, mnesia, [{incl_cond, exclude}]},
+		   {app, ssl, [{incl_cond, exclude}]},
+		   {app, runtime_tools, [{incl_cond, exclude}]},
+		   {app, syntax_tools, [{incl_cond, exclude}]}]}.
+{sys,[{escript,&quot;examples/display_args&quot;,[{incl_cond,include}]},
+      {app,inets,[{incl_cond,include}]},
+      {app,mnesia,[{incl_cond,exclude}]},
+      {app,ssl,[{incl_cond,exclude}]},
+      {app,runtime_tools,[{incl_cond,exclude}]},
+      {app,syntax_tools,[{incl_cond,exclude}]}]}
+2&gt;
+2&gt; {ok, Server} = reltool:start_server([Config]).
+{ok,&lt;0.66.0&gt;}
+3&gt;
+3&gt; reltool:get_config(Server).
+{ok,{sys,[{escript,&quot;/usr/local/lib/erlang/lib/reltool-0.7.3/examples/display_args&quot;,
+                   [{incl_cond,include}]},
+          {app,inets,[{incl_cond,include}]},
+          {app,mnesia,[{incl_cond,exclude}]},
+          {app,runtime_tools,[{incl_cond,exclude}]},
+          {app,ssl,[{incl_cond,exclude}]},
+          {app,syntax_tools,[{incl_cond,exclude}]}]}}
+4&gt;
+4&gt; reltool:get_config(Server, false, false).
+{ok,{sys,[{escript,&quot;/usr/local/lib/erlang/lib/reltool-0.7.3/examples/display_args&quot;,
+                   [{incl_cond,include}]},
+          {app,inets,[{incl_cond,include}]},
+          {app,mnesia,[{incl_cond,exclude}]},
+          {app,runtime_tools,[{incl_cond,exclude}]},
+          {app,ssl,[{incl_cond,exclude}]},
+          {app,syntax_tools,[{incl_cond,exclude}]}]}}
+5&gt;
+5&gt; reltool:get_config(Server, true, false).
+{ok,{sys,[{root_dir,&quot;/usr/local/lib/erlang&quot;},
+          {lib_dirs,[]},
+          {escript,&quot;/usr/local/lib/erlang/lib/reltool-0.7.3/examples/display_args&quot;,
+                   [{incl_cond,include}]},
+          {mod_cond,all},
+          {incl_cond,derived},
+          {app,inets,
+               [{incl_cond,include},{vsn,undefined},{lib_dir,undefined}]},
+          {app,mnesia,[{incl_cond,exclude}]},
+          {app,runtime_tools,[{incl_cond,exclude}]},
+          {app,ssl,[{incl_cond,exclude}]},
+          {app,syntax_tools,[{incl_cond,exclude}]},
+          {boot_rel,&quot;start_clean&quot;},
+          {rel,&quot;start_clean&quot;,&quot;1.0&quot;,[]},
+          {rel,&quot;start_sasl&quot;,&quot;1.0&quot;,[sasl]},
+          {emu_name,&quot;beam&quot;},
+          {relocatable,true},
+          {profile,development},
+          {incl_sys_filters,[&quot;.*&quot;]},
+          {excl_sys_filters,[]},
+          {incl_app_filters,[&quot;.*&quot;]},
+          {excl_app_filters,[]},
+          {rel_app_type,...},
+          {...}|...]}}
+6&gt;
+6&gt; reltool:get_config(Server, true, true).
+{ok,{sys,[{root_dir,&quot;/usr/local/lib/erlang&quot;},
+          {lib_dirs,[]},
+          {escript,&quot;/usr/local/lib/erlang/lib/reltool-0.7.3/examples/display_args&quot;,
+                   [{incl_cond,include}]},
+          {mod_cond,all},
+          {incl_cond,derived},
+          {erts,[{app,erts,
+                      [{vsn,&quot;10.0&quot;},
+                       {lib_dir,&quot;/usr/local/lib/erlang/lib/erts-10.0&quot;},
+                       {mod,erl_prim_loader,[]},
+                       {mod,erl_tracer,[]},
+                       {mod,erlang,[]},
+                       {mod,erts_code_purger,[]},
+                       {mod,erts_dirty_process_signal_handler,[]},
+                       {mod,erts_internal,[]},
+                       {mod,erts_literal_area_collector,[]},
+                       {mod,init,[]},
+                       {mod,erl_init,...},
+                       {mod,...},
+                       {...}|...]}]},
+          {app,compiler,
+               [{vsn,&quot;7.0.4&quot;},
+                {lib_dir,&quot;/usr/local/lib/erlang/lib/compiler-7.0.4&quot;},
+                {mod,beam_a,[]},
+                {mod,beam_asm,[]},
+                {mod,beam_block,[]},
+                {mod,beam_bs,[]},
+                {mod,beam_bsm,[]},
+                {mod,beam_clean,[]},
+                {mod,beam_dead,[]},
+                {mod,beam_dict,[]},
+                {mod,beam_disasm,[]},
+                {mod,beam_except,[]},
+                {mod,beam_flatten,...},
+                {mod,...},
+                {...}|...]},
+          {app,crypto,
+               [{vsn,&quot;3.7.4&quot;},
+                {lib_dir,&quot;/usr/local/lib/erlang/lib/crypto-3.7.4&quot;},
+                {mod,crypto,[]},
+                {mod,crypto_ec_curves,[]}]},
+          {app,hipe,
+               [{vsn,&quot;3.15.4&quot;},
+                {lib_dir,&quot;/usr/local/lib/erlang/lib/hipe-3.15.4&quot;},
+                {mod,cerl_cconv,[]},
+                {mod,cerl_closurean,[]},
+                {mod,cerl_hipeify,[]},
+                {mod,cerl_lib,[]},
+                {mod,cerl_messagean,[]},
+                {mod,cerl_pmatch,[]},
+                {mod,cerl_prettypr,[]},
+                {mod,cerl_to_icode,[]},
+                {mod,cerl_typean,...},
+                {mod,...},
+                {...}|...]},
+          {app,inets,
+               [{incl_cond,include},
+                {vsn,&quot;6.3.9&quot;},
+                {lib_dir,&quot;/usr/local/lib/erlang/lib/inets-6.3.9&quot;},
+                {mod,ftp,[]},
+                {mod,ftp_progress,[]},
+                {mod,ftp_response,[]},
+                {mod,ftp_sup,[]},
+                {mod,http_chunk,[]},
+                {mod,http_request,[]},
+                {mod,http_response,...},
+                {mod,...},
+                {...}|...]},
+          {app,kernel,
+               [{vsn,&quot;5.2&quot;},
+                {lib_dir,&quot;/usr/local/lib/erlang/lib/kernel-5.2&quot;},
+                {mod,application,[]},
+                {mod,application_controller,[]},
+                {mod,application_master,[]},
+                {mod,application_starter,[]},
+                {mod,auth,[]},
+                {mod,code,[]},
+                {mod,code_server,...},
+                {mod,...},
+                {...}|...]},
+          {app,mnesia,[{incl_cond,exclude}]},
+          {app,runtime_tools,[{incl_cond,exclude}]},
+          {app,sasl,
+               [{vsn,&quot;3.0.3&quot;},
+                {lib_dir,&quot;/usr/local/lib/erlang/lib/sasl-3.0.3&quot;},
+                {mod,alarm_handler,[]},
+                {mod,erlsrv,[]},
+                {mod,format_lib_supp,[]},
+                {mod,misc_supp,...},
+                {mod,...},
+                {...}|...]},
+          {app,ssl,[{incl_cond,exclude}]},
+          {app,stdlib,
+               [{vsn,&quot;3.3&quot;},
+                {lib_dir,&quot;/usr/local/lib/erlang/lib/stdlib-3.3&quot;},
+                {mod,array,[]},
+                {mod,base64,...},
+                {mod,...},
+                {...}|...]},
+          {app,syntax_tools,[{incl_cond,exclude}]},
+          {app,tools,
+               [{vsn,&quot;2.9.1&quot;},{lib_dir,[...]},{mod,...},{...}|...]},
+          {boot_rel,&quot;start_clean&quot;},
+          {rel,&quot;start_clean&quot;,&quot;1.0&quot;,[]},
+          {rel,&quot;start_sasl&quot;,&quot;1.0&quot;,[...]},
+          {emu_name,&quot;beam&quot;},
+          {relocatable,true},
+          {profile,...},
+          {...}|...]}}
+7&gt;
+7&gt; reltool:get_config([{sys, [{profile, embedded}]}], true, false).
+{ok,{sys,[{root_dir,&quot;/usr/local/lib/erlang&quot;},
+          {lib_dirs,[]},
+          {mod_cond,all},
+          {incl_cond,derived},
+          {boot_rel,&quot;start_clean&quot;},
+          {rel,&quot;start_clean&quot;,&quot;1.0&quot;,[]},
+          {rel,&quot;start_sasl&quot;,&quot;1.0&quot;,[sasl]},
+          {emu_name,&quot;beam&quot;},
+          {relocatable,true},
+          {profile,embedded},
+          {incl_sys_filters,[&quot;^bin&quot;,&quot;^erts&quot;,&quot;^lib&quot;,&quot;^releases&quot;]},
+          {excl_sys_filters,[&quot;^bin/(erlc|dialyzer|typer)(|\\.exe)$&quot;,
+                             &quot;^erts.*/bin/(erlc|dialyzer|typer)(|\\.exe)$&quot;,
+                             &quot;^erts.*/bin/.*(debug|pdb)&quot;]},
+          {incl_app_filters,[&quot;^ebin&quot;,&quot;^include&quot;,&quot;^priv&quot;]},
+          {excl_app_filters,[]},
+          {rel_app_type,permanent},
+          {embedded_app_type,load},
+          {app_file,keep},
+          {debug_info,keep}]}}
+8&gt;
+8&gt; reltool:get_config([{sys, [{profile, standalone}]}], true, false).
+{ok,{sys,[{root_dir,&quot;/usr/local/lib/erlang&quot;},
+          {lib_dirs,[]},
+          {mod_cond,all},
+          {incl_cond,derived},
+          {boot_rel,&quot;start_clean&quot;},
+          {rel,&quot;start_clean&quot;,&quot;1.0&quot;,[]},
+          {rel,&quot;start_sasl&quot;,&quot;1.0&quot;,[sasl]},
+          {emu_name,&quot;beam&quot;},
+          {relocatable,true},
+          {profile,standalone},
+          {incl_sys_filters,[&quot;^bin/(erl|epmd)(|\\.exe|\\.ini)$&quot;,
+                             &quot;^bin/start(|_clean).boot$&quot;,&quot;^erts.*/bin&quot;,&quot;^lib$&quot;]},
+          {excl_sys_filters,[&quot;^erts.*/bin/(erlc|dialyzer|typer)(|\\.exe)$&quot;,
+                             &quot;^erts.*/bin/(start|escript|to_erl|run_erl)(|\\.exe)$&quot;,
+                             &quot;^erts.*/bin/.*(debug|pdb)&quot;]},
+          {incl_app_filters,[&quot;^ebin&quot;,&quot;^priv&quot;]},
+          {excl_app_filters,[&quot;^ebin/.*\\.appup$&quot;]},
+          {rel_app_type,permanent},
+          {app_file,keep},
+          {debug_info,keep}]}}</code></pre><h2 id="generate-release-and-script-files" class="section-heading">
+  <a href="#generate-release-and-script-files" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">Generate release and script files</span>
+</h2>
+<pre><code class="text">Erlang/OTP 20 [erts-10.0] [source-c13b302] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10]
+[hipe] [kernel-poll:false]
+Eshell V10.0  (abort with ^G)
+1&gt;
+1&gt; {ok, Server} = reltool:start_server([{config,
+                                         {sys,
+                                          [{boot_rel, &quot;NAME&quot;},
+                                           {rel, &quot;NAME&quot;, &quot;VSN&quot;,
+                                            [sasl],
+                                            [{load_dot_erlang, false}]}]}}]).
+{ok,&lt;0.1288.0&gt;}
+2&gt;
+2&gt; reltool:get_config(Server).
+{ok,{sys,[{boot_rel,&quot;NAME&quot;},
+          {rel,&quot;NAME&quot;,&quot;VSN&quot;,[sasl]}]}}
+3&gt;
+3&gt; reltool:get_rel(Server, &quot;NAME&quot;).
+{ok,{release,{&quot;NAME&quot;,&quot;VSN&quot;},
+             {erts,&quot;10.0&quot;},
+             [{kernel,&quot;5.2&quot;},{stdlib,&quot;3.3&quot;},{sasl,&quot;3.0.3&quot;}]}}
+4&gt;
+4&gt; reltool:get_script(Server, &quot;NAME&quot;).
+{ok,{script,{&quot;NAME&quot;,&quot;VSN&quot;},
+            [{preLoaded,[erl_prim_loader,erl_tracer,erlang,
+                         erts_code_purger,erts_dirty_process_signal_handler,
+                         erts_internal,erts_literal_area_collector,init,erl_init,
+                         prim_eval,prim_file,prim_inet,prim_zip,zlib]},
+             {progress,preloaded},
+             {path,[&quot;$ROOT/lib/kernel-5.2/ebin&quot;,
+                    &quot;$ROOT/lib/stdlib-3.3/ebin&quot;]},
+             {primLoad,[error_handler]},
+             {kernel_load_completed},
+             {progress,kernel_load_completed},
+             {path,[&quot;$ROOT/lib/kernel-5.2/ebin&quot;]},
+             {primLoad,[application,application_controller,
+                        application_master,application_starter,auth,code,
+                        code_server,disk_log,disk_log_1,disk_log_server,
+                        disk_log_sup,dist_ac,dist_util,erl_boot_server|...]},
+             {path,[&quot;$ROOT/lib/stdlib-3.3/ebin&quot;]},
+             {primLoad,[array,base64,beam_lib,binary,c,calendar,dets,
+                        dets_server,dets_sup,dets_utils,dets_v9,dict|...]},
+             {path,[&quot;$ROOT/lib/sasl-3.0.3/ebin&quot;]},
+             {primLoad,[alarm_handler,erlsrv,format_lib_supp,misc_supp,
+                        rb,rb_format_supp,release_handler,release_handler_1,sasl,
+                        sasl_report|...]},
+             {progress,modules_loaded},
+             {path,[&quot;$ROOT/lib/kernel-5.2/ebin&quot;,
+                    &quot;$ROOT/lib/stdlib-3.3/ebin&quot;,&quot;$ROOT/lib/sasl-3.0.3/ebin&quot;]},
+             {kernelProcess,heart,{heart,start,[]}},
+             {kernelProcess,error_logger,{error_logger,start_link,[]}},
+             {kernelProcess,application_controller,
+                            {application_controller,start,[{...}]}},
+             {progress,init_kernel_started},
+             {apply,{application,load,[...]}},
+             {apply,{application,load,...}},
+             {progress,applications_loaded},
+             {apply,{...}},
+             {apply,...},
+             {...}|...]}}
+5&gt;
+5&gt; reltool:stop(Server).
+ok</code></pre><h2 id="create-a-target-system" class="section-heading">
+  <a href="#create-a-target-system" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">Create a target system</span>
+</h2>
+<pre><code class="text">Erlang/OTP 20 [erts-10.0] [source-c13b302] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10]
+[hipe] [kernel-poll:false]
+Eshell V10.0  (abort with ^G)
+1&gt;
+1&gt; Config = {sys, [{escript, &quot;examples/display_args&quot;, [{incl_cond, include}]},
+		   {app, inets, [{incl_cond, include}]},
+		   {app, mnesia, [{incl_cond, exclude}]},
+		   {app, ssl, [{incl_cond, exclude}]},
+		   {app, runtime_tools, [{incl_cond, exclude}]},
+		   {app, syntax_tools, [{incl_cond, exclude}]}]}.
+{sys,[{escript,&quot;examples/display_args&quot;,[{incl_cond,include}]},
+      {app,inets,[{incl_cond,include}]},
+      {app,mnesia,[{incl_cond,exclude}]},
+      {app,ssl,[{incl_cond,exclude}]},
+      {app,runtime_tools,[{incl_cond,exclude}]},
+      {app,syntax_tools,[{incl_cond,exclude}]}]}
+2&gt;
+2&gt; {ok, Spec} = reltool:get_target_spec([Config]).
+{ok,[{create_dir,&quot;releases&quot;,
+         [{write_file,&quot;start_erl.data&quot;,&quot;10.0 1.0\n&quot;},
+          {create_dir,&quot;1.0&quot;,
+              [{write_file,&quot;start_clean.rel&quot;,
+                   [37,37,32,114,101,108,32,103,101,110,101,114,97,116|...]},
+               {write_file,&quot;start_clean.script&quot;,
+                   [37,37,32,115,99,114,105,112,116,32,103,101,110|...]},
+               {write_file,&quot;start_clean.boot&quot;,
+                   &lt;&lt;131,104,3,119,6,115,99,114,105,112,116,104,...&gt;&gt;},
+               {write_file,&quot;start_sasl.rel&quot;,
+                   [37,37,32,114,101,108,32,103,101,110,101|...]},
+               {write_file,&quot;start_sasl.script&quot;,
+                   [37,37,32,115,99,114,105,112,116,32|...]},
+               {write_file,&quot;start_sasl.boot&quot;,
+                   &lt;&lt;131,104,3,119,6,115,99,114,105,...&gt;&gt;}]}]},
+     {create_dir,&quot;bin&quot;,
+         [{copy_file,&quot;display_args.escript&quot;,
+              &quot;/usr/local/lib/erlang/lib/reltool-0.7.3/examples/display_args&quot;},
+          {copy_file,&quot;display_args&quot;,&quot;erts-10.0/bin/escript&quot;},
+          {copy_file,&quot;start&quot;,&quot;erts-10.0/bin/start&quot;},
+          {copy_file,&quot;ct_run&quot;,&quot;erts-10.0/bin/ct_run&quot;},
+          {copy_file,&quot;dialyzer&quot;,&quot;erts-10.0/bin/dialyzer&quot;},
+          {copy_file,&quot;run_erl&quot;,&quot;erts-10.0/bin/run_erl&quot;},
+          {copy_file,&quot;erl&quot;,&quot;erts-10.0/bin/dyn_erl&quot;},
+          {copy_file,&quot;to_erl&quot;,&quot;erts-10.0/bin/to_erl&quot;},
+          {copy_file,&quot;epmd&quot;,&quot;erts-10.0/bin/epmd&quot;},
+          {copy_file,&quot;erlc&quot;,&quot;erts-10.0/bin/erlc&quot;},
+          {copy_file,&quot;typer&quot;,&quot;erts-10.0/bin/typer&quot;},
+          {copy_file,&quot;escript&quot;,&quot;erts-10.0/bin/escript&quot;},
+          {write_file,&quot;start_clean.boot&quot;,&lt;&lt;131,104,3,119,6,115,...&gt;&gt;},
+          {write_file,&quot;start_sasl.boot&quot;,&lt;&lt;131,104,3,119,6,...&gt;&gt;},
+          {write_file,&quot;start.boot&quot;,&lt;&lt;131,104,3,119,...&gt;&gt;}]},
+     {copy_file,&quot;Install&quot;},
+     {create_dir,&quot;misc&quot;,
+         [{copy_file,&quot;makewhatis&quot;},{copy_file,&quot;format_man_pages&quot;}]},
+     {create_dir,&quot;usr&quot;,
+         [{create_dir,&quot;lib&quot;,
+              [{copy_file,&quot;liberl_interface_st.a&quot;},
+               {copy_file,&quot;libic.a&quot;},
+               {copy_file,&quot;liberl_interface.a&quot;},
+               {copy_file,&quot;libei_st.a&quot;},
+               {copy_file,&quot;libei.a&quot;}]},
+          {create_dir,&quot;include&quot;,
+              [{copy_file,&quot;driver_int.h&quot;},
+               {copy_file,&quot;ei_connect.h&quot;},
+               {copy_file,&quot;ei.h&quot;},
+               {copy_file,&quot;erl_nif_api_funcs.h&quot;},
+               {copy_file,&quot;erl_fixed_size_int_types.h&quot;},
+               {copy_file,&quot;erl_int_sizes_config.h&quot;},
+               {copy_file,&quot;erl_interface.h&quot;},
+               {copy_file,&quot;eicode.h&quot;},
+               {copy_file,&quot;erl_driver.h&quot;},
+               {copy_file,&quot;erlang.idl&quot;},
+               {copy_file,[...]},
+               {copy_file,...},
+               {...}]}]},
+     {create_dir,&quot;erts-10.0&quot;,
+         [{create_dir,&quot;bin&quot;,
+              [{copy_file,&quot;start&quot;},
+               {copy_file,&quot;ct_run&quot;},
+               {copy_file,&quot;erlexec&quot;},
+               {copy_file,&quot;dialyzer&quot;},
+               {copy_file,&quot;beam.smp&quot;},
+               {copy_file,&quot;run_erl&quot;},
+               {copy_file,&quot;erl&quot;,&quot;erts-10.0/bin/dyn_erl&quot;},
+               {copy_file,&quot;to_erl&quot;},
+               {copy_file,&quot;epmd&quot;},
+               {copy_file,&quot;erl_child_setup&quot;},
+               {copy_file,&quot;heart&quot;},
+               {copy_file,[...]},
+               {copy_file,...},
+               {...}|...]},
+          {create_dir,&quot;lib&quot;,
+              [{create_dir,&quot;internal&quot;,
+                   [{copy_file,&quot;liberts_internal.a&quot;},
+                    {copy_file,&quot;liberts_internal_r.a&quot;},
+                    {copy_file,&quot;libethread.a&quot;},
+                    {copy_file,&quot;README&quot;}]},
+               ]},
+          {create_dir,&quot;src&quot;,[{copy_file,&quot;setuid_socket_wrap.c&quot;}]},
+          {create_dir,&quot;doc&quot;,[]},
+          {create_dir,&quot;man&quot;,[]},
+          {create_dir,&quot;include&quot;,
+              [{create_dir,&quot;internal&quot;,
+                   [{create_dir,&quot;i386&quot;,[{...}|...]},
+                    {copy_file,&quot;erl_errno.h&quot;},
+                    {copy_file,[...]},
+                    {copy_file,...},
+                    {...}|...]},
+               {copy_file,&quot;driver_int.h&quot;},
+               {copy_file,&quot;erl_nif_api_funcs.h&quot;},
+               {copy_file,&quot;erl_fixed_size_int_types.h&quot;},
+               {copy_file,&quot;erl_int_sizes_config.h&quot;},
+               {copy_file,[...]},
+               {copy_file,...},
+               {...}]}]},
+     {create_dir,&quot;lib&quot;,
+         [{create_dir,&quot;compiler-7.0.4&quot;,
+              [{create_dir,&quot;src&quot;,
+                   [{copy_file,&quot;beam_flatten.erl&quot;},
+                    {copy_file,[...]},
+                    {copy_file,...},
+                    {...}|...]},
+               {create_dir,&quot;ebin&quot;,
+                   [{copy_file,[...]},{copy_file,...},{...}|...]}]},
+          {create_dir,&quot;crypto-3.7.4&quot;,
+              [{create_dir,&quot;src&quot;,[{copy_file,[...]},{copy_file,...}]},
+               {create_dir,&quot;ebin&quot;,[{copy_file,...},{...}|...]}]},
+          {create_dir,&quot;crypto-3.7.4&quot;,
+              [{create_dir,&quot;priv&quot;,
+                   [{create_dir,&quot;lib&quot;,[{copy_file,[...]},{copy_file,...}]},
+                    {create_dir,&quot;obj&quot;,[{copy_file,...},{...}|...]}]}]},
+          {create_dir,&quot;erts-10.0&quot;,
+              [{create_dir,&quot;src&quot;,[{...}|...]},
+               {create_dir,&quot;ebin&quot;,[...]}]},
+          {create_dir,&quot;hipe-3.15.4&quot;,
+              [{create_dir,&quot;flow&quot;,[...]},
+               {copy_file,[...]},
+               {create_dir,...},
+               {...}|...]},
+          {create_dir,&quot;inets-6.3.9&quot;,
+              [{create_dir,[...],...},{create_dir,...},{...}]},
+          {create_dir,&quot;inets-6.3.9&quot;,
+              [{create_dir,&quot;priv&quot;,[{create_dir,[...],...}]},
+               {create_dir,&quot;include&quot;,[{copy_file,...},{...}]}]},
+          {create_dir,&quot;kernel-5.2&quot;,[{...}|...]},
+          {create_dir,&quot;kernel-5.2&quot;,
+              [{create_dir,&quot;include&quot;,[{...}|...]}]},
+          {create_dir,[...],...},
+          {create_dir,...},
+          {create_dir,&quot;stdlib-3.3&quot;,[{create_dir,...}]},
+          ...]}]}
+3&gt;
+3&gt; TargetDir = &quot;/tmp/my_target_dir&quot;.
+&quot;/tmp/my_target_dir&quot;
+4&gt;
+4&gt; reltool:eval_target_spec(Spec, code:root_dir(), TargetDir).
+{error,&quot;/tmp/my_target_dir: no such file or directory&quot;}
+5&gt;
+5&gt; file:make_dir(TargetDir).
+ok
+6&gt;
+6&gt; reltool:eval_target_spec(Spec, code:root_dir(), TargetDir).
+ok
+7&gt;
+7&gt; file:list_dir(TargetDir).
+{ok,[&quot;bin&quot;,&quot;Install&quot;,&quot;lib&quot;,&quot;misc&quot;,&quot;usr&quot;,&quot;erts-10.0&quot;,
+     &quot;releases&quot;]}
+8&gt;
+8&gt; file:list_dir(filename:join([TargetDir,&quot;lib&quot;])).
+{ok,[&quot;tools-2.9.1&quot;,&quot;inets-6.3.9&quot;,
+     &quot;kernel-5.2&quot;,&quot;sasl-3.0.3&quot;,
+     &quot;crypto-3.7.4&quot;,&quot;erts-10.0&quot;,
+     &quot;stdlib-3.3&quot;,&quot;compiler-7.0.4&quot;]}
+9&gt;
+9&gt; file:make_dir(&quot;/tmp/yet_another_target_dir&quot;).
+ok
+10&gt;
+10&gt; reltool:create_target([Config], &quot;/tmp/yet_another_target_dir&quot;).
+ok
+11&gt;
+11&gt; file:list_dir(&quot;/tmp/yet_another_target_dir&quot;).
+{ok,[&quot;bin&quot;,&quot;Install&quot;,&quot;lib&quot;,&quot;misc&quot;,&quot;usr&quot;,&quot;erts-10.0&quot;,
+     &quot;releases&quot;]}</code></pre>
+<div class="bottom-actions">
+  <div class="bottom-actions-item">
+
+      <a href="reltool_usage.html" class="bottom-actions-button" rel="prev">
+        <span class="subheader">
+          ← Previous Page
+        </span>
+        <span class="title">
+Usage
+        </span>
+      </a>
+
+  </div>
+  <div class="bottom-actions-item">
+
+  </div>
+</div>
+      <footer class="footer">
+        <p>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Search HexDocs packages">
+              Search HexDocs
+            </button>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.30.9) for the
+
+            <a href="https://erlang.org" title="Erlang" target="_blank" translate="no">Erlang programming language</a>
+
+        </p>
+      </footer>
+    </div>
+  </div>
+</main>
+</div>
+
+
+  </body>
+</html>

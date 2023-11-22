@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.30.9">
+    <meta name="project" content="tools v3.6">
+
+
+    <title>cover — tools v3.6</title>
+    <link rel="stylesheet" href="dist/html-erlang-QW5RMTQD.css" />
+
+
+    <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
+    <script src="dist/handlebars.templates-43PMFBC7.js"></script>
+    <script src="dist/sidebar_items-689671C2.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/html-LRUIU55G.js"></script>
+
+<style>.dark img { background-color: white; }</style>
+  </head>
+  <body data-type="extras" class="page-extra">
+    <script>
+
+      try {
+        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+
+        if (settings.theme === 'dark' ||
+           ((settings.theme === 'system' || settings.theme == null) &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches)
+           ) {
+          document.body.classList.add('dark')
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
+
+        <a href="api-reference.html" class="sidebar-projectImage">
+          <img src="assets/logo.png" alt="tools" />
+        </a>
+
+      <div>
+        <a href="api-reference.html" class="sidebar-projectName" translate="no">
+tools
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v3.6
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-listNav" class="sidebar-listNav" role="tablist">
+      <li>
+        <button id="extras-list-tab-button" role="tab" data-type="extras" aria-controls="extras-tab-panel" aria-selected="true" tabindex="0">
+Pages
+        </button>
+      </li>
+
+        <li>
+          <button id="modules-list-tab-button" role="tab" data-type="modules" aria-controls="modules-tab-panel" aria-selected="false" tabindex="-1">
+            Modules
+          </button>
+        </li>
+
+
+    </ul>
+  </div>
+
+  <div id="extras-tab-panel" class="sidebar-tabpanel" role="tabpanel" aria-labelledby="extras-list-tab-button">
+    <ul id="extras-full-list" class="full-list"></ul>
+  </div>
+
+    <div id="modules-tab-panel" class="sidebar-tabpanel" role="tabpanel" aria-labelledby="modules-list-tab-button" hidden>
+      <ul id="modules-full-list" class="full-list"></ul>
+    </div>
+
+
+</nav>
+
+<main class="content">
+  <output role="status" id="toast"></output>
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+      <div class="top-search">
+        <div class="search-settings">
+          <form class="search-bar" action="search.html">
+            <label class="search-label">
+              <span class="sr-only">Search documentation of tools</span>
+              <input name="q" type="text" class="search-input" placeholder="Search Documentation (press /)" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+            </label>
+            <button type="submit" class="search-button" aria-label="Submit Search">
+              <i class="ri-search-2-line ri-lg" aria-hidden="true" title="Submit search"></i>
+            </button>
+            <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+              <i class="ri-close-line ri-lg" title="Cancel search"></i>
+            </button>
+          </form>
+          <button class="icon-settings display-settings">
+            <i class="ri-settings-3-line"></i>
+            <span class="sr-only">Settings</span>
+          </button>
+        </div>
+      </div>
+      <div class="autocomplete">
+        <div class="autocomplete-results">
+        </div>
+      </div>
+
+<h1>
+
+    <a href="https://github.com/erlang/otp/blob/master/lib/tools/doc/guides/cover_chapter.md#L1" title="View Source" class="icon-action" rel="help">
+      <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+      <span class="sr-only">View Source</span>
+    </a>
+
+
+  <span>cover</span>
+</h1>
+
+<h2 id="introduction" class="section-heading">
+  <a href="#introduction" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">Introduction</span>
+</h2>
+<p>The module <code class="inline">cover</code> provides a set of functions for coverage analysis of Erlang
+programs, counting how many times each <a href="cover_chapter.html#lines">executable line</a>
+is executed.</p><p>Coverage analysis can be used to verify test cases, making sure all relevant
+code is covered, and may be helpful when looking for bottlenecks in the code.</p><h2 id="getting-started-with-cover" class="section-heading">
+  <a href="#getting-started-with-cover" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">Getting Started With Cover</span>
+</h2>
+<h3 id="example" class="section-heading">
+  <a href="#example" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">Example</span>
+</h3>
+<p>Assume that a test case for the following program should be verified:</p><pre><code class="text">-module(channel).
+-behaviour(gen_server).
+
+-export([start_link/0,stop/0]).
+-export([alloc/0,free/1]). % client interface
+-export([init/1,handle_call/3,terminate/2]). % callback functions
+
+start_link() -&gt;
+    gen_server:start_link({local,channel},channel,[],[]).
+
+stop() -&gt;
+    gen_server:call(channel,stop).
+
+%%%-Client interface functions-------------------------------------------
+
+alloc() -&gt;
+    gen_server:call(channel,alloc).
+
+free(Channel) -&gt;
+    gen_server:call(channel,{free,Channel}).
+
+%%%-gen_server callback functions----------------------------------------
+
+init(_Arg) -&gt;
+    {ok,channels()}.
+
+handle_call(stop,Client,Channels) -&gt;
+    {stop,normal,ok,Channels};
+
+handle_call(alloc,Client,Channels) -&gt;
+    {Ch,Channels2} = alloc(Channels),
+    {reply,{ok,Ch},Channels2};
+
+handle_call({free,Channel},Client,Channels) -&gt;
+    Channels2 = free(Channel,Channels),
+    {reply,ok,Channels2}.
+
+terminate(_Reason,Channels) -&gt;
+    ok.
+
+%%%-Internal functions---------------------------------------------------
+
+channels() -&gt;
+    [ch1,ch2,ch3].
+
+alloc([Channel|Channels]) -&gt;
+    {Channel,Channels};
+alloc([]) -&gt;
+    false.
+
+free(Channel,Channels) -&gt;
+    [Channel|Channels].</code></pre><p>The test case is implemented as follows:</p><pre><code class="text">-module(test).
+-export([s/0]).
+
+s() -&gt;
+    {ok,Pid} = channel:start_link(),
+    {ok,Ch1} = channel:alloc(),
+    ok = channel:free(Ch1),
+    ok = channel:stop().</code></pre><h3 id="preparation" class="section-heading">
+  <a href="#preparation" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">Preparation</span>
+</h3>
+<p>First of all, Cover must be started. This spawns a process which owns the Cover
+database where all coverage data will be stored.</p><pre><code class="text">1&gt; cover:start().
+{ok,&lt;0.30.0&gt;}</code></pre><p>To include other nodes in the coverage analysis, use <code class="inline">start/1</code>. All cover
+compiled modules will then be loaded on all nodes, and data from all nodes will
+be summed up when analysing. For simplicity this example only involves the
+current node.</p><p>Before any analysis can take place, the involved modules must be <em>Cover
+compiled</em>. This means that some extra information is added to the module before
+it is compiled into a binary which then is <a href="cover_chapter.html#loading">loaded</a>.
+The source file of the module is not affected and no <code class="inline">.beam</code> file is created.</p><pre><code class="text">2&gt; cover:compile_module(channel).
+{ok,channel}</code></pre><p>Each time a function in the Cover compiled module <code class="inline">channel</code> is called,
+information about the call will be added to the Cover database. Run the test
+case:</p><pre><code class="text">3&gt; test:s().
+ok</code></pre><p>Cover analysis is performed by examining the contents of the Cover database. The
+output is determined by two parameters, <code class="inline">Level</code> and <code class="inline">Analysis</code>. <code class="inline">Analysis</code> is
+either <code class="inline">coverage</code> or <code class="inline">calls</code> and determines the type of the analysis. <code class="inline">Level</code> is
+either <code class="inline">module</code>, <code class="inline">function</code>, <code class="inline">clause</code>, or <code class="inline">line</code> and determines the level of the
+analysis.</p><h3 id="coverage-analysis" class="section-heading">
+  <a href="#coverage-analysis" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">Coverage Analysis</span>
+</h3>
+<p>Analysis of type <code class="inline">coverage</code> is used to find out how much of the code has been
+executed and how much has not been executed. Coverage is represented by a tuple
+<code class="inline">{Cov,NotCov}</code>, where <code class="inline">Cov</code> is the number of executable lines that have been
+executed at least once and <code class="inline">NotCov</code> is the number of executable lines that have
+not been executed.</p><p>If the analysis is made on module level, the result is given for the entire
+module as a tuple <code class="inline">{Module,{Cov,NotCov}}</code>:</p><pre><code class="text">4&gt; cover:analyse(channel,coverage,module).
+{ok,{channel,{14,1}}}</code></pre><p>For <code class="inline">channel</code>, the result shows that 14 lines in the module are covered but one
+line is not covered.</p><p>If the analysis is made on function level, the result is given as a list of
+tuples <code class="inline">{Function,{Cov,NotCov}}</code>, one for each function in the module. A
+function is specified by its module name, function name and arity:</p><pre><code class="text">5&gt; cover:analyse(channel,coverage,function).
+{ok,[{{channel,start_link,0},{1,0}},
+     {{channel,stop,0},{1,0}},
+     {{channel,alloc,0},{1,0}},
+     {{channel,free,1},{1,0}},
+     {{channel,init,1},{1,0}},
+     {{channel,handle_call,3},{5,0}},
+     {{channel,terminate,2},{1,0}},
+     {{channel,channels,0},{1,0}},
+     {{channel,alloc,1},{1,1}},
+     {{channel,free,2},{1,0}}]}</code></pre><p>For <code class="inline">channel</code>, the result shows that the uncovered line is in the function
+<code class="inline">channel:alloc/1</code>.</p><p>If the analysis is made on clause level, the result is given as a list of tuples
+<code class="inline">{Clause,{Cov,NotCov}}</code>, one for each function clause in the module. A clause is
+specified by its module name, function name, arity and position within the
+function definition:</p><pre><code class="text">6&gt; cover:analyse(channel,coverage,clause).
+{ok,[{{channel,start_link,0,1},{1,0}},
+     {{channel,stop,0,1},{1,0}},
+     {{channel,alloc,0,1},{1,0}},
+     {{channel,free,1,1},{1,0}},
+     {{channel,init,1,1},{1,0}},
+     {{channel,handle_call,3,1},{1,0}},
+     {{channel,handle_call,3,2},{2,0}},
+     {{channel,handle_call,3,3},{2,0}},
+     {{channel,terminate,2,1},{1,0}},
+     {{channel,channels,0,1},{1,0}},
+     {{channel,alloc,1,1},{1,0}},
+     {{channel,alloc,1,2},{0,1}},
+     {{channel,free,2,1},{1,0}}]}</code></pre><p>For <code class="inline">channel</code>, the result shows that the uncovered line is in the second clause
+of <code class="inline">channel:alloc/1</code>.</p><p>Finally, if the analysis is made on line level, the result is given as a list of
+tuples <code class="inline">{Line,{Cov,NotCov}}</code>, one for each executable line in the source code. A
+line is specified by its module name and line number.</p><pre><code class="text">7&gt; cover:analyse(channel,coverage,line).
+{ok,[{{channel,9},{1,0}},
+     {{channel,12},{1,0}},
+     {{channel,17},{1,0}},
+     {{channel,20},{1,0}},
+     {{channel,25},{1,0}},
+     {{channel,28},{1,0}},
+     {{channel,31},{1,0}},
+     {{channel,32},{1,0}},
+     {{channel,35},{1,0}},
+     {{channel,36},{1,0}},
+     {{channel,39},{1,0}},
+     {{channel,44},{1,0}},
+     {{channel,47},{1,0}},
+     {{channel,49},{0,1}},
+     {{channel,52},{1,0}}]}</code></pre><p>For <code class="inline">channel</code>, the result shows that the uncovered line is line number 49.</p><h3 id="call-statistics" class="section-heading">
+  <a href="#call-statistics" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">Call Statistics</span>
+</h3>
+<p>Analysis of type <code class="inline">calls</code> is used to find out how many times something has been
+called and is represented by an integer <code class="inline">Calls</code>.</p><p>If the analysis is made on module level, the result is given as a tuple
+<code class="inline">{Module,Calls}</code>. Here <code class="inline">Calls</code> is the total number of calls to functions in the
+module:</p><pre><code class="text">8&gt; cover:analyse(channel,calls,module).
+{ok,{channel,12}}</code></pre><p>For <code class="inline">channel</code>, the result shows that a total of twelve calls have been made to
+functions in the module.</p><p>If the analysis is made on function level, the result is given as a list of
+tuples <code class="inline">{Function,Calls}</code>. Here <code class="inline">Calls</code> is the number of calls to each function:</p><pre><code class="text">9&gt; cover:analyse(channel,calls,function).
+{ok,[{{channel,start_link,0},1},
+     {{channel,stop,0},1},
+     {{channel,alloc,0},1},
+     {{channel,free,1},1},
+     {{channel,init,1},1},
+     {{channel,handle_call,3},3},
+     {{channel,terminate,2},1},
+     {{channel,channels,0},1},
+     {{channel,alloc,1},1},
+     {{channel,free,2},1}]}</code></pre><p>For <code class="inline">channel</code>, the result shows that <code class="inline">handle_call/3</code> is the most called function
+in the module (three calls). All other functions have been called once.</p><p>If the analysis is made on clause level, the result is given as a list of tuples
+<code class="inline">{Clause,Calls}</code>. Here <code class="inline">Calls</code> is the number of calls to each function clause:</p><pre><code class="text">10&gt; cover:analyse(channel,calls,clause).
+{ok,[{{channel,start_link,0,1},1},
+     {{channel,stop,0,1},1},
+     {{channel,alloc,0,1},1},
+     {{channel,free,1,1},1},
+     {{channel,init,1,1},1},
+     {{channel,handle_call,3,1},1},
+     {{channel,handle_call,3,2},1},
+     {{channel,handle_call,3,3},1},
+     {{channel,terminate,2,1},1},
+     {{channel,channels,0,1},1},
+     {{channel,alloc,1,1},1},
+     {{channel,alloc,1,2},0},
+     {{channel,free,2,1},1}]}</code></pre><p>For <code class="inline">channel</code>, the result shows that all clauses have been called once, except
+the second clause of <code class="inline">channel:alloc/1</code> which has not been called at all.</p><p>Finally, if the analysis is made on line level, the result is given as a list of
+tuples <code class="inline">{Line,Calls}</code>. Here <code class="inline">Calls</code> is the number of times each line has been
+executed:</p><pre><code class="text">11&gt; cover:analyse(channel,calls,line).
+{ok,[{{channel,9},1},
+     {{channel,12},1},
+     {{channel,17},1},
+     {{channel,20},1},
+     {{channel,25},1},
+     {{channel,28},1},
+     {{channel,31},1},
+     {{channel,32},1},
+     {{channel,35},1},
+     {{channel,36},1},
+     {{channel,39},1},
+     {{channel,44},1},
+     {{channel,47},1},
+     {{channel,49},0},
+     {{channel,52},1}]}</code></pre><p>For <code class="inline">channel</code>, the result shows that all lines have been executed once, except
+line number 49 which has not been executed at all.</p><h3 id="analysis-to-file" class="section-heading">
+  <a href="#analysis-to-file" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">Analysis to File</span>
+</h3>
+<p>A line level calls analysis of <code class="inline">channel</code> can be written to a file using
+<code class="inline">cover:analysis_to_file/1</code>:</p><pre><code class="text">12&gt; cover:analyse_to_file(channel).
+{ok,&quot;channel.COVER.out&quot;}</code></pre><p>The function creates a copy of <code class="inline">channel.erl</code> where it for each executable line
+is specified how many times that line has been executed. The output file is
+called <code class="inline">channel.COVER.out</code>.</p><pre><code class="text">File generated from channel.erl by COVER 2001-05-21 at 11:16:38
+
+****************************************************************************
+
+        |  -module(channel).
+        |  -behaviour(gen_server).
+        |
+        |  -export([start_link/0,stop/0]).
+        |  -export([alloc/0,free/1]). % client interface
+        |  -export([init/1,handle_call/3,terminate/2]). % callback functions
+        |
+        |  start_link() -&gt;
+     1..|      gen_server:start_link({local,channel},channel,[],[]).
+        |
+        |  stop() -&gt;
+     1..|      gen_server:call(channel,stop).
+        |
+        |  %%%-Client interface functions------------------------------------
+        |
+        |  alloc() -&gt;
+     1..|      gen_server:call(channel,alloc).
+        |
+        |  free(Channel) -&gt;
+     1..|      gen_server:call(channel,{free,Channel}).
+        |
+        |  %%%-gen_server callback functions---------------------------------
+        |
+        |  init(_Arg) -&gt;
+     1..|      {ok,channels()}.
+        |
+        |  handle_call(stop,Client,Channels) -&gt;
+     1..|      {stop,normal,ok,Channels};
+        |
+        |  handle_call(alloc,Client,Channels) -&gt;
+     1..|      {Ch,Channels2} = alloc(Channels),
+     1..|      {reply,{ok,Ch},Channels2};
+        |
+        |  handle_call({free,Channel},Client,Channels) -&gt;
+     1..|      Channels2 = free(Channel,Channels),
+     1..|      {reply,ok,Channels2}.
+        |
+        |  terminate(_Reason,Channels) -&gt;
+     1..|      ok.
+        |
+        |  %%%-Internal functions--------------------------------------------
+        |
+        |  channels() -&gt;
+     1..|      [ch1,ch2,ch3].
+        |
+        |  alloc([Channel|Channels]) -&gt;
+     1..|      {Channel,Channels};
+        |  alloc([]) -&gt;
+     0..|      false.
+        |
+        |  free(Channel,Channels) -&gt;
+     1..|      [Channel|Channels].</code></pre><h3 id="conclusion" class="section-heading">
+  <a href="#conclusion" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">Conclusion</span>
+</h3>
+<p>By looking at the results from the analyses, it can be deducted that the test
+case does not cover the case when all channels are allocated and <code class="inline">test.erl</code>
+should be extended accordingly.<br/>Incidentally, when the test case is corrected a bug in <code class="inline">channel</code> should indeed
+be discovered.</p><p>When the Cover analysis is ready, Cover is stopped and all Cover compiled
+modules are <a href="cover_chapter.html#loading">unloaded</a>. The code for <code class="inline">channel</code> is now
+loaded as usual from a <code class="inline">.beam</code> file in the current path.</p><pre><code class="text">13&gt; code:which(channel).
+cover_compiled
+14&gt; cover:stop().
+ok
+15&gt; code:which(channel).
+&quot;./channel.beam&quot;</code></pre><h2 id="miscellaneous" class="section-heading">
+  <a href="#miscellaneous" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">Miscellaneous</span>
+</h2>
+<h3 id="performance" class="section-heading">
+  <a href="#performance" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">Performance</span>
+</h3>
+<p>Execution of code in Cover compiled modules is slower and more memory consuming
+than for regularly compiled modules. As the Cover database contains information
+about each executable line in each Cover compiled module, performance decreases
+proportionally to the size and number of the Cover compiled modules.</p><p>To improve performance when analysing cover results it is possible to do
+multiple calls to <a href="cover.html#analyse/1">analyse</a> and
+<a href="cover.html#analyse_to_file/1">analyse_to_file</a> at once. You can also use the
+<a href="cover.html#async_analyse_to_file/1">async_analyse_to_file</a> convenience function.</p><p><a href="" id="lines"></a></p><h3 id="executable-lines" class="section-heading">
+  <a href="#executable-lines" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">Executable Lines</span>
+</h3>
+<p>Cover uses the concept of <em>executable lines</em>, which is lines of code containing
+an executable expression such as a matching or a function call. A blank line or
+a line containing a comment, function head or pattern in a <code class="inline">case</code>- or <code class="inline">receive</code>
+statement is not executable.</p><p>In the example below, lines number 2,4,6,8 and 11 are executable lines:</p><pre><code class="text">1: is_loaded(Module,Compiled) -&gt;
+2:   case get_file(Module,Compiled) of
+3:     {ok,File} -&gt;
+4:       case code:which(Module) of
+5:         ?TAG -&gt;
+6:           {loaded,File};
+7:         _ -&gt;
+8:           unloaded
+9:       end;
+10:    false -&gt;
+11:      false
+12:  end.</code></pre><p><a href="" id="loading"></a></p><h3 id="code-loading-mechanism" class="section-heading">
+  <a href="#code-loading-mechanism" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">Code Loading Mechanism</span>
+</h3>
+<p>When a module is Cover compiled, it is also loaded using the normal code loading
+mechanism of Erlang. This means that if a Cover compiled module is re-loaded
+during a Cover session, for example using <code class="inline">c(Module)</code>, it will no longer be
+Cover compiled.</p><p>Use <a href="cover.html#is_compiled/1"><code class="inline">cover:is_compiled/1</code></a> or <a href="../../../../lib/kernel/doc/html/code.html#which/1"><code class="inline">code:which/1</code></a> to see if a module is Cover compiled
+(and still loaded) or not.</p><p>When Cover is stopped, all Cover compiled modules are unloaded.</p>
+<div class="bottom-actions">
+  <div class="bottom-actions-item">
+
+      <a href="notes.html" class="bottom-actions-button" rel="prev">
+        <span class="subheader">
+          ← Previous Page
+        </span>
+        <span class="title">
+Tools Release Notes
+        </span>
+      </a>
+
+  </div>
+  <div class="bottom-actions-item">
+
+      <a href="cprof_chapter.html" class="bottom-actions-button" rel="next">
+        <span class="subheader">
+          Next Page →
+        </span>
+        <span class="title">
+cprof - The Call Count Profiler
+        </span>
+      </a>
+
+  </div>
+</div>
+      <footer class="footer">
+        <p>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Search HexDocs packages">
+              Search HexDocs
+            </button>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.30.9) for the
+
+            <a href="https://erlang.org" title="Erlang" target="_blank" translate="no">Erlang programming language</a>
+
+        </p>
+      </footer>
+    </div>
+  </div>
+</main>
+</div>
+
+
+  </body>
+</html>

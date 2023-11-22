@@ -1,0 +1,1809 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.30.9">
+    <meta name="project" content="stdlib v5.1.1">
+
+
+    <title>array — stdlib v5.1.1</title>
+    <link rel="stylesheet" href="dist/html-erlang-QW5RMTQD.css" />
+
+
+    <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
+    <script src="dist/handlebars.templates-43PMFBC7.js"></script>
+    <script src="dist/sidebar_items-6E0BE131.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/html-LRUIU55G.js"></script>
+
+<style>.dark img { background-color: white; }</style>
+  </head>
+  <body data-type="modules" class="page-module">
+    <script>
+
+      try {
+        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+
+        if (settings.theme === 'dark' ||
+           ((settings.theme === 'system' || settings.theme == null) &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches)
+           ) {
+          document.body.classList.add('dark')
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
+
+        <a href="api-reference.html" class="sidebar-projectImage">
+          <img src="assets/logo.png" alt="stdlib" />
+        </a>
+
+      <div>
+        <a href="api-reference.html" class="sidebar-projectName" translate="no">
+stdlib
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v5.1.1
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-listNav" class="sidebar-listNav" role="tablist">
+      <li>
+        <button id="extras-list-tab-button" role="tab" data-type="extras" aria-controls="extras-tab-panel" aria-selected="true" tabindex="0">
+Pages
+        </button>
+      </li>
+
+        <li>
+          <button id="modules-list-tab-button" role="tab" data-type="modules" aria-controls="modules-tab-panel" aria-selected="false" tabindex="-1">
+            Modules
+          </button>
+        </li>
+
+
+    </ul>
+  </div>
+
+  <div id="extras-tab-panel" class="sidebar-tabpanel" role="tabpanel" aria-labelledby="extras-list-tab-button">
+    <ul id="extras-full-list" class="full-list"></ul>
+  </div>
+
+    <div id="modules-tab-panel" class="sidebar-tabpanel" role="tabpanel" aria-labelledby="modules-list-tab-button" hidden>
+      <ul id="modules-full-list" class="full-list"></ul>
+    </div>
+
+
+</nav>
+
+<main class="content">
+  <output role="status" id="toast"></output>
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+      <div class="top-search">
+        <div class="search-settings">
+          <form class="search-bar" action="search.html">
+            <label class="search-label">
+              <span class="sr-only">Search documentation of stdlib</span>
+              <input name="q" type="text" class="search-input" placeholder="Search Documentation (press /)" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+            </label>
+            <button type="submit" class="search-button" aria-label="Submit Search">
+              <i class="ri-search-2-line ri-lg" aria-hidden="true" title="Submit search"></i>
+            </button>
+            <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+              <i class="ri-close-line ri-lg" title="Cancel search"></i>
+            </button>
+          </form>
+          <button class="icon-settings display-settings">
+            <i class="ri-settings-3-line"></i>
+            <span class="sr-only">Settings</span>
+          </button>
+        </div>
+      </div>
+      <div class="autocomplete">
+        <div class="autocomplete-results">
+        </div>
+      </div>
+
+<h1>
+
+    <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/array.erl#L75" title="View Source" class="icon-action" rel="help">
+      <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+      <span class="sr-only">View Source</span>
+    </a>
+
+  <span translate="no">array</span> 
+  <small class="app-vsn" translate="no">(stdlib v5.1.1)</small>
+
+</h1>
+
+
+  <section id="moduledoc">
+<p>Functional, extendible arrays. Arrays can have fixed size, or can grow
+automatically as needed. A default value is used for entries that have not been
+explicitly set.</p><p>Arrays uses <strong>zero</strong> based indexing. This is a deliberate design choice and
+differs from other erlang datastructures, e.g. tuples.</p><p>Unless specified by the user when the array is created, the default value is the
+atom <code class="inline">undefined</code>. There is no difference between an unset entry and an entry
+which has been explicitly set to the same value as the default one (cf.
+<a href="#reset/2"><code class="inline">reset/2</code></a>). If you need to differentiate between unset and set entries, you must
+make sure that the default value cannot be confused with the values of set
+entries.</p><p>The array never shrinks automatically; if an index <code class="inline">I</code> has been used
+successfully to set an entry, all indices in the range [0,<code class="inline">I</code>] will stay
+accessible unless the array size is explicitly changed by calling <a href="#resize/2"><code class="inline">resize/2</code></a>.</p><p>Examples:</p><pre><code class="text">  %% Create a fixed-size array with entries 0-9 set to 'undefined'
+  A0 = array:new(10).
+  10 = array:size(A0).
+
+  %% Create an extendible array and set entry 17 to 'true',
+  %% causing the array to grow automatically
+  A1 = array:set(17, true, array:new()).
+  18 = array:size(A1).
+
+  %% Read back a stored value
+  true = array:get(17, A1).
+
+  %% Accessing an unset entry returns the default value
+  undefined = array:get(3, A1).
+
+  %% Accessing an entry beyond the last set entry also returns the
+  %% default value, if the array does not have fixed size
+  undefined = array:get(18, A1).
+
+  %% &quot;sparse&quot; functions ignore default-valued entries
+  A2 = array:set(4, false, A1).
+  [{4, false}, {17, true}] = array:sparse_to_orddict(A2).
+
+  %% An extendible array can be made fixed-size later
+  A3 = array:fix(A2).
+
+  %% A fixed-size array does not grow automatically and does not
+  %% allow accesses beyond the last set entry
+  {'EXIT',{badarg,_}} = (catch array:set(18, true, A3)).
+  {'EXIT',{badarg,_}} = (catch array:get(18, A3)).</code></pre>
+  </section>
+
+
+  <section id="summary" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Summary</span>
+    </h1>
+<div class="summary-types summary">
+  <h2>
+    <a href="#types">Types</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:array/0" translate="no">array()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:array/1" translate="no">array(Type)</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:array_indx/0" translate="no">array_indx()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:array_opt/0" translate="no">array_opt()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:array_opts/0" translate="no">array_opts()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:element_tuple/1" translate="no">element_tuple/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:elements/1" translate="no">elements/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:indx_pair/1" translate="no">indx_pair(Type)</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:indx_pairs/1" translate="no">indx_pairs(Type)</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+</div>
+<div class="summary-functions summary">
+  <h2>
+    <a href="#functions">Functions</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#default/1" translate="no">default/1</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Get the value used for uninitialized entries.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#fix/1" translate="no">fix/1</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Fix the size of the array. This prevents it from growing automatically upon
+insertion; see also <a href="#set/3"><code class="inline">set/3</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#foldl/3" translate="no">foldl/3</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Fold the elements of the array using the given function and initial accumulator
+value. The elements are visited in order from the lowest index to the highest.
+If <code class="inline">Function</code> is not a function, the call fails with reason <code class="inline">badarg</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#foldr/3" translate="no">foldr/3</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Fold the elements of the array right-to-left using the given function and
+initial accumulator value. The elements are visited in order from the highest
+index to the lowest. If <code class="inline">Function</code> is not a function, the call fails with reason
+<code class="inline">badarg</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#from_list/1" translate="no">from_list(List)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Equivalent to <a href="#from_list/2">from_list(List, undefined)</a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#from_list/2" translate="no">from_list/2</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Convert a list to an extendible array. <code class="inline">Default</code> is used as the value for
+uninitialized entries of the array. If <code class="inline">List</code> is not a proper list, the call
+fails with reason <code class="inline">badarg</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#from_orddict/1" translate="no">from_orddict(Orddict)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Equivalent to <a href="#from_orddict/2">from_orddict(Orddict, undefined)</a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#from_orddict/2" translate="no">from_orddict/2</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Convert an ordered list of pairs <code class="inline">{Index, Value}</code> to a corresponding extendible
+array. <code class="inline">Default</code> is used as the value for uninitialized entries of the array. If
+<code class="inline">List</code> is not a proper, ordered list of pairs whose first elements are
+nonnegative integers, the call fails with reason <code class="inline">badarg</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#get/2" translate="no">get/2</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Get the value of entry <code class="inline">I</code>. If <code class="inline">I</code> is not a nonnegative integer, or if the array
+has fixed size and <code class="inline">I</code> is larger than the maximum index, the call fails with
+reason <code class="inline">badarg</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#is_array/1" translate="no">is_array/1</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Returns <code class="inline">true</code> if <code class="inline">X</code> appears to be an array, otherwise <code class="inline">false</code>. Note that the
+check is only shallow; there is no guarantee that <code class="inline">X</code> is a well-formed array
+representation even if this function returns <code class="inline">true</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#is_fix/1" translate="no">is_fix/1</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Check if the array has fixed size. Returns <code class="inline">true</code> if the array is fixed,
+otherwise <code class="inline">false</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#map/2" translate="no">map/2</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Map the given function onto each element of the array. The elements are visited
+in order from the lowest index to the highest. If <code class="inline">Function</code> is not a function,
+the call fails with reason <code class="inline">badarg</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#new/0" translate="no">new()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Equivalent to <a href="#new/1">new([])</a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#new/1" translate="no">new(Options)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Create a new array according to the given options. By default, the array is
+extendible and has initial size zero. Array indices start at 0.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#new/2" translate="no">new(Size, Options)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Create a new array according to the given size and options. If <code class="inline">Size</code> is not a
+nonnegative integer, the call fails with reason <code class="inline">badarg</code>. By default, the array
+has fixed size. Note that any size specifications in <code class="inline">Options</code> will override the
+<code class="inline">Size</code> parameter.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#relax/1" translate="no">relax/1</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Make the array resizable. (Reverses the effects of <a href="#fix/1"><code class="inline">fix/1</code></a>.)</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#reset/2" translate="no">reset/2</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Reset entry <code class="inline">I</code> to the default value for the array. If the value of entry <code class="inline">I</code> is
+the default value the array will be returned unchanged. Reset will never change
+size of the array. Shrinking can be done explicitly by calling <a href="#resize/2"><code class="inline">resize/2</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#resize/1" translate="no">resize(Array)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Equivalent to <a href="#resize/2">resize(sparse_size(Array), Array)</a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#resize/2" translate="no">resize/2</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Change the size of the array. If <code class="inline">Size</code> is not a nonnegative integer, the call
+fails with reason <code class="inline">badarg</code>. If the given array has fixed size, the resulting
+array will also have fixed size.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#set/3" translate="no">set/3</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Set entry <code class="inline">I</code> of the array to <code class="inline">Value</code>. If <code class="inline">I</code> is not a nonnegative integer, or
+if the array has fixed size and <code class="inline">I</code> is larger than the maximum index, the call
+fails with reason <code class="inline">badarg</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#size/1" translate="no">size/1</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Get the number of entries in the array. Entries are numbered from 0 to
+<code class="inline">size(Array)-1</code>; hence, this is also the index of the first entry that is
+guaranteed to not have been previously set.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#sparse_foldl/3" translate="no">sparse_foldl/3</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Fold the elements of the array using the given function and initial accumulator
+value, skipping default-valued entries. The elements are visited in order from
+the lowest index to the highest. If <code class="inline">Function</code> is not a function, the call fails
+with reason <code class="inline">badarg</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#sparse_foldr/3" translate="no">sparse_foldr/3</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Fold the elements of the array right-to-left using the given function and
+initial accumulator value, skipping default-valued entries. The elements are
+visited in order from the highest index to the lowest. If <code class="inline">Function</code> is not a
+function, the call fails with reason <code class="inline">badarg</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#sparse_map/2" translate="no">sparse_map/2</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Map the given function onto each element of the array, skipping default-valued
+entries. The elements are visited in order from the lowest index to the highest.
+If <code class="inline">Function</code> is not a function, the call fails with reason <code class="inline">badarg</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#sparse_size/1" translate="no">sparse_size(A)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Get the number of entries in the array up until the last non-default valued
+entry. In other words, returns <code class="inline">I+1</code> if <code class="inline">I</code> is the last non-default valued entry
+in the array, or zero if no such entry exists.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#sparse_to_list/1" translate="no">sparse_to_list/1</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Converts the array to a list, skipping default-valued entries.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#sparse_to_orddict/1" translate="no">sparse_to_orddict/1</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Convert the array to an ordered list of pairs <code class="inline">{Index, Value}</code>, skipping
+default-valued entries.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#to_list/1" translate="no">to_list/1</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Converts the array to a list.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#to_orddict/1" translate="no">to_orddict/1</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Convert the array to an ordered list of pairs <code class="inline">{Index, Value}</code>.</p></div>
+
+    </div>
+
+</div>
+
+  </section>
+
+
+  <section id="types" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#types">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Types</span>
+    </h1>
+    <div class="types-list">
+<section class="detail" id="t:array/0">
+
+  <div class="detail-header">
+    <a href="#t:array/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">array()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/array.erl#L218" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> array() :: <a href="#t:array/1">array</a>(<a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()).</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:array/1">
+
+  <div class="detail-header">
+    <a href="#t:array/1" class="detail-link" title="Link to this opaque">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this opaque</span>
+    </a>
+    <h1 class="signature" translate="no">array(Type)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/array.erl#L221" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(opaque)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-opaque</span> array(Type)</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:array_indx/0">
+
+  <div class="detail-header">
+    <a href="#t:array_indx/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">array_indx()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/array.erl#L229" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> array_indx() :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:non_neg_integer/0">non_neg_integer</a>().</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:array_opt/0">
+
+  <div class="detail-header">
+    <a href="#t:array_opt/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">array_opt()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/array.erl#L232" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> array_opt() ::
+    {fixed, <a href="../../../../lib/../erts/doc/html/erlang.html#t:boolean/0">boolean</a>()} |
+    fixed |
+    {default, Type :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()} |
+    {size, N :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:non_neg_integer/0">non_neg_integer</a>()} |
+    (N :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:non_neg_integer/0">non_neg_integer</a>()).</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:array_opts/0">
+
+  <div class="detail-header">
+    <a href="#t:array_opts/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">array_opts()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/array.erl#L237" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> array_opts() :: <a href="#t:array_opt/0">array_opt</a>() | [<a href="#t:array_opt/0">array_opt</a>()].</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:element_tuple/1">
+
+  <div class="detail-header">
+    <a href="#t:element_tuple/1" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">element_tuple/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/array.erl#L199" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> element_tuple(T) ::
+    {T, T, T, T, T, T, T, T, T, T} |
+    {<a href="#t:element_tuple/1">element_tuple</a>(T),
+     <a href="#t:element_tuple/1">element_tuple</a>(T),
+     <a href="#t:element_tuple/1">element_tuple</a>(T),
+     <a href="#t:element_tuple/1">element_tuple</a>(T),
+     <a href="#t:element_tuple/1">element_tuple</a>(T),
+     <a href="#t:element_tuple/1">element_tuple</a>(T),
+     <a href="#t:element_tuple/1">element_tuple</a>(T),
+     <a href="#t:element_tuple/1">element_tuple</a>(T),
+     <a href="#t:element_tuple/1">element_tuple</a>(T),
+     <a href="#t:element_tuple/1">element_tuple</a>(T),
+     <a href="../../../../lib/../erts/doc/html/erlang.html#t:non_neg_integer/0">non_neg_integer</a>()}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:elements/1">
+
+  <div class="detail-header">
+    <a href="#t:elements/1" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">elements/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/array.erl#L206" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> elements(T) :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:non_neg_integer/0">non_neg_integer</a>() | <a href="#t:element_tuple/1">element_tuple</a>(T) | [].</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:indx_pair/1">
+
+  <div class="detail-header">
+    <a href="#t:indx_pair/1" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">indx_pair(Type)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/array.erl#L240" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> indx_pair(Type) :: {Index :: <a href="#t:array_indx/0">array_indx</a>(), Type}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:indx_pairs/1">
+
+  <div class="detail-header">
+    <a href="#t:indx_pairs/1" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">indx_pairs(Type)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/array.erl#L242" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> indx_pairs(Type) :: [<a href="#t:indx_pair/1">indx_pair</a>(Type)].</pre>
+
+      </div>
+
+
+  </section>
+</section>
+
+    </div>
+  </section>
+
+  <section id="functions" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Functions</span>
+    </h1>
+    <div class="functions-list">
+<section class="detail" id="default/1">
+
+  <div class="detail-header">
+    <a href="#default/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">default/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/array.erl#L484" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> default(Array :: <a href="#t:array/1">array</a>(Type)) -> Value :: Type.</pre>
+
+      </div>
+
+<p>Get the value used for uninitialized entries.</p><p><em>See also: </em><a href="#new/2"><code class="inline">new/2</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="fix/1">
+
+  <div class="detail-header">
+    <a href="#fix/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">fix/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/array.erl#L573" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> fix(Array :: <a href="#t:array/1">array</a>(Type)) -> <a href="#t:array/1">array</a>(Type).</pre>
+
+      </div>
+
+<p>Fix the size of the array. This prevents it from growing automatically upon
+insertion; see also <a href="#set/3"><code class="inline">set/3</code></a>.</p><p><em>See also: </em><a href="#relax/1"><code class="inline">relax/1</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="foldl/3">
+
+  <div class="detail-header">
+    <a href="#foldl/3" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">foldl/3</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/array.erl#L1855" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> foldl(Function, InitialAcc :: A, Array :: <a href="#t:array/1">array</a>(Type)) -> B
+         when Function :: fun((Index :: <a href="#t:array_indx/0">array_indx</a>(), Value :: Type, Acc :: A) -> B).</pre>
+
+      </div>
+
+<p>Fold the elements of the array using the given function and initial accumulator
+value. The elements are visited in order from the lowest index to the highest.
+If <code class="inline">Function</code> is not a function, the call fails with reason <code class="inline">badarg</code>.</p><p><em>See also: </em><a href="#foldr/3"><code class="inline">foldr/3</code></a>, <a href="#map/2"><code class="inline">map/2</code></a>, <a href="#sparse_foldl/3"><code class="inline">sparse_foldl/3</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="foldr/3">
+
+  <div class="detail-header">
+    <a href="#foldr/3" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">foldr/3</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/array.erl#L2020" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> foldr(Function, InitialAcc :: A, Array :: <a href="#t:array/1">array</a>(Type)) -> B
+         when Function :: fun((Index :: <a href="#t:array_indx/0">array_indx</a>(), Value :: Type, Acc :: A) -> B).</pre>
+
+      </div>
+
+<p>Fold the elements of the array right-to-left using the given function and
+initial accumulator value. The elements are visited in order from the highest
+index to the lowest. If <code class="inline">Function</code> is not a function, the call fails with reason
+<code class="inline">badarg</code>.</p><p><em>See also: </em><a href="#foldl/3"><code class="inline">foldl/3</code></a>, <a href="#map/2"><code class="inline">map/2</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="from_list/1">
+
+  <div class="detail-header">
+    <a href="#from_list/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">from_list(List)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/array.erl#L1124" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> from_list(List :: [Value :: Type]) -> <a href="#t:array/1">array</a>(Type).</pre>
+
+      </div>
+
+<p>Equivalent to <a href="#from_list/2">from_list(List, undefined)</a>.</p>
+  </section>
+</section>
+<section class="detail" id="from_list/2">
+
+  <div class="detail-header">
+    <a href="#from_list/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">from_list/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/array.erl#L1143" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> from_list(List :: [Value :: Type], Default :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()) -> <a href="#t:array/1">array</a>(Type).</pre>
+
+      </div>
+
+<p>Convert a list to an extendible array. <code class="inline">Default</code> is used as the value for
+uninitialized entries of the array. If <code class="inline">List</code> is not a proper list, the call
+fails with reason <code class="inline">badarg</code>.</p><p><em>See also: </em><a href="#new/2"><code class="inline">new/2</code></a>, <a href="#to_list/1"><code class="inline">to_list/1</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="from_orddict/1">
+
+  <div class="detail-header">
+    <a href="#from_orddict/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">from_orddict(Orddict)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/array.erl#L1427" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> from_orddict(Orddict :: <a href="#t:indx_pairs/1">indx_pairs</a>(Value :: Type)) -> <a href="#t:array/1">array</a>(Type).</pre>
+
+      </div>
+
+<p>Equivalent to <a href="#from_orddict/2">from_orddict(Orddict, undefined)</a>.</p>
+  </section>
+</section>
+<section class="detail" id="from_orddict/2">
+
+  <div class="detail-header">
+    <a href="#from_orddict/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">from_orddict/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/array.erl#L1450" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> from_orddict(Orddict :: <a href="#t:indx_pairs/1">indx_pairs</a>(Value :: Type), Default :: Type) -> <a href="#t:array/1">array</a>(Type).</pre>
+
+      </div>
+
+<p>Convert an ordered list of pairs <code class="inline">{Index, Value}</code> to a corresponding extendible
+array. <code class="inline">Default</code> is used as the value for uninitialized entries of the array. If
+<code class="inline">List</code> is not a proper, ordered list of pairs whose first elements are
+nonnegative integers, the call fails with reason <code class="inline">badarg</code>.</p><p><em>See also: </em><a href="#new/2"><code class="inline">new/2</code></a>, <a href="#to_orddict/1"><code class="inline">to_orddict/1</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="get/2">
+
+  <div class="detail-header">
+    <a href="#get/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">get/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/array.erl#L837" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> get(I :: <a href="#t:array_indx/0">array_indx</a>(), Array :: <a href="#t:array/1">array</a>(Type)) -> Value :: Type.</pre>
+
+      </div>
+
+<p>Get the value of entry <code class="inline">I</code>. If <code class="inline">I</code> is not a nonnegative integer, or if the array
+has fixed size and <code class="inline">I</code> is larger than the maximum index, the call fails with
+reason <code class="inline">badarg</code>.</p><p>If the array does not have fixed size, this function will return the default
+value for any index <code class="inline">I</code> greater than <code class="inline">size(Array)-1</code>.</p><p><em>See also: </em><a href="#set/3"><code class="inline">set/3</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="is_array/1">
+
+  <div class="detail-header">
+    <a href="#is_array/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">is_array/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/array.erl#L447" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> is_array(X :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()) -> <a href="../../../../lib/../erts/doc/html/erlang.html#t:boolean/0">boolean</a>().</pre>
+
+      </div>
+
+<p>Returns <code class="inline">true</code> if <code class="inline">X</code> appears to be an array, otherwise <code class="inline">false</code>. Note that the
+check is only shallow; there is no guarantee that <code class="inline">X</code> is a well-formed array
+representation even if this function returns <code class="inline">true</code>.</p>
+  </section>
+</section>
+<section class="detail" id="is_fix/1">
+
+  <div class="detail-header">
+    <a href="#is_fix/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">is_fix/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/array.erl#L589" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> is_fix(Array :: <a href="#t:array/0">array</a>()) -> <a href="../../../../lib/../erts/doc/html/erlang.html#t:boolean/0">boolean</a>().</pre>
+
+      </div>
+
+<p>Check if the array has fixed size. Returns <code class="inline">true</code> if the array is fixed,
+otherwise <code class="inline">false</code>.</p><p><em>See also: </em><a href="#fix/1"><code class="inline">fix/1</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="map/2">
+
+  <div class="detail-header">
+    <a href="#map/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">map/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/array.erl#L1653" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> map(Function, Array :: <a href="#t:array/1">array</a>(Type1)) -> <a href="#t:array/1">array</a>(Type2)
+       when Function :: fun((Index :: <a href="#t:array_indx/0">array_indx</a>(), Type1) -> Type2).</pre>
+
+      </div>
+
+<p>Map the given function onto each element of the array. The elements are visited
+in order from the lowest index to the highest. If <code class="inline">Function</code> is not a function,
+the call fails with reason <code class="inline">badarg</code>.</p><p><em>See also: </em><a href="#foldl/3"><code class="inline">foldl/3</code></a>, <a href="#foldr/3"><code class="inline">foldr/3</code></a>, <a href="#sparse_map/2"><code class="inline">sparse_map/2</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="new/0">
+
+  <div class="detail-header">
+    <a href="#new/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">new()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/array.erl#L261" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> new() -> <a href="#t:array/0">array</a>().</pre>
+
+      </div>
+
+<p>Equivalent to <a href="#new/1">new([])</a>.</p><p>Create a new, extendible array with initial size zero.</p><p><em>See also: </em><a href="#new/1"><code class="inline">new/1</code></a>, <a href="#new/2"><code class="inline">new/2</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="new/1">
+
+  <div class="detail-header">
+    <a href="#new/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">new(Options)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/array.erl#L348" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> new(Options :: <a href="#t:array_opts/0">array_opts</a>()) -> <a href="#t:array/0">array</a>().</pre>
+
+      </div>
+
+<p>Create a new array according to the given options. By default, the array is
+extendible and has initial size zero. Array indices start at 0.</p><p><code class="inline">Options</code> is a single term or a list of terms, selected from the following:</p><ul><li><p><strong><code class="inline">N::integer()</code> or <code class="inline">{size, N::integer()}</code></strong> - Specifies the initial size of
+the array; this also implies <code class="inline">{fixed, true}</code>. If <code class="inline">N</code> is not a nonnegative
+integer, the call fails with reason <code class="inline">badarg</code>.</p></li><li><p><strong><code class="inline">fixed</code> or <code class="inline">{fixed, true}</code></strong> - Creates a fixed-size array; see also <a href="#fix/1"><code class="inline">fix/1</code></a>.</p></li><li><p><strong><code class="inline">{fixed, false}</code></strong> - Creates an extendible (non fixed-size) array.</p></li><li><p><strong><code class="inline">{default, Value}</code></strong> - Sets the default value for the array to <code class="inline">Value</code>.</p></li></ul><p>Options are processed in the order they occur in the list, i.e., later options
+have higher precedence.</p><p>The default value is used as the value of uninitialized entries, and cannot be
+changed once the array has been created.</p><p>Examples:</p><pre><code class="text">     array:new(100)</code></pre><p>creates a fixed-size array of size 100.</p><pre><code class="text">     array:new({default,0})</code></pre><p>creates an empty, extendible array whose default value is 0.</p><pre><code class="text">     array:new([{size,10},{fixed,false},{default,-1}])</code></pre><p>creates an extendible array with initial size 10 whose default value is -1.</p><p><em>See also: </em><a href="#fix/1"><code class="inline">fix/1</code></a>, <a href="#from_list/2"><code class="inline">from_list/2</code></a>, <a href="#get/2"><code class="inline">get/2</code></a>, <a href="#new/0"><code class="inline">new/0</code></a>, <a href="#new/2"><code class="inline">new/2</code></a>, <a href="#set/3"><code class="inline">set/3</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="new/2">
+
+  <div class="detail-header">
+    <a href="#new/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">new(Size, Options)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/array.erl#L389" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> new(Size :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:non_neg_integer/0">non_neg_integer</a>(), Options :: <a href="#t:array_opts/0">array_opts</a>()) -> <a href="#t:array/0">array</a>().</pre>
+
+      </div>
+
+<p>Create a new array according to the given size and options. If <code class="inline">Size</code> is not a
+nonnegative integer, the call fails with reason <code class="inline">badarg</code>. By default, the array
+has fixed size. Note that any size specifications in <code class="inline">Options</code> will override the
+<code class="inline">Size</code> parameter.</p><p>If <code class="inline">Options</code> is a list, this is simply equivalent to
+<code class="inline">new([{size, Size} | Options]</code>, otherwise it is equivalent to
+<code class="inline">new([{size, Size} | [Options]]</code>. However, using this function directly is more
+efficient.</p><p>Example:</p><pre><code class="text">     array:new(100, {default,0})</code></pre><p>creates a fixed-size array of size 100, whose default value is 0.</p><p><em>See also: </em><a href="#new/1"><code class="inline">new/1</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="relax/1">
+
+  <div class="detail-header">
+    <a href="#relax/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">relax/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/array.erl#L632" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> relax(Array :: <a href="#t:array/1">array</a>(Type)) -> <a href="#t:array/1">array</a>(Type).</pre>
+
+      </div>
+
+<p>Make the array resizable. (Reverses the effects of <a href="#fix/1"><code class="inline">fix/1</code></a>.)</p><p><em>See also: </em><a href="#fix/1"><code class="inline">fix/1</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="reset/2">
+
+  <div class="detail-header">
+    <a href="#reset/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">reset/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/array.erl#L887" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> reset(I :: <a href="#t:array_indx/0">array_indx</a>(), Array :: <a href="#t:array/1">array</a>(Type)) -> <a href="#t:array/1">array</a>(Type).</pre>
+
+      </div>
+
+<p>Reset entry <code class="inline">I</code> to the default value for the array. If the value of entry <code class="inline">I</code> is
+the default value the array will be returned unchanged. Reset will never change
+size of the array. Shrinking can be done explicitly by calling <a href="#resize/2"><code class="inline">resize/2</code></a>.</p><p>If <code class="inline">I</code> is not a nonnegative integer, or if the array has fixed size and <code class="inline">I</code> is
+larger than the maximum index, the call fails with reason <code class="inline">badarg</code>; cf. <a href="#set/3"><code class="inline">set/3</code></a></p><p><em>See also: </em><a href="#new/2"><code class="inline">new/2</code></a>, <a href="#set/3"><code class="inline">set/3</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="resize/1">
+
+  <div class="detail-header">
+    <a href="#resize/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">resize(Array)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/array.erl#L704" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> resize(Array :: <a href="#t:array/1">array</a>(Type)) -> <a href="#t:array/1">array</a>(Type).</pre>
+
+      </div>
+
+<p>Equivalent to <a href="#resize/2">resize(sparse_size(Array), Array)</a>.</p><p>Change the size of the array to that reported by <a href="#sparse_size/1"><code class="inline">sparse_size/1</code></a>. If the given
+array has fixed size, the resulting array will also have fixed size.</p><p><em>See also: </em><a href="#resize/2"><code class="inline">resize/2</code></a>, <a href="#sparse_size/1"><code class="inline">sparse_size/1</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="resize/2">
+
+  <div class="detail-header">
+    <a href="#resize/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">resize/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/array.erl#L663" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> resize(Size :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:non_neg_integer/0">non_neg_integer</a>(), Array :: <a href="#t:array/1">array</a>(Type)) -> <a href="#t:array/1">array</a>(Type).</pre>
+
+      </div>
+
+<p>Change the size of the array. If <code class="inline">Size</code> is not a nonnegative integer, the call
+fails with reason <code class="inline">badarg</code>. If the given array has fixed size, the resulting
+array will also have fixed size.</p>
+  </section>
+</section>
+<section class="detail" id="set/3">
+
+  <div class="detail-header">
+    <a href="#set/3" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">set/3</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/array.erl#L764" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> set(I :: <a href="#t:array_indx/0">array_indx</a>(), Value :: Type, Array :: <a href="#t:array/1">array</a>(Type)) -> <a href="#t:array/1">array</a>(Type).</pre>
+
+      </div>
+
+<p>Set entry <code class="inline">I</code> of the array to <code class="inline">Value</code>. If <code class="inline">I</code> is not a nonnegative integer, or
+if the array has fixed size and <code class="inline">I</code> is larger than the maximum index, the call
+fails with reason <code class="inline">badarg</code>.</p><p>If the array does not have fixed size, and <code class="inline">I</code> is greater than <code class="inline">size(Array)-1</code>,
+the array will grow to size <code class="inline">I+1</code>.</p><p><em>See also: </em><a href="#get/2"><code class="inline">get/2</code></a>, <a href="#reset/2"><code class="inline">reset/2</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="size/1">
+
+  <div class="detail-header">
+    <a href="#size/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">size/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/array.erl#L469" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> size(Array :: <a href="#t:array/0">array</a>()) -> <a href="../../../../lib/../erts/doc/html/erlang.html#t:non_neg_integer/0">non_neg_integer</a>().</pre>
+
+      </div>
+
+<p>Get the number of entries in the array. Entries are numbered from 0 to
+<code class="inline">size(Array)-1</code>; hence, this is also the index of the first entry that is
+guaranteed to not have been previously set.</p><p><em>See also: </em><a href="#set/3"><code class="inline">set/3</code></a>, <a href="#sparse_size/1"><code class="inline">sparse_size/1</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="sparse_foldl/3">
+
+  <div class="detail-header">
+    <a href="#sparse_foldl/3" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">sparse_foldl/3</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/array.erl#L1935" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> sparse_foldl(Function, InitialAcc :: A, Array :: <a href="#t:array/1">array</a>(Type)) -> B
+                when Function :: fun((Index :: <a href="#t:array_indx/0">array_indx</a>(), Value :: Type, Acc :: A) -> B).</pre>
+
+      </div>
+
+<p>Fold the elements of the array using the given function and initial accumulator
+value, skipping default-valued entries. The elements are visited in order from
+the lowest index to the highest. If <code class="inline">Function</code> is not a function, the call fails
+with reason <code class="inline">badarg</code>.</p><p><em>See also: </em><a href="#foldl/3"><code class="inline">foldl/3</code></a>, <a href="#sparse_foldr/3"><code class="inline">sparse_foldr/3</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="sparse_foldr/3">
+
+  <div class="detail-header">
+    <a href="#sparse_foldr/3" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">sparse_foldr/3</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/array.erl#L2106" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> sparse_foldr(Function, InitialAcc :: A, Array :: <a href="#t:array/1">array</a>(Type)) -> B
+                when Function :: fun((Index :: <a href="#t:array_indx/0">array_indx</a>(), Value :: Type, Acc :: A) -> B).</pre>
+
+      </div>
+
+<p>Fold the elements of the array right-to-left using the given function and
+initial accumulator value, skipping default-valued entries. The elements are
+visited in order from the highest index to the lowest. If <code class="inline">Function</code> is not a
+function, the call fails with reason <code class="inline">badarg</code>.</p><p><em>See also: </em><a href="#foldr/3"><code class="inline">foldr/3</code></a>, <a href="#sparse_foldl/3"><code class="inline">sparse_foldl/3</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="sparse_map/2">
+
+  <div class="detail-header">
+    <a href="#sparse_map/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">sparse_map/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/array.erl#L1752" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> sparse_map(Function, Array :: <a href="#t:array/1">array</a>(Type1)) -> <a href="#t:array/1">array</a>(Type2)
+              when Function :: fun((Index :: <a href="#t:array_indx/0">array_indx</a>(), Type1) -> Type2).</pre>
+
+      </div>
+
+<p>Map the given function onto each element of the array, skipping default-valued
+entries. The elements are visited in order from the lowest index to the highest.
+If <code class="inline">Function</code> is not a function, the call fails with reason <code class="inline">badarg</code>.</p><p><em>See also: </em><a href="#map/2"><code class="inline">map/2</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="sparse_size/1">
+
+  <div class="detail-header">
+    <a href="#sparse_size/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">sparse_size(A)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/array.erl#L2163" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> sparse_size(Array :: <a href="#t:array/0">array</a>()) -> <a href="../../../../lib/../erts/doc/html/erlang.html#t:non_neg_integer/0">non_neg_integer</a>().</pre>
+
+      </div>
+
+<p>Get the number of entries in the array up until the last non-default valued
+entry. In other words, returns <code class="inline">I+1</code> if <code class="inline">I</code> is the last non-default valued entry
+in the array, or zero if no such entry exists.</p><p><em>See also: </em><a href="#resize/1"><code class="inline">resize/1</code></a>, <a href="#size/1"><code class="inline">size/1</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="sparse_to_list/1">
+
+  <div class="detail-header">
+    <a href="#sparse_to_list/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">sparse_to_list/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/array.erl#L1056" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> sparse_to_list(Array :: <a href="#t:array/1">array</a>(Type)) -> [Value :: Type].</pre>
+
+      </div>
+
+<p>Converts the array to a list, skipping default-valued entries.</p><p><em>See also: </em><a href="#to_list/1"><code class="inline">to_list/1</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="sparse_to_orddict/1">
+
+  <div class="detail-header">
+    <a href="#sparse_to_orddict/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">sparse_to_orddict/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/array.erl#L1345" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> sparse_to_orddict(Array :: <a href="#t:array/1">array</a>(Type)) -> <a href="#t:indx_pairs/1">indx_pairs</a>(Value :: Type).</pre>
+
+      </div>
+
+<p>Convert the array to an ordered list of pairs <code class="inline">{Index, Value}</code>, skipping
+default-valued entries.</p><p><em>See also: </em><a href="#to_orddict/1"><code class="inline">to_orddict/1</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="to_list/1">
+
+  <div class="detail-header">
+    <a href="#to_list/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">to_list/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/array.erl#L978" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> to_list(Array :: <a href="#t:array/1">array</a>(Type)) -> [Value :: Type].</pre>
+
+      </div>
+
+<p>Converts the array to a list.</p><p><em>See also: </em><a href="#from_list/2"><code class="inline">from_list/2</code></a>, <a href="#sparse_to_list/1"><code class="inline">sparse_to_list/1</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="to_orddict/1">
+
+  <div class="detail-header">
+    <a href="#to_orddict/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">to_orddict/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/array.erl#L1247" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> to_orddict(Array :: <a href="#t:array/1">array</a>(Type)) -> <a href="#t:indx_pairs/1">indx_pairs</a>(Value :: Type).</pre>
+
+      </div>
+
+<p>Convert the array to an ordered list of pairs <code class="inline">{Index, Value}</code>.</p><p><em>See also: </em><a href="#from_orddict/2"><code class="inline">from_orddict/2</code></a>, <a href="#sparse_to_orddict/1"><code class="inline">sparse_to_orddict/1</code></a>.</p>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+      <footer class="footer">
+        <p>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Search HexDocs packages">
+              Search HexDocs
+            </button>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.30.9) for the
+
+            <a href="https://erlang.org" title="Erlang" target="_blank" translate="no">Erlang programming language</a>
+
+        </p>
+      </footer>
+    </div>
+  </div>
+</main>
+</div>
+
+
+  </body>
+</html>

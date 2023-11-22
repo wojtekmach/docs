@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.30.9">
+    <meta name="project" content="sasl v4.2.1">
+
+
+    <title>rb — sasl v4.2.1</title>
+    <link rel="stylesheet" href="dist/html-erlang-QW5RMTQD.css" />
+
+
+    <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
+    <script src="dist/handlebars.templates-43PMFBC7.js"></script>
+    <script src="dist/sidebar_items-B9A4ADCA.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/html-LRUIU55G.js"></script>
+
+<style>.dark img { background-color: white; }</style>
+  </head>
+  <body data-type="modules" class="page-module">
+    <script>
+
+      try {
+        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+
+        if (settings.theme === 'dark' ||
+           ((settings.theme === 'system' || settings.theme == null) &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches)
+           ) {
+          document.body.classList.add('dark')
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
+
+        <a href="api-reference.html" class="sidebar-projectImage">
+          <img src="assets/logo.png" alt="sasl" />
+        </a>
+
+      <div>
+        <a href="api-reference.html" class="sidebar-projectName" translate="no">
+sasl
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v4.2.1
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-listNav" class="sidebar-listNav" role="tablist">
+      <li>
+        <button id="extras-list-tab-button" role="tab" data-type="extras" aria-controls="extras-tab-panel" aria-selected="true" tabindex="0">
+Pages
+        </button>
+      </li>
+
+        <li>
+          <button id="modules-list-tab-button" role="tab" data-type="modules" aria-controls="modules-tab-panel" aria-selected="false" tabindex="-1">
+            Modules
+          </button>
+        </li>
+
+
+    </ul>
+  </div>
+
+  <div id="extras-tab-panel" class="sidebar-tabpanel" role="tabpanel" aria-labelledby="extras-list-tab-button">
+    <ul id="extras-full-list" class="full-list"></ul>
+  </div>
+
+    <div id="modules-tab-panel" class="sidebar-tabpanel" role="tabpanel" aria-labelledby="modules-list-tab-button" hidden>
+      <ul id="modules-full-list" class="full-list"></ul>
+    </div>
+
+
+</nav>
+
+<main class="content">
+  <output role="status" id="toast"></output>
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+      <div class="top-search">
+        <div class="search-settings">
+          <form class="search-bar" action="search.html">
+            <label class="search-label">
+              <span class="sr-only">Search documentation of sasl</span>
+              <input name="q" type="text" class="search-input" placeholder="Search Documentation (press /)" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+            </label>
+            <button type="submit" class="search-button" aria-label="Submit Search">
+              <i class="ri-search-2-line ri-lg" aria-hidden="true" title="Submit search"></i>
+            </button>
+            <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+              <i class="ri-close-line ri-lg" title="Cancel search"></i>
+            </button>
+          </form>
+          <button class="icon-settings display-settings">
+            <i class="ri-settings-3-line"></i>
+            <span class="sr-only">Settings</span>
+          </button>
+        </div>
+      </div>
+      <div class="autocomplete">
+        <div class="autocomplete-results">
+        </div>
+      </div>
+
+<h1>
+
+    <a href="https://github.com/erlang/otp/blob/master/lib/sasl/doc//Users/wojtek/src/otp/lib/sasl/src/rb.erl#L20" title="View Source" class="icon-action" rel="help">
+      <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+      <span class="sr-only">View Source</span>
+    </a>
+
+  <span translate="no">rb</span> 
+  <small class="app-vsn" translate="no">(sasl v4.2.1)</small>
+
+</h1>
+
+
+  <section id="moduledoc">
+<p>The Report Browser Tool</p><p>The Report Browser (RB) tool is used to browse and format error reports written
+by the error logger handler <a href="../../../../lib/stdlib/doc/html/log_mf_h.html"><code class="inline">log_mf_h</code></a> in STDLIB.</p>
+  </section>
+
+
+  <section id="summary" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Summary</span>
+    </h1>
+<div class="summary-functions summary">
+  <h2>
+    <a href="#functions">Functions</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#filter/1" translate="no">filter/1</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Equivalent to <a href="#filter/2"><code class="inline">filter/2</code></a></p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#filter/2" translate="no">filter(Filters, Dates)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Displays the reports that match the provided filters.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#grep/1" translate="no">grep(RegExp)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>All reports matching the regular expression <code class="inline">RegExp</code> are displayed. <code class="inline">RegExp</code> can
+be any of the following</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#h/0" translate="no">h/0</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Equivalent to <a href="#help/0"><code class="inline">help/0</code></a></p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#help/0" translate="no">help()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Displays online help information.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list/0" translate="no">list/0</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Equivalent to <a href="#list/1"><code class="inline">list/1</code></a></p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#list/1" translate="no">list(Type)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Lists all reports loaded in <code class="inline">rb_server</code>. Each report is given a unique number
+that can be used as a reference to the report in function <a href="#show/1"><code class="inline">show/1</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#log_list/0" translate="no">log_list/0</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Equivalent to <a href="#log_list/1"><code class="inline">log_list/1</code></a></p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#log_list/1" translate="no">log_list(Type)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Same as functions <a href="#list/0"><code class="inline">list/0</code></a> or <a href="#list/1"><code class="inline">list/1</code></a>, but the result is printed to a log file,
+if set; otherwise to <code class="inline">standard_io</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#rescan/0" translate="no">rescan/0</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Equivalent to <a href="#rescan/1"><code class="inline">rescan/1</code></a></p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#rescan/1" translate="no">rescan(Options)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Rescans the report directory. <code class="inline">Options</code> is the same as for function <a href="#start/1"><code class="inline">start/1</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#show/0" translate="no">show/0</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Equivalent to <a href="#show/1"><code class="inline">show/1</code></a></p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#show/1" translate="no">show(Report)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>If argument <code class="inline">type</code> is specified, all loaded reports of this type are displayed.
+If an integer argument is specified, the report with this reference number is
+displayed. If no argument is specified, all reports are displayed.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#start/0" translate="no">start/0</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Equivalent to <a href="#start/1"><code class="inline">start/1</code></a></p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#start/1" translate="no">start(Options)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Function <a href="#start/1"><code class="inline">start/1</code></a> starts <code class="inline">rb_server</code> with the specified options, whereas
+function <a href="#start/0"><code class="inline">start/0</code></a> starts with default options. <code class="inline">rb_server</code> must be started
+before reports can be browsed. When <code class="inline">rb_server</code> is started, the files in the
+specified directory are scanned. The other functions assume that the server has
+started.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#start_log/1" translate="no">start_log(FileName)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Redirects all report output from the RB tool to the specified file, registered
+name, or <code class="inline">io_device</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#stop/0" translate="no">stop()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Stops <code class="inline">rb_server</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#stop_log/0" translate="no">stop_log()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Closes the log file. The output from the RB tool is directed to <code class="inline">standard_io</code>.</p></div>
+
+    </div>
+
+</div>
+
+  </section>
+
+
+  <section id="functions" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Functions</span>
+    </h1>
+    <div class="functions-list">
+<section class="detail" id="filter/1">
+
+  <div class="detail-header">
+    <a href="#filter/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">filter/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/sasl/doc//Users/wojtek/src/otp/lib/sasl/src/rb.erl#L187" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since OTP R13B04)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Equivalent to <a href="#filter/2"><code class="inline">filter/2</code></a></p>
+  </section>
+</section>
+<section class="detail" id="filter/2">
+
+  <div class="detail-header">
+    <a href="#filter/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">filter(Filters, Dates)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/sasl/doc//Users/wojtek/src/otp/lib/sasl/src/rb.erl#L225" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since OTP R13B04)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Displays the reports that match the provided filters.</p><p>When a filter includes the <code class="inline">no</code> atom, it excludes the reports that match that
+filter.</p><p>The reports are matched using the <a href="../../../../lib/stdlib/doc/html/proplists.html"><code class="inline">proplists</code></a> module in STDLIB. The report
+must be a proplist to be matched against any of the filters.</p><p>If the filter has the form <code class="inline">{Key, RegExp, re}</code>, the report must contain an
+element with key equal to <code class="inline">Key</code> and the value must match the regular expression
+<code class="inline">RegExp</code>.</p><p>If parameter <code class="inline">Dates</code> is specified, the reports are filtered according to the
+date when they occurred. If <code class="inline">Dates</code> has the form <code class="inline">{DateFrom, from}</code>, reports
+that occurred after <code class="inline">DateFrom</code> are displayed.</p><p>If <code class="inline">Dates</code> has the form <code class="inline">{DateTo, to}</code>, reports that occurred before <code class="inline">DateTo</code>
+are displayed.</p><p>If two <code class="inline">Dates</code> are specified, reports that occurred between those dates are
+returned.</p><p>To filter only by dates, specify the empty list as the <code class="inline">Filters</code> parameter.</p><p>For details about parameter <code class="inline">RegExp</code>, see <a href="#grep/1"><code class="inline">rb:grep/1</code></a>.</p><p>For details about data type <code class="inline">mp()</code>, see <a href="../../../../lib/stdlib/doc/html/re.html#t:mp/0"><code class="inline">re:mp()</code></a>.</p><p>For details about data type <code class="inline">datetime()</code>, see
+<a href="../../../../lib/stdlib/doc/html/calendar.html#t:datetime/0"><code class="inline">calendar:datetime()</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="grep/1">
+
+  <div class="detail-header">
+    <a href="#grep/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">grep(RegExp)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/sasl/doc//Users/wojtek/src/otp/lib/sasl/src/rb.erl#L183" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>All reports matching the regular expression <code class="inline">RegExp</code> are displayed. <code class="inline">RegExp</code> can
+be any of the following:</p><ul><li>A string containing the regular expression</li><li>A tuple with the string and the options for compilation</li><li>A compiled regular expression</li><li>A compiled regular expression and the options for running it</li></ul><p>For a definition of valid regular expressions and options, see the <a href="../../../../lib/stdlib/doc/html/re.html"><code class="inline">re</code></a> module
+in STDLIB and in particular function <a href="../../../../lib/stdlib/doc/html/re.html#run/3"><code class="inline">re:run/3</code></a>.</p><p>For details about data type <code class="inline">mp()</code>, see <a href="../../../../lib/stdlib/doc/html/re.html#t:mp/0"><code class="inline">re:mp()</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="h/0">
+
+  <div class="detail-header">
+    <a href="#h/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">h/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/sasl/doc//Users/wojtek/src/otp/lib/sasl/src/rb.erl#L244" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Equivalent to <a href="#help/0"><code class="inline">help/0</code></a></p>
+  </section>
+</section>
+<section class="detail" id="help/0">
+
+  <div class="detail-header">
+    <a href="#help/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">help()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/sasl/doc//Users/wojtek/src/otp/lib/sasl/src/rb.erl#L250" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Displays online help information.</p>
+  </section>
+</section>
+<section class="detail" id="list/0">
+
+  <div class="detail-header">
+    <a href="#list/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">list/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/sasl/doc//Users/wojtek/src/otp/lib/sasl/src/rb.erl#L126" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Equivalent to <a href="#list/1"><code class="inline">list/1</code></a></p>
+  </section>
+</section>
+<section class="detail" id="list/1">
+
+  <div class="detail-header">
+    <a href="#list/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">list(Type)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/sasl/doc//Users/wojtek/src/otp/lib/sasl/src/rb.erl#L135" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Lists all reports loaded in <code class="inline">rb_server</code>. Each report is given a unique number
+that can be used as a reference to the report in function <a href="#show/1"><code class="inline">show/1</code></a>.</p><p>If no <code class="inline">Type</code> is specified, all reports are listed.</p>
+  </section>
+</section>
+<section class="detail" id="log_list/0">
+
+  <div class="detail-header">
+    <a href="#log_list/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">log_list/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/sasl/doc//Users/wojtek/src/otp/lib/sasl/src/rb.erl#L139" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since OTP R16B02)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Equivalent to <a href="#log_list/1"><code class="inline">log_list/1</code></a></p>
+  </section>
+</section>
+<section class="detail" id="log_list/1">
+
+  <div class="detail-header">
+    <a href="#log_list/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">log_list(Type)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/sasl/doc//Users/wojtek/src/otp/lib/sasl/src/rb.erl#L149" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since OTP R16B02)</span>
+
+  </div>
+
+  <section class="docstring">
+
+<p>Same as functions <a href="#list/0"><code class="inline">list/0</code></a> or <a href="#list/1"><code class="inline">list/1</code></a>, but the result is printed to a log file,
+if set; otherwise to <code class="inline">standard_io</code>.</p><p>If no <code class="inline">Type</code> is specified, all reports are listed.</p>
+  </section>
+</section>
+<section class="detail" id="rescan/0">
+
+  <div class="detail-header">
+    <a href="#rescan/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">rescan/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/sasl/doc//Users/wojtek/src/otp/lib/sasl/src/rb.erl#L116" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Equivalent to <a href="#rescan/1"><code class="inline">rescan/1</code></a></p>
+  </section>
+</section>
+<section class="detail" id="rescan/1">
+
+  <div class="detail-header">
+    <a href="#rescan/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">rescan(Options)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/sasl/doc//Users/wojtek/src/otp/lib/sasl/src/rb.erl#L122" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Rescans the report directory. <code class="inline">Options</code> is the same as for function <a href="#start/1"><code class="inline">start/1</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="show/0">
+
+  <div class="detail-header">
+    <a href="#show/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">show/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/sasl/doc//Users/wojtek/src/otp/lib/sasl/src/rb.erl#L152" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Equivalent to <a href="#show/1"><code class="inline">show/1</code></a></p>
+  </section>
+</section>
+<section class="detail" id="show/1">
+
+  <div class="detail-header">
+    <a href="#show/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">show(Report)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/sasl/doc//Users/wojtek/src/otp/lib/sasl/src/rb.erl#L162" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>If argument <code class="inline">type</code> is specified, all loaded reports of this type are displayed.
+If an integer argument is specified, the report with this reference number is
+displayed. If no argument is specified, all reports are displayed.</p>
+  </section>
+</section>
+<section class="detail" id="start/0">
+
+  <div class="detail-header">
+    <a href="#start/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">start/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/sasl/doc//Users/wojtek/src/otp/lib/sasl/src/rb.erl#L54" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Equivalent to <a href="#start/1"><code class="inline">start/1</code></a></p>
+  </section>
+</section>
+<section class="detail" id="start/1">
+
+  <div class="detail-header">
+    <a href="#start/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">start(Options)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/sasl/doc//Users/wojtek/src/otp/lib/sasl/src/rb.erl#L98" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Function <a href="#start/1"><code class="inline">start/1</code></a> starts <code class="inline">rb_server</code> with the specified options, whereas
+function <a href="#start/0"><code class="inline">start/0</code></a> starts with default options. <code class="inline">rb_server</code> must be started
+before reports can be browsed. When <code class="inline">rb_server</code> is started, the files in the
+specified directory are scanned. The other functions assume that the server has
+started.</p><p><em>Options:</em></p><ul><li><p><strong><code class="inline">{start_log, FileName}</code></strong> - Starts logging to file, registered name, or
+<code class="inline">io_device</code>. All reports are printed to the specified destination. Default is
+<code class="inline">standard_io</code>. Option <code class="inline">{start_log, standard_error}</code> is not allowed and will be
+replaced by default <code class="inline">standard_io</code>.</p></li><li><p><strong><code class="inline">{max, MaxNoOfReports}</code></strong> - Controls how many reports <code class="inline">rb_server</code> is to read
+at startup. This option is useful, as the directory can contain a large amount
+of reports. If this option is specified, the <code class="inline">MaxNoOfReports</code> latest reports
+are read. Default is <code class="inline">all</code>.</p></li><li><p><strong><code class="inline">{report_dir, DirString}</code></strong> - Defines the directory where the error log
+files are located. Default is the directory specified by application
+environment variable <code class="inline">error_logger_mf_dir</code>, see <a href="sasl_app.html">sasl(6)</a>.</p></li><li><p><strong><code class="inline">{type, ReportType}</code></strong> - Controls what kind of reports <code class="inline">rb_server</code> is to
+read at startup. <code class="inline">ReportType</code> is a supported type, <code class="inline">all</code>, or a list of
+supported types. Default is <code class="inline">all</code>.</p></li><li><p><strong><code class="inline">{abort_on_error, Bool}</code></strong> - Specifies if logging is to be ended if <code class="inline">rb</code>
+encounters an unprintable report. (You can get a report with an incorrect form
+if function <code class="inline">error_logger</code>, <code class="inline">error_msg</code>, or <code class="inline">info_msg</code> has been called with an
+invalid format string)</p><ul><li>If <code class="inline">Bool</code> is <code class="inline">true</code>, <code class="inline">rb</code> stops logging (and prints an error message to
+<code class="inline">stdout</code>) if it encounters a badly formatted report. If logging to file is
+enabled, an error message is appended to the log file as well.</li><li>If <code class="inline">Bool</code> is <code class="inline">false</code> (the default value), <code class="inline">rb</code> prints an error message to
+<code class="inline">stdout</code> for every bad report it encounters, but the logging process is
+never ended. All printable reports are written. If logging to file is
+enabled, <code class="inline">rb</code> prints <code class="inline">* UNPRINTABLE REPORT *</code> in the log file at the
+location of an unprintable report.</li></ul></li></ul>
+  </section>
+</section>
+<section class="detail" id="start_log/1">
+
+  <div class="detail-header">
+    <a href="#start_log/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">start_log(FileName)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/sasl/doc//Users/wojtek/src/otp/lib/sasl/src/rb.erl#L234" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Redirects all report output from the RB tool to the specified file, registered
+name, or <code class="inline">io_device</code>.</p>
+  </section>
+</section>
+<section class="detail" id="stop/0">
+
+  <div class="detail-header">
+    <a href="#stop/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">stop()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/sasl/doc//Users/wojtek/src/otp/lib/sasl/src/rb.erl#L112" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Stops <code class="inline">rb_server</code>.</p>
+  </section>
+</section>
+<section class="detail" id="stop_log/0">
+
+  <div class="detail-header">
+    <a href="#stop_log/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">stop_log()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/sasl/doc//Users/wojtek/src/otp/lib/sasl/src/rb.erl#L241" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Closes the log file. The output from the RB tool is directed to <code class="inline">standard_io</code>.</p>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+      <footer class="footer">
+        <p>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Search HexDocs packages">
+              Search HexDocs
+            </button>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.30.9) for the
+
+            <a href="https://erlang.org" title="Erlang" target="_blank" translate="no">Erlang programming language</a>
+
+        </p>
+      </footer>
+    </div>
+  </div>
+</main>
+</div>
+
+
+  </body>
+</html>

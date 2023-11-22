@@ -1,0 +1,2571 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.30.9">
+    <meta name="project" content="wx v2.3.1">
+
+
+    <title>wxIconizeEvent — wx v2.3.1</title>
+    <link rel="stylesheet" href="dist/html-erlang-QW5RMTQD.css" />
+
+
+    <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
+    <script src="dist/handlebars.templates-43PMFBC7.js"></script>
+    <script src="dist/sidebar_items-5D227F81.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/html-LRUIU55G.js"></script>
+
+<style>.dark img { background-color: white; }</style>
+  </head>
+  <body data-type="modules" class="page-module">
+    <script>
+
+      try {
+        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+
+        if (settings.theme === 'dark' ||
+           ((settings.theme === 'system' || settings.theme == null) &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches)
+           ) {
+          document.body.classList.add('dark')
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
+
+        <a href="api-reference.html" class="sidebar-projectImage">
+          <img src="assets/logo.png" alt="wx" />
+        </a>
+
+      <div>
+        <a href="api-reference.html" class="sidebar-projectName" translate="no">
+wx
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v2.3.1
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-listNav" class="sidebar-listNav" role="tablist">
+      <li>
+        <button id="extras-list-tab-button" role="tab" data-type="extras" aria-controls="extras-tab-panel" aria-selected="true" tabindex="0">
+Pages
+        </button>
+      </li>
+
+        <li>
+          <button id="modules-list-tab-button" role="tab" data-type="modules" aria-controls="modules-tab-panel" aria-selected="false" tabindex="-1">
+            Modules
+          </button>
+        </li>
+
+
+    </ul>
+  </div>
+
+  <div id="extras-tab-panel" class="sidebar-tabpanel" role="tabpanel" aria-labelledby="extras-list-tab-button">
+    <ul id="extras-full-list" class="full-list"></ul>
+  </div>
+
+    <div id="modules-tab-panel" class="sidebar-tabpanel" role="tabpanel" aria-labelledby="modules-list-tab-button" hidden>
+      <ul id="modules-full-list" class="full-list"></ul>
+    </div>
+
+
+</nav>
+
+<main class="content">
+  <output role="status" id="toast"></output>
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+      <div class="top-search">
+        <div class="search-settings">
+          <form class="search-bar" action="search.html">
+            <label class="search-label">
+              <span class="sr-only">Search documentation of wx</span>
+              <input name="q" type="text" class="search-input" placeholder="Search Documentation (press /)" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+            </label>
+            <button type="submit" class="search-button" aria-label="Submit Search">
+              <i class="ri-search-2-line ri-lg" aria-hidden="true" title="Submit search"></i>
+            </button>
+            <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+              <i class="ri-close-line ri-lg" title="Cancel search"></i>
+            </button>
+          </form>
+          <button class="icon-settings display-settings">
+            <i class="ri-settings-3-line"></i>
+            <span class="sr-only">Settings</span>
+          </button>
+        </div>
+      </div>
+      <div class="autocomplete">
+        <div class="autocomplete-results">
+        </div>
+      </div>
+
+<h1>
+
+    <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/wxIconizeEvent.erl#L21" title="View Source" class="icon-action" rel="help">
+      <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+      <span class="sr-only">View Source</span>
+    </a>
+
+  <span translate="no">wxIconizeEvent</span> 
+  <small class="app-vsn" translate="no">(wx v2.3.1)</small>
+
+</h1>
+
+
+  <section id="moduledoc">
+<p>Functions for wxIconizeEvent class</p><p>An event being sent when the frame is iconized (minimized) or restored.</p><p>See:
+<a href="https://docs.wxwidgets.org/3.1/overview_events.html#overview_events">Overview events</a>,
+<a href="wxTopLevelWindow.html#iconize/2"><code class="inline">wxTopLevelWindow:iconize/2</code></a>, <a href="wxTopLevelWindow.html#isIconized/1"><code class="inline">wxTopLevelWindow:isIconized/1</code></a></p><p>This class is derived (and can use functions) from: <a href="wxEvent.html"><code class="inline">wxEvent</code></a></p><p>wxWidgets docs:
+<a href="https://docs.wxwidgets.org/3.1/classwx_iconize_event.html">wxIconizeEvent</a></p><h2 id="module-events" class="section-heading">
+  <a href="#module-events" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">Events</span>
+</h2>
+<p>Use <a href="wxEvtHandler.html#connect/3"><code class="inline">wxEvtHandler:connect/3</code></a> with
+<a href="#t:wxIconizeEventType/0"><code class="inline">wxIconizeEventType</code></a> to subscribe to events of this
+type.</p>
+  </section>
+
+
+  <section id="summary" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Summary</span>
+    </h1>
+<div class="summary-types summary">
+  <h2>
+    <a href="#types">Types</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:event/0" translate="no">event()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wx/0" translate="no">wx()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxActivate/0" translate="no">wxActivate()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxAuiManager/0" translate="no">wxAuiManager()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxAuiNotebook/0" translate="no">wxAuiNotebook()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxBookCtrl/0" translate="no">wxBookCtrl()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxCalendar/0" translate="no">wxCalendar()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxChildFocus/0" translate="no">wxChildFocus()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxClipboardText/0" translate="no">wxClipboardText()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxClose/0" translate="no">wxClose()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxColourPicker/0" translate="no">wxColourPicker()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxCommand/0" translate="no">wxCommand()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxContextMenu/0" translate="no">wxContextMenu()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxDate/0" translate="no">wxDate()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxDisplayChanged/0" translate="no">wxDisplayChanged()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxDropFiles/0" translate="no">wxDropFiles()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxErase/0" translate="no">wxErase()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxEventType/0" translate="no">wxEventType()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxFileDirPicker/0" translate="no">wxFileDirPicker()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxFocus/0" translate="no">wxFocus()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxFontPicker/0" translate="no">wxFontPicker()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxGrid/0" translate="no">wxGrid()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxHelp/0" translate="no">wxHelp()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxHtmlLink/0" translate="no">wxHtmlLink()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxIconize/0" translate="no">wxIconize()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxIconizeEvent/0" translate="no">wxIconizeEvent()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxIconizeEventType/0" translate="no">wxIconizeEventType()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxIdle/0" translate="no">wxIdle()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxInitDialog/0" translate="no">wxInitDialog()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxJoystick/0" translate="no">wxJoystick()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxKey/0" translate="no">wxKey()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxList/0" translate="no">wxList()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxMaximize/0" translate="no">wxMaximize()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxMenu/0" translate="no">wxMenu()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxMouse/0" translate="no">wxMouse()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxMouseCaptureChanged/0" translate="no">wxMouseCaptureChanged()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxMouseCaptureLost/0" translate="no">wxMouseCaptureLost()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxMove/0" translate="no">wxMove()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxNavigationKey/0" translate="no">wxNavigationKey()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxPaint/0" translate="no">wxPaint()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxPaletteChanged/0" translate="no">wxPaletteChanged()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxQueryNewPalette/0" translate="no">wxQueryNewPalette()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxSash/0" translate="no">wxSash()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxScroll/0" translate="no">wxScroll()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxScrollWin/0" translate="no">wxScrollWin()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxSetCursor/0" translate="no">wxSetCursor()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxShow/0" translate="no">wxShow()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxSize/0" translate="no">wxSize()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxSpin/0" translate="no">wxSpin()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxSplitter/0" translate="no">wxSplitter()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxStyledText/0" translate="no">wxStyledText()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxSysColourChanged/0" translate="no">wxSysColourChanged()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxTaskBarIcon/0" translate="no">wxTaskBarIcon()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxTree/0" translate="no">wxTree()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxUpdateUI/0" translate="no">wxUpdateUI()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxWebView/0" translate="no">wxWebView()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxWindowCreate/0" translate="no">wxWindowCreate()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wxWindowDestroy/0" translate="no">wxWindowDestroy()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+</div>
+<div class="summary-functions summary">
+  <h2>
+    <a href="#functions">Functions</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#isIconized/1" translate="no">isIconized/1</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Returns true if the frame has been iconized, false if it has been restored.</p></div>
+
+    </div>
+
+</div>
+
+  </section>
+
+
+  <section id="types" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#types">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Types</span>
+    </h1>
+    <div class="types-list">
+<section class="detail" id="t:event/0">
+
+  <div class="detail-header">
+    <a href="#t:event/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">event()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L365" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> event() ::
+    <a href="wxActivateEvent.html#t:wxActivate/0">wxActivateEvent:wxActivate</a>() |
+    <a href="wxAuiManagerEvent.html#t:wxAuiManager/0">wxAuiManagerEvent:wxAuiManager</a>() |
+    <a href="wxAuiNotebookEvent.html#t:wxAuiNotebook/0">wxAuiNotebookEvent:wxAuiNotebook</a>() |
+    <a href="wxBookCtrlEvent.html#t:wxBookCtrl/0">wxBookCtrlEvent:wxBookCtrl</a>() |
+    <a href="wxCalendarEvent.html#t:wxCalendar/0">wxCalendarEvent:wxCalendar</a>() |
+    <a href="wxChildFocusEvent.html#t:wxChildFocus/0">wxChildFocusEvent:wxChildFocus</a>() |
+    <a href="wxClipboardTextEvent.html#t:wxClipboardText/0">wxClipboardTextEvent:wxClipboardText</a>() |
+    <a href="wxCloseEvent.html#t:wxClose/0">wxCloseEvent:wxClose</a>() |
+    <a href="wxColourPickerEvent.html#t:wxColourPicker/0">wxColourPickerEvent:wxColourPicker</a>() |
+    <a href="wxCommandEvent.html#t:wxCommand/0">wxCommandEvent:wxCommand</a>() |
+    <a href="wxContextMenuEvent.html#t:wxContextMenu/0">wxContextMenuEvent:wxContextMenu</a>() |
+    <a href="wxDateEvent.html#t:wxDate/0">wxDateEvent:wxDate</a>() |
+    <a href="wxDisplayChangedEvent.html#t:wxDisplayChanged/0">wxDisplayChangedEvent:wxDisplayChanged</a>() |
+    <a href="wxDropFilesEvent.html#t:wxDropFiles/0">wxDropFilesEvent:wxDropFiles</a>() |
+    <a href="wxEraseEvent.html#t:wxErase/0">wxEraseEvent:wxErase</a>() |
+    <a href="wxFileDirPickerEvent.html#t:wxFileDirPicker/0">wxFileDirPickerEvent:wxFileDirPicker</a>() |
+    <a href="wxFocusEvent.html#t:wxFocus/0">wxFocusEvent:wxFocus</a>() |
+    <a href="wxFontPickerEvent.html#t:wxFontPicker/0">wxFontPickerEvent:wxFontPicker</a>() |
+    <a href="wxGridEvent.html#t:wxGrid/0">wxGridEvent:wxGrid</a>() |
+    <a href="wxHelpEvent.html#t:wxHelp/0">wxHelpEvent:wxHelp</a>() |
+    <a href="wxHtmlLinkEvent.html#t:wxHtmlLink/0">wxHtmlLinkEvent:wxHtmlLink</a>() |
+    <a href="wxIconizeEvent.html#t:wxIconize/0">wxIconizeEvent:wxIconize</a>() |
+    <a href="wxIdleEvent.html#t:wxIdle/0">wxIdleEvent:wxIdle</a>() |
+    <a href="wxInitDialogEvent.html#t:wxInitDialog/0">wxInitDialogEvent:wxInitDialog</a>() |
+    <a href="wxJoystickEvent.html#t:wxJoystick/0">wxJoystickEvent:wxJoystick</a>() |
+    <a href="wxKeyEvent.html#t:wxKey/0">wxKeyEvent:wxKey</a>() |
+    <a href="wxListEvent.html#t:wxList/0">wxListEvent:wxList</a>() |
+    <a href="wxMaximizeEvent.html#t:wxMaximize/0">wxMaximizeEvent:wxMaximize</a>() |
+    <a href="wxMenuEvent.html#t:wxMenu/0">wxMenuEvent:wxMenu</a>() |
+    <a href="wxMouseCaptureChangedEvent.html#t:wxMouseCaptureChanged/0">wxMouseCaptureChangedEvent:wxMouseCaptureChanged</a>() |
+    <a href="wxMouseCaptureLostEvent.html#t:wxMouseCaptureLost/0">wxMouseCaptureLostEvent:wxMouseCaptureLost</a>() |
+    <a href="wxMouseEvent.html#t:wxMouse/0">wxMouseEvent:wxMouse</a>() |
+    <a href="wxMoveEvent.html#t:wxMove/0">wxMoveEvent:wxMove</a>() |
+    <a href="wxNavigationKeyEvent.html#t:wxNavigationKey/0">wxNavigationKeyEvent:wxNavigationKey</a>() |
+    <a href="wxPaintEvent.html#t:wxPaint/0">wxPaintEvent:wxPaint</a>() |
+    <a href="wxPaletteChangedEvent.html#t:wxPaletteChanged/0">wxPaletteChangedEvent:wxPaletteChanged</a>() |
+    <a href="wxQueryNewPaletteEvent.html#t:wxQueryNewPalette/0">wxQueryNewPaletteEvent:wxQueryNewPalette</a>() |
+    <a href="wxSashEvent.html#t:wxSash/0">wxSashEvent:wxSash</a>() |
+    <a href="wxScrollEvent.html#t:wxScroll/0">wxScrollEvent:wxScroll</a>() |
+    <a href="wxScrollWinEvent.html#t:wxScrollWin/0">wxScrollWinEvent:wxScrollWin</a>() |
+    <a href="wxSetCursorEvent.html#t:wxSetCursor/0">wxSetCursorEvent:wxSetCursor</a>() |
+    <a href="wxShowEvent.html#t:wxShow/0">wxShowEvent:wxShow</a>() |
+    <a href="wxSizeEvent.html#t:wxSize/0">wxSizeEvent:wxSize</a>() |
+    <a href="wxSpinEvent.html#t:wxSpin/0">wxSpinEvent:wxSpin</a>() |
+    <a href="wxSplitterEvent.html#t:wxSplitter/0">wxSplitterEvent:wxSplitter</a>() |
+    <a href="wxStyledTextEvent.html#t:wxStyledText/0">wxStyledTextEvent:wxStyledText</a>() |
+    <a href="wxSysColourChangedEvent.html#t:wxSysColourChanged/0">wxSysColourChangedEvent:wxSysColourChanged</a>() |
+    <a href="wxTaskBarIconEvent.html#t:wxTaskBarIcon/0">wxTaskBarIconEvent:wxTaskBarIcon</a>() |
+    <a href="wxTreeEvent.html#t:wxTree/0">wxTreeEvent:wxTree</a>() |
+    <a href="wxUpdateUIEvent.html#t:wxUpdateUI/0">wxUpdateUIEvent:wxUpdateUI</a>() |
+    <a href="wxWebViewEvent.html#t:wxWebView/0">wxWebViewEvent:wxWebView</a>() |
+    <a href="wxWindowCreateEvent.html#t:wxWindowCreate/0">wxWindowCreateEvent:wxWindowCreate</a>() |
+    <a href="wxWindowDestroyEvent.html#t:wxWindowDestroy/0">wxWindowDestroyEvent:wxWindowDestroy</a>().</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wx/0">
+
+  <div class="detail-header">
+    <a href="#t:wx/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wx()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L33" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wx() :: #wx{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxActivate/0">
+
+  <div class="detail-header">
+    <a href="#t:wxActivate/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxActivate()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L40" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxActivate() :: #wxActivate{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxAuiManager/0">
+
+  <div class="detail-header">
+    <a href="#t:wxAuiManager/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxAuiManager()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L50" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxAuiManager() :: #wxAuiManager{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxAuiNotebook/0">
+
+  <div class="detail-header">
+    <a href="#t:wxAuiNotebook/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxAuiNotebook()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L57" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxAuiNotebook() :: #wxAuiNotebook{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxBookCtrl/0">
+
+  <div class="detail-header">
+    <a href="#t:wxBookCtrl/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxBookCtrl()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L63" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxBookCtrl() :: #wxBookCtrl{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxCalendar/0">
+
+  <div class="detail-header">
+    <a href="#t:wxCalendar/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxCalendar()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L69" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxCalendar() :: #wxCalendar{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxChildFocus/0">
+
+  <div class="detail-header">
+    <a href="#t:wxChildFocus/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxChildFocus()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L73" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxChildFocus() :: #wxChildFocus{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxClipboardText/0">
+
+  <div class="detail-header">
+    <a href="#t:wxClipboardText/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxClipboardText()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L77" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxClipboardText() :: #wxClipboardText{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxClose/0">
+
+  <div class="detail-header">
+    <a href="#t:wxClose/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxClose()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L81" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxClose() :: #wxClose{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxColourPicker/0">
+
+  <div class="detail-header">
+    <a href="#t:wxColourPicker/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxColourPicker()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L86" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxColourPicker() :: #wxColourPicker{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxCommand/0">
+
+  <div class="detail-header">
+    <a href="#t:wxCommand/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxCommand()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L93" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxCommand() :: #wxCommand{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxContextMenu/0">
+
+  <div class="detail-header">
+    <a href="#t:wxContextMenu/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxContextMenu()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L98" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxContextMenu() :: #wxContextMenu{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxDate/0">
+
+  <div class="detail-header">
+    <a href="#t:wxDate/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxDate()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L103" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxDate() :: #wxDate{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxDisplayChanged/0">
+
+  <div class="detail-header">
+    <a href="#t:wxDisplayChanged/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxDisplayChanged()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L107" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxDisplayChanged() :: #wxDisplayChanged{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxDropFiles/0">
+
+  <div class="detail-header">
+    <a href="#t:wxDropFiles/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxDropFiles()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L113" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxDropFiles() :: #wxDropFiles{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxErase/0">
+
+  <div class="detail-header">
+    <a href="#t:wxErase/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxErase()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L118" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxErase() :: #wxErase{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxEventType/0">
+
+  <div class="detail-header">
+    <a href="#t:wxEventType/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxEventType()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L368" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxEventType() ::
+    <a href="wxActivateEvent.html#t:wxActivateEventType/0">wxActivateEvent:wxActivateEventType</a>() |
+    <a href="wxAuiManagerEvent.html#t:wxAuiManagerEventType/0">wxAuiManagerEvent:wxAuiManagerEventType</a>() |
+    <a href="wxAuiNotebookEvent.html#t:wxAuiNotebookEventType/0">wxAuiNotebookEvent:wxAuiNotebookEventType</a>() |
+    <a href="wxBookCtrlEvent.html#t:wxBookCtrlEventType/0">wxBookCtrlEvent:wxBookCtrlEventType</a>() |
+    <a href="wxCalendarEvent.html#t:wxCalendarEventType/0">wxCalendarEvent:wxCalendarEventType</a>() |
+    <a href="wxChildFocusEvent.html#t:wxChildFocusEventType/0">wxChildFocusEvent:wxChildFocusEventType</a>() |
+    <a href="wxClipboardTextEvent.html#t:wxClipboardTextEventType/0">wxClipboardTextEvent:wxClipboardTextEventType</a>() |
+    <a href="wxCloseEvent.html#t:wxCloseEventType/0">wxCloseEvent:wxCloseEventType</a>() |
+    <a href="wxColourPickerEvent.html#t:wxColourPickerEventType/0">wxColourPickerEvent:wxColourPickerEventType</a>() |
+    <a href="wxCommandEvent.html#t:wxCommandEventType/0">wxCommandEvent:wxCommandEventType</a>() |
+    <a href="wxContextMenuEvent.html#t:wxContextMenuEventType/0">wxContextMenuEvent:wxContextMenuEventType</a>() |
+    <a href="wxDateEvent.html#t:wxDateEventType/0">wxDateEvent:wxDateEventType</a>() |
+    <a href="wxDisplayChangedEvent.html#t:wxDisplayChangedEventType/0">wxDisplayChangedEvent:wxDisplayChangedEventType</a>() |
+    <a href="wxDropFilesEvent.html#t:wxDropFilesEventType/0">wxDropFilesEvent:wxDropFilesEventType</a>() |
+    <a href="wxEraseEvent.html#t:wxEraseEventType/0">wxEraseEvent:wxEraseEventType</a>() |
+    <a href="wxFileDirPickerEvent.html#t:wxFileDirPickerEventType/0">wxFileDirPickerEvent:wxFileDirPickerEventType</a>() |
+    <a href="wxFocusEvent.html#t:wxFocusEventType/0">wxFocusEvent:wxFocusEventType</a>() |
+    <a href="wxFontPickerEvent.html#t:wxFontPickerEventType/0">wxFontPickerEvent:wxFontPickerEventType</a>() |
+    <a href="wxGridEvent.html#t:wxGridEventType/0">wxGridEvent:wxGridEventType</a>() |
+    <a href="wxHelpEvent.html#t:wxHelpEventType/0">wxHelpEvent:wxHelpEventType</a>() |
+    <a href="wxHtmlLinkEvent.html#t:wxHtmlLinkEventType/0">wxHtmlLinkEvent:wxHtmlLinkEventType</a>() |
+    <a href="wxIconizeEvent.html#t:wxIconizeEventType/0">wxIconizeEvent:wxIconizeEventType</a>() |
+    <a href="wxIdleEvent.html#t:wxIdleEventType/0">wxIdleEvent:wxIdleEventType</a>() |
+    <a href="wxInitDialogEvent.html#t:wxInitDialogEventType/0">wxInitDialogEvent:wxInitDialogEventType</a>() |
+    <a href="wxJoystickEvent.html#t:wxJoystickEventType/0">wxJoystickEvent:wxJoystickEventType</a>() |
+    <a href="wxKeyEvent.html#t:wxKeyEventType/0">wxKeyEvent:wxKeyEventType</a>() |
+    <a href="wxListEvent.html#t:wxListEventType/0">wxListEvent:wxListEventType</a>() |
+    <a href="wxMaximizeEvent.html#t:wxMaximizeEventType/0">wxMaximizeEvent:wxMaximizeEventType</a>() |
+    <a href="wxMenuEvent.html#t:wxMenuEventType/0">wxMenuEvent:wxMenuEventType</a>() |
+    <a href="wxMouseCaptureChangedEvent.html#t:wxMouseCaptureChangedEventType/0">wxMouseCaptureChangedEvent:wxMouseCaptureChangedEventType</a>() |
+    <a href="wxMouseCaptureLostEvent.html#t:wxMouseCaptureLostEventType/0">wxMouseCaptureLostEvent:wxMouseCaptureLostEventType</a>() |
+    <a href="wxMouseEvent.html#t:wxMouseEventType/0">wxMouseEvent:wxMouseEventType</a>() |
+    <a href="wxMoveEvent.html#t:wxMoveEventType/0">wxMoveEvent:wxMoveEventType</a>() |
+    <a href="wxNavigationKeyEvent.html#t:wxNavigationKeyEventType/0">wxNavigationKeyEvent:wxNavigationKeyEventType</a>() |
+    <a href="wxPaintEvent.html#t:wxPaintEventType/0">wxPaintEvent:wxPaintEventType</a>() |
+    <a href="wxPaletteChangedEvent.html#t:wxPaletteChangedEventType/0">wxPaletteChangedEvent:wxPaletteChangedEventType</a>() |
+    <a href="wxQueryNewPaletteEvent.html#t:wxQueryNewPaletteEventType/0">wxQueryNewPaletteEvent:wxQueryNewPaletteEventType</a>() |
+    <a href="wxSashEvent.html#t:wxSashEventType/0">wxSashEvent:wxSashEventType</a>() |
+    <a href="wxScrollEvent.html#t:wxScrollEventType/0">wxScrollEvent:wxScrollEventType</a>() |
+    <a href="wxScrollWinEvent.html#t:wxScrollWinEventType/0">wxScrollWinEvent:wxScrollWinEventType</a>() |
+    <a href="wxSetCursorEvent.html#t:wxSetCursorEventType/0">wxSetCursorEvent:wxSetCursorEventType</a>() |
+    <a href="wxShowEvent.html#t:wxShowEventType/0">wxShowEvent:wxShowEventType</a>() |
+    <a href="wxSizeEvent.html#t:wxSizeEventType/0">wxSizeEvent:wxSizeEventType</a>() |
+    <a href="wxSpinEvent.html#t:wxSpinEventType/0">wxSpinEvent:wxSpinEventType</a>() |
+    <a href="wxSplitterEvent.html#t:wxSplitterEventType/0">wxSplitterEvent:wxSplitterEventType</a>() |
+    <a href="wxStyledTextEvent.html#t:wxStyledTextEventType/0">wxStyledTextEvent:wxStyledTextEventType</a>() |
+    <a href="wxSysColourChangedEvent.html#t:wxSysColourChangedEventType/0">wxSysColourChangedEvent:wxSysColourChangedEventType</a>() |
+    <a href="wxTaskBarIconEvent.html#t:wxTaskBarIconEventType/0">wxTaskBarIconEvent:wxTaskBarIconEventType</a>() |
+    <a href="wxTreeEvent.html#t:wxTreeEventType/0">wxTreeEvent:wxTreeEventType</a>() |
+    <a href="wxUpdateUIEvent.html#t:wxUpdateUIEventType/0">wxUpdateUIEvent:wxUpdateUIEventType</a>() |
+    <a href="wxWebViewEvent.html#t:wxWebViewEventType/0">wxWebViewEvent:wxWebViewEventType</a>() |
+    <a href="wxWindowCreateEvent.html#t:wxWindowCreateEventType/0">wxWindowCreateEvent:wxWindowCreateEventType</a>() |
+    <a href="wxWindowDestroyEvent.html#t:wxWindowDestroyEventType/0">wxWindowDestroyEvent:wxWindowDestroyEventType</a>().</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxFileDirPicker/0">
+
+  <div class="detail-header">
+    <a href="#t:wxFileDirPicker/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxFileDirPicker()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L123" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxFileDirPicker() :: #wxFileDirPicker{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxFocus/0">
+
+  <div class="detail-header">
+    <a href="#t:wxFocus/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxFocus()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L128" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxFocus() :: #wxFocus{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxFontPicker/0">
+
+  <div class="detail-header">
+    <a href="#t:wxFontPicker/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxFontPicker()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L133" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxFontPicker() :: #wxFontPicker{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxGrid/0">
+
+  <div class="detail-header">
+    <a href="#t:wxGrid/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxGrid()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L145" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxGrid() :: #wxGrid{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxHelp/0">
+
+  <div class="detail-header">
+    <a href="#t:wxHelp/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxHelp()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L149" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxHelp() :: #wxHelp{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxHtmlLink/0">
+
+  <div class="detail-header">
+    <a href="#t:wxHtmlLink/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxHtmlLink()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L154" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxHtmlLink() :: #wxHtmlLink{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxIconize/0">
+
+  <div class="detail-header">
+    <a href="#t:wxIconize/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxIconize()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L159" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxIconize() :: #wxIconize{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxIconizeEvent/0">
+
+  <div class="detail-header">
+    <a href="#t:wxIconizeEvent/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxIconizeEvent()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/gen/wxIconizeEvent.erl#L50" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxIconizeEvent() :: <a href="wx.html#t:wx_object/0">wx:wx_object</a>().</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxIconizeEventType/0">
+
+  <div class="detail-header">
+    <a href="#t:wxIconizeEventType/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxIconizeEventType()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/gen/wxIconizeEvent.erl#L53" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxIconizeEventType() :: iconize.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxIdle/0">
+
+  <div class="detail-header">
+    <a href="#t:wxIdle/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxIdle()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L163" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxIdle() :: #wxIdle{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxInitDialog/0">
+
+  <div class="detail-header">
+    <a href="#t:wxInitDialog/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxInitDialog()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L167" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxInitDialog() :: #wxInitDialog{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxJoystick/0">
+
+  <div class="detail-header">
+    <a href="#t:wxJoystick/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxJoystick()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L176" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxJoystick() :: #wxJoystick{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxKey/0">
+
+  <div class="detail-header">
+    <a href="#t:wxKey/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxKey()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L190" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxKey() :: #wxKey{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxList/0">
+
+  <div class="detail-header">
+    <a href="#t:wxList/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxList()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L199" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxList() :: #wxList{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxMaximize/0">
+
+  <div class="detail-header">
+    <a href="#t:wxMaximize/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxMaximize()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L203" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxMaximize() :: #wxMaximize{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxMenu/0">
+
+  <div class="detail-header">
+    <a href="#t:wxMenu/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxMenu()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L209" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxMenu() :: #wxMenu{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxMouse/0">
+
+  <div class="detail-header">
+    <a href="#t:wxMouse/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxMouse()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L233" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxMouse() :: #wxMouse{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxMouseCaptureChanged/0">
+
+  <div class="detail-header">
+    <a href="#t:wxMouseCaptureChanged/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxMouseCaptureChanged()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L213" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxMouseCaptureChanged() :: #wxMouseCaptureChanged{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxMouseCaptureLost/0">
+
+  <div class="detail-header">
+    <a href="#t:wxMouseCaptureLost/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxMouseCaptureLost()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L217" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxMouseCaptureLost() :: #wxMouseCaptureLost{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxMove/0">
+
+  <div class="detail-header">
+    <a href="#t:wxMove/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxMove()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L239" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxMove() :: #wxMove{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxNavigationKey/0">
+
+  <div class="detail-header">
+    <a href="#t:wxNavigationKey/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxNavigationKey()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L245" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxNavigationKey() :: #wxNavigationKey{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxPaint/0">
+
+  <div class="detail-header">
+    <a href="#t:wxPaint/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxPaint()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L249" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxPaint() :: #wxPaint{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxPaletteChanged/0">
+
+  <div class="detail-header">
+    <a href="#t:wxPaletteChanged/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxPaletteChanged()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L253" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxPaletteChanged() :: #wxPaletteChanged{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxQueryNewPalette/0">
+
+  <div class="detail-header">
+    <a href="#t:wxQueryNewPalette/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxQueryNewPalette()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L257" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxQueryNewPalette() :: #wxQueryNewPalette{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxSash/0">
+
+  <div class="detail-header">
+    <a href="#t:wxSash/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxSash()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L264" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxSash() :: #wxSash{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxScroll/0">
+
+  <div class="detail-header">
+    <a href="#t:wxScroll/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxScroll()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L270" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxScroll() :: #wxScroll{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxScrollWin/0">
+
+  <div class="detail-header">
+    <a href="#t:wxScrollWin/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxScrollWin()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L276" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxScrollWin() :: #wxScrollWin{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxSetCursor/0">
+
+  <div class="detail-header">
+    <a href="#t:wxSetCursor/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxSetCursor()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L283" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxSetCursor() :: #wxSetCursor{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxShow/0">
+
+  <div class="detail-header">
+    <a href="#t:wxShow/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxShow()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L288" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxShow() :: #wxShow{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxSize/0">
+
+  <div class="detail-header">
+    <a href="#t:wxSize/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxSize()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L294" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxSize() :: #wxSize{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxSpin/0">
+
+  <div class="detail-header">
+    <a href="#t:wxSpin/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxSpin()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L299" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxSpin() :: #wxSpin{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxSplitter/0">
+
+  <div class="detail-header">
+    <a href="#t:wxSplitter/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxSplitter()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L303" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxSplitter() :: #wxSplitter{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxStyledText/0">
+
+  <div class="detail-header">
+    <a href="#t:wxStyledText/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxStyledText()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L327" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxStyledText() :: #wxStyledText{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxSysColourChanged/0">
+
+  <div class="detail-header">
+    <a href="#t:wxSysColourChanged/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxSysColourChanged()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L331" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxSysColourChanged() :: #wxSysColourChanged{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxTaskBarIcon/0">
+
+  <div class="detail-header">
+    <a href="#t:wxTaskBarIcon/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxTaskBarIcon()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L335" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxTaskBarIcon() :: #wxTaskBarIcon{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxTree/0">
+
+  <div class="detail-header">
+    <a href="#t:wxTree/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxTree()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L342" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxTree() :: #wxTree{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxUpdateUI/0">
+
+  <div class="detail-header">
+    <a href="#t:wxUpdateUI/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxUpdateUI()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L346" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxUpdateUI() :: #wxUpdateUI{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxWebView/0">
+
+  <div class="detail-header">
+    <a href="#t:wxWebView/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxWebView()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L354" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxWebView() :: #wxWebView{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxWindowCreate/0">
+
+  <div class="detail-header">
+    <a href="#t:wxWindowCreate/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxWindowCreate()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L358" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxWindowCreate() :: #wxWindowCreate{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wxWindowDestroy/0">
+
+  <div class="detail-header">
+    <a href="#t:wxWindowDestroy/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wxWindowDestroy()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/Users/wojtek/src/otp/lib/wx/src/../include/wx.hrl#L362" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wxWindowDestroy() :: #wxWindowDestroy{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+
+    </div>
+  </section>
+
+  <section id="functions" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Functions</span>
+    </h1>
+    <div class="functions-list">
+<section class="detail" id="isIconized/1">
+
+  <div class="detail-header">
+    <a href="#isIconized/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">isIconized/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/wx/doc//Users/wojtek/src/otp/lib/wx/src/gen/gen/wxIconizeEvent.erl#L64" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> isIconized(This) -> <a href="../../../../lib/../erts/doc/html/erlang.html#t:boolean/0">boolean</a>() when This :: <a href="#t:wxIconizeEvent/0">wxIconizeEvent</a>().</pre>
+
+      </div>
+
+<p>Returns true if the frame has been iconized, false if it has been restored.</p>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+      <footer class="footer">
+        <p>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Search HexDocs packages">
+              Search HexDocs
+            </button>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.30.9) for the
+
+            <a href="https://erlang.org" title="Erlang" target="_blank" translate="no">Erlang programming language</a>
+
+        </p>
+      </footer>
+    </div>
+  </div>
+</main>
+</div>
+
+
+  </body>
+</html>

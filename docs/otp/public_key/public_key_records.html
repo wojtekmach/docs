@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.30.9">
+    <meta name="project" content="public_key v1.14.1">
+
+
+    <title>Public-Key Records — public_key v1.14.1</title>
+    <link rel="stylesheet" href="dist/html-erlang-QW5RMTQD.css" />
+
+
+    <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
+    <script src="dist/handlebars.templates-43PMFBC7.js"></script>
+    <script src="dist/sidebar_items-562A6422.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/html-LRUIU55G.js"></script>
+
+<style>.dark img { background-color: white; }</style>
+  </head>
+  <body data-type="extras" class="page-extra">
+    <script>
+
+      try {
+        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+
+        if (settings.theme === 'dark' ||
+           ((settings.theme === 'system' || settings.theme == null) &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches)
+           ) {
+          document.body.classList.add('dark')
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
+
+        <a href="api-reference.html" class="sidebar-projectImage">
+          <img src="assets/logo.png" alt="public_key" />
+        </a>
+
+      <div>
+        <a href="api-reference.html" class="sidebar-projectName" translate="no">
+public_key
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v1.14.1
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-listNav" class="sidebar-listNav" role="tablist">
+      <li>
+        <button id="extras-list-tab-button" role="tab" data-type="extras" aria-controls="extras-tab-panel" aria-selected="true" tabindex="0">
+Pages
+        </button>
+      </li>
+
+        <li>
+          <button id="modules-list-tab-button" role="tab" data-type="modules" aria-controls="modules-tab-panel" aria-selected="false" tabindex="-1">
+            Modules
+          </button>
+        </li>
+
+
+    </ul>
+  </div>
+
+  <div id="extras-tab-panel" class="sidebar-tabpanel" role="tabpanel" aria-labelledby="extras-list-tab-button">
+    <ul id="extras-full-list" class="full-list"></ul>
+  </div>
+
+    <div id="modules-tab-panel" class="sidebar-tabpanel" role="tabpanel" aria-labelledby="modules-list-tab-button" hidden>
+      <ul id="modules-full-list" class="full-list"></ul>
+    </div>
+
+
+</nav>
+
+<main class="content">
+  <output role="status" id="toast"></output>
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+      <div class="top-search">
+        <div class="search-settings">
+          <form class="search-bar" action="search.html">
+            <label class="search-label">
+              <span class="sr-only">Search documentation of public_key</span>
+              <input name="q" type="text" class="search-input" placeholder="Search Documentation (press /)" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+            </label>
+            <button type="submit" class="search-button" aria-label="Submit Search">
+              <i class="ri-search-2-line ri-lg" aria-hidden="true" title="Submit search"></i>
+            </button>
+            <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+              <i class="ri-close-line ri-lg" title="Cancel search"></i>
+            </button>
+          </form>
+          <button class="icon-settings display-settings">
+            <i class="ri-settings-3-line"></i>
+            <span class="sr-only">Settings</span>
+          </button>
+        </div>
+      </div>
+      <div class="autocomplete">
+        <div class="autocomplete-results">
+        </div>
+      </div>
+
+<h1>
+
+    <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc/guides/public_key_records.md#L1" title="View Source" class="icon-action" rel="help">
+      <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+      <span class="sr-only">View Source</span>
+    </a>
+
+
+  <span>Public-Key Records</span>
+</h1>
+
+<p>This chapter briefly describes Erlang records derived from ASN.1 specifications
+used to handle public key infrastructure. The scope is to describe the data
+types of each component, not the semantics. For information on the semantics,
+refer to the relevant standards and RFCs linked in the sections below.</p><p>Use the following include directive to get access to the records and constant
+macros described in the following sections:</p><pre><code class="text"> -include_lib(&quot;public_key/include/public_key.hrl&quot;).</code></pre><h2 id="data-types" class="section-heading">
+  <a href="#data-types" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">Data Types</span>
+</h2>
+<p>Common non-standard Erlang data types used to describe the record fields in the
+following sections and which are not defined in the Public Key
+<a href="public_key.html">Reference Manual</a> follows here:</p><ul><li><p><strong><code class="inline">time() =</code></strong> - <code class="inline">utc_time() | general_time()</code></p></li><li><p><strong><code class="inline">utc_time() =</code></strong> - <code class="inline">{utcTime, &quot;YYMMDDHHMMSSZ&quot;}</code></p></li><li><p><strong><code class="inline">general_time() =</code></strong> - <code class="inline">{generalTime, &quot;YYYYMMDDHHMMSSZ&quot;}</code></p></li><li><p><strong><code class="inline">general_name() =</code></strong> - <code class="inline">{rfc822Name, string()}</code></p><p><code class="inline">| {dNSName, string()}</code></p><p><code class="inline">| {x400Address, string()}</code></p><p><code class="inline">| {directoryName, {rdnSequence, [#AttributeTypeAndValue'{}]}}</code></p><p><code class="inline">| {ediPartyName, special_string()}</code></p><p><code class="inline">| {ediPartyName, special_string(), special_string()}</code></p><p><code class="inline">| {uniformResourceIdentifier, string()}</code></p><p><code class="inline">| {iPAddress, string()}</code></p><p><code class="inline">| {registeredId, oid()}</code></p><p><code class="inline">| {otherName, term()}</code></p></li><li><p><strong><code class="inline">special_string() =</code></strong> - <code class="inline">{teletexString, string()}</code></p><p><code class="inline">| {printableString, string()}</code></p><p><code class="inline">| {universalString, string()}</code></p><p><code class="inline">| {utf8String, binary()}</code></p><p><code class="inline">| {bmpString, string()}</code></p></li><li><p><strong><code class="inline">dist_reason() =</code></strong> - <code class="inline">unused</code></p><p><code class="inline">| keyCompromise</code></p><p><code class="inline">| cACompromise</code></p><p><code class="inline">| affiliationChanged</code></p><p><code class="inline">| superseded</code></p><p><code class="inline">| cessationOfOperation</code></p><p><code class="inline">| certificateHold</code></p><p><code class="inline">| privilegeWithdrawn</code></p><p><code class="inline">| aACompromise</code></p></li><li><p><strong><code class="inline">OID_macro() =</code></strong> - <code class="inline">?OID_name()</code></p></li><li><p><strong><code class="inline">OID_name() =</code></strong> - <code class="inline">t:atom()</code></p></li></ul><h2 id="rsa" class="section-heading">
+  <a href="#rsa" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">RSA</span>
+</h2>
+<p>Erlang representation of
+<a href="http://www.ietf.org/rfc/rfc3447.txt">Rivest-Shamir-Adleman cryptosystem (RSA)</a>
+keys follows:</p><pre><code class="text">#'RSAPublicKey'{
+	  modulus,       % integer()
+	  publicExponent % integer()
+	  }.
+
+#'RSAPrivateKey'{
+          version,         % two-prime | multi
+	  modulus,         % integer()
+	  publicExponent,  % integer()
+	  privateExponent, % integer()
+	  prime1,          % integer()
+	  prime2,          % integer()
+	  exponent1,       % integer()
+	  exponent2,       % integer()
+	  coefficient,     % integer()
+	  otherPrimeInfos  % [#OtherPrimeInfo{}] | asn1_NOVALUE
+	 }.
+
+#'OtherPrimeInfo'{
+	prime,           % integer()
+	exponent,        % integer()
+	coefficient      % integer()
+ 	}.
+
+#'RSASSA-PSS-params'{hashAlgorithm,     % #'HashAlgorithm'{}},
+	             maskGenAlgorithm,  % #'MaskGenAlgorithm'{}},
+		     saltLength,        % integer(),
+		     trailerField,      % integer()
+		     }.
+
+#'HashAlgorithm'{algorithm,  % oid()
+                 parameters  % defaults to asn1_NOVALUE
+                 }.
+
+#'MaskGenAlgorithm'{algorithm,  % oid()
+                    parameters, % defaults to asn1_NOVALUE
+                   }.</code></pre><h2 id="dsa" class="section-heading">
+  <a href="#dsa" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">DSA</span>
+</h2>
+<p>Erlang representation of
+<a href="http://www.ietf.org/rfc/rfc6979.txt">Digital Signature Algorithm (DSA)</a> keys</p><pre><code class="text">
+#'DSAPrivateKey',{
+	  version,      % integer()
+	  p,            % integer()
+	  q,            % integer()
+	  g,            % integer()
+	  y,            % integer()
+	  x             % integer()
+	  }.
+
+#'Dss-Parms',{
+         p,         % integer()
+	 q,         % integer()
+	 g          % integer()
+	 }.</code></pre><h2 id="ecdsa-and-eddsa" class="section-heading">
+  <a href="#ecdsa-and-eddsa" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">ECDSA and EDDSA</span>
+</h2>
+<p>Erlang representation of
+<a href="http://www.ietf.org/rfc/rfc6979.txt">Elliptic Curve Digital Signature Algorithm (ECDSA)</a>
+and
+<a href="https://tools.ietf.org/html/rfc8032">Edwards-Curve Digital Signature Algorithm (EDDSA)</a>
+where parameters in the private key will be
+<code class="inline">{namedCurve, ?'id-Ed25519' | ?'id-Ed448'}</code>.</p><pre><code class="text">
+#'ECPrivateKey'{
+          version,       % integer()
+	  privateKey,    % binary()
+          parameters,    % {ecParameters, #'ECParameters'{}} |
+                         % {namedCurve, Oid::tuple()} |
+                         % {implicitlyCA, 'NULL'}
+	  publicKey      % bitstring()
+	  }.
+
+#'ECParameters'{
+      version,    % integer()
+      fieldID,    % #'FieldID'{}
+      curve,      % #'Curve'{}
+      base,       % binary()
+      order,      % integer()
+      cofactor    % integer()
+      }.
+
+#'Curve'{
+	a,        % binary()
+	b,        % binary()
+	seed      % bitstring() - optional
+
+	}.
+
+#'FieldID'{
+	fieldType,    % oid()
+	parameters    % Depending on fieldType
+	}.
+
+#'ECPoint'{
+      point %  binary() - the public key
+      }.</code></pre><h2 id="pkix-certificates" class="section-heading">
+  <a href="#pkix-certificates" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">PKIX Certificates</span>
+</h2>
+<p>Erlang representation of PKIX certificates derived from ASN.1 specifications see
+also <a href="http://www.ietf.org/rfc/rfc5280.txt">X509 certificates (RFC 5280)</a>, also
+referred to as <code class="inline">plain</code> type, are as follows:</p><pre><code class="text">#'Certificate'{
+		tbsCertificate,        % #'TBSCertificate'{}
+		signatureAlgorithm,    % #'AlgorithmIdentifier'{}
+		signature              % bitstring()
+	       }.
+
+#'TBSCertificate'{
+	  version,              % v1 | v2 | v3
+	  serialNumber,         % integer()
+	  signature,            % #'AlgorithmIdentifier'{}
+	  issuer,               % {rdnSequence, [#AttributeTypeAndValue'{}]}
+	  validity,             % #'Validity'{}
+	  subject,              % {rdnSequence, [#AttributeTypeAndValue'{}]}
+	  subjectPublicKeyInfo, % #'SubjectPublicKeyInfo'{}
+	  issuerUniqueID,       % binary() | asn1_novalue
+	  subjectUniqueID,      % binary() | asn1_novalue
+	  extensions            % [#'Extension'{}]
+	 }.
+
+#'AlgorithmIdentifier'{
+	  algorithm,  % oid()
+	  parameters  % der_encoded()
+	 }.</code></pre><p>Erlang alternate representation of PKIX certificate, also referred to as <code class="inline">otp</code>
+type</p><pre><code class="text">#'OTPCertificate'{
+		tbsCertificate,        % #'OTPTBSCertificate'{}
+		signatureAlgorithm,    % #'SignatureAlgorithm'
+		signature              % bitstring()
+	       }.
+
+#'OTPTBSCertificate'{
+	  version,              % v1 | v2 | v3
+	  serialNumber,         % integer()
+	  signature,            % #'SignatureAlgorithm'
+	  issuer,               % {rdnSequence, [#AttributeTypeAndValue'{}]}
+	  validity,             % #'Validity'{}
+	  subject,              % {rdnSequence, [#AttributeTypeAndValue'{}]}
+	  subjectPublicKeyInfo, % #'OTPSubjectPublicKeyInfo'{}
+	  issuerUniqueID,       % binary() | asn1_novalue
+	  subjectUniqueID,      % binary() | asn1_novalue
+	  extensions            % [#'Extension'{}]
+	 }.
+
+#'SignatureAlgorithm'{
+	  algorithm,  % id_signature_algorithm()
+	  parameters  % asn1_novalue | #'Dss-Parms'{}
+	 }.</code></pre><p><code class="inline">id_signature_algorithm() = OID_macro()</code></p><p>The available OID names are as follows:</p><table><thead><tr><th style="text-align: left;"><em>OID Name</em></th></tr></thead><tbody><tr><td style="text-align: left;">id-dsa-with-sha1</td></tr><tr><td style="text-align: left;">id-dsaWithSHA1 (ISO or OID to above)</td></tr><tr><td style="text-align: left;">md2WithRSAEncryption</td></tr><tr><td style="text-align: left;">md5WithRSAEncryption</td></tr><tr><td style="text-align: left;">sha1WithRSAEncryption</td></tr><tr><td style="text-align: left;">sha-1WithRSAEncryption (ISO or OID to above)</td></tr><tr><td style="text-align: left;">sha224WithRSAEncryption</td></tr><tr><td style="text-align: left;">sha256WithRSAEncryption</td></tr><tr><td style="text-align: left;">sha512WithRSAEncryption</td></tr><tr><td style="text-align: left;">ecdsa-with-SHA1</td></tr></tbody></table><p><em>Table: Signature Algorithm OIDs</em></p><p>The data type <code class="inline">'AttributeTypeAndValue'</code>, is represented as the following erlang
+record:</p><pre><code class="text">#'AttributeTypeAndValue'{
+	  type,   % id_attributes()
+	  value   % term()
+	 }.</code></pre><p>The attribute OID name atoms and their corresponding value types are as follows:</p><table><thead><tr><th style="text-align: left;"><em>OID Name</em></th><th style="text-align: left;"><em>Value Type</em></th></tr></thead><tbody><tr><td style="text-align: left;">id-at-name</td><td style="text-align: left;">special_string()</td></tr><tr><td style="text-align: left;">id-at-surname</td><td style="text-align: left;">special_string()</td></tr><tr><td style="text-align: left;">id-at-givenName</td><td style="text-align: left;">special_string()</td></tr><tr><td style="text-align: left;">id-at-initials</td><td style="text-align: left;">special_string()</td></tr><tr><td style="text-align: left;">id-at-generationQualifier</td><td style="text-align: left;">special_string()</td></tr><tr><td style="text-align: left;">id-at-commonName</td><td style="text-align: left;">special_string()</td></tr><tr><td style="text-align: left;">id-at-localityName</td><td style="text-align: left;">special_string()</td></tr><tr><td style="text-align: left;">id-at-stateOrProvinceName</td><td style="text-align: left;">special_string()</td></tr><tr><td style="text-align: left;">id-at-organizationName</td><td style="text-align: left;">special_string()</td></tr><tr><td style="text-align: left;">id-at-title</td><td style="text-align: left;">special_string()</td></tr><tr><td style="text-align: left;">id-at-dnQualifier</td><td style="text-align: left;">{printableString, string()}</td></tr><tr><td style="text-align: left;">id-at-countryName</td><td style="text-align: left;">{printableString, string()}</td></tr><tr><td style="text-align: left;">id-at-serialNumber</td><td style="text-align: left;">{printableString, string()}</td></tr><tr><td style="text-align: left;">id-at-pseudonym</td><td style="text-align: left;">special_string()</td></tr></tbody></table><p><em>Table: Attribute OIDs</em></p><p>The data types <code class="inline">'Validity'</code>, <code class="inline">'SubjectPublicKeyInfo'</code>, and
+<code class="inline">'SubjectPublicKeyInfoAlgorithm'</code> are represented as the following Erlang
+records:</p><pre><code class="text">#'Validity'{
+	  notBefore, % time()
+	  notAfter   % time()
+	 }.
+
+#'SubjectPublicKeyInfo'{
+	  algorithm,       % #AlgorithmIdentifier{}
+	  subjectPublicKey % binary()
+	 }.
+
+#'SubjectPublicKeyInfoAlgorithm'{
+	  algorithm,  % id_public_key_algorithm()
+	  parameters  % public_key_params()
+	 }.</code></pre><p>The public-key algorithm OID name atoms are as follows:</p><table><thead><tr><th style="text-align: left;"><em>OID Name</em></th></tr></thead><tbody><tr><td style="text-align: left;">rsaEncryption</td></tr><tr><td style="text-align: left;">id-dsa</td></tr><tr><td style="text-align: left;">dhpublicnumber</td></tr><tr><td style="text-align: left;">id-keyExchangeAlgorithm</td></tr><tr><td style="text-align: left;">id-ecPublicKey</td></tr></tbody></table><p><em>Table: Public-Key Algorithm OIDs</em></p><pre><code class="text">#'Extension'{
+	  extnID,    % id_extensions() | oid()
+	  critical,  % boolean()
+	  extnValue  % der_encoded()
+	 }.</code></pre><p><code class="inline">id_extensions()</code>
+<a href="public_key_records.html#stdcertext">Standard Certificate Extensions</a>,
+<a href="public_key_records.html#privintext">Private Internet Extensions</a>,
+<a href="public_key_records.html#crlcertext">CRL Extensions</a> and
+<a href="public_key_records.html#crlentryext">CRL Entry Extensions</a>.</p><p><a href="" id="stdcertext"></a></p><h2 id="standard-certificate-extensions" class="section-heading">
+  <a href="#standard-certificate-extensions" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">Standard Certificate Extensions</span>
+</h2>
+<p>The standard certificate extensions OID name atoms and their corresponding value
+types are as follows:</p><table><thead><tr><th style="text-align: left;"><em>OID Name</em></th><th style="text-align: left;"><em>Value Type</em></th></tr></thead><tbody><tr><td style="text-align: left;">id-ce-authorityKeyIdentifier</td><td style="text-align: left;">#'AuthorityKeyIdentifier'{}</td></tr><tr><td style="text-align: left;">id-ce-subjectKeyIdentifier</td><td style="text-align: left;">oid()</td></tr><tr><td style="text-align: left;">id-ce-keyUsage</td><td style="text-align: left;">[key_usage()]</td></tr><tr><td style="text-align: left;">id-ce-privateKeyUsagePeriod</td><td style="text-align: left;">#'PrivateKeyUsagePeriod'{}</td></tr><tr><td style="text-align: left;">id-ce-certificatePolicies</td><td style="text-align: left;">#'PolicyInformation'{}</td></tr><tr><td style="text-align: left;">id-ce-policyMappings</td><td style="text-align: left;">#'PolicyMappings_SEQOF'{}</td></tr><tr><td style="text-align: left;">id-ce-subjectAltName</td><td style="text-align: left;">general_name()</td></tr><tr><td style="text-align: left;">id-ce-issuerAltName</td><td style="text-align: left;">general_name()</td></tr><tr><td style="text-align: left;">id-ce-subjectDirectoryAttributes</td><td style="text-align: left;">[#'Attribute'{}]</td></tr><tr><td style="text-align: left;">id-ce-basicConstraints</td><td style="text-align: left;">#'BasicConstraints'{}</td></tr><tr><td style="text-align: left;">id-ce-nameConstraints</td><td style="text-align: left;">#'NameConstraints'{}</td></tr><tr><td style="text-align: left;">id-ce-policyConstraints</td><td style="text-align: left;">#'PolicyConstraints'{}</td></tr><tr><td style="text-align: left;">id-ce-extKeyUsage</td><td style="text-align: left;">[id_key_purpose()]</td></tr><tr><td style="text-align: left;">id-ce-cRLDistributionPoints</td><td style="text-align: left;">[#'DistributionPoint'{}]</td></tr><tr><td style="text-align: left;">id-ce-inhibitAnyPolicy</td><td style="text-align: left;">integer()</td></tr><tr><td style="text-align: left;">id-ce-freshestCRL</td><td style="text-align: left;">[#'DistributionPoint'{}]</td></tr></tbody></table><p><em>Table: Standard Certificate Extensions</em></p><p>Here:</p><ul><li><p><strong><code class="inline">key_usage()</code></strong> - =</p><p><code class="inline">digitalSignature</code></p><p><code class="inline">| nonRepudiation</code></p><p><code class="inline">| keyEncipherment</code></p><p><code class="inline">| dataEncipherment</code></p><p><code class="inline">| keyAgreement</code></p><p><code class="inline">| keyCertSign</code></p><p><code class="inline">| cRLSign</code></p><p><code class="inline">| encipherOnly</code></p><p><code class="inline">| decipherOnly</code></p></li></ul><p>And for <code class="inline">id_key_purpose()</code>:</p><table><thead><tr><th style="text-align: left;"><em>OID Name</em></th></tr></thead><tbody><tr><td style="text-align: left;">id-kp-serverAuth</td></tr><tr><td style="text-align: left;">id-kp-clientAuth</td></tr><tr><td style="text-align: left;">id-kp-codeSigning</td></tr><tr><td style="text-align: left;">id-kp-emailProtection</td></tr><tr><td style="text-align: left;">id-kp-timeStamping</td></tr><tr><td style="text-align: left;">id-kp-OCSPSigning</td></tr></tbody></table><p><em>Table: Key Purpose OIDs</em></p><pre><code class="text">#'AuthorityKeyIdentifier'{
+	  keyIdentifier,	    % oid()
+	  authorityCertIssuer,      % general_name()
+	  authorityCertSerialNumber % integer()
+	 }.
+
+#'PrivateKeyUsagePeriod'{
+	  notBefore,   % general_time()
+	  notAfter     % general_time()
+	 }.
+
+#'PolicyInformation'{
+	  policyIdentifier,  % oid()
+	  policyQualifiers   % [#PolicyQualifierInfo{}]
+	 }.
+
+#'PolicyQualifierInfo'{
+	  policyQualifierId,   % oid()
+	  qualifier            % string() | #'UserNotice'{}
+	 }.
+
+#'UserNotice'{
+         noticeRef,   % #'NoticeReference'{}
+	 explicitText % string()
+	 }.
+
+#'NoticeReference'{
+         organization,    % string()
+	 noticeNumbers    % [integer()]
+	 }.
+
+#'PolicyMappings_SEQOF'{
+	  issuerDomainPolicy,  % oid()
+	  subjectDomainPolicy  % oid()
+	 }.
+
+#'Attribute'{
+          type,  % oid()
+	  values % [der_encoded()]
+	  }).
+
+#'BasicConstraints'{
+	  cA,		    % boolean()
+	  pathLenConstraint % integer()
+	 }).
+
+#'NameConstraints'{
+	  permittedSubtrees, % [#'GeneralSubtree'{}]
+	  excludedSubtrees   % [#'GeneralSubtree'{}]
+	 }).
+
+#'GeneralSubtree'{
+	  base,    % general_name()
+	  minimum, % integer()
+	  maximum  % integer()
+	 }).
+
+#'PolicyConstraints'{
+	  requireExplicitPolicy, % integer()
+	  inhibitPolicyMapping   % integer()
+	 }).
+
+#'DistributionPoint'{
+	  distributionPoint, % {fullName, [general_name()]} | {nameRelativeToCRLIssuer,
+	  [#AttributeTypeAndValue{}]}
+	  reasons,           % [dist_reason()]
+	  cRLIssuer          % [general_name()]
+	 }).</code></pre><p><a href="" id="privintext"></a></p><h2 id="private-internet-extensions" class="section-heading">
+  <a href="#private-internet-extensions" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">Private Internet Extensions</span>
+</h2>
+<p>The private internet extensions OID name atoms and their corresponding value
+types are as follows:</p><table><thead><tr><th style="text-align: left;"><em>OID Name</em></th><th style="text-align: left;"><em>Value Type</em></th></tr></thead><tbody><tr><td style="text-align: left;">id-pe-authorityInfoAccess</td><td style="text-align: left;">[#'AccessDescription'{}]</td></tr><tr><td style="text-align: left;">id-pe-subjectInfoAccess</td><td style="text-align: left;">[#'AccessDescription'{}]</td></tr></tbody></table><p><em>Table: Private Internet Extensions</em></p><pre><code class="text">#'AccessDescription'{
+           accessMethod,    % oid()
+	   accessLocation   % general_name()
+	 }).</code></pre><h2 id="crl-and-crl-extensions-profile" class="section-heading">
+  <a href="#crl-and-crl-extensions-profile" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">CRL and CRL Extensions Profile</span>
+</h2>
+<p>Erlang representation of CRL and CRL extensions profile derived from ASN.1
+specifications and RFC 5280 are as follows:</p><pre><code class="text">#'CertificateList'{
+          tbsCertList,        % #'TBSCertList{}
+          signatureAlgorithm, % #'AlgorithmIdentifier'{}
+          signature           % bitstring()
+	  }).
+
+#'TBSCertList'{
+      version,             % v2 (if defined)
+      signature,           % #AlgorithmIdentifier{}
+      issuer,              % {rdnSequence, [#AttributeTypeAndValue'{}]}
+      thisUpdate,          % time()
+      nextUpdate,          % time()
+      revokedCertificates, % [#'TBSCertList_revokedCertificates_SEQOF'{}]
+      crlExtensions        % [#'Extension'{}]
+      }).
+
+#'TBSCertList_revokedCertificates_SEQOF'{
+         userCertificate,      % integer()
+ 	 revocationDate,       % timer()
+	 crlEntryExtensions    % [#'Extension'{}]
+	 }).</code></pre><p><a href="" id="crlcertext"></a></p><h3 id="crl-extensions" class="section-heading">
+  <a href="#crl-extensions" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">CRL Extensions</span>
+</h3>
+<p>The CRL extensions OID name atoms and their corresponding value types are as
+follows:</p><table><thead><tr><th style="text-align: left;"><em>OID Name</em></th><th style="text-align: left;"><em>Value Type</em></th></tr></thead><tbody><tr><td style="text-align: left;">id-ce-authorityKeyIdentifier</td><td style="text-align: left;">#'AuthorityKeyIdentifier{}</td></tr><tr><td style="text-align: left;">id-ce-issuerAltName</td><td style="text-align: left;">{rdnSequence, [#AttributeTypeAndValue'{}]}</td></tr><tr><td style="text-align: left;">id-ce-cRLNumber</td><td style="text-align: left;">integer()</td></tr><tr><td style="text-align: left;">id-ce-deltaCRLIndicator</td><td style="text-align: left;">integer()</td></tr><tr><td style="text-align: left;">id-ce-issuingDistributionPoint</td><td style="text-align: left;">#'IssuingDistributionPoint'{}</td></tr><tr><td style="text-align: left;">id-ce-freshestCRL</td><td style="text-align: left;">[#'Distributionpoint'{}]</td></tr></tbody></table><p><em>Table: CRL Extensions</em></p><p>Here, the data type <code class="inline">'IssuingDistributionPoint'</code> is represented as the following
+Erlang record:</p><pre><code class="text">#'IssuingDistributionPoint'{
+          distributionPoint,         % {fullName, [general_name()]} | {nameRelativeToCRLIssuer,
+	  [#AttributeTypeAndValue'{}]}
+	  onlyContainsUserCerts,     % boolean()
+	  onlyContainsCACerts,       % boolean()
+	  onlySomeReasons,           % [dist_reason()]
+	  indirectCRL,               % boolean()
+	  onlyContainsAttributeCerts % boolean()
+	  }).</code></pre><p><a href="" id="crlentryext"></a></p><h3 id="crl-entry-extensions" class="section-heading">
+  <a href="#crl-entry-extensions" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">CRL Entry Extensions</span>
+</h3>
+<p>The CRL entry extensions OID name atoms and their corresponding value types are
+as follows:</p><table><thead><tr><th style="text-align: left;"><em>OID Name</em></th><th style="text-align: left;"><em>Value Type</em></th></tr></thead><tbody><tr><td style="text-align: left;">id-ce-cRLReason</td><td style="text-align: left;">crl_reason()</td></tr><tr><td style="text-align: left;">id-ce-holdInstructionCode</td><td style="text-align: left;">oid()</td></tr><tr><td style="text-align: left;">id-ce-invalidityDate</td><td style="text-align: left;">general_time()</td></tr><tr><td style="text-align: left;">id-ce-certificateIssuer</td><td style="text-align: left;">general_name()</td></tr></tbody></table><p><em>Table: CRL Entry Extensions</em></p><p>Here:</p><ul><li><p><strong><code class="inline">crl_reason()</code></strong> - =</p><p><code class="inline">unspecified</code></p><p><code class="inline">| keyCompromise</code></p><p><code class="inline">| cACompromise</code></p><p><code class="inline">| affiliationChanged</code></p><p><code class="inline">| superseded</code></p><p><code class="inline">| cessationOfOperation</code></p><p><code class="inline">| certificateHold</code></p><p><code class="inline">| removeFromCRL</code></p><p><code class="inline">| privilegeWithdrawn</code></p><p><code class="inline">| aACompromise</code></p></li></ul><p><a href="" id="pkcs10"></a></p><h3 id="pkcs-10-certification-request" class="section-heading">
+  <a href="#pkcs-10-certification-request" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">PKCS#10 Certification Request</span>
+</h3>
+<p>Erlang representation of a PKCS#10 certification request derived from ASN.1
+specifications and RFC 5280 are as follows:</p><pre><code class="text">#'CertificationRequest'{
+          certificationRequestInfo #'CertificationRequestInfo'{},
+	  signatureAlgorithm	   #'CertificationRequest_signatureAlgorithm'{}}.
+	  signature                bitstring()
+	  }
+
+#'CertificationRequestInfo'{
+	  version       atom(),
+	  subject       {rdnSequence, [#AttributeTypeAndValue'{}]} ,
+	  subjectPKInfo #'CertificationRequestInfo_subjectPKInfo'{},
+	  attributes    [#'AttributePKCS-10' {}]
+	  }
+
+#'CertificationRequestInfo_subjectPKInfo'{
+          algorithm		#'CertificationRequestInfo_subjectPKInfo_algorithm'{}
+	  subjectPublicKey 	  bitstring()
+	  }
+
+#'CertificationRequestInfo_subjectPKInfo_algorithm'{
+     algorithm = oid(),
+     parameters = der_encoded()
+}
+
+#'CertificationRequest_signatureAlgorithm'{
+     algorithm = oid(),
+     parameters = der_encoded()
+     }
+
+#'AttributePKCS-10'{
+    type = oid(),
+    values = [der_encoded()]
+}</code></pre>
+<div class="bottom-actions">
+  <div class="bottom-actions-item">
+
+      <a href="introduction.html" class="bottom-actions-button" rel="prev">
+        <span class="subheader">
+          ← Previous Page
+        </span>
+        <span class="title">
+Introduction
+        </span>
+      </a>
+
+  </div>
+  <div class="bottom-actions-item">
+
+      <a href="using_public_key.html" class="bottom-actions-button" rel="next">
+        <span class="subheader">
+          Next Page →
+        </span>
+        <span class="title">
+Getting Started
+        </span>
+      </a>
+
+  </div>
+</div>
+      <footer class="footer">
+        <p>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Search HexDocs packages">
+              Search HexDocs
+            </button>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.30.9) for the
+
+            <a href="https://erlang.org" title="Erlang" target="_blank" translate="no">Erlang programming language</a>
+
+        </p>
+      </footer>
+    </div>
+  </div>
+</main>
+</div>
+
+
+  </body>
+</html>

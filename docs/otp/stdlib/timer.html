@@ -1,0 +1,1694 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.30.9">
+    <meta name="project" content="stdlib v5.1.1">
+
+
+    <title>timer — stdlib v5.1.1</title>
+    <link rel="stylesheet" href="dist/html-erlang-QW5RMTQD.css" />
+
+
+    <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
+    <script src="dist/handlebars.templates-43PMFBC7.js"></script>
+    <script src="dist/sidebar_items-6E0BE131.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/html-LRUIU55G.js"></script>
+
+<style>.dark img { background-color: white; }</style>
+  </head>
+  <body data-type="modules" class="page-module">
+    <script>
+
+      try {
+        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+
+        if (settings.theme === 'dark' ||
+           ((settings.theme === 'system' || settings.theme == null) &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches)
+           ) {
+          document.body.classList.add('dark')
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
+
+        <a href="api-reference.html" class="sidebar-projectImage">
+          <img src="assets/logo.png" alt="stdlib" />
+        </a>
+
+      <div>
+        <a href="api-reference.html" class="sidebar-projectName" translate="no">
+stdlib
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v5.1.1
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-listNav" class="sidebar-listNav" role="tablist">
+      <li>
+        <button id="extras-list-tab-button" role="tab" data-type="extras" aria-controls="extras-tab-panel" aria-selected="true" tabindex="0">
+Pages
+        </button>
+      </li>
+
+        <li>
+          <button id="modules-list-tab-button" role="tab" data-type="modules" aria-controls="modules-tab-panel" aria-selected="false" tabindex="-1">
+            Modules
+          </button>
+        </li>
+
+
+    </ul>
+  </div>
+
+  <div id="extras-tab-panel" class="sidebar-tabpanel" role="tabpanel" aria-labelledby="extras-list-tab-button">
+    <ul id="extras-full-list" class="full-list"></ul>
+  </div>
+
+    <div id="modules-tab-panel" class="sidebar-tabpanel" role="tabpanel" aria-labelledby="modules-list-tab-button" hidden>
+      <ul id="modules-full-list" class="full-list"></ul>
+    </div>
+
+
+</nav>
+
+<main class="content">
+  <output role="status" id="toast"></output>
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+      <div class="top-search">
+        <div class="search-settings">
+          <form class="search-bar" action="search.html">
+            <label class="search-label">
+              <span class="sr-only">Search documentation of stdlib</span>
+              <input name="q" type="text" class="search-input" placeholder="Search Documentation (press /)" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+            </label>
+            <button type="submit" class="search-button" aria-label="Submit Search">
+              <i class="ri-search-2-line ri-lg" aria-hidden="true" title="Submit search"></i>
+            </button>
+            <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+              <i class="ri-close-line ri-lg" title="Cancel search"></i>
+            </button>
+          </form>
+          <button class="icon-settings display-settings">
+            <i class="ri-settings-3-line"></i>
+            <span class="sr-only">Settings</span>
+          </button>
+        </div>
+      </div>
+      <div class="autocomplete">
+        <div class="autocomplete-results">
+        </div>
+      </div>
+
+<h1>
+
+    <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/timer.erl#L20" title="View Source" class="icon-action" rel="help">
+      <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+      <span class="sr-only">View Source</span>
+    </a>
+
+  <span translate="no">timer</span> 
+  <small class="app-vsn" translate="no">(stdlib v5.1.1)</small>
+
+</h1>
+
+
+  <section id="moduledoc">
+<p>Timer functions.</p><p>This module provides useful functions related to time. Unless otherwise stated,
+time is always measured in <em>milliseconds</em>. All timer functions return
+immediately, regardless of work done by another process.</p><p>Successful evaluations of the timer functions give return values containing a
+timer reference, denoted <code class="inline">TRef</code>. By using <a href="#cancel/1"><code class="inline">cancel/1</code></a>, the returned reference can
+be used to cancel any requested action. A <code class="inline">TRef</code> is an Erlang term, which
+contents must not be changed.</p><p>The time-outs are not exact, but are <em>at least</em> as long as requested.</p><p>Creating timers using <a href="../../../../lib/../erts/doc/html/erlang.html#send_after/3"><code class="inline">erlang:send_after/3</code></a> and <a href="../../../../lib/../erts/doc/html/erlang.html#start_timer/3"><code class="inline">erlang:start_timer/3</code></a> is more
+efficient than using the timers provided by this module. However, the timer
+module has been improved in OTP 25, making it more efficient and less
+susceptible to being overloaded. See
+<a href="../../../../lib/../system/doc/html/commoncaveats.html#timer-module">the Timer Module section in the Efficiency Guide</a>.</p><h2 id="module-examples" class="section-heading">
+  <a href="#module-examples" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">Examples</span>
+</h2>
+<p><em>Example 1</em></p><p>The following example shows how to print &quot;Hello World!&quot; in 5 seconds:</p><pre><code class="text">1&gt; timer:apply_after(5000, io, format, [&quot;~nHello World!~n&quot;, []]).
+{ok,TRef}
+Hello World!</code></pre><p><em>Example 2</em></p><p>The following example shows a process performing a certain action, and if this
+action is not completed within a certain limit, the process is killed:</p><pre><code class="text">Pid = spawn(mod, fun, [foo, bar]),
+%% If pid is not finished in 10 seconds, kill him
+{ok, R} = timer:kill_after(timer:seconds(10), Pid),
+...
+%% We change our mind...
+timer:cancel(R),
+...</code></pre><h2 id="module-notes" class="section-heading">
+  <a href="#module-notes" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">Notes</span>
+</h2>
+<p>A timer can always be removed by calling <a href="#cancel/1"><code class="inline">cancel/1</code></a>.</p><p>An interval timer, that is, a timer created by evaluating any of the functions
+<a href="#apply_interval/2"><code class="inline">apply_interval/2</code></a>, <a href="#apply_interval/3"><code class="inline">apply_interval/3</code></a>, <a href="#apply_interval/4"><code class="inline">apply_interval/4</code></a>,
+<a href="#apply_repeatedly/2"><code class="inline">apply_repeatedly/2</code></a>, <a href="#apply_repeatedly/3"><code class="inline">apply_repeatedly/3</code></a>, <a href="#apply_repeatedly/4"><code class="inline">apply_repeatedly/4</code></a>,
+<a href="#send_interval/2"><code class="inline">send_interval/2</code></a>, and <a href="#send_interval/3"><code class="inline">send_interval/3</code></a> is linked to the process to which the
+timer performs its task.</p><p>A one-shot timer, that is, a timer created by evaluating any of the functions
+<a href="#apply_after/2"><code class="inline">apply_after/2</code></a>, <a href="#apply_after/3"><code class="inline">apply_after/3</code></a>, <a href="#apply_after/4"><code class="inline">apply_after/4</code></a>, <a href="#send_after/2"><code class="inline">send_after/2</code></a>,
+<a href="#send_after/3"><code class="inline">send_after/3</code></a>, <a href="#exit_after/2"><code class="inline">exit_after/2</code></a>, <a href="#exit_after/3"><code class="inline">exit_after/3</code></a>, <a href="#kill_after/1"><code class="inline">kill_after/1</code></a>, and
+<a href="#kill_after/2"><code class="inline">kill_after/2</code></a> is not linked to any process. Hence, such a timer is removed only
+when it reaches its time-out, or if it is explicitly removed by a call to
+<a href="#cancel/1"><code class="inline">cancel/1</code></a>.</p><p>The functions given to <a href="#apply_after/2"><code class="inline">apply_after/2</code></a>, <a href="#apply_after/3"><code class="inline">apply_after/3</code></a>, <a href="#apply_interval/2"><code class="inline">apply_interval/2</code></a>,
+<a href="#apply_interval/3"><code class="inline">apply_interval/3</code></a>, <a href="#apply_repeatedly/2"><code class="inline">apply_repeatedly/2</code></a>, and <a href="#apply_repeatedly/3"><code class="inline">apply_repeatedly/3</code></a>, or denoted
+by <code class="inline">Module</code>, <code class="inline">Function</code> and <code class="inline">Arguments</code> given to <a href="#apply_after/4"><code class="inline">apply_after/4</code></a>,
+<a href="#apply_interval/4"><code class="inline">apply_interval/4</code></a>, and <a href="#apply_repeatedly/4"><code class="inline">apply_repeatedly/4</code></a> are executed in a freshly-spawned
+process, and therefore calls to <code class="inline">self()</code> in those functions will return the Pid
+of this process, which is different from the process that called
+<code class="inline">timer:apply_*</code>.</p><p><em>Example</em></p><p>In the following example, the intention is to set a timer to execute a function
+after 1 second, which performs a fictional task, and then wants to inform the
+process which set the timer about its completion, by sending it a <code class="inline">done</code>
+message.</p><p>Using <code class="inline">self()</code> <em>inside</em> the timed function, the code below does not work as
+intended. The task gets done, but the <code class="inline">done</code> message gets sent to the wrong
+process and is lost.</p><pre><code class="text">1&gt; timer:apply_after(1000, fun() -&gt; do_something(), self() ! done end).
+{ok,TRef}
+2&gt; receive done -&gt; done after 5000 -&gt; timeout end.
+%% ... 5s pass...
+timeout</code></pre><p>The code below calls <code class="inline">self()</code> in the process which sets the timer and assigns it
+to a variable, which is then used in the function to send the <code class="inline">done</code> message to,
+and so works as intended.</p><pre><code class="text">1&gt; Target = self()
+&lt;0.82.0&gt;
+2&gt; timer:apply_after(1000, fun() -&gt; do_something(), Target ! done end).
+{ok,TRef}
+3&gt; receive done -&gt; done after 5000 -&gt; timeout end.
+%% ... 1s passes...
+done</code></pre><p>Another option is to pass the message target as a parameter to the function.</p><pre><code class="text">1&gt; timer:apply_after(1000, fun(Target) -&gt; do_something(), Target ! done end, [self()]).
+{ok,TRef}
+2&gt; receive done -&gt; done after 5000 -&gt; timeout end.
+%% ... 1s passes...
+done</code></pre>
+  </section>
+
+
+  <section id="summary" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Summary</span>
+    </h1>
+<div class="summary-types summary">
+  <h2>
+    <a href="#types">Types</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:time/0" translate="no">time()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Time in milliseconds.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:tref/0" translate="no">tref()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>A timer reference.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:type/0" translate="no">type/0</a>
+
+      </div>
+
+    </div>
+
+</div>
+<div class="summary-functions summary">
+  <h2>
+    <a href="#functions">Functions</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#apply_after/2" translate="no">apply_after(Time, F)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Evaluates <code class="inline">spawn(erlang, apply, [Function, []])</code> after <code class="inline">Time</code> milliseconds.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#apply_after/3" translate="no">apply_after(Time, F, A)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Evaluates <code class="inline">spawn(erlang, apply, [Function, Arguments])</code> after <code class="inline">Time</code>
+milliseconds.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#apply_after/4" translate="no">apply_after/4</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Evaluates <code class="inline">spawn(Module, Function, Arguments)</code> after <code class="inline">Time</code> milliseconds.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#apply_interval/2" translate="no">apply_interval(Time, F)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Evaluates <code class="inline">spawn(erlang, apply, [Function, []])</code> repeatedly at intervals of
+<code class="inline">Time</code>, irrespective of whether a previously spawned process has finished or
+not.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#apply_interval/3" translate="no">apply_interval(Time, F, A)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Evaluates <code class="inline">spawn(erlang, apply, [Function, Arguments])</code> repeatedly at intervals
+of <code class="inline">Time</code>, irrespective of whether a previously spawned process has finished or
+not.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#apply_interval/4" translate="no">apply_interval(Time, M, F, A)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Evaluates <code class="inline">spawn(Module, Function, Arguments)</code> repeatedly at intervals of
+<code class="inline">Time</code>, irrespective of whether a previously spawned process has finished or
+not.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#apply_repeatedly/2" translate="no">apply_repeatedly(Time, F)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Evaluates <code class="inline">spawn(erlang, apply, [Function, []])</code> repeatedly at intervals of
+<code class="inline">Time</code>, waiting for the spawned process to finish before starting the next.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#apply_repeatedly/3" translate="no">apply_repeatedly(Time, F, A)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Evaluates <code class="inline">spawn(erlang, apply, [Function, Arguments])</code> repeatedly at intervals
+of <code class="inline">Time</code>, waiting for the spawned process to finish before starting the next.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#apply_repeatedly/4" translate="no">apply_repeatedly(Time, M, F, A)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Evaluates <code class="inline">spawn(Module, Function, Arguments)</code> repeatedly at intervals of
+<code class="inline">Time</code>, waiting for the spawned process to finish before starting the next.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#cancel/1" translate="no">cancel/1</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Cancels a previously requested time-out. <code class="inline">TRef</code> is a unique timer reference
+returned by the related timer function.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#exit_after/2" translate="no">exit_after/2</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Equivalent to <a href="#exit_after/3"><code class="inline">exit_after/3</code></a></p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#exit_after/3" translate="no">exit_after(Time, Pid, Reason)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p><a href="#exit_after/2"><code class="inline">exit_after/2</code></a> is the same as <code class="inline">exit_after(Time, self(), Reason1)</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#hms/3" translate="no">hms(H, M, S)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Returns the number of milliseconds in <code class="inline">Hours + Minutes + Seconds</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#hours/1" translate="no">hours(Hours)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Returns the number of milliseconds in <code class="inline">Hours</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#kill_after/1" translate="no">kill_after/1</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Equivalent to <a href="#kill_after/2"><code class="inline">kill_after/2</code></a></p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#kill_after/2" translate="no">kill_after(Time, Pid)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p><a href="#kill_after/1"><code class="inline">kill_after/1</code></a> is the same as <code class="inline">exit_after(Time, self(), kill)</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#minutes/1" translate="no">minutes(Minutes)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Returns the number of milliseconds in <code class="inline">Minutes</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#now_diff/2" translate="no">now_diff/2</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Calculates the time difference <code class="inline">Tdiff = T2 - T1</code> in <em>microseconds</em>, where <code class="inline">T1</code>
+and <code class="inline">T2</code> are time-stamp tuples on the same format as returned from
+<a href="../../../../lib/../erts/doc/html/erlang.html#timestamp/0"><code class="inline">erlang:timestamp/0</code></a> or <a href="../../../../lib/kernel/doc/html/os.html#timestamp/0"><code class="inline">os:timestamp/0</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#seconds/1" translate="no">seconds(Seconds)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Returns the number of milliseconds in <code class="inline">Seconds</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#send_after/2" translate="no">send_after/2</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Equivalent to <a href="#send_after/3"><code class="inline">send_after/3</code></a></p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#send_after/3" translate="no">send_after/3</a>
+
+      </div>
+
+        <div class="summary-synopsis"><ul><li><p><strong><a href="#send_after/3"><code class="inline">send_after/3</code></a></strong> - Evaluates <code class="inline">Destination ! Message</code> after <code class="inline">Time</code>
+milliseconds. (<code class="inline">Destination</code> can be a remote or local process identifier, an
+atom of a registered name or a tuple <code class="inline">{RegName, Node}</code> for a registered name
+at another node.)</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#send_interval/2" translate="no">send_interval/2</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Equivalent to <a href="#send_interval/3"><code class="inline">send_interval/3</code></a></p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#send_interval/3" translate="no">send_interval(Time, Pid, Message)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><ul><li><p><strong><a href="#send_interval/3"><code class="inline">send_interval/3</code></a></strong> - Evaluates <code class="inline">Destination ! Message</code> repeatedly after
+<code class="inline">Time</code> milliseconds. (<code class="inline">Destination</code> can be a remote or local process
+identifier, an atom of a registered name or a tuple <code class="inline">{RegName, Node}</code> for a
+registered name at another node.)</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#sleep/1" translate="no">sleep(T)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Suspends the process calling this function for <code class="inline">Time</code> milliseconds and then
+returns <code class="inline">ok</code>, or suspends the process forever if <code class="inline">Time</code> is the atom <code class="inline">infinity</code>.
+Naturally, this function does <em>not</em> return immediately.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#start/0" translate="no">start()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Starts the timer server. Normally, the server does not need to be started
+explicitly. It is started dynamically if it is needed. This is useful during
+development, but in a target system the server is to be started explicitly. Use
+configuration parameters for <a href="../../../../lib/kernel/doc/html/index.html">Kernel</a> for this.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#tc/1" translate="no">tc/1</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Equivalent to <a href="#tc/3"><code class="inline">tc/3</code></a></p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#tc/2" translate="no">tc/2</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Equivalent to <a href="#tc/4"><code class="inline">tc/4</code></a></p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#tc/3" translate="no">tc(M, F, A)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><ul><li><p><strong><a href="#tc/3"><code class="inline">tc/3</code></a></strong> - Calls function
+<code class="inline">timer:tc(Module, Function, Arguments, microsecond)</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#tc/4" translate="no">tc(M, F, A, TimeUnit)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><ul><li><p><strong><a href="#tc/4"><code class="inline">tc/4</code></a></strong> - Evaluates <code class="inline">apply(Module, Function, Arguments)</code> and measures the
+elapsed real time as reported by <a href="../../../../lib/../erts/doc/html/erlang.html#monotonic_time/0"><code class="inline">erlang:monotonic_time/0</code></a>.</p></div>
+
+    </div>
+
+</div>
+
+  </section>
+
+
+  <section id="types" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#types">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Types</span>
+    </h1>
+    <div class="types-list">
+<section class="detail" id="t:time/0">
+
+  <div class="detail-header">
+    <a href="#t:time/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">time()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/timer.erl#L170" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> time() :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:non_neg_integer/0">non_neg_integer</a>().</pre>
+
+      </div>
+
+<p>Time in milliseconds.</p>
+  </section>
+</section>
+<section class="detail" id="t:tref/0">
+
+  <div class="detail-header">
+    <a href="#t:tref/0" class="detail-link" title="Link to this opaque">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this opaque</span>
+    </a>
+    <h1 class="signature" translate="no">tref()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/timer.erl#L167" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(opaque)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-opaque</span> tref()</pre>
+
+      </div>
+
+<p>A timer reference.</p>
+  </section>
+</section>
+<section class="detail" id="t:type/0">
+
+  <div class="detail-header">
+    <a href="#t:type/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">type/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/timer.erl#L168" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> type() :: once | interval | instant | send_local.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+
+    </div>
+  </section>
+
+  <section id="functions" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Functions</span>
+    </h1>
+    <div class="functions-list">
+<section class="detail" id="apply_after/2">
+
+  <div class="detail-header">
+    <a href="#apply_after/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">apply_after(Time, F)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/timer.erl#L187" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since OTP @OTP-18808@)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> apply_after(Time, Function) -> {ok, TRef} | {error, Reason}
+               when Time :: <a href="#t:time/0">time</a>(), Function :: fun(() -> _), TRef :: <a href="#t:tref/0">tref</a>(), Reason :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>().</pre>
+
+      </div>
+
+<p>Evaluates <code class="inline">spawn(erlang, apply, [Function, []])</code> after <code class="inline">Time</code> milliseconds.</p><p>Returns <code class="inline">{ok, TRef}</code> or <code class="inline">{error, Reason}</code>.</p>
+  </section>
+</section>
+<section class="detail" id="apply_after/3">
+
+  <div class="detail-header">
+    <a href="#apply_after/3" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">apply_after(Time, F, A)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/timer.erl#L207" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since OTP @OTP-18808@)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> apply_after(Time, Function, Arguments) -> {ok, TRef} | {error, Reason}
+               when
+                   Time :: <a href="#t:time/0">time</a>(),
+                   Function :: fun((...) -> _),
+                   Arguments :: [<a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()],
+                   TRef :: <a href="#t:tref/0">tref</a>(),
+                   Reason :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>().</pre>
+
+      </div>
+
+<p>Evaluates <code class="inline">spawn(erlang, apply, [Function, Arguments])</code> after <code class="inline">Time</code>
+milliseconds.</p><p>Returns <code class="inline">{ok, TRef}</code> or <code class="inline">{error, Reason}</code>.</p>
+  </section>
+</section>
+<section class="detail" id="apply_after/4">
+
+  <div class="detail-header">
+    <a href="#apply_after/4" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">apply_after/4</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/timer.erl#L226" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> apply_after(Time, Module, Function, Arguments) -> {ok, TRef} | {error, Reason}
+               when
+                   Time :: <a href="#t:time/0">time</a>(),
+                   Module :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:module/0">module</a>(),
+                   Function :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>(),
+                   Arguments :: [<a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()],
+                   TRef :: <a href="#t:tref/0">tref</a>(),
+                   Reason :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>().</pre>
+
+      </div>
+
+<p>Evaluates <code class="inline">spawn(Module, Function, Arguments)</code> after <code class="inline">Time</code> milliseconds.</p><p>Returns <code class="inline">{ok, TRef}</code> or <code class="inline">{error, Reason}</code>.</p>
+  </section>
+</section>
+<section class="detail" id="apply_interval/2">
+
+  <div class="detail-header">
+    <a href="#apply_interval/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">apply_interval(Time, F)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/timer.erl#L354" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since OTP @OTP-18808@)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> apply_interval(Time, Function) -> {ok, TRef} | {error, Reason}
+                  when Time :: <a href="#t:time/0">time</a>(), Function :: fun(() -> _), TRef :: <a href="#t:tref/0">tref</a>(), Reason :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>().</pre>
+
+      </div>
+
+<p>Evaluates <code class="inline">spawn(erlang, apply, [Function, []])</code> repeatedly at intervals of
+<code class="inline">Time</code>, irrespective of whether a previously spawned process has finished or
+not.</p><p>Returns <code class="inline">{ok, TRef}</code> or <code class="inline">{error, Reason}</code>.</p>
+  </section>
+</section>
+<section class="detail" id="apply_interval/3">
+
+  <div class="detail-header">
+    <a href="#apply_interval/3" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">apply_interval(Time, F, A)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/timer.erl#L375" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since OTP @OTP-18808@)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> apply_interval(Time, Function, Arguments) -> {ok, TRef} | {error, Reason}
+                  when
+                      Time :: <a href="#t:time/0">time</a>(),
+                      Function :: fun((...) -> _),
+                      Arguments :: [<a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()],
+                      TRef :: <a href="#t:tref/0">tref</a>(),
+                      Reason :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>().</pre>
+
+      </div>
+
+<p>Evaluates <code class="inline">spawn(erlang, apply, [Function, Arguments])</code> repeatedly at intervals
+of <code class="inline">Time</code>, irrespective of whether a previously spawned process has finished or
+not.</p><p>Returns <code class="inline">{ok, TRef}</code> or <code class="inline">{error, Reason}</code>.</p>
+  </section>
+</section>
+<section class="detail" id="apply_interval/4">
+
+  <div class="detail-header">
+    <a href="#apply_interval/4" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">apply_interval(Time, M, F, A)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/timer.erl#L410" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> apply_interval(Time, Module, Function, Arguments) -> {ok, TRef} | {error, Reason}
+                  when
+                      Time :: <a href="#t:time/0">time</a>(),
+                      Module :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:module/0">module</a>(),
+                      Function :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>(),
+                      Arguments :: [<a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()],
+                      TRef :: <a href="#t:tref/0">tref</a>(),
+                      Reason :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>().</pre>
+
+      </div>
+
+<p>Evaluates <code class="inline">spawn(Module, Function, Arguments)</code> repeatedly at intervals of
+<code class="inline">Time</code>, irrespective of whether a previously spawned process has finished or
+not.</p><blockquote><h4 class="warning">Warning</h4><p>If the execution time of the spawned process is, on average, greater than the
+given <code class="inline">Time</code>, multiple such processes will run at the same time. With long
+execution times, short intervals, and many interval timers running, this may
+even lead to exceeding the number of allowed processes. As an extreme example,
+consider
+<code class="inline">[timer:apply_interval(1, timer, sleep, [1000]) || _ &lt;- lists:seq(1, 1000)]</code>,
+that is, 1,000 interval timers executing a process that takes 1s to complete,
+started in intervals of 1ms, which would result in 1,000,000 processes running
+at the same time, far more than a node started with default settings allows
+(see the
+<a href="../../../../lib/../system/doc/html/advanced.html#system-limits">System Limits section in the Effiency Guide</a>).</p></blockquote><p>Returns <code class="inline">{ok, TRef}</code> or <code class="inline">{error, Reason}</code>.</p>
+  </section>
+</section>
+<section class="detail" id="apply_repeatedly/2">
+
+  <div class="detail-header">
+    <a href="#apply_repeatedly/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">apply_repeatedly(Time, F)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/timer.erl#L430" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since OTP @OTP-18808@)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> apply_repeatedly(Time, Function) -> {ok, TRef} | {error, Reason}
+                    when
+                        Time :: <a href="#t:time/0">time</a>(), Function :: fun(() -> _), TRef :: <a href="#t:tref/0">tref</a>(), Reason :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>().</pre>
+
+      </div>
+
+<p>Evaluates <code class="inline">spawn(erlang, apply, [Function, []])</code> repeatedly at intervals of
+<code class="inline">Time</code>, waiting for the spawned process to finish before starting the next.</p><p>Returns <code class="inline">{ok, TRef}</code> or <code class="inline">{error, Reason}</code>.</p>
+  </section>
+</section>
+<section class="detail" id="apply_repeatedly/3">
+
+  <div class="detail-header">
+    <a href="#apply_repeatedly/3" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">apply_repeatedly(Time, F, A)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/timer.erl#L450" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since OTP @OTP-18808@)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> apply_repeatedly(Time, Function, Arguments) -> {ok, TRef} | {error, Reason}
+                    when
+                        Time :: <a href="#t:time/0">time</a>(),
+                        Function :: fun((...) -> _),
+                        Arguments :: [<a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()],
+                        TRef :: <a href="#t:tref/0">tref</a>(),
+                        Reason :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>().</pre>
+
+      </div>
+
+<p>Evaluates <code class="inline">spawn(erlang, apply, [Function, Arguments])</code> repeatedly at intervals
+of <code class="inline">Time</code>, waiting for the spawned process to finish before starting the next.</p><p>Returns <code class="inline">{ok, TRef}</code> or <code class="inline">{error, Reason}</code>.</p>
+  </section>
+</section>
+<section class="detail" id="apply_repeatedly/4">
+
+  <div class="detail-header">
+    <a href="#apply_repeatedly/4" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">apply_repeatedly(Time, M, F, A)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/timer.erl#L480" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since OTP 26.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> apply_repeatedly(Time, Module, Function, Arguments) -> {ok, TRef} | {error, Reason}
+                    when
+                        Time :: <a href="#t:time/0">time</a>(),
+                        Module :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:module/0">module</a>(),
+                        Function :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>(),
+                        Arguments :: [<a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()],
+                        TRef :: <a href="#t:tref/0">tref</a>(),
+                        Reason :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>().</pre>
+
+      </div>
+
+<p>Evaluates <code class="inline">spawn(Module, Function, Arguments)</code> repeatedly at intervals of
+<code class="inline">Time</code>, waiting for the spawned process to finish before starting the next.</p><p>If the execution time of the spawned process is greater than the given <code class="inline">Time</code>,
+the next process is spawned immediately after the one currently running has
+finished. Assuming that execution times of the spawned processes performing the
+applies on average are smaller than <code class="inline">Time</code>, the amount of applies made over a
+large amount of time will be the same even if some individual execution times
+are larger than <code class="inline">Time</code>. The system will try to catch up as soon as possible. For
+example, if one apply takes <code class="inline">2.5*Time</code>, the following two applies will be made
+immediately one after the other in sequence.</p><p>Returns <code class="inline">{ok, TRef}</code> or <code class="inline">{error, Reason}</code>.</p>
+  </section>
+</section>
+<section class="detail" id="cancel/1">
+
+  <div class="detail-header">
+    <a href="#cancel/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">cancel/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/timer.erl#L538" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> cancel(TRef) -> {ok, cancel} | {error, Reason} when TRef :: <a href="#t:tref/0">tref</a>(), Reason :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>().</pre>
+
+      </div>
+
+<p>Cancels a previously requested time-out. <code class="inline">TRef</code> is a unique timer reference
+returned by the related timer function.</p><p>Returns <code class="inline">{ok, cancel}</code>, or <code class="inline">{error, Reason}</code> when <code class="inline">TRef</code> is not a timer
+reference.</p>
+  </section>
+</section>
+<section class="detail" id="exit_after/2">
+
+  <div class="detail-header">
+    <a href="#exit_after/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">exit_after/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/timer.erl#L316" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> exit_after(Time, Reason1) -> {ok, TRef} | {error, Reason2}
+              when Time :: <a href="#t:time/0">time</a>(), TRef :: <a href="#t:tref/0">tref</a>(), Reason1 :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>(), Reason2 :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>().</pre>
+
+      </div>
+
+<p>Equivalent to <a href="#exit_after/3"><code class="inline">exit_after/3</code></a></p>
+  </section>
+</section>
+<section class="detail" id="exit_after/3">
+
+  <div class="detail-header">
+    <a href="#exit_after/3" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">exit_after(Time, Pid, Reason)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/timer.erl#L307" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> exit_after(Time, Target, Reason1) -> {ok, TRef} | {error, Reason2}
+              when
+                  Time :: <a href="#t:time/0">time</a>(),
+                  Target :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:pid/0">pid</a>() | (RegName :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>()),
+                  TRef :: <a href="#t:tref/0">tref</a>(),
+                  Reason1 :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>(),
+                  Reason2 :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>().</pre>
+
+      </div>
+
+<p><a href="#exit_after/2"><code class="inline">exit_after/2</code></a> is the same as <code class="inline">exit_after(Time, self(), Reason1)</code>.</p><p><a href="#exit_after/3"><code class="inline">exit_after/3</code></a> sends an exit signal with reason <code class="inline">Reason1</code> to <code class="inline">Target</code>, which can
+be a local process identifier or an atom of a registered name. Returns
+<code class="inline">{ok, TRef}</code> or <code class="inline">{error, Reason2}</code>.</p>
+  </section>
+</section>
+<section class="detail" id="hms/3">
+
+  <div class="detail-header">
+    <a href="#hms/3" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">hms(H, M, S)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/timer.erl#L729" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> hms(Hours, Minutes, Seconds) -> MilliSeconds
+       when
+           Hours :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:non_neg_integer/0">non_neg_integer</a>(),
+           Minutes :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:non_neg_integer/0">non_neg_integer</a>(),
+           Seconds :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:non_neg_integer/0">non_neg_integer</a>(),
+           MilliSeconds :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:non_neg_integer/0">non_neg_integer</a>().</pre>
+
+      </div>
+
+<p>Returns the number of milliseconds in <code class="inline">Hours + Minutes + Seconds</code>.</p>
+  </section>
+</section>
+<section class="detail" id="hours/1">
+
+  <div class="detail-header">
+    <a href="#hours/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">hours(Hours)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/timer.erl#L720" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> hours(Hours) -> MilliSeconds when Hours :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:non_neg_integer/0">non_neg_integer</a>(), MilliSeconds :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:non_neg_integer/0">non_neg_integer</a>().</pre>
+
+      </div>
+
+<p>Returns the number of milliseconds in <code class="inline">Hours</code>.</p>
+  </section>
+</section>
+<section class="detail" id="kill_after/1">
+
+  <div class="detail-header">
+    <a href="#kill_after/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">kill_after/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/timer.erl#L337" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> kill_after(Time) -> {ok, TRef} | {error, Reason2}
+              when Time :: <a href="#t:time/0">time</a>(), TRef :: <a href="#t:tref/0">tref</a>(), Reason2 :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>().</pre>
+
+      </div>
+
+<p>Equivalent to <a href="#kill_after/2"><code class="inline">kill_after/2</code></a></p>
+  </section>
+</section>
+<section class="detail" id="kill_after/2">
+
+  <div class="detail-header">
+    <a href="#kill_after/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">kill_after(Time, Pid)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/timer.erl#L329" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> kill_after(Time, Target) -> {ok, TRef} | {error, Reason2}
+              when
+                  Time :: <a href="#t:time/0">time</a>(),
+                  Target :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:pid/0">pid</a>() | (RegName :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>()),
+                  TRef :: <a href="#t:tref/0">tref</a>(),
+                  Reason2 :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>().</pre>
+
+      </div>
+
+<p><a href="#kill_after/1"><code class="inline">kill_after/1</code></a> is the same as <code class="inline">exit_after(Time, self(), kill)</code>.</p><p><a href="#kill_after/2"><code class="inline">kill_after/2</code></a> is the same as <code class="inline">exit_after(Time, Target, kill)</code>.</p>
+  </section>
+</section>
+<section class="detail" id="minutes/1">
+
+  <div class="detail-header">
+    <a href="#minutes/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">minutes(Minutes)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/timer.erl#L713" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> minutes(Minutes) -> MilliSeconds
+           when Minutes :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:non_neg_integer/0">non_neg_integer</a>(), MilliSeconds :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:non_neg_integer/0">non_neg_integer</a>().</pre>
+
+      </div>
+
+<p>Returns the number of milliseconds in <code class="inline">Minutes</code>.</p>
+  </section>
+</section>
+<section class="detail" id="now_diff/2">
+
+  <div class="detail-header">
+    <a href="#now_diff/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">now_diff/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/timer.erl#L696" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> now_diff(T2, T1) -> Tdiff
+            when T1 :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:timestamp/0">erlang:timestamp</a>(), T2 :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:timestamp/0">erlang:timestamp</a>(), Tdiff :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:integer/0">integer</a>().</pre>
+
+      </div>
+
+<p>Calculates the time difference <code class="inline">Tdiff = T2 - T1</code> in <em>microseconds</em>, where <code class="inline">T1</code>
+and <code class="inline">T2</code> are time-stamp tuples on the same format as returned from
+<a href="../../../../lib/../erts/doc/html/erlang.html#timestamp/0"><code class="inline">erlang:timestamp/0</code></a> or <a href="../../../../lib/kernel/doc/html/os.html#timestamp/0"><code class="inline">os:timestamp/0</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="seconds/1">
+
+  <div class="detail-header">
+    <a href="#seconds/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">seconds(Seconds)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/timer.erl#L706" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> seconds(Seconds) -> MilliSeconds
+           when Seconds :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:non_neg_integer/0">non_neg_integer</a>(), MilliSeconds :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:non_neg_integer/0">non_neg_integer</a>().</pre>
+
+      </div>
+
+<p>Returns the number of milliseconds in <code class="inline">Seconds</code>.</p>
+  </section>
+</section>
+<section class="detail" id="send_after/2">
+
+  <div class="detail-header">
+    <a href="#send_after/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">send_after/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/timer.erl#L291" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> send_after(Time, Message) -> {ok, TRef} | {error, Reason}
+              when Time :: <a href="#t:time/0">time</a>(), Message :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>(), TRef :: <a href="#t:tref/0">tref</a>(), Reason :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>().</pre>
+
+      </div>
+
+<p>Equivalent to <a href="#send_after/3"><code class="inline">send_after/3</code></a></p>
+  </section>
+</section>
+<section class="detail" id="send_after/3">
+
+  <div class="detail-header">
+    <a href="#send_after/3" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">send_after/3</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/timer.erl#L256" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> send_after(Time, Destination, Message) -> {ok, TRef} | {error, Reason}
+              when
+                  Time :: <a href="#t:time/0">time</a>(),
+                  Destination :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:pid/0">pid</a>() | (RegName :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>()) | {RegName :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>(), Node :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:node/0">node</a>()},
+                  Message :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>(),
+                  TRef :: <a href="#t:tref/0">tref</a>(),
+                  Reason :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>().</pre>
+
+      </div>
+
+<ul><li><p><strong><a href="#send_after/3"><code class="inline">send_after/3</code></a></strong> - Evaluates <code class="inline">Destination ! Message</code> after <code class="inline">Time</code>
+milliseconds. (<code class="inline">Destination</code> can be a remote or local process identifier, an
+atom of a registered name or a tuple <code class="inline">{RegName, Node}</code> for a registered name
+at another node.)</p><p>Returns <code class="inline">{ok, TRef}</code> or <code class="inline">{error, Reason}</code>.</p><p>See also
+<a href="../../../../lib/../system/doc/html/commoncaveats.html#timer-module">the Timer Module section in the Efficiency Guide</a>.</p></li><li><p><strong><a href="#send_after/2"><code class="inline">send_after/2</code></a></strong> - Same as <code class="inline">send_after(Time, self(), Message)</code>.</p></li></ul>
+  </section>
+</section>
+<section class="detail" id="send_interval/2">
+
+  <div class="detail-header">
+    <a href="#send_interval/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">send_interval/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/timer.erl#L525" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> send_interval(Time, Message) -> {ok, TRef} | {error, Reason}
+                 when Time :: <a href="#t:time/0">time</a>(), Message :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>(), TRef :: <a href="#t:tref/0">tref</a>(), Reason :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>().</pre>
+
+      </div>
+
+<p>Equivalent to <a href="#send_interval/3"><code class="inline">send_interval/3</code></a></p>
+  </section>
+</section>
+<section class="detail" id="send_interval/3">
+
+  <div class="detail-header">
+    <a href="#send_interval/3" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">send_interval(Time, Pid, Message)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/timer.erl#L503" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> send_interval(Time, Destination, Message) -> {ok, TRef} | {error, Reason}
+                 when
+                     Time :: <a href="#t:time/0">time</a>(),
+                     Destination ::
+                         <a href="../../../../lib/../erts/doc/html/erlang.html#t:pid/0">pid</a>() | (RegName :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>()) | {RegName :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>(), Node :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:node/0">node</a>()},
+                     Message :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>(),
+                     TRef :: <a href="#t:tref/0">tref</a>(),
+                     Reason :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>().</pre>
+
+      </div>
+
+<ul><li><p><strong><a href="#send_interval/3"><code class="inline">send_interval/3</code></a></strong> - Evaluates <code class="inline">Destination ! Message</code> repeatedly after
+<code class="inline">Time</code> milliseconds. (<code class="inline">Destination</code> can be a remote or local process
+identifier, an atom of a registered name or a tuple <code class="inline">{RegName, Node}</code> for a
+registered name at another node.)</p><p>Returns <code class="inline">{ok, TRef}</code> or <code class="inline">{error, Reason}</code>.</p></li><li><p><strong><a href="#send_interval/2"><code class="inline">send_interval/2</code></a></strong> - Same as <code class="inline">send_interval(Time, self(), Message)</code>.</p></li></ul>
+  </section>
+</section>
+<section class="detail" id="sleep/1">
+
+  <div class="detail-header">
+    <a href="#sleep/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">sleep(T)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/timer.erl#L567" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> sleep(Time) -> ok when Time :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:timeout/0">timeout</a>().</pre>
+
+      </div>
+
+<p>Suspends the process calling this function for <code class="inline">Time</code> milliseconds and then
+returns <code class="inline">ok</code>, or suspends the process forever if <code class="inline">Time</code> is the atom <code class="inline">infinity</code>.
+Naturally, this function does <em>not</em> return immediately.</p><blockquote><h4 class="info">Note</h4><p>Before OTP 25, <a href="#sleep/1"><code class="inline">timer:sleep/1</code></a> did not accept integer timeout values greater
+than <code class="inline">16#ffffffff</code>, that is, <code class="inline">2^32-1</code>. Since OTP 25, arbitrarily high integer
+values are accepted.</p></blockquote>
+  </section>
+</section>
+<section class="detail" id="start/0">
+
+  <div class="detail-header">
+    <a href="#start/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">start()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/timer.erl#L743" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> start() -> ok.</pre>
+
+      </div>
+
+<p>Starts the timer server. Normally, the server does not need to be started
+explicitly. It is started dynamically if it is needed. This is useful during
+development, but in a target system the server is to be started explicitly. Use
+configuration parameters for <a href="../../../../lib/kernel/doc/html/index.html">Kernel</a> for this.</p>
+  </section>
+</section>
+<section class="detail" id="tc/1">
+
+  <div class="detail-header">
+    <a href="#tc/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">tc/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/timer.erl#L588" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since OTP R14B,OTP R14B03)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> tc(Fun) -> {Time, Value} when Fun :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:function/0">function</a>(), Time :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:integer/0">integer</a>(), Value :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>().</pre>
+
+      </div>
+
+<p>Equivalent to <a href="#tc/3"><code class="inline">tc/3</code></a></p>
+  </section>
+</section>
+<section class="detail" id="tc/2">
+
+  <div class="detail-header">
+    <a href="#tc/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">tc/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/timer.erl#L609" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since OTP 26.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> tc(Fun, Arguments) -> {Time, Value}
+      when Fun :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:function/0">function</a>(), Arguments :: [<a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()], Time :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:integer/0">integer</a>(), Value :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>();
+  (Fun, TimeUnit) -> {Time, Value}
+      when Fun :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:function/0">function</a>(), TimeUnit :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:time_unit/0">erlang:time_unit</a>(), Time :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:integer/0">integer</a>(), Value :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>().</pre>
+
+      </div>
+
+<p>Equivalent to <a href="#tc/4"><code class="inline">tc/4</code></a></p>
+  </section>
+</section>
+<section class="detail" id="tc/3">
+
+  <div class="detail-header">
+    <a href="#tc/3" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">tc(M, F, A)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/timer.erl#L645" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since OTP 26.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> tc(Module, Function, Arguments) -> {Time, Value}
+      when
+          Module :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:module/0">module</a>(),
+          Function :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>(),
+          Arguments :: [<a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()],
+          Time :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:integer/0">integer</a>(),
+          Value :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>();
+  (Fun, Arguments, TimeUnit) -> {Time, Value}
+      when
+          Fun :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:function/0">function</a>(),
+          Arguments :: [<a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()],
+          TimeUnit :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:time_unit/0">erlang:time_unit</a>(),
+          Time :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:integer/0">integer</a>(),
+          Value :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>().</pre>
+
+      </div>
+
+<ul><li><p><strong><a href="#tc/3"><code class="inline">tc/3</code></a></strong> - Calls function
+<code class="inline">timer:tc(Module, Function, Arguments, microsecond)</code>.</p></li><li><p><strong><a href="#tc/2"><code class="inline">tc/2</code></a></strong> - Calls function <code class="inline">timer:tc(Fun, Arguments, microsecond)</code>.</p></li><li><p><strong><a href="#tc/1"><code class="inline">tc/1</code></a></strong> - Calls function <code class="inline">timer:tc(Fun, microsecond)</code>.</p></li></ul>
+  </section>
+</section>
+<section class="detail" id="tc/4">
+
+  <div class="detail-header">
+    <a href="#tc/4" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">tc(M, F, A, TimeUnit)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/timer.erl#L676" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since OTP 26.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> tc(Module, Function, Arguments, TimeUnit) -> {Time, Value}
+      when
+          Module :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:module/0">module</a>(),
+          Function :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>(),
+          Arguments :: [<a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()],
+          TimeUnit :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:time_unit/0">erlang:time_unit</a>(),
+          Time :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:integer/0">integer</a>(),
+          Value :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>().</pre>
+
+      </div>
+
+<ul><li><p><strong><a href="#tc/4"><code class="inline">tc/4</code></a></strong> - Evaluates <code class="inline">apply(Module, Function, Arguments)</code> and measures the
+elapsed real time as reported by <a href="../../../../lib/../erts/doc/html/erlang.html#monotonic_time/0"><code class="inline">erlang:monotonic_time/0</code></a>.</p><p>Returns <code class="inline">{Time, Value}</code>, where <code class="inline">Time</code> is the elapsed real time in the
+specified <code class="inline">TimeUnit</code>, and <code class="inline">Value</code> is what is returned from the apply.</p></li><li><p><strong><a href="#tc/3"><code class="inline">tc/3</code></a></strong> - Evaluates <code class="inline">apply(Fun, Arguments)</code>. Otherwise the same as <a href="#tc/4"><code class="inline">tc/4</code></a>.</p></li><li><p><strong><a href="#tc/2"><code class="inline">tc/2</code></a></strong> - Evaluates <code class="inline">Fun()</code>. Otherwise the same as <a href="#tc/3"><code class="inline">tc/3</code></a>.</p></li></ul>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+      <footer class="footer">
+        <p>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Search HexDocs packages">
+              Search HexDocs
+            </button>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.30.9) for the
+
+            <a href="https://erlang.org" title="Erlang" target="_blank" translate="no">Erlang programming language</a>
+
+        </p>
+      </footer>
+    </div>
+  </div>
+</main>
+</div>
+
+
+  </body>
+</html>

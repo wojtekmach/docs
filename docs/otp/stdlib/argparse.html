@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.30.9">
+    <meta name="project" content="stdlib v5.1.1">
+
+
+    <title>argparse — stdlib v5.1.1</title>
+    <link rel="stylesheet" href="dist/html-erlang-QW5RMTQD.css" />
+
+
+    <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
+    <script src="dist/handlebars.templates-43PMFBC7.js"></script>
+    <script src="dist/sidebar_items-6E0BE131.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/html-LRUIU55G.js"></script>
+
+<style>.dark img { background-color: white; }</style>
+  </head>
+  <body data-type="modules" class="page-module">
+    <script>
+
+      try {
+        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+
+        if (settings.theme === 'dark' ||
+           ((settings.theme === 'system' || settings.theme == null) &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches)
+           ) {
+          document.body.classList.add('dark')
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
+
+        <a href="api-reference.html" class="sidebar-projectImage">
+          <img src="assets/logo.png" alt="stdlib" />
+        </a>
+
+      <div>
+        <a href="api-reference.html" class="sidebar-projectName" translate="no">
+stdlib
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v5.1.1
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-listNav" class="sidebar-listNav" role="tablist">
+      <li>
+        <button id="extras-list-tab-button" role="tab" data-type="extras" aria-controls="extras-tab-panel" aria-selected="true" tabindex="0">
+Pages
+        </button>
+      </li>
+
+        <li>
+          <button id="modules-list-tab-button" role="tab" data-type="modules" aria-controls="modules-tab-panel" aria-selected="false" tabindex="-1">
+            Modules
+          </button>
+        </li>
+
+
+    </ul>
+  </div>
+
+  <div id="extras-tab-panel" class="sidebar-tabpanel" role="tabpanel" aria-labelledby="extras-list-tab-button">
+    <ul id="extras-full-list" class="full-list"></ul>
+  </div>
+
+    <div id="modules-tab-panel" class="sidebar-tabpanel" role="tabpanel" aria-labelledby="modules-list-tab-button" hidden>
+      <ul id="modules-full-list" class="full-list"></ul>
+    </div>
+
+
+</nav>
+
+<main class="content">
+  <output role="status" id="toast"></output>
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+      <div class="top-search">
+        <div class="search-settings">
+          <form class="search-bar" action="search.html">
+            <label class="search-label">
+              <span class="sr-only">Search documentation of stdlib</span>
+              <input name="q" type="text" class="search-input" placeholder="Search Documentation (press /)" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+            </label>
+            <button type="submit" class="search-button" aria-label="Submit Search">
+              <i class="ri-search-2-line ri-lg" aria-hidden="true" title="Submit search"></i>
+            </button>
+            <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+              <i class="ri-close-line ri-lg" title="Cancel search"></i>
+            </button>
+          </form>
+          <button class="icon-settings display-settings">
+            <i class="ri-settings-3-line"></i>
+            <span class="sr-only">Settings</span>
+          </button>
+        </div>
+      </div>
+      <div class="autocomplete">
+        <div class="autocomplete-results">
+        </div>
+      </div>
+
+<h1>
+
+    <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/argparse.erl#L18" title="View Source" class="icon-action" rel="help">
+      <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+      <span class="sr-only">View Source</span>
+    </a>
+
+  <span translate="no">argparse</span> 
+  <small class="app-vsn" translate="no">(stdlib v5.1.1)</small>
+
+</h1>
+
+
+  <section id="moduledoc">
+
+  </section>
+
+
+  <section id="summary" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Summary</span>
+    </h1>
+<div class="summary-types summary">
+  <h2>
+    <a href="#types">Types</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:arg_map/0" translate="no">arg_map()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Arguments map: argument name to a term, produced by parser. Supplied to the
+command handler</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:arg_type/0" translate="no">arg_type()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Built-in types include basic validation abilities String and binary validation
+may use regex match (ignoring captured value). For float, integer, string,
+binary and atom type, it is possible to specify available choices instead of
+regex/min/max.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:argument/0" translate="no">argument()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:argument_help/0" translate="no">argument_help()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Help template definition for argument. Short and long forms exist for every
+argument. Short form is printed together with command definition, e.g. &quot;usage:
+rm [--force]&quot;, while long description is printed in detailed section below:
+&quot;--force forcefully remove&quot;.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:argument_name/0" translate="no">argument_name()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:cmd_path/0" translate="no">cmd_path()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Command path, for nested commands</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:command/0" translate="no">command()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:command_help/0" translate="no">command_help()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Template for the command help/usage message.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:handler/0" translate="no">handler()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:parse_result/0" translate="no">parse_result()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Parser result: argument map, path leading to successfully matching command
+(contains only [&quot;progname&quot;] if there were no subcommands matched), and a
+matching command.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:parser_error/0" translate="no">parser_error()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Returned from <code class="inline">parse/2,3</code> when command spec is valid, but the command line
+cannot be parsed using the spec. When <code class="inline">Expected</code> is undefined, but <code class="inline">Actual</code> is
+not, it means that the input contains an unexpected argument which cannot be
+parsed according to command spec. When <code class="inline">Expected</code> is an argument, and <code class="inline">Actual</code>
+is undefined, it means that a mandatory argument is not provided in the command
+line. When both <code class="inline">Expected</code> and <code class="inline">Actual</code> are defined, it means that the supplied
+argument is failing validation. When both are <code class="inline">undefined</code>, there is some logical
+issue (e.g. a sub-command is required, but was not selected).</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:parser_options/0" translate="no">parser_options()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:validator_error/0" translate="no">validator_error()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+</div>
+<div class="summary-functions summary">
+  <h2>
+    <a href="#functions">Functions</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#format_error/1" translate="no">format_error/1</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Basic formatter for the parser error reason.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#format_error/2" translate="no">format_error/2</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Transforms exception thrown by <code class="inline">validate/1,2</code> according to EEP54. Use
+<code class="inline">erl_error:format_exception/3,4</code> to get the shell-like output.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#help/1" translate="no">help(Command)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Equivalent to <a href="#help/2">help(Command, #{})</a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#help/2" translate="no">help(Command, Options)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Returns help for Command formatted according to Options specified</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#parse/2" translate="no">parse(Args, Command)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Equivalent to <a href="#parse/3">parse(Args, Command, #{})</a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#parse/3" translate="no">parse(Args, Command, Options)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Parses supplied arguments according to expected command specification.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#run/3" translate="no">run/3</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#validate/1" translate="no">validate(Command)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Equivalent to <a href="#validate/2">validate(Command, #{})</a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#validate/2" translate="no">validate(Command, Options)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Validate command specification, taking Options into account. Raises an error if
+the command specification is invalid.</p></div>
+
+    </div>
+
+</div>
+
+  </section>
+
+
+  <section id="types" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#types">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Types</span>
+    </h1>
+    <div class="types-list">
+<section class="detail" id="t:arg_map/0">
+
+  <div class="detail-header">
+    <a href="#t:arg_map/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">arg_map()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/argparse.erl#L138" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> arg_map() :: #{<a href="#t:argument_name/0">argument_name</a>() => <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()}.</pre>
+
+      </div>
+
+<p>Arguments map: argument name to a term, produced by parser. Supplied to the
+command handler</p>
+  </section>
+</section>
+<section class="detail" id="t:arg_type/0">
+
+  <div class="detail-header">
+    <a href="#t:arg_type/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">arg_type()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/argparse.erl#L42" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> arg_type() ::
+    boolean | float |
+    {float, Choice :: [<a href="../../../../lib/../erts/doc/html/erlang.html#t:float/0">float</a>()]} |
+    {float, [{min, <a href="../../../../lib/../erts/doc/html/erlang.html#t:float/0">float</a>()} | {max, <a href="../../../../lib/../erts/doc/html/erlang.html#t:float/0">float</a>()}]} |
+    integer |
+    {integer, Choices :: [<a href="../../../../lib/../erts/doc/html/erlang.html#t:integer/0">integer</a>()]} |
+    {integer, [{min, <a href="../../../../lib/../erts/doc/html/erlang.html#t:integer/0">integer</a>()} | {max, <a href="../../../../lib/../erts/doc/html/erlang.html#t:integer/0">integer</a>()}]} |
+    string |
+    {string, Choices :: [<a href="../../../../lib/../erts/doc/html/erlang.html#t:string/0">string</a>()]} |
+    {string, Re :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:string/0">string</a>()} |
+    {string, Re :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:string/0">string</a>(), ReOptions :: [<a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()]} |
+    binary |
+    {binary, Choices :: [<a href="../../../../lib/../erts/doc/html/erlang.html#t:binary/0">binary</a>()]} |
+    {binary, Re :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:binary/0">binary</a>()} |
+    {binary, Re :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:binary/0">binary</a>(), ReOptions :: [<a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()]} |
+    atom |
+    {atom, Choices :: [<a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>()]} |
+    {atom, unsafe} |
+    {custom, fun((<a href="../../../../lib/../erts/doc/html/erlang.html#t:string/0">string</a>()) -> <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>())}.</pre>
+
+      </div>
+
+<p>Built-in types include basic validation abilities String and binary validation
+may use regex match (ignoring captured value). For float, integer, string,
+binary and atom type, it is possible to specify available choices instead of
+regex/min/max.</p>
+  </section>
+</section>
+<section class="detail" id="t:argument/0">
+
+  <div class="detail-header">
+    <a href="#t:argument/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">argument()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/argparse.erl#L86" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> argument() ::
+    #{name := <a href="#t:argument_name/0">argument_name</a>(),
+      short => <a href="../../../../lib/../erts/doc/html/erlang.html#t:char/0">char</a>(),
+      long => <a href="../../../../lib/../erts/doc/html/erlang.html#t:string/0">string</a>(),
+      required => <a href="../../../../lib/../erts/doc/html/erlang.html#t:boolean/0">boolean</a>(),
+      default => <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>(),
+      type => <a href="#t:arg_type/0">arg_type</a>(),
+      action => store | {store, <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()} | append | {append, <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()} | count | extend,
+      nargs => <a href="../../../../lib/../erts/doc/html/erlang.html#t:pos_integer/0">pos_integer</a>() | maybe | {maybe, <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()} | list | nonempty_list | all,
+      help => hidden | <a href="unicode.html#t:chardata/0">unicode:chardata</a>() | <a href="#t:argument_help/0">argument_help</a>()}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:argument_help/0">
+
+  <div class="detail-header">
+    <a href="#t:argument_help/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">argument_help()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/argparse.erl#L73" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> argument_help() ::
+    {<a href="unicode.html#t:chardata/0">unicode:chardata</a>(), [<a href="unicode.html#t:chardata/0">unicode:chardata</a>() | type | default] | fun(() -> <a href="unicode.html#t:chardata/0">unicode:chardata</a>())}.</pre>
+
+      </div>
+
+<p>Help template definition for argument. Short and long forms exist for every
+argument. Short form is printed together with command definition, e.g. &quot;usage:
+rm [--force]&quot;, while long description is printed in detailed section below:
+&quot;--force forcefully remove&quot;.</p>
+  </section>
+</section>
+<section class="detail" id="t:argument_name/0">
+
+  <div class="detail-header">
+    <a href="#t:argument_name/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">argument_name()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/argparse.erl#L83" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> argument_name() :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>() | <a href="../../../../lib/../erts/doc/html/erlang.html#t:string/0">string</a>() | <a href="../../../../lib/../erts/doc/html/erlang.html#t:binary/0">binary</a>().</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:cmd_path/0">
+
+  <div class="detail-header">
+    <a href="#t:cmd_path/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">cmd_path()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/argparse.erl#L173" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> cmd_path() :: [<a href="../../../../lib/../erts/doc/html/erlang.html#t:string/0">string</a>()].</pre>
+
+      </div>
+
+<p>Command path, for nested commands</p>
+  </section>
+</section>
+<section class="detail" id="t:command/0">
+
+  <div class="detail-header">
+    <a href="#t:command/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">command()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/argparse.erl#L161" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> command() ::
+    #{commands => #{<a href="../../../../lib/../erts/doc/html/erlang.html#t:string/0">string</a>() => <a href="#t:command/0">command</a>()},
+      arguments => [<a href="#t:argument/0">argument</a>()],
+      help => hidden | <a href="unicode.html#t:chardata/0">unicode:chardata</a>() | <a href="#t:command_help/0">command_help</a>(),
+      handler => <a href="#t:handler/0">handler</a>()}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:command_help/0">
+
+  <div class="detail-header">
+    <a href="#t:command_help/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">command_help()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/argparse.erl#L156" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> command_help() :: [<a href="unicode.html#t:chardata/0">unicode:chardata</a>() | usage | commands | arguments | options].</pre>
+
+      </div>
+
+<p>Template for the command help/usage message.</p>
+  </section>
+</section>
+<section class="detail" id="t:handler/0">
+
+  <div class="detail-header">
+    <a href="#t:handler/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">handler()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/argparse.erl#L142" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> handler() ::
+    optional |
+    fun((<a href="#t:arg_map/0">arg_map</a>()) -> <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()) |
+    {<a href="../../../../lib/../erts/doc/html/erlang.html#t:module/0">module</a>(), Fn :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>()} |
+    {fun(() -> <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()), <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()} |
+    {<a href="../../../../lib/../erts/doc/html/erlang.html#t:module/0">module</a>(), <a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>(), <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:parse_result/0">
+
+  <div class="detail-header">
+    <a href="#t:parse_result/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">parse_result()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/argparse.erl#L223" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> parse_result() :: {ok, <a href="#t:arg_map/0">arg_map</a>(), Path :: <a href="#t:cmd_path/0">cmd_path</a>(), <a href="#t:command/0">command</a>()} | {error, <a href="#t:parser_error/0">parser_error</a>()}.</pre>
+
+      </div>
+
+<p>Parser result: argument map, path leading to successfully matching command
+(contains only [&quot;progname&quot;] if there were no subcommands matched), and a
+matching command.</p>
+  </section>
+</section>
+<section class="detail" id="t:parser_error/0">
+
+  <div class="detail-header">
+    <a href="#t:parser_error/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">parser_error()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/argparse.erl#L189" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> parser_error() ::
+    {Path :: <a href="#t:cmd_path/0">cmd_path</a>(),
+     Expected :: <a href="#t:argument/0">argument</a>() | undefined,
+     Actual :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:string/0">string</a>() | undefined,
+     Details :: <a href="unicode.html#t:chardata/0">unicode:chardata</a>()}.</pre>
+
+      </div>
+
+<p>Returned from <code class="inline">parse/2,3</code> when command spec is valid, but the command line
+cannot be parsed using the spec. When <code class="inline">Expected</code> is undefined, but <code class="inline">Actual</code> is
+not, it means that the input contains an unexpected argument which cannot be
+parsed according to command spec. When <code class="inline">Expected</code> is an argument, and <code class="inline">Actual</code>
+is undefined, it means that a mandatory argument is not provided in the command
+line. When both <code class="inline">Expected</code> and <code class="inline">Actual</code> are defined, it means that the supplied
+argument is failing validation. When both are <code class="inline">undefined</code>, there is some logical
+issue (e.g. a sub-command is required, but was not selected).</p>
+  </section>
+</section>
+<section class="detail" id="t:parser_options/0">
+
+  <div class="detail-header">
+    <a href="#t:parser_options/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">parser_options()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/argparse.erl#L205" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> parser_options() ::
+    #{prefixes => [<a href="../../../../lib/../erts/doc/html/erlang.html#t:char/0">char</a>()],
+      default => <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>(),
+      progname => <a href="../../../../lib/../erts/doc/html/erlang.html#t:string/0">string</a>() | <a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>(),
+      command => <a href="#t:cmd_path/0">cmd_path</a>(),
+      columns => <a href="../../../../lib/../erts/doc/html/erlang.html#t:pos_integer/0">pos_integer</a>()}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:validator_error/0">
+
+  <div class="detail-header">
+    <a href="#t:validator_error/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">validator_error()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/argparse.erl#L324" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> validator_error() ::
+    {argparse, command | argument, <a href="#t:cmd_path/0">cmd_path</a>(), Field :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>(), Detail :: <a href="unicode.html#t:chardata/0">unicode:chardata</a>()}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+
+    </div>
+  </section>
+
+  <section id="functions" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Functions</span>
+    </h1>
+    <div class="functions-list">
+<section class="detail" id="format_error/1">
+
+  <div class="detail-header">
+    <a href="#format_error/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">format_error/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/argparse.erl#L314" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> format_error(Reason :: <a href="#t:parser_error/0">parser_error</a>()) -> <a href="unicode.html#t:chardata/0">unicode:chardata</a>().</pre>
+
+      </div>
+
+<p>Basic formatter for the parser error reason.</p>
+  </section>
+</section>
+<section class="detail" id="format_error/2">
+
+  <div class="detail-header">
+    <a href="#format_error/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">format_error/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/argparse.erl#L334" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> format_error(Reason :: <a href="#t:validator_error/0">validator_error</a>(), <a href="../../../../lib/../erts/doc/html/erlang.html#t:stacktrace/0">erlang:stacktrace</a>()) -> <a href="../../../../lib/../erts/doc/html/erlang.html#t:map/0">map</a>().</pre>
+
+      </div>
+
+<p>Transforms exception thrown by <code class="inline">validate/1,2</code> according to EEP54. Use
+<code class="inline">erl_error:format_exception/3,4</code> to get the shell-like output.</p>
+  </section>
+</section>
+<section class="detail" id="help/1">
+
+  <div class="detail-header">
+    <a href="#help/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">help(Command)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/argparse.erl#L285" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> help(<a href="#t:command/0">command</a>()) -> <a href="../../../../lib/../erts/doc/html/erlang.html#t:string/0">string</a>().</pre>
+
+      </div>
+
+<p>Equivalent to <a href="#help/2">help(Command, #{})</a>.</p>
+  </section>
+</section>
+<section class="detail" id="help/2">
+
+  <div class="detail-header">
+    <a href="#help/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">help(Command, Options)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/argparse.erl#L291" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> help(<a href="#t:command/0">command</a>(), <a href="#t:parser_options/0">parser_options</a>()) -> <a href="unicode.html#t:chardata/0">unicode:chardata</a>().</pre>
+
+      </div>
+
+<p>Returns help for Command formatted according to Options specified</p>
+  </section>
+</section>
+<section class="detail" id="parse/2">
+
+  <div class="detail-header">
+    <a href="#parse/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">parse(Args, Command)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/argparse.erl#L258" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> parse(Args :: [<a href="../../../../lib/../erts/doc/html/erlang.html#t:string/0">string</a>()], <a href="#t:command/0">command</a>()) -> <a href="#t:parse_result/0">parse_result</a>().</pre>
+
+      </div>
+
+<p>Equivalent to <a href="#parse/3">parse(Args, Command, #{})</a>.</p>
+  </section>
+</section>
+<section class="detail" id="parse/3">
+
+  <div class="detail-header">
+    <a href="#parse/3" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">parse(Args, Command, Options)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/argparse.erl#L267" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> parse(Args :: [<a href="../../../../lib/../erts/doc/html/erlang.html#t:string/0">string</a>()], <a href="#t:command/0">command</a>(), Options :: <a href="#t:parser_options/0">parser_options</a>()) -> <a href="#t:parse_result/0">parse_result</a>().</pre>
+
+      </div>
+
+<p>Parses supplied arguments according to expected command specification.</p>
+  </section>
+</section>
+<section class="detail" id="run/3">
+
+  <div class="detail-header">
+    <a href="#run/3" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">run/3</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/argparse.erl#L297" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> run(Args :: [<a href="../../../../lib/../erts/doc/html/erlang.html#t:string/0">string</a>()], <a href="#t:command/0">command</a>(), <a href="#t:parser_options/0">parser_options</a>()) -> <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>().</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="validate/1">
+
+  <div class="detail-header">
+    <a href="#validate/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">validate(Command)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/argparse.erl#L235" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> validate(<a href="#t:command/0">command</a>()) -> Progname :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:string/0">string</a>().</pre>
+
+      </div>
+
+<p>Equivalent to <a href="#validate/2">validate(Command, #{})</a>.</p>
+  </section>
+</section>
+<section class="detail" id="validate/2">
+
+  <div class="detail-header">
+    <a href="#validate/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">validate(Command, Options)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/argparse.erl#L245" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> validate(<a href="#t:command/0">command</a>(), <a href="#t:parser_options/0">parser_options</a>()) -> Progname :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:string/0">string</a>().</pre>
+
+      </div>
+
+<p>Validate command specification, taking Options into account. Raises an error if
+the command specification is invalid.</p>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+      <footer class="footer">
+        <p>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Search HexDocs packages">
+              Search HexDocs
+            </button>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.30.9) for the
+
+            <a href="https://erlang.org" title="Erlang" target="_blank" translate="no">Erlang programming language</a>
+
+        </p>
+      </footer>
+    </div>
+  </div>
+</main>
+</div>
+
+
+  </body>
+</html>

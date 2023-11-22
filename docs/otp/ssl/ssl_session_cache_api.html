@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.30.9">
+    <meta name="project" content="ssl v11.0.3">
+
+
+    <title>ssl_session_cache_api — ssl v11.0.3</title>
+    <link rel="stylesheet" href="dist/html-erlang-QW5RMTQD.css" />
+
+
+    <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
+    <script src="dist/handlebars.templates-43PMFBC7.js"></script>
+    <script src="dist/sidebar_items-B5527FE8.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/html-LRUIU55G.js"></script>
+
+<style>.dark img { background-color: white; }</style>
+  </head>
+  <body data-type="modules" class="page-behaviour">
+    <script>
+
+      try {
+        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+
+        if (settings.theme === 'dark' ||
+           ((settings.theme === 'system' || settings.theme == null) &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches)
+           ) {
+          document.body.classList.add('dark')
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
+
+        <a href="api-reference.html" class="sidebar-projectImage">
+          <img src="assets/logo.png" alt="ssl" />
+        </a>
+
+      <div>
+        <a href="api-reference.html" class="sidebar-projectName" translate="no">
+ssl
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v11.0.3
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-listNav" class="sidebar-listNav" role="tablist">
+      <li>
+        <button id="extras-list-tab-button" role="tab" data-type="extras" aria-controls="extras-tab-panel" aria-selected="true" tabindex="0">
+Pages
+        </button>
+      </li>
+
+        <li>
+          <button id="modules-list-tab-button" role="tab" data-type="modules" aria-controls="modules-tab-panel" aria-selected="false" tabindex="-1">
+            Modules
+          </button>
+        </li>
+
+
+    </ul>
+  </div>
+
+  <div id="extras-tab-panel" class="sidebar-tabpanel" role="tabpanel" aria-labelledby="extras-list-tab-button">
+    <ul id="extras-full-list" class="full-list"></ul>
+  </div>
+
+    <div id="modules-tab-panel" class="sidebar-tabpanel" role="tabpanel" aria-labelledby="modules-list-tab-button" hidden>
+      <ul id="modules-full-list" class="full-list"></ul>
+    </div>
+
+
+</nav>
+
+<main class="content">
+  <output role="status" id="toast"></output>
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+      <div class="top-search">
+        <div class="search-settings">
+          <form class="search-bar" action="search.html">
+            <label class="search-label">
+              <span class="sr-only">Search documentation of ssl</span>
+              <input name="q" type="text" class="search-input" placeholder="Search Documentation (press /)" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+            </label>
+            <button type="submit" class="search-button" aria-label="Submit Search">
+              <i class="ri-search-2-line ri-lg" aria-hidden="true" title="Submit search"></i>
+            </button>
+            <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+              <i class="ri-close-line ri-lg" title="Cancel search"></i>
+            </button>
+          </form>
+          <button class="icon-settings display-settings">
+            <i class="ri-settings-3-line"></i>
+            <span class="sr-only">Settings</span>
+          </button>
+        </div>
+      </div>
+      <div class="autocomplete">
+        <div class="autocomplete-results">
+        </div>
+      </div>
+
+<h1>
+
+    <a href="https://github.com/erlang/otp/blob/master/lib/ssl/doc//Users/wojtek/src/otp/lib/ssl/src/ssl_session_cache_api.erl#L23" title="View Source" class="icon-action" rel="help">
+      <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+      <span class="sr-only">View Source</span>
+    </a>
+
+  <span translate="no">ssl_session_cache_api</span> <small>behaviour</small>
+  <small class="app-vsn" translate="no">(ssl v11.0.3)</small>
+
+</h1>
+
+
+  <section id="moduledoc">
+<p>TLS session cache API</p><p>Defines the API for the TLS session cache (pre TLS-1.3) so that the data storage
+scheme can be replaced by defining a new callback module implementing this API.</p>
+  </section>
+
+
+  <section id="summary" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Summary</span>
+    </h1>
+<div class="summary-types-types-used-in-tls-dtls summary">
+  <h2>
+    <a href="#types-types-used-in-tls-dtls">Types: Types used in TLS/DTLS</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:reason/0" translate="no">reason()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+</div>
+<div class="summary-types summary">
+  <h2>
+    <a href="#types">Types</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:cert_key/0" translate="no">cert_key/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:certdb_ref/0" translate="no">certdb_ref/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:db_handle/0" translate="no">db_handle/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:der_cert/0" translate="no">der_cert/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:from/0" translate="no">from/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:gen_fsm_state_return/0" translate="no">gen_fsm_state_return/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:issuer/0" translate="no">issuer/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:msg/0" translate="no">msg/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:partial_key/0" translate="no">partial_key()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The opaque part of the key. Does not need to be handled by the callback.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:reply/0" translate="no">reply/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:secret_printout/0" translate="no">secret_printout/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:serialnumber/0" translate="no">serialnumber/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:session/0" translate="no">session()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The session data that is stored for each session.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:session_cache_key/0" translate="no">session_cache_key()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>A key to an entry in the session cache.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:session_cache_ref/0" translate="no">session_cache_ref()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:ssl_options/0" translate="no">ssl_options/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:state_name/0" translate="no">state_name/0</a>
+
+      </div>
+
+    </div>
+
+</div>
+<div class="summary-callbacks summary">
+  <h2>
+    <a href="#callbacks">Callbacks</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#c:delete/2" translate="no">delete/2</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Deletes a cache entry. Is only called from the cache handling process.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#c:foldl/3" translate="no">foldl/3</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Calls <code class="inline">Fun(Elem, AccIn)</code> on successive elements of the cache, starting with
+<code class="inline">AccIn == Acc0</code>. <code class="inline">Fun/2</code> must return a new accumulator, which is passed to the
+next call. The function returns the final value of the accumulator. <code class="inline">Acc0</code> is
+returned if the cache is empty.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#c:init/1" translate="no">init/1</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Includes property <code class="inline">{role, client | server}</code>. Currently this is the only
+predefined property, there can also be user-defined properties. See also
+application environment variable <a href="ssl_app.html">session_cb_init_args</a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#c:lookup/2" translate="no">lookup/2</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Looks up a cache entry. Is to be callable from any process.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#c:select_session/2" translate="no">select_session/2</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Selects sessions that can be reused, that is sessions that include <code class="inline">PartialKey</code>
+in its key. Is to be callable from any process.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#c:size/1" translate="no">size/1</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Returns the number of sessions in the cache. If size exceeds the maximum number
+of sessions, the current cache entries will be invalidated regardless of their
+remaining lifetime. Is to be callable from any process.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#c:terminate/1" translate="no">terminate/1</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Takes care of possible cleanup that is needed when the cache handling process
+terminates.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#c:update/3" translate="no">update/3</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Caches a new session or updates an already cached one. Is only called from the
+cache handling process.</p></div>
+
+    </div>
+
+</div>
+
+  </section>
+
+
+  <section id="types-types-used-in-tls-dtls" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#types-types-used-in-tls-dtls">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Types: Types used in TLS/DTLS</span>
+    </h1>
+    <div class="types-types-used-in-tls-dtls-list">
+<section class="detail" id="t:reason/0">
+
+  <div class="detail-header">
+    <a href="#t:reason/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">reason()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/ssl/doc//Users/wojtek/src/otp/lib/ssl/src/ssl_internal.hrl#L36" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since OTP R14B)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> reason() :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:any/0">any</a>().</pre>
+
+      </div>
+
+
+  </section>
+</section>
+
+    </div>
+  </section>
+
+  <section id="types" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#types">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Types</span>
+    </h1>
+    <div class="types-list">
+<section class="detail" id="t:cert_key/0">
+
+  <div class="detail-header">
+    <a href="#t:cert_key/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">cert_key/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/ssl/doc//Users/wojtek/src/otp/lib/ssl/src/ssl_internal.hrl#L45" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since OTP R14B)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> cert_key() :: {<a href="../../../../lib/../erts/doc/html/erlang.html#t:reference/0">reference</a>(), <a href="../../../../lib/../erts/doc/html/erlang.html#t:integer/0">integer</a>(), <a href="#t:issuer/0">issuer</a>()}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:certdb_ref/0">
+
+  <div class="detail-header">
+    <a href="#t:certdb_ref/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">certdb_ref/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/ssl/doc//Users/wojtek/src/otp/lib/ssl/src/ssl_internal.hrl#L40" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since OTP R14B)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> certdb_ref() :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:reference/0">reference</a>().</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:db_handle/0">
+
+  <div class="detail-header">
+    <a href="#t:db_handle/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">db_handle/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/ssl/doc//Users/wojtek/src/otp/lib/ssl/src/ssl_internal.hrl#L41" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since OTP R14B)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> db_handle() :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:any/0">any</a>().</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:der_cert/0">
+
+  <div class="detail-header">
+    <a href="#t:der_cert/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">der_cert/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/ssl/doc//Users/wojtek/src/otp/lib/ssl/src/ssl_internal.hrl#L42" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since OTP R14B)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> der_cert() :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:binary/0">binary</a>().</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:from/0">
+
+  <div class="detail-header">
+    <a href="#t:from/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">from/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/ssl/doc//Users/wojtek/src/otp/lib/ssl/src/ssl_internal.hrl#L39" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since OTP R14B)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> from() :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:any/0">any</a>().</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:gen_fsm_state_return/0">
+
+  <div class="detail-header">
+    <a href="#t:gen_fsm_state_return/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">gen_fsm_state_return/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/ssl/doc//Users/wojtek/src/otp/lib/ssl/src/ssl_internal.hrl#L174" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since OTP R14B)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> gen_fsm_state_return() ::
+    {next_state, <a href="#t:state_name/0">state_name</a>(), <a href="../../../../lib/../erts/doc/html/erlang.html#t:any/0">any</a>()} |
+    {next_state, <a href="#t:state_name/0">state_name</a>(), <a href="../../../../lib/../erts/doc/html/erlang.html#t:any/0">any</a>(), <a href="../../../../lib/../erts/doc/html/erlang.html#t:timeout/0">timeout</a>()} |
+    {stop, <a href="../../../../lib/../erts/doc/html/erlang.html#t:any/0">any</a>(), <a href="../../../../lib/../erts/doc/html/erlang.html#t:any/0">any</a>()}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:issuer/0">
+
+  <div class="detail-header">
+    <a href="#t:issuer/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">issuer/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/ssl/doc//Users/wojtek/src/otp/lib/ssl/src/ssl_internal.hrl#L43" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since OTP R14B)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> issuer() :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:tuple/0">tuple</a>().</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:msg/0">
+
+  <div class="detail-header">
+    <a href="#t:msg/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">msg/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/ssl/doc//Users/wojtek/src/otp/lib/ssl/src/ssl_internal.hrl#L38" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since OTP R14B)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> msg() :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:any/0">any</a>().</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:partial_key/0">
+
+  <div class="detail-header">
+    <a href="#t:partial_key/0" class="detail-link" title="Link to this opaque">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this opaque</span>
+    </a>
+    <h1 class="signature" translate="no">partial_key()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/ssl/doc//Users/wojtek/src/otp/lib/ssl/src/ssl_session_cache_api.erl#L44" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(opaque)</span>
+
+      <span class="note">(since OTP R14B)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-opaque</span> partial_key()</pre>
+
+      </div>
+
+<p>The opaque part of the key. Does not need to be handled by the callback.</p>
+  </section>
+</section>
+<section class="detail" id="t:reply/0">
+
+  <div class="detail-header">
+    <a href="#t:reply/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">reply/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/ssl/doc//Users/wojtek/src/otp/lib/ssl/src/ssl_internal.hrl#L37" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since OTP R14B)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> reply() :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:any/0">any</a>().</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:secret_printout/0">
+
+  <div class="detail-header">
+    <a href="#t:secret_printout/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">secret_printout/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/ssl/doc//Users/wojtek/src/otp/lib/ssl/src/ssl_internal.hrl#L46" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since OTP R14B)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> secret_printout() :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:list/0">list</a>().</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:serialnumber/0">
+
+  <div class="detail-header">
+    <a href="#t:serialnumber/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">serialnumber/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/ssl/doc//Users/wojtek/src/otp/lib/ssl/src/ssl_internal.hrl#L44" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since OTP R14B)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> serialnumber() :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:integer/0">integer</a>().</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:session/0">
+
+  <div class="detail-header">
+    <a href="#t:session/0" class="detail-link" title="Link to this opaque">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this opaque</span>
+    </a>
+    <h1 class="signature" translate="no">session()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/ssl/doc//Users/wojtek/src/otp/lib/ssl/src/ssl_session_cache_api.erl#L42" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(opaque)</span>
+
+      <span class="note">(since OTP R14B)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-opaque</span> session()</pre>
+
+      </div>
+
+<p>The session data that is stored for each session.</p>
+  </section>
+</section>
+<section class="detail" id="t:session_cache_key/0">
+
+  <div class="detail-header">
+    <a href="#t:session_cache_key/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">session_cache_key()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/ssl/doc//Users/wojtek/src/otp/lib/ssl/src/ssl_session_cache_api.erl#L40" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since OTP R14B)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> session_cache_key() :: {<a href="#t:partial_key/0">partial_key</a>(), <a href="ssl.html#t:session_id/0">ssl:session_id</a>()}.</pre>
+
+      </div>
+
+<p>A key to an entry in the session cache.</p>
+  </section>
+</section>
+<section class="detail" id="t:session_cache_ref/0">
+
+  <div class="detail-header">
+    <a href="#t:session_cache_ref/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">session_cache_ref()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/ssl/doc//Users/wojtek/src/otp/lib/ssl/src/ssl_session_cache_api.erl#L38" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since OTP R14B)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> session_cache_ref() :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:any/0">any</a>().</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:ssl_options/0">
+
+  <div class="detail-header">
+    <a href="#t:ssl_options/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">ssl_options/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/ssl/doc//Users/wojtek/src/otp/lib/ssl/src/ssl_internal.hrl#L177" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since OTP R14B)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> ssl_options() :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:map/0">map</a>().</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:state_name/0">
+
+  <div class="detail-header">
+    <a href="#t:state_name/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">state_name/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/ssl/doc//Users/wojtek/src/otp/lib/ssl/src/ssl_internal.hrl#L173" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since OTP R14B)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> state_name() :: hello | abbreviated | certify | cipher | connection.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+
+    </div>
+  </section>
+
+  <section id="callbacks" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#callbacks">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Callbacks</span>
+    </h1>
+    <div class="callbacks-list">
+<section class="detail" id="c:delete/2">
+
+  <div class="detail-header">
+    <a href="#c:delete/2" class="detail-link" title="Link to this callback">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature" translate="no">delete/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/ssl/doc//Users/wojtek/src/otp/lib/ssl/src/ssl_session_cache_api.erl#L77" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since OTP R14B)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-callback</span> delete(<a href="#t:session_cache_ref/0">session_cache_ref</a>(), <a href="#t:session_cache_key/0">session_cache_key</a>()) -> <a href="../../../../lib/../erts/doc/html/erlang.html#t:any/0">any</a>().</pre>
+
+      </div>
+
+<p>Deletes a cache entry. Is only called from the cache handling process.</p>
+  </section>
+</section>
+<section class="detail" id="c:foldl/3">
+
+  <div class="detail-header">
+    <a href="#c:foldl/3" class="detail-link" title="Link to this callback">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature" translate="no">foldl/3</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/ssl/doc//Users/wojtek/src/otp/lib/ssl/src/ssl_session_cache_api.erl#L90" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(optional)</span>
+
+      <span class="note">(since OTP R14B)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-callback</span> foldl(fun(), <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>(), <a href="#t:session_cache_ref/0">session_cache_ref</a>()) -> <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>().</pre>
+
+      </div>
+
+<p>Calls <code class="inline">Fun(Elem, AccIn)</code> on successive elements of the cache, starting with
+<code class="inline">AccIn == Acc0</code>. <code class="inline">Fun/2</code> must return a new accumulator, which is passed to the
+next call. The function returns the final value of the accumulator. <code class="inline">Acc0</code> is
+returned if the cache is empty.</p><blockquote><h4 class="info">Note</h4><p>Since OTP-23.3 this functions is only used on the client side and does not
+need to implemented for a server cache.</p></blockquote>
+  </section>
+</section>
+<section class="detail" id="c:init/1">
+
+  <div class="detail-header">
+    <a href="#c:init/1" class="detail-link" title="Link to this callback">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature" translate="no">init/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/ssl/doc//Users/wojtek/src/otp/lib/ssl/src/ssl_session_cache_api.erl#L59" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since OTP 18.0)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-callback</span> init(<a href="../../../../lib/../erts/doc/html/erlang.html#t:list/0">list</a>()) -> <a href="#t:session_cache_ref/0">session_cache_ref</a>().</pre>
+
+      </div>
+
+<p>Includes property <code class="inline">{role, client | server}</code>. Currently this is the only
+predefined property, there can also be user-defined properties. See also
+application environment variable <a href="ssl_app.html">session_cb_init_args</a>.</p><p>Performs possible initializations of the cache and returns a reference to it
+that is used as parameter to the other API functions. Is called by the cache
+handling processes <code class="inline">init</code> function, hence putting the same requirements on it as
+a normal process <code class="inline">init</code> function. This function is called twice when starting
+the SSL application, once with the role client and once with the role server, as
+the SSL application must be prepared to take on both roles.</p>
+  </section>
+</section>
+<section class="detail" id="c:lookup/2">
+
+  <div class="detail-header">
+    <a href="#c:lookup/2" class="detail-link" title="Link to this callback">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature" translate="no">lookup/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/ssl/doc//Users/wojtek/src/otp/lib/ssl/src/ssl_session_cache_api.erl#L68" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since OTP R14B)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-callback</span> lookup(<a href="#t:session_cache_ref/0">session_cache_ref</a>(), <a href="#t:session_cache_key/0">session_cache_key</a>()) -> #session{} | undefined.</pre>
+
+      </div>
+
+<p>Looks up a cache entry. Is to be callable from any process.</p>
+  </section>
+</section>
+<section class="detail" id="c:select_session/2">
+
+  <div class="detail-header">
+    <a href="#c:select_session/2" class="detail-link" title="Link to this callback">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature" translate="no">select_session/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/ssl/doc//Users/wojtek/src/otp/lib/ssl/src/ssl_session_cache_api.erl#L101" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(optional)</span>
+
+      <span class="note">(since OTP R14B)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-callback</span> select_session(<a href="#t:session_cache_ref/0">session_cache_ref</a>(), {<a href="ssl.html#t:host/0">ssl:host</a>(), <a href="../../../../lib/kernel/doc/html/inet.html#t:port_number/0">inet:port_number</a>()} | <a href="../../../../lib/kernel/doc/html/inet.html#t:port_number/0">inet:port_number</a>()) ->
+                  [#session{}].</pre>
+
+      </div>
+
+<p>Selects sessions that can be reused, that is sessions that include <code class="inline">PartialKey</code>
+in its key. Is to be callable from any process.</p><blockquote><h4 class="info">Note</h4><p>Since OTP-23.3 This functions is only used on the client side and does not
+need to implemented for a server cache.</p></blockquote>
+  </section>
+</section>
+<section class="detail" id="c:size/1">
+
+  <div class="detail-header">
+    <a href="#c:size/1" class="detail-link" title="Link to this callback">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature" translate="no">size/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/ssl/doc//Users/wojtek/src/otp/lib/ssl/src/ssl_session_cache_api.erl#L108" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since OTP 19.3)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-callback</span> size(<a href="#t:session_cache_ref/0">session_cache_ref</a>()) -> <a href="../../../../lib/../erts/doc/html/erlang.html#t:integer/0">integer</a>().</pre>
+
+      </div>
+
+<p>Returns the number of sessions in the cache. If size exceeds the maximum number
+of sessions, the current cache entries will be invalidated regardless of their
+remaining lifetime. Is to be callable from any process.</p>
+  </section>
+</section>
+<section class="detail" id="c:terminate/1">
+
+  <div class="detail-header">
+    <a href="#c:terminate/1" class="detail-link" title="Link to this callback">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature" translate="no">terminate/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/ssl/doc//Users/wojtek/src/otp/lib/ssl/src/ssl_session_cache_api.erl#L65" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since OTP R14B)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-callback</span> terminate(<a href="#t:session_cache_ref/0">session_cache_ref</a>()) -> <a href="../../../../lib/../erts/doc/html/erlang.html#t:any/0">any</a>().</pre>
+
+      </div>
+
+<p>Takes care of possible cleanup that is needed when the cache handling process
+terminates.</p>
+  </section>
+</section>
+<section class="detail" id="c:update/3">
+
+  <div class="detail-header">
+    <a href="#c:update/3" class="detail-link" title="Link to this callback">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature" translate="no">update/3</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/ssl/doc//Users/wojtek/src/otp/lib/ssl/src/ssl_session_cache_api.erl#L74" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(since OTP R14B)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-callback</span> update(<a href="#t:session_cache_ref/0">session_cache_ref</a>(), <a href="#t:session_cache_key/0">session_cache_key</a>(), #session{}) -> <a href="../../../../lib/../erts/doc/html/erlang.html#t:any/0">any</a>().</pre>
+
+      </div>
+
+<p>Caches a new session or updates an already cached one. Is only called from the
+cache handling process.</p>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+      <footer class="footer">
+        <p>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Search HexDocs packages">
+              Search HexDocs
+            </button>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.30.9) for the
+
+            <a href="https://erlang.org" title="Erlang" target="_blank" translate="no">Erlang programming language</a>
+
+        </p>
+      </footer>
+    </div>
+  </div>
+</main>
+</div>
+
+
+  </body>
+</html>

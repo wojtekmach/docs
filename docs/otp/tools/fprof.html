@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.30.9">
+    <meta name="project" content="tools v3.6">
+
+
+    <title>fprof — tools v3.6</title>
+    <link rel="stylesheet" href="dist/html-erlang-QW5RMTQD.css" />
+
+
+    <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
+    <script src="dist/handlebars.templates-43PMFBC7.js"></script>
+    <script src="dist/sidebar_items-689671C2.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/html-LRUIU55G.js"></script>
+
+<style>.dark img { background-color: white; }</style>
+  </head>
+  <body data-type="modules" class="page-module">
+    <script>
+
+      try {
+        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+
+        if (settings.theme === 'dark' ||
+           ((settings.theme === 'system' || settings.theme == null) &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches)
+           ) {
+          document.body.classList.add('dark')
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
+
+        <a href="api-reference.html" class="sidebar-projectImage">
+          <img src="assets/logo.png" alt="tools" />
+        </a>
+
+      <div>
+        <a href="api-reference.html" class="sidebar-projectName" translate="no">
+tools
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v3.6
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-listNav" class="sidebar-listNav" role="tablist">
+      <li>
+        <button id="extras-list-tab-button" role="tab" data-type="extras" aria-controls="extras-tab-panel" aria-selected="true" tabindex="0">
+Pages
+        </button>
+      </li>
+
+        <li>
+          <button id="modules-list-tab-button" role="tab" data-type="modules" aria-controls="modules-tab-panel" aria-selected="false" tabindex="-1">
+            Modules
+          </button>
+        </li>
+
+
+    </ul>
+  </div>
+
+  <div id="extras-tab-panel" class="sidebar-tabpanel" role="tabpanel" aria-labelledby="extras-list-tab-button">
+    <ul id="extras-full-list" class="full-list"></ul>
+  </div>
+
+    <div id="modules-tab-panel" class="sidebar-tabpanel" role="tabpanel" aria-labelledby="modules-list-tab-button" hidden>
+      <ul id="modules-full-list" class="full-list"></ul>
+    </div>
+
+
+</nav>
+
+<main class="content">
+  <output role="status" id="toast"></output>
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+      <div class="top-search">
+        <div class="search-settings">
+          <form class="search-bar" action="search.html">
+            <label class="search-label">
+              <span class="sr-only">Search documentation of tools</span>
+              <input name="q" type="text" class="search-input" placeholder="Search Documentation (press /)" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+            </label>
+            <button type="submit" class="search-button" aria-label="Submit Search">
+              <i class="ri-search-2-line ri-lg" aria-hidden="true" title="Submit search"></i>
+            </button>
+            <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+              <i class="ri-close-line ri-lg" title="Cancel search"></i>
+            </button>
+          </form>
+          <button class="icon-settings display-settings">
+            <i class="ri-settings-3-line"></i>
+            <span class="sr-only">Settings</span>
+          </button>
+        </div>
+      </div>
+      <div class="autocomplete">
+        <div class="autocomplete-results">
+        </div>
+      </div>
+
+<h1>
+
+    <a href="https://github.com/erlang/otp/blob/master/lib/tools/doc//Users/wojtek/src/otp/lib/tools/src/fprof.erl#L28" title="View Source" class="icon-action" rel="help">
+      <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+      <span class="sr-only">View Source</span>
+    </a>
+
+  <span translate="no">fprof</span> 
+  <small class="app-vsn" translate="no">(tools v3.6)</small>
+
+</h1>
+
+
+  <section id="moduledoc">
+<p>A Time Profiling Tool using trace to file for minimal runtime performance
+impact.</p><p>This module is used to profile a program to find out how the execution time is
+used. Trace to file is used to minimize runtime performance impact.</p><p>The <code class="inline">fprof</code> module uses tracing to collect profiling data, hence there is no
+need for special compilation of any module to be profiled. When it starts
+tracing, <code class="inline">fprof</code> will erase all previous tracing in the node and set the
+necessary trace flags on the profiling target processes as well as local call
+trace on all functions in all loaded modules and all modules to be loaded.
+<code class="inline">fprof</code> erases all tracing in the node when it stops tracing.</p><p><code class="inline">fprof</code> presents both <em>own time</em> i.e how much time a function has used for its
+own execution, and <em>accumulated time</em> i.e including called functions. All
+presented times are collected using trace timestamps. <code class="inline">fprof</code> tries to collect
+cpu time timestamps, if the host machine OS supports it. Therefore the times may
+be wallclock times and OS scheduling will randomly strike all called functions
+in a presumably fair way.</p><p>If, however, the profiling time is short, and the host machine OS does not
+support high resolution cpu time measurements, some few OS schedulings may show
+up as ridiculously long execution times for functions doing practically nothing.
+An example of a function more or less just composing a tuple in about 100 times
+the normal execution time has been seen, and when the tracing was repeated, the
+execution time became normal.</p><p>Profiling is essentially done in 3 steps:</p><ul><li><p><strong><code class="inline">1</code></strong> - Tracing; to file, as mentioned in the previous paragraph. The trace
+contains entries for function calls, returns to function, process scheduling,
+other process related (spawn, etc) events, and garbage collection. All trace
+entries are timestamped.</p></li><li><p><strong><code class="inline">2</code></strong> - Profiling; the trace file is read, the execution call stack is
+simulated, and raw profile data is calculated from the simulated call stack
+and the trace timestamps. The profile data is stored in the <code class="inline">fprof</code> server
+state. During this step the trace data may be dumped in text format to file or
+console.</p></li><li><p><strong><code class="inline">3</code></strong> - Analysing; the raw profile data is sorted, filtered and dumped in
+text format either to file or console. The text format intended to be both
+readable for a human reader, as well as parsable with the standard erlang
+parsing tools.</p></li></ul><p>Since <code class="inline">fprof</code> uses trace to file, the runtime performance degradation is
+minimized, but still far from negligible, especially for programs that use the
+filesystem heavily by themselves. Where you place the trace file is also
+important, e.g on Solaris <code class="inline">/tmp</code> is usually a good choice since it is
+essentially a RAM disk, while any NFS (network) mounted disk is a bad idea.</p><p><code class="inline">fprof</code> can also skip the file step and trace to a tracer process that does the
+profiling in runtime.</p><p><a href="" id="analysis"></a></p><h2 id="module-analysis-format" class="section-heading">
+  <a href="#module-analysis-format" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">Analysis format</span>
+</h2>
+<p>This section describes the output format of the analyse command. See
+<a href="#analyse/0"><code class="inline">analyse/0</code></a>.</p><p>The format is parsable with the standard Erlang parsing tools <code class="inline">erl_scan</code> and
+<code class="inline">erl_parse</code>, <a href="../../../../lib/kernel/doc/html/file.html#consult/1"><code class="inline">file:consult/1</code></a> or <a href="../../../../lib/stdlib/doc/html/io.html#read/2"><code class="inline">io:read/2</code></a>. The parse format is not explained
+here - it should be easy for the interested to try it out. Note that some flags
+to <a href="#analyse/1"><code class="inline">analyse/1</code></a> will affect the format.</p><p>The following example was run on OTP/R8 on Solaris 8, all OTP internals in this
+example are very version dependent.</p><p>As an example, we will use the following function, that you may recognise as a
+slightly modified benchmark function from the manpage file(3):</p><pre><code class="text">-module(foo).
+-export([create_file_slow/2]).
+
+create_file_slow(Name, N) when is_integer(N), N &gt;= 0 -&gt;
+    {ok, FD} =
+        file:open(Name, [raw, write, delayed_write, binary]),
+    if N &gt; 256 -&gt;
+            ok = file:write(FD,
+                            lists:map(fun (X) -&gt; &lt;&lt;X:32/unsigned&gt;&gt; end,
+                            lists:seq(0, 255))),
+            ok = create_file_slow(FD, 256, N);
+       true -&gt;
+            ok = create_file_slow(FD, 0, N)
+    end,
+    ok = file:close(FD).
+
+create_file_slow(FD, M, M) -&gt;
+    ok;
+create_file_slow(FD, M, N) -&gt;
+    ok = file:write(FD, &lt;&lt;M:32/unsigned&gt;&gt;),
+    create_file_slow(FD, M+1, N).</code></pre><p>Let us have a look at the printout after running:</p><pre><code class="text">1&gt; fprof:apply(foo, create_file_slow, [junk, 1024]).
+2&gt; fprof:profile().
+3&gt; fprof:analyse().</code></pre><p>The printout starts with:</p><pre><code class="text">%% Analysis results:
+{  analysis_options,
+ [{callers, true},
+  {sort, acc},
+  {totals, false},
+  {details, true}]}.
+
+%                                       CNT       ACC       OWN
+[{ totals,                             9627, 1691.119, 1659.074}].  %%%</code></pre><p>The CNT column shows the total number of function calls that was found in the
+trace. In the ACC column is the total time of the trace from first timestamp to
+last. And in the OWN column is the sum of the execution time in functions found
+in the trace, not including called functions. In this case it is very close to
+the ACC time since the emulator had practically nothing else to do than to
+execute our test program.</p><p>All time values in the printout are in milliseconds.</p><p>The printout continues:</p><pre><code class="text">%                                       CNT       ACC       OWN
+[{ &quot;&lt;0.28.0&gt;&quot;,                         9627,undefined, 1659.074}].   %%</code></pre><p>This is the printout header of one process. The printout contains only this one
+process since we did <a href="#apply/3"><code class="inline">fprof:apply/3</code></a> which traces only the current process.
+Therefore the CNT and OWN columns perfectly matches the totals above. The ACC
+column is undefined since summing the ACC times of all calls in the process
+makes no sense - you would get something like the ACC value from totals above
+multiplied by the average depth of the call stack, or something.</p><p>All paragraphs up to the next process header only concerns function calls within
+this process.</p><p>Now we come to something more interesting:</p><pre><code class="text">{[{undefined,                             0, 1691.076,    0.030}],
+ { {fprof,apply_start_stop,4},            0, 1691.076,    0.030},     %
+ [{{foo,create_file_slow,2},              1, 1691.046,    0.103},
+  {suspend,                               1,    0.000,    0.000}]}.
+
+{[{{fprof,apply_start_stop,4},            1, 1691.046,    0.103}],
+ { {foo,create_file_slow,2},              1, 1691.046,    0.103},     %
+ [{{file,close,1},                        1, 1398.873,    0.019},
+  {{foo,create_file_slow,3},              1,  249.678,    0.029},
+  {{file,open,2},                         1,   20.778,    0.055},
+  {{lists,map,2},                         1,   16.590,    0.043},
+  {{lists,seq,2},                         1,    4.708,    0.017},
+  {{file,write,2},                        1,    0.316,    0.021}]}.</code></pre><p>The printout consists of one paragraph per called function. The function
+<em>marked</em> with '%' is the one the paragraph concerns - <code class="inline">foo:create_file_slow/2</code>.
+Above the marked function are the <em>calling</em> functions - those that has called
+the marked, and below are those <em>called</em> by the marked function.</p><p>The paragraphs are per default sorted in decreasing order of the ACC column for
+the marked function. The calling list and called list within one paragraph are
+also per default sorted in decreasing order of their ACC column.</p><p>The columns are: CNT - the number of times the function has been called, ACC -
+the time spent in the function including called functions, and OWN - the time
+spent in the function not including called functions.</p><p>The rows for the <em>calling</em> functions contain statistics for the <em>marked</em>
+function with the constraint that only the occasions when a call was made from
+the <em>row's</em> function to the <em>marked</em> function are accounted for.</p><p>The row for the <em>marked</em> function simply contains the sum of all <em>calling</em> rows.</p><p>The rows for the <em>called</em> functions contains statistics for the <em>row's</em> function
+with the constraint that only the occasions when a call was made from the
+<em>marked</em> to the <em>row's</em> function are accounted for.</p><p>So, we see that <code class="inline">foo:create_file_slow/2</code> used very little time for its own
+execution. It spent most of its time in <a href="../../../../lib/kernel/doc/html/file.html#close/1"><code class="inline">file:close/1</code></a>. The function
+<code class="inline">foo:create_file_slow/3</code> that writes 3/4 of the file contents is the second
+biggest time thief.</p><p>We also see that the call to <a href="../../../../lib/kernel/doc/html/file.html#write/2"><code class="inline">file:write/2</code></a> that writes 1/4 of the file contents
+takes very little time in itself. What takes time is to build the data
+(<a href="../../../../lib/stdlib/doc/html/lists.html#seq/2"><code class="inline">lists:seq/2</code></a> and <a href="../../../../lib/stdlib/doc/html/lists.html#map/2"><code class="inline">lists:map/2</code></a>).</p><p>The function 'undefined' that has called <code class="inline">fprof:apply_start_stop/4</code> is an
+unknown function because that call was not recorded in the trace. It was only
+recorded that the execution returned from <code class="inline">fprof:apply_start_stop/4</code> to some
+other function above in the call stack, or that the process exited from there.</p><p>Let us continue down the printout to find:</p><pre><code class="text">{[{{foo,create_file_slow,2},              1,  249.678,    0.029},
+  {{foo,create_file_slow,3},            768,    0.000,   23.294}],
+ { {foo,create_file_slow,3},            769,  249.678,   23.323},     %
+ [{{file,write,2},                      768,  220.314,   14.539},
+  {suspend,                              57,    6.041,    0.000},
+  {{foo,create_file_slow,3},            768,    0.000,   23.294}]}.</code></pre><p>If you compare with the code you will see there also that
+<code class="inline">foo:create_file_slow/3</code> was called only from <code class="inline">foo:create_file_slow/2</code> and
+itself, and called only <a href="../../../../lib/kernel/doc/html/file.html#write/2"><code class="inline">file:write/2</code></a>, note the number of calls to
+<a href="../../../../lib/kernel/doc/html/file.html#write/2"><code class="inline">file:write/2</code></a>. But here we see that <code class="inline">suspend</code> was called a few times. This is a
+pseudo function that indicates that the process was suspended while executing in
+<code class="inline">foo:create_file_slow/3</code>, and since there is no <code class="inline">receive</code> or <a href="../../../../lib/../erts/doc/html/erlang.html#yield/0"><code class="inline">erlang:yield/0</code></a> in
+the code, it must be Erlang scheduling suspensions, or the trace file driver
+compensating for large file write operations (these are regarded as a schedule
+out followed by a schedule in to the same process).</p><p>Let us find the <code class="inline">suspend</code> entry:</p><pre><code class="text">{[{{file,write,2},                       53,    6.281,    0.000},
+  {{foo,create_file_slow,3},             57,    6.041,    0.000},
+  {{prim_file,drv_command,4},            50,    4.582,    0.000},
+  {{prim_file,drv_get_response,1},       34,    2.986,    0.000},
+  {{lists,map,2},                        10,    2.104,    0.000},
+  {{prim_file,write,2},                  17,    1.852,    0.000},
+  {{erlang,port_command,2},              15,    1.713,    0.000},
+  {{prim_file,drv_command,2},            22,    1.482,    0.000},
+  {{prim_file,translate_response,2},     11,    1.441,    0.000},
+  {{prim_file,'-drv_command/2-fun-0-',1},  15,    1.340,    0.000},
+  {{lists,seq,4},                         3,    0.880,    0.000},
+  {{foo,'-create_file_slow/2-fun-0-',1},   5,    0.523,    0.000},
+  {{erlang,bump_reductions,1},            4,    0.503,    0.000},
+  {{prim_file,open_int_setopts,3},        1,    0.165,    0.000},
+  {{prim_file,i32,4},                     1,    0.109,    0.000},
+  {{fprof,apply_start_stop,4},            1,    0.000,    0.000}],
+ { suspend,                             299,   32.002,    0.000},     %
+ [ ]}.</code></pre><p>We find no particularly long suspend times, so no function seems to have waited
+in a receive statement. Actually, <code class="inline">prim_file:drv_command/4</code> contains a receive
+statement, but in this test program, the message lies in the process receive
+buffer when the receive statement is entered. We also see that the total suspend
+time for the test run is small.</p><p>The <code class="inline">suspend</code> pseudo function has got an OWN time of zero. This is to prevent
+the process total OWN time from including time in suspension. Whether suspend
+time is really ACC or OWN time is more of a philosophical question.</p><p>Now we look at another interesting pseudo function, <code class="inline">garbage_collect</code>:</p><pre><code class="text">{[{{prim_file,drv_command,4},            25,    0.873,    0.873},
+  {{prim_file,write,2},                  16,    0.692,    0.692},
+  {{lists,map,2},                         2,    0.195,    0.195}],
+ { garbage_collect,                      43,    1.760,    1.760},     %
+ [ ]}.</code></pre><p>Here we see that no function distinguishes itself considerably, which is very
+normal.</p><p>The <code class="inline">garbage_collect</code> pseudo function has not got an OWN time of zero like
+<code class="inline">suspend</code>, instead it is equal to the ACC time.</p><p>Garbage collect often occurs while a process is suspended, but <code class="inline">fprof</code> hides
+this fact by pretending that the suspended function was first unsuspended and
+then garbage collected. Otherwise the printout would show <code class="inline">garbage_collect</code>
+being called from <code class="inline">suspend</code> but not which function that might have caused the
+garbage collection.</p><p>Let us now get back to the test code:</p><pre><code class="text">{[{{foo,create_file_slow,3},            768,  220.314,   14.539},
+  {{foo,create_file_slow,2},              1,    0.316,    0.021}],
+ { {file,write,2},                      769,  220.630,   14.560},     %
+ [{{prim_file,write,2},                 769,  199.789,   22.573},
+  {suspend,                              53,    6.281,    0.000}]}.</code></pre><p>Not unexpectedly, we see that <a href="../../../../lib/kernel/doc/html/file.html#write/2"><code class="inline">file:write/2</code></a> was called from
+<code class="inline">foo:create_file_slow/3</code> and <code class="inline">foo:create_file_slow/2</code>. The number of calls in
+each case as well as the used time are also just confirms the previous results.</p><p>We see that <a href="../../../../lib/kernel/doc/html/file.html#write/2"><code class="inline">file:write/2</code></a> only calls <code class="inline">prim_file:write/2</code>, but let us refrain
+from digging into the internals of the kernel application.</p><p>But, if we nevertheless <em>do</em> dig down we find the call to the linked in driver
+that does the file operations towards the host operating system:</p><pre><code class="text">{[{{prim_file,drv_command,4},           772, 1458.356, 1456.643}],
+ { {erlang,port_command,2},             772, 1458.356, 1456.643},     %
+ [{suspend,                              15,    1.713,    0.000}]}.</code></pre><p>This is 86 % of the total run time, and as we saw before it is the close
+operation the absolutely biggest contributor. We find a comparison ratio a
+little bit up in the call stack:</p><pre><code class="text">{[{{prim_file,close,1},                   1, 1398.748,    0.024},
+  {{prim_file,write,2},                 769,  174.672,   12.810},
+  {{prim_file,open_int,4},                1,   19.755,    0.017},
+  {{prim_file,open_int_setopts,3},        1,    0.147,    0.016}],
+ { {prim_file,drv_command,2},           772, 1593.322,   12.867},     %
+ [{{prim_file,drv_command,4},           772, 1578.973,   27.265},
+  {suspend,                              22,    1.482,    0.000}]}.</code></pre><p>The time for file operations in the linked in driver distributes itself as 1 %
+for open, 11 % for write and 87 % for close. All data is probably buffered in
+the operating system until the close.</p><p>The unsleeping reader may notice that the ACC times for
+<code class="inline">prim_file:drv_command/2</code> and <code class="inline">prim_file:drv_command/4</code> is not equal between the
+paragraphs above, even though it is easy to believe that
+<code class="inline">prim_file:drv_command/2</code> is just a passthrough function.</p><p>The missing time can be found in the paragraph for <code class="inline">prim_file:drv_command/4</code>
+where it is evident that not only <code class="inline">prim_file:drv_command/2</code> is called but also a
+fun:</p><pre><code class="text">{[{{prim_file,drv_command,2},           772, 1578.973,   27.265}],
+ { {prim_file,drv_command,4},           772, 1578.973,   27.265},     %
+ [{{erlang,port_command,2},             772, 1458.356, 1456.643},
+  {{prim_file,'-drv_command/2-fun-0-',1}, 772,   87.897,   12.736},
+  {suspend,                              50,    4.582,    0.000},
+  {garbage_collect,                      25,    0.873,    0.873}]}.</code></pre><p>And some more missing time can be explained by the fact that
+<code class="inline">prim_file:open_int/4</code> both calls <code class="inline">prim_file:drv_command/2</code> directly as well as
+through <code class="inline">prim_file:open_int_setopts/3</code>, which complicates the picture.</p><pre><code class="text">{[{{prim_file,open,2},                    1,   20.309,    0.029},
+  {{prim_file,open_int,4},                1,    0.000,    0.057}],
+ { {prim_file,open_int,4},                2,   20.309,    0.086},     %
+ [{{prim_file,drv_command,2},             1,   19.755,    0.017},
+  {{prim_file,open_int_setopts,3},        1,    0.360,    0.032},
+  {{prim_file,drv_open,2},                1,    0.071,    0.030},
+  {{erlang,list_to_binary,1},             1,    0.020,    0.020},
+  {{prim_file,i32,1},                     1,    0.017,    0.017},
+  {{prim_file,open_int,4},                1,    0.000,    0.057}]}.
+.
+.
+.
+{[{{prim_file,open_int,4},                1,    0.360,    0.032},
+  {{prim_file,open_int_setopts,3},        1,    0.000,    0.016}],
+ { {prim_file,open_int_setopts,3},        2,    0.360,    0.048},     %
+ [{suspend,                               1,    0.165,    0.000},
+  {{prim_file,drv_command,2},             1,    0.147,    0.016},
+  {{prim_file,open_int_setopts,3},        1,    0.000,    0.016}]}.</code></pre><h2 id="module-notes" class="section-heading">
+  <a href="#module-notes" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">Notes</span>
+</h2>
+<p>The actual supervision of execution times is in itself a CPU intensive activity.
+A message is written on the trace file for every function call that is made by
+the profiled code.</p><p>The ACC time calculation is sometimes difficult to make correct, since it is
+difficult to define. This happens especially when a function occurs in several
+instances in the call stack, for example by calling itself perhaps through other
+functions and perhaps even non-tail recursively.</p><p>To produce sensible results, <code class="inline">fprof</code> tries not to charge any function more than
+once for ACC time. The instance highest up (with longest duration) in the call
+stack is chosen.</p><p>Sometimes a function may unexpectedly waste a lot (some 10 ms or more depending
+on host machine OS) of OWN (and ACC) time, even functions that do practically
+nothing at all. The problem may be that the OS has chosen to schedule out the
+Erlang runtime system process for a while, and if the OS does not support high
+resolution cpu time measurements <code class="inline">fprof</code> will use wallclock time for its
+calculations, and it will appear as functions randomly burn virtual machine
+time.</p><h2 id="module-see-also" class="section-heading">
+  <a href="#module-see-also" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">See Also</span>
+</h2>
+<p>dbg(3), <a href="eprof.html"><code class="inline">eprof</code></a>(3), erlang(3), io(3), <a href="fprof_chapter.html">Tools User's Guide</a></p>
+  </section>
+
+
+  <section id="summary" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Summary</span>
+    </h1>
+<div class="summary-types summary">
+  <h2>
+    <a href="#types">Types</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:analyse_option/0" translate="no">analyse_option/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:apply_option/0" translate="no">apply_option/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:pid_spec/0" translate="no">pid_spec/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:profile_option/0" translate="no">profile_option/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:trace_option/0" translate="no">trace_option/0</a>
+
+      </div>
+
+    </div>
+
+</div>
+<div class="summary-functions summary">
+  <h2>
+    <a href="#functions">Functions</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#analyse/0" translate="no">analyse()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Same as <code class="inline">analyse([])</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#analyse/1" translate="no">analyse(Option)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Same as <code class="inline">analyse([OptionName])</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#analyse/2" translate="no">analyse(Option, Value)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Same as <code class="inline">analyse([{OptionName, OptionValue}])</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#apply/2" translate="no">apply/2</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Same as <code class="inline">apply(Func, Args, [])</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#apply/3" translate="no">apply(M, F, Args)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Same as <code class="inline">apply({Module, Function}, Args, [])</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#apply/4" translate="no">apply(M, F, Args, Options)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Same as <code class="inline">apply({Module, Function}, Args, OptionList)</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#profile/0" translate="no">profile()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Same as <code class="inline">profile([])</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#profile/1" translate="no">profile(Option)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Same as <code class="inline">profile([OptionName])</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#profile/2" translate="no">profile(Option, Value)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Same as <code class="inline">profile([{OptionName, OptionValue}])</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#start/0" translate="no">start()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Starts the <code class="inline">fprof</code> server.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#stop/0" translate="no">stop()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Same as <code class="inline">stop(normal)</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#stop/1" translate="no">stop/1</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Stops the <code class="inline">fprof</code> server.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#trace/1" translate="no">trace/1</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Same as <code class="inline">trace([start, verbose])</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#trace/2" translate="no">trace/2</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Same as <code class="inline">trace([start, {file, Filename}])</code>.</p></div>
+
+    </div>
+
+</div>
+
+  </section>
+
+
+  <section id="types" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#types">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Types</span>
+    </h1>
+    <div class="types-list">
+<section class="detail" id="t:analyse_option/0">
+
+  <div class="detail-header">
+    <a href="#t:analyse_option/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">analyse_option/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/tools/doc//Users/wojtek/src/otp/lib/tools/src/fprof.erl#L1106" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> analyse_option() ::
+    append | callers |
+    {callers, <a href="../../../../lib/../erts/doc/html/erlang.html#t:boolean/0">boolean</a>()} |
+    {cols, Cols :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:non_neg_integer/0">non_neg_integer</a>()} |
+    dest |
+    {dest, Dest :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:pid/0">pid</a>() | (Destfile :: <a href="../../../../lib/kernel/doc/html/file.html#t:filename/0">file:filename</a>())} |
+    details |
+    {details, <a href="../../../../lib/../erts/doc/html/erlang.html#t:boolean/0">boolean</a>()} |
+    no_callers | no_details |
+    {sort, SortSpec :: acc | own} |
+    totals |
+    {totals, <a href="../../../../lib/../erts/doc/html/erlang.html#t:boolean/0">boolean</a>()}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:apply_option/0">
+
+  <div class="detail-header">
+    <a href="#t:apply_option/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">apply_option/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/tools/doc//Users/wojtek/src/otp/lib/tools/src/fprof.erl#L507" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> apply_option() ::
+    continue | {procs, PidList :: [<a href="../../../../lib/../erts/doc/html/erlang.html#t:pid/0">pid</a>()]} | start | (TraceStartOption :: <a href="#t:trace_option/0">trace_option</a>()).</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:pid_spec/0">
+
+  <div class="detail-header">
+    <a href="#t:pid_spec/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">pid_spec/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/tools/doc//Users/wojtek/src/otp/lib/tools/src/fprof.erl#L494" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> pid_spec() :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:pid/0">pid</a>() | <a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>().</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:profile_option/0">
+
+  <div class="detail-header">
+    <a href="#t:profile_option/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">profile_option/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/tools/doc//Users/wojtek/src/otp/lib/tools/src/fprof.erl#L930" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> profile_option() ::
+    append | dump |
+    {dump, <a href="../../../../lib/../erts/doc/html/erlang.html#t:pid/0">pid</a>() | (Dump :: (Dumpfile :: <a href="../../../../lib/kernel/doc/html/file.html#t:filename/0">file:filename</a>() | []))} |
+    file |
+    {file, Filename :: <a href="../../../../lib/kernel/doc/html/file.html#t:filename/0">file:filename</a>()} |
+    start | stop.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:trace_option/0">
+
+  <div class="detail-header">
+    <a href="#t:trace_option/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">trace_option/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/tools/doc//Users/wojtek/src/otp/lib/tools/src/fprof.erl#L495" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> trace_option() ::
+    cpu_time |
+    {cpu_time, <a href="../../../../lib/../erts/doc/html/erlang.html#t:boolean/0">boolean</a>()} |
+    file |
+    {file, Filename :: <a href="../../../../lib/kernel/doc/html/file.html#t:filename/0">file:filename</a>()} |
+    {procs, PidSpec :: <a href="#t:pid_spec/0">pid_spec</a>()} |
+    {procs, [PidSpec :: <a href="#t:pid_spec/0">pid_spec</a>()]} |
+    start | stop |
+    {tracer, Tracer :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:pid/0">pid</a>() | <a href="../../../../lib/../erts/doc/html/erlang.html#t:port/0">port</a>()} |
+    verbose |
+    {verbose, <a href="../../../../lib/../erts/doc/html/erlang.html#t:boolean/0">boolean</a>()}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+
+    </div>
+  </section>
+
+  <section id="functions" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Functions</span>
+    </h1>
+    <div class="functions-list">
+<section class="detail" id="analyse/0">
+
+  <div class="detail-header">
+    <a href="#analyse/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">analyse()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/tools/doc//Users/wojtek/src/otp/lib/tools/src/fprof.erl#L1089" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> analyse() -> ok | {error, Reason} | {'EXIT', ServerPid, Reason}
+           when ServerPid :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:pid/0">pid</a>(), Reason :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>().</pre>
+
+      </div>
+
+<p>Same as <code class="inline">analyse([])</code>.</p>
+  </section>
+</section>
+<section class="detail" id="analyse/1">
+
+  <div class="detail-header">
+    <a href="#analyse/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">analyse(Option)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/tools/doc//Users/wojtek/src/otp/lib/tools/src/fprof.erl#L1188" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> analyse(OptionName) -> ok | {error, Reason} | {'EXIT', ServerPid, Reason}
+           when OptionName :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>(), ServerPid :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:pid/0">pid</a>(), Reason :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>();
+       ({OptionName, OptionValue}) -> ok | {error, Reason} | {'EXIT', ServerPid, Reason}
+           when OptionName :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>(), OptionValue :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>(), ServerPid :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:pid/0">pid</a>(), Reason :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>();
+       (OptionList) -> ok | {error, Reason} | {'EXIT', ServerPid, Reason}
+           when
+               OptionList :: [Option],
+               Option :: <a href="#t:analyse_option/0">analyse_option</a>(),
+               ServerPid :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:pid/0">pid</a>(),
+               Reason :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>().</pre>
+
+      </div>
+
+<p>Same as <code class="inline">analyse([OptionName])</code>.</p><p>Same as <code class="inline">analyse([{OptionName, OptionValue}])</code>.</p><p>Analyses raw profile data in the <code class="inline">fprof</code> server. If called while there is no raw
+profile data available, <code class="inline">{error, no_profile}</code> is returned.</p><p><code class="inline">Destfile</code> is used to call <a href="../../../../lib/kernel/doc/html/file.html#open/2"><code class="inline">file:open/2</code></a>.</p><p>Option description:</p><ul><li><p><strong><code class="inline">dest</code> | <code class="inline">{dest, Dest}</code></strong> - Specifies the destination for the analysis. If
+this option is not given or it is <code class="inline">dest</code>, the destination will be the caller's
+group leader, otherwise the destination <code class="inline">Dest</code> is either the <code class="inline">t:pid()</code> of an
+I/O device or a filename. And, finally, if the filename is <code class="inline">[]</code> -
+<code class="inline">&quot;fprof.analysis&quot;</code> is used instead.</p></li><li><p><strong><code class="inline">append</code></strong> - Causes the analysis to be appended to the destination file.
+This option is only allowed with the <code class="inline">{dest, Destfile}</code> option.</p></li><li><p><strong><code class="inline">{cols, Cols}</code></strong> - Specifies the number of columns in the analysis text. If
+this option is not given the number of columns is set to 80.</p></li><li><p><strong><code class="inline">callers</code> | <code class="inline">{callers, true}</code></strong> - Prints callers and called information in
+the analysis. This is the default.</p></li><li><p><strong><code class="inline">{callers, false}</code> | <code class="inline">no_callers</code></strong> - Suppresses the printing of callers and
+called information in the analysis.</p></li><li><p><strong><code class="inline">{sort, SortSpec}</code></strong> - Specifies if the analysis should be sorted according
+to the ACC column, which is the default, or the OWN column. See
+<a href="fprof.html#analysis">Analysis Format</a> below.</p></li><li><p><strong><code class="inline">totals</code> | <code class="inline">{totals, true}</code></strong> - Includes a section containing call
+statistics for all calls regardless of process, in the analysis.</p></li><li><p><strong><code class="inline">{totals, false}</code></strong> - Suppresses the totals section in the analysis, which
+is the default.</p></li><li><p><strong><code class="inline">details</code> | <code class="inline">{details, true}</code></strong> - Prints call statistics for each process in
+the analysis. This is the default.</p></li><li><p><strong><code class="inline">{details, false}</code> | <code class="inline">no_details</code></strong> - Suppresses the call statistics for
+each process from the analysis.</p></li></ul>
+  </section>
+</section>
+<section class="detail" id="analyse/2">
+
+  <div class="detail-header">
+    <a href="#analyse/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">analyse(Option, Value)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/tools/doc//Users/wojtek/src/otp/lib/tools/src/fprof.erl#L1101" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> analyse(OptionName, OptionValue) -> ok | {error, Reason} | {'EXIT', ServerPid, Reason}
+           when OptionName :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>(), OptionValue :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>(), ServerPid :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:pid/0">pid</a>(), Reason :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>().</pre>
+
+      </div>
+
+<p>Same as <code class="inline">analyse([{OptionName, OptionValue}])</code>.</p>
+  </section>
+</section>
+<section class="detail" id="apply/2">
+
+  <div class="detail-header">
+    <a href="#apply/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">apply/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/tools/doc//Users/wojtek/src/otp/lib/tools/src/fprof.erl#L485" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> apply(Func, Args) -> <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()
+         when Func :: fun() | {Module :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:module/0">module</a>(), Function :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>()}, Args :: [<a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()].</pre>
+
+      </div>
+
+<p>Same as <code class="inline">apply(Func, Args, [])</code>.</p>
+  </section>
+</section>
+<section class="detail" id="apply/3">
+
+  <div class="detail-header">
+    <a href="#apply/3" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">apply(M, F, Args)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/tools/doc//Users/wojtek/src/otp/lib/tools/src/fprof.erl#L542" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> apply(Module, Function, Args) -> <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()
+         when Module :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:module/0">module</a>(), Function :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>(), Args :: [<a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()];
+     (Func, Args, OptionList) -> <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()
+         when
+             Func :: fun() | {Module :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:module/0">module</a>(), Function :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>()},
+             Args :: [<a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()],
+             OptionList :: [Option],
+             Option :: <a href="#t:apply_option/0">apply_option</a>().</pre>
+
+      </div>
+
+<p>Same as <code class="inline">apply({Module, Function}, Args, [])</code>.</p><p>Calls <code class="inline">erlang:apply(Func, Args)</code> surrounded by <code class="inline">trace([start, ...])</code> and
+<code class="inline">trace(stop)</code>.</p><p>Some effort is made to keep the trace clean from unnecessary trace messages;
+tracing is started and stopped from a spawned process while the <a href="../../../../lib/../erts/doc/html/erlang.html#apply/2"><code class="inline">erlang:apply/2</code></a>
+call is made in the current process, only surrounded by <code class="inline">receive</code> and <code class="inline">send</code>
+statements towards the trace starting process. The trace starting process exits
+when not needed any more.</p><p>The <code class="inline">TraceStartOption</code> is any option allowed for <a href="#trace/1"><code class="inline">trace/1</code></a>. The options
+<code class="inline">[start, {procs, [self() | PidList]} | OptList]</code> are given to <a href="#trace/1"><code class="inline">trace/1</code></a>, where
+<code class="inline">OptList</code> is <code class="inline">OptionList</code> with <code class="inline">continue</code>, <code class="inline">start</code> and <code class="inline">{procs, _}</code> options
+removed.</p><p>The <code class="inline">continue</code> option inhibits the call to <code class="inline">trace(stop)</code> and leaves it up to the
+caller to stop tracing at a suitable time.</p>
+  </section>
+</section>
+<section class="detail" id="apply/4">
+
+  <div class="detail-header">
+    <a href="#apply/4" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">apply(M, F, Args, Options)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/tools/doc//Users/wojtek/src/otp/lib/tools/src/fprof.erl#L565" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> apply(Module, Function, Args, OptionList) -> <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()
+         when
+             Module :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:module/0">module</a>(),
+             Function :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>(),
+             Args :: [<a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()],
+             OptionList :: [Option],
+             Option :: <a href="#t:apply_option/0">apply_option</a>().</pre>
+
+      </div>
+
+<p>Same as <code class="inline">apply({Module, Function}, Args, OptionList)</code>.</p><p><code class="inline">OptionList</code> is an option list allowed for <a href="#apply/3"><code class="inline">apply/3</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="profile/0">
+
+  <div class="detail-header">
+    <a href="#profile/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">profile()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/tools/doc//Users/wojtek/src/otp/lib/tools/src/fprof.erl#L927" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> profile() -> ok | {error, Reason} | {'EXIT', ServerPid, Reason}
+           when ServerPid :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:pid/0">pid</a>(), Reason :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>().</pre>
+
+      </div>
+
+<p>Same as <code class="inline">profile([])</code>.</p>
+  </section>
+</section>
+<section class="detail" id="profile/1">
+
+  <div class="detail-header">
+    <a href="#profile/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">profile(Option)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/tools/doc//Users/wojtek/src/otp/lib/tools/src/fprof.erl#L1021" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> profile(OptionName) -> ok | {ok, Tracer} | {error, Reason} | {'EXIT', ServerPid, Reason}
+           when OptionName :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>(), Tracer :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:pid/0">pid</a>(), ServerPid :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:pid/0">pid</a>(), Reason :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>();
+       ({OptionName, OptionValue}) ->
+           ok | {ok, Tracer} | {error, Reason} | {'EXIT', ServerPid, Reason}
+           when
+               OptionName :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>(),
+               OptionValue :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>(),
+               Tracer :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:pid/0">pid</a>(),
+               ServerPid :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:pid/0">pid</a>(),
+               Reason :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>();
+       (OptionList) -> ok | {ok, Tracer} | {error, Reason} | {'EXIT', ServerPid, Reason}
+           when
+               OptionList :: [Option],
+               Option :: <a href="#t:profile_option/0">profile_option</a>(),
+               Tracer :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:pid/0">pid</a>(),
+               ServerPid :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:pid/0">pid</a>(),
+               Reason :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>().</pre>
+
+      </div>
+
+<p>Same as <code class="inline">profile([OptionName])</code>.</p><p>Same as <code class="inline">profile([{OptionName, OptionValue}])</code>.</p><p>Compiles a trace into raw profile data held by the <code class="inline">fprof</code> server.</p><p><code class="inline">Dumpfile</code> is used to call <a href="../../../../lib/kernel/doc/html/file.html#open/2"><code class="inline">file:open/2</code></a>, and <code class="inline">Filename</code> is used to call
+<code class="inline">dbg:trace_port(file, Filename)</code>. Please see <a href="../../../../lib/kernel/doc/html/file.html#open/2"><code class="inline">file:open/2</code></a> and
+<a href="../../../../lib/runtime_tools/doc/html/dbg.html#trace_port/2"><code class="inline">dbg:trace_port/2</code></a>.</p><p>Option description:</p><ul><li><p><strong><code class="inline">file</code> | <code class="inline">{file, Filename}</code></strong> - Reads the file <code class="inline">Filename</code> and creates raw
+profile data that is stored in RAM by the <code class="inline">fprof</code> server. If the option <code class="inline">file</code>
+is given, or none of these options are given, the file <code class="inline">&quot;fprof.trace&quot;</code> is
+read. The call will return when the whole trace has been read with the return
+value <code class="inline">ok</code> if successful. This option is not allowed with the <code class="inline">start</code> or
+<code class="inline">stop</code> options.</p></li><li><p><strong><code class="inline">dump</code> | <code class="inline">{dump, Dump}</code></strong> - Specifies the destination for the trace text
+dump. If this option is not given, no dump is generated, if it is <code class="inline">dump</code> the
+destination will be the caller's group leader, otherwise the destination
+<code class="inline">Dump</code> is either the pid of an I/O device or a filename. And, finally, if the
+filename is <code class="inline">[]</code> - <code class="inline">&quot;fprof.dump&quot;</code> is used instead. This option is not allowed
+with the <code class="inline">stop</code> option.</p></li><li><p><strong><code class="inline">append</code></strong> - Causes the trace text dump to be appended to the destination
+file. This option is only allowed with the <code class="inline">{dump, Dumpfile}</code> option.</p></li><li><p><strong><code class="inline">start</code></strong> - Starts a tracer process that profiles trace data in runtime. The
+call will return immediately with the return value <code class="inline">{ok, Tracer}</code> if
+successful. This option is not allowed with the <code class="inline">stop</code>, <code class="inline">file</code> or
+<code class="inline">{file, Filename}</code> options.</p></li><li><p><strong><code class="inline">stop</code></strong> - Stops the tracer process that profiles trace data in runtime. The
+return value will be value <code class="inline">ok</code> if successful. This option is not allowed with
+the <code class="inline">start</code>, <code class="inline">file</code> or <code class="inline">{file, Filename}</code> options.</p></li></ul>
+  </section>
+</section>
+<section class="detail" id="profile/2">
+
+  <div class="detail-header">
+    <a href="#profile/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">profile(Option, Value)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/tools/doc//Users/wojtek/src/otp/lib/tools/src/fprof.erl#L950" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> profile(OptionName, OptionValue) ->
+           ok | {ok, Tracer} | {error, Reason} | {'EXIT', ServerPid, Reason}
+           when
+               OptionName :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>(),
+               OptionValue :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>(),
+               Tracer :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:pid/0">pid</a>(),
+               ServerPid :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:pid/0">pid</a>(),
+               Reason :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>().</pre>
+
+      </div>
+
+<p>Same as <code class="inline">profile([{OptionName, OptionValue}])</code>.</p>
+  </section>
+</section>
+<section class="detail" id="start/0">
+
+  <div class="detail-header">
+    <a href="#start/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">start()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/tools/doc//Users/wojtek/src/otp/lib/tools/src/fprof.erl#L1419" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> start() -> {ok, Pid} | {error, {already_started, Pid}} when Pid :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:pid/0">pid</a>().</pre>
+
+      </div>
+
+<p>Starts the <code class="inline">fprof</code> server.</p><p>Note that it seldom needs to be started explicitly since it is automatically
+started by the functions that need a running server.</p>
+  </section>
+</section>
+<section class="detail" id="stop/0">
+
+  <div class="detail-header">
+    <a href="#stop/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">stop()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/tools/doc//Users/wojtek/src/otp/lib/tools/src/fprof.erl#L1449" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> stop() -> ok.</pre>
+
+      </div>
+
+<p>Same as <code class="inline">stop(normal)</code>.</p>
+  </section>
+</section>
+<section class="detail" id="stop/1">
+
+  <div class="detail-header">
+    <a href="#stop/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">stop/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/tools/doc//Users/wojtek/src/otp/lib/tools/src/fprof.erl#L1469" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> stop(Reason) -> ok when Reason :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>().</pre>
+
+      </div>
+
+<p>Stops the <code class="inline">fprof</code> server.</p><p>The supplied <code class="inline">Reason</code> becomes the exit reason for the server process. Default
+Any <code class="inline">Reason</code> other than <code class="inline">kill</code> sends a request to the server and waits for it to
+clean up, reply and exit. If <code class="inline">Reason</code> is <code class="inline">kill</code>, the server is bluntly killed.</p><p>If the <code class="inline">fprof</code> server is not running, this function returns immediately with the
+same return value.</p><blockquote><h4 class="info">Note</h4><p>When the <code class="inline">fprof</code> server is stopped the collected raw profile data is lost.</p></blockquote>
+  </section>
+</section>
+<section class="detail" id="trace/1">
+
+  <div class="detail-header">
+    <a href="#trace/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">trace/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/tools/doc//Users/wojtek/src/otp/lib/tools/src/fprof.erl#L851" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> trace(verbose) -> ok | {error, Reason} | {'EXIT', ServerPid, Reason}
+         when ServerPid :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:pid/0">pid</a>(), Reason :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>();
+     (OptionName) -> ok | {error, Reason} | {'EXIT', ServerPid, Reason}
+         when OptionName :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>(), ServerPid :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:pid/0">pid</a>(), Reason :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>();
+     ({OptionName, OptionValue}) -> ok | {error, Reason} | {'EXIT', ServerPid, Reason}
+         when OptionName :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>(), OptionValue :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>(), ServerPid :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:pid/0">pid</a>(), Reason :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>();
+     (OptionList) -> ok | {error, Reason} | {'EXIT', ServerPid, Reason}
+         when
+             OptionList :: [Option],
+             Option :: <a href="#t:trace_option/0">trace_option</a>(),
+             ServerPid :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:pid/0">pid</a>(),
+             Reason :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>().</pre>
+
+      </div>
+
+<p>Same as <code class="inline">trace([start, verbose])</code>.</p><p>Same as <code class="inline">trace([OptionName])</code>.</p><p>Same as <code class="inline">trace([{OptionName, OptionValue}])</code>.</p><p>Starts or stops tracing.</p><p><code class="inline">PidSpec</code> and <code class="inline">Tracer</code> are used in calls to
+<code class="inline">erlang:trace(PidSpec, true, [{tracer, Tracer} | Flags])</code>, and <code class="inline">Filename</code> is
+used to call <code class="inline">dbg:trace_port(file, Filename)</code>. Please see <a href="../../../../lib/../erts/doc/html/erlang.html#trace/3"><code class="inline">erlang:trace/3</code></a> and
+<a href="../../../../lib/runtime_tools/doc/html/dbg.html#trace_port/2"><code class="inline">dbg:trace_port/2</code></a>.</p><p>Option description:</p><ul><li><p><strong><code class="inline">stop</code></strong> - Stops a running <code class="inline">fprof</code> trace and clears all tracing from the
+node. Either option <code class="inline">stop</code> or <code class="inline">start</code> must be specified, but not both.</p></li><li><p><strong><code class="inline">start</code></strong> - Clears all tracing from the node and starts a new <code class="inline">fprof</code> trace.
+Either option <code class="inline">start</code> or <code class="inline">stop</code> must be specified, but not both.</p></li><li><p><strong><code class="inline">verbose</code> | <code class="inline">{verbose, boolean()}</code></strong> - The options <code class="inline">verbose</code> or
+<code class="inline">{verbose, true}</code> adds some trace flags that <code class="inline">fprof</code> does not need, but that
+may be interesting for general debugging purposes. This option is only allowed
+with the <code class="inline">start</code> option.</p></li><li><p><strong><code class="inline">cpu_time</code> | <code class="inline">{cpu_time, boolean()}</code></strong> - The options <code class="inline">cpu_time</code> or
+<code class="inline">{cpu_time, true}</code> makes the timestamps in the trace be in CPU time instead of
+wallclock time which is the default. This option is only allowed with the
+<code class="inline">start</code> option.</p><blockquote><h4 class="warning">Warning</h4><p>Getting correct values out of cpu_time can be difficult. The best way to get
+correct values is to run using a single scheduler and bind that scheduler to
+a specific CPU, i.e. <code class="inline">erl +S 1 +sbt db</code>.</p></blockquote></li><li><p><strong><code class="inline">{procs, PidSpec}</code> | <code class="inline">{procs, [PidSpec]}</code></strong> - Specifies which processes that
+shall be traced. If this option is not given, the calling process is traced.
+All processes spawned by the traced processes are also traced. This option is
+only allowed with the <code class="inline">start</code> option.</p></li><li><p><strong><code class="inline">file</code> | <code class="inline">{file, Filename}</code></strong> - Specifies the filename of the trace. If the
+option <code class="inline">file</code> is given, or none of these options are given, the file
+<code class="inline">&quot;fprof.trace&quot;</code> is used. This option is only allowed with the <code class="inline">start</code> option,
+but not with the <code class="inline">{tracer, Tracer}</code> option.</p></li><li><p><strong><code class="inline">{tracer, Tracer}</code></strong> - Specifies that trace to process or port shall be done
+instead of trace to file. This option is only allowed with the <code class="inline">start</code> option,
+but not with the <code class="inline">{file, Filename}</code> option.</p></li></ul>
+  </section>
+</section>
+<section class="detail" id="trace/2">
+
+  <div class="detail-header">
+    <a href="#trace/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">trace/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/tools/doc//Users/wojtek/src/otp/lib/tools/src/fprof.erl#L763" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> trace(start, Filename) -> ok | {error, Reason} | {'EXIT', ServerPid, Reason}
+         when Filename :: <a href="../../../../lib/kernel/doc/html/file.html#t:filename/0">file:filename</a>(), ServerPid :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:pid/0">pid</a>(), Reason :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>();
+     (verbose, Filename) -> ok | {error, Reason} | {'EXIT', ServerPid, Reason}
+         when Filename :: <a href="../../../../lib/kernel/doc/html/file.html#t:filename/0">file:filename</a>(), ServerPid :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:pid/0">pid</a>(), Reason :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>();
+     (OptionName, OptionValue) -> ok | {error, Reason} | {'EXIT', ServerPid, Reason}
+         when OptionName :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>(), OptionValue :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>(), ServerPid :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:pid/0">pid</a>(), Reason :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>().</pre>
+
+      </div>
+
+<p>Same as <code class="inline">trace([start, {file, Filename}])</code>.</p><p>Same as <code class="inline">trace([start, verbose, {file, Filename}])</code>.</p><p>Same as <code class="inline">trace([{OptionName, OptionValue}])</code>.</p>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+      <footer class="footer">
+        <p>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Search HexDocs packages">
+              Search HexDocs
+            </button>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.30.9) for the
+
+            <a href="https://erlang.org" title="Erlang" target="_blank" translate="no">Erlang programming language</a>
+
+        </p>
+      </footer>
+    </div>
+  </div>
+</main>
+</div>
+
+
+  </body>
+</html>

@@ -1,0 +1,3340 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.30.9">
+    <meta name="project" content="public_key v1.14.1">
+
+
+    <title>PKCS-FRAME — public_key v1.14.1</title>
+    <link rel="stylesheet" href="dist/html-erlang-QW5RMTQD.css" />
+
+
+    <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
+    <script src="dist/handlebars.templates-43PMFBC7.js"></script>
+    <script src="dist/sidebar_items-562A6422.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/html-LRUIU55G.js"></script>
+
+<style>.dark img { background-color: white; }</style>
+  </head>
+  <body data-type="modules" class="page-module">
+    <script>
+
+      try {
+        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+
+        if (settings.theme === 'dark' ||
+           ((settings.theme === 'system' || settings.theme == null) &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches)
+           ) {
+          document.body.classList.add('dark')
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
+
+        <a href="api-reference.html" class="sidebar-projectImage">
+          <img src="assets/logo.png" alt="public_key" />
+        </a>
+
+      <div>
+        <a href="api-reference.html" class="sidebar-projectName" translate="no">
+public_key
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v1.14.1
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-listNav" class="sidebar-listNav" role="tablist">
+      <li>
+        <button id="extras-list-tab-button" role="tab" data-type="extras" aria-controls="extras-tab-panel" aria-selected="true" tabindex="0">
+Pages
+        </button>
+      </li>
+
+        <li>
+          <button id="modules-list-tab-button" role="tab" data-type="modules" aria-controls="modules-tab-panel" aria-selected="false" tabindex="-1">
+            Modules
+          </button>
+        </li>
+
+
+    </ul>
+  </div>
+
+  <div id="extras-tab-panel" class="sidebar-tabpanel" role="tabpanel" aria-labelledby="extras-list-tab-button">
+    <ul id="extras-full-list" class="full-list"></ul>
+  </div>
+
+    <div id="modules-tab-panel" class="sidebar-tabpanel" role="tabpanel" aria-labelledby="modules-list-tab-button" hidden>
+      <ul id="modules-full-list" class="full-list"></ul>
+    </div>
+
+
+</nav>
+
+<main class="content">
+  <output role="status" id="toast"></output>
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+      <div class="top-search">
+        <div class="search-settings">
+          <form class="search-bar" action="search.html">
+            <label class="search-label">
+              <span class="sr-only">Search documentation of public_key</span>
+              <input name="q" type="text" class="search-input" placeholder="Search Documentation (press /)" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+            </label>
+            <button type="submit" class="search-button" aria-label="Submit Search">
+              <i class="ri-search-2-line ri-lg" aria-hidden="true" title="Submit search"></i>
+            </button>
+            <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+              <i class="ri-close-line ri-lg" title="Cancel search"></i>
+            </button>
+          </form>
+          <button class="icon-settings display-settings">
+            <i class="ri-settings-3-line"></i>
+            <span class="sr-only">Settings</span>
+          </button>
+        </div>
+      </div>
+      <div class="autocomplete">
+        <div class="autocomplete-results">
+        </div>
+      </div>
+
+<h1>
+
+    <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/PKCS-FRAME.erl#L4" title="View Source" class="icon-action" rel="help">
+      <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+      <span class="sr-only">View Source</span>
+    </a>
+
+  <span translate="no">PKCS-FRAME</span> 
+  <small class="app-vsn" translate="no">(public_key v1.14.1)</small>
+
+</h1>
+
+
+
+  <section id="summary" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Summary</span>
+    </h1>
+<div class="summary-functions summary">
+  <h2>
+    <a href="#functions">Functions</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#bit_string_format/0" translate="no">bit_string_format/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_Attributes/2" translate="no">dec_Attributes/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_AttributeUsage/2" translate="no">dec_AttributeUsage/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_Context/2" translate="no">dec_Context/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_EncryptedData/2" translate="no">dec_EncryptedData/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_EncryptedPrivateKeyInfo/2" translate="no">dec_EncryptedPrivateKeyInfo/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_OneAsymmetricKey/2" translate="no">dec_OneAsymmetricKey/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_PBEParameter/2" translate="no">dec_PBEParameter/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_PBES2-params/2" translate="no">'dec_PBES2-params'/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_PBKDF2-params/2" translate="no">'dec_PBKDF2-params'/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_PBMAC1-params/2" translate="no">'dec_PBMAC1-params'/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_PrivateKey/2" translate="no">dec_PrivateKey/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_PrivateKeyInfo/2" translate="no">dec_PrivateKeyInfo/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_PublicKey/2" translate="no">dec_PublicKey/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_RC2-CBC-Parameter/2" translate="no">'dec_RC2-CBC-Parameter'/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_RC5-CBC-Parameters/2" translate="no">'dec_RC5-CBC-Parameters'/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_Version/2" translate="no">dec_Version/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#decode/2" translate="no">decode/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#des-EDE3-CBC/0" translate="no">'des-EDE3-CBC'/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#desCBC/0" translate="no">desCBC/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dialyzer-suppressions/1" translate="no">'dialyzer-suppressions'/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#digestAlgorithm/0" translate="no">digestAlgorithm/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_Attributes/2" translate="no">enc_Attributes/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_AttributeUsage/2" translate="no">enc_AttributeUsage/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_Context/2" translate="no">enc_Context/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_EncryptedData/2" translate="no">enc_EncryptedData/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_EncryptedPrivateKeyInfo/2" translate="no">enc_EncryptedPrivateKeyInfo/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_OneAsymmetricKey/2" translate="no">enc_OneAsymmetricKey/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_PBEParameter/2" translate="no">enc_PBEParameter/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_PBES2-params/2" translate="no">'enc_PBES2-params'/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_PBKDF2-params/2" translate="no">'enc_PBKDF2-params'/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_PBMAC1-params/2" translate="no">'enc_PBMAC1-params'/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_PrivateKey/2" translate="no">enc_PrivateKey/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_PrivateKeyInfo/2" translate="no">enc_PrivateKeyInfo/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_PublicKey/2" translate="no">enc_PublicKey/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_RC2-CBC-Parameter/2" translate="no">'enc_RC2-CBC-Parameter'/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_RC5-CBC-Parameters/2" translate="no">'enc_RC5-CBC-Parameters'/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_Version/2" translate="no">enc_Version/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#encode/2" translate="no">encode/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#encoding_rule/0" translate="no">encoding_rule/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#encryptionAlgorithm/0" translate="no">encryptionAlgorithm/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getdec_internal_object_set_argument_1/1" translate="no">getdec_internal_object_set_argument_1/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getdec_internal_object_set_argument_2/1" translate="no">getdec_internal_object_set_argument_2/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getdec_internal_object_set_argument_3/1" translate="no">getdec_internal_object_set_argument_3/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getdec_internal_object_set_argument_4/1" translate="no">getdec_internal_object_set_argument_4/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getdec_internal_object_set_argument_5/1" translate="no">getdec_internal_object_set_argument_5/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getdec_internal_object_set_argument_6/1" translate="no">getdec_internal_object_set_argument_6/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getdec_internal_object_set_argument_7/1" translate="no">getdec_internal_object_set_argument_7/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getdec_internal_object_set_argument_8/1" translate="no">getdec_internal_object_set_argument_8/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getdec_internal_object_set_argument_9/1" translate="no">getdec_internal_object_set_argument_9/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getdec_internal_object_set_argument_10/1" translate="no">getdec_internal_object_set_argument_10/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getdec_KeyEncryptionAlgorithms/1" translate="no">getdec_KeyEncryptionAlgorithms/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getdec_PBES1Algorithms/1" translate="no">getdec_PBES1Algorithms/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getdec_PBES2-Encs/1" translate="no">'getdec_PBES2-Encs'/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getdec_PBES2-KDFs/1" translate="no">'getdec_PBES2-KDFs'/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getdec_PBES2Algorithms/1" translate="no">getdec_PBES2Algorithms/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getdec_PBKDF2-PRFs/1" translate="no">'getdec_PBKDF2-PRFs'/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getdec_PBKDF2-SaltSources/1" translate="no">'getdec_PBKDF2-SaltSources'/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getdec_PBMAC1-KDFs/1" translate="no">'getdec_PBMAC1-KDFs'/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getdec_PBMAC1-MACs/1" translate="no">'getdec_PBMAC1-MACs'/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getdec_PBMAC1Algorithms/1" translate="no">getdec_PBMAC1Algorithms/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getdec_PrivateKeyAlgorithms/1" translate="no">getdec_PrivateKeyAlgorithms/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getdec_SupportedContexts/1" translate="no">getdec_SupportedContexts/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getdec_SupportingAlgorithms/1" translate="no">getdec_SupportingAlgorithms/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getenc_internal_object_set_argument_1/1" translate="no">getenc_internal_object_set_argument_1/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getenc_internal_object_set_argument_2/1" translate="no">getenc_internal_object_set_argument_2/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getenc_internal_object_set_argument_3/1" translate="no">getenc_internal_object_set_argument_3/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getenc_internal_object_set_argument_4/1" translate="no">getenc_internal_object_set_argument_4/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getenc_internal_object_set_argument_5/1" translate="no">getenc_internal_object_set_argument_5/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getenc_internal_object_set_argument_6/1" translate="no">getenc_internal_object_set_argument_6/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getenc_internal_object_set_argument_7/1" translate="no">getenc_internal_object_set_argument_7/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getenc_internal_object_set_argument_8/1" translate="no">getenc_internal_object_set_argument_8/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getenc_internal_object_set_argument_9/1" translate="no">getenc_internal_object_set_argument_9/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getenc_internal_object_set_argument_10/1" translate="no">getenc_internal_object_set_argument_10/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getenc_KeyEncryptionAlgorithms/1" translate="no">getenc_KeyEncryptionAlgorithms/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getenc_PBES1Algorithms/1" translate="no">getenc_PBES1Algorithms/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getenc_PBES2-Encs/1" translate="no">'getenc_PBES2-Encs'/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getenc_PBES2-KDFs/1" translate="no">'getenc_PBES2-KDFs'/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getenc_PBES2Algorithms/1" translate="no">getenc_PBES2Algorithms/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getenc_PBKDF2-PRFs/1" translate="no">'getenc_PBKDF2-PRFs'/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getenc_PBKDF2-SaltSources/1" translate="no">'getenc_PBKDF2-SaltSources'/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getenc_PBMAC1-KDFs/1" translate="no">'getenc_PBMAC1-KDFs'/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getenc_PBMAC1-MACs/1" translate="no">'getenc_PBMAC1-MACs'/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getenc_PBMAC1Algorithms/1" translate="no">getenc_PBMAC1Algorithms/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getenc_PrivateKeyAlgorithms/1" translate="no">getenc_PrivateKeyAlgorithms/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getenc_SupportedContexts/1" translate="no">getenc_SupportedContexts/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#getenc_SupportingAlgorithms/1" translate="no">getenc_SupportingAlgorithms/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#id-hmacWithSHA1/0" translate="no">'id-hmacWithSHA1'/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#id-PBES2/0" translate="no">'id-PBES2'/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#id-PBKDF2/0" translate="no">'id-PBKDF2'/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#id-PBMAC1/0" translate="no">'id-PBMAC1'/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#info/0" translate="no">info/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#legacy_erlang_types/0" translate="no">legacy_erlang_types/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#maps/0" translate="no">maps/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#pbeWithMD2AndDES-CBC/0" translate="no">'pbeWithMD2AndDES-CBC'/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#pbeWithMD2AndRC2-CBC/0" translate="no">'pbeWithMD2AndRC2-CBC'/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#pbeWithMD5AndDES-CBC/0" translate="no">'pbeWithMD5AndDES-CBC'/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#pbeWithMD5AndRC2-CBC/0" translate="no">'pbeWithMD5AndRC2-CBC'/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#pbeWithSHA1AndDES-CBC/0" translate="no">'pbeWithSHA1AndDES-CBC'/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#pbeWithSHA1AndRC2-CBC/0" translate="no">'pbeWithSHA1AndRC2-CBC'/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#pkcs-5/0" translate="no">'pkcs-5'/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#pkcs/0" translate="no">pkcs/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#rc2CBC/0" translate="no">rc2CBC/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#rc5-CBC-PAD/0" translate="no">'rc5-CBC-PAD'/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#rsadsi/0" translate="no">rsadsi/0</a>
+
+      </div>
+
+    </div>
+
+</div>
+
+  </section>
+
+
+  <section id="functions" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Functions</span>
+    </h1>
+    <div class="functions-list">
+<section class="detail" id="bit_string_format/0">
+
+  <div class="detail-header">
+    <a href="#bit_string_format/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">bit_string_format/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L142" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_Attributes/2">
+
+  <div class="detail-header">
+    <a href="#dec_Attributes/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_Attributes/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L1529" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_AttributeUsage/2">
+
+  <div class="detail-header">
+    <a href="#dec_AttributeUsage/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_AttributeUsage/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L1135" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_Context/2">
+
+  <div class="detail-header">
+    <a href="#dec_Context/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_Context/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L1203" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_EncryptedData/2">
+
+  <div class="detail-header">
+    <a href="#dec_EncryptedData/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_EncryptedData/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L1270" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_EncryptedPrivateKeyInfo/2">
+
+  <div class="detail-header">
+    <a href="#dec_EncryptedPrivateKeyInfo/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_EncryptedPrivateKeyInfo/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L1331" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_OneAsymmetricKey/2">
+
+  <div class="detail-header">
+    <a href="#dec_OneAsymmetricKey/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_OneAsymmetricKey/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L1777" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_PBEParameter/2">
+
+  <div class="detail-header">
+    <a href="#dec_PBEParameter/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_PBEParameter/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L803" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_PBES2-params/2">
+
+  <div class="detail-header">
+    <a href="#dec_PBES2-params/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">'dec_PBES2-params'/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L669" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_PBKDF2-params/2">
+
+  <div class="detail-header">
+    <a href="#dec_PBKDF2-params/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">'dec_PBKDF2-params'/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L958" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_PBMAC1-params/2">
+
+  <div class="detail-header">
+    <a href="#dec_PBMAC1-params/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">'dec_PBMAC1-params'/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L477" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_PrivateKey/2">
+
+  <div class="detail-header">
+    <a href="#dec_PrivateKey/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_PrivateKey/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L1653" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_PrivateKeyInfo/2">
+
+  <div class="detail-header">
+    <a href="#dec_PrivateKeyInfo/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_PrivateKeyInfo/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L1944" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_PublicKey/2">
+
+  <div class="detail-header">
+    <a href="#dec_PublicKey/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_PublicKey/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L1693" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_RC2-CBC-Parameter/2">
+
+  <div class="detail-header">
+    <a href="#dec_RC2-CBC-Parameter/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">'dec_RC2-CBC-Parameter'/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L355" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_RC5-CBC-Parameters/2">
+
+  <div class="detail-header">
+    <a href="#dec_RC5-CBC-Parameters/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">'dec_RC5-CBC-Parameters'/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L265" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_Version/2">
+
+  <div class="detail-header">
+    <a href="#dec_Version/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_Version/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L1671" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="decode/2">
+
+  <div class="detail-header">
+    <a href="#decode/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">decode/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L160" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="des-EDE3-CBC/0">
+
+  <div class="detail-header">
+    <a href="#des-EDE3-CBC/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">'des-EDE3-CBC'/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2034" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="desCBC/0">
+
+  <div class="detail-header">
+    <a href="#desCBC/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">desCBC/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2037" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dialyzer-suppressions/1">
+
+  <div class="detail-header">
+    <a href="#dialyzer-suppressions/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">'dialyzer-suppressions'/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2947" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="digestAlgorithm/0">
+
+  <div class="detail-header">
+    <a href="#digestAlgorithm/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">digestAlgorithm/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2046" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_Attributes/2">
+
+  <div class="detail-header">
+    <a href="#enc_Attributes/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_Attributes/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L1403" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_AttributeUsage/2">
+
+  <div class="detail-header">
+    <a href="#enc_AttributeUsage/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_AttributeUsage/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L1122" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_Context/2">
+
+  <div class="detail-header">
+    <a href="#enc_Context/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_Context/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L1152" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_EncryptedData/2">
+
+  <div class="detail-header">
+    <a href="#enc_EncryptedData/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_EncryptedData/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L1263" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_EncryptedPrivateKeyInfo/2">
+
+  <div class="detail-header">
+    <a href="#enc_EncryptedPrivateKeyInfo/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_EncryptedPrivateKeyInfo/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L1281" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_OneAsymmetricKey/2">
+
+  <div class="detail-header">
+    <a href="#enc_OneAsymmetricKey/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_OneAsymmetricKey/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L1704" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_PBEParameter/2">
+
+  <div class="detail-header">
+    <a href="#enc_PBEParameter/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_PBEParameter/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L782" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_PBES2-params/2">
+
+  <div class="detail-header">
+    <a href="#enc_PBES2-params/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">'enc_PBES2-params'/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L590" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_PBKDF2-params/2">
+
+  <div class="detail-header">
+    <a href="#enc_PBKDF2-params/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">'enc_PBKDF2-params'/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L842" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_PBMAC1-params/2">
+
+  <div class="detail-header">
+    <a href="#enc_PBMAC1-params/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">'enc_PBMAC1-params'/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L398" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_PrivateKey/2">
+
+  <div class="detail-header">
+    <a href="#enc_PrivateKey/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_PrivateKey/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L1646" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_PrivateKeyInfo/2">
+
+  <div class="detail-header">
+    <a href="#enc_PrivateKeyInfo/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_PrivateKeyInfo/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L1880" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_PublicKey/2">
+
+  <div class="detail-header">
+    <a href="#enc_PublicKey/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_PublicKey/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L1686" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_RC2-CBC-Parameter/2">
+
+  <div class="detail-header">
+    <a href="#enc_RC2-CBC-Parameter/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">'enc_RC2-CBC-Parameter'/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L330" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_RC5-CBC-Parameters/2">
+
+  <div class="detail-header">
+    <a href="#enc_RC5-CBC-Parameters/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">'enc_RC5-CBC-Parameters'/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L230" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_Version/2">
+
+  <div class="detail-header">
+    <a href="#enc_Version/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_Version/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L1664" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="encode/2">
+
+  <div class="detail-header">
+    <a href="#encode/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">encode/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L146" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="encoding_rule/0">
+
+  <div class="detail-header">
+    <a href="#encoding_rule/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">encoding_rule/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L138" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="encryptionAlgorithm/0">
+
+  <div class="detail-header">
+    <a href="#encryptionAlgorithm/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">encryptionAlgorithm/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2043" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getdec_internal_object_set_argument_1/1">
+
+  <div class="detail-header">
+    <a href="#getdec_internal_object_set_argument_1/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">getdec_internal_object_set_argument_1/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2899" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getdec_internal_object_set_argument_2/1">
+
+  <div class="detail-header">
+    <a href="#getdec_internal_object_set_argument_2/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">getdec_internal_object_set_argument_2/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2867" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getdec_internal_object_set_argument_3/1">
+
+  <div class="detail-header">
+    <a href="#getdec_internal_object_set_argument_3/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">getdec_internal_object_set_argument_3/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2835" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getdec_internal_object_set_argument_4/1">
+
+  <div class="detail-header">
+    <a href="#getdec_internal_object_set_argument_4/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">getdec_internal_object_set_argument_4/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2803" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getdec_internal_object_set_argument_5/1">
+
+  <div class="detail-header">
+    <a href="#getdec_internal_object_set_argument_5/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">getdec_internal_object_set_argument_5/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2778" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getdec_internal_object_set_argument_6/1">
+
+  <div class="detail-header">
+    <a href="#getdec_internal_object_set_argument_6/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">getdec_internal_object_set_argument_6/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2746" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getdec_internal_object_set_argument_7/1">
+
+  <div class="detail-header">
+    <a href="#getdec_internal_object_set_argument_7/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">getdec_internal_object_set_argument_7/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2714" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getdec_internal_object_set_argument_8/1">
+
+  <div class="detail-header">
+    <a href="#getdec_internal_object_set_argument_8/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">getdec_internal_object_set_argument_8/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2689" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getdec_internal_object_set_argument_9/1">
+
+  <div class="detail-header">
+    <a href="#getdec_internal_object_set_argument_9/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">getdec_internal_object_set_argument_9/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2664" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getdec_internal_object_set_argument_10/1">
+
+  <div class="detail-header">
+    <a href="#getdec_internal_object_set_argument_10/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">getdec_internal_object_set_argument_10/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2931" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getdec_KeyEncryptionAlgorithms/1">
+
+  <div class="detail-header">
+    <a href="#getdec_KeyEncryptionAlgorithms/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">getdec_KeyEncryptionAlgorithms/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2614" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getdec_PBES1Algorithms/1">
+
+  <div class="detail-header">
+    <a href="#getdec_PBES1Algorithms/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">getdec_PBES1Algorithms/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2458" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getdec_PBES2-Encs/1">
+
+  <div class="detail-header">
+    <a href="#getdec_PBES2-Encs/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">'getdec_PBES2-Encs'/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2313" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getdec_PBES2-KDFs/1">
+
+  <div class="detail-header">
+    <a href="#getdec_PBES2-KDFs/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">'getdec_PBES2-KDFs'/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2345" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getdec_PBES2Algorithms/1">
+
+  <div class="detail-header">
+    <a href="#getdec_PBES2Algorithms/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">getdec_PBES2Algorithms/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2384" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getdec_PBKDF2-PRFs/1">
+
+  <div class="detail-header">
+    <a href="#getdec_PBKDF2-PRFs/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">'getdec_PBKDF2-PRFs'/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2532" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getdec_PBKDF2-SaltSources/1">
+
+  <div class="detail-header">
+    <a href="#getdec_PBKDF2-SaltSources/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">'getdec_PBKDF2-SaltSources'/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2564" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getdec_PBMAC1-KDFs/1">
+
+  <div class="detail-header">
+    <a href="#getdec_PBMAC1-KDFs/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">'getdec_PBMAC1-KDFs'/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2242" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getdec_PBMAC1-MACs/1">
+
+  <div class="detail-header">
+    <a href="#getdec_PBMAC1-MACs/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">'getdec_PBMAC1-MACs'/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2210" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getdec_PBMAC1Algorithms/1">
+
+  <div class="detail-header">
+    <a href="#getdec_PBMAC1Algorithms/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">getdec_PBMAC1Algorithms/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2281" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getdec_PrivateKeyAlgorithms/1">
+
+  <div class="detail-header">
+    <a href="#getdec_PrivateKeyAlgorithms/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">getdec_PrivateKeyAlgorithms/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2639" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getdec_SupportedContexts/1">
+
+  <div class="detail-header">
+    <a href="#getdec_SupportedContexts/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">getdec_SupportedContexts/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2589" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getdec_SupportingAlgorithms/1">
+
+  <div class="detail-header">
+    <a href="#getdec_SupportingAlgorithms/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">getdec_SupportingAlgorithms/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2134" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getenc_internal_object_set_argument_1/1">
+
+  <div class="detail-header">
+    <a href="#getenc_internal_object_set_argument_1/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">getenc_internal_object_set_argument_1/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2884" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getenc_internal_object_set_argument_2/1">
+
+  <div class="detail-header">
+    <a href="#getenc_internal_object_set_argument_2/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">getenc_internal_object_set_argument_2/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2859" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getenc_internal_object_set_argument_3/1">
+
+  <div class="detail-header">
+    <a href="#getenc_internal_object_set_argument_3/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">getenc_internal_object_set_argument_3/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2820" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getenc_internal_object_set_argument_4/1">
+
+  <div class="detail-header">
+    <a href="#getenc_internal_object_set_argument_4/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">getenc_internal_object_set_argument_4/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2795" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getenc_internal_object_set_argument_5/1">
+
+  <div class="detail-header">
+    <a href="#getenc_internal_object_set_argument_5/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">getenc_internal_object_set_argument_5/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2770" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getenc_internal_object_set_argument_6/1">
+
+  <div class="detail-header">
+    <a href="#getenc_internal_object_set_argument_6/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">getenc_internal_object_set_argument_6/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2731" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getenc_internal_object_set_argument_7/1">
+
+  <div class="detail-header">
+    <a href="#getenc_internal_object_set_argument_7/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">getenc_internal_object_set_argument_7/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2706" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getenc_internal_object_set_argument_8/1">
+
+  <div class="detail-header">
+    <a href="#getenc_internal_object_set_argument_8/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">getenc_internal_object_set_argument_8/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2681" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getenc_internal_object_set_argument_9/1">
+
+  <div class="detail-header">
+    <a href="#getenc_internal_object_set_argument_9/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">getenc_internal_object_set_argument_9/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2656" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getenc_internal_object_set_argument_10/1">
+
+  <div class="detail-header">
+    <a href="#getenc_internal_object_set_argument_10/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">getenc_internal_object_set_argument_10/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2923" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getenc_KeyEncryptionAlgorithms/1">
+
+  <div class="detail-header">
+    <a href="#getenc_KeyEncryptionAlgorithms/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">getenc_KeyEncryptionAlgorithms/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2606" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getenc_PBES1Algorithms/1">
+
+  <div class="detail-header">
+    <a href="#getenc_PBES1Algorithms/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">getenc_PBES1Algorithms/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2408" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getenc_PBES2-Encs/1">
+
+  <div class="detail-header">
+    <a href="#getenc_PBES2-Encs/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">'getenc_PBES2-Encs'/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2305" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getenc_PBES2-KDFs/1">
+
+  <div class="detail-header">
+    <a href="#getenc_PBES2-KDFs/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">'getenc_PBES2-KDFs'/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2330" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getenc_PBES2Algorithms/1">
+
+  <div class="detail-header">
+    <a href="#getenc_PBES2Algorithms/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">getenc_PBES2Algorithms/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2369" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getenc_PBKDF2-PRFs/1">
+
+  <div class="detail-header">
+    <a href="#getenc_PBKDF2-PRFs/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">'getenc_PBKDF2-PRFs'/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2517" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getenc_PBKDF2-SaltSources/1">
+
+  <div class="detail-header">
+    <a href="#getenc_PBKDF2-SaltSources/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">'getenc_PBKDF2-SaltSources'/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2556" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getenc_PBMAC1-KDFs/1">
+
+  <div class="detail-header">
+    <a href="#getenc_PBMAC1-KDFs/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">'getenc_PBMAC1-KDFs'/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2227" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getenc_PBMAC1-MACs/1">
+
+  <div class="detail-header">
+    <a href="#getenc_PBMAC1-MACs/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">'getenc_PBMAC1-MACs'/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2202" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getenc_PBMAC1Algorithms/1">
+
+  <div class="detail-header">
+    <a href="#getenc_PBMAC1Algorithms/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">getenc_PBMAC1Algorithms/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2266" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getenc_PrivateKeyAlgorithms/1">
+
+  <div class="detail-header">
+    <a href="#getenc_PrivateKeyAlgorithms/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">getenc_PrivateKeyAlgorithms/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2631" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getenc_SupportedContexts/1">
+
+  <div class="detail-header">
+    <a href="#getenc_SupportedContexts/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">getenc_SupportedContexts/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2581" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="getenc_SupportingAlgorithms/1">
+
+  <div class="detail-header">
+    <a href="#getenc_SupportingAlgorithms/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">getenc_SupportingAlgorithms/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2091" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="id-hmacWithSHA1/0">
+
+  <div class="detail-header">
+    <a href="#id-hmacWithSHA1/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">'id-hmacWithSHA1'/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2040" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="id-PBES2/0">
+
+  <div class="detail-header">
+    <a href="#id-PBES2/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">'id-PBES2'/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2052" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="id-PBKDF2/0">
+
+  <div class="detail-header">
+    <a href="#id-PBKDF2/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">'id-PBKDF2'/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2073" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="id-PBMAC1/0">
+
+  <div class="detail-header">
+    <a href="#id-PBMAC1/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">'id-PBMAC1'/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2049" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="info/0">
+
+  <div class="detail-header">
+    <a href="#info/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">info/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L210" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="legacy_erlang_types/0">
+
+  <div class="detail-header">
+    <a href="#legacy_erlang_types/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">legacy_erlang_types/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L144" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="maps/0">
+
+  <div class="detail-header">
+    <a href="#maps/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">maps/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L140" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="pbeWithMD2AndDES-CBC/0">
+
+  <div class="detail-header">
+    <a href="#pbeWithMD2AndDES-CBC/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">'pbeWithMD2AndDES-CBC'/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2070" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="pbeWithMD2AndRC2-CBC/0">
+
+  <div class="detail-header">
+    <a href="#pbeWithMD2AndRC2-CBC/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">'pbeWithMD2AndRC2-CBC'/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2067" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="pbeWithMD5AndDES-CBC/0">
+
+  <div class="detail-header">
+    <a href="#pbeWithMD5AndDES-CBC/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">'pbeWithMD5AndDES-CBC'/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2064" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="pbeWithMD5AndRC2-CBC/0">
+
+  <div class="detail-header">
+    <a href="#pbeWithMD5AndRC2-CBC/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">'pbeWithMD5AndRC2-CBC'/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2061" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="pbeWithSHA1AndDES-CBC/0">
+
+  <div class="detail-header">
+    <a href="#pbeWithSHA1AndDES-CBC/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">'pbeWithSHA1AndDES-CBC'/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2058" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="pbeWithSHA1AndRC2-CBC/0">
+
+  <div class="detail-header">
+    <a href="#pbeWithSHA1AndRC2-CBC/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">'pbeWithSHA1AndRC2-CBC'/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2055" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="pkcs-5/0">
+
+  <div class="detail-header">
+    <a href="#pkcs-5/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">'pkcs-5'/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2076" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="pkcs/0">
+
+  <div class="detail-header">
+    <a href="#pkcs/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">pkcs/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2079" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="rc2CBC/0">
+
+  <div class="detail-header">
+    <a href="#rc2CBC/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">rc2CBC/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2031" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="rc5-CBC-PAD/0">
+
+  <div class="detail-header">
+    <a href="#rc5-CBC-PAD/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">'rc5-CBC-PAD'/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2028" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="rsadsi/0">
+
+  <div class="detail-header">
+    <a href="#rsadsi/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">rsadsi/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/public_key/doc//Users/wojtek/src/otp/lib/public_key/src/../src/PKCS-FRAME.erl#L2082" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+
+    </div>
+  </section>
+
+      <footer class="footer">
+        <p>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Search HexDocs packages">
+              Search HexDocs
+            </button>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.30.9) for the
+
+            <a href="https://erlang.org" title="Erlang" target="_blank" translate="no">Erlang programming language</a>
+
+        </p>
+      </footer>
+    </div>
+  </div>
+</main>
+</div>
+
+
+  </body>
+</html>

@@ -1,0 +1,3460 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.30.9">
+    <meta name="project" content="eldap v1.2.11">
+
+
+    <title>ELDAPv3 — eldap v1.2.11</title>
+    <link rel="stylesheet" href="dist/html-erlang-QW5RMTQD.css" />
+
+
+    <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
+    <script src="dist/handlebars.templates-43PMFBC7.js"></script>
+    <script src="dist/sidebar_items-3F1169D5.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/html-LRUIU55G.js"></script>
+
+<style>.dark img { background-color: white; }</style>
+  </head>
+  <body data-type="modules" class="page-module">
+    <script>
+
+      try {
+        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+
+        if (settings.theme === 'dark' ||
+           ((settings.theme === 'system' || settings.theme == null) &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches)
+           ) {
+          document.body.classList.add('dark')
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
+
+        <a href="api-reference.html" class="sidebar-projectImage">
+          <img src="assets/logo.png" alt="eldap" />
+        </a>
+
+      <div>
+        <a href="api-reference.html" class="sidebar-projectName" translate="no">
+eldap
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v1.2.11
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-listNav" class="sidebar-listNav" role="tablist">
+      <li>
+        <button id="extras-list-tab-button" role="tab" data-type="extras" aria-controls="extras-tab-panel" aria-selected="true" tabindex="0">
+Pages
+        </button>
+      </li>
+
+        <li>
+          <button id="modules-list-tab-button" role="tab" data-type="modules" aria-controls="modules-tab-panel" aria-selected="false" tabindex="-1">
+            Modules
+          </button>
+        </li>
+
+
+    </ul>
+  </div>
+
+  <div id="extras-tab-panel" class="sidebar-tabpanel" role="tabpanel" aria-labelledby="extras-list-tab-button">
+    <ul id="extras-full-list" class="full-list"></ul>
+  </div>
+
+    <div id="modules-tab-panel" class="sidebar-tabpanel" role="tabpanel" aria-labelledby="modules-list-tab-button" hidden>
+      <ul id="modules-full-list" class="full-list"></ul>
+    </div>
+
+
+</nav>
+
+<main class="content">
+  <output role="status" id="toast"></output>
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+      <div class="top-search">
+        <div class="search-settings">
+          <form class="search-bar" action="search.html">
+            <label class="search-label">
+              <span class="sr-only">Search documentation of eldap</span>
+              <input name="q" type="text" class="search-input" placeholder="Search Documentation (press /)" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+            </label>
+            <button type="submit" class="search-button" aria-label="Submit Search">
+              <i class="ri-search-2-line ri-lg" aria-hidden="true" title="Submit search"></i>
+            </button>
+            <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+              <i class="ri-close-line ri-lg" title="Cancel search"></i>
+            </button>
+          </form>
+          <button class="icon-settings display-settings">
+            <i class="ri-settings-3-line"></i>
+            <span class="sr-only">Settings</span>
+          </button>
+        </div>
+      </div>
+      <div class="autocomplete">
+        <div class="autocomplete-results">
+        </div>
+      </div>
+
+<h1>
+
+    <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/ELDAPv3.erl#L4" title="View Source" class="icon-action" rel="help">
+      <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+      <span class="sr-only">View Source</span>
+    </a>
+
+  <span translate="no">ELDAPv3</span> 
+  <small class="app-vsn" translate="no">(eldap v1.2.11)</small>
+
+</h1>
+
+
+
+  <section id="summary" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Summary</span>
+    </h1>
+<div class="summary-functions summary">
+  <h2>
+    <a href="#functions">Functions</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#bit_string_format/0" translate="no">bit_string_format/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_AbandonRequest/2" translate="no">dec_AbandonRequest/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_AddRequest/2" translate="no">dec_AddRequest/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_AddResponse/2" translate="no">dec_AddResponse/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_AssertionValue/2" translate="no">dec_AssertionValue/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_Attribute/2" translate="no">dec_Attribute/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_AttributeDescription/2" translate="no">dec_AttributeDescription/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_AttributeList/2" translate="no">dec_AttributeList/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_AttributeSelection/2" translate="no">dec_AttributeSelection/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_AttributeValue/2" translate="no">dec_AttributeValue/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_AttributeValueAssertion/2" translate="no">dec_AttributeValueAssertion/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_AuthenticationChoice/2" translate="no">dec_AuthenticationChoice/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_BindRequest/2" translate="no">dec_BindRequest/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_BindResponse/2" translate="no">dec_BindResponse/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_CompareRequest/2" translate="no">dec_CompareRequest/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_CompareResponse/2" translate="no">dec_CompareResponse/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_Control/2" translate="no">dec_Control/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_Controls/2" translate="no">dec_Controls/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_DelRequest/2" translate="no">dec_DelRequest/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_DelResponse/2" translate="no">dec_DelResponse/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_ExtendedRequest/2" translate="no">dec_ExtendedRequest/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_ExtendedResponse/2" translate="no">dec_ExtendedResponse/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_Filter/2" translate="no">dec_Filter/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_IntermediateResponse/2" translate="no">dec_IntermediateResponse/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_LDAPDN/2" translate="no">dec_LDAPDN/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_LDAPMessage/2" translate="no">dec_LDAPMessage/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_LDAPOID/2" translate="no">dec_LDAPOID/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_LDAPResult/2" translate="no">dec_LDAPResult/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_LDAPString/2" translate="no">dec_LDAPString/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_MatchingRuleAssertion/2" translate="no">dec_MatchingRuleAssertion/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_MatchingRuleId/2" translate="no">dec_MatchingRuleId/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_MessageID/2" translate="no">dec_MessageID/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_ModifyDNRequest/2" translate="no">dec_ModifyDNRequest/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_ModifyDNResponse/2" translate="no">dec_ModifyDNResponse/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_ModifyRequest/2" translate="no">dec_ModifyRequest/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_ModifyResponse/2" translate="no">dec_ModifyResponse/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_PartialAttribute/2" translate="no">dec_PartialAttribute/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_PartialAttributeList/2" translate="no">dec_PartialAttributeList/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_PasswdModifyRequestValue/2" translate="no">dec_PasswdModifyRequestValue/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_PasswdModifyResponseValue/2" translate="no">dec_PasswdModifyResponseValue/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_RealSearchControlValue/2" translate="no">dec_RealSearchControlValue/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_Referral/2" translate="no">dec_Referral/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_RelativeLDAPDN/2" translate="no">dec_RelativeLDAPDN/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_SaslCredentials/2" translate="no">dec_SaslCredentials/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_SearchRequest/2" translate="no">dec_SearchRequest/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_SearchResultDone/2" translate="no">dec_SearchResultDone/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_SearchResultEntry/2" translate="no">dec_SearchResultEntry/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_SearchResultReference/2" translate="no">dec_SearchResultReference/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_SubstringFilter/2" translate="no">dec_SubstringFilter/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_UnbindRequest/2" translate="no">dec_UnbindRequest/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dec_URI/2" translate="no">dec_URI/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#decode/2" translate="no">decode/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#dialyzer-suppressions/1" translate="no">'dialyzer-suppressions'/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_AbandonRequest/2" translate="no">enc_AbandonRequest/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_AddRequest/2" translate="no">enc_AddRequest/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_AddResponse/2" translate="no">enc_AddResponse/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_AssertionValue/2" translate="no">enc_AssertionValue/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_Attribute/2" translate="no">enc_Attribute/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_AttributeDescription/2" translate="no">enc_AttributeDescription/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_AttributeList/2" translate="no">enc_AttributeList/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_AttributeSelection/2" translate="no">enc_AttributeSelection/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_AttributeValue/2" translate="no">enc_AttributeValue/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_AttributeValueAssertion/2" translate="no">enc_AttributeValueAssertion/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_AuthenticationChoice/2" translate="no">enc_AuthenticationChoice/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_BindRequest/2" translate="no">enc_BindRequest/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_BindResponse/2" translate="no">enc_BindResponse/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_CompareRequest/2" translate="no">enc_CompareRequest/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_CompareResponse/2" translate="no">enc_CompareResponse/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_Control/2" translate="no">enc_Control/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_Controls/2" translate="no">enc_Controls/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_DelRequest/2" translate="no">enc_DelRequest/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_DelResponse/2" translate="no">enc_DelResponse/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_ExtendedRequest/2" translate="no">enc_ExtendedRequest/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_ExtendedResponse/2" translate="no">enc_ExtendedResponse/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_Filter/2" translate="no">enc_Filter/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_IntermediateResponse/2" translate="no">enc_IntermediateResponse/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_LDAPDN/2" translate="no">enc_LDAPDN/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_LDAPMessage/2" translate="no">enc_LDAPMessage/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_LDAPOID/2" translate="no">enc_LDAPOID/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_LDAPResult/2" translate="no">enc_LDAPResult/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_LDAPString/2" translate="no">enc_LDAPString/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_MatchingRuleAssertion/2" translate="no">enc_MatchingRuleAssertion/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_MatchingRuleId/2" translate="no">enc_MatchingRuleId/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_MessageID/2" translate="no">enc_MessageID/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_ModifyDNRequest/2" translate="no">enc_ModifyDNRequest/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_ModifyDNResponse/2" translate="no">enc_ModifyDNResponse/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_ModifyRequest/2" translate="no">enc_ModifyRequest/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_ModifyResponse/2" translate="no">enc_ModifyResponse/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_PartialAttribute/2" translate="no">enc_PartialAttribute/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_PartialAttributeList/2" translate="no">enc_PartialAttributeList/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_PasswdModifyRequestValue/2" translate="no">enc_PasswdModifyRequestValue/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_PasswdModifyResponseValue/2" translate="no">enc_PasswdModifyResponseValue/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_RealSearchControlValue/2" translate="no">enc_RealSearchControlValue/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_Referral/2" translate="no">enc_Referral/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_RelativeLDAPDN/2" translate="no">enc_RelativeLDAPDN/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_SaslCredentials/2" translate="no">enc_SaslCredentials/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_SearchRequest/2" translate="no">enc_SearchRequest/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_SearchResultDone/2" translate="no">enc_SearchResultDone/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_SearchResultEntry/2" translate="no">enc_SearchResultEntry/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_SearchResultReference/2" translate="no">enc_SearchResultReference/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_SubstringFilter/2" translate="no">enc_SubstringFilter/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_UnbindRequest/2" translate="no">enc_UnbindRequest/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#enc_URI/2" translate="no">enc_URI/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#encode/2" translate="no">encode/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#encoding_rule/0" translate="no">encoding_rule/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#info/0" translate="no">info/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#legacy_erlang_types/0" translate="no">legacy_erlang_types/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#maps/0" translate="no">maps/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#maxInt/0" translate="no">maxInt/0</a>
+
+      </div>
+
+    </div>
+
+</div>
+
+  </section>
+
+
+  <section id="functions" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Functions</span>
+    </h1>
+    <div class="functions-list">
+<section class="detail" id="bit_string_format/0">
+
+  <div class="detail-header">
+    <a href="#bit_string_format/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">bit_string_format/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L142" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_AbandonRequest/2">
+
+  <div class="detail-header">
+    <a href="#dec_AbandonRequest/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_AbandonRequest/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L2826" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_AddRequest/2">
+
+  <div class="detail-header">
+    <a href="#dec_AddRequest/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_AddRequest/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L2520" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_AddResponse/2">
+
+  <div class="detail-header">
+    <a href="#dec_AddResponse/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_AddResponse/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L2591" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_AssertionValue/2">
+
+  <div class="detail-header">
+    <a href="#dec_AssertionValue/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_AssertionValue/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L767" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_Attribute/2">
+
+  <div class="detail-header">
+    <a href="#dec_Attribute/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_Attribute/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L869" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_AttributeDescription/2">
+
+  <div class="detail-header">
+    <a href="#dec_AttributeDescription/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_AttributeDescription/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L669" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_AttributeList/2">
+
+  <div class="detail-header">
+    <a href="#dec_AttributeList/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_AttributeList/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L2568" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_AttributeSelection/2">
+
+  <div class="detail-header">
+    <a href="#dec_AttributeSelection/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_AttributeSelection/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L1803" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_AttributeValue/2">
+
+  <div class="detail-header">
+    <a href="#dec_AttributeValue/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_AttributeValue/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L690" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_AttributeValueAssertion/2">
+
+  <div class="detail-header">
+    <a href="#dec_AttributeValueAssertion/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_AttributeValueAssertion/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L725" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_AuthenticationChoice/2">
+
+  <div class="detail-header">
+    <a href="#dec_AuthenticationChoice/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_AuthenticationChoice/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L1332" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_BindRequest/2">
+
+  <div class="detail-header">
+    <a href="#dec_BindRequest/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_BindRequest/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L1269" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_BindResponse/2">
+
+  <div class="detail-header">
+    <a href="#dec_BindResponse/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_BindResponse/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L1509" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_CompareRequest/2">
+
+  <div class="detail-header">
+    <a href="#dec_CompareRequest/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_CompareRequest/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L2769" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_CompareResponse/2">
+
+  <div class="detail-header">
+    <a href="#dec_CompareResponse/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_CompareResponse/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L2808" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_Control/2">
+
+  <div class="detail-header">
+    <a href="#dec_Control/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_Control/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L1194" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_Controls/2">
+
+  <div class="detail-header">
+    <a href="#dec_Controls/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_Controls/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L1141" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_DelRequest/2">
+
+  <div class="detail-header">
+    <a href="#dec_DelRequest/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_DelRequest/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L2609" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_DelResponse/2">
+
+  <div class="detail-header">
+    <a href="#dec_DelResponse/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_DelResponse/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L2630" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_ExtendedRequest/2">
+
+  <div class="detail-header">
+    <a href="#dec_ExtendedRequest/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_ExtendedRequest/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L2869" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_ExtendedResponse/2">
+
+  <div class="detail-header">
+    <a href="#dec_ExtendedResponse/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_ExtendedResponse/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L3002" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_Filter/2">
+
+  <div class="detail-header">
+    <a href="#dec_Filter/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_Filter/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L1890" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_IntermediateResponse/2">
+
+  <div class="detail-header">
+    <a href="#dec_IntermediateResponse/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_IntermediateResponse/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L3149" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_LDAPDN/2">
+
+  <div class="detail-header">
+    <a href="#dec_LDAPDN/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_LDAPDN/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L627" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_LDAPMessage/2">
+
+  <div class="detail-header">
+    <a href="#dec_LDAPMessage/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_LDAPMessage/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L385" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_LDAPOID/2">
+
+  <div class="detail-header">
+    <a href="#dec_LDAPOID/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_LDAPOID/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L606" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_LDAPResult/2">
+
+  <div class="detail-header">
+    <a href="#dec_LDAPResult/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_LDAPResult/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L977" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_LDAPString/2">
+
+  <div class="detail-header">
+    <a href="#dec_LDAPString/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_LDAPString/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L585" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_MatchingRuleAssertion/2">
+
+  <div class="detail-header">
+    <a href="#dec_MatchingRuleAssertion/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_MatchingRuleAssertion/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L2150" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_MatchingRuleId/2">
+
+  <div class="detail-header">
+    <a href="#dec_MatchingRuleId/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_MatchingRuleId/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L887" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_MessageID/2">
+
+  <div class="detail-header">
+    <a href="#dec_MessageID/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_MessageID/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L560" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_ModifyDNRequest/2">
+
+  <div class="detail-header">
+    <a href="#dec_ModifyDNRequest/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_ModifyDNRequest/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L2676" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_ModifyDNResponse/2">
+
+  <div class="detail-header">
+    <a href="#dec_ModifyDNResponse/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_ModifyDNResponse/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L2737" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_ModifyRequest/2">
+
+  <div class="detail-header">
+    <a href="#dec_ModifyRequest/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_ModifyRequest/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L2415" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_ModifyResponse/2">
+
+  <div class="detail-header">
+    <a href="#dec_ModifyResponse/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_ModifyResponse/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L2488" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_PartialAttribute/2">
+
+  <div class="detail-header">
+    <a href="#dec_PartialAttribute/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_PartialAttribute/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L819" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_PartialAttributeList/2">
+
+  <div class="detail-header">
+    <a href="#dec_PartialAttributeList/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_PartialAttributeList/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L2281" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_PasswdModifyRequestValue/2">
+
+  <div class="detail-header">
+    <a href="#dec_PasswdModifyRequestValue/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_PasswdModifyRequestValue/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L3230" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_PasswdModifyResponseValue/2">
+
+  <div class="detail-header">
+    <a href="#dec_PasswdModifyResponseValue/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_PasswdModifyResponseValue/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L3306" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_RealSearchControlValue/2">
+
+  <div class="detail-header">
+    <a href="#dec_RealSearchControlValue/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_RealSearchControlValue/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L3357" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_Referral/2">
+
+  <div class="detail-header">
+    <a href="#dec_Referral/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_Referral/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L1085" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_RelativeLDAPDN/2">
+
+  <div class="detail-header">
+    <a href="#dec_RelativeLDAPDN/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_RelativeLDAPDN/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L648" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_SaslCredentials/2">
+
+  <div class="detail-header">
+    <a href="#dec_SaslCredentials/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_SaslCredentials/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L1385" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_SearchRequest/2">
+
+  <div class="detail-header">
+    <a href="#dec_SearchRequest/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_SearchRequest/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L1694" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_SearchResultDone/2">
+
+  <div class="detail-header">
+    <a href="#dec_SearchResultDone/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_SearchResultDone/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L2339" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_SearchResultEntry/2">
+
+  <div class="detail-header">
+    <a href="#dec_SearchResultEntry/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_SearchResultEntry/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L2233" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_SearchResultReference/2">
+
+  <div class="detail-header">
+    <a href="#dec_SearchResultReference/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_SearchResultReference/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L2313" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_SubstringFilter/2">
+
+  <div class="detail-header">
+    <a href="#dec_SubstringFilter/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_SubstringFilter/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L2033" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_UnbindRequest/2">
+
+  <div class="detail-header">
+    <a href="#dec_UnbindRequest/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_UnbindRequest/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L1621" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dec_URI/2">
+
+  <div class="detail-header">
+    <a href="#dec_URI/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">dec_URI/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L1111" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="decode/2">
+
+  <div class="detail-header">
+    <a href="#decode/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">decode/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L160" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="dialyzer-suppressions/1">
+
+  <div class="detail-header">
+    <a href="#dialyzer-suppressions/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">'dialyzer-suppressions'/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L3396" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_AbandonRequest/2">
+
+  <div class="detail-header">
+    <a href="#enc_AbandonRequest/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_AbandonRequest/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L2819" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_AddRequest/2">
+
+  <div class="detail-header">
+    <a href="#enc_AddRequest/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_AddRequest/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L2499" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_AddResponse/2">
+
+  <div class="detail-header">
+    <a href="#enc_AddResponse/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_AddResponse/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L2584" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_AssertionValue/2">
+
+  <div class="detail-header">
+    <a href="#enc_AssertionValue/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_AssertionValue/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L760" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_Attribute/2">
+
+  <div class="detail-header">
+    <a href="#enc_Attribute/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_Attribute/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L862" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_AttributeDescription/2">
+
+  <div class="detail-header">
+    <a href="#enc_AttributeDescription/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_AttributeDescription/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L662" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_AttributeList/2">
+
+  <div class="detail-header">
+    <a href="#enc_AttributeList/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_AttributeList/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L2552" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_AttributeSelection/2">
+
+  <div class="detail-header">
+    <a href="#enc_AttributeSelection/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_AttributeSelection/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L1787" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_AttributeValue/2">
+
+  <div class="detail-header">
+    <a href="#enc_AttributeValue/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_AttributeValue/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L683" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_AttributeValueAssertion/2">
+
+  <div class="detail-header">
+    <a href="#enc_AttributeValueAssertion/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_AttributeValueAssertion/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L704" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_AuthenticationChoice/2">
+
+  <div class="detail-header">
+    <a href="#enc_AuthenticationChoice/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_AuthenticationChoice/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L1314" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_BindRequest/2">
+
+  <div class="detail-header">
+    <a href="#enc_BindRequest/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_BindRequest/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L1243" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_BindResponse/2">
+
+  <div class="detail-header">
+    <a href="#enc_BindResponse/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_BindResponse/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L1424" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_CompareRequest/2">
+
+  <div class="detail-header">
+    <a href="#enc_CompareRequest/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_CompareRequest/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L2748" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_CompareResponse/2">
+
+  <div class="detail-header">
+    <a href="#enc_CompareResponse/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_CompareResponse/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L2801" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_Control/2">
+
+  <div class="detail-header">
+    <a href="#enc_Control/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_Control/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L1157" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_Controls/2">
+
+  <div class="detail-header">
+    <a href="#enc_Controls/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_Controls/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L1125" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_DelRequest/2">
+
+  <div class="detail-header">
+    <a href="#enc_DelRequest/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_DelRequest/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L2602" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_DelResponse/2">
+
+  <div class="detail-header">
+    <a href="#enc_DelResponse/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_DelResponse/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L2623" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_ExtendedRequest/2">
+
+  <div class="detail-header">
+    <a href="#enc_ExtendedRequest/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_ExtendedRequest/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L2844" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_ExtendedResponse/2">
+
+  <div class="detail-header">
+    <a href="#enc_ExtendedResponse/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_ExtendedResponse/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L2908" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_Filter/2">
+
+  <div class="detail-header">
+    <a href="#enc_Filter/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_Filter/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L1822" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_IntermediateResponse/2">
+
+  <div class="detail-header">
+    <a href="#enc_IntermediateResponse/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_IntermediateResponse/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L3120" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_LDAPDN/2">
+
+  <div class="detail-header">
+    <a href="#enc_LDAPDN/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_LDAPDN/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L620" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_LDAPMessage/2">
+
+  <div class="detail-header">
+    <a href="#enc_LDAPMessage/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_LDAPMessage/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L298" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_LDAPOID/2">
+
+  <div class="detail-header">
+    <a href="#enc_LDAPOID/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_LDAPOID/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L599" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_LDAPResult/2">
+
+  <div class="detail-header">
+    <a href="#enc_LDAPResult/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_LDAPResult/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L901" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_LDAPString/2">
+
+  <div class="detail-header">
+    <a href="#enc_LDAPString/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_LDAPString/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L578" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_MatchingRuleAssertion/2">
+
+  <div class="detail-header">
+    <a href="#enc_MatchingRuleAssertion/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_MatchingRuleAssertion/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L2104" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_MatchingRuleId/2">
+
+  <div class="detail-header">
+    <a href="#enc_MatchingRuleId/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_MatchingRuleId/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L880" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_MessageID/2">
+
+  <div class="detail-header">
+    <a href="#enc_MessageID/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_MessageID/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L553" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_ModifyDNRequest/2">
+
+  <div class="detail-header">
+    <a href="#enc_ModifyDNRequest/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_ModifyDNRequest/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L2641" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_ModifyDNResponse/2">
+
+  <div class="detail-header">
+    <a href="#enc_ModifyDNResponse/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_ModifyDNResponse/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L2730" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_ModifyRequest/2">
+
+  <div class="detail-header">
+    <a href="#enc_ModifyRequest/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_ModifyRequest/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L2350" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_ModifyResponse/2">
+
+  <div class="detail-header">
+    <a href="#enc_ModifyResponse/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_ModifyResponse/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L2481" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_PartialAttribute/2">
+
+  <div class="detail-header">
+    <a href="#enc_PartialAttribute/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_PartialAttribute/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L781" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_PartialAttributeList/2">
+
+  <div class="detail-header">
+    <a href="#enc_PartialAttributeList/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_PartialAttributeList/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L2265" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_PasswdModifyRequestValue/2">
+
+  <div class="detail-header">
+    <a href="#enc_PasswdModifyRequestValue/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_PasswdModifyRequestValue/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L3192" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_PasswdModifyResponseValue/2">
+
+  <div class="detail-header">
+    <a href="#enc_PasswdModifyResponseValue/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_PasswdModifyResponseValue/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L3286" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_RealSearchControlValue/2">
+
+  <div class="detail-header">
+    <a href="#enc_RealSearchControlValue/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_RealSearchControlValue/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L3336" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_Referral/2">
+
+  <div class="detail-header">
+    <a href="#enc_Referral/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_Referral/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L1069" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_RelativeLDAPDN/2">
+
+  <div class="detail-header">
+    <a href="#enc_RelativeLDAPDN/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_RelativeLDAPDN/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L641" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_SaslCredentials/2">
+
+  <div class="detail-header">
+    <a href="#enc_SaslCredentials/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_SaslCredentials/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L1360" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_SearchRequest/2">
+
+  <div class="detail-header">
+    <a href="#enc_SearchRequest/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_SearchRequest/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L1632" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_SearchResultDone/2">
+
+  <div class="detail-header">
+    <a href="#enc_SearchResultDone/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_SearchResultDone/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L2332" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_SearchResultEntry/2">
+
+  <div class="detail-header">
+    <a href="#enc_SearchResultEntry/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_SearchResultEntry/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L2212" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_SearchResultReference/2">
+
+  <div class="detail-header">
+    <a href="#enc_SearchResultReference/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_SearchResultReference/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L2297" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_SubstringFilter/2">
+
+  <div class="detail-header">
+    <a href="#enc_SubstringFilter/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_SubstringFilter/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L1974" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_UnbindRequest/2">
+
+  <div class="detail-header">
+    <a href="#enc_UnbindRequest/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_UnbindRequest/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L1614" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="enc_URI/2">
+
+  <div class="detail-header">
+    <a href="#enc_URI/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">enc_URI/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L1104" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="encode/2">
+
+  <div class="detail-header">
+    <a href="#encode/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">encode/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L146" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="encoding_rule/0">
+
+  <div class="detail-header">
+    <a href="#encoding_rule/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">encoding_rule/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L138" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="info/0">
+
+  <div class="detail-header">
+    <a href="#info/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">info/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L278" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="legacy_erlang_types/0">
+
+  <div class="detail-header">
+    <a href="#legacy_erlang_types/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">legacy_erlang_types/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L144" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="maps/0">
+
+  <div class="detail-header">
+    <a href="#maps/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">maps/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L140" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="maxInt/0">
+
+  <div class="detail-header">
+    <a href="#maxInt/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">maxInt/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/eldap/doc//Users/wojtek/src/otp/lib/eldap/ebin/Users/wojtek/src/otp/lib/eldap/src/../ebin/ELDAPv3.erl#L3388" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+
+    </div>
+  </section>
+
+      <footer class="footer">
+        <p>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Search HexDocs packages">
+              Search HexDocs
+            </button>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.30.9) for the
+
+            <a href="https://erlang.org" title="Erlang" target="_blank" translate="no">Erlang programming language</a>
+
+        </p>
+      </footer>
+    </div>
+  </div>
+</main>
+</div>
+
+
+  </body>
+</html>

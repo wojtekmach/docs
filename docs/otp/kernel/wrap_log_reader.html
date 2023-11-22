@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.30.9">
+    <meta name="project" content="kernel v9.1">
+
+
+    <title>wrap_log_reader — kernel v9.1</title>
+    <link rel="stylesheet" href="dist/html-erlang-QW5RMTQD.css" />
+
+
+    <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
+    <script src="dist/handlebars.templates-43PMFBC7.js"></script>
+    <script src="dist/sidebar_items-C06BA59F.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/html-LRUIU55G.js"></script>
+
+<style>.dark img { background-color: white; }</style>
+  </head>
+  <body data-type="modules" class="page-module">
+    <script>
+
+      try {
+        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+
+        if (settings.theme === 'dark' ||
+           ((settings.theme === 'system' || settings.theme == null) &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches)
+           ) {
+          document.body.classList.add('dark')
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
+
+        <a href="api-reference.html" class="sidebar-projectImage">
+          <img src="assets/logo.png" alt="kernel" />
+        </a>
+
+      <div>
+        <a href="api-reference.html" class="sidebar-projectName" translate="no">
+kernel
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v9.1
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-listNav" class="sidebar-listNav" role="tablist">
+      <li>
+        <button id="extras-list-tab-button" role="tab" data-type="extras" aria-controls="extras-tab-panel" aria-selected="true" tabindex="0">
+Pages
+        </button>
+      </li>
+
+        <li>
+          <button id="modules-list-tab-button" role="tab" data-type="modules" aria-controls="modules-tab-panel" aria-selected="false" tabindex="-1">
+            Modules
+          </button>
+        </li>
+
+
+    </ul>
+  </div>
+
+  <div id="extras-tab-panel" class="sidebar-tabpanel" role="tabpanel" aria-labelledby="extras-list-tab-button">
+    <ul id="extras-full-list" class="full-list"></ul>
+  </div>
+
+    <div id="modules-tab-panel" class="sidebar-tabpanel" role="tabpanel" aria-labelledby="modules-list-tab-button" hidden>
+      <ul id="modules-full-list" class="full-list"></ul>
+    </div>
+
+
+</nav>
+
+<main class="content">
+  <output role="status" id="toast"></output>
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+      <div class="top-search">
+        <div class="search-settings">
+          <form class="search-bar" action="search.html">
+            <label class="search-label">
+              <span class="sr-only">Search documentation of kernel</span>
+              <input name="q" type="text" class="search-input" placeholder="Search Documentation (press /)" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+            </label>
+            <button type="submit" class="search-button" aria-label="Submit Search">
+              <i class="ri-search-2-line ri-lg" aria-hidden="true" title="Submit search"></i>
+            </button>
+            <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+              <i class="ri-close-line ri-lg" title="Cancel search"></i>
+            </button>
+          </form>
+          <button class="icon-settings display-settings">
+            <i class="ri-settings-3-line"></i>
+            <span class="sr-only">Settings</span>
+          </button>
+        </div>
+      </div>
+      <div class="autocomplete">
+        <div class="autocomplete-results">
+        </div>
+      </div>
+
+<h1>
+
+    <a href="https://github.com/erlang/otp/blob/master/lib/kernel/doc//Users/wojtek/src/otp/lib/kernel/src/wrap_log_reader.erl#L23" title="View Source" class="icon-action" rel="help">
+      <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+      <span class="sr-only">View Source</span>
+    </a>
+
+  <span translate="no">wrap_log_reader</span> 
+  <small class="app-vsn" translate="no">(kernel v9.1)</small>
+
+</h1>
+
+
+  <section id="moduledoc">
+<p>A service to read internally formatted wrap disk logs.</p><p>This module makes it possible to read internally formatted wrap disk logs, see
+<a href="disk_log.html"><code class="inline">disk_log</code></a>. <code class="inline">wrap_log_reader</code> does not interfere with <code class="inline">disk_log</code> activities;
+there is however a bug in this version of the <code class="inline">wrap_log_reader</code>, see section
+<a href="wrap_log_reader.html#bugs">Known Limitations</a>.</p><p>A wrap disk log file consists of many files, called index files. A log file can
+be opened and closed. Also, a single index file can be opened separately. If a
+non-existent or non-internally formatted file is opened, an error message is
+returned. If the file is corrupt, no attempt is made to repair it, but an error
+message is returned.</p><p>If a log is configured to be distributed, it is possible that all items are not
+logged on all nodes. <code class="inline">wrap_log_reader</code> only reads the log on the called node; it
+is up to the user to be sure that all items are read.</p><h2 id="module-known-limitations" class="section-heading">
+  <a href="#module-known-limitations" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">Known Limitations</span>
+</h2>
+<p><a href="" id="bugs"></a> This version of <code class="inline">wrap_log_reader</code> does not detect if <code class="inline">disk_log</code>
+wraps to a new index file between a call to <a href="#open/1"><code class="inline">wrap_log_reader:open/1</code></a> and the
+first call to <a href="#chunk/1"><code class="inline">wrap_log_reader:chunk/1</code></a>. If this occurs, the call to <a href="#chunk/1"><code class="inline">chunk/1</code></a>
+reads the last logged items in the log file, as the opened index file was
+truncated by <code class="inline">disk_log</code>.</p><h2 id="module-see-also" class="section-heading">
+  <a href="#module-see-also" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">See Also</span>
+</h2>
+<p><a href="disk_log.html"><code class="inline">disk_log</code></a></p>
+  </section>
+
+
+  <section id="summary" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Summary</span>
+    </h1>
+<div class="summary-types summary">
+  <h2>
+    <a href="#types">Types</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:chunk_ret/0" translate="no">chunk_ret/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:continuation/0" translate="no">continuation()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Continuation returned by <code class="inline">open/1,2</code> or <code class="inline">chunk/1,2</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:dlog_cont/0" translate="no">dlog_cont/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:dlog_format/0" translate="no">dlog_format()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:dlog_format_type/0" translate="no">dlog_format_type/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:dlog_head/0" translate="no">dlog_head/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:dlog_head_opt/0" translate="no">dlog_head_opt()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:dlog_mode/0" translate="no">dlog_mode()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:dlog_name/0" translate="no">dlog_name/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:dlog_optattr/0" translate="no">dlog_optattr/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:dlog_option/0" translate="no">dlog_option/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:dlog_options/0" translate="no">dlog_options/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:dlog_repair/0" translate="no">dlog_repair/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:dlog_size/0" translate="no">dlog_size()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:dlog_status/0" translate="no">dlog_status/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:dlog_type/0" translate="no">dlog_type()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:log/0" translate="no">log()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:open_ret/0" translate="no">open_ret/0</a>
+
+      </div>
+
+    </div>
+
+</div>
+<div class="summary-functions summary">
+  <h2>
+    <a href="#functions">Functions</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#chunk/1" translate="no">chunk/1</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Equivalent to <a href="#chunk/2"><code class="inline">chunk/2</code></a></p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#chunk/2" translate="no">chunk/2</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Enables to efficiently read the terms that are appended to a log. Minimises disk
+I/O by reading 64 kilobyte chunks from the file.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#close/1" translate="no">close/1</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Closes a log file properly.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#open/1" translate="no">open/1</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Equivalent to <a href="#open/2"><code class="inline">open/2</code></a></p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#open/2" translate="no">open(File, FileNo)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p><code class="inline">Filename</code> specifies the name of the file to be read.</p></div>
+
+    </div>
+
+</div>
+
+  </section>
+
+
+  <section id="types" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#types">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Types</span>
+    </h1>
+    <div class="types-list">
+<section class="detail" id="t:chunk_ret/0">
+
+  <div class="detail-header">
+    <a href="#t:chunk_ret/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">chunk_ret/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/kernel/doc//Users/wojtek/src/otp/lib/kernel/src/wrap_log_reader.erl#L164" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> chunk_ret() ::
+    {Continuation2 :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>(), Terms :: [<a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()]} |
+    {Continuation2 :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>(), Terms :: [<a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()], Badbytes :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:non_neg_integer/0">non_neg_integer</a>()} |
+    {Continuation2 :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>(), eof} |
+    {error, Reason :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:continuation/0">
+
+  <div class="detail-header">
+    <a href="#t:continuation/0" class="detail-link" title="Link to this opaque">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this opaque</span>
+    </a>
+    <h1 class="signature" translate="no">continuation()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/kernel/doc//Users/wojtek/src/otp/lib/kernel/src/wrap_log_reader.erl#L78" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(opaque)</span>
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-opaque</span> continuation()</pre>
+
+      </div>
+
+<p>Continuation returned by <code class="inline">open/1,2</code> or <code class="inline">chunk/1,2</code>.</p>
+  </section>
+</section>
+<section class="detail" id="t:dlog_cont/0">
+
+  <div class="detail-header">
+    <a href="#t:dlog_cont/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">dlog_cont/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/kernel/doc//Users/wojtek/src/otp/lib/kernel/src/disk_log.hrl#L192" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> dlog_cont() :: start | #continuation{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:dlog_format/0">
+
+  <div class="detail-header">
+    <a href="#t:dlog_format/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">dlog_format()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/kernel/doc//Users/wojtek/src/otp/lib/kernel/src/disk_log.hrl#L59" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> dlog_format() :: external | internal.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:dlog_format_type/0">
+
+  <div class="detail-header">
+    <a href="#t:dlog_format_type/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">dlog_format_type/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/kernel/doc//Users/wojtek/src/otp/lib/kernel/src/disk_log.hrl#L60" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> dlog_format_type() :: halt_ext | halt_int | wrap_ext | wrap_int | rotate_ext.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:dlog_head/0">
+
+  <div class="detail-header">
+    <a href="#t:dlog_head/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">dlog_head/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/kernel/doc//Users/wojtek/src/otp/lib/kernel/src/disk_log.hrl#L62" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> dlog_head() :: none | {ok, <a href="../../../../lib/../erts/doc/html/erlang.html#t:binary/0">binary</a>()} | <a href="../../../../lib/../erts/doc/html/erlang.html#t:mfa/0">mfa</a>().</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:dlog_head_opt/0">
+
+  <div class="detail-header">
+    <a href="#t:dlog_head_opt/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">dlog_head_opt()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/kernel/doc//Users/wojtek/src/otp/lib/kernel/src/disk_log.hrl#L64" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> dlog_head_opt() :: none | <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>() | <a href="../../../../lib/../erts/doc/html/erlang.html#t:iodata/0">iodata</a>().</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:dlog_mode/0">
+
+  <div class="detail-header">
+    <a href="#t:dlog_mode/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">dlog_mode()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/kernel/doc//Users/wojtek/src/otp/lib/kernel/src/disk_log.hrl#L68" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> dlog_mode() :: read_only | read_write.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:dlog_name/0">
+
+  <div class="detail-header">
+    <a href="#t:dlog_name/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">dlog_name/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/kernel/doc//Users/wojtek/src/otp/lib/kernel/src/disk_log.hrl#L69" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> dlog_name() :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>() | <a href="../../../../lib/../erts/doc/html/erlang.html#t:string/0">string</a>().</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:dlog_optattr/0">
+
+  <div class="detail-header">
+    <a href="#t:dlog_optattr/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">dlog_optattr/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/kernel/doc//Users/wojtek/src/otp/lib/kernel/src/disk_log.hrl#L70" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> dlog_optattr() ::
+    name | file | linkto | repair | type | format | size | notify | head | head_func | mode.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:dlog_option/0">
+
+  <div class="detail-header">
+    <a href="#t:dlog_option/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">dlog_option/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/kernel/doc//Users/wojtek/src/otp/lib/kernel/src/disk_log.hrl#L73" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> dlog_option() ::
+    {name, Log :: <a href="#t:log/0">log</a>()} |
+    {file, FileName :: <a href="file.html#t:filename/0">file:filename</a>()} |
+    {linkto, LinkTo :: none | <a href="../../../../lib/../erts/doc/html/erlang.html#t:pid/0">pid</a>()} |
+    {repair, Repair :: true | false | truncate} |
+    {type, Type :: <a href="#t:dlog_type/0">dlog_type</a>()} |
+    {format, Format :: <a href="#t:dlog_format/0">dlog_format</a>()} |
+    {size, Size :: <a href="#t:dlog_size/0">dlog_size</a>()} |
+    {notify, <a href="../../../../lib/../erts/doc/html/erlang.html#t:boolean/0">boolean</a>()} |
+    {head, Head :: <a href="#t:dlog_head_opt/0">dlog_head_opt</a>()} |
+    {head_func, MFA :: {<a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>(), <a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>(), <a href="../../../../lib/../erts/doc/html/erlang.html#t:list/0">list</a>()}} |
+    {quiet, <a href="../../../../lib/../erts/doc/html/erlang.html#t:boolean/0">boolean</a>()} |
+    {mode, Mode :: <a href="#t:dlog_mode/0">dlog_mode</a>()}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:dlog_options/0">
+
+  <div class="detail-header">
+    <a href="#t:dlog_options/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">dlog_options/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/kernel/doc//Users/wojtek/src/otp/lib/kernel/src/disk_log.hrl#L85" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> dlog_options() :: [<a href="#t:dlog_option/0">dlog_option</a>()].</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:dlog_repair/0">
+
+  <div class="detail-header">
+    <a href="#t:dlog_repair/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">dlog_repair/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/kernel/doc//Users/wojtek/src/otp/lib/kernel/src/disk_log.hrl#L86" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> dlog_repair() :: truncate | <a href="../../../../lib/../erts/doc/html/erlang.html#t:boolean/0">boolean</a>().</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:dlog_size/0">
+
+  <div class="detail-header">
+    <a href="#t:dlog_size/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">dlog_size()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/kernel/doc//Users/wojtek/src/otp/lib/kernel/src/disk_log.hrl#L88" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> dlog_size() ::
+    infinity | <a href="../../../../lib/../erts/doc/html/erlang.html#t:pos_integer/0">pos_integer</a>() | {MaxNoBytes :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:pos_integer/0">pos_integer</a>(), MaxNoFiles :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:pos_integer/0">pos_integer</a>()}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:dlog_status/0">
+
+  <div class="detail-header">
+    <a href="#t:dlog_status/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">dlog_status/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/kernel/doc//Users/wojtek/src/otp/lib/kernel/src/disk_log.hrl#L91" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> dlog_status() :: ok | {blocked, false | [_]}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:dlog_type/0">
+
+  <div class="detail-header">
+    <a href="#t:dlog_type/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">dlog_type()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/kernel/doc//Users/wojtek/src/otp/lib/kernel/src/disk_log.hrl#L93" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> dlog_type() :: halt | wrap | rotate.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:log/0">
+
+  <div class="detail-header">
+    <a href="#t:log/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">log()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/kernel/doc//Users/wojtek/src/otp/lib/kernel/src/disk_log.hrl#L66" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> log() :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>().</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:open_ret/0">
+
+  <div class="detail-header">
+    <a href="#t:open_ret/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">open_ret/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/kernel/doc//Users/wojtek/src/otp/lib/kernel/src/wrap_log_reader.erl#L89" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> open_ret() :: {ok, Continuation :: <a href="#t:continuation/0">continuation</a>()} | {error, Reason :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:tuple/0">tuple</a>()}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+
+    </div>
+  </section>
+
+  <section id="functions" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Functions</span>
+    </h1>
+    <div class="functions-list">
+<section class="detail" id="chunk/1">
+
+  <div class="detail-header">
+    <a href="#chunk/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">chunk/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/kernel/doc//Users/wojtek/src/otp/lib/kernel/src/wrap_log_reader.erl#L175" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> chunk(Continuation) -> <a href="#t:chunk_ret/0">chunk_ret</a>() when Continuation :: <a href="#t:continuation/0">continuation</a>().</pre>
+
+      </div>
+
+<p>Equivalent to <a href="#chunk/2"><code class="inline">chunk/2</code></a></p>
+  </section>
+</section>
+<section class="detail" id="chunk/2">
+
+  <div class="detail-header">
+    <a href="#chunk/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">chunk/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/kernel/doc//Users/wojtek/src/otp/lib/kernel/src/wrap_log_reader.erl#L211" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> chunk(Continuation, N) -> <a href="#t:chunk_ret/0">chunk_ret</a>()
+         when Continuation :: <a href="#t:continuation/0">continuation</a>(), N :: infinity | <a href="../../../../lib/../erts/doc/html/erlang.html#t:pos_integer/0">pos_integer</a>().</pre>
+
+      </div>
+
+<p>Enables to efficiently read the terms that are appended to a log. Minimises disk
+I/O by reading 64 kilobyte chunks from the file.</p><p>The first time <code class="inline">chunk()</code> is called, an initial continuation returned from
+<a href="#open/1"><code class="inline">open/1</code></a> or <a href="#open/2"><code class="inline">open/2</code></a> must be provided.</p><p>When <code class="inline">chunk/3</code> is called, <code class="inline">N</code> controls the maximum number of terms that are read
+from the log in each chunk. Defaults to <code class="inline">infinity</code>, which means that all the
+terms contained in the 8K chunk are read. If less than <code class="inline">N</code> terms are returned,
+this does not necessarily mean that end of file is reached.</p><p>Returns a tuple <code class="inline">{Continuation2, Terms}</code>, where <code class="inline">Terms</code> is a list of terms found
+in the log. <code class="inline">Continuation2</code> is yet another continuation that must be passed on
+to any subsequent calls to <code class="inline">chunk()</code>. With a series of calls to <code class="inline">chunk()</code>, it is
+then possible to extract all terms from a log.</p><p>Returns a tuple <code class="inline">{Continuation2, Terms, Badbytes}</code> if the log is opened in read
+only mode and the read chunk is corrupt. <code class="inline">Badbytes</code> indicates the number of
+non-Erlang terms found in the chunk. Notice that the log is not repaired.</p><p>Returns <code class="inline">{Continuation2, eof}</code> when the end of the log is reached, and
+<code class="inline">{error, Reason}</code> if an error occurs.</p><p>The returned continuation either is or is not valid in the next call to this
+function. This is because the log can wrap and delete the file into which the
+continuation points. To ensure this does not occur, the log can be blocked
+during the search.</p>
+  </section>
+</section>
+<section class="detail" id="close/1">
+
+  <div class="detail-header">
+    <a href="#close/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">close/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/kernel/doc//Users/wojtek/src/otp/lib/kernel/src/wrap_log_reader.erl#L161" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> close(Continuation) -> ok | {error, Reason}
+         when Continuation :: <a href="#t:continuation/0">continuation</a>(), Reason :: <a href="file.html#t:posix/0">file:posix</a>().</pre>
+
+      </div>
+
+<p>Closes a log file properly.</p>
+  </section>
+</section>
+<section class="detail" id="open/1">
+
+  <div class="detail-header">
+    <a href="#open/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">open/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/kernel/doc//Users/wojtek/src/otp/lib/kernel/src/wrap_log_reader.erl#L96" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> open(Filename) -> <a href="#t:open_ret/0">open_ret</a>() when Filename :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:string/0">string</a>() | <a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>().</pre>
+
+      </div>
+
+<p>Equivalent to <a href="#open/2"><code class="inline">open/2</code></a></p>
+  </section>
+</section>
+<section class="detail" id="open/2">
+
+  <div class="detail-header">
+    <a href="#open/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">open(File, FileNo)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/kernel/doc//Users/wojtek/src/otp/lib/kernel/src/wrap_log_reader.erl#L135" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> open(Filename, N) -> <a href="#t:open_ret/0">open_ret</a>() when Filename :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:string/0">string</a>() | <a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>(), N :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:integer/0">integer</a>().</pre>
+
+      </div>
+
+<p><code class="inline">Filename</code> specifies the name of the file to be read.</p><p><code class="inline">N</code> specifies the index of the file to be read. If <code class="inline">N</code> is omitted, the whole
+wrap log file is read; if it is specified, only the specified index file is
+read.</p><p>Returns <code class="inline">{ok, Continuation}</code> if the log/index file is opened successfully.
+<code class="inline">Continuation</code> is to be used when chunking or closing the file.</p><p>Returns <code class="inline">{error, Reason}</code> for all errors.</p>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+      <footer class="footer">
+        <p>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Search HexDocs packages">
+              Search HexDocs
+            </button>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.30.9) for the
+
+            <a href="https://erlang.org" title="Erlang" target="_blank" translate="no">Erlang programming language</a>
+
+        </p>
+      </footer>
+    </div>
+  </div>
+</main>
+</div>
+
+
+  </body>
+</html>

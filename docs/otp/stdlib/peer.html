@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.30.9">
+    <meta name="project" content="stdlib v5.1.1">
+
+
+    <title>peer — stdlib v5.1.1</title>
+    <link rel="stylesheet" href="dist/html-erlang-QW5RMTQD.css" />
+
+
+    <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
+    <script src="dist/handlebars.templates-43PMFBC7.js"></script>
+    <script src="dist/sidebar_items-6E0BE131.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/html-LRUIU55G.js"></script>
+
+<style>.dark img { background-color: white; }</style>
+  </head>
+  <body data-type="modules" class="page-module">
+    <script>
+
+      try {
+        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+
+        if (settings.theme === 'dark' ||
+           ((settings.theme === 'system' || settings.theme == null) &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches)
+           ) {
+          document.body.classList.add('dark')
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
+
+        <a href="api-reference.html" class="sidebar-projectImage">
+          <img src="assets/logo.png" alt="stdlib" />
+        </a>
+
+      <div>
+        <a href="api-reference.html" class="sidebar-projectName" translate="no">
+stdlib
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v5.1.1
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-listNav" class="sidebar-listNav" role="tablist">
+      <li>
+        <button id="extras-list-tab-button" role="tab" data-type="extras" aria-controls="extras-tab-panel" aria-selected="true" tabindex="0">
+Pages
+        </button>
+      </li>
+
+        <li>
+          <button id="modules-list-tab-button" role="tab" data-type="modules" aria-controls="modules-tab-panel" aria-selected="false" tabindex="-1">
+            Modules
+          </button>
+        </li>
+
+
+    </ul>
+  </div>
+
+  <div id="extras-tab-panel" class="sidebar-tabpanel" role="tabpanel" aria-labelledby="extras-list-tab-button">
+    <ul id="extras-full-list" class="full-list"></ul>
+  </div>
+
+    <div id="modules-tab-panel" class="sidebar-tabpanel" role="tabpanel" aria-labelledby="modules-list-tab-button" hidden>
+      <ul id="modules-full-list" class="full-list"></ul>
+    </div>
+
+
+</nav>
+
+<main class="content">
+  <output role="status" id="toast"></output>
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+      <div class="top-search">
+        <div class="search-settings">
+          <form class="search-bar" action="search.html">
+            <label class="search-label">
+              <span class="sr-only">Search documentation of stdlib</span>
+              <input name="q" type="text" class="search-input" placeholder="Search Documentation (press /)" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+            </label>
+            <button type="submit" class="search-button" aria-label="Submit Search">
+              <i class="ri-search-2-line ri-lg" aria-hidden="true" title="Submit search"></i>
+            </button>
+            <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+              <i class="ri-close-line ri-lg" title="Cancel search"></i>
+            </button>
+          </form>
+          <button class="icon-settings display-settings">
+            <i class="ri-settings-3-line"></i>
+            <span class="sr-only">Settings</span>
+          </button>
+        </div>
+      </div>
+      <div class="autocomplete">
+        <div class="autocomplete-results">
+        </div>
+      </div>
+
+<h1>
+
+    <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/peer.erl#L41" title="View Source" class="icon-action" rel="help">
+      <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+      <span class="sr-only">View Source</span>
+    </a>
+
+  <span translate="no">peer</span> 
+  <small class="app-vsn" translate="no">(stdlib v5.1.1)</small>
+
+</h1>
+
+
+  <section id="moduledoc">
+<p>Controller for additional Erlang node running on the same host, or in a
+different container/host (e.g. Docker).</p><h3 id="module-terms" class="section-heading">
+  <a href="#module-terms" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">Terms</span>
+</h3>
+<p>Origin node - Erlang VM instance that spawns additional nodes. Peer node - a
+node spawned by the origin. Control process - a process running on origin node,
+if it terminates, peer node terminates too. Control connection - a connection
+between origin and peer, can be ether Erlang Distribution connection, or
+alternative one.</p><p>I/O is forwarded from peer node to origin via control connection.</p><p>When standard_io is used as alternative connection, peer node uses standard out
+to multiplex console output and control sequences. Characters in range of
+192-255 are reserved for control sequences, see encode_port_data for details. If
+peer node attempts to print characters in this range, an controlling process on
+the origin node may terminate with an error (because CRC check will fail).</p><p>Alternative connection via TCP does not have that limitation, but it also does
+not redirect console I/O from the peer node.</p>
+  </section>
+
+
+  <section id="summary" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Summary</span>
+    </h1>
+<div class="summary-types summary">
+  <h2>
+    <a href="#types">Types</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:connection/0" translate="no">connection()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:disconnect_timeout/0" translate="no">disconnect_timeout()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:exec/0" translate="no">exec()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>SSH support: {&quot;/usr/bin/ssh&quot;, [&quot;account@host_b&quot;, &quot;/usr/bin/erl&quot;]}</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:peer_state/0" translate="no">peer_state()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:server_ref/0" translate="no">server_ref()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:start_options/0" translate="no">start_options()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:state/0" translate="no">state()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:wait_boot/0" translate="no">wait_boot()</a>
+
+      </div>
+
+        <div class="summary-synopsis"></div>
+
+    </div>
+
+</div>
+<div class="summary-functions summary">
+  <h2>
+    <a href="#functions">Functions</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#call/4" translate="no">call(Dest, M, F, A)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Calls M:F(A) remotely, via alternative connection, with default 5 seconds
+timeout</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#call/5" translate="no">call(Dest, M, F, A, Timeout)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Call M:F(A) remotely, timeout is explicitly specified</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#cast/4" translate="no">cast(Dest, M, F, A)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Cast M:F(A) remotely, don't care about the result</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#get_state/1" translate="no">get_state(Dest)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>returns peer node state.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#handle_call/3" translate="no">handle_call/3</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#handle_cast/2" translate="no">handle_cast/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#handle_info/2" translate="no">handle_info/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#init/1" translate="no">init/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#init_supervision/2" translate="no">init_supervision/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#random_name/0" translate="no">random_name()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Creates random node name, using &quot;peer&quot; as prefix.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#random_name/1" translate="no">random_name(Prefix)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Creates sufficiently random node name, using OS process ID for origin VM,
+resulting name looks like prefix-3-7161</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#send/3" translate="no">send(Dest, To, Message)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Sends a message to pid or named process on the peer node using alternative
+connection. No delivery guarantee.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#start/0" translate="no">start/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#start/1" translate="no">start(Options)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Starts peer node, not linked to the calling process.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#start_link/0" translate="no">start_link()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Starts a distributed node with random name, on this host, and waits for that
+node to boot. Returns full node name, registers local process with the same name
+as peer node.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#start_link/1" translate="no">start_link(Options)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Starts peer node, linked to the calling process. Accepts additional command line
+arguments and other important options.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#start_supervision/0" translate="no">start_supervision/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#stop/1" translate="no">stop(Dest)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Stops controlling process, shutting down peer node synchronously</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#supervision_child_spec/0" translate="no">supervision_child_spec/0</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#system_code_change/4" translate="no">system_code_change/4</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#system_continue/3" translate="no">system_continue/3</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#system_get_state/1" translate="no">system_get_state/1</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#system_replace_state/2" translate="no">system_replace_state/2</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#system_terminate/4" translate="no">system_terminate/4</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#terminate/2" translate="no">terminate/2</a>
+
+      </div>
+
+    </div>
+
+</div>
+
+  </section>
+
+
+  <section id="types" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#types">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Types</span>
+    </h1>
+    <div class="types-list">
+<section class="detail" id="t:connection/0">
+
+  <div class="detail-header">
+    <a href="#t:connection/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">connection()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/peer.erl#L125" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> connection() :: Port :: 0..65535 | {<a href="../../../../lib/kernel/doc/html/inet.html#t:ip_address/0">inet:ip_address</a>(), 0..65535} | standard_io.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:disconnect_timeout/0">
+
+  <div class="detail-header">
+    <a href="#t:disconnect_timeout/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">disconnect_timeout()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/peer.erl#L211" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> disconnect_timeout() :: 1000..4294967295 | infinity.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:exec/0">
+
+  <div class="detail-header">
+    <a href="#t:exec/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">exec()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/peer.erl#L140" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> exec() :: <a href="../../../../lib/kernel/doc/html/file.html#t:name/0">file:name</a>() | {<a href="../../../../lib/kernel/doc/html/file.html#t:name/0">file:name</a>(), [<a href="../../../../lib/../erts/doc/html/erlang.html#t:string/0">string</a>()]}.</pre>
+
+      </div>
+
+<p>SSH support: {&quot;/usr/bin/ssh&quot;, [&quot;account@host_b&quot;, &quot;/usr/bin/erl&quot;]}</p>
+  </section>
+</section>
+<section class="detail" id="t:peer_state/0">
+
+  <div class="detail-header">
+    <a href="#t:peer_state/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">peer_state()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/peer.erl#L174" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> peer_state() :: booting | running | {down, Reason :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:server_ref/0">
+
+  <div class="detail-header">
+    <a href="#t:server_ref/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">server_ref()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/peer.erl#L88" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> server_ref() :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:pid/0">pid</a>().</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:start_options/0">
+
+  <div class="detail-header">
+    <a href="#t:start_options/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">start_options()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/peer.erl#L146" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> start_options() ::
+    #{name => <a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>() | <a href="../../../../lib/../erts/doc/html/erlang.html#t:string/0">string</a>(),
+      longnames => <a href="../../../../lib/../erts/doc/html/erlang.html#t:boolean/0">boolean</a>(),
+      host => <a href="../../../../lib/../erts/doc/html/erlang.html#t:string/0">string</a>(),
+      peer_down => stop | continue | crash,
+      connection => <a href="#t:connection/0">connection</a>(),
+      exec => <a href="#t:exec/0">exec</a>(),
+      detached => <a href="../../../../lib/../erts/doc/html/erlang.html#t:boolean/0">boolean</a>(),
+      args => [<a href="../../../../lib/../erts/doc/html/erlang.html#t:string/0">string</a>()],
+      post_process_args => fun(([<a href="../../../../lib/../erts/doc/html/erlang.html#t:string/0">string</a>()]) -> [<a href="../../../../lib/../erts/doc/html/erlang.html#t:string/0">string</a>()]),
+      env => [{<a href="../../../../lib/../erts/doc/html/erlang.html#t:string/0">string</a>(), <a href="../../../../lib/../erts/doc/html/erlang.html#t:string/0">string</a>()}],
+      wait_boot => <a href="#t:wait_boot/0">wait_boot</a>(),
+      shutdown => close | halt | {halt, <a href="#t:disconnect_timeout/0">disconnect_timeout</a>()} | <a href="#t:disconnect_timeout/0">disconnect_timeout</a>()}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:state/0">
+
+  <div class="detail-header">
+    <a href="#t:state/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">state()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/peer.erl#L350" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> state() :: #peer_state{}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:wait_boot/0">
+
+  <div class="detail-header">
+    <a href="#t:wait_boot/0" class="detail-link" title="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature" translate="no">wait_boot()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/peer.erl#L132" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-type</span> wait_boot() :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:timeout/0">timeout</a>() | {<a href="../../../../lib/../erts/doc/html/erlang.html#t:pid/0">pid</a>(), Tag :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()} | false.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+
+    </div>
+  </section>
+
+  <section id="functions" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Functions</span>
+    </h1>
+    <div class="functions-list">
+<section class="detail" id="call/4">
+
+  <div class="detail-header">
+    <a href="#call/4" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">call(Dest, M, F, A)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/peer.erl#L287" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> call(Dest :: <a href="#t:server_ref/0">server_ref</a>(), Module :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:module/0">module</a>(), Function :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>(), Args :: [<a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()]) ->
+        Result :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>().</pre>
+
+      </div>
+
+<p>Calls M:F(A) remotely, via alternative connection, with default 5 seconds
+timeout</p>
+  </section>
+</section>
+<section class="detail" id="call/5">
+
+  <div class="detail-header">
+    <a href="#call/5" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">call(Dest, M, F, A, Timeout)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/peer.erl#L294" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> call(Dest :: <a href="#t:server_ref/0">server_ref</a>(),
+     Module :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:module/0">module</a>(),
+     Function :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>(),
+     Args :: [<a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()],
+     Timeout :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:timeout/0">timeout</a>()) ->
+        Result :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>().</pre>
+
+      </div>
+
+<p>Call M:F(A) remotely, timeout is explicitly specified</p>
+  </section>
+</section>
+<section class="detail" id="cast/4">
+
+  <div class="detail-header">
+    <a href="#cast/4" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">cast(Dest, M, F, A)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/peer.erl#L307" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> cast(Dest :: <a href="#t:server_ref/0">server_ref</a>(), Module :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:module/0">module</a>(), Function :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>(), Args :: [<a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()]) -> ok.</pre>
+
+      </div>
+
+<p>Cast M:F(A) remotely, don't care about the result</p>
+  </section>
+</section>
+<section class="detail" id="get_state/1">
+
+  <div class="detail-header">
+    <a href="#get_state/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">get_state(Dest)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/peer.erl#L277" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> get_state(Dest :: <a href="#t:server_ref/0">server_ref</a>()) -> <a href="#t:peer_state/0">peer_state</a>().</pre>
+
+      </div>
+
+<p>returns peer node state.</p>
+  </section>
+</section>
+<section class="detail" id="handle_call/3">
+
+  <div class="detail-header">
+    <a href="#handle_call/3" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">handle_call/3</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/peer.erl#L401" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="handle_cast/2">
+
+  <div class="detail-header">
+    <a href="#handle_cast/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">handle_cast/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/peer.erl#L440" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="handle_info/2">
+
+  <div class="detail-header">
+    <a href="#handle_info/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">handle_info/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/peer.erl#L468" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="init/1">
+
+  <div class="detail-header">
+    <a href="#init/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">init/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/peer.erl#L353" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> init([Name :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>(), ...]) -> {ok, <a href="#t:state/0">state</a>()}.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="init_supervision/2">
+
+  <div class="detail-header">
+    <a href="#init_supervision/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">init_supervision/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/peer.erl#L1033" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> init_supervision(<a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>(), <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()) -> <a href="../../../../lib/../erts/doc/html/erlang.html#t:no_return/0">no_return</a>().</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="random_name/0">
+
+  <div class="detail-header">
+    <a href="#random_name/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">random_name()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/peer.erl#L221" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> random_name() -> <a href="../../../../lib/../erts/doc/html/erlang.html#t:string/0">string</a>().</pre>
+
+      </div>
+
+<p>Creates random node name, using &quot;peer&quot; as prefix.</p>
+  </section>
+</section>
+<section class="detail" id="random_name/1">
+
+  <div class="detail-header">
+    <a href="#random_name/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">random_name(Prefix)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/peer.erl#L232" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> random_name(Prefix :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:string/0">string</a>() | <a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>()) -> <a href="../../../../lib/../erts/doc/html/erlang.html#t:string/0">string</a>().</pre>
+
+      </div>
+
+<p>Creates sufficiently random node name, using OS process ID for origin VM,
+resulting name looks like prefix-3-7161</p>
+  </section>
+</section>
+<section class="detail" id="send/3">
+
+  <div class="detail-header">
+    <a href="#send/3" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">send(Dest, To, Message)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/peer.erl#L317" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> send(Dest :: <a href="#t:server_ref/0">server_ref</a>(), To :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:pid/0">pid</a>() | <a href="../../../../lib/../erts/doc/html/erlang.html#t:atom/0">atom</a>(), Message :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()) -> ok.</pre>
+
+      </div>
+
+<p>Sends a message to pid or named process on the peer node using alternative
+connection. No delivery guarantee.</p>
+  </section>
+</section>
+<section class="detail" id="start/0">
+
+  <div class="detail-header">
+    <a href="#start/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">start/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/peer.erl#L1103" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> start() -> <a href="../../../../lib/../erts/doc/html/erlang.html#t:pid/0">pid</a>().</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="start/1">
+
+  <div class="detail-header">
+    <a href="#start/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">start(Options)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/peer.erl#L265" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> start(<a href="#t:start_options/0">start_options</a>()) -> {ok, <a href="../../../../lib/../erts/doc/html/erlang.html#t:pid/0">pid</a>()} | {ok, <a href="../../../../lib/../erts/doc/html/erlang.html#t:pid/0">pid</a>(), <a href="../../../../lib/../erts/doc/html/erlang.html#t:node/0">node</a>()} | {error, Reason}
+         when Reason :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>().</pre>
+
+      </div>
+
+<p>Starts peer node, not linked to the calling process.</p>
+  </section>
+</section>
+<section class="detail" id="start_link/0">
+
+  <div class="detail-header">
+    <a href="#start_link/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">start_link()</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/peer.erl#L246" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> start_link() -> {ok, <a href="../../../../lib/../erts/doc/html/erlang.html#t:pid/0">pid</a>(), <a href="../../../../lib/../erts/doc/html/erlang.html#t:node/0">node</a>()} | {error, Reason :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>()}.</pre>
+
+      </div>
+
+<p>Starts a distributed node with random name, on this host, and waits for that
+node to boot. Returns full node name, registers local process with the same name
+as peer node.</p>
+  </section>
+</section>
+<section class="detail" id="start_link/1">
+
+  <div class="detail-header">
+    <a href="#start_link/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">start_link(Options)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/peer.erl#L258" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> start_link(<a href="#t:start_options/0">start_options</a>()) -> {ok, <a href="../../../../lib/../erts/doc/html/erlang.html#t:pid/0">pid</a>()} | {ok, <a href="../../../../lib/../erts/doc/html/erlang.html#t:pid/0">pid</a>(), <a href="../../../../lib/../erts/doc/html/erlang.html#t:node/0">node</a>()} | {error, Reason}
+              when Reason :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>().</pre>
+
+      </div>
+
+<p>Starts peer node, linked to the calling process. Accepts additional command line
+arguments and other important options.</p>
+  </section>
+</section>
+<section class="detail" id="start_supervision/0">
+
+  <div class="detail-header">
+    <a href="#start_supervision/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">start_supervision/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/peer.erl#L1024" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="stop/1">
+
+  <div class="detail-header">
+    <a href="#stop/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">stop(Dest)</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/peer.erl#L271" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> stop(Dest :: <a href="#t:server_ref/0">server_ref</a>()) -> ok.</pre>
+
+      </div>
+
+<p>Stops controlling process, shutting down peer node synchronously</p>
+  </section>
+</section>
+<section class="detail" id="supervision_child_spec/0">
+
+  <div class="detail-header">
+    <a href="#supervision_child_spec/0" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">supervision_child_spec/0</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/peer.erl#L1011" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="system_code_change/4">
+
+  <div class="detail-header">
+    <a href="#system_code_change/4" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">system_code_change/4</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/peer.erl#L1089" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="system_continue/3">
+
+  <div class="detail-header">
+    <a href="#system_continue/3" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">system_continue/3</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/peer.erl#L1083" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="system_get_state/1">
+
+  <div class="detail-header">
+    <a href="#system_get_state/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">system_get_state/1</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/peer.erl#L1092" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="system_replace_state/2">
+
+  <div class="detail-header">
+    <a href="#system_replace_state/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">system_replace_state/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/peer.erl#L1095" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="system_terminate/4">
+
+  <div class="detail-header">
+    <a href="#system_terminate/4" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">system_terminate/4</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/peer.erl#L1086" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="terminate/2">
+
+  <div class="detail-header">
+    <a href="#terminate/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">terminate/2</h1>
+
+      <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/doc//Users/wojtek/src/otp/lib/stdlib/src/peer.erl#L522" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">-spec</span> terminate(Reason :: <a href="../../../../lib/../erts/doc/html/erlang.html#t:term/0">term</a>(), <a href="#t:state/0">state</a>()) -> ok.</pre>
+
+      </div>
+
+
+  </section>
+</section>
+
+    </div>
+  </section>
+
+      <footer class="footer">
+        <p>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Search HexDocs packages">
+              Search HexDocs
+            </button>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.30.9) for the
+
+            <a href="https://erlang.org" title="Erlang" target="_blank" translate="no">Erlang programming language</a>
+
+        </p>
+      </footer>
+    </div>
+  </div>
+</main>
+</div>
+
+
+  </body>
+</html>
