@@ -115,7 +115,7 @@ Elixir
 
       </div>
 
-<p>Reduces a over all of the given enums, halting as soon as any enumerable is empty.</p><p>The reducer will receive 2 args, a list of elements (one from each enum) and the
+<p>Reduces over all of the given enums, halting as soon as any enumerable is empty.</p><p>The reducer will receive 2 args, a list of elements (one from each enum) and the
 accumulator.</p><p>In practice, the behaviour provided by this function can be achieved with:</p><pre><code class="makeup elixir"><span class="nc">Enum</span><span class="o">.</span><span class="n">reduce</span><span class="p" data-group-id="4143799441-1">(</span><span class="nc">Stream</span><span class="o">.</span><span class="n">zip</span><span class="p" data-group-id="4143799441-2">(</span><span class="n">enums</span><span class="p" data-group-id="4143799441-2">)</span><span class="p">,</span><span class="w"> </span><span class="n">acc</span><span class="p">,</span><span class="w"> </span><span class="n">reducer</span><span class="p" data-group-id="4143799441-1">)</span></code></pre><p>But <a href="#zip_reduce/4"><code class="inline">zip_reduce/4</code></a> exists for convenience purposes.</p><h2 id="zip_reduce/3-examples" class="section-heading">
   <a href="#zip_reduce/3-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Examples
