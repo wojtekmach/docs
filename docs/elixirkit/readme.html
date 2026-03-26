@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.40.1">
+    <meta name="project" content="elixirkit v0.1.0">
+
+
+    <title>ElixirKit — elixirkit v0.1.0</title>
+
+    <link rel="stylesheet" href="dist/html-elixir-YJO4MOOW.css" />
+
+    <script defer src="dist/sidebar_items-A247E610.js"></script>
+    <script defer src="docs_config.js"></script>
+    <script defer src="dist/html-YU4BZFVS.js"></script>
+
+  </head>
+  <body>
+    <script>(()=>{var t="ex_doc:settings",e="dark";var o="dark",s="light";var E="sidebar_state",n="closed";var r="sidebar_width";var a="sidebar-open";var i=new URLSearchParams(window.location.search),S=i.get("theme")||JSON.parse(localStorage.getItem(t)||"{}").theme;(S===o||S!==s&&window.matchMedia("(prefers-color-scheme: dark)").matches)&&document.body.classList.add(e);var d=sessionStorage.getItem(E),A=d!==n&&!window.matchMedia(`screen and (max-width: ${768}px)`).matches;document.body.classList.toggle(a,A);var c=sessionStorage.getItem(r);c&&document.body.style.setProperty("--sidebarWidth",`${c}px`);var p=/(Macintosh|iPhone|iPad|iPod)/.test(window.navigator.userAgent);document.documentElement.classList.toggle("apple-os",p);})();
+</script>
+
+<div class="body-wrapper">
+
+<button id="sidebar-menu" class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
+
+      <div>
+        <a href="readme.html" class="sidebar-projectName" translate="no">
+elixirkit
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v0.1.0
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-list-nav" class="sidebar-list-nav" role="tablist" data-extras="Pages"></ul>
+  </div>
+</nav>
+
+<output role="status" id="toast"></output>
+
+<main class="content page-extra" id="main" data-type="extras">
+  <div id="content" class="content-inner">
+    <div class="top-search">
+      <div class="search-settings">
+        <form class="search-bar" action="search.html">
+          <label class="search-label">
+            <span class="sr-only">Search documentation of elixirkit</span>
+            <div class="search-input-wrapper">
+              <input name="q" type="text" class="search-input" placeholder="Press / to search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+              <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+                <i class="ri-close-line ri-lg" title="Cancel search"></i>
+              </button>
+            </div>
+          </label>
+        </form>
+        <div class="autocomplete">
+        </div>
+        <div class="engine-selector" data-multiple="false">
+          <button type="button" class="engine-button" aria-label="Select search engine" aria-haspopup="true" aria-expanded="false">
+            <i class="ri-search-2-line" aria-hidden="true"></i>
+            <span class="engine-name">Default</span>
+            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+          </button>
+          <div class="engine-dropdown" hidden role="menu">
+
+              <button type="button"
+                      class="engine-option"
+                      data-engine-url="search.html?q="
+                      role="menuitemradio"
+                      aria-checked="true">
+                <span class="name">Default</span>
+                <span class="help">In-browser search</span>
+              </button>
+
+          </div>
+        </div>
+        <button class="icon-settings display-settings">
+          <i class="ri-settings-3-line"></i>
+          <span class="sr-only">Settings</span>
+        </button>
+      </div>
+    </div>
+
+<div id="top-content">
+  <div class="heading-with-actions top-heading">
+    <h1>ElixirKit</h1>
+
+<a href="readme.md" title="Copy Markdown (hold Ctrl/Cmd and click it to open as Markdown)" class="copy-markdown icon-action" rel="help">
+  <i class="ri-markdown-line" aria-hidden="true"></i>
+  <span class="sr-only">Copy Markdown</span>
+</a>
+
+
+  </div>
+
+
+<p>ElixirKit helps running Elixir alongside native applications written in Rust.</p><p>Features:</p><ul><li><a href="rs/elixirkit/fn.elixir.html" title=""><code class="inline">elixirkit::elixir</code></a>, <a href="rs/elixirkit/fn.mix.html" title=""><code class="inline">elixirkit::mix</code></a>, and <a href="rs/elixirkit/fn.release.html" title=""><code class="inline">elixirkit::release</code></a> for starting Elixir.</li><li><a href="rs/elixirkit/struct.PubSub.html" title=""><code class="inline">elixirkit::PubSub</code></a> and <a href="ElixirKit.PubSub.html" title=""><code class="inline">ElixirKit.PubSub</code></a> for communication.</li></ul><h2 id="usage" class="section-heading"><a href="#usage" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Usage</span></h2><p>On the Rust side, use <a href="rs/elixirkit/fn.elixir.html" title=""><code class="inline">elixirkit::elixir</code></a> to start Elixir and
+<a href="rs/elixirkit/struct.PubSub.html" title=""><code class="inline">elixirkit::PubSub</code></a> to exchange messages. Subscribe before starting Elixir so
+no messages are missed:</p><pre><code class="makeup rust" translate="no"><span class="c1">//</span><span class="c1"> main.rs
+</span><span class="kt">let</span><span class="n"> pubsub </span><span class="o">=</span><span class="w"> </span><span class="n">elixirkit</span><span class="p">::</span><span class="n">PubSub</span><span class="p">::</span><span class="n">bind</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w">
+</span><span class="w">    </span><span class="p">.</span><span class="nf">expect</span><span class="p">(</span><span class="p">&quot;</span><span class="s2">failed to bind to port</span><span class="p">&quot;</span><span class="p">)</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="n">pubsub</span><span class="p">.</span><span class="nf">subscribe</span><span class="p">(</span><span class="p">&quot;</span><span class="s2">topic</span><span class="p">&quot;</span><span class="p">,</span><span class="w"> </span><span class="kd">move</span><span class="w"> </span><span class="o">|</span><span class="n">msg</span><span class="o">|</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="k">if</span><span class="n"> msg </span><span class="o">==</span><span class="w"> </span><span class="kt">b</span><span class="p">&quot;</span><span class="s2">ping</span><span class="p">&quot;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="n">        pubsub</span><span class="p">.</span><span class="nf">broadcast</span><span class="p">(</span><span class="p">&quot;</span><span class="s2">topic</span><span class="p">&quot;</span><span class="p">,</span><span class="w"> </span><span class="kt">b</span><span class="p">&quot;</span><span class="s2">pong</span><span class="p">&quot;</span><span class="p">)</span><span class="p">;</span><span class="w">
+</span><span class="w">    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="p">)</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="kt">let</span><span class="n"> status </span><span class="o">=</span><span class="w"> </span><span class="n">elixirkit</span><span class="p">::</span><span class="n">elixir</span><span class="p">(</span><span class="o">&amp;</span><span class="p">[</span><span class="p">&quot;</span><span class="s2">script.exs</span><span class="p">&quot;</span><span class="p">]</span><span class="p">,</span><span class="n"> pubsub</span><span class="p">)</span><span class="w">
+</span><span class="w">    </span><span class="p">.</span><span class="nf">status</span><span class="p">(</span><span class="p">)</span><span class="w">
+</span><span class="w">    </span><span class="p">.</span><span class="nf">expect</span><span class="p">(</span><span class="p">&quot;</span><span class="s2">failed to start Elixir</span><span class="p">&quot;</span><span class="p">)</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="k">if</span><span class="w"> </span><span class="kt">let</span><span class="w"> </span><span class="nb">Some</span><span class="p">(</span><span class="n">code</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="n"> status</span><span class="p">.</span><span class="nf">code</span><span class="p">(</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="nb">println!</span><span class="p">(</span><span class="p">&quot;</span><span class="s2">elixir exited with </span><span class="no">{}</span><span class="p">&quot;</span><span class="p">,</span><span class="n"> code</span><span class="p">)</span><span class="p">;</span><span class="w">
+</span><span class="p">}</span></code></pre><p>On Elixir side, start <a href="ElixirKit.PubSub.html" title=""><code class="inline">ElixirKit.PubSub</code></a> under supervision tree and use
+<a href="ElixirKit.PubSub.html#subscribe/1" title=""><code class="inline">ElixirKit.PubSub.subscribe/1</code></a> to listen to messages and
+<a href="ElixirKit.PubSub.html#broadcast/2" title=""><code class="inline">ElixirKit.PubSub.broadcast/2</code></a> to send messages to Rust side:</p><pre><code class="makeup elixir" translate="no"><span class="c1"># script.exs</span><span class="w">
+</span><span class="nc">Mix</span><span class="o">.</span><span class="n">install</span><span class="p" data-group-id="0691936167-1">(</span><span class="p" data-group-id="0691936167-2">[</span><span class="ss">:elixirkit</span><span class="p" data-group-id="0691936167-2">]</span><span class="p" data-group-id="0691936167-1">)</span><span class="w">
+
+</span><span class="n">children</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="0691936167-3">[</span><span class="w">
+  </span><span class="p" data-group-id="0691936167-4">{</span><span class="nc">ElixirKit.PubSub</span><span class="p">,</span><span class="w"> </span><span class="ss">on_exit</span><span class="p">:</span><span class="w"> </span><span class="k" data-group-id="0691936167-5">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nc">System</span><span class="o">.</span><span class="n">stop</span><span class="p" data-group-id="0691936167-6">(</span><span class="p" data-group-id="0691936167-6">)</span><span class="w"> </span><span class="k" data-group-id="0691936167-5">end</span><span class="p" data-group-id="0691936167-4">}</span><span class="w">
+</span><span class="p" data-group-id="0691936167-3">]</span><span class="w">
+
+</span><span class="p" data-group-id="0691936167-7">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="p" data-group-id="0691936167-7">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Supervisor</span><span class="o">.</span><span class="n">start_link</span><span class="p" data-group-id="0691936167-8">(</span><span class="n">children</span><span class="p">,</span><span class="w"> </span><span class="ss">strategy</span><span class="p">:</span><span class="w"> </span><span class="ss">:one_for_one</span><span class="p" data-group-id="0691936167-8">)</span><span class="w">
+
+</span><span class="nc">ElixirKit.PubSub</span><span class="o">.</span><span class="n">subscribe</span><span class="p" data-group-id="0691936167-9">(</span><span class="s">&quot;topic&quot;</span><span class="p" data-group-id="0691936167-9">)</span><span class="w">
+</span><span class="nc">ElixirKit.PubSub</span><span class="o">.</span><span class="n">broadcast</span><span class="p" data-group-id="0691936167-10">(</span><span class="s">&quot;topic&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ping&quot;</span><span class="p" data-group-id="0691936167-10">)</span><span class="w">
+
+</span><span class="k">receive</span><span class="w"> </span><span class="k" data-group-id="0691936167-11">do</span><span class="w">
+  </span><span class="n">message</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+    </span><span class="nc">IO</span><span class="o">.</span><span class="n">puts</span><span class="p" data-group-id="0691936167-12">(</span><span class="p" data-group-id="0691936167-13">[</span><span class="s">&quot;[elixir] &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">inspect</span><span class="p" data-group-id="0691936167-14">(</span><span class="n">message</span><span class="p" data-group-id="0691936167-14">)</span><span class="p" data-group-id="0691936167-13">]</span><span class="p" data-group-id="0691936167-12">)</span><span class="w">
+</span><span class="k" data-group-id="0691936167-11">end</span></code></pre><p>See more examples:</p><ul><li><a href="https://github.com/livebook-dev/livebook/blob/main/elixirkit_next/cli_script.rs" title=""><code class="inline">examples/cli_script.rs</code></a> - CLI single-file example.</li><li><a href="https://github.com/livebook-dev/livebook/blob/main/elixirkit_next/tauri_script.rs" title=""><code class="inline">examples/tauri_script.rs</code></a> - Tauri desktop app single-file example.</li><li><a href="https://github.com/livebook-dev/livebook/blob/main/elixirkit_next/tauri_project" title=""><code class="inline">examples/tauri_project</code></a> - Tauri desktop app example.</li></ul><h2 id="license" class="section-heading"><a href="#license" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">License</span></h2><p>Copyright (C) 2026 Dashbit</p><p>Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at <a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p><p>Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.</p>
+
+</div>
+
+<div class="bottom-actions" id="bottom-actions">
+  <div class="bottom-actions-item">
+
+  </div>
+  <div class="bottom-actions-item">
+
+  </div>
+</div>
+    <footer class="footer">
+
+        <p>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Go to package docs">
+              Go to package docs
+            </button>
+
+              <a href="llms.txt" target="_blank">
+                View llms.txt
+              </a>
+
+
+              <a href="elixirkit.epub">
+                Download ePub version
+              </a>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.40.1) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+
+
+    </footer>
+  </div>
+</main>
+</div>
+
+  </body>
+</html>
