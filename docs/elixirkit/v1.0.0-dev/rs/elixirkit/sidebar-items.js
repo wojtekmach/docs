@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["elixir","mix","release"],"mod":["etf","nif"],"struct":["PubSub"]};
