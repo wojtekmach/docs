@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"enum":["Term"],"trait":["Decode","Encode"]};

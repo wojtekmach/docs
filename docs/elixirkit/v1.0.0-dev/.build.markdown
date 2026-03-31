@@ -1,7 +1,0 @@
-ElixirKit.PubSub.md
-ElixirKit.Rust.md
-ElixirKit.Swift.md
-Mix.Tasks.Elixirkit.Precompile.md
-api-reference.md
-llms.txt
-readme.md
