@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"derive":["FromTerm","ToTerm"],"enum":["Term"],"fn":["read","write"],"struct":["Error"],"trait":["FromTerm","ToTerm"]};

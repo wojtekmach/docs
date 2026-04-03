@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.40.1">
+    <meta name="project" content="elixirkit v0.1.0">
+
+
+    <title>ElixirKit — elixirkit v0.1.0</title>
+
+    <link rel="stylesheet" href="dist/html-elixir-YJO4MOOW.css" />
+
+    <script defer src="dist/sidebar_items-30736BD1.js"></script>
+    <script defer src="docs_config.js"></script>
+    <script defer src="dist/html-YU4BZFVS.js"></script>
+
+  </head>
+  <body>
+    <script>(()=>{var t="ex_doc:settings",e="dark";var o="dark",s="light";var E="sidebar_state",n="closed";var r="sidebar_width";var a="sidebar-open";var i=new URLSearchParams(window.location.search),S=i.get("theme")||JSON.parse(localStorage.getItem(t)||"{}").theme;(S===o||S!==s&&window.matchMedia("(prefers-color-scheme: dark)").matches)&&document.body.classList.add(e);var d=sessionStorage.getItem(E),A=d!==n&&!window.matchMedia(`screen and (max-width: ${768}px)`).matches;document.body.classList.toggle(a,A);var c=sessionStorage.getItem(r);c&&document.body.style.setProperty("--sidebarWidth",`${c}px`);var p=/(Macintosh|iPhone|iPad|iPod)/.test(window.navigator.userAgent);document.documentElement.classList.toggle("apple-os",p);})();
+</script>
+
+<div class="body-wrapper">
+
+<button id="sidebar-menu" class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
+
+      <div>
+        <a href="readme.html" class="sidebar-projectName" translate="no">
+elixirkit
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v0.1.0
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-list-nav" class="sidebar-list-nav" role="tablist" data-extras="Pages"></ul>
+  </div>
+</nav>
+
+<output role="status" id="toast"></output>
+
+<main class="content page-extra" id="main" data-type="extras">
+  <div id="content" class="content-inner">
+    <div class="top-search">
+      <div class="search-settings">
+        <form class="search-bar" action="search.html">
+          <label class="search-label">
+            <span class="sr-only">Search documentation of elixirkit</span>
+            <div class="search-input-wrapper">
+              <input name="q" type="text" class="search-input" placeholder="Press / to search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+              <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+                <i class="ri-close-line ri-lg" title="Cancel search"></i>
+              </button>
+            </div>
+          </label>
+        </form>
+        <div class="autocomplete">
+        </div>
+        <div class="engine-selector" data-multiple="false">
+          <button type="button" class="engine-button" aria-label="Select search engine" aria-haspopup="true" aria-expanded="false">
+            <i class="ri-search-2-line" aria-hidden="true"></i>
+            <span class="engine-name">Default</span>
+            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+          </button>
+          <div class="engine-dropdown" hidden role="menu">
+
+              <button type="button"
+                      class="engine-option"
+                      data-engine-url="search.html?q="
+                      role="menuitemradio"
+                      aria-checked="true">
+                <span class="name">Default</span>
+                <span class="help">In-browser search</span>
+              </button>
+
+          </div>
+        </div>
+        <button class="icon-settings display-settings">
+          <i class="ri-settings-3-line"></i>
+          <span class="sr-only">Settings</span>
+        </button>
+      </div>
+    </div>
+
+<div id="top-content">
+  <div class="heading-with-actions top-heading">
+    <h1>ElixirKit</h1>
+
+<a href="readme.md" title="Copy Markdown (hold Ctrl/Cmd and click it to open as Markdown)" class="copy-markdown icon-action" rel="help">
+  <i class="ri-markdown-line" aria-hidden="true"></i>
+  <span class="sr-only">Copy Markdown</span>
+</a>
+
+
+  </div>
+
+
+<p>Elixir/Rust interoperability toolkit.</p><h2 id="features" class="section-heading"><a href="#features" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Features</span></h2><ul><li>Spawn Elixir process from Rust and exchange messages over <a href="ElixirKit.PubSub.html" title="">PubSub</a>.</li><li>Rust <strong>ports</strong> — external programs that run in a separate OS process; crashes are isolated and won't affect the VM.</li><li>Rust <strong>NIFs</strong> — native functions that run in the same memory space as the VM, with low overhead and best performance.</li><li>Precompile NIFs and ports with <code class="inline">mix elixirkit.precompile</code> — cross-compile for multiple targets so end users don't need Rust installed.</li></ul><h2 id="examples" class="section-heading"><a href="#examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Examples</span></h2><ul><li><a href="#rust-spawns-elixir-process">Rust spawns Elixir process</a></li><li><a href="#elixir-spawns-rust-port">Elixir spawns Rust port</a></li><li><a href="#rust-nif">Rust NIF</a></li></ul><h3 id="rust-spawns-elixir-process" class="section-heading"><a href="#rust-spawns-elixir-process" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Rust spawns Elixir process</span></h3><p>On the Rust side, use <a href="rs/elixirkit/fn.elixir.html" title=""><code class="inline">elixirkit::elixir</code></a> to start Elixir and
+<a href="rs/elixirkit/struct.PubSub.html" title=""><code class="inline">elixirkit::PubSub</code></a> to exchange messages. Subscribe before starting Elixir so
+no messages are missed:</p><pre><code class="makeup rust" translate="no"><span class="c1">//</span><span class="c1"> main.rs
+</span><span class="k">use</span><span class="w"> </span><span class="n">elixirkit</span><span class="p">::</span><span class="p">{</span><span class="n">elixir</span><span class="p">,</span><span class="n"> PubSub</span><span class="p">}</span><span class="p">;</span><span class="w">
+</span><span class="k">use</span><span class="w"> </span><span class="n">elixirkit</span><span class="p">::</span><span class="n">term</span><span class="p">::</span><span class="p">{</span><span class="n">ToTerm</span><span class="p">,</span><span class="n"> FromTerm</span><span class="p">}</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="p">#</span><span class="p">[</span><span class="nv">derive</span><span class="p">(</span><span class="n">ToTerm</span><span class="p">)</span><span class="p">]</span><span class="w">
+</span><span class="kt">enum</span><span class="w"> </span><span class="n">SendMessage</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="n">    Echo</span><span class="p">(</span><span class="nb">String</span><span class="p">)</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="w">
+</span><span class="p">#</span><span class="p">[</span><span class="nv">derive</span><span class="p">(</span><span class="n">FromTerm</span><span class="p">)</span><span class="p">]</span><span class="w">
+</span><span class="kt">enum</span><span class="w"> </span><span class="n">RecvMessage</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="n">    Ready</span><span class="p">,</span><span class="w">
+</span><span class="n">    Echo</span><span class="p">(</span><span class="nb">String</span><span class="p">)</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="w">
+</span><span class="kt">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="kt">let</span><span class="n"> pubsub </span><span class="o">=</span><span class="w"> </span><span class="n">PubSub</span><span class="p">::</span><span class="n">listen</span><span class="p">(</span><span class="p">&quot;</span><span class="s2">tcp://127.0.0.1:0</span><span class="p">&quot;</span><span class="p">)</span><span class="w">
+</span><span class="w">        </span><span class="p">.</span><span class="nf">expect</span><span class="p">(</span><span class="p">&quot;</span><span class="s2">failed to listen</span><span class="p">&quot;</span><span class="p">)</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w">    </span><span class="kt">let</span><span class="n"> pubsub_for_topic </span><span class="o">=</span><span class="n"> pubsub</span><span class="p">.</span><span class="nf">clone</span><span class="p">(</span><span class="p">)</span><span class="p">;</span><span class="w">
+</span><span class="n">    pubsub</span><span class="p">.</span><span class="nf">subscribe</span><span class="p">(</span><span class="p">&quot;</span><span class="s2">topic</span><span class="p">&quot;</span><span class="p">,</span><span class="w"> </span><span class="kd">move</span><span class="w"> </span><span class="o">|</span><span class="n">msg</span><span class="p">:</span><span class="n"> RecvMessage</span><span class="o">|</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">        </span><span class="k">match</span><span class="n"> msg </span><span class="p">{</span><span class="w">
+</span><span class="w">            </span><span class="n">RecvMessage</span><span class="p">::</span><span class="n">Ready </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="n">                pubsub_for_topic
+</span><span class="w">                    </span><span class="p">.</span><span class="nf">broadcast</span><span class="p">(</span><span class="p">&quot;</span><span class="s2">topic</span><span class="p">&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">SendMessage</span><span class="p">::</span><span class="n">Echo</span><span class="p">(</span><span class="p">&quot;</span><span class="s2">Hello from Rust</span><span class="p">&quot;</span><span class="p">.</span><span class="nf">into</span><span class="p">(</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="w">
+</span><span class="w">                    </span><span class="p">.</span><span class="nf">unwrap</span><span class="p">(</span><span class="p">)</span><span class="p">;</span><span class="w">
+</span><span class="w">            </span><span class="p">}</span><span class="w">
+</span><span class="w">            </span><span class="n">RecvMessage</span><span class="p">::</span><span class="n">Echo</span><span class="p">(</span><span class="n">message</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">                </span><span class="nb">println!</span><span class="p">(</span><span class="p">&quot;</span><span class="s2">[rust] </span><span class="no">{message}</span><span class="p">&quot;</span><span class="p">)</span><span class="p">;</span><span class="w">
+</span><span class="w">            </span><span class="p">}</span><span class="w">
+</span><span class="w">        </span><span class="p">}</span><span class="w">
+</span><span class="w">    </span><span class="p">}</span><span class="p">)</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w">    </span><span class="kt">let</span><span class="n"> status </span><span class="o">=</span><span class="w"> </span><span class="nf">elixir</span><span class="p">(</span><span class="o">&amp;</span><span class="p">[</span><span class="p">&quot;</span><span class="s2">script.exs</span><span class="p">&quot;</span><span class="p">]</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pubsub</span><span class="p">)</span><span class="w">
+</span><span class="w">        </span><span class="p">.</span><span class="nf">status</span><span class="p">(</span><span class="p">)</span><span class="w">
+</span><span class="w">        </span><span class="p">.</span><span class="nf">expect</span><span class="p">(</span><span class="p">&quot;</span><span class="s2">failed to start Elixir</span><span class="p">&quot;</span><span class="p">)</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w">    </span><span class="n">std</span><span class="p">::</span><span class="n">process</span><span class="p">::</span><span class="n">exit</span><span class="p">(</span><span class="n">status</span><span class="p">.</span><span class="nf">code</span><span class="p">(</span><span class="p">)</span><span class="p">.</span><span class="nf">unwrap_or</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="p">)</span><span class="p">;</span><span class="w">
+</span><span class="p">}</span></code></pre><p>On the Elixir side, start <a href="ElixirKit.PubSub.html" title=""><code class="inline">ElixirKit.PubSub</code></a> under a supervision tree and use
+<a href="ElixirKit.PubSub.html#subscribe/1" title=""><code class="inline">ElixirKit.PubSub.subscribe/1</code></a> to listen to messages and
+<a href="ElixirKit.PubSub.html#broadcast/2" title=""><code class="inline">ElixirKit.PubSub.broadcast/2</code></a> to send messages to the Rust side:</p><pre><code class="makeup elixir" translate="no"><span class="c1"># script.exs</span><span class="w">
+</span><span class="nc">Mix</span><span class="o">.</span><span class="n">install</span><span class="p" data-group-id="0389700339-1">(</span><span class="p" data-group-id="0389700339-2">[</span><span class="ss">:elixirkit</span><span class="p" data-group-id="0389700339-2">]</span><span class="p" data-group-id="0389700339-1">)</span><span class="w">
+
+</span><span class="n">children</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="0389700339-3">[</span><span class="w">
+  </span><span class="p" data-group-id="0389700339-4">{</span><span class="nc">ElixirKit.PubSub</span><span class="p">,</span><span class="w">
+   </span><span class="ss">connect</span><span class="p">:</span><span class="w"> </span><span class="nc">System</span><span class="o">.</span><span class="n">get_env</span><span class="p" data-group-id="0389700339-5">(</span><span class="s">&quot;ELIXIRKIT_PUBSUB&quot;</span><span class="p" data-group-id="0389700339-5">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="ss">:ignore</span><span class="p">,</span><span class="w">
+   </span><span class="ss">on_exit</span><span class="p">:</span><span class="w"> </span><span class="k" data-group-id="0389700339-6">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nc">System</span><span class="o">.</span><span class="n">stop</span><span class="p" data-group-id="0389700339-7">(</span><span class="p" data-group-id="0389700339-7">)</span><span class="w"> </span><span class="k" data-group-id="0389700339-6">end</span><span class="p" data-group-id="0389700339-4">}</span><span class="w">
+</span><span class="p" data-group-id="0389700339-3">]</span><span class="w">
+
+</span><span class="p" data-group-id="0389700339-8">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="p" data-group-id="0389700339-8">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Supervisor</span><span class="o">.</span><span class="n">start_link</span><span class="p" data-group-id="0389700339-9">(</span><span class="n">children</span><span class="p">,</span><span class="w"> </span><span class="ss">strategy</span><span class="p">:</span><span class="w"> </span><span class="ss">:one_for_one</span><span class="p" data-group-id="0389700339-9">)</span><span class="w">
+
+</span><span class="nc">ElixirKit.PubSub</span><span class="o">.</span><span class="n">subscribe</span><span class="p" data-group-id="0389700339-10">(</span><span class="s">&quot;topic&quot;</span><span class="p" data-group-id="0389700339-10">)</span><span class="w">
+</span><span class="nc">ElixirKit.PubSub</span><span class="o">.</span><span class="n">broadcast</span><span class="p" data-group-id="0389700339-11">(</span><span class="s">&quot;topic&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">:ready</span><span class="p" data-group-id="0389700339-11">)</span><span class="w">
+
+</span><span class="k">receive</span><span class="w"> </span><span class="k" data-group-id="0389700339-12">do</span><span class="w">
+  </span><span class="p" data-group-id="0389700339-13">{</span><span class="ss">:echo</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p" data-group-id="0389700339-13">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+    </span><span class="nc">IO</span><span class="o">.</span><span class="n">puts</span><span class="p" data-group-id="0389700339-14">(</span><span class="s">&quot;[elixir] </span><span class="si" data-group-id="0389700339-15">#{</span><span class="n">message</span><span class="si" data-group-id="0389700339-15">}</span><span class="s">&quot;</span><span class="p" data-group-id="0389700339-14">)</span><span class="w">
+    </span><span class="nc">ElixirKit.PubSub</span><span class="o">.</span><span class="n">broadcast</span><span class="p" data-group-id="0389700339-16">(</span><span class="s">&quot;topic&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0389700339-17">{</span><span class="ss">:echo</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hello from Elixir&quot;</span><span class="p" data-group-id="0389700339-17">}</span><span class="p" data-group-id="0389700339-16">)</span><span class="w">
+</span><span class="k" data-group-id="0389700339-12">end</span></code></pre><h3 id="elixir-spawns-rust-port" class="section-heading"><a href="#elixir-spawns-rust-port" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Elixir spawns Rust port</span></h3><p>ElixirKit can spawn Rust ports using <code class="inline">ElixirKit.Rust.defport/1</code>. Ports are
+external programs that run in a separate OS process; crashes are isolated and
+won't affect the VM.</p><pre><code class="makeup elixir" translate="no"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">ExamplePort</span><span class="w"> </span><span class="k" data-group-id="0301078892-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">ElixirKit.Rust</span><span class="w">
+
+  </span><span class="n">defport</span><span class="p" data-group-id="0301078892-2">(</span><span class="sx">~RS&quot;&quot;&quot;</span><span class="w">
+</span><span class="w">  </span><span class="k">use</span><span class="w"> </span><span class="n">elixirkit</span><span class="p">::</span><span class="p">{</span><span class="n">PubSub</span><span class="p">,</span><span class="w"> </span><span class="n">term</span><span class="p">::</span><span class="p">{</span><span class="n">ToTerm</span><span class="p">,</span><span class="n"> FromTerm</span><span class="p">}</span><span class="p">}</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w">  </span><span class="p">#</span><span class="p">[</span><span class="nv">derive</span><span class="p">(</span><span class="n">ToTerm</span><span class="p">,</span><span class="n"> FromTerm</span><span class="p">)</span><span class="p">]</span><span class="w">
+</span><span class="w">  </span><span class="kt">enum</span><span class="w"> </span><span class="n">Message</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="n">      Echo</span><span class="p">(</span><span class="nb">String</span><span class="p">)</span><span class="p">,</span><span class="w">
+</span><span class="w">  </span><span class="p">}</span><span class="w">
+</span><span class="w">
+</span><span class="w">  </span><span class="kt">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">      </span><span class="kt">let</span><span class="n"> url </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="p">::</span><span class="n">env</span><span class="p">::</span><span class="n">var</span><span class="p">(</span><span class="p">&quot;</span><span class="s2">ELIXIRKIT_PUBSUB</span><span class="p">&quot;</span><span class="p">)</span><span class="w">
+</span><span class="w">          </span><span class="p">.</span><span class="nf">expect</span><span class="p">(</span><span class="p">&quot;</span><span class="s2">ELIXIRKIT_PUBSUB not set</span><span class="p">&quot;</span><span class="p">)</span><span class="p">;</span><span class="w">
+</span><span class="w">      </span><span class="kt">let</span><span class="n"> pubsub </span><span class="o">=</span><span class="w"> </span><span class="n">PubSub</span><span class="p">::</span><span class="n">connect</span><span class="p">(</span><span class="o">&amp;</span><span class="n">url</span><span class="p">)</span><span class="w">
+</span><span class="w">          </span><span class="p">.</span><span class="nf">expect</span><span class="p">(</span><span class="p">&quot;</span><span class="s2">failed to connect</span><span class="p">&quot;</span><span class="p">)</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="n">      pubsub</span><span class="p">.</span><span class="nf">subscribe</span><span class="p">(</span><span class="p">&quot;</span><span class="s2">messages</span><span class="p">&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">|</span><span class="nv">msg</span><span class="p">:</span><span class="n"> Message</span><span class="p">|</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">          </span><span class="nb">println!</span><span class="p">(</span><span class="p">&quot;</span><span class="s2">[rust] got: </span><span class="no">{msg:?}</span><span class="p">&quot;</span><span class="p">)</span><span class="p">;</span><span class="w">
+</span><span class="w">      </span><span class="p">}</span><span class="p">)</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="n">      pubsub</span><span class="p">.</span><span class="nf">broadcast</span><span class="p">(</span><span class="p">&quot;</span><span class="s2">messages</span><span class="p">&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Message</span><span class="p">::</span><span class="n">Echo</span><span class="p">(</span><span class="p">&quot;</span><span class="s2">ping</span><span class="p">&quot;</span><span class="p">.</span><span class="nf">into</span><span class="p">(</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">.</span><span class="nf">unwrap</span><span class="p">(</span><span class="p">)</span><span class="p">;</span><span class="w">
+</span><span class="n">      pubsub</span><span class="p">.</span><span class="nf">wait</span><span class="p">(</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span><span class="w">  </span><span class="p">}</span><span class="w">
+</span><span class="w">  </span><span class="sx">&quot;&quot;&quot;</span><span class="p" data-group-id="0301078892-2">)</span><span class="w">
+</span><span class="k" data-group-id="0301078892-1">end</span><span class="w">
+
+</span><span class="p" data-group-id="0301078892-3">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">pubsub</span><span class="p" data-group-id="0301078892-3">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">ElixirKit.PubSub</span><span class="o">.</span><span class="n">start_link</span><span class="p" data-group-id="0301078892-4">(</span><span class="ss">listen</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;tcp://127.0.0.1:0&quot;</span><span class="p" data-group-id="0301078892-4">)</span><span class="w">
+</span><span class="nc">ElixirKit.PubSub</span><span class="o">.</span><span class="n">subscribe</span><span class="p" data-group-id="0301078892-5">(</span><span class="s">&quot;messages&quot;</span><span class="p" data-group-id="0301078892-5">)</span><span class="w">
+
+</span><span class="n">port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">ExamplePort</span><span class="o">.</span><span class="n">open</span><span class="p" data-group-id="0301078892-6">(</span><span class="ss">pubsub</span><span class="p">:</span><span class="w"> </span><span class="n">pubsub</span><span class="p" data-group-id="0301078892-6">)</span><span class="w">
+</span><span class="no">true</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">is_port</span><span class="p" data-group-id="0301078892-7">(</span><span class="n">port</span><span class="p" data-group-id="0301078892-7">)</span><span class="w">
+
+</span><span class="k">receive</span><span class="w"> </span><span class="k" data-group-id="0301078892-8">do</span><span class="w">
+  </span><span class="n">message</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+    </span><span class="nc">IO</span><span class="o">.</span><span class="n">puts</span><span class="p" data-group-id="0301078892-9">(</span><span class="p" data-group-id="0301078892-10">[</span><span class="s">&quot;[elixir] got: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">inspect</span><span class="p" data-group-id="0301078892-11">(</span><span class="n">message</span><span class="p" data-group-id="0301078892-11">)</span><span class="p" data-group-id="0301078892-10">]</span><span class="p" data-group-id="0301078892-9">)</span><span class="w">
+</span><span class="k" data-group-id="0301078892-8">end</span></code></pre><p><code class="inline">ElixirKit.Rust</code> builds the port executable using <code class="inline">cargo build</code> in a temporary
+crate behind the scenes. If you want to add dependencies or make other
+adjustments, do:</p><pre><code class="makeup elixir" translate="no"><span class="na">@port_project</span><span class="w"> </span><span class="p" data-group-id="9388979255-1">%{</span><span class="w">
+  </span><span class="s">&quot;Cargo.toml&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;...&quot;</span><span class="p">,</span><span class="w">
+  </span><span class="s">&quot;build.rs&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s">&quot;...&quot;</span><span class="w">
+</span><span class="p" data-group-id="9388979255-1">}</span><span class="w">
+
+</span><span class="n">defport</span><span class="p" data-group-id="9388979255-2">(</span><span class="sx">~RS&quot;&quot;&quot;</span><span class="w">
+</span><span class="o">...</span><span class="w">
+</span><span class="sx">&quot;&quot;&quot;</span><span class="p" data-group-id="9388979255-2">)</span></code></pre><p>or instead of using <code class="inline">~RS</code> sigil, use an existing crate:</p><pre><code class="makeup elixir" translate="no"><span class="na">@port_project</span><span class="w"> </span><span class="s">&quot;</span><span class="si" data-group-id="6420963631-1">#{</span><span class="bp">__DIR__</span><span class="si" data-group-id="6420963631-1">}</span><span class="s">/../native&quot;</span></code></pre><h3 id="rust-nif" class="section-heading"><a href="#rust-nif" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Rust NIF</span></h3><pre><code class="makeup elixir" translate="no"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">ExampleNIF</span><span class="w"> </span><span class="k" data-group-id="9448165009-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">ElixirKit.Rust</span><span class="w">
+
+  </span><span class="n">defnif</span><span class="p" data-group-id="9448165009-2">(</span><span class="sx">~RS&quot;&quot;&quot;</span><span class="w">
+</span><span class="w">  </span><span class="p">#</span><span class="p">[</span><span class="nv">nif</span><span class="p">]</span><span class="w">
+</span><span class="w">  </span><span class="kt">fn</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="nv">a</span><span class="p">:</span><span class="w"> </span><span class="kt">i64</span><span class="n">, </span><span class="nv">b</span><span class="p">:</span><span class="w"> </span><span class="kt">i64</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="kt">i64</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="n">      a </span><span class="o">+</span><span class="n"> b
+</span><span class="w">  </span><span class="p">}</span><span class="w">
+</span><span class="w">  </span><span class="sx">&quot;&quot;&quot;</span><span class="p" data-group-id="9448165009-2">)</span><span class="w">
+</span><span class="k" data-group-id="9448165009-1">end</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">ExampleNIF</span><span class="o">.</span><span class="n">add</span><span class="p" data-group-id="9448165009-3">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="9448165009-3">)</span><span class="w">
+</span><span class="mi">3</span></code></pre><h2 id="license" class="section-heading"><a href="#license" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">License</span></h2><p>Copyright (C) 2026 Dashbit</p><p>Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at <a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p><p>Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.</p>
+
+</div>
+
+<div class="bottom-actions" id="bottom-actions">
+  <div class="bottom-actions-item">
+
+  </div>
+  <div class="bottom-actions-item">
+
+  </div>
+</div>
+    <footer class="footer">
+
+        <p>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Go to package docs">
+              Go to package docs
+            </button>
+
+              <a href="llms.txt" target="_blank">
+                View llms.txt
+              </a>
+
+
+              <a href="elixirkit.epub">
+                Download ePub version
+              </a>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.40.1) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+
+
+    </footer>
+  </div>
+</main>
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,9 @@
+(function() {
+    var implementors = Object.fromEntries([["elixirkit",[["impl <a class=\"trait\" href=\"https://doc.rust-lang.org/1.88.0/core/error/trait.Error.html\" title=\"trait core::error::Error\">Error</a> for <a class=\"enum\" href=\"elixirkit/etf/enum.DecodeError.html\" title=\"enum elixirkit::etf::DecodeError\">DecodeError</a>"]]],["elixirkit",[["impl <a class=\"trait\" href=\"https://doc.rust-lang.org/1.88.0/core/error/trait.Error.html\" title=\"trait core::error::Error\">Error</a> for <a class=\"struct\" href=\"elixirkit/etf/struct.Error.html\" title=\"struct elixirkit::etf::Error\">Error</a>"]]],["elixirkit",[["impl <a class=\"trait\" href=\"https://doc.rust-lang.org/1.88.0/core/error/trait.Error.html\" title=\"trait core::error::Error\">Error</a> for <a class=\"struct\" href=\"elixirkit/pubsub/struct.Error.html\" title=\"struct elixirkit::pubsub::Error\">Error</a>"]]],["elixirkit",[["impl <a class=\"trait\" href=\"https://doc.rust-lang.org/1.88.0/core/error/trait.Error.html\" title=\"trait core::error::Error\">Error</a> for <a class=\"struct\" href=\"elixirkit/pubsub/term/struct.Error.html\" title=\"struct elixirkit::pubsub::term::Error\">Error</a>"]]],["elixirkit",[["impl <a class=\"trait\" href=\"https://doc.rust-lang.org/1.88.0/core/error/trait.Error.html\" title=\"trait core::error::Error\">Error</a> for <a class=\"struct\" href=\"elixirkit/term/struct.Error.html\" title=\"struct elixirkit::term::Error\">Error</a>"]]]]);
+    if (window.register_implementors) {
+        window.register_implementors(implementors);
+    } else {
+        window.pending_implementors = implementors;
+    }
+})()
+//{"start":57,"fragment_lengths":[284,273,279,290,275]}

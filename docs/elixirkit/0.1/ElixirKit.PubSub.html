@@ -12,7 +12,7 @@
 
     <link rel="stylesheet" href="dist/html-elixir-YJO4MOOW.css" />
 
-    <script defer src="dist/sidebar_items-A2DF9AC4.js"></script>
+    <script defer src="dist/sidebar_items-7948FCCF.js"></script>
     <script defer src="docs_config.js"></script>
     <script defer src="dist/html-YU4BZFVS.js"></script>
 
@@ -339,31 +339,31 @@ so a common pattern is <code class="inline">connect: System.get_env(&quot;ELIXIR
 disconnects).</p><section role="note" class="admonition warning"><h4 class="admonition-title warning">Handling exit</h4><p>It is recommended to set <code class="inline">on_exit: fn -&gt; System.stop() end</code> to cleanly shutdown the VM
 when the native side exits abruptly.</p><p>Alternatively, consider monitoring the <a href="ElixirKit.PubSub.html"><code class="inline">ElixirKit.PubSub</code></a> process and respond accordingly.</p><p>Finally, you may instead set <code class="inline">{ElixirKit.PubSub, ..., significant: true}</code> in your
 supervision tree and set your supervisor to
-<code class="inline">auto_shutdown: :any_significant | :all_significant</code>.</p></section></li></ul><h2 id="start_link/1-examples" class="section-heading"><a href="#start_link/1-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Examples</span></h2><pre><code class="makeup elixir" translate="no"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Server</span><span class="w"> </span><span class="k" data-group-id="8355060897-1">do</span><span class="w">
+<code class="inline">auto_shutdown: :any_significant | :all_significant</code>.</p></section></li></ul><h2 id="start_link/1-examples" class="section-heading"><a href="#start_link/1-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Examples</span></h2><pre><code class="makeup elixir" translate="no"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Server</span><span class="w"> </span><span class="k" data-group-id="1403920745-1">do</span><span class="w">
   </span><span class="kn">use</span><span class="w"> </span><span class="nc">GenServer</span><span class="w">
 
   </span><span class="na">@impl</span><span class="w"> </span><span class="no">true</span><span class="w">
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">init</span><span class="p" data-group-id="8355060897-2">(</span><span class="bp">_</span><span class="p" data-group-id="8355060897-2">)</span><span class="w"> </span><span class="k" data-group-id="8355060897-3">do</span><span class="w">
-    </span><span class="nc">ElixirKit.PubSub</span><span class="o">.</span><span class="n">subscribe</span><span class="p" data-group-id="8355060897-4">(</span><span class="s">&quot;messages&quot;</span><span class="p" data-group-id="8355060897-4">)</span><span class="w">
-    </span><span class="nc">ElixirKit.PubSub</span><span class="o">.</span><span class="n">broadcast</span><span class="p" data-group-id="8355060897-5">(</span><span class="s">&quot;messages&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ready&quot;</span><span class="p" data-group-id="8355060897-5">)</span><span class="w">
-    </span><span class="p" data-group-id="8355060897-6">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8355060897-7">%{</span><span class="p" data-group-id="8355060897-7">}</span><span class="p" data-group-id="8355060897-6">}</span><span class="w">
-  </span><span class="k" data-group-id="8355060897-3">end</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">init</span><span class="p" data-group-id="1403920745-2">(</span><span class="bp">_</span><span class="p" data-group-id="1403920745-2">)</span><span class="w"> </span><span class="k" data-group-id="1403920745-3">do</span><span class="w">
+    </span><span class="nc">ElixirKit.PubSub</span><span class="o">.</span><span class="n">subscribe</span><span class="p" data-group-id="1403920745-4">(</span><span class="s">&quot;messages&quot;</span><span class="p" data-group-id="1403920745-4">)</span><span class="w">
+    </span><span class="nc">ElixirKit.PubSub</span><span class="o">.</span><span class="n">broadcast</span><span class="p" data-group-id="1403920745-5">(</span><span class="s">&quot;messages&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ready&quot;</span><span class="p" data-group-id="1403920745-5">)</span><span class="w">
+    </span><span class="p" data-group-id="1403920745-6">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1403920745-7">%{</span><span class="p" data-group-id="1403920745-7">}</span><span class="p" data-group-id="1403920745-6">}</span><span class="w">
+  </span><span class="k" data-group-id="1403920745-3">end</span><span class="w">
 
   </span><span class="na">@impl</span><span class="w"> </span><span class="no">true</span><span class="w">
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">handle_info</span><span class="p" data-group-id="8355060897-8">(</span><span class="n">message</span><span class="p">,</span><span class="w"> </span><span class="n">state</span><span class="p" data-group-id="8355060897-8">)</span><span class="w"> </span><span class="k" data-group-id="8355060897-9">do</span><span class="w">
-    </span><span class="n">dbg</span><span class="p" data-group-id="8355060897-10">(</span><span class="n">message</span><span class="p" data-group-id="8355060897-10">)</span><span class="w">
-    </span><span class="p" data-group-id="8355060897-11">{</span><span class="ss">:noreply</span><span class="p">,</span><span class="w"> </span><span class="n">state</span><span class="p" data-group-id="8355060897-11">}</span><span class="w">
-  </span><span class="k" data-group-id="8355060897-9">end</span><span class="w">
-</span><span class="k" data-group-id="8355060897-1">end</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">handle_info</span><span class="p" data-group-id="1403920745-8">(</span><span class="n">message</span><span class="p">,</span><span class="w"> </span><span class="n">state</span><span class="p" data-group-id="1403920745-8">)</span><span class="w"> </span><span class="k" data-group-id="1403920745-9">do</span><span class="w">
+    </span><span class="n">dbg</span><span class="p" data-group-id="1403920745-10">(</span><span class="n">message</span><span class="p" data-group-id="1403920745-10">)</span><span class="w">
+    </span><span class="p" data-group-id="1403920745-11">{</span><span class="ss">:noreply</span><span class="p">,</span><span class="w"> </span><span class="n">state</span><span class="p" data-group-id="1403920745-11">}</span><span class="w">
+  </span><span class="k" data-group-id="1403920745-9">end</span><span class="w">
+</span><span class="k" data-group-id="1403920745-1">end</span><span class="w">
 
-</span><span class="n">children</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="8355060897-12">[</span><span class="w">
-  </span><span class="p" data-group-id="8355060897-13">{</span><span class="nc">ElixirKit.PubSub</span><span class="p">,</span><span class="w">
-   </span><span class="ss">connect</span><span class="p">:</span><span class="w"> </span><span class="nc">System</span><span class="o">.</span><span class="n">fetch_env!</span><span class="p" data-group-id="8355060897-14">(</span><span class="s">&quot;ELIXIRKIT_PUBSUB&quot;</span><span class="p" data-group-id="8355060897-14">)</span><span class="p">,</span><span class="w">
-   </span><span class="ss">on_exit</span><span class="p">:</span><span class="w"> </span><span class="k" data-group-id="8355060897-15">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nc">System</span><span class="o">.</span><span class="n">stop</span><span class="p" data-group-id="8355060897-16">(</span><span class="p" data-group-id="8355060897-16">)</span><span class="w"> </span><span class="k" data-group-id="8355060897-15">end</span><span class="p" data-group-id="8355060897-13">}</span><span class="p">,</span><span class="w">
+</span><span class="n">children</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="1403920745-12">[</span><span class="w">
+  </span><span class="p" data-group-id="1403920745-13">{</span><span class="nc">ElixirKit.PubSub</span><span class="p">,</span><span class="w">
+   </span><span class="ss">connect</span><span class="p">:</span><span class="w"> </span><span class="nc">System</span><span class="o">.</span><span class="n">fetch_env!</span><span class="p" data-group-id="1403920745-14">(</span><span class="s">&quot;ELIXIRKIT_PUBSUB&quot;</span><span class="p" data-group-id="1403920745-14">)</span><span class="p">,</span><span class="w">
+   </span><span class="ss">on_exit</span><span class="p">:</span><span class="w"> </span><span class="k" data-group-id="1403920745-15">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nc">System</span><span class="o">.</span><span class="n">stop</span><span class="p" data-group-id="1403920745-16">(</span><span class="p" data-group-id="1403920745-16">)</span><span class="w"> </span><span class="k" data-group-id="1403920745-15">end</span><span class="p" data-group-id="1403920745-13">}</span><span class="p">,</span><span class="w">
   </span><span class="nc">Server</span><span class="w">
-</span><span class="p" data-group-id="8355060897-12">]</span><span class="w">
+</span><span class="p" data-group-id="1403920745-12">]</span><span class="w">
 
-</span><span class="p" data-group-id="8355060897-17">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="p" data-group-id="8355060897-17">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Supervisor</span><span class="o">.</span><span class="n">start_link</span><span class="p" data-group-id="8355060897-18">(</span><span class="n">children</span><span class="p">,</span><span class="w"> </span><span class="ss">strategy</span><span class="p">:</span><span class="w"> </span><span class="ss">:one_for_one</span><span class="p" data-group-id="8355060897-18">)</span></code></pre>
+</span><span class="p" data-group-id="1403920745-17">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="p" data-group-id="1403920745-17">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Supervisor</span><span class="o">.</span><span class="n">start_link</span><span class="p" data-group-id="1403920745-18">(</span><span class="n">children</span><span class="p">,</span><span class="w"> </span><span class="ss">strategy</span><span class="p">:</span><span class="w"> </span><span class="ss">:one_for_one</span><span class="p" data-group-id="1403920745-18">)</span></code></pre>
   </section>
 </section>
 <section class="detail" id="subscribe/1">
