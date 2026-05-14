@@ -12,7 +12,7 @@
 
     <link rel="stylesheet" href="dist/html-elixir-YJO4MOOW.css" />
 
-    <script defer src="dist/sidebar_items-5C2416C1.js"></script>
+    <script defer src="dist/sidebar_items-CDD6CCA7.js"></script>
     <script defer src="docs_config.js"></script>
     <script defer src="dist/html-YU4BZFVS.js"></script>
 
@@ -112,18 +112,18 @@ req
     <section id="moduledoc">
 <p>Behaviour for plugs that wrap the rest of the pipeline.</p><p>A wrapper receives the connection, the validated options bag, and a
 continuation function representing the rest of the pipeline. Wrappers
-may invoke the continuation zero, one, or many times.</p><h2 id="module-example" class="section-heading"><a href="#module-example" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Example</span></h2><pre><code class="makeup elixir" translate="no"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyTime</span><span class="w"> </span><span class="k" data-group-id="6073351714-1">do</span><span class="w">
+may invoke the continuation zero, one, or many times.</p><h2 id="module-example" class="section-heading"><a href="#module-example" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Example</span></h2><pre><code class="makeup elixir" translate="no"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyTime</span><span class="w"> </span><span class="k" data-group-id="1699519656-1">do</span><span class="w">
   </span><span class="na">@behaviour</span><span class="w"> </span><span class="nc">Req.Plug.Wrapper</span><span class="w">
 
   </span><span class="na">@impl</span><span class="w"> </span><span class="no">true</span><span class="w">
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">wrap</span><span class="p" data-group-id="6073351714-2">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="c">_options</span><span class="p">,</span><span class="w"> </span><span class="n">next</span><span class="p" data-group-id="6073351714-2">)</span><span class="w"> </span><span class="k" data-group-id="6073351714-3">do</span><span class="w">
-    </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">System</span><span class="o">.</span><span class="n">monotonic_time</span><span class="p" data-group-id="6073351714-4">(</span><span class="p" data-group-id="6073351714-4">)</span><span class="w">
-    </span><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">next</span><span class="o">.</span><span class="p" data-group-id="6073351714-5">(</span><span class="n">conn</span><span class="p" data-group-id="6073351714-5">)</span><span class="w">
-    </span><span class="n">elapsed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">System</span><span class="o">.</span><span class="n">monotonic_time</span><span class="p" data-group-id="6073351714-6">(</span><span class="p" data-group-id="6073351714-6">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="w">
-    </span><span class="nc">IO</span><span class="o">.</span><span class="n">inspect</span><span class="p" data-group-id="6073351714-7">(</span><span class="n">elapsed</span><span class="p">,</span><span class="w"> </span><span class="ss">label</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;elapsed&quot;</span><span class="p" data-group-id="6073351714-7">)</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">wrap</span><span class="p" data-group-id="1699519656-2">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="c">_options</span><span class="p">,</span><span class="w"> </span><span class="n">next</span><span class="p" data-group-id="1699519656-2">)</span><span class="w"> </span><span class="k" data-group-id="1699519656-3">do</span><span class="w">
+    </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">System</span><span class="o">.</span><span class="n">monotonic_time</span><span class="p" data-group-id="1699519656-4">(</span><span class="p" data-group-id="1699519656-4">)</span><span class="w">
+    </span><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">next</span><span class="o">.</span><span class="p" data-group-id="1699519656-5">(</span><span class="n">conn</span><span class="p" data-group-id="1699519656-5">)</span><span class="w">
+    </span><span class="n">elapsed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">System</span><span class="o">.</span><span class="n">monotonic_time</span><span class="p" data-group-id="1699519656-6">(</span><span class="p" data-group-id="1699519656-6">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="w">
+    </span><span class="nc">IO</span><span class="o">.</span><span class="n">inspect</span><span class="p" data-group-id="1699519656-7">(</span><span class="n">elapsed</span><span class="p">,</span><span class="w"> </span><span class="ss">label</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;elapsed&quot;</span><span class="p" data-group-id="1699519656-7">)</span><span class="w">
     </span><span class="n">conn</span><span class="w">
-  </span><span class="k" data-group-id="6073351714-3">end</span><span class="w">
-</span><span class="k" data-group-id="6073351714-1">end</span></code></pre>
+  </span><span class="k" data-group-id="1699519656-3">end</span><span class="w">
+</span><span class="k" data-group-id="1699519656-1">end</span></code></pre>
     </section>
 
 </div>

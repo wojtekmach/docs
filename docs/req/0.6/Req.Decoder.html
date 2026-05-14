@@ -12,7 +12,7 @@
 
     <link rel="stylesheet" href="dist/html-elixir-YJO4MOOW.css" />
 
-    <script defer src="dist/sidebar_items-5C2416C1.js"></script>
+    <script defer src="dist/sidebar_items-CDD6CCA7.js"></script>
     <script defer src="docs_config.js"></script>
     <script defer src="dist/html-YU4BZFVS.js"></script>
 
@@ -112,31 +112,31 @@ req
     <section id="moduledoc">
 <p>Behaviour for response body decoders.</p><p>A decoder declares:</p><ul><li><code class="inline">mime_formats/0</code> — the MIME format keys it handles (e.g. <code class="inline">:json</code>, <code class="inline">:ndjson</code>).</li><li><code class="inline">stream?/0</code> — whether the decoder supports streaming via <code class="inline">:stream</code>.</li><li><code class="inline">decode_eager/1</code> — decode a full buffered body (used when <code class="inline">:stream</code> is not set).</li><li><code class="inline">decode_start/0</code>, <code class="inline">decode_chunk/2</code>, <code class="inline">decode_finish/1</code> — chunk-state machine
 for streaming decoders. Required only when <code class="inline">stream?/0</code> returns <code class="inline">true</code>.</li></ul><p><a href="Req.Decode.html"><code class="inline">Req.Decode</code></a> looks decoders up by format key (via the <code class="inline">:decoders</code> option) and
-dispatches based on the response <code class="inline">content-type</code> header.</p><h2 id="module-eager-only-decoder" class="section-heading"><a href="#module-eager-only-decoder" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Eager-only decoder</span></h2><pre><code class="makeup elixir" translate="no"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyCSV</span><span class="w"> </span><span class="k" data-group-id="5731640562-1">do</span><span class="w">
+dispatches based on the response <code class="inline">content-type</code> header.</p><h2 id="module-eager-only-decoder" class="section-heading"><a href="#module-eager-only-decoder" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Eager-only decoder</span></h2><pre><code class="makeup elixir" translate="no"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyCSV</span><span class="w"> </span><span class="k" data-group-id="7234181543-1">do</span><span class="w">
   </span><span class="na">@behaviour</span><span class="w"> </span><span class="nc">Req.Decoder</span><span class="w">
 
   </span><span class="na">@impl</span><span class="w"> </span><span class="no">true</span><span class="w">
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">mime_formats</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5731640562-2">[</span><span class="ss">:csv</span><span class="p" data-group-id="5731640562-2">]</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">mime_formats</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="7234181543-2">[</span><span class="ss">:csv</span><span class="p" data-group-id="7234181543-2">]</span><span class="w">
 
   </span><span class="na">@impl</span><span class="w"> </span><span class="no">true</span><span class="w">
   </span><span class="kd">def</span><span class="w"> </span><span class="nf">stream?</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="w">
 
   </span><span class="na">@impl</span><span class="w"> </span><span class="no">true</span><span class="w">
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">decode_eager</span><span class="p" data-group-id="5731640562-3">(</span><span class="n">body</span><span class="p" data-group-id="5731640562-3">)</span><span class="w"> </span><span class="k" data-group-id="5731640562-4">do</span><span class="w">
-    </span><span class="nc">NimbleCSV.RFC4180</span><span class="o">.</span><span class="n">parse_string</span><span class="p" data-group-id="5731640562-5">(</span><span class="n">body</span><span class="p" data-group-id="5731640562-5">)</span><span class="w">
-  </span><span class="k" data-group-id="5731640562-4">end</span><span class="w">
-</span><span class="k" data-group-id="5731640562-1">end</span></code></pre><h2 id="module-streaming-decoder" class="section-heading"><a href="#module-streaming-decoder" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Streaming decoder</span></h2><p>Implements all six callbacks. The state machine for a buffer-of-lines format
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">decode_eager</span><span class="p" data-group-id="7234181543-3">(</span><span class="n">body</span><span class="p" data-group-id="7234181543-3">)</span><span class="w"> </span><span class="k" data-group-id="7234181543-4">do</span><span class="w">
+    </span><span class="nc">NimbleCSV.RFC4180</span><span class="o">.</span><span class="n">parse_string</span><span class="p" data-group-id="7234181543-5">(</span><span class="n">body</span><span class="p" data-group-id="7234181543-5">)</span><span class="w">
+  </span><span class="k" data-group-id="7234181543-4">end</span><span class="w">
+</span><span class="k" data-group-id="7234181543-1">end</span></code></pre><h2 id="module-streaming-decoder" class="section-heading"><a href="#module-streaming-decoder" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Streaming decoder</span></h2><p>Implements all six callbacks. The state machine for a buffer-of-lines format
 looks like:</p><pre><code class="makeup elixir" translate="no"><span class="kd">def</span><span class="w"> </span><span class="nf">decode_start</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w">
 
-</span><span class="kd">def</span><span class="w"> </span><span class="nf">decode_chunk</span><span class="p" data-group-id="4205083435-1">(</span><span class="n">chunk</span><span class="p">,</span><span class="w"> </span><span class="n">buffer</span><span class="p" data-group-id="4205083435-1">)</span><span class="w"> </span><span class="k" data-group-id="4205083435-2">do</span><span class="w">
+</span><span class="kd">def</span><span class="w"> </span><span class="nf">decode_chunk</span><span class="p" data-group-id="7066490986-1">(</span><span class="n">chunk</span><span class="p">,</span><span class="w"> </span><span class="n">buffer</span><span class="p" data-group-id="7066490986-1">)</span><span class="w"> </span><span class="k" data-group-id="7066490986-2">do</span><span class="w">
   </span><span class="c1"># split off complete records; return decoded items + remaining partial buffer</span><span class="w">
   </span><span class="n">...</span><span class="w">
-</span><span class="k" data-group-id="4205083435-2">end</span><span class="w">
+</span><span class="k" data-group-id="7066490986-2">end</span><span class="w">
 
-</span><span class="kd">def</span><span class="w"> </span><span class="nf">decode_finish</span><span class="p" data-group-id="4205083435-3">(</span><span class="n">buffer</span><span class="p" data-group-id="4205083435-3">)</span><span class="w"> </span><span class="k" data-group-id="4205083435-4">do</span><span class="w">
+</span><span class="kd">def</span><span class="w"> </span><span class="nf">decode_finish</span><span class="p" data-group-id="7066490986-3">(</span><span class="n">buffer</span><span class="p" data-group-id="7066490986-3">)</span><span class="w"> </span><span class="k" data-group-id="7066490986-4">do</span><span class="w">
   </span><span class="c1"># parse any trailing partial record (if non-empty)</span><span class="w">
   </span><span class="n">...</span><span class="w">
-</span><span class="k" data-group-id="4205083435-4">end</span></code></pre>
+</span><span class="k" data-group-id="7066490986-4">end</span></code></pre>
     </section>
 
 </div>

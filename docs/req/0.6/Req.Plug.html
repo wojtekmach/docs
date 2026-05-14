@@ -12,7 +12,7 @@
 
     <link rel="stylesheet" href="dist/html-elixir-YJO4MOOW.css" />
 
-    <script defer src="dist/sidebar_items-5C2416C1.js"></script>
+    <script defer src="dist/sidebar_items-CDD6CCA7.js"></script>
     <script defer src="docs_config.js"></script>
     <script defer src="dist/html-YU4BZFVS.js"></script>
 
@@ -113,25 +113,25 @@ req
 <p>Behaviour for Req pipeline plug modules.</p><p>A plug declares its options via a <a href="Req.Options.html"><code class="inline">Req.Options</code></a> schema and consumes the
 validated options bag in <code class="inline">call/2</code>. <a href="Req.Builder.html"><code class="inline">Req.Builder</code></a> merges the per-plug schemas
 into a single schema that validates and applies defaults before reaching
-the pipeline.</p><h2 id="module-example" class="section-heading"><a href="#module-example" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Example</span></h2><pre><code class="makeup elixir" translate="no"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyApp.TagRequest</span><span class="w"> </span><span class="k" data-group-id="8372330183-1">do</span><span class="w">
+the pipeline.</p><h2 id="module-example" class="section-heading"><a href="#module-example" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Example</span></h2><pre><code class="makeup elixir" translate="no"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyApp.TagRequest</span><span class="w"> </span><span class="k" data-group-id="9700076876-1">do</span><span class="w">
   </span><span class="kn">import</span><span class="w"> </span><span class="nc">Req.Options</span><span class="w">
   </span><span class="na">@behaviour</span><span class="w"> </span><span class="nc">Req.Plug</span><span class="w">
 
-  </span><span class="n">defoptions</span><span class="w"> </span><span class="k" data-group-id="8372330183-2">do</span><span class="w">
+  </span><span class="n">defoptions</span><span class="w"> </span><span class="k" data-group-id="9700076876-2">do</span><span class="w">
     </span><span class="na">@doc</span><span class="w"> </span><span class="s">&quot;Header tag to attach.&quot;</span><span class="w">
-    </span><span class="n">tag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;untagged&quot;</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="n">binary</span><span class="p" data-group-id="8372330183-3">(</span><span class="p" data-group-id="8372330183-3">)</span><span class="w">
-  </span><span class="k" data-group-id="8372330183-2">end</span><span class="w">
+    </span><span class="n">tag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;untagged&quot;</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="n">binary</span><span class="p" data-group-id="9700076876-3">(</span><span class="p" data-group-id="9700076876-3">)</span><span class="w">
+  </span><span class="k" data-group-id="9700076876-2">end</span><span class="w">
 
   </span><span class="na">@impl</span><span class="w"> </span><span class="no">true</span><span class="w">
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">options</span><span class="w"> </span><span class="k" data-group-id="8372330183-4">do</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">options</span><span class="w"> </span><span class="k" data-group-id="9700076876-4">do</span><span class="w">
     </span><span class="na">@options</span><span class="w">
-  </span><span class="k" data-group-id="8372330183-4">end</span><span class="w">
+  </span><span class="k" data-group-id="9700076876-4">end</span><span class="w">
 
   </span><span class="na">@impl</span><span class="w"> </span><span class="no">true</span><span class="w">
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">call</span><span class="p" data-group-id="8372330183-5">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">options</span><span class="p" data-group-id="8372330183-5">)</span><span class="w"> </span><span class="k" data-group-id="8372330183-6">do</span><span class="w">
-    </span><span class="nc">Req.Conn</span><span class="o">.</span><span class="n">put_req_header</span><span class="p" data-group-id="8372330183-7">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;x-tag&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">options</span><span class="p" data-group-id="8372330183-8">[</span><span class="ss">:tag</span><span class="p" data-group-id="8372330183-8">]</span><span class="p" data-group-id="8372330183-7">)</span><span class="w">
-  </span><span class="k" data-group-id="8372330183-6">end</span><span class="w">
-</span><span class="k" data-group-id="8372330183-1">end</span></code></pre>
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">call</span><span class="p" data-group-id="9700076876-5">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">options</span><span class="p" data-group-id="9700076876-5">)</span><span class="w"> </span><span class="k" data-group-id="9700076876-6">do</span><span class="w">
+    </span><span class="nc">Req.Conn</span><span class="o">.</span><span class="n">put_req_header</span><span class="p" data-group-id="9700076876-7">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;x-tag&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">options</span><span class="p" data-group-id="9700076876-8">[</span><span class="ss">:tag</span><span class="p" data-group-id="9700076876-8">]</span><span class="p" data-group-id="9700076876-7">)</span><span class="w">
+  </span><span class="k" data-group-id="9700076876-6">end</span><span class="w">
+</span><span class="k" data-group-id="9700076876-1">end</span></code></pre>
     </section>
 
 </div>

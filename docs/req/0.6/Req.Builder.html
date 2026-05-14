@@ -12,7 +12,7 @@
 
     <link rel="stylesheet" href="dist/html-elixir-YJO4MOOW.css" />
 
-    <script defer src="dist/sidebar_items-5C2416C1.js"></script>
+    <script defer src="dist/sidebar_items-CDD6CCA7.js"></script>
     <script defer src="docs_config.js"></script>
     <script defer src="dist/html-YU4BZFVS.js"></script>
 
@@ -110,13 +110,13 @@ req
 
 
     <section id="moduledoc">
-<p>Conveniences for building Req plug pipelines at compile time.</p><h2 id="module-example" class="section-heading"><a href="#module-example" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Example</span></h2><pre><code class="makeup elixir" translate="no"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyApp.Req</span><span class="w"> </span><span class="k" data-group-id="9168036452-1">do</span><span class="w">
+<p>Conveniences for building Req plug pipelines at compile time.</p><h2 id="module-example" class="section-heading"><a href="#module-example" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Example</span></h2><pre><code class="makeup elixir" translate="no"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyApp.Req</span><span class="w"> </span><span class="k" data-group-id="2367072281-1">do</span><span class="w">
   </span><span class="kn">use</span><span class="w"> </span><span class="nc">Req.Builder</span><span class="w">
 
   </span><span class="n">plug</span><span class="w"> </span><span class="ss">:tag_request</span><span class="w">
   </span><span class="n">plug</span><span class="w"> </span><span class="nc">Req</span><span class="w">
   </span><span class="n">plug</span><span class="w"> </span><span class="ss">:record_metric</span><span class="w">
-</span><span class="k" data-group-id="9168036452-1">end</span></code></pre><h2 id="module-plug-shapes" class="section-heading"><a href="#module-plug-shapes" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Plug shapes</span></h2><ul><li><strong>Module plug</strong> — <code class="inline">init/1</code> + <code class="inline">call/2</code>, like <a href="https://hexdocs.pm/plug/1.16.1/Plug.html"><code class="inline">Plug</code></a>. (<a href="Req.Plug.html"><code class="inline">Req.Plug</code></a>)</li><li><strong>Function plug</strong> — <code class="inline">(conn, options) -&gt; conn</code>.</li><li><strong>Wrapper</strong> — module implementing <a href="Req.Plug.Wrapper.html"><code class="inline">Req.Plug.Wrapper</code></a> (<code class="inline">init/1</code> + <code class="inline">wrap/3</code>),
+</span><span class="k" data-group-id="2367072281-1">end</span></code></pre><h2 id="module-plug-shapes" class="section-heading"><a href="#module-plug-shapes" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Plug shapes</span></h2><ul><li><strong>Module plug</strong> — <code class="inline">init/1</code> + <code class="inline">call/2</code>, like <a href="https://hexdocs.pm/plug/1.16.1/Plug.html"><code class="inline">Plug</code></a>. (<a href="Req.Plug.html"><code class="inline">Req.Plug</code></a>)</li><li><strong>Function plug</strong> — <code class="inline">(conn, options) -&gt; conn</code>.</li><li><strong>Wrapper</strong> — module implementing <a href="Req.Plug.Wrapper.html"><code class="inline">Req.Plug.Wrapper</code></a> (<code class="inline">init/1</code> + <code class="inline">wrap/3</code>),
 receives a continuation and may invoke it any number of times.</li></ul><p>Every plug receives the full runtime <code class="inline">options</code> keyword as its second
 argument; it reads whatever keys it cares about.</p>
     </section>

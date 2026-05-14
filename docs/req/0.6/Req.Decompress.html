@@ -12,7 +12,7 @@
 
     <link rel="stylesheet" href="dist/html-elixir-YJO4MOOW.css" />
 
-    <script defer src="dist/sidebar_items-5C2416C1.js"></script>
+    <script defer src="dist/sidebar_items-CDD6CCA7.js"></script>
     <script defer src="docs_config.js"></script>
     <script defer src="dist/html-YU4BZFVS.js"></script>
 
@@ -110,8 +110,8 @@ req
 
 
     <section id="moduledoc">
-<p>Decompresses the response body when the <code class="inline">content-encoding</code> header is <code class="inline">gzip</code>.</p><h2 id="module-options" class="section-heading"><a href="#module-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:raw</code> - When <code class="inline">true</code>, the response body is left as-is (no decompression, no decoding). <code class="inline">boolean()</code>. Defaults to <code class="inline">false</code>.</li></ul><h2 id="module-examples" class="section-heading"><a href="#module-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Examples</span></h2><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">fetch!</span><span class="p" data-group-id="7040971153-1">(</span><span class="s">&quot;https://httpbin.org/gzip&quot;</span><span class="p" data-group-id="7040971153-1">)</span><span class="w">
-</span><span class="gp unselectable">iex&gt; </span><span class="n">conn</span><span class="o">.</span><span class="n">resp_body</span><span class="p" data-group-id="7040971153-2">[</span><span class="s">&quot;gzipped&quot;</span><span class="p" data-group-id="7040971153-2">]</span><span class="w">
+<p>Decompresses the response body when the <code class="inline">content-encoding</code> header is <code class="inline">gzip</code>.</p><h2 id="module-options" class="section-heading"><a href="#module-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:raw</code> - When <code class="inline">true</code>, the response body is left as-is (no decompression, no decoding). <code class="inline">boolean()</code>. Defaults to <code class="inline">false</code>.</li></ul><h2 id="module-examples" class="section-heading"><a href="#module-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Examples</span></h2><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">fetch!</span><span class="p" data-group-id="5124023953-1">(</span><span class="s">&quot;https://httpbin.org/gzip&quot;</span><span class="p" data-group-id="5124023953-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">conn</span><span class="o">.</span><span class="n">resp_body</span><span class="p" data-group-id="5124023953-2">[</span><span class="s">&quot;gzipped&quot;</span><span class="p" data-group-id="5124023953-2">]</span><span class="w">
 </span><span class="no">true</span></code></pre>
     </section>
 
