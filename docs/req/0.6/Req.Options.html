@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.40.1">
+    <meta name="project" content="req v0.6.0-dev">
+
+
+    <title>Req.Options — req v0.6.0-dev</title>
+
+    <link rel="stylesheet" href="dist/html-elixir-YJO4MOOW.css" />
+
+    <script defer src="dist/sidebar_items-5C2416C1.js"></script>
+    <script defer src="docs_config.js"></script>
+    <script defer src="dist/html-YU4BZFVS.js"></script>
+
+  </head>
+  <body>
+    <script>(()=>{var t="ex_doc:settings",e="dark";var o="dark",s="light";var E="sidebar_state",n="closed";var r="sidebar_width";var a="sidebar-open";var i=new URLSearchParams(window.location.search),S=i.get("theme")||JSON.parse(localStorage.getItem(t)||"{}").theme;(S===o||S!==s&&window.matchMedia("(prefers-color-scheme: dark)").matches)&&document.body.classList.add(e);var d=sessionStorage.getItem(E),A=d!==n&&!window.matchMedia(`screen and (max-width: ${768}px)`).matches;document.body.classList.toggle(a,A);var c=sessionStorage.getItem(r);c&&document.body.style.setProperty("--sidebarWidth",`${c}px`);var p=/(Macintosh|iPhone|iPad|iPod)/.test(window.navigator.userAgent);document.documentElement.classList.toggle("apple-os",p);})();
+</script>
+
+<div class="body-wrapper">
+
+<button id="sidebar-menu" class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
+
+      <div>
+        <a href="readme.html" class="sidebar-projectName" translate="no">
+req
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v0.6.0-dev
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-list-nav" class="sidebar-list-nav" role="tablist" data-extras="Pages"></ul>
+  </div>
+</nav>
+
+<output role="status" id="toast"></output>
+
+<main class="content page-module" id="main" data-type="modules">
+  <div id="content" class="content-inner">
+    <div class="top-search">
+      <div class="search-settings">
+        <form class="search-bar" action="search.html">
+          <label class="search-label">
+            <span class="sr-only">Search documentation of req</span>
+            <div class="search-input-wrapper">
+              <input name="q" type="text" class="search-input" placeholder="Press / to search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+              <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+                <i class="ri-close-line ri-lg" title="Cancel search"></i>
+              </button>
+            </div>
+          </label>
+        </form>
+        <div class="autocomplete">
+        </div>
+        <div class="engine-selector" data-multiple="false">
+          <button type="button" class="engine-button" aria-label="Select search engine" aria-haspopup="true" aria-expanded="false">
+            <i class="ri-search-2-line" aria-hidden="true"></i>
+            <span class="engine-name">Default</span>
+            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+          </button>
+          <div class="engine-dropdown" hidden role="menu">
+
+              <button type="button"
+                      class="engine-option"
+                      data-engine-url="search.html?q="
+                      role="menuitemradio"
+                      aria-checked="true">
+                <span class="name">Default</span>
+                <span class="help">In-browser search</span>
+              </button>
+
+          </div>
+        </div>
+        <button class="icon-settings display-settings">
+          <i class="ri-settings-3-line"></i>
+          <span class="sr-only">Settings</span>
+        </button>
+      </div>
+    </div>
+
+<div id="top-content">
+  <div class="heading-with-actions top-heading">
+    <h1>
+      <span translate="no">Req.<wbr>Options</span> 
+      <small class="app-vsn" translate="no">(req v0.6.0-dev)</small>
+
+    </h1>
+
+
+
+
+      <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/req/options.ex#L87" title="View Source" class="icon-action" rel="help">
+        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        <span class="sr-only">View Source</span>
+      </a>
+
+  </div>
+
+
+    <section id="moduledoc">
+<p>Functions for validating and documenting options.</p><p><a href="Req.Options.html"><code class="inline">Req.Options</code></a> is similar to <a href="https://hexdocs.pm/nimble_options/1.1.1/NimbleOptions.html"><code class="inline">NimbleOptions</code></a> but it doesn't have all of its capabilities.
+It's tailored to Req and uses type notation inspired by Elixir Set-Theoretic Types.</p><p>The <a href="#options/1"><code class="inline">options/1</code></a> macro defines using <code class="inline">name :: type</code> with optional default value and documentation:</p><pre><code class="makeup elixir" translate="no"><span class="n">options</span><span class="w"> </span><span class="k" data-group-id="4642945580-1">do</span><span class="w">
+  </span><span class="n">username</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="n">binary</span><span class="p" data-group-id="4642945580-2">(</span><span class="p" data-group-id="4642945580-2">)</span><span class="w">
+
+  </span><span class="na">@doc</span><span class="w"> </span><span class="s">&quot;The email address.&quot;</span><span class="w">
+  </span><span class="n">email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">nil</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="n">binary</span><span class="p" data-group-id="4642945580-3">(</span><span class="p" data-group-id="4642945580-3">)</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="no">nil</span><span class="w">
+
+  </span><span class="na">@doc</span><span class="w"> </span><span class="s">&quot;The user role&quot;</span><span class="w">
+  </span><span class="na">@doc</span><span class="w"> </span><span class="ss">since</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1.1.0&quot;</span><span class="w">
+  </span><span class="n">role</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:user</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="ss">:user</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="ss">:admin</span><span class="w">
+
+  </span><span class="na">@doc</span><span class="w"> </span><span class="ss">deprecated</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Use :email instead&quot;</span><span class="w">
+  </span><span class="n">email_address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">nil</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="n">binary</span><span class="p" data-group-id="4642945580-4">(</span><span class="p" data-group-id="4642945580-4">)</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="no">nil</span><span class="w">
+</span><span class="k" data-group-id="4642945580-1">end</span></code></pre><p>Available types:</p><ul><li><code class="inline">atom()</code></li><li><code class="inline">module()</code></li><li><code class="inline">integer()</code></li><li><code class="inline">pos_integer()</code></li><li><code class="inline">neg_integer()</code></li><li><code class="inline">non_neg_integer()</code></li><li><code class="inline">float()</code></li><li><code class="inline">number()</code></li><li><code class="inline">binary()</code></li><li><code class="inline">boolean()</code></li><li><code class="inline">list()</code>, <code class="inline">list(t)</code></li><li><code class="inline">map()</code></li><li><code class="inline">function()</code>, <code class="inline">&amp;function/N</code> (function with the given arity)</li><li>literals, e.g. <code class="inline">:get</code>, <code class="inline">1</code>, <code class="inline">&quot;hello&quot;</code>, <code class="inline">%{}</code> (matched with <code class="inline">===</code>)</li><li>tuples, e.g. <code class="inline">{:ok, integer()}</code></li><li>structs, e.g. <code class="inline">%Date{}</code></li><li>unions, <code class="inline">t1 or t2</code></li><li>nested options, <code class="inline">options do ... end</code></li><li><code class="inline">term()</code> (top type, matches anything)</li></ul><p>Use <a href="#defoptions/1"><code class="inline">defoptions/1</code></a> to assign the schema to an <code class="inline">@options</code> module attribute, generate
+documentation, and perform validation:</p><pre><code class="makeup elixir" translate="no"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyReq</span><span class="w"> </span><span class="k" data-group-id="9066734447-1">do</span><span class="w">
+  </span><span class="kn">import</span><span class="w"> </span><span class="nc">Req.Options</span><span class="w">
+
+  </span><span class="n">defoptions</span><span class="w"> </span><span class="k" data-group-id="9066734447-2">do</span><span class="w">
+    </span><span class="n">url</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="p" data-group-id="9066734447-3">%</span><span class="nc" data-group-id="9066734447-3">URI</span><span class="p" data-group-id="9066734447-3">{</span><span class="p" data-group-id="9066734447-3">}</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">binary</span><span class="p" data-group-id="9066734447-4">(</span><span class="p" data-group-id="9066734447-4">)</span><span class="w">
+
+    </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:get</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="ss">:get</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="ss">:post</span><span class="w">
+
+    </span><span class="n">auth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">false</span><span class="w"> </span><span class="o">::</span><span class="w">
+      </span><span class="p" data-group-id="9066734447-5">{</span><span class="ss">:basic</span><span class="p">,</span><span class="w"> </span><span class="n">binary</span><span class="p" data-group-id="9066734447-6">(</span><span class="p" data-group-id="9066734447-6">)</span><span class="p" data-group-id="9066734447-5">}</span><span class="w"> </span><span class="ow">or</span><span class="w">
+        </span><span class="p" data-group-id="9066734447-7">{</span><span class="ss">:bearer</span><span class="p">,</span><span class="w"> </span><span class="n">binary</span><span class="p" data-group-id="9066734447-8">(</span><span class="p" data-group-id="9066734447-8">)</span><span class="p" data-group-id="9066734447-7">}</span><span class="w"> </span><span class="ow">or</span><span class="w">
+        </span><span class="no">false</span><span class="w">
+
+    </span><span class="na">@doc</span><span class="w"> </span><span class="s">&quot;Follow redirects automatically. Set to `false` to disable.&quot;</span><span class="w">
+    </span><span class="n">redirect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="9066734447-9">[</span><span class="ss">max</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p" data-group-id="9066734447-9">]</span><span class="w"> </span><span class="o">::</span><span class="w">
+      </span><span class="n">options</span><span class="w"> </span><span class="k" data-group-id="9066734447-10">do</span><span class="w">
+        </span><span class="n">max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="n">pos_integer</span><span class="p" data-group-id="9066734447-11">(</span><span class="p" data-group-id="9066734447-11">)</span><span class="w">
+
+        </span><span class="na">@doc</span><span class="w"> </span><span class="s">&quot;&quot;&quot;
+        When true, sensitive headers are kept across cross-origin requests.
+        &quot;&quot;&quot;</span><span class="w">
+        </span><span class="n">trusted</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">false</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="n">boolean</span><span class="p" data-group-id="9066734447-12">(</span><span class="p" data-group-id="9066734447-12">)</span><span class="w">
+      </span><span class="k" data-group-id="9066734447-10">end</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="no">false</span><span class="w">
+  </span><span class="k" data-group-id="9066734447-2">end</span><span class="w">
+
+  </span><span class="na">@doc</span><span class="w"> </span><span class="s">&quot;&quot;&quot;
+  Performs the request.
+
+  ## Options
+
+  </span><span class="si" data-group-id="9066734447-13">#{</span><span class="na">@options</span><span class="si" data-group-id="9066734447-13">}</span><span class="s">
+  &quot;&quot;&quot;</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">request</span><span class="p" data-group-id="9066734447-14">(</span><span class="n">options</span><span class="p" data-group-id="9066734447-14">)</span><span class="w"> </span><span class="k" data-group-id="9066734447-15">do</span><span class="w">
+    </span><span class="nc">Req.Options</span><span class="o">.</span><span class="n">validate!</span><span class="p" data-group-id="9066734447-16">(</span><span class="n">options</span><span class="p">,</span><span class="w"> </span><span class="na">@options</span><span class="p" data-group-id="9066734447-16">)</span><span class="w">
+    </span><span class="n">...</span><span class="w">
+  </span><span class="k" data-group-id="9066734447-15">end</span><span class="w">
+</span><span class="k" data-group-id="9066734447-1">end</span></code></pre>
+    </section>
+
+</div>
+
+  <section id="summary" class="details-list">
+    <h2 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Summary</span>
+    </h2>
+<div class="summary-functions summary">
+  <h3>
+    <a href="#functions">Functions</a>
+  </h3>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#defoptions/1" data-no-tooltip="" translate="no">defoptions(list)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Defines an <code class="inline">@options</code> module attribute holding the schema.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#doc/2" data-no-tooltip="" translate="no">doc(options, names \\ nil)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Renders schema documentation.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#options/1" data-no-tooltip="" translate="no">options(list)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Builds an options schema.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#validate/3" data-no-tooltip="" translate="no">validate(options, options, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Validates <code class="inline">options</code> against the schema, applying defaults.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#validate!/3" data-no-tooltip="" translate="no">validate!(options, schema, opts \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Validates <code class="inline">options</code> against the schema, applying defaults.</p></div>
+
+    </div>
+
+</div>
+
+  </section>
+
+
+  <section id="functions" class="details-list">
+    <h2 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Functions</span>
+    </h2>
+
+    <div class="functions-list">
+<section class="detail" id="defoptions/1">
+
+  <div class="detail-header">
+    <a href="#defoptions/1" class="detail-link" data-no-tooltip="" aria-label="Link to this macro">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">defoptions(list)</h1>
+
+        <span class="note">(macro)</span>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/req/options.ex#L201" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+<p>Defines an <code class="inline">@options</code> module attribute holding the schema.</p><p>Convenience for:</p><pre><code class="makeup elixir" translate="no"><span class="na">@options</span><span class="w"> </span><span class="p" data-group-id="0199293466-1">(</span><span class="n">options</span><span class="w"> </span><span class="k" data-group-id="0199293466-2">do</span><span class="w"> </span><span class="n">...</span><span class="w"> </span><span class="k" data-group-id="0199293466-2">end</span><span class="p" data-group-id="0199293466-1">)</span></code></pre><p>See the module documentation for an example.</p>
+  </section>
+</section>
+<section class="detail" id="doc/2">
+
+    <span id="doc/1"></span>
+
+  <div class="detail-header">
+    <a href="#doc/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">doc(options, names \\ nil)</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/req/options.ex#L261" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+<p>Renders schema documentation.</p><p>When <code class="inline">names</code> is given, only those options are rendered, in the given order.
+Raises <a href="https://hexdocs.pm/elixir/ArgumentError.html"><code class="inline">ArgumentError</code></a> if a name is not in the schema.</p>
+  </section>
+</section>
+<section class="detail" id="options/1">
+
+  <div class="detail-header">
+    <a href="#options/1" class="detail-link" data-no-tooltip="" aria-label="Link to this macro">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">options(list)</h1>
+
+        <span class="note">(macro)</span>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/req/options.ex#L187" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+<p>Builds an options schema.</p><p>See the module documentation for the syntax.</p>
+  </section>
+</section>
+<section class="detail" id="validate/3">
+
+    <span id="validate/2"></span>
+
+  <div class="detail-header">
+    <a href="#validate/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">validate(options, options, opts \\ [])</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/req/options.ex#L315" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+<p>Validates <code class="inline">options</code> against the schema, applying defaults.</p><p>Returns <code class="inline">{:ok, options}</code> on success, or <code class="inline">{:error, %ArgumentError{}}</code> if options contain
+unknown keys, are missing required keys, or have invalid values.</p><h2 id="validate/3-options" class="section-heading"><a href="#validate/3-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><code class="inline">:into</code> - data structure to collect validated options into. Either <code class="inline">[]</code> (keyword list,
+the default) or <code class="inline">%{}</code> (map). Nested options follow the same shape.</li></ul><h2 id="validate/3-examples" class="section-heading"><a href="#validate/3-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Examples</span></h2><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="kn">require</span><span class="w"> </span><span class="nc">Req.Options</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">schema</span><span class="w"> </span><span class="o">=</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="nc">Req.Options</span><span class="o">.</span><span class="n">options</span><span class="w"> </span><span class="k" data-group-id="5930789921-1">do</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="n">binary</span><span class="p" data-group-id="5930789921-2">(</span><span class="p" data-group-id="5930789921-2">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">    </span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="n">non_neg_integer</span><span class="p" data-group-id="5930789921-3">(</span><span class="p" data-group-id="5930789921-3">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="k" data-group-id="5930789921-1">end</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Options</span><span class="o">.</span><span class="n">validate</span><span class="p" data-group-id="5930789921-4">(</span><span class="p" data-group-id="5930789921-5">[</span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Alice&quot;</span><span class="p" data-group-id="5930789921-5">]</span><span class="p">,</span><span class="w"> </span><span class="n">schema</span><span class="p" data-group-id="5930789921-4">)</span><span class="w">
+</span><span class="p" data-group-id="5930789921-6">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5930789921-7">[</span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Alice&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">age</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p" data-group-id="5930789921-7">]</span><span class="p" data-group-id="5930789921-6">}</span></code></pre><p><code class="inline">:into</code> set to <code class="inline">%{}</code>:</p><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="kn">require</span><span class="w"> </span><span class="nc">Req.Options</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">schema</span><span class="w"> </span><span class="o">=</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="nc">Req.Options</span><span class="o">.</span><span class="n">options</span><span class="w"> </span><span class="k" data-group-id="3472282568-1">do</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">    </span><span class="n">user</span><span class="w"> </span><span class="o">::</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">      </span><span class="n">options</span><span class="w"> </span><span class="k" data-group-id="3472282568-2">do</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">        </span><span class="n">name</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="n">binary</span><span class="p" data-group-id="3472282568-3">(</span><span class="p" data-group-id="3472282568-3">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">        </span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="n">non_neg_integer</span><span class="p" data-group-id="3472282568-4">(</span><span class="p" data-group-id="3472282568-4">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">      </span><span class="k" data-group-id="3472282568-2">end</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="k" data-group-id="3472282568-1">end</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Options</span><span class="o">.</span><span class="n">validate</span><span class="p" data-group-id="3472282568-5">(</span><span class="p" data-group-id="3472282568-6">[</span><span class="ss">user</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3472282568-7">[</span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Alice&quot;</span><span class="p" data-group-id="3472282568-7">]</span><span class="p" data-group-id="3472282568-6">]</span><span class="p">,</span><span class="w"> </span><span class="n">schema</span><span class="p">,</span><span class="w"> </span><span class="ss">into</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3472282568-8">%{</span><span class="p" data-group-id="3472282568-8">}</span><span class="p" data-group-id="3472282568-5">)</span><span class="w">
+</span><span class="p" data-group-id="3472282568-9">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="3472282568-10">%{</span><span class="ss">user</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3472282568-11">%{</span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Alice&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">age</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p" data-group-id="3472282568-11">}</span><span class="p" data-group-id="3472282568-10">}</span><span class="p" data-group-id="3472282568-9">}</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="validate!/3">
+
+    <span id="validate!/2"></span>
+
+  <div class="detail-header">
+    <a href="#validate!/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">validate!(options, schema, opts \\ [])</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/req/options.ex#L333" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+<p>Validates <code class="inline">options</code> against the schema, applying defaults.</p><p>Raises <a href="https://hexdocs.pm/elixir/ArgumentError.html"><code class="inline">ArgumentError</code></a> if options contain unknown keys, are missing required keys, or have
+invalid values.</p><p>Accepts the same options as <a href="#validate/3"><code class="inline">validate/3</code></a>.</p>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+    <footer class="footer">
+
+        <p>
+
+            <span class="line">
+              <a href="https://hex.pm/packages/req/0.6.0-dev">Hex Package</a>
+
+              <a href="https://preview.hex.pm/preview/req/0.6.0-dev">Hex Preview</a>
+
+            </span>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Go to package docs">
+              Go to package docs
+            </button>
+
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.40.1) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+
+
+    </footer>
+  </div>
+</main>
+</div>
+
+  </body>
+</html>

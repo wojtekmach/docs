@@ -1,0 +1,1961 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.40.1">
+    <meta name="project" content="req v0.6.0-dev">
+
+
+    <title>Req.Request — req v0.6.0-dev</title>
+
+    <link rel="stylesheet" href="dist/html-elixir-YJO4MOOW.css" />
+
+    <script defer src="dist/sidebar_items-5C2416C1.js"></script>
+    <script defer src="docs_config.js"></script>
+    <script defer src="dist/html-YU4BZFVS.js"></script>
+
+  </head>
+  <body>
+    <script>(()=>{var t="ex_doc:settings",e="dark";var o="dark",s="light";var E="sidebar_state",n="closed";var r="sidebar_width";var a="sidebar-open";var i=new URLSearchParams(window.location.search),S=i.get("theme")||JSON.parse(localStorage.getItem(t)||"{}").theme;(S===o||S!==s&&window.matchMedia("(prefers-color-scheme: dark)").matches)&&document.body.classList.add(e);var d=sessionStorage.getItem(E),A=d!==n&&!window.matchMedia(`screen and (max-width: ${768}px)`).matches;document.body.classList.toggle(a,A);var c=sessionStorage.getItem(r);c&&document.body.style.setProperty("--sidebarWidth",`${c}px`);var p=/(Macintosh|iPhone|iPad|iPod)/.test(window.navigator.userAgent);document.documentElement.classList.toggle("apple-os",p);})();
+</script>
+
+<div class="body-wrapper">
+
+<button id="sidebar-menu" class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
+
+      <div>
+        <a href="readme.html" class="sidebar-projectName" translate="no">
+req
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v0.6.0-dev
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-list-nav" class="sidebar-list-nav" role="tablist" data-extras="Pages"></ul>
+  </div>
+</nav>
+
+<output role="status" id="toast"></output>
+
+<main class="content page-module" id="main" data-type="modules">
+  <div id="content" class="content-inner">
+    <div class="top-search">
+      <div class="search-settings">
+        <form class="search-bar" action="search.html">
+          <label class="search-label">
+            <span class="sr-only">Search documentation of req</span>
+            <div class="search-input-wrapper">
+              <input name="q" type="text" class="search-input" placeholder="Press / to search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+              <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+                <i class="ri-close-line ri-lg" title="Cancel search"></i>
+              </button>
+            </div>
+          </label>
+        </form>
+        <div class="autocomplete">
+        </div>
+        <div class="engine-selector" data-multiple="false">
+          <button type="button" class="engine-button" aria-label="Select search engine" aria-haspopup="true" aria-expanded="false">
+            <i class="ri-search-2-line" aria-hidden="true"></i>
+            <span class="engine-name">Default</span>
+            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+          </button>
+          <div class="engine-dropdown" hidden role="menu">
+
+              <button type="button"
+                      class="engine-option"
+                      data-engine-url="search.html?q="
+                      role="menuitemradio"
+                      aria-checked="true">
+                <span class="name">Default</span>
+                <span class="help">In-browser search</span>
+              </button>
+
+          </div>
+        </div>
+        <button class="icon-settings display-settings">
+          <i class="ri-settings-3-line"></i>
+          <span class="sr-only">Settings</span>
+        </button>
+      </div>
+    </div>
+
+<div id="top-content">
+  <div class="heading-with-actions top-heading">
+    <h1>
+      <span translate="no">Req.<wbr>Request</span> 
+      <small class="app-vsn" translate="no">(req v0.6.0-dev)</small>
+
+    </h1>
+
+
+
+
+      <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/legacy/req/request.ex#L1" title="View Source" class="icon-action" rel="help">
+        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        <span class="sr-only">View Source</span>
+      </a>
+
+  </div>
+
+    <div class="deprecated">
+      This module is deprecated. See &quot;Upgrading to Req v0.6&quot; in the README.
+    </div>
+
+
+    <section id="moduledoc">
+<p>The low-level API and the request struct.</p><p>Req is composed of:</p><ul><li><p><a href="Req.html"><code class="inline">Req</code></a> - the high-level API</p></li><li><p><a href="Req.Request.html"><code class="inline">Req.Request</code></a> - the low-level API and the request struct (you're here!)</p></li><li><p><a href="Req.Steps.html"><code class="inline">Req.Steps</code></a> - the collection of built-in steps</p></li><li><p><a href="Req.Test.html"><code class="inline">Req.Test</code></a> - the testing conveniences</p></li></ul><p>The low-level API and the request struct is the foundation of Req's extensibility. Virtually all
+of the functionality is broken down into individual pieces - steps. Req works by running the
+request struct through these steps. You can easily reuse or rearrange built-in steps or write new
+ones.</p><p>To make using custom steps by others even easier, they can be packaged up into plugins.
+See <a href="#module-writing-plugins">&quot;Writing Plugins&quot;</a> section for more information.</p><h2 id="module-the-low-level-api" class="section-heading"><a href="#module-the-low-level-api" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">The Low-level API</span></h2><p>Most Req users would use it like this:</p><pre><code class="makeup elixir" translate="no"><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="9555137895-1">(</span><span class="s">&quot;https://api.github.com/repos/wojtekmach/req&quot;</span><span class="p" data-group-id="9555137895-1">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="9555137895-2">[</span><span class="s">&quot;description&quot;</span><span class="p" data-group-id="9555137895-2">]</span><span class="w">
+</span><span class="c1">#=&gt; &quot;Req is a batteries-included HTTP client for Elixir.&quot;</span></code></pre><p>Here is the equivalent using the low-level API:</p><pre><code class="makeup elixir" translate="no"><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;https://api.github.com/repos/wojtekmach/req&quot;</span><span class="w">
+
+</span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w">
+  </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="3690718685-1">(</span><span class="ss">method</span><span class="p">:</span><span class="w"> </span><span class="ss">:get</span><span class="p">,</span><span class="w"> </span><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="n">url</span><span class="p" data-group-id="3690718685-1">)</span><span class="w">
+  </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">append_request_steps</span><span class="p" data-group-id="3690718685-2">(</span><span class="w">
+    </span><span class="ss">put_user_agent</span><span class="p">:</span><span class="w"> </span><span class="o">&amp;</span><span class="nc">Req.Steps</span><span class="o">.</span><span class="n">put_user_agent</span><span class="o">/</span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="c1"># ...</span><span class="w">
+  </span><span class="p" data-group-id="3690718685-2">)</span><span class="w">
+  </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">append_response_steps</span><span class="p" data-group-id="3690718685-3">(</span><span class="w">
+    </span><span class="c1"># ...</span><span class="w">
+    </span><span class="ss">decompress_body</span><span class="p">:</span><span class="w"> </span><span class="o">&amp;</span><span class="nc">Req.Steps</span><span class="o">.</span><span class="n">decompress_body</span><span class="o">/</span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="ss">decode_body</span><span class="p">:</span><span class="w"> </span><span class="o">&amp;</span><span class="nc">Req.Steps</span><span class="o">.</span><span class="n">decode_body</span><span class="o">/</span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="c1"># ...</span><span class="w">
+  </span><span class="p" data-group-id="3690718685-3">)</span><span class="w">
+  </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">append_error_steps</span><span class="p" data-group-id="3690718685-4">(</span><span class="w">
+    </span><span class="ss">retry</span><span class="p">:</span><span class="w"> </span><span class="o">&amp;</span><span class="nc">Req.Steps</span><span class="o">.</span><span class="n">retry</span><span class="o">/</span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="c1"># ...</span><span class="w">
+  </span><span class="p" data-group-id="3690718685-4">)</span><span class="w">
+
+</span><span class="p" data-group-id="3690718685-5">{</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="n">resp</span><span class="p" data-group-id="3690718685-5">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">run_request</span><span class="p" data-group-id="3690718685-6">(</span><span class="n">req</span><span class="p" data-group-id="3690718685-6">)</span><span class="w">
+</span><span class="n">resp</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="3690718685-7">[</span><span class="s">&quot;description&quot;</span><span class="p" data-group-id="3690718685-7">]</span><span class="w">
+</span><span class="c1">#=&gt; &quot;Req is a batteries-included HTTP client for Elixir.&quot;</span></code></pre><p>By putting the request pipeline yourself you have precise control of exactly what is running and in what order.</p><h2 id="module-the-request-struct" class="section-heading"><a href="#module-the-request-struct" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">The Request Struct</span></h2><p>Public fields are:</p><ul><li><p><code class="inline">:method</code> - the HTTP request method.</p></li><li><p><code class="inline">:url</code> - the HTTP request URL.</p></li><li><p><code class="inline">:headers</code> - the HTTP request headers. The header names should be downcased.
+See also &quot;Headers&quot; section in <a href="Req.html"><code class="inline">Req</code></a> module documentation.</p></li><li><p><code class="inline">:body</code> - the HTTP request body.</p><p>Can be one of:</p><ul><li><p><code class="inline">iodata</code> - eagerly send request body</p></li><li><p><code class="inline">enumerable</code> - stream request body</p></li><li><p><code class="inline">req_body_fun</code> - stream request body chunks from a 1-arity function.
+The function receives the request (as accumulator).</p><p>It should return one of:</p><ul><li><p><code class="inline">{:data, chunk, request}</code> - emit request body <code class="inline">chunk</code>.</p></li><li><p><code class="inline">{:done, request}</code> - request body is done.</p></li><li><p><code class="inline">{:halt, request}</code> - cancel request. On HTTP/1, this closes the connection.</p></li></ul><p><code class="inline">req_body_fun</code> requires Finch main.</p></li></ul></li><li><p><code class="inline">:into</code> - where to send the response body. It can be one of:</p><ul><li><p><code class="inline">nil</code> - (default) read the whole response body and store it in the <code class="inline">response.body</code>
+field.</p></li><li><p><code class="inline">fun</code> - stream response body using a function. The first argument is a <code class="inline">{:data, data}</code>
+tuple containing the chunk of the response body. The second argument is a
+<code class="inline">{request, response}</code> tuple. To continue streaming chunks, return <code class="inline">{:cont, {req, resp}}</code>.
+To cancel, return <code class="inline">{:halt, {req, resp}}</code>. For example:</p><pre><code class="makeup elixir" translate="no"><span class="ss">into</span><span class="p">:</span><span class="w"> </span><span class="k" data-group-id="0470576346-1">fn</span><span class="w"> </span><span class="p" data-group-id="0470576346-2">{</span><span class="ss">:data</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p" data-group-id="0470576346-2">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0470576346-3">{</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="n">resp</span><span class="p" data-group-id="0470576346-3">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+  </span><span class="nc">IO</span><span class="o">.</span><span class="n">puts</span><span class="p" data-group-id="0470576346-4">(</span><span class="n">data</span><span class="p" data-group-id="0470576346-4">)</span><span class="w">
+  </span><span class="p" data-group-id="0470576346-5">{</span><span class="ss">:cont</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="0470576346-6">{</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="n">resp</span><span class="p" data-group-id="0470576346-6">}</span><span class="p" data-group-id="0470576346-5">}</span><span class="w">
+</span><span class="k" data-group-id="0470576346-1">end</span></code></pre></li><li><p><code class="inline">collectable</code> - stream response body into a <a href="https://hexdocs.pm/elixir/Collectable.html#t:t/0"><code class="inline">Collectable.t/0</code></a>. For example:</p><pre><code class="makeup elixir" translate="no"><span class="ss">into</span><span class="p">:</span><span class="w"> </span><span class="nc">File</span><span class="o">.</span><span class="n">stream!</span><span class="p" data-group-id="9430735986-1">(</span><span class="s">&quot;path&quot;</span><span class="p" data-group-id="9430735986-1">)</span></code></pre><p>Note that the collectable is only used, if the response status is 200. In other cases,
+the body is accumulated and processed as usual.</p></li></ul></li><li><p><code class="inline">:assigns</code> is a place for user data. It's commonly used when streaming response body with
+<code class="inline">into: fun</code> or when using application-specific custom steps.</p></li><li><p><code class="inline">:options</code> - the options to be used by steps. The exact representation of options is private.
+Calling <code class="inline">request.options[key]</code>, <code class="inline">put_in(request.options[key], value)</code>, and
+<code class="inline">update_in(request.options[key], fun)</code> is allowed. <a href="#get_option/3"><code class="inline">get_option/3</code></a> and <a href="#delete_option/2"><code class="inline">delete_option/2</code></a>
+are also available for additional ways to manipulate the internal representation.</p></li><li><p><code class="inline">:halted</code> - whether the request pipeline is halted. See <a href="#halt/2"><code class="inline">halt/2</code></a>.</p></li><li><p><code class="inline">:adapter</code> - a request step that makes the actual HTTP request. Defaults to
+<a href="Req.Steps.html#run_finch/1"><code class="inline">Req.Steps.run_finch/1</code></a>. See <a href="#module-adapter">&quot;Adapter&quot;</a> section below for more information.</p></li><li><p><code class="inline">:request_steps</code> - the list of request steps</p></li><li><p><code class="inline">:response_steps</code> - the list of response steps</p></li><li><p><code class="inline">:error_steps</code> - the list of error steps</p></li><li><p><code class="inline">:private</code> - a map reserved for libraries and frameworks to use.  The keys must be atoms.
+Prefix the keys with the name of your project to avoid any future conflicts. The <code class="inline">req_</code>
+prefix is reserved for Req.</p></li></ul><h2 id="module-steps" class="section-heading"><a href="#module-steps" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Steps</span></h2><p>Req has three types of steps: request, response, and error.</p><p>Request steps are used to refine the data that will be sent to the server.</p><p>After making the actual HTTP request, we'll either get a HTTP response or an error.
+The request, along with the response or error, will go through response or
+error steps, respectively.</p><p>Nothing is actually executed until we run the pipeline with <a href="#run_request/1"><code class="inline">Req.Request.run_request/1</code></a>.</p><h3 id="module-request-steps" class="section-heading"><a href="#module-request-steps" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Request Steps</span></h3><p>A <strong>request step</strong> (<a href="#t:request_step/0"><code class="inline">request_step/0</code></a>) is a function that accepts a <code class="inline">request</code> and returns one
+of the following:</p><ul><li><p>A <code class="inline">request</code>.</p></li><li><p>A <code class="inline">{request, response_or_error}</code> tuple. In this case no further request steps are executed
+and the return value goes through response or error steps.</p></li></ul><h4>Examples</h4><p>A request step that adds a <code class="inline">user-agent</code> header if it's not there already:</p><pre><code class="makeup elixir" translate="no"><span class="kd">def</span><span class="w"> </span><span class="nf">put_default_headers</span><span class="p" data-group-id="0731800524-1">(</span><span class="n">request</span><span class="p" data-group-id="0731800524-1">)</span><span class="w"> </span><span class="k" data-group-id="0731800524-2">do</span><span class="w">
+  </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">put_new_header</span><span class="p" data-group-id="0731800524-3">(</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;user-agent&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;req&quot;</span><span class="p" data-group-id="0731800524-3">)</span><span class="w">
+</span><span class="k" data-group-id="0731800524-2">end</span></code></pre><p>The next is a request step that reads the response from cache if available. Note how, if the
+cached response is available, this step returns a <code class="inline">{request, response}</code> tuple so that the
+request doesn't actually go through:</p><pre><code class="makeup elixir" translate="no"><span class="kd">def</span><span class="w"> </span><span class="nf">read_from_cache</span><span class="p" data-group-id="2547150095-1">(</span><span class="n">request</span><span class="p" data-group-id="2547150095-1">)</span><span class="w"> </span><span class="k" data-group-id="2547150095-2">do</span><span class="w">
+  </span><span class="k">case</span><span class="w"> </span><span class="nc">ResponseCache</span><span class="o">.</span><span class="n">fetch</span><span class="p" data-group-id="2547150095-3">(</span><span class="n">request</span><span class="p" data-group-id="2547150095-3">)</span><span class="w"> </span><span class="k" data-group-id="2547150095-4">do</span><span class="w">
+    </span><span class="p" data-group-id="2547150095-5">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="2547150095-5">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p" data-group-id="2547150095-6">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="2547150095-6">}</span><span class="w">
+    </span><span class="ss">:error</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">request</span><span class="w">
+  </span><span class="k" data-group-id="2547150095-4">end</span><span class="w">
+</span><span class="k" data-group-id="2547150095-2">end</span></code></pre><h3 id="module-response-and-error-steps" class="section-heading"><a href="#module-response-and-error-steps" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Response and Error Steps</span></h3><p>A response step (<a href="#t:response_step/0"><code class="inline">response_step/0</code></a>) is a function that accepts a <code class="inline">{request, response}</code> tuple
+and returns one of the following:</p><ul><li><p>A <code class="inline">{request, response}</code> tuple.</p></li><li><p>A <code class="inline">{request, exception}</code> tuple. In that case, no further response steps are executed but the
+exception goes through error steps.</p></li></ul><p>Similarly, an error step is a function that accepts a <code class="inline">{request, exception}</code> tuple and returns one
+of the following:</p><ul><li><p>A <code class="inline">{request, exception}</code> tuple</p></li><li><p>A <code class="inline">{request, response}</code> tuple. In that case, no further error steps are executed but the
+response goes through response steps.</p></li></ul><p>Examples:</p><pre><code class="makeup elixir" translate="no"><span class="kd">def</span><span class="w"> </span><span class="nf">decode</span><span class="p" data-group-id="6356623379-1">(</span><span class="p" data-group-id="6356623379-2">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="6356623379-2">}</span><span class="p" data-group-id="6356623379-1">)</span><span class="w"> </span><span class="k" data-group-id="6356623379-3">do</span><span class="w">
+  </span><span class="k">case</span><span class="w"> </span><span class="nc">Req.Response</span><span class="o">.</span><span class="n">get_header</span><span class="p" data-group-id="6356623379-4">(</span><span class="n">response</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;content-type&quot;</span><span class="p" data-group-id="6356623379-4">)</span><span class="w"> </span><span class="k" data-group-id="6356623379-5">do</span><span class="w">
+    </span><span class="p" data-group-id="6356623379-6">[</span><span class="s">&quot;application/json&quot;</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="bp">_</span><span class="p" data-group-id="6356623379-6">]</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+      </span><span class="p" data-group-id="6356623379-7">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">update_in</span><span class="p" data-group-id="6356623379-8">(</span><span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="nc">Jason</span><span class="o">.</span><span class="n">decode!</span><span class="o">/</span><span class="mi">1</span><span class="p" data-group-id="6356623379-8">)</span><span class="p" data-group-id="6356623379-7">}</span><span class="w">
+
+    </span><span class="p" data-group-id="6356623379-9">[</span><span class="p" data-group-id="6356623379-9">]</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+      </span><span class="p" data-group-id="6356623379-10">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="6356623379-10">}</span><span class="w">
+  </span><span class="k" data-group-id="6356623379-5">end</span><span class="w">
+</span><span class="k" data-group-id="6356623379-3">end</span><span class="w">
+
+</span><span class="kd">def</span><span class="w"> </span><span class="nf">log_error</span><span class="p" data-group-id="6356623379-11">(</span><span class="p" data-group-id="6356623379-12">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">exception</span><span class="p" data-group-id="6356623379-12">}</span><span class="p" data-group-id="6356623379-11">)</span><span class="w"> </span><span class="k" data-group-id="6356623379-13">do</span><span class="w">
+  </span><span class="nc">Logger</span><span class="o">.</span><span class="n">error</span><span class="p" data-group-id="6356623379-14">(</span><span class="p" data-group-id="6356623379-15">[</span><span class="s">&quot;</span><span class="si" data-group-id="6356623379-16">#{</span><span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="si" data-group-id="6356623379-16">}</span><span class="s"> </span><span class="si" data-group-id="6356623379-17">#{</span><span class="n">request</span><span class="o">.</span><span class="n">uri</span><span class="si" data-group-id="6356623379-17">}</span><span class="s">: &quot;</span><span class="p">,</span><span class="w"> </span><span class="nc">Exception</span><span class="o">.</span><span class="n">message</span><span class="p" data-group-id="6356623379-18">(</span><span class="n">exception</span><span class="p" data-group-id="6356623379-18">)</span><span class="p" data-group-id="6356623379-15">]</span><span class="p" data-group-id="6356623379-14">)</span><span class="w">
+  </span><span class="p" data-group-id="6356623379-19">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">exception</span><span class="p" data-group-id="6356623379-19">}</span><span class="w">
+</span><span class="k" data-group-id="6356623379-13">end</span></code></pre><h3 id="module-halting" class="section-heading"><a href="#module-halting" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Halting</span></h3><p>Any step can call <a href="#halt/2"><code class="inline">halt/2</code></a> to halt the pipeline. This prevents any further steps
+from being invoked.</p><p>Examples:</p><pre><code class="makeup elixir" translate="no"><span class="kd">def</span><span class="w"> </span><span class="nf">circuit_breaker</span><span class="p" data-group-id="2812507567-1">(</span><span class="n">request</span><span class="p" data-group-id="2812507567-1">)</span><span class="w"> </span><span class="k" data-group-id="2812507567-2">do</span><span class="w">
+  </span><span class="k">if</span><span class="w"> </span><span class="nc">CircuitBreaker</span><span class="o">.</span><span class="n">open?</span><span class="p" data-group-id="2812507567-3">(</span><span class="p" data-group-id="2812507567-3">)</span><span class="w"> </span><span class="k" data-group-id="2812507567-4">do</span><span class="w">
+    </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">halt</span><span class="p" data-group-id="2812507567-5">(</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="nc">RuntimeError</span><span class="o">.</span><span class="n">exception</span><span class="p" data-group-id="2812507567-6">(</span><span class="s">&quot;circuit breaker is open&quot;</span><span class="p" data-group-id="2812507567-6">)</span><span class="p" data-group-id="2812507567-5">)</span><span class="w">
+  </span><span class="k" data-group-id="2812507567-4">else</span><span class="w">
+    </span><span class="n">request</span><span class="w">
+  </span><span class="k" data-group-id="2812507567-4">end</span><span class="w">
+</span><span class="k" data-group-id="2812507567-2">end</span></code></pre><h2 id="module-writing-plugins" class="section-heading"><a href="#module-writing-plugins" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Writing Plugins</span></h2><p>Custom steps can be packaged into plugins so that they are even easier to use by others.</p><p>Here's an example plugin:</p><pre><code class="makeup elixir" translate="no"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">PrintHeaders</span><span class="w"> </span><span class="k" data-group-id="2607248626-1">do</span><span class="w">
+  </span><span class="na">@doc</span><span class="w"> </span><span class="s">&quot;&quot;&quot;
+  Prints request and response headers.
+
+  ## Request Options
+
+    * `:print_headers` - if `true`, prints the headers. Defaults to `false`.
+
+  &quot;&quot;&quot;</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">attach</span><span class="p" data-group-id="2607248626-2">(</span><span class="p" data-group-id="2607248626-3">%</span><span class="nc" data-group-id="2607248626-3">Req.Request</span><span class="p" data-group-id="2607248626-3">{</span><span class="p" data-group-id="2607248626-3">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">options</span><span class="w"> </span><span class="o">\\</span><span class="w"> </span><span class="p" data-group-id="2607248626-4">[</span><span class="p" data-group-id="2607248626-4">]</span><span class="p" data-group-id="2607248626-2">)</span><span class="w"> </span><span class="k" data-group-id="2607248626-5">do</span><span class="w">
+    </span><span class="n">request</span><span class="w">
+    </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">register_options</span><span class="p" data-group-id="2607248626-6">(</span><span class="p" data-group-id="2607248626-7">[</span><span class="ss">:print_headers</span><span class="p" data-group-id="2607248626-7">]</span><span class="p" data-group-id="2607248626-6">)</span><span class="w">
+    </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">merge_options</span><span class="p" data-group-id="2607248626-8">(</span><span class="n">options</span><span class="p" data-group-id="2607248626-8">)</span><span class="w">
+    </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">append_request_steps</span><span class="p" data-group-id="2607248626-9">(</span><span class="ss">print_headers</span><span class="p">:</span><span class="w"> </span><span class="o">&amp;</span><span class="n">print_request_headers</span><span class="o">/</span><span class="mi">1</span><span class="p" data-group-id="2607248626-9">)</span><span class="w">
+    </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">prepend_response_steps</span><span class="p" data-group-id="2607248626-10">(</span><span class="ss">print_headers</span><span class="p">:</span><span class="w"> </span><span class="o">&amp;</span><span class="n">print_response_headers</span><span class="o">/</span><span class="mi">1</span><span class="p" data-group-id="2607248626-10">)</span><span class="w">
+  </span><span class="k" data-group-id="2607248626-5">end</span><span class="w">
+
+  </span><span class="kd">defp</span><span class="w"> </span><span class="nf">print_request_headers</span><span class="p" data-group-id="2607248626-11">(</span><span class="n">request</span><span class="p" data-group-id="2607248626-11">)</span><span class="w"> </span><span class="k" data-group-id="2607248626-12">do</span><span class="w">
+    </span><span class="k">if</span><span class="w"> </span><span class="n">request</span><span class="o">.</span><span class="n">options</span><span class="p" data-group-id="2607248626-13">[</span><span class="ss">:print_headers</span><span class="p" data-group-id="2607248626-13">]</span><span class="w"> </span><span class="k" data-group-id="2607248626-14">do</span><span class="w">
+      </span><span class="n">print_headers</span><span class="p" data-group-id="2607248626-15">(</span><span class="s">&quot;&gt; &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="p" data-group-id="2607248626-15">)</span><span class="w">
+    </span><span class="k" data-group-id="2607248626-14">end</span><span class="w">
+
+    </span><span class="n">request</span><span class="w">
+  </span><span class="k" data-group-id="2607248626-12">end</span><span class="w">
+
+  </span><span class="kd">defp</span><span class="w"> </span><span class="nf">print_response_headers</span><span class="p" data-group-id="2607248626-16">(</span><span class="p" data-group-id="2607248626-17">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="2607248626-17">}</span><span class="p" data-group-id="2607248626-16">)</span><span class="w"> </span><span class="k" data-group-id="2607248626-18">do</span><span class="w">
+    </span><span class="k">if</span><span class="w"> </span><span class="n">request</span><span class="o">.</span><span class="n">options</span><span class="p" data-group-id="2607248626-19">[</span><span class="ss">:print_headers</span><span class="p" data-group-id="2607248626-19">]</span><span class="w"> </span><span class="k" data-group-id="2607248626-20">do</span><span class="w">
+      </span><span class="n">print_headers</span><span class="p" data-group-id="2607248626-21">(</span><span class="s">&quot;&lt; &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p" data-group-id="2607248626-21">)</span><span class="w">
+    </span><span class="k" data-group-id="2607248626-20">end</span><span class="w">
+
+    </span><span class="p" data-group-id="2607248626-22">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="2607248626-22">}</span><span class="w">
+  </span><span class="k" data-group-id="2607248626-18">end</span><span class="w">
+
+  </span><span class="kd">defp</span><span class="w"> </span><span class="nf">print_headers</span><span class="p" data-group-id="2607248626-23">(</span><span class="n">prefix</span><span class="p">,</span><span class="w"> </span><span class="n">headers</span><span class="p" data-group-id="2607248626-23">)</span><span class="w"> </span><span class="k" data-group-id="2607248626-24">do</span><span class="w">
+    </span><span class="k">for</span><span class="w"> </span><span class="p" data-group-id="2607248626-25">{</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p" data-group-id="2607248626-25">}</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">headers</span><span class="w"> </span><span class="k" data-group-id="2607248626-26">do</span><span class="w">
+      </span><span class="nc">IO</span><span class="o">.</span><span class="n">puts</span><span class="p" data-group-id="2607248626-27">(</span><span class="p" data-group-id="2607248626-28">[</span><span class="n">prefix</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p" data-group-id="2607248626-28">]</span><span class="p" data-group-id="2607248626-27">)</span><span class="w">
+    </span><span class="k" data-group-id="2607248626-26">end</span><span class="w">
+  </span><span class="k" data-group-id="2607248626-24">end</span><span class="w">
+</span><span class="k" data-group-id="2607248626-1">end</span></code></pre><p>And here is how we can use it:</p><pre><code class="makeup elixir" translate="no"><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="6313725173-1">(</span><span class="p" data-group-id="6313725173-1">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">PrintHeaders</span><span class="o">.</span><span class="n">attach</span><span class="p" data-group-id="6313725173-2">(</span><span class="p" data-group-id="6313725173-2">)</span><span class="w">
+
+</span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="6313725173-3">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://httpbin.org/json&quot;</span><span class="p" data-group-id="6313725173-3">)</span><span class="o">.</span><span class="n">status</span><span class="w">
+</span><span class="mi">200</span><span class="w">
+
+</span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="6313725173-4">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://httpbin.org/json&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">print_headers</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="6313725173-4">)</span><span class="o">.</span><span class="n">status</span><span class="w">
+</span><span class="c1"># Outputs:</span><span class="w">
+</span><span class="c1"># &gt; accept-encoding: br, gzip</span><span class="w">
+</span><span class="c1"># &gt; user-agent: req/0.3.0-dev</span><span class="w">
+</span><span class="c1"># &lt; date: Wed, 11 May 2022 11:10:47 GMT</span><span class="w">
+</span><span class="c1"># &lt; content-type: application/json</span><span class="w">
+</span><span class="c1"># ...</span><span class="w">
+</span><span class="mi">200</span><span class="w">
+
+</span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="6313725173-5">(</span><span class="p" data-group-id="6313725173-5">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">PrintHeaders</span><span class="o">.</span><span class="n">attach</span><span class="p" data-group-id="6313725173-6">(</span><span class="ss">print_headers</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="6313725173-6">)</span><span class="w">
+</span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="6313725173-7">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://httpbin.org/json&quot;</span><span class="p" data-group-id="6313725173-7">)</span><span class="o">.</span><span class="n">status</span><span class="w">
+</span><span class="c1"># Outputs:</span><span class="w">
+</span><span class="c1"># &gt; accept-encoding: br, gzip</span><span class="w">
+</span><span class="c1"># ...</span><span class="w">
+</span><span class="mi">200</span></code></pre><p>As you can see a plugin is simply a module. While this is not enforced, the plugin should follow
+these conventions:</p><ul><li><p>It should export an <code class="inline">attach/1</code> function that takes and returns the request struct</p></li><li><p>The attach functions mostly just adds steps and it is the steps that do the actual work</p></li><li><p>A user should be able to attach your plugin alongside other plugins. For this reason,
+plugin functionality should usually only happen on a specific &quot;trigger&quot;: on a specific
+option, on a specific URL scheme or host, etc. This is especially important for plugins
+that perform authentication; you don't want to accidentally expose a token from service A
+when a user makes request to service B.</p></li><li><p>If your plugin supports custom options, register them with <a href="#register_options/2"><code class="inline">register_options/2</code></a></p></li><li><p>Sometimes it is useful to pass options when attaching the plugin. For that, export an
+<code class="inline">attach/2</code> function and call <a href="#merge_options/2"><code class="inline">merge_options/2</code></a>. Remember to first register
+options before merging!</p></li></ul><h2 id="module-adapter" class="section-heading"><a href="#module-adapter" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Adapter</span></h2><p>As noted in the <a href="#module-request-steps">&quot;Request Steps&quot;</a> section, a request step besides returning the request,
+might also return <code class="inline">{request, response}</code> or <code class="inline">{request, exception}</code>, thus invoking either response or error steps next.
+This is exactly how Req makes the underlying HTTP call, by invoking a request step that follows this contract.</p><p>The default adapter is using Finch via the <a href="Req.Steps.html#run_finch/1"><code class="inline">Req.Steps.run_finch/1</code></a> step.</p><p>Here is a mock adapter that always returns a successful response:</p><pre><code class="makeup elixir" translate="no"><span class="n">adapter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k" data-group-id="2849386910-1">fn</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+  </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="2849386910-2">%</span><span class="nc" data-group-id="2849386910-2">Req.Response</span><span class="p" data-group-id="2849386910-2">{</span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="ss">body</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;it works!&quot;</span><span class="p" data-group-id="2849386910-2">}</span><span class="w">
+  </span><span class="p" data-group-id="2849386910-3">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="2849386910-3">}</span><span class="w">
+</span><span class="k" data-group-id="2849386910-1">end</span><span class="w">
+
+</span><span class="nc">Req</span><span class="o">.</span><span class="n">request!</span><span class="p" data-group-id="2849386910-4">(</span><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http://example&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">adapter</span><span class="p">:</span><span class="w"> </span><span class="n">adapter</span><span class="p" data-group-id="2849386910-4">)</span><span class="o">.</span><span class="n">body</span><span class="w">
+</span><span class="c1">#=&gt; &quot;it works!&quot;</span></code></pre><p>Here is another one that uses the <a href="Req.Response.html#json/2"><code class="inline">Req.Response.json/2</code></a> function to conveniently
+return a JSON response:</p><pre><code class="makeup elixir" translate="no"><span class="n">adapter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k" data-group-id="7169698277-1">fn</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+  </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req.Response</span><span class="o">.</span><span class="n">json</span><span class="p" data-group-id="7169698277-2">(</span><span class="p" data-group-id="7169698277-3">%{</span><span class="ss">hello</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p" data-group-id="7169698277-3">}</span><span class="p" data-group-id="7169698277-2">)</span><span class="w">
+  </span><span class="p" data-group-id="7169698277-4">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="7169698277-4">}</span><span class="w">
+</span><span class="k" data-group-id="7169698277-1">end</span><span class="w">
+
+</span><span class="n">resp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">request!</span><span class="p" data-group-id="7169698277-5">(</span><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http://example&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">adapter</span><span class="p">:</span><span class="w"> </span><span class="n">adapter</span><span class="p" data-group-id="7169698277-5">)</span><span class="w">
+</span><span class="n">resp</span><span class="o">.</span><span class="n">headers</span><span class="w">
+</span><span class="c1">#=&gt; [{&quot;content-type&quot;, &quot;application/json&quot;}]</span><span class="w">
+</span><span class="n">resp</span><span class="o">.</span><span class="n">body</span><span class="w">
+</span><span class="c1">#=&gt; %{&quot;hello&quot; =&gt; 42}</span></code></pre><p>And here is a naive Hackney-based adapter:</p><pre><code class="makeup elixir" translate="no"><span class="n">hackney</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k" data-group-id="4970487856-1">fn</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+  </span><span class="k">case</span><span class="w"> </span><span class="nc">:hackney</span><span class="o">.</span><span class="n">request</span><span class="p" data-group-id="4970487856-2">(</span><span class="w">
+         </span><span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="p">,</span><span class="w">
+         </span><span class="nc">URI</span><span class="o">.</span><span class="n">to_string</span><span class="p" data-group-id="4970487856-3">(</span><span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="p" data-group-id="4970487856-3">)</span><span class="p">,</span><span class="w">
+         </span><span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span><span class="w">
+         </span><span class="n">request</span><span class="o">.</span><span class="n">body</span><span class="p">,</span><span class="w">
+         </span><span class="p" data-group-id="4970487856-4">[</span><span class="ss">:with_body</span><span class="p" data-group-id="4970487856-4">]</span><span class="w">
+       </span><span class="p" data-group-id="4970487856-2">)</span><span class="w"> </span><span class="k" data-group-id="4970487856-5">do</span><span class="w">
+    </span><span class="p" data-group-id="4970487856-6">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">,</span><span class="w"> </span><span class="n">headers</span><span class="p">,</span><span class="w"> </span><span class="n">body</span><span class="p" data-group-id="4970487856-6">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+      </span><span class="n">headers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="p" data-group-id="4970487856-7">{</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p" data-group-id="4970487856-7">}</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">headers</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="4970487856-8">{</span><span class="nc">String</span><span class="o">.</span><span class="n">downcase</span><span class="p" data-group-id="4970487856-9">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="ss">:ascii</span><span class="p" data-group-id="4970487856-9">)</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p" data-group-id="4970487856-8">}</span><span class="w">
+      </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="4970487856-10">%</span><span class="nc" data-group-id="4970487856-10">Req.Response</span><span class="p" data-group-id="4970487856-10">{</span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="n">status</span><span class="p">,</span><span class="w"> </span><span class="ss">headers</span><span class="p">:</span><span class="w"> </span><span class="n">headers</span><span class="p">,</span><span class="w"> </span><span class="ss">body</span><span class="p">:</span><span class="w"> </span><span class="n">body</span><span class="p" data-group-id="4970487856-10">}</span><span class="w">
+      </span><span class="p" data-group-id="4970487856-11">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="4970487856-11">}</span><span class="w">
+
+    </span><span class="p" data-group-id="4970487856-12">{</span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="n">reason</span><span class="p" data-group-id="4970487856-12">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+      </span><span class="p" data-group-id="4970487856-13">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="nc">RuntimeError</span><span class="o">.</span><span class="n">exception</span><span class="p" data-group-id="4970487856-14">(</span><span class="n">inspect</span><span class="p" data-group-id="4970487856-15">(</span><span class="n">reason</span><span class="p" data-group-id="4970487856-15">)</span><span class="p" data-group-id="4970487856-14">)</span><span class="p" data-group-id="4970487856-13">}</span><span class="w">
+  </span><span class="k" data-group-id="4970487856-5">end</span><span class="w">
+</span><span class="k" data-group-id="4970487856-1">end</span><span class="w">
+
+</span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="4970487856-16">(</span><span class="s">&quot;https://api.github.com/repos/wojtekmach/req&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">adapter</span><span class="p">:</span><span class="w"> </span><span class="n">hackney</span><span class="p" data-group-id="4970487856-16">)</span><span class="o">.</span><span class="n">body</span><span class="p" data-group-id="4970487856-17">[</span><span class="s">&quot;description&quot;</span><span class="p" data-group-id="4970487856-17">]</span><span class="w">
+</span><span class="c1">#=&gt; &quot;Req is a batteries-included HTTP client for Elixir.&quot;</span></code></pre>
+    </section>
+
+</div>
+
+  <section id="summary" class="details-list">
+    <h2 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Summary</span>
+    </h2>
+<div class="summary-types summary">
+  <h3>
+    <a href="#types">Types</a>
+  </h3>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:error_step/0" data-no-tooltip="" translate="no">error_step()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>An error step is a function that takes a request/exception tuple and returns a request/response
+or a request/exception tuple.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:req_body_fun/0" data-no-tooltip="" translate="no">req_body_fun()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>A function for streaming request body chunks.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:request_step/0" data-no-tooltip="" translate="no">request_step()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>A request step is a function that takes a request and returns a request or a tuple of request
+and response/exception.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:response_step/0" data-no-tooltip="" translate="no">response_step()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>A response step is a function that takes a request/response tuple and returns a request/response
+or a request/exception tuple.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#t:t/0" data-no-tooltip="" translate="no">t()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>The request struct.</p></div>
+
+    </div>
+
+</div>
+<div class="summary-functions summary">
+  <h3>
+    <a href="#functions">Functions</a>
+  </h3>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#append_error_steps/2" data-no-tooltip="" translate="no">append_error_steps(request, steps)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Appends <strong>error steps</strong> to the existing error steps.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#append_request_steps/2" data-no-tooltip="" translate="no">append_request_steps(request, steps)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Appends <strong>request steps</strong> to the existing request steps.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#append_response_steps/2" data-no-tooltip="" translate="no">append_response_steps(request, steps)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Appends <strong>response steps</strong> to the existing response steps.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#delete_header/2" data-no-tooltip="" translate="no">delete_header(request, name)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Deletes the header given by <code class="inline">name</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#delete_option/2" data-no-tooltip="" translate="no">delete_option(request, key)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Deletes the given option <code class="inline">key</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#drop_options/2" data-no-tooltip="" translate="no">drop_options(request, keys)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Drops the given <code class="inline">keys</code> from options.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#fetch_option/2" data-no-tooltip="" translate="no">fetch_option(request, key)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Fetches the value for the option <code class="inline">key</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#fetch_option!/2" data-no-tooltip="" translate="no">fetch_option!(request, key)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Fetches the value for the option <code class="inline">key</code> or raises if it's not set.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#get_header/2" data-no-tooltip="" translate="no">get_header(req, name)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Returns the values of the header specified by <code class="inline">name</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#get_option/3" data-no-tooltip="" translate="no">get_option(request, key, default \\ nil)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Gets the value for the option <code class="inline">key</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#get_option_lazy/3" data-no-tooltip="" translate="no">get_option_lazy(request, key, fun)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Gets the value for the option <code class="inline">key</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#get_private/3" data-no-tooltip="" translate="no">get_private(request, key, default \\ nil)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Gets the value for a specific private <code class="inline">key</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#halt/2" data-no-tooltip="" translate="no">halt(request, response_or_exception)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Halts the request pipeline preventing any further steps from executing.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#merge_new_options/2" data-no-tooltip="" translate="no">merge_new_options(request, options)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Merges given options into the request unless they are already set.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#merge_options/2" data-no-tooltip="" translate="no">merge_options(request, options)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Merges given options into the request.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#new/1" data-no-tooltip="" translate="no">new(options \\ [])</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Returns a new request struct.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#prepend_error_steps/2" data-no-tooltip="" translate="no">prepend_error_steps(request, steps)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Prepends <strong>error steps</strong> to the existing error steps.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#prepend_request_steps/2" data-no-tooltip="" translate="no">prepend_request_steps(request, steps)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Prepends <strong>request steps</strong> to the existing request steps.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#prepend_response_steps/2" data-no-tooltip="" translate="no">prepend_response_steps(request, steps)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Prepends <strong>response steps</strong> to the existing response steps.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#put_header/3" data-no-tooltip="" translate="no">put_header(request, name, value)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Sets the header <code class="inline">name</code> to <code class="inline">value</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#put_headers/2" data-no-tooltip="" translate="no">put_headers(request, headers)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Adds (or replaces) multiple request headers.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#put_new_header/3" data-no-tooltip="" translate="no">put_new_header(request, name, value)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Adds a request header <code class="inline">name</code> unless already present.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#put_new_option/3" data-no-tooltip="" translate="no">put_new_option(request, key, value)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Sets the value <code class="inline">value</code> for the option <code class="inline">name</code> unless option is already set.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#put_option/3" data-no-tooltip="" translate="no">put_option(request, key, value)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Sets the value <code class="inline">value</code> for the option <code class="inline">name</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#put_private/3" data-no-tooltip="" translate="no">put_private(request, key, value)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Assigns a private <code class="inline">key</code> to <code class="inline">value</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#register_options/2" data-no-tooltip="" translate="no">register_options(request, options)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Registers options to be used by custom steps.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#run_request/1" data-no-tooltip="" translate="no">run_request(request)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Runs the request pipeline.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#update_private/4" data-no-tooltip="" translate="no">update_private(request, key, default, fun)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Updates private <code class="inline">key</code> with the given function.</p></div>
+
+    </div>
+
+</div>
+<div class="summary-deprecated summary">
+  <h3>
+    <a href="#deprecated">Deprecated</a>
+  </h3>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#run/1" data-no-tooltip="" translate="no">run(request)</a>
+
+          <span class="deprecated" title="Use Req.Request.run_request/1 instead">deprecated</span>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#run!/1" data-no-tooltip="" translate="no">run!(request)</a>
+
+          <span class="deprecated" title="Use Req.Request.run_request/1 instead">deprecated</span>
+
+      </div>
+
+    </div>
+
+</div>
+
+  </section>
+
+
+  <section id="types" class="details-list">
+    <h2 class="section-heading">
+      <a class="hover-link" href="#types">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Types</span>
+    </h2>
+
+    <div class="types-list">
+<section class="detail" id="t:error_step/0">
+
+  <div class="detail-header">
+    <a href="#t:error_step/0" class="detail-link" data-no-tooltip="" aria-label="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">error_step()</h1>
+
+        <span class="note">(since 0.5.1)</span>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/legacy/req/request.ex#L441" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@type</span> error_step() ::
+  ({<a href="#t:t/0">t</a>(), <a href="https://hexdocs.pm/elixir/Exception.html#t:t/0">Exception.t</a>()} -&gt; {<a href="#t:t/0">t</a>(), <a href="Req.Response.html#t:t/0">Req.Response.t</a>() | <a href="https://hexdocs.pm/elixir/Exception.html#t:t/0">Exception.t</a>()})
+  | {<a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">module</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), [<a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()]}</pre>
+
+      </div>
+
+<p>An error step is a function that takes a request/exception tuple and returns a request/response
+or a request/exception tuple.</p><p>The function can be an anonymous function, or a <code class="inline">{module, function, args}</code> tuple. In the latter
+case, the step is invoked as <code class="inline">apply(module, function, [request | args])</code>.</p><p>See also the <a href="#module-response-and-error-steps">&quot;Response and Error Steps&quot;</a> section in the
+module documentation.</p>
+  </section>
+</section>
+<section class="detail" id="t:req_body_fun/0">
+
+  <div class="detail-header">
+    <a href="#t:req_body_fun/0" class="detail-link" data-no-tooltip="" aria-label="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">req_body_fun()</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/legacy/req/request.ex#L375" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@type</span> req_body_fun() :: (<a href="#t:t/0">t</a>() -&gt; {:data, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>(), <a href="#t:t/0">t</a>()} | {:done, <a href="#t:t/0">t</a>()} | {:halt, <a href="#t:t/0">t</a>()})</pre>
+
+      </div>
+
+<p>A function for streaming request body chunks.</p>
+  </section>
+</section>
+<section class="detail" id="t:request_step/0">
+
+  <div class="detail-header">
+    <a href="#t:request_step/0" class="detail-link" data-no-tooltip="" aria-label="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">request_step()</h1>
+
+        <span class="note">(since 0.5.1)</span>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/legacy/req/request.ex#L412" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@type</span> request_step() ::
+  (<a href="#t:t/0">t</a>() -&gt; <a href="#t:t/0">t</a>() | {<a href="#t:t/0">t</a>(), <a href="Req.Response.html#t:t/0">Req.Response.t</a>() | <a href="https://hexdocs.pm/elixir/Exception.html#t:t/0">Exception.t</a>()})
+  | {<a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">module</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), [<a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()]}</pre>
+
+      </div>
+
+<p>A request step is a function that takes a request and returns a request or a tuple of request
+and response/exception.</p><p>The function can be an anonymous function, or a <code class="inline">{module, function, args}</code> tuple. In the latter
+case, the step is invoked as <code class="inline">apply(module, function, [request | args])</code>.</p><p>See also the <a href="#module-request-steps">&quot;Request Steps&quot;</a> section in the module documentation.</p>
+  </section>
+</section>
+<section class="detail" id="t:response_step/0">
+
+  <div class="detail-header">
+    <a href="#t:response_step/0" class="detail-link" data-no-tooltip="" aria-label="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">response_step()</h1>
+
+        <span class="note">(since 0.5.1)</span>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/legacy/req/request.ex#L426" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@type</span> response_step() ::
+  ({<a href="#t:t/0">t</a>(), <a href="Req.Response.html#t:t/0">Req.Response.t</a>()} -&gt; {<a href="#t:t/0">t</a>(), <a href="Req.Response.html#t:t/0">Req.Response.t</a>() | <a href="https://hexdocs.pm/elixir/Exception.html#t:t/0">Exception.t</a>()})
+  | {<a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">module</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), [<a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()]}</pre>
+
+      </div>
+
+<p>A response step is a function that takes a request/response tuple and returns a request/response
+or a request/exception tuple.</p><p>The function can be an anonymous function, or a <code class="inline">{module, function, args}</code> tuple. In the latter
+case, the step is invoked as <code class="inline">apply(module, function, [request | args])</code>.</p><p>See also the <a href="#module-response-and-error-steps">&quot;Response and Error Steps&quot;</a> section in the
+module documentation.</p>
+  </section>
+</section>
+<section class="detail" id="t:t/0">
+
+  <div class="detail-header">
+    <a href="#t:t/0" class="detail-link" data-no-tooltip="" aria-label="Link to this type">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">t()</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/legacy/req/request.ex#L381" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@type</span> t() :: %Req.Request{
+  adapter: <a href="#t:request_step/0">request_step</a>(),
+  assigns: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>(),
+  async: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
+  body: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">iodata</a>() | <a href="https://hexdocs.pm/elixir/Enumerable.html#t:t/0">Enumerable.t</a>() | <a href="#t:req_body_fun/0">req_body_fun</a>() | nil,
+  current_request_steps: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
+  error_steps: [{name :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), <a href="#t:error_step/0">error_step</a>()}],
+  halted: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>(),
+  headers: %{optional(<a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>()) =&gt; [<a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>()]},
+  into:
+    nil
+    | <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">iodata</a>()
+    | ({:data, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>()}, {<a href="#t:t/0">t</a>(), <a href="Req.Response.html#t:t/0">Req.Response.t</a>()} -&gt;
+         {:cont | :halt, {<a href="#t:t/0">t</a>(), <a href="Req.Response.html#t:t/0">Req.Response.t</a>()}})
+    | <a href="https://hexdocs.pm/elixir/Collectable.html#t:t/0">Collectable.t</a>(),
+  method: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(),
+  options: options(),
+  private: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>(),
+  registered_options: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
+  request_steps: [{name :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), <a href="#t:request_step/0">request_step</a>()}],
+  response_steps: [{name :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), <a href="#t:response_step/0">response_step</a>()}],
+  url: <a href="https://hexdocs.pm/elixir/URI.html#t:t/0">URI.t</a>()
+}</pre>
+
+      </div>
+
+<p>The request struct.</p>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+  <section id="functions" class="details-list">
+    <h2 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Functions</span>
+    </h2>
+
+    <div class="functions-list">
+<section class="detail" id="append_error_steps/2">
+
+  <div class="detail-header">
+    <a href="#append_error_steps/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">append_error_steps(request, steps)</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/legacy/req/request.ex#L851" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> append_error_steps(
+  <a href="#t:t/0">t</a>(),
+  <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">keyword</a>(<a href="#t:error_step/0">error_step</a>())
+) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+<p>Appends <strong>error steps</strong> to the existing error steps.</p><p>See the <a href="#module-response-and-error-steps">&quot;Response and Error Steps&quot;</a> section in the
+module documentation for more information.</p><h2 id="append_error_steps/2-examples" class="section-heading"><a href="#append_error_steps/2-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Examples</span></h2><pre><code class="makeup elixir" translate="no"><span class="nc">Req.Request</span><span class="o">.</span><span class="n">append_error_steps</span><span class="p" data-group-id="8412399466-1">(</span><span class="n">request</span><span class="p">,</span><span class="w">
+  </span><span class="ss">noop</span><span class="p">:</span><span class="w"> </span><span class="k" data-group-id="8412399466-2">fn</span><span class="w"> </span><span class="p" data-group-id="8412399466-3">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">exception</span><span class="p" data-group-id="8412399466-3">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p" data-group-id="8412399466-4">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">exception</span><span class="p" data-group-id="8412399466-4">}</span><span class="w"> </span><span class="k" data-group-id="8412399466-2">end</span><span class="p">,</span><span class="w">
+  </span><span class="ss">inspect</span><span class="p">:</span><span class="w"> </span><span class="o">&amp;</span><span class="nc">IO</span><span class="o">.</span><span class="n">inspect</span><span class="o">/</span><span class="mi">1</span><span class="w">
+</span><span class="p" data-group-id="8412399466-1">)</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="append_request_steps/2">
+
+  <div class="detail-header">
+    <a href="#append_request_steps/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">append_request_steps(request, steps)</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/legacy/req/request.ex#L765" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> append_request_steps(
+  <a href="#t:t/0">t</a>(),
+  <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">keyword</a>(<a href="#t:request_step/0">request_step</a>())
+) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+<p>Appends <strong>request steps</strong> to the existing request steps.</p><p>See the <a href="#module-request-steps">&quot;Request Steps&quot;</a> section in the module documentation
+for more information.</p><h2 id="append_request_steps/2-examples" class="section-heading"><a href="#append_request_steps/2-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Examples</span></h2><pre><code class="makeup elixir" translate="no"><span class="nc">Req.Request</span><span class="o">.</span><span class="n">append_request_steps</span><span class="p" data-group-id="8216859377-1">(</span><span class="n">request</span><span class="p">,</span><span class="w">
+  </span><span class="ss">noop</span><span class="p">:</span><span class="w"> </span><span class="k" data-group-id="8216859377-2">fn</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="k" data-group-id="8216859377-2">end</span><span class="p">,</span><span class="w">
+  </span><span class="ss">inspect</span><span class="p">:</span><span class="w"> </span><span class="o">&amp;</span><span class="nc">IO</span><span class="o">.</span><span class="n">inspect</span><span class="o">/</span><span class="mi">1</span><span class="w">
+</span><span class="p" data-group-id="8216859377-1">)</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="append_response_steps/2">
+
+  <div class="detail-header">
+    <a href="#append_response_steps/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">append_response_steps(request, steps)</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/legacy/req/request.ex#L809" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> append_response_steps(
+  <a href="#t:t/0">t</a>(),
+  <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">keyword</a>(<a href="#t:response_step/0">response_step</a>())
+) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+<p>Appends <strong>response steps</strong> to the existing response steps.</p><p>See the <a href="#module-response-and-error-steps">&quot;Response and Error Steps&quot;</a> section in the
+module documentation for more information.</p><h2 id="append_response_steps/2-examples" class="section-heading"><a href="#append_response_steps/2-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Examples</span></h2><pre><code class="makeup elixir" translate="no"><span class="nc">Req.Request</span><span class="o">.</span><span class="n">append_response_steps</span><span class="p" data-group-id="1446435152-1">(</span><span class="n">request</span><span class="p">,</span><span class="w">
+  </span><span class="ss">noop</span><span class="p">:</span><span class="w"> </span><span class="k" data-group-id="1446435152-2">fn</span><span class="w"> </span><span class="p" data-group-id="1446435152-3">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="1446435152-3">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p" data-group-id="1446435152-4">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="1446435152-4">}</span><span class="w"> </span><span class="k" data-group-id="1446435152-2">end</span><span class="p">,</span><span class="w">
+  </span><span class="ss">inspect</span><span class="p">:</span><span class="w"> </span><span class="o">&amp;</span><span class="nc">IO</span><span class="o">.</span><span class="n">inspect</span><span class="o">/</span><span class="mi">1</span><span class="w">
+</span><span class="p" data-group-id="1446435152-1">)</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="delete_header/2">
+
+  <div class="detail-header">
+    <a href="#delete_header/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">delete_header(request, name)</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/legacy/req/request.ex#L1058" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> delete_header(<a href="#t:t/0">t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>()) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+<p>Deletes the header given by <code class="inline">name</code>.</p><p>All occurrences of the header are deleted, in case the header is repeated multiple times.</p><p>See also &quot;Headers&quot; section in <a href="Req.html"><code class="inline">Req</code></a> module documentation.</p><h2 id="delete_header/2-examples" class="section-heading"><a href="#delete_header/2-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Examples</span></h2><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">get_header</span><span class="p" data-group-id="2975648846-1">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cache-control&quot;</span><span class="p" data-group-id="2975648846-1">)</span><span class="w">
+</span><span class="p" data-group-id="2975648846-2">[</span><span class="s">&quot;max-age=600&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;no-transform&quot;</span><span class="p" data-group-id="2975648846-2">]</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">delete_header</span><span class="p" data-group-id="2975648846-3">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cache-control&quot;</span><span class="p" data-group-id="2975648846-3">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">get_header</span><span class="p" data-group-id="2975648846-4">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cache-control&quot;</span><span class="p" data-group-id="2975648846-4">)</span><span class="w">
+</span><span class="p" data-group-id="2975648846-5">[</span><span class="p" data-group-id="2975648846-5">]</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="delete_option/2">
+
+  <div class="detail-header">
+    <a href="#delete_option/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">delete_option(request, key)</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/legacy/req/request.ex#L657" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> delete_option(<a href="#t:t/0">t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+<p>Deletes the given option <code class="inline">key</code>.</p><h2 id="delete_option/2-examples" class="section-heading"><a href="#delete_option/2-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Examples</span></h2><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="3326286102-1">(</span><span class="ss">options</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3326286102-2">[</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="3326286102-2">]</span><span class="p" data-group-id="3326286102-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">get_option</span><span class="p" data-group-id="3326286102-3">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="ss">:a</span><span class="p" data-group-id="3326286102-3">)</span><span class="w">
+</span><span class="mi">1</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">delete_option</span><span class="p" data-group-id="3326286102-4">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="ss">:a</span><span class="p" data-group-id="3326286102-4">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">get_option</span><span class="p" data-group-id="3326286102-5">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="ss">:a</span><span class="p" data-group-id="3326286102-5">)</span><span class="w">
+</span><span class="no">nil</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="drop_options/2">
+
+  <div class="detail-header">
+    <a href="#drop_options/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">drop_options(request, keys)</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/legacy/req/request.ex#L674" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> drop_options(<a href="#t:t/0">t</a>(), [<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()]) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+<p>Drops the given <code class="inline">keys</code> from options.</p><h2 id="drop_options/2-examples" class="section-heading"><a href="#drop_options/2-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Examples</span></h2><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="3257107108-1">(</span><span class="ss">options</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3257107108-2">[</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="ss">c</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p" data-group-id="3257107108-2">]</span><span class="p" data-group-id="3257107108-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">drop_options</span><span class="p" data-group-id="3257107108-3">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="3257107108-4">[</span><span class="ss">:a</span><span class="p">,</span><span class="w"> </span><span class="ss">:b</span><span class="p" data-group-id="3257107108-4">]</span><span class="p" data-group-id="3257107108-3">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">get_option</span><span class="p" data-group-id="3257107108-5">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="ss">:a</span><span class="p" data-group-id="3257107108-5">)</span><span class="w">
+</span><span class="no">nil</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">get_option</span><span class="p" data-group-id="3257107108-6">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="ss">:c</span><span class="p" data-group-id="3257107108-6">)</span><span class="w">
+</span><span class="mi">3</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="fetch_option/2">
+
+  <div class="detail-header">
+    <a href="#fetch_option/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">fetch_option(request, key)</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/legacy/req/request.ex#L613" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> fetch_option(<a href="#t:t/0">t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()) :: {:ok, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()} | :error</pre>
+
+      </div>
+
+<p>Fetches the value for the option <code class="inline">key</code>.</p><p>See also <a href="#get_option/3"><code class="inline">get_option/3</code></a>.</p><h2 id="fetch_option/2-examples" class="section-heading"><a href="#fetch_option/2-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Examples</span></h2><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="0053224060-1">(</span><span class="ss">options</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="0053224060-2">[</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="0053224060-2">]</span><span class="p" data-group-id="0053224060-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">fetch_option</span><span class="p" data-group-id="0053224060-3">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="ss">:a</span><span class="p" data-group-id="0053224060-3">)</span><span class="w">
+</span><span class="p" data-group-id="0053224060-4">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="0053224060-4">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">fetch_option</span><span class="p" data-group-id="0053224060-5">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="ss">:b</span><span class="p" data-group-id="0053224060-5">)</span><span class="w">
+</span><span class="ss">:error</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="fetch_option!/2">
+
+  <div class="detail-header">
+    <a href="#fetch_option!/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">fetch_option!(request, key)</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/legacy/req/request.ex#L631" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> fetch_option!(<a href="#t:t/0">t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()</pre>
+
+      </div>
+
+<p>Fetches the value for the option <code class="inline">key</code> or raises if it's not set.</p><p>See also <a href="#get_option/3"><code class="inline">get_option/3</code></a>.</p><h2 id="fetch_option!/2-examples" class="section-heading"><a href="#fetch_option!/2-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Examples</span></h2><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="0414227088-1">(</span><span class="ss">options</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="0414227088-2">[</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="0414227088-2">]</span><span class="p" data-group-id="0414227088-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">fetch_option!</span><span class="p" data-group-id="0414227088-3">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="ss">:a</span><span class="p" data-group-id="0414227088-3">)</span><span class="w">
+</span><span class="mi">1</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">fetch_option!</span><span class="p" data-group-id="0414227088-4">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="ss">:b</span><span class="p" data-group-id="0414227088-4">)</span><span class="w">
+</span><span class="gt">** (KeyError) option :b is not set</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="get_header/2">
+
+  <div class="detail-header">
+    <a href="#get_header/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">get_header(req, name)</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/legacy/req/request.ex#L971" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> get_header(<a href="#t:t/0">t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>()) :: [<a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>()]</pre>
+
+      </div>
+
+<p>Returns the values of the header specified by <code class="inline">name</code>.</p><p>See also &quot;Headers&quot; section in <a href="Req.html"><code class="inline">Req</code></a> module documentation.</p><h2 id="get_header/2-examples" class="section-heading"><a href="#get_header/2-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Examples</span></h2><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="7181561507-1">(</span><span class="ss">headers</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="7181561507-2">[</span><span class="p" data-group-id="7181561507-3">{</span><span class="s">&quot;accept&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;application/json&quot;</span><span class="p" data-group-id="7181561507-3">}</span><span class="p" data-group-id="7181561507-2">]</span><span class="p" data-group-id="7181561507-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">get_header</span><span class="p" data-group-id="7181561507-4">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;accept&quot;</span><span class="p" data-group-id="7181561507-4">)</span><span class="w">
+</span><span class="p" data-group-id="7181561507-5">[</span><span class="s">&quot;application/json&quot;</span><span class="p" data-group-id="7181561507-5">]</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">get_header</span><span class="p" data-group-id="7181561507-6">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;x-unknown&quot;</span><span class="p" data-group-id="7181561507-6">)</span><span class="w">
+</span><span class="p" data-group-id="7181561507-7">[</span><span class="p" data-group-id="7181561507-7">]</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="get_option/3">
+
+    <span id="get_option/2"></span>
+
+  <div class="detail-header">
+    <a href="#get_option/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">get_option(request, key, default \\ nil)</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/legacy/req/request.ex#L570" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> get_option(<a href="#t:t/0">t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()</pre>
+
+      </div>
+
+<p>Gets the value for the option <code class="inline">key</code>.</p><p>See also <a href="#fetch_option!/2"><code class="inline">fetch_option!/2</code></a>.</p><h2 id="get_option/3-examples" class="section-heading"><a href="#get_option/3-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Examples</span></h2><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="1795101150-1">(</span><span class="ss">options</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="1795101150-2">[</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="1795101150-2">]</span><span class="p" data-group-id="1795101150-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">get_option</span><span class="p" data-group-id="1795101150-3">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="ss">:a</span><span class="p" data-group-id="1795101150-3">)</span><span class="w">
+</span><span class="mi">1</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">get_option</span><span class="p" data-group-id="1795101150-4">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="ss">:b</span><span class="p" data-group-id="1795101150-4">)</span><span class="w">
+</span><span class="no">nil</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">get_option</span><span class="p" data-group-id="1795101150-5">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="ss">:b</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p" data-group-id="1795101150-5">)</span><span class="w">
+</span><span class="mi">0</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="get_option_lazy/3">
+
+  <div class="detail-header">
+    <a href="#get_option_lazy/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">get_option_lazy(request, key, fun)</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/legacy/req/request.ex#L595" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> get_option_lazy(<a href="#t:t/0">t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), (-&gt; <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>())) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()</pre>
+
+      </div>
+
+<p>Gets the value for the option <code class="inline">key</code>.</p><p>This is useful if the default value is very expensive to calculate or generally
+difficult to setup and teardown again.</p><p>See also <a href="#get_option/3"><code class="inline">get_option/3</code></a>.</p><h2 id="get_option_lazy/3-examples" class="section-heading"><a href="#get_option_lazy/3-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Examples</span></h2><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="6991759448-1">(</span><span class="ss">options</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6991759448-2">[</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="6991759448-2">]</span><span class="p" data-group-id="6991759448-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k" data-group-id="6991759448-3">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="c1"># some expensive operation here</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="mi">42</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="k" data-group-id="6991759448-3">end</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">get_option_lazy</span><span class="p" data-group-id="6991759448-4">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="ss">:a</span><span class="p">,</span><span class="w"> </span><span class="n">fun</span><span class="p" data-group-id="6991759448-4">)</span><span class="w">
+</span><span class="mi">1</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">get_option_lazy</span><span class="p" data-group-id="6991759448-5">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="ss">:b</span><span class="p">,</span><span class="w"> </span><span class="n">fun</span><span class="p" data-group-id="6991759448-5">)</span><span class="w">
+</span><span class="mi">42</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="get_private/3">
+
+    <span id="get_private/2"></span>
+
+  <div class="detail-header">
+    <a href="#get_private/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">get_private(request, key, default \\ nil)</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/legacy/req/request.ex#L682" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> get_private(<a href="#t:t/0">t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), default) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>() | default when default: var</pre>
+
+      </div>
+
+<p>Gets the value for a specific private <code class="inline">key</code>.</p>
+  </section>
+</section>
+<section class="detail" id="halt/2">
+
+  <div class="detail-header">
+    <a href="#halt/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">halt(request, response_or_exception)</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/legacy/req/request.ex#L741" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> halt(<a href="#t:t/0">t</a>(), response_or_exception) :: {<a href="#t:t/0">t</a>(), response_or_exception}
+when response_or_exception: <a href="Req.Response.html#t:t/0">Req.Response.t</a>() | <a href="https://hexdocs.pm/elixir/Exception.html#t:t/0">Exception.t</a>()</pre>
+
+      </div>
+
+<p>Halts the request pipeline preventing any further steps from executing.</p><p>This function returns an updated request and the response or exception that caused the halt.
+It's perfect when used in a request step to stop the pipeline.</p><p>See the <a href="#module-halting">&quot;Halting&quot;</a> section in the module documentation for more information.</p><h2 id="halt/2-examples" class="section-heading"><a href="#halt/2-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Examples</span></h2><pre><code class="makeup elixir" translate="no"><span class="nc">Req.Request</span><span class="o">.</span><span class="n">prepend_request_steps</span><span class="p" data-group-id="4841146830-1">(</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="ss">circuit_breaker</span><span class="p">:</span><span class="w"> </span><span class="k" data-group-id="4841146830-2">fn</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+  </span><span class="k">if</span><span class="w"> </span><span class="nc">CircuitBreaker</span><span class="o">.</span><span class="n">open?</span><span class="p" data-group-id="4841146830-3">(</span><span class="p" data-group-id="4841146830-3">)</span><span class="w"> </span><span class="k" data-group-id="4841146830-4">do</span><span class="w">
+    </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">halt</span><span class="p" data-group-id="4841146830-5">(</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="nc">RuntimeError</span><span class="o">.</span><span class="n">exception</span><span class="p" data-group-id="4841146830-6">(</span><span class="s">&quot;circuit breaker is open&quot;</span><span class="p" data-group-id="4841146830-6">)</span><span class="p" data-group-id="4841146830-5">)</span><span class="w">
+  </span><span class="k" data-group-id="4841146830-4">else</span><span class="w">
+    </span><span class="n">request</span><span class="w">
+  </span><span class="k" data-group-id="4841146830-4">end</span><span class="w">
+</span><span class="k" data-group-id="4841146830-2">end</span><span class="p" data-group-id="4841146830-1">)</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="merge_new_options/2">
+
+  <div class="detail-header">
+    <a href="#merge_new_options/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">merge_new_options(request, options)</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/legacy/req/request.ex#L951" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> merge_new_options(
+  <a href="#t:t/0">t</a>(),
+  <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">keyword</a>()
+) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+<p>Merges given options into the request unless they are already set.</p><h2 id="merge_new_options/2-examples" class="section-heading"><a href="#merge_new_options/2-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Examples</span></h2><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="0755363729-1">(</span><span class="ss">auth</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="0755363729-2">{</span><span class="ss">:basic</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;alice:secret&quot;</span><span class="p" data-group-id="0755363729-2">}</span><span class="p" data-group-id="0755363729-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="o">.</span><span class="n">options</span><span class="w">
+</span><span class="p" data-group-id="0755363729-3">%{</span><span class="ss">auth</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="0755363729-4">{</span><span class="ss">:basic</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;alice:secret&quot;</span><span class="p" data-group-id="0755363729-4">}</span><span class="p" data-group-id="0755363729-3">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">merge_new_options</span><span class="p" data-group-id="0755363729-5">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="ss">auth</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="0755363729-6">{</span><span class="ss">:bearer</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;abcd&quot;</span><span class="p" data-group-id="0755363729-6">}</span><span class="p">,</span><span class="w"> </span><span class="ss">base_url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://example.com&quot;</span><span class="p" data-group-id="0755363729-5">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="o">.</span><span class="n">options</span><span class="w">
+</span><span class="p" data-group-id="0755363729-7">%{</span><span class="ss">auth</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="0755363729-8">{</span><span class="ss">:basic</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;alice:secret&quot;</span><span class="p" data-group-id="0755363729-8">}</span><span class="p">,</span><span class="w"> </span><span class="ss">base_url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://example.com&quot;</span><span class="p" data-group-id="0755363729-7">}</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="0755363729-9">(</span><span class="p" data-group-id="0755363729-9">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">merge_new_options</span><span class="p" data-group-id="0755363729-10">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="ss">foo</span><span class="p">:</span><span class="w"> </span><span class="ss">:bar</span><span class="p" data-group-id="0755363729-10">)</span><span class="w">
+</span><span class="gt">** (ArgumentError) unknown option :foo</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="merge_options/2">
+
+  <div class="detail-header">
+    <a href="#merge_options/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">merge_options(request, options)</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/legacy/req/request.ex#L910" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> merge_options(
+  <a href="#t:t/0">t</a>(),
+  <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">keyword</a>()
+) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+<p>Merges given options into the request.</p><h2 id="merge_options/2-examples" class="section-heading"><a href="#merge_options/2-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Examples</span></h2><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="2983510028-1">(</span><span class="ss">auth</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2983510028-2">{</span><span class="ss">:basic</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;alice:secret&quot;</span><span class="p" data-group-id="2983510028-2">}</span><span class="p">,</span><span class="w"> </span><span class="ss">http_errors</span><span class="p">:</span><span class="w"> </span><span class="ss">:raise</span><span class="p" data-group-id="2983510028-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">merge_options</span><span class="p" data-group-id="2983510028-3">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="ss">auth</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2983510028-4">{</span><span class="ss">:bearer</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;abcd&quot;</span><span class="p" data-group-id="2983510028-4">}</span><span class="p">,</span><span class="w"> </span><span class="ss">base_url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://example.com&quot;</span><span class="p" data-group-id="2983510028-3">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="o">.</span><span class="n">options</span><span class="p" data-group-id="2983510028-5">[</span><span class="ss">:auth</span><span class="p" data-group-id="2983510028-5">]</span><span class="w">
+</span><span class="p" data-group-id="2983510028-6">{</span><span class="ss">:bearer</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;abcd&quot;</span><span class="p" data-group-id="2983510028-6">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="o">.</span><span class="n">options</span><span class="p" data-group-id="2983510028-7">[</span><span class="ss">:http_errors</span><span class="p" data-group-id="2983510028-7">]</span><span class="w">
+</span><span class="ss">:raise</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="o">.</span><span class="n">options</span><span class="p" data-group-id="2983510028-8">[</span><span class="ss">:base_url</span><span class="p" data-group-id="2983510028-8">]</span><span class="w">
+</span><span class="s">&quot;https://example.com&quot;</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="new/1">
+
+    <span id="new/0"></span>
+
+  <div class="detail-header">
+    <a href="#new/1" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">new(options \\ [])</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/legacy/req/request.ex#L491" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> new(<a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">keyword</a>()) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+<p>Returns a new request struct.</p><h2 id="new/1-options" class="section-heading"><a href="#new/1-options" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Options</span></h2><ul><li><p><code class="inline">:method</code> - the request method, defaults to <code class="inline">:get</code>.</p></li><li><p><code class="inline">:url</code> - the request URL.</p></li><li><p><code class="inline">:headers</code> - the request headers, defaults to <code class="inline">[]</code>.</p></li><li><p><code class="inline">:body</code> - the request body, defaults to <code class="inline">nil</code>.</p></li><li><p><code class="inline">:assigns</code> - shared user data as a map.</p></li><li><p><code class="inline">:adapter</code> - the request adapter, defaults to calling <a href="Req.Steps.html#run_finch/1"><code class="inline">run_finch</code></a>.</p></li></ul><h2 id="new/1-examples" class="section-heading"><a href="#new/1-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Examples</span></h2><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="1400682434-1">(</span><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://api.github.com/repos/wojtekmach/req&quot;</span><span class="p" data-group-id="1400682434-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="1400682434-2">{</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="n">resp</span><span class="p" data-group-id="1400682434-2">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">run_request</span><span class="p" data-group-id="1400682434-3">(</span><span class="n">req</span><span class="p" data-group-id="1400682434-3">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">host</span><span class="w">
+</span><span class="s">&quot;api.github.com&quot;</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">resp</span><span class="o">.</span><span class="n">status</span><span class="w">
+</span><span class="mi">200</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="prepend_error_steps/2">
+
+  <div class="detail-header">
+    <a href="#prepend_error_steps/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">prepend_error_steps(request, steps)</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/legacy/req/request.ex#L872" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> prepend_error_steps(
+  <a href="#t:t/0">t</a>(),
+  <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">keyword</a>(<a href="#t:error_step/0">error_step</a>())
+) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+<p>Prepends <strong>error steps</strong> to the existing error steps.</p><p>See the <a href="#module-response-and-error-steps">&quot;Response and Error Steps&quot;</a> section in the
+module documentation for more information.</p><h2 id="prepend_error_steps/2-examples" class="section-heading"><a href="#prepend_error_steps/2-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Examples</span></h2><pre><code class="makeup elixir" translate="no"><span class="nc">Req.Request</span><span class="o">.</span><span class="n">prepend_error_steps</span><span class="p" data-group-id="3663397622-1">(</span><span class="n">request</span><span class="p">,</span><span class="w">
+  </span><span class="ss">noop</span><span class="p">:</span><span class="w"> </span><span class="k" data-group-id="3663397622-2">fn</span><span class="w"> </span><span class="p" data-group-id="3663397622-3">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">exception</span><span class="p" data-group-id="3663397622-3">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p" data-group-id="3663397622-4">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">exception</span><span class="p" data-group-id="3663397622-4">}</span><span class="w"> </span><span class="k" data-group-id="3663397622-2">end</span><span class="p">,</span><span class="w">
+  </span><span class="ss">inspect</span><span class="p">:</span><span class="w"> </span><span class="o">&amp;</span><span class="nc">IO</span><span class="o">.</span><span class="n">inspect</span><span class="o">/</span><span class="mi">1</span><span class="w">
+</span><span class="p" data-group-id="3663397622-1">)</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="prepend_request_steps/2">
+
+  <div class="detail-header">
+    <a href="#prepend_request_steps/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">prepend_request_steps(request, steps)</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/legacy/req/request.ex#L787" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> prepend_request_steps(
+  <a href="#t:t/0">t</a>(),
+  <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">keyword</a>(<a href="#t:request_step/0">request_step</a>())
+) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+<p>Prepends <strong>request steps</strong> to the existing request steps.</p><p>See the <a href="#module-request-steps">&quot;Request Steps&quot;</a> section in the module documentation
+for more information.</p><h2 id="prepend_request_steps/2-examples" class="section-heading"><a href="#prepend_request_steps/2-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Examples</span></h2><pre><code class="makeup elixir" translate="no"><span class="nc">Req.Request</span><span class="o">.</span><span class="n">prepend_request_steps</span><span class="p" data-group-id="6893843623-1">(</span><span class="n">request</span><span class="p">,</span><span class="w">
+  </span><span class="ss">noop</span><span class="p">:</span><span class="w"> </span><span class="k" data-group-id="6893843623-2">fn</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="k" data-group-id="6893843623-2">end</span><span class="p">,</span><span class="w">
+  </span><span class="ss">inspect</span><span class="p">:</span><span class="w"> </span><span class="o">&amp;</span><span class="nc">IO</span><span class="o">.</span><span class="n">inspect</span><span class="o">/</span><span class="mi">1</span><span class="w">
+</span><span class="p" data-group-id="6893843623-1">)</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="prepend_response_steps/2">
+
+  <div class="detail-header">
+    <a href="#prepend_response_steps/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">prepend_response_steps(request, steps)</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/legacy/req/request.ex#L830" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> prepend_response_steps(
+  <a href="#t:t/0">t</a>(),
+  <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">keyword</a>(<a href="#t:response_step/0">response_step</a>())
+) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+<p>Prepends <strong>response steps</strong> to the existing response steps.</p><p>See the <a href="#module-response-and-error-steps">&quot;Response and Error Steps&quot;</a> section in the
+module documentation for more information.</p><h2 id="prepend_response_steps/2-examples" class="section-heading"><a href="#prepend_response_steps/2-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Examples</span></h2><pre><code class="makeup elixir" translate="no"><span class="nc">Req.Request</span><span class="o">.</span><span class="n">prepend_response_steps</span><span class="p" data-group-id="3232008254-1">(</span><span class="n">request</span><span class="p">,</span><span class="w">
+  </span><span class="ss">noop</span><span class="p">:</span><span class="w"> </span><span class="k" data-group-id="3232008254-2">fn</span><span class="w"> </span><span class="p" data-group-id="3232008254-3">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="3232008254-3">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p" data-group-id="3232008254-4">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="3232008254-4">}</span><span class="w"> </span><span class="k" data-group-id="3232008254-2">end</span><span class="p">,</span><span class="w">
+  </span><span class="ss">inspect</span><span class="p">:</span><span class="w"> </span><span class="o">&amp;</span><span class="nc">IO</span><span class="o">.</span><span class="n">inspect</span><span class="o">/</span><span class="mi">1</span><span class="w">
+</span><span class="p" data-group-id="3232008254-1">)</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="put_header/3">
+
+  <div class="detail-header">
+    <a href="#put_header/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">put_header(request, name, value)</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/legacy/req/request.ex#L995" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> put_header(<a href="#t:t/0">t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>()) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+<p>Sets the header <code class="inline">name</code> to <code class="inline">value</code>.</p><p>The value can be a binary or a list of binaries,</p><p>If the header was previously set, its value is overwritten.</p><p>See also &quot;Headers&quot; section in <a href="Req.html"><code class="inline">Req</code></a> module documentation.</p><h2 id="put_header/3-examples" class="section-heading"><a href="#put_header/3-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Examples</span></h2><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="8413157087-1">(</span><span class="p" data-group-id="8413157087-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">get_header</span><span class="p" data-group-id="8413157087-2">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;accept&quot;</span><span class="p" data-group-id="8413157087-2">)</span><span class="w">
+</span><span class="p" data-group-id="8413157087-3">[</span><span class="p" data-group-id="8413157087-3">]</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">put_header</span><span class="p" data-group-id="8413157087-4">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;accept&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;application/json&quot;</span><span class="p" data-group-id="8413157087-4">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">get_header</span><span class="p" data-group-id="8413157087-5">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;accept&quot;</span><span class="p" data-group-id="8413157087-5">)</span><span class="w">
+</span><span class="p" data-group-id="8413157087-6">[</span><span class="s">&quot;application/json&quot;</span><span class="p" data-group-id="8413157087-6">]</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="put_headers/2">
+
+  <div class="detail-header">
+    <a href="#put_headers/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">put_headers(request, headers)</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/legacy/req/request.ex#L1015" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> put_headers(<a href="#t:t/0">t</a>(), [{<a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>()}]) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+<p>Adds (or replaces) multiple request headers.</p><p>See <a href="#put_header/3"><code class="inline">put_header/3</code></a> for more information.</p><h2 id="put_headers/2-examples" class="section-heading"><a href="#put_headers/2-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Examples</span></h2><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="2823660630-1">(</span><span class="p" data-group-id="2823660630-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">put_headers</span><span class="p" data-group-id="2823660630-2">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2823660630-3">[</span><span class="p" data-group-id="2823660630-4">{</span><span class="s">&quot;accept&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;text/html&quot;</span><span class="p" data-group-id="2823660630-4">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2823660630-5">{</span><span class="s">&quot;accept-encoding&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;gzip&quot;</span><span class="p" data-group-id="2823660630-5">}</span><span class="p" data-group-id="2823660630-3">]</span><span class="p" data-group-id="2823660630-2">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">get_header</span><span class="p" data-group-id="2823660630-6">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;accept&quot;</span><span class="p" data-group-id="2823660630-6">)</span><span class="w">
+</span><span class="p" data-group-id="2823660630-7">[</span><span class="s">&quot;text/html&quot;</span><span class="p" data-group-id="2823660630-7">]</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">get_header</span><span class="p" data-group-id="2823660630-8">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;accept-encoding&quot;</span><span class="p" data-group-id="2823660630-8">)</span><span class="w">
+</span><span class="p" data-group-id="2823660630-9">[</span><span class="s">&quot;gzip&quot;</span><span class="p" data-group-id="2823660630-9">]</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="put_new_header/3">
+
+  <div class="detail-header">
+    <a href="#put_new_header/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">put_new_header(request, name, value)</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/legacy/req/request.ex#L1036" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> put_new_header(<a href="#t:t/0">t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>()) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+<p>Adds a request header <code class="inline">name</code> unless already present.</p><p>See <a href="#put_header/3"><code class="inline">put_header/3</code></a> for more information.</p><h2 id="put_new_header/3-examples" class="section-heading"><a href="#put_new_header/3-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Examples</span></h2><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="nc">Req</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="7014478532-1">(</span><span class="p" data-group-id="7014478532-1">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">put_new_header</span><span class="p" data-group-id="7014478532-2">(</span><span class="s">&quot;accept&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;application/json&quot;</span><span class="p" data-group-id="7014478532-2">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">put_new_header</span><span class="p" data-group-id="7014478532-3">(</span><span class="s">&quot;accept&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;application/html&quot;</span><span class="p" data-group-id="7014478532-3">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">get_header</span><span class="p" data-group-id="7014478532-4">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;accept&quot;</span><span class="p" data-group-id="7014478532-4">)</span><span class="w">
+</span><span class="p" data-group-id="7014478532-5">[</span><span class="s">&quot;application/json&quot;</span><span class="p" data-group-id="7014478532-5">]</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="put_new_option/3">
+
+  <div class="detail-header">
+    <a href="#put_new_option/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">put_new_option(request, key, value)</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/legacy/req/request.ex#L549" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> put_new_option(<a href="#t:t/0">t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+<p>Sets the value <code class="inline">value</code> for the option <code class="inline">name</code> unless option is already set.</p><p>See also <a href="#put_option/3"><code class="inline">put_option/3</code></a>, <a href="#merge_options/2"><code class="inline">merge_options/2</code></a>, and <a href="#merge_new_options/2"><code class="inline">merge_new_options/2</code></a>.</p><h2 id="put_new_option/3-examples" class="section-heading"><a href="#put_new_option/3-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Examples</span></h2><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="1806209691-1">(</span><span class="p" data-group-id="1806209691-1">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">register_options</span><span class="p" data-group-id="1806209691-2">(</span><span class="p" data-group-id="1806209691-3">[</span><span class="ss">:a</span><span class="p" data-group-id="1806209691-3">]</span><span class="p" data-group-id="1806209691-2">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="o">.</span><span class="n">options</span><span class="w">
+</span><span class="p" data-group-id="1806209691-4">%{</span><span class="p" data-group-id="1806209691-4">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">put_new_option</span><span class="p" data-group-id="1806209691-5">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="ss">:a</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="1806209691-5">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="o">.</span><span class="n">options</span><span class="w">
+</span><span class="p" data-group-id="1806209691-6">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="1806209691-6">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">put_new_option</span><span class="p" data-group-id="1806209691-7">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="ss">:a</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="1806209691-7">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="o">.</span><span class="n">options</span><span class="w">
+</span><span class="p" data-group-id="1806209691-8">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="1806209691-8">}</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="1806209691-9">(</span><span class="p" data-group-id="1806209691-9">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">put_new_option</span><span class="p" data-group-id="1806209691-10">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="ss">:b</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="1806209691-10">)</span><span class="w">
+</span><span class="gt">** (ArgumentError) unknown option :b</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="put_option/3">
+
+  <div class="detail-header">
+    <a href="#put_option/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">put_option(request, key, value)</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/legacy/req/request.ex#L522" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> put_option(<a href="#t:t/0">t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+<p>Sets the value <code class="inline">value</code> for the option <code class="inline">name</code>.</p><p>See also <a href="#put_new_option/3"><code class="inline">put_new_option/3</code></a>, <a href="#merge_options/2"><code class="inline">merge_options/2</code></a>, and <a href="#merge_new_options/2"><code class="inline">merge_new_options/2</code></a>.</p><h2 id="put_option/3-examples" class="section-heading"><a href="#put_option/3-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Examples</span></h2><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="4554315762-1">(</span><span class="p" data-group-id="4554315762-1">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">register_options</span><span class="p" data-group-id="4554315762-2">(</span><span class="p" data-group-id="4554315762-3">[</span><span class="ss">:a</span><span class="p" data-group-id="4554315762-3">]</span><span class="p" data-group-id="4554315762-2">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="o">.</span><span class="n">options</span><span class="w">
+</span><span class="p" data-group-id="4554315762-4">%{</span><span class="p" data-group-id="4554315762-4">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">put_option</span><span class="p" data-group-id="4554315762-5">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="ss">:a</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="4554315762-5">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="o">.</span><span class="n">options</span><span class="w">
+</span><span class="p" data-group-id="4554315762-6">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="4554315762-6">}</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="4554315762-7">(</span><span class="p" data-group-id="4554315762-7">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">put_option</span><span class="p" data-group-id="4554315762-8">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="ss">:b</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="4554315762-8">)</span><span class="w">
+</span><span class="gt">** (ArgumentError) unknown option :b</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="put_private/3">
+
+  <div class="detail-header">
+    <a href="#put_private/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">put_private(request, key, value)</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/legacy/req/request.ex#L710" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> put_private(<a href="#t:t/0">t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+<p>Assigns a private <code class="inline">key</code> to <code class="inline">value</code>.</p>
+  </section>
+</section>
+<section class="detail" id="register_options/2">
+
+  <div class="detail-header">
+    <a href="#register_options/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">register_options(request, options)</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/legacy/req/request.ex#L1085" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> register_options(<a href="#t:t/0">t</a>(), [<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()]) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+<p>Registers options to be used by custom steps.</p><p>Req ensures that all used options were previously registered which helps
+finding accidentally mistyped option names. If you're adding custom steps
+that are accepting options, call this function to register them.</p><h2 id="register_options/2-examples" class="section-heading"><a href="#register_options/2-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Examples</span></h2><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">request!</span><span class="p" data-group-id="0292260209-1">(</span><span class="ss">urll</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://httpbin.org&quot;</span><span class="p" data-group-id="0292260209-1">)</span><span class="w">
+</span><span class="gt">** (ArgumentError) unknown option :urll. Did you mean :url?</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="0292260209-2">(</span><span class="ss">bas_url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://httpbin.org&quot;</span><span class="p" data-group-id="0292260209-2">)</span><span class="w">
+</span><span class="gt">** (ArgumentError) unknown option :bas_url. Did you mean :base_url?</span><span class="w">
+
+</span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w">
+  </span><span class="nc">Req</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="0292260209-3">(</span><span class="ss">base_url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://httpbin.org&quot;</span><span class="p" data-group-id="0292260209-3">)</span><span class="w">
+  </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">register_options</span><span class="p" data-group-id="0292260209-4">(</span><span class="p" data-group-id="0292260209-5">[</span><span class="ss">:foo</span><span class="p" data-group-id="0292260209-5">]</span><span class="p" data-group-id="0292260209-4">)</span><span class="w">
+
+</span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="0292260209-6">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/status/201&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">foo</span><span class="p">:</span><span class="w"> </span><span class="ss">:bar</span><span class="p" data-group-id="0292260209-6">)</span><span class="o">.</span><span class="n">status</span><span class="w">
+</span><span class="c1">#=&gt; 201</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="run_request/1">
+
+  <div class="detail-header">
+    <a href="#run_request/1" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">run_request(request)</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/legacy/req/request.ex#L1126" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> run_request(<a href="#t:t/0">t</a>()) :: {<a href="#t:t/0">t</a>(), <a href="Req.Response.html#t:t/0">Req.Response.t</a>() | <a href="https://hexdocs.pm/elixir/Exception.html#t:t/0">Exception.t</a>()}</pre>
+
+      </div>
+
+<p>Runs the request pipeline.</p><p>Returns <code class="inline">{request, response}</code> or <code class="inline">{request, exception}</code>.</p><h2 id="run_request/1-examples" class="section-heading"><a href="#run_request/1-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Examples</span></h2><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="4784324878-1">(</span><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://api.github.com/repos/wojtekmach/req&quot;</span><span class="p" data-group-id="4784324878-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="4784324878-2">{</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p" data-group-id="4784324878-2">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">run_request</span><span class="p" data-group-id="4784324878-3">(</span><span class="n">req</span><span class="p" data-group-id="4784324878-3">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">host</span><span class="w">
+</span><span class="s">&quot;api.github.com&quot;</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">response</span><span class="o">.</span><span class="n">status</span><span class="w">
+</span><span class="mi">200</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="update_private/4">
+
+  <div class="detail-header">
+    <a href="#update_private/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">update_private(request, key, default, fun)</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/legacy/req/request.ex#L702" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> update_private(<a href="#t:t/0">t</a>(), key :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), default :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(), (<a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>() -&gt; <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>())) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+<p>Updates private <code class="inline">key</code> with the given function.</p><p>If <code class="inline">key</code> is present in request private map then the existing value is passed to <code class="inline">fun</code> and its
+result is used as the updated value of <code class="inline">key</code>. If <code class="inline">key</code> is not present, <code class="inline">default</code> is inserted
+as the value of <code class="inline">key</code>. The default value will not be passed through the update function.</p><h2 id="update_private/4-examples" class="section-heading"><a href="#update_private/4-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Examples</span></h2><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="1558855320-1">%</span><span class="nc" data-group-id="1558855320-1">Req.Request</span><span class="p" data-group-id="1558855320-1">{</span><span class="ss">private</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="1558855320-2">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="1558855320-2">}</span><span class="p" data-group-id="1558855320-1">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">update_private</span><span class="p" data-group-id="1558855320-3">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="ss">:a</span><span class="p">,</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="ni">&amp;1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="1558855320-3">)</span><span class="o">.</span><span class="n">private</span><span class="w">
+</span><span class="p" data-group-id="1558855320-4">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="1558855320-4">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Request</span><span class="o">.</span><span class="n">update_private</span><span class="p" data-group-id="1558855320-5">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="ss">:b</span><span class="p">,</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="ni">&amp;1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="1558855320-5">)</span><span class="o">.</span><span class="n">private</span><span class="w">
+</span><span class="p" data-group-id="1558855320-6">%{</span><span class="ss">a</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ss">b</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p" data-group-id="1558855320-6">}</span></code></pre>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+  <section id="deprecated" class="details-list">
+    <h2 class="section-heading">
+      <a class="hover-link" href="#deprecated">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Deprecated</span>
+    </h2>
+
+    <div class="deprecated-list">
+<section class="detail" id="run/1">
+
+  <div class="detail-header">
+    <a href="#run/1" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">run(request)</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/legacy/req/request.ex#L1090" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+    <div class="deprecated">
+      This function is deprecated. Use Req.Request.run_request/1 instead.
+    </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="run!/1">
+
+  <div class="detail-header">
+    <a href="#run!/1" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">run!(request)</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/legacy/req/request.ex#L1101" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+    <div class="deprecated">
+      This function is deprecated. Use Req.Request.run_request/1 instead.
+    </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+
+    </div>
+  </section>
+
+    <footer class="footer">
+
+        <p>
+
+            <span class="line">
+              <a href="https://hex.pm/packages/req/0.6.0-dev">Hex Package</a>
+
+              <a href="https://preview.hex.pm/preview/req/0.6.0-dev">Hex Preview</a>
+
+            </span>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Go to package docs">
+              Go to package docs
+            </button>
+
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.40.1) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+
+
+    </footer>
+  </div>
+</main>
+</div>
+
+  </body>
+</html>

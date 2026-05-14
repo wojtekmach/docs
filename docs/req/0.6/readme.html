@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.40.1">
+    <meta name="project" content="req v0.6.0-dev">
+
+
+    <title>Req — req v0.6.0-dev</title>
+
+    <link rel="stylesheet" href="dist/html-elixir-YJO4MOOW.css" />
+
+    <script defer src="dist/sidebar_items-5C2416C1.js"></script>
+    <script defer src="docs_config.js"></script>
+    <script defer src="dist/html-YU4BZFVS.js"></script>
+
+  </head>
+  <body>
+    <script>(()=>{var t="ex_doc:settings",e="dark";var o="dark",s="light";var E="sidebar_state",n="closed";var r="sidebar_width";var a="sidebar-open";var i=new URLSearchParams(window.location.search),S=i.get("theme")||JSON.parse(localStorage.getItem(t)||"{}").theme;(S===o||S!==s&&window.matchMedia("(prefers-color-scheme: dark)").matches)&&document.body.classList.add(e);var d=sessionStorage.getItem(E),A=d!==n&&!window.matchMedia(`screen and (max-width: ${768}px)`).matches;document.body.classList.toggle(a,A);var c=sessionStorage.getItem(r);c&&document.body.style.setProperty("--sidebarWidth",`${c}px`);var p=/(Macintosh|iPhone|iPad|iPod)/.test(window.navigator.userAgent);document.documentElement.classList.toggle("apple-os",p);})();
+</script>
+
+<div class="body-wrapper">
+
+<button id="sidebar-menu" class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
+
+      <div>
+        <a href="readme.html" class="sidebar-projectName" translate="no">
+req
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v0.6.0-dev
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-list-nav" class="sidebar-list-nav" role="tablist" data-extras="Pages"></ul>
+  </div>
+</nav>
+
+<output role="status" id="toast"></output>
+
+<main class="content page-extra" id="main" data-type="extras">
+  <div id="content" class="content-inner">
+    <div class="top-search">
+      <div class="search-settings">
+        <form class="search-bar" action="search.html">
+          <label class="search-label">
+            <span class="sr-only">Search documentation of req</span>
+            <div class="search-input-wrapper">
+              <input name="q" type="text" class="search-input" placeholder="Press / to search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+              <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+                <i class="ri-close-line ri-lg" title="Cancel search"></i>
+              </button>
+            </div>
+          </label>
+        </form>
+        <div class="autocomplete">
+        </div>
+        <div class="engine-selector" data-multiple="false">
+          <button type="button" class="engine-button" aria-label="Select search engine" aria-haspopup="true" aria-expanded="false">
+            <i class="ri-search-2-line" aria-hidden="true"></i>
+            <span class="engine-name">Default</span>
+            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+          </button>
+          <div class="engine-dropdown" hidden role="menu">
+
+              <button type="button"
+                      class="engine-option"
+                      data-engine-url="search.html?q="
+                      role="menuitemradio"
+                      aria-checked="true">
+                <span class="name">Default</span>
+                <span class="help">In-browser search</span>
+              </button>
+
+          </div>
+        </div>
+        <button class="icon-settings display-settings">
+          <i class="ri-settings-3-line"></i>
+          <span class="sr-only">Settings</span>
+        </button>
+      </div>
+    </div>
+
+<div id="top-content">
+  <div class="heading-with-actions top-heading">
+    <h1>Req</h1>
+
+
+
+      <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/README.md#L1" title="View Source" class="icon-action" rel="help">
+        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        <span class="sr-only">View Source</span>
+      </a>
+
+  </div>
+
+
+<p><a href="https://github.com/wojtekmach/req/actions/workflows/ci.yml"><img src="https://github.com/wojtekmach/req/actions/workflows/ci.yml/badge.svg" alt="CI"/></a>
+<a href="https://github.com/wojtekmach/req/blob/main/LICENSE.md"><img src="https://img.shields.io/hexpm/l/req.svg" alt="License"/></a>
+<a href="https://hex.pm/packages/req"><img src="https://img.shields.io/hexpm/v/req.svg" alt="Version"/></a>
+<a href="https://hexdocs.pm/req"><img src="https://img.shields.io/badge/documentation-gray.svg" alt="Hex Docs"/></a></p><p>Req is a batteries-included HTTP client for Elixir.</p><p>TODO</p><h2 id="todo" class="section-heading"><a href="#todo" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">TODO</span></h2><ul><li><p>Changelog: retry behaviour is changing — transport errors mid-stream (after the response status was received) are no longer retried.</p></li><li><p>Should options never be <code class="inline">nil</code> values? And setting <code class="inline">nil</code> mean &quot;unset this option&quot;? It'd be nice to write <code class="inline">Req.fetch(auth: x &amp;&amp; x.auth)</code> without thinking — if <code class="inline">x</code> is nil, just drop <code class="inline">:auth</code>. Types stay clean (no <code class="inline">... or nil</code> smeared everywhere) and the <code class="inline">&amp;&amp;</code> pattern just works.</p><p>However, for on-by-default options like <code class="inline">:redirect</code>, <code class="inline">redirect: x &amp;&amp; x.redirect</code> could evaluate to <code class="inline">nil</code>, meaning redirects are enabled, but the user might have thought <code class="inline">nil</code> <em>disables</em> them.</p></li></ul><h2 id="related-packages" class="section-heading"><a href="#related-packages" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Related Packages</span></h2><p>There are many packages that extend the Req library. To get yours listed here, send a PR.</p><ul><li><a href="https://github.com/wojtekmach/req_easyhtml" title=""><code class="inline">req_easyhtml</code></a></li><li><a href="https://github.com/wojtekmach/req_s3" title=""><code class="inline">req_s3</code></a></li><li><a href="https://github.com/wojtekmach/req_hex" title=""><code class="inline">req_hex</code></a></li><li><a href="https://github.com/wojtekmach/req_github_oauth" title=""><code class="inline">req_github_oauth</code></a></li><li><a href="https://github.com/derekkraan/curl_req" title=""><code class="inline">curl_req</code></a></li><li><a href="https://github.com/reisub/http_cookie" title=""><code class="inline">http_cookie</code></a></li><li><a href="https://github.com/leandrocp/req_embed" title=""><code class="inline">req_embed</code></a></li><li><a href="https://gitlab.com/wmde/technical-wishes/req_proxy" title=""><code class="inline">req_proxy</code></a></li></ul><h2 id="presentations" class="section-heading"><a href="#presentations" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Presentations</span></h2><ul><li><a href="https://www.youtube.com/watch?v=AexE5JKpNvA">Building API Clients with Req -- ElixirConf EU 2024</a></li><li><a href="https://www.youtube.com/watch?v=owz2QacFuoQ">Req: A batteries-included HTTP client for Elixir -- ElixirConf 2023</a></li></ul><h2 id="upgrading-to-req-v0-6" class="section-heading"><a href="#upgrading-to-req-v0-6" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Upgrading to Req v0.6</span></h2><p>TODO</p><h2 id="acknowledgments" class="section-heading"><a href="#acknowledgments" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Acknowledgments</span></h2><p>Req is built on top of <a href="https://github.com/sneako/finch" title="">Finch</a> and is inspired by <a href="https://curl.se" title="">cURL</a>, <a href="https://docs.python-requests.org/en/master/" title="">Requests</a>, <a href="https://github.com/elixir-tesla/tesla" title="">Tesla</a>, and many other HTTP clients - thank you!</p><h2 id="license" class="section-heading"><a href="#license" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">License</span></h2><p>Copyright (c) 2021 Wojtek Mach</p><p>Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at <a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p><p>Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.</p>
+
+</div>
+
+<div class="bottom-actions" id="bottom-actions">
+  <div class="bottom-actions-item">
+
+  </div>
+  <div class="bottom-actions-item">
+
+      <a href="design.html" class="bottom-actions-button" rel="next">
+        <span class="subheader">
+          Next Page →
+        </span>
+        <span class="title">
+Req Design
+        </span>
+      </a>
+
+  </div>
+</div>
+    <footer class="footer">
+
+        <p>
+
+            <span class="line">
+              <a href="https://hex.pm/packages/req/0.6.0-dev">Hex Package</a>
+
+              <a href="https://preview.hex.pm/preview/req/0.6.0-dev">Hex Preview</a>
+
+                (<a href="https://preview.hex.pm/preview/req/0.6.0-dev/show/README.md">current file</a>)
+
+            </span>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Go to package docs">
+              Go to package docs
+            </button>
+
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.40.1) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+
+
+    </footer>
+  </div>
+</main>
+</div>
+
+  </body>
+</html>

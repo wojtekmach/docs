@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.40.1">
+    <meta name="project" content="req v0.6.0-dev">
+
+
+    <title>Req.Test — req v0.6.0-dev</title>
+
+    <link rel="stylesheet" href="dist/html-elixir-YJO4MOOW.css" />
+
+    <script defer src="dist/sidebar_items-5C2416C1.js"></script>
+    <script defer src="docs_config.js"></script>
+    <script defer src="dist/html-YU4BZFVS.js"></script>
+
+  </head>
+  <body>
+    <script>(()=>{var t="ex_doc:settings",e="dark";var o="dark",s="light";var E="sidebar_state",n="closed";var r="sidebar_width";var a="sidebar-open";var i=new URLSearchParams(window.location.search),S=i.get("theme")||JSON.parse(localStorage.getItem(t)||"{}").theme;(S===o||S!==s&&window.matchMedia("(prefers-color-scheme: dark)").matches)&&document.body.classList.add(e);var d=sessionStorage.getItem(E),A=d!==n&&!window.matchMedia(`screen and (max-width: ${768}px)`).matches;document.body.classList.toggle(a,A);var c=sessionStorage.getItem(r);c&&document.body.style.setProperty("--sidebarWidth",`${c}px`);var p=/(Macintosh|iPhone|iPad|iPod)/.test(window.navigator.userAgent);document.documentElement.classList.toggle("apple-os",p);})();
+</script>
+
+<div class="body-wrapper">
+
+<button id="sidebar-menu" class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
+
+      <div>
+        <a href="readme.html" class="sidebar-projectName" translate="no">
+req
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v0.6.0-dev
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-list-nav" class="sidebar-list-nav" role="tablist" data-extras="Pages"></ul>
+  </div>
+</nav>
+
+<output role="status" id="toast"></output>
+
+<main class="content page-module" id="main" data-type="modules">
+  <div id="content" class="content-inner">
+    <div class="top-search">
+      <div class="search-settings">
+        <form class="search-bar" action="search.html">
+          <label class="search-label">
+            <span class="sr-only">Search documentation of req</span>
+            <div class="search-input-wrapper">
+              <input name="q" type="text" class="search-input" placeholder="Press / to search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+              <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+                <i class="ri-close-line ri-lg" title="Cancel search"></i>
+              </button>
+            </div>
+          </label>
+        </form>
+        <div class="autocomplete">
+        </div>
+        <div class="engine-selector" data-multiple="false">
+          <button type="button" class="engine-button" aria-label="Select search engine" aria-haspopup="true" aria-expanded="false">
+            <i class="ri-search-2-line" aria-hidden="true"></i>
+            <span class="engine-name">Default</span>
+            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+          </button>
+          <div class="engine-dropdown" hidden role="menu">
+
+              <button type="button"
+                      class="engine-option"
+                      data-engine-url="search.html?q="
+                      role="menuitemradio"
+                      aria-checked="true">
+                <span class="name">Default</span>
+                <span class="help">In-browser search</span>
+              </button>
+
+          </div>
+        </div>
+        <button class="icon-settings display-settings">
+          <i class="ri-settings-3-line"></i>
+          <span class="sr-only">Settings</span>
+        </button>
+      </div>
+    </div>
+
+<div id="top-content">
+  <div class="heading-with-actions top-heading">
+    <h1>
+      <span translate="no">Req.<wbr>Test</span> 
+      <small class="app-vsn" translate="no">(req v0.6.0-dev)</small>
+
+    </h1>
+
+
+
+
+      <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/req/test.ex#L1" title="View Source" class="icon-action" rel="help">
+        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        <span class="sr-only">View Source</span>
+      </a>
+
+  </div>
+
+
+    <section id="moduledoc">
+<p>Req testing conveniences.</p><p>Req is composed of:</p><ul><li><p><a href="Req.html"><code class="inline">Req</code></a> - the high-level API</p></li><li><p><a href="Req.Request.html"><code class="inline">Req.Request</code></a> - the low-level API and the request struct</p></li><li><p><a href="Req.Steps.html"><code class="inline">Req.Steps</code></a> - the collection of built-in steps</p></li><li><p><a href="Req.Test.html"><code class="inline">Req.Test</code></a> - the testing conveniences (you're here!)</p></li></ul><p>Req already has built-in support for different variants of stubs via <code class="inline">:plug</code>, <code class="inline">:adapter</code>,
+and (indirectly) <code class="inline">:base_url</code> options. With this module you can:</p><ul><li><p>Create request stubs using <a href="#stub/2"><code class="inline">Req.Test.stub(name, plug)</code></a> and mocks
+using <a href="#expect/3"><code class="inline">Req.Test.expect(name, count, plug)</code></a>. Both can be used in concurrent
+tests.</p></li><li><p>Configure Req to run requests through mocks/stubs by setting <code class="inline">plug: {Req.Test, name}</code>.
+This works because <a href="Req.Test.html"><code class="inline">Req.Test</code></a> itself is a plug whose job is to fetch the mocks/stubs under
+<code class="inline">name</code>.</p></li><li><p>Easily create JSON responses with <a href="#json/2"><code class="inline">Req.Test.json(conn, body)</code></a>,
+HTML responses with <a href="#html/2"><code class="inline">Req.Test.html(conn, body)</code></a>, and
+text responses with <a href="#text/2"><code class="inline">Req.Test.text(conn, body)</code></a>.</p></li><li><p>Simulate network errors with <a href="#transport_error/2"><code class="inline">Req.Test.transport_error(conn, reason)</code></a>.</p></li></ul><p>Mocks and stubs are using the same ownership model of
+<a href="https://hex.pm/packages/nimble_ownership">nimble_ownership</a>, also used by
+<a href="https://hex.pm/packages/mox">Mox</a>. This allows <a href="Req.Test.html"><code class="inline">Req.Test</code></a> to be used in concurrent tests.</p><h2 id="module-example" class="section-heading"><a href="#module-example" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Example</span></h2><p>Imagine we're building an app that displays weather for a given location using an HTTP weather
+service:</p><pre><code class="makeup elixir" translate="no"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">MyApp.Weather</span><span class="w"> </span><span class="k" data-group-id="5033417822-1">do</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">get_rating</span><span class="p" data-group-id="5033417822-2">(</span><span class="n">location</span><span class="p" data-group-id="5033417822-2">)</span><span class="w"> </span><span class="k" data-group-id="5033417822-3">do</span><span class="w">
+    </span><span class="k">case</span><span class="w"> </span><span class="n">get_temperature</span><span class="p" data-group-id="5033417822-4">(</span><span class="n">location</span><span class="p" data-group-id="5033417822-4">)</span><span class="w"> </span><span class="k" data-group-id="5033417822-5">do</span><span class="w">
+      </span><span class="p" data-group-id="5033417822-6">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5033417822-7">%{</span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="ss">body</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5033417822-8">%{</span><span class="s">&quot;celsius&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="n">celsius</span><span class="p" data-group-id="5033417822-8">}</span><span class="p" data-group-id="5033417822-7">}</span><span class="p" data-group-id="5033417822-6">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+        </span><span class="k">cond</span><span class="w"> </span><span class="k" data-group-id="5033417822-9">do</span><span class="w">
+          </span><span class="n">celsius</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">18.0</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p" data-group-id="5033417822-10">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="ss">:too_cold</span><span class="p" data-group-id="5033417822-10">}</span><span class="w">
+          </span><span class="n">celsius</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">30.0</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p" data-group-id="5033417822-11">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="ss">:nice</span><span class="p" data-group-id="5033417822-11">}</span><span class="w">
+          </span><span class="no">true</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p" data-group-id="5033417822-12">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="ss">:too_hot</span><span class="p" data-group-id="5033417822-12">}</span><span class="w">
+        </span><span class="k" data-group-id="5033417822-9">end</span><span class="w">
+
+      </span><span class="bp">_</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+        </span><span class="ss">:error</span><span class="w">
+    </span><span class="k" data-group-id="5033417822-5">end</span><span class="w">
+  </span><span class="k" data-group-id="5033417822-3">end</span><span class="w">
+
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">get_temperature</span><span class="p" data-group-id="5033417822-13">(</span><span class="n">location</span><span class="p" data-group-id="5033417822-13">)</span><span class="w"> </span><span class="k" data-group-id="5033417822-14">do</span><span class="w">
+    </span><span class="p" data-group-id="5033417822-15">[</span><span class="w">
+      </span><span class="ss">base_url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://weather-service&quot;</span><span class="p">,</span><span class="w">
+      </span><span class="ss">params</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5033417822-16">[</span><span class="ss">location</span><span class="p">:</span><span class="w"> </span><span class="n">location</span><span class="p" data-group-id="5033417822-16">]</span><span class="w">
+    </span><span class="p" data-group-id="5033417822-15">]</span><span class="w">
+    </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Keyword</span><span class="o">.</span><span class="n">merge</span><span class="p" data-group-id="5033417822-17">(</span><span class="nc">Application</span><span class="o">.</span><span class="n">get_env</span><span class="p" data-group-id="5033417822-18">(</span><span class="ss">:myapp</span><span class="p">,</span><span class="w"> </span><span class="ss">:weather_req_options</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5033417822-19">[</span><span class="p" data-group-id="5033417822-19">]</span><span class="p" data-group-id="5033417822-18">)</span><span class="p" data-group-id="5033417822-17">)</span><span class="w">
+    </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">request</span><span class="p" data-group-id="5033417822-20">(</span><span class="p" data-group-id="5033417822-20">)</span><span class="w">
+  </span><span class="k" data-group-id="5033417822-14">end</span><span class="w">
+</span><span class="k" data-group-id="5033417822-1">end</span></code></pre><p>We configure it for production:</p><pre><code class="makeup elixir" translate="no"><span class="c1"># config/runtime.exs</span><span class="w">
+</span><span class="n">config</span><span class="w"> </span><span class="ss">:myapp</span><span class="p">,</span><span class="w"> </span><span class="ss">weather_req_options</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5466744338-1">[</span><span class="w">
+  </span><span class="ss">auth</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5466744338-2">{</span><span class="ss">:bearer</span><span class="p">,</span><span class="w"> </span><span class="nc">System</span><span class="o">.</span><span class="n">fetch_env!</span><span class="p" data-group-id="5466744338-3">(</span><span class="s">&quot;MYAPP_WEATHER_API_KEY&quot;</span><span class="p" data-group-id="5466744338-3">)</span><span class="p" data-group-id="5466744338-2">}</span><span class="w">
+</span><span class="p" data-group-id="5466744338-1">]</span></code></pre><p>In tests, instead of hitting the network, we make the request against
+a <a href="Req.Steps.html#run_plug/1">plug</a> <em>stub</em> named <code class="inline">MyApp.Weather</code>:</p><pre><code class="makeup elixir" translate="no"><span class="c1"># config/test.exs</span><span class="w">
+</span><span class="n">config</span><span class="w"> </span><span class="ss">:myapp</span><span class="p">,</span><span class="w"> </span><span class="ss">weather_req_options</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="9467560492-1">[</span><span class="w">
+  </span><span class="ss">plug</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="9467560492-2">{</span><span class="nc">Req.Test</span><span class="p">,</span><span class="w"> </span><span class="nc">MyApp.Weather</span><span class="p" data-group-id="9467560492-2">}</span><span class="w">
+</span><span class="p" data-group-id="9467560492-1">]</span></code></pre><p>Now we can control our stubs <strong>in concurrent tests</strong>:</p><pre><code class="makeup elixir" translate="no"><span class="kn">use</span><span class="w"> </span><span class="nc">ExUnit.Case</span><span class="p">,</span><span class="w"> </span><span class="ss">async</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="w">
+
+</span><span class="n">test</span><span class="w"> </span><span class="s">&quot;nice weather&quot;</span><span class="w"> </span><span class="k" data-group-id="9571407315-1">do</span><span class="w">
+  </span><span class="nc">Req.Test</span><span class="o">.</span><span class="n">stub</span><span class="p" data-group-id="9571407315-2">(</span><span class="nc">MyApp.Weather</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="9571407315-3">fn</span><span class="w"> </span><span class="n">conn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+    </span><span class="nc">Req.Test</span><span class="o">.</span><span class="n">json</span><span class="p" data-group-id="9571407315-4">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9571407315-5">%{</span><span class="s">&quot;celsius&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="mf">25.0</span><span class="p" data-group-id="9571407315-5">}</span><span class="p" data-group-id="9571407315-4">)</span><span class="w">
+  </span><span class="k" data-group-id="9571407315-3">end</span><span class="p" data-group-id="9571407315-2">)</span><span class="w">
+
+  </span><span class="n">assert</span><span class="w"> </span><span class="nc">MyApp.Weather</span><span class="o">.</span><span class="n">get_rating</span><span class="p" data-group-id="9571407315-6">(</span><span class="s">&quot;Krakow, Poland&quot;</span><span class="p" data-group-id="9571407315-6">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p" data-group-id="9571407315-7">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="ss">:nice</span><span class="p" data-group-id="9571407315-7">}</span><span class="w">
+</span><span class="k" data-group-id="9571407315-1">end</span></code></pre><h2 id="module-concurrency-and-allowances" class="section-heading"><a href="#module-concurrency-and-allowances" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Concurrency and Allowances</span></h2><p>The example above works in concurrent tests because <code class="inline">MyApp.Weather.get_rating/1</code> calls
+directly to <a href="Req.html#request/1"><code class="inline">Req.request/1</code></a> <em>in the same process</em>. It also works in many cases where the
+request happens in a spawned process, such as a <a href="https://hexdocs.pm/elixir/Task.html"><code class="inline">Task</code></a>, <a href="https://hexdocs.pm/elixir/GenServer.html"><code class="inline">GenServer</code></a>, and more.</p><p>However, if you are encountering issues with stubs not being available in spawned processes,
+it's likely that you'll need <strong>explicit allowances</strong>. For example, if
+<code class="inline">MyApp.Weather.get_rating/1</code> was calling <a href="Req.html#request/1"><code class="inline">Req.request/1</code></a> in a process spawned with <a href="https://hexdocs.pm/elixir/Kernel.html#spawn/1"><code class="inline">spawn/1</code></a>,
+the stub would not be available in the spawned process:</p><pre><code class="makeup elixir" translate="no"><span class="c1"># With code like this, the stub would not be available in the spawned task:</span><span class="w">
+</span><span class="kd">def</span><span class="w"> </span><span class="nf">get_rating_async</span><span class="p" data-group-id="7584661881-1">(</span><span class="n">location</span><span class="p" data-group-id="7584661881-1">)</span><span class="w"> </span><span class="k" data-group-id="7584661881-2">do</span><span class="w">
+  </span><span class="n">spawn</span><span class="p" data-group-id="7584661881-3">(</span><span class="k" data-group-id="7584661881-4">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">get_rating</span><span class="p" data-group-id="7584661881-5">(</span><span class="n">location</span><span class="p" data-group-id="7584661881-5">)</span><span class="w"> </span><span class="k" data-group-id="7584661881-4">end</span><span class="p" data-group-id="7584661881-3">)</span><span class="w">
+</span><span class="k" data-group-id="7584661881-2">end</span></code></pre><p>To make stubs defined in the test process available in other processes, you can use
+<a href="#allow/3"><code class="inline">allow/3</code></a>. For example, imagine that the call to <code class="inline">MyApp.Weather.get_rating/1</code>
+was happening in a spawned GenServer:</p><pre><code class="makeup elixir" translate="no"><span class="n">test</span><span class="w"> </span><span class="s">&quot;nice weather&quot;</span><span class="w"> </span><span class="k" data-group-id="8535537444-1">do</span><span class="w">
+  </span><span class="p" data-group-id="8535537444-2">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">pid</span><span class="p" data-group-id="8535537444-2">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">start_gen_server</span><span class="p" data-group-id="8535537444-3">(</span><span class="n">...</span><span class="p" data-group-id="8535537444-3">)</span><span class="w">
+
+  </span><span class="nc">Req.Test</span><span class="o">.</span><span class="n">stub</span><span class="p" data-group-id="8535537444-4">(</span><span class="nc">MyApp.Weather</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="8535537444-5">fn</span><span class="w"> </span><span class="n">conn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+    </span><span class="nc">Req.Test</span><span class="o">.</span><span class="n">json</span><span class="p" data-group-id="8535537444-6">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8535537444-7">%{</span><span class="s">&quot;celsius&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="mf">25.0</span><span class="p" data-group-id="8535537444-7">}</span><span class="p" data-group-id="8535537444-6">)</span><span class="w">
+  </span><span class="k" data-group-id="8535537444-5">end</span><span class="p" data-group-id="8535537444-4">)</span><span class="w">
+
+  </span><span class="nc">Req.Test</span><span class="o">.</span><span class="n">allow</span><span class="p" data-group-id="8535537444-8">(</span><span class="nc">MyApp.Weather</span><span class="p">,</span><span class="w"> </span><span class="n">self</span><span class="p" data-group-id="8535537444-9">(</span><span class="p" data-group-id="8535537444-9">)</span><span class="p">,</span><span class="w"> </span><span class="n">pid</span><span class="p" data-group-id="8535537444-8">)</span><span class="w">
+
+  </span><span class="n">assert</span><span class="w"> </span><span class="n">get_weather</span><span class="p" data-group-id="8535537444-10">(</span><span class="n">pid</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Krakow, Poland&quot;</span><span class="p" data-group-id="8535537444-10">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p" data-group-id="8535537444-11">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="ss">:nice</span><span class="p" data-group-id="8535537444-11">}</span><span class="w">
+</span><span class="k" data-group-id="8535537444-1">end</span></code></pre><h2 id="module-broadway" class="section-heading"><a href="#module-broadway" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Broadway</span></h2><p>If you're using <a href="Req.Test.html"><code class="inline">Req.Test</code></a> with <a href="https://hex.pm/packages/broadway">Broadway</a>, you may need to use
+<a href="#allow/3"><code class="inline">allow/3</code></a> to make stubs available in the Broadway processors. A great way to do that is
+to hook into the <a href="https://hex.pm/packages/telemetry">Telemetry</a> events that Broadway publishes to
+manually allow the processors and batch processors to access the stubs. This approach is
+similar to what is <a href="https://hexdocs.pm/broadway/Broadway.html#module-testing-with-ecto">documented in Broadway
+itself</a>.</p><p>First, you should add the test PID (which is allowed to use the Req stub) to the metadata
+for the test events you're publishing:</p><pre><code class="makeup elixir" translate="no"><span class="nc">Broadway</span><span class="o">.</span><span class="n">test_message</span><span class="p" data-group-id="9672819048-1">(</span><span class="nc">MyApp.Pipeline</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">,</span><span class="w"> </span><span class="ss">metadata</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="9672819048-2">%{</span><span class="ss">req_stub_owner</span><span class="p">:</span><span class="w"> </span><span class="n">self</span><span class="p" data-group-id="9672819048-3">(</span><span class="p" data-group-id="9672819048-3">)</span><span class="p" data-group-id="9672819048-2">}</span><span class="p" data-group-id="9672819048-1">)</span></code></pre><p>Then, you'll need to define a test helper to hook into the Telemetry events. For example,
+in your <code class="inline">test/test_helper.exs</code> file:</p><pre><code class="makeup elixir" translate="no"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">BroadwayReqStubs</span><span class="w"> </span><span class="k" data-group-id="5461291188-1">do</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">attach</span><span class="p" data-group-id="5461291188-2">(</span><span class="n">stub</span><span class="p" data-group-id="5461291188-2">)</span><span class="w"> </span><span class="k" data-group-id="5461291188-3">do</span><span class="w">
+    </span><span class="n">events</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="5461291188-4">[</span><span class="w">
+      </span><span class="p" data-group-id="5461291188-5">[</span><span class="ss">:broadway</span><span class="p">,</span><span class="w"> </span><span class="ss">:processor</span><span class="p">,</span><span class="w"> </span><span class="ss">:start</span><span class="p" data-group-id="5461291188-5">]</span><span class="p">,</span><span class="w">
+      </span><span class="p" data-group-id="5461291188-6">[</span><span class="ss">:broadway</span><span class="p">,</span><span class="w"> </span><span class="ss">:batch_processor</span><span class="p">,</span><span class="w"> </span><span class="ss">:start</span><span class="p" data-group-id="5461291188-6">]</span><span class="p">,</span><span class="w">
+    </span><span class="p" data-group-id="5461291188-4">]</span><span class="w">
+
+    </span><span class="nc">:telemetry</span><span class="o">.</span><span class="n">attach_many</span><span class="p" data-group-id="5461291188-7">(</span><span class="p" data-group-id="5461291188-8">{</span><span class="bp">__MODULE__</span><span class="p">,</span><span class="w"> </span><span class="n">stub</span><span class="p" data-group-id="5461291188-8">}</span><span class="p">,</span><span class="w"> </span><span class="n">events</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="bp">__MODULE__</span><span class="o">.</span><span class="n">handle_event</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5461291188-9">%{</span><span class="ss">stub</span><span class="p">:</span><span class="w"> </span><span class="n">stub</span><span class="p" data-group-id="5461291188-9">}</span><span class="p" data-group-id="5461291188-7">)</span><span class="w">
+  </span><span class="k" data-group-id="5461291188-3">end</span><span class="w">
+
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">handle_event</span><span class="p" data-group-id="5461291188-10">(</span><span class="c">_event_name</span><span class="p">,</span><span class="w"> </span><span class="c">_event_measurement</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5461291188-11">%{</span><span class="ss">messages</span><span class="p">:</span><span class="w"> </span><span class="n">messages</span><span class="p" data-group-id="5461291188-11">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5461291188-12">%{</span><span class="ss">stub</span><span class="p">:</span><span class="w"> </span><span class="n">stub</span><span class="p" data-group-id="5461291188-12">}</span><span class="p" data-group-id="5461291188-10">)</span><span class="w"> </span><span class="k" data-group-id="5461291188-13">do</span><span class="w">
+    </span><span class="k">with</span><span class="w"> </span><span class="p" data-group-id="5461291188-14">[</span><span class="p" data-group-id="5461291188-15">%</span><span class="nc" data-group-id="5461291188-15">Broadway.Message</span><span class="p" data-group-id="5461291188-15">{</span><span class="ss">metadata</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5461291188-16">%{</span><span class="ss">req_stub_owner</span><span class="p">:</span><span class="w"> </span><span class="n">pid</span><span class="p" data-group-id="5461291188-16">}</span><span class="p" data-group-id="5461291188-15">}</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="bp">_</span><span class="p" data-group-id="5461291188-14">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">messages</span><span class="w"> </span><span class="k" data-group-id="5461291188-17">do</span><span class="w">
+      </span><span class="ss">:ok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req.Test</span><span class="o">.</span><span class="n">allow</span><span class="p" data-group-id="5461291188-18">(</span><span class="n">stub</span><span class="p">,</span><span class="w"> </span><span class="n">pid</span><span class="p">,</span><span class="w"> </span><span class="n">self</span><span class="p" data-group-id="5461291188-19">(</span><span class="p" data-group-id="5461291188-19">)</span><span class="p" data-group-id="5461291188-18">)</span><span class="w">
+    </span><span class="k" data-group-id="5461291188-17">end</span><span class="w">
+
+    </span><span class="ss">:ok</span><span class="w">
+  </span><span class="k" data-group-id="5461291188-13">end</span><span class="w">
+</span><span class="k" data-group-id="5461291188-1">end</span></code></pre><p>Last but not least, attach the helper in your <code class="inline">test/test_helper.exs</code>:</p><pre><code class="makeup elixir" translate="no"><span class="nc">BroadwayReqStubs</span><span class="o">.</span><span class="n">attach</span><span class="p" data-group-id="7486990558-1">(</span><span class="nc">MyStub</span><span class="p" data-group-id="7486990558-1">)</span></code></pre>
+    </section>
+
+</div>
+
+  <section id="summary" class="details-list">
+    <h2 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Summary</span>
+    </h2>
+<div class="summary-functions summary">
+  <h3>
+    <a href="#functions">Functions</a>
+  </h3>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#html/2" data-no-tooltip="" translate="no">html(conn, data)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Sends HTML response.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#json/2" data-no-tooltip="" translate="no">json(conn, data)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Sends JSON response.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#raw_body/1" data-no-tooltip="" translate="no">raw_body(conn)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Reads the raw request body from a plug request.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#redirect/2" data-no-tooltip="" translate="no">redirect(conn, opts)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Sends redirect response to the given url.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#text/2" data-no-tooltip="" translate="no">text(conn, data)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Sends text response.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#transport_error/2" data-no-tooltip="" translate="no">transport_error(conn, reason)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Simulates a network transport error.</p></div>
+
+    </div>
+
+</div>
+<div class="summary-functions-mocks-stubs summary">
+  <h3>
+    <a href="#functions-mocks-stubs">Functions (Mocks & Stubs)</a>
+  </h3>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#allow/3" data-no-tooltip="" translate="no">allow(name, owner, pid_to_allow)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Allows <code class="inline">pid_to_allow</code> to access <code class="inline">name</code> provided that <code class="inline">owner</code> is already allowed.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#expect/3" data-no-tooltip="" translate="no">expect(name, n \\ 1, plug)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Creates a request expectation with the given <code class="inline">name</code> and <code class="inline">plug</code>, expected to be fetched at
+most <code class="inline">n</code> times, <strong>in order</strong>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#set_req_test_from_context/1" data-no-tooltip="" translate="no">set_req_test_from_context(context \\ %{})</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Sets the <a href="Req.Test.html"><code class="inline">Req.Test</code></a> mode based on the given <a href="https://hexdocs.pm/ex_unit/ExUnit.html"><code class="inline">ExUnit</code></a> context.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#set_req_test_to_private/1" data-no-tooltip="" translate="no">set_req_test_to_private(context \\ %{})</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Sets the <a href="Req.Test.html"><code class="inline">Req.Test</code></a> mode to &quot;private&quot;, meaning that stubs can be shared across
+tests concurrently.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#set_req_test_to_shared/1" data-no-tooltip="" translate="no">set_req_test_to_shared(context \\ %{})</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Sets the <a href="Req.Test.html"><code class="inline">Req.Test</code></a> mode to &quot;global&quot;, meaning that the stubs are shared across all tests
+and cannot be used concurrently.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#stub/2" data-no-tooltip="" translate="no">stub(name, plug)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Creates a request stub with the given <code class="inline">name</code> and <code class="inline">plug</code>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#verify!/0" data-no-tooltip="" translate="no">verify!()</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Verifies that all the plugs expected to be executed within any scope have been executed.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#verify!/1" data-no-tooltip="" translate="no">verify!(name)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Verifies that all the plugs expected to be executed within the scope of <code class="inline">name</code> have been
+executed.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#verify_on_exit!/1" data-no-tooltip="" translate="no">verify_on_exit!(context \\ %{})</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Sets an ExUnit callback to verify the expectations on exit.</p></div>
+
+    </div>
+
+</div>
+
+  </section>
+
+
+  <section id="functions" class="details-list">
+    <h2 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Functions</span>
+    </h2>
+
+    <div class="functions-list">
+<section class="detail" id="html/2">
+
+  <div class="detail-header">
+    <a href="#html/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">html(conn, data)</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/req/test.ex#L255" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> html(<a href="https://hexdocs.pm/plug/1.16.1/Plug.Conn.html#t:t/0">Plug.Conn.t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">iodata</a>()) :: <a href="https://hexdocs.pm/plug/1.16.1/Plug.Conn.html#t:t/0">Plug.Conn.t</a>()</pre>
+
+      </div>
+
+<p>Sends HTML response.</p><h2 id="html/2-examples" class="section-heading"><a href="#html/2-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Examples</span></h2><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">plug</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k" data-group-id="9230136373-1">fn</span><span class="w"> </span><span class="n">conn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="nc">Req.Test</span><span class="o">.</span><span class="n">html</span><span class="p" data-group-id="9230136373-2">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&lt;h1&gt;Hello, World!&lt;/h1&gt;&quot;</span><span class="p" data-group-id="9230136373-2">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="k" data-group-id="9230136373-1">end</span><span class="w">
+</span><span class="gp unselectable">iex&gt;</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">resp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="9230136373-3">(</span><span class="ss">plug</span><span class="p">:</span><span class="w"> </span><span class="n">plug</span><span class="p" data-group-id="9230136373-3">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">resp</span><span class="o">.</span><span class="n">headers</span><span class="p" data-group-id="9230136373-4">[</span><span class="s">&quot;content-type&quot;</span><span class="p" data-group-id="9230136373-4">]</span><span class="w">
+</span><span class="p" data-group-id="9230136373-5">[</span><span class="s">&quot;text/html; charset=utf-8&quot;</span><span class="p" data-group-id="9230136373-5">]</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">resp</span><span class="o">.</span><span class="n">body</span><span class="w">
+</span><span class="s">&quot;&lt;h1&gt;Hello, World!&lt;/h1&gt;&quot;</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="json/2">
+
+  <div class="detail-header">
+    <a href="#json/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">json(conn, data)</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/req/test.ex#L203" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> json(<a href="https://hexdocs.pm/plug/1.16.1/Plug.Conn.html#t:t/0">Plug.Conn.t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()) :: <a href="https://hexdocs.pm/plug/1.16.1/Plug.Conn.html#t:t/0">Plug.Conn.t</a>()</pre>
+
+      </div>
+
+<p>Sends JSON response.</p><h2 id="json/2-examples" class="section-heading"><a href="#json/2-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Examples</span></h2><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">plug</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k" data-group-id="8561863429-1">fn</span><span class="w"> </span><span class="n">conn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="nc">Req.Test</span><span class="o">.</span><span class="n">json</span><span class="p" data-group-id="8561863429-2">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8561863429-3">%{</span><span class="ss">celsius</span><span class="p">:</span><span class="w"> </span><span class="mf">25.0</span><span class="p" data-group-id="8561863429-3">}</span><span class="p" data-group-id="8561863429-2">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="k" data-group-id="8561863429-1">end</span><span class="w">
+</span><span class="gp unselectable">iex&gt;</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">resp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="8561863429-4">(</span><span class="ss">plug</span><span class="p">:</span><span class="w"> </span><span class="n">plug</span><span class="p" data-group-id="8561863429-4">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">resp</span><span class="o">.</span><span class="n">headers</span><span class="p" data-group-id="8561863429-5">[</span><span class="s">&quot;content-type&quot;</span><span class="p" data-group-id="8561863429-5">]</span><span class="w">
+</span><span class="p" data-group-id="8561863429-6">[</span><span class="s">&quot;application/json; charset=utf-8&quot;</span><span class="p" data-group-id="8561863429-6">]</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">resp</span><span class="o">.</span><span class="n">body</span><span class="w">
+</span><span class="p" data-group-id="8561863429-7">%{</span><span class="s">&quot;celsius&quot;</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="mf">25.0</span><span class="p" data-group-id="8561863429-7">}</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="raw_body/1">
+
+  <div class="detail-header">
+    <a href="#raw_body/1" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">raw_body(conn)</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/req/test.ex#L782" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> raw_body(<a href="https://hexdocs.pm/plug/1.16.1/Plug.Conn.html#t:t/0">Plug.Conn.t</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">iodata</a>()</pre>
+
+      </div>
+
+<p>Reads the raw request body from a plug request.</p><h2 id="raw_body/1-examples" class="section-heading"><a href="#raw_body/1-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Examples</span></h2><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">echo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k" data-group-id="9636106543-1">fn</span><span class="w"> </span><span class="n">conn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="n">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req.Test</span><span class="o">.</span><span class="n">raw_body</span><span class="p" data-group-id="9636106543-2">(</span><span class="n">conn</span><span class="p" data-group-id="9636106543-2">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="nc">Plug.Conn</span><span class="o">.</span><span class="n">send_resp</span><span class="p" data-group-id="9636106543-3">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="n">body</span><span class="p" data-group-id="9636106543-3">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="k" data-group-id="9636106543-1">end</span><span class="w">
+</span><span class="gp unselectable">iex&gt;</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">resp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">post!</span><span class="p" data-group-id="9636106543-4">(</span><span class="ss">plug</span><span class="p">:</span><span class="w"> </span><span class="n">echo</span><span class="p">,</span><span class="w"> </span><span class="ss">json</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="9636106543-5">%{</span><span class="ss">hello</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;world&quot;</span><span class="p" data-group-id="9636106543-5">}</span><span class="p" data-group-id="9636106543-4">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">resp</span><span class="o">.</span><span class="n">body</span><span class="w">
+</span><span class="s">&quot;{</span><span class="se">\&quot;</span><span class="s">hello</span><span class="se">\&quot;</span><span class="s">:</span><span class="se">\&quot;</span><span class="s">world</span><span class="se">\&quot;</span><span class="s">}&quot;</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="redirect/2">
+
+  <div class="detail-header">
+    <a href="#redirect/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">redirect(conn, opts)</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/req/test.ex#L340" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+<p>Sends redirect response to the given url.</p><p>This function is adapted from <a href="https://hexdocs.pm/phoenix/Phoenix.Controller.html#redirect/2"><code class="inline">Phoenix.Controller.redirect/2</code></a>.</p><p>For security, <code class="inline">:to</code> only accepts paths. Use the <code class="inline">:external</code>
+option to redirect to any URL.</p><p>The response will be sent with the status code defined within
+the connection, via <a href="https://hexdocs.pm/plug/1.16.1/Plug.Conn.html#put_status/2"><code class="inline">Plug.Conn.put_status/2</code></a>. If no status
+code is set, a 302 response is sent.</p><h2 id="redirect/2-examples" class="section-heading"><a href="#redirect/2-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Examples</span></h2><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">plug</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k" data-group-id="1621088637-1">fn</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="n">conn</span><span class="w"> </span><span class="ow">when</span><span class="w"> </span><span class="n">conn</span><span class="o">.</span><span class="n">request_path</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="no">nil</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">    </span><span class="nc">Req.Test</span><span class="o">.</span><span class="n">redirect</span><span class="p" data-group-id="1621088637-2">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="ss">to</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/hello&quot;</span><span class="p" data-group-id="1621088637-2">)</span><span class="w">
+</span><span class="gp unselectable">...&gt;</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="n">conn</span><span class="w"> </span><span class="ow">when</span><span class="w"> </span><span class="n">conn</span><span class="o">.</span><span class="n">request_path</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;/hello&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">    </span><span class="nc">Req.Test</span><span class="o">.</span><span class="n">text</span><span class="p" data-group-id="1621088637-3">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Hello, World!&quot;</span><span class="p" data-group-id="1621088637-3">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="k" data-group-id="1621088637-1">end</span><span class="w">
+</span><span class="gp unselectable">iex&gt;</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">resp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="1621088637-4">(</span><span class="ss">plug</span><span class="p">:</span><span class="w"> </span><span class="n">plug</span><span class="p">,</span><span class="w"> </span><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http://example.com&quot;</span><span class="p" data-group-id="1621088637-4">)</span><span class="w">
+</span><span class="c1"># 14:53:06.101 [debug] redirecting to /hello</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">resp</span><span class="o">.</span><span class="n">body</span><span class="w">
+</span><span class="s">&quot;Hello, World!&quot;</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="text/2">
+
+  <div class="detail-header">
+    <a href="#text/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">text(conn, data)</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/req/test.ex#L292" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> text(<a href="https://hexdocs.pm/plug/1.16.1/Plug.Conn.html#t:t/0">Plug.Conn.t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">iodata</a>()) :: <a href="https://hexdocs.pm/plug/1.16.1/Plug.Conn.html#t:t/0">Plug.Conn.t</a>()</pre>
+
+      </div>
+
+<p>Sends text response.</p><h2 id="text/2-examples" class="section-heading"><a href="#text/2-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Examples</span></h2><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">plug</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k" data-group-id="4270118365-1">fn</span><span class="w"> </span><span class="n">conn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="nc">Req.Test</span><span class="o">.</span><span class="n">text</span><span class="p" data-group-id="4270118365-2">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Hello, World!&quot;</span><span class="p" data-group-id="4270118365-2">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="k" data-group-id="4270118365-1">end</span><span class="w">
+</span><span class="gp unselectable">iex&gt;</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">resp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="4270118365-3">(</span><span class="ss">plug</span><span class="p">:</span><span class="w"> </span><span class="n">plug</span><span class="p" data-group-id="4270118365-3">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">resp</span><span class="o">.</span><span class="n">headers</span><span class="p" data-group-id="4270118365-4">[</span><span class="s">&quot;content-type&quot;</span><span class="p" data-group-id="4270118365-4">]</span><span class="w">
+</span><span class="p" data-group-id="4270118365-5">[</span><span class="s">&quot;text/plain; charset=utf-8&quot;</span><span class="p" data-group-id="4270118365-5">]</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">resp</span><span class="o">.</span><span class="n">body</span><span class="w">
+</span><span class="s">&quot;Hello, World!&quot;</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="transport_error/2">
+
+  <div class="detail-header">
+    <a href="#transport_error/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">transport_error(conn, reason)</h1>
+
+        <span class="note">(since 0.5.0)</span>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/req/test.ex#L415" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> transport_error(<a href="https://hexdocs.pm/plug/1.16.1/Plug.Conn.html#t:t/0">Plug.Conn.t</a>(), reason :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()) :: <a href="https://hexdocs.pm/plug/1.16.1/Plug.Conn.html#t:t/0">Plug.Conn.t</a>()</pre>
+
+      </div>
+
+<p>Simulates a network transport error.</p><h2 id="transport_error/2-examples" class="section-heading"><a href="#transport_error/2-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Examples</span></h2><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">plug</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k" data-group-id="8309241047-1">fn</span><span class="w"> </span><span class="n">conn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="nc">Req.Test</span><span class="o">.</span><span class="n">transport_error</span><span class="p" data-group-id="8309241047-2">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="ss">:timeout</span><span class="p" data-group-id="8309241047-2">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="k" data-group-id="8309241047-1">end</span><span class="w">
+</span><span class="gp unselectable">iex&gt;</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get</span><span class="p" data-group-id="8309241047-3">(</span><span class="ss">plug</span><span class="p">:</span><span class="w"> </span><span class="n">plug</span><span class="p">,</span><span class="w"> </span><span class="ss">retry</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="p" data-group-id="8309241047-3">)</span><span class="w">
+</span><span class="p" data-group-id="8309241047-4">{</span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="8309241047-5">%</span><span class="nc" data-group-id="8309241047-5">Req.TransportError</span><span class="p" data-group-id="8309241047-5">{</span><span class="ss">reason</span><span class="p">:</span><span class="w"> </span><span class="ss">:timeout</span><span class="p" data-group-id="8309241047-5">}</span><span class="p" data-group-id="8309241047-4">}</span></code></pre>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+  <section id="functions-mocks-stubs" class="details-list">
+    <h2 class="section-heading">
+      <a class="hover-link" href="#functions-mocks-stubs">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Functions (Mocks & Stubs)</span>
+    </h2>
+
+    <div class="functions-mocks-stubs-list">
+<section class="detail" id="allow/3">
+
+  <div class="detail-header">
+    <a href="#allow/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">allow(name, owner, pid_to_allow)</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/req/test.ex#L611" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> allow(name(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">pid</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">pid</a>() | (-&gt; <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">pid</a>())) :: :ok | {:error, <a href="https://hexdocs.pm/elixir/Exception.html#t:t/0">Exception.t</a>()}</pre>
+
+      </div>
+
+<p>Allows <code class="inline">pid_to_allow</code> to access <code class="inline">name</code> provided that <code class="inline">owner</code> is already allowed.</p>
+  </section>
+</section>
+<section class="detail" id="expect/3">
+
+    <span id="expect/2"></span>
+
+  <div class="detail-header">
+    <a href="#expect/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">expect(name, n \\ 1, plug)</h1>
+
+        <span class="note">(since 0.4.15)</span>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/req/test.ex#L595" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> expect(name(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">pos_integer</a>(), plug()) :: name()</pre>
+
+      </div>
+
+<p>Creates a request expectation with the given <code class="inline">name</code> and <code class="inline">plug</code>, expected to be fetched at
+most <code class="inline">n</code> times, <strong>in order</strong>.</p><p>This function allows you to expect a <code class="inline">n</code> number of request and handle them <strong>in order</strong> via the
+given <code class="inline">plug</code>. It is safe to use in concurrent tests. If you fetch the value under <code class="inline">name</code> more
+than <code class="inline">n</code> times, this function raises a <a href="https://hexdocs.pm/elixir/RuntimeError.html"><code class="inline">RuntimeError</code></a>.</p><p>The <code class="inline">name</code> can be any term.</p><p>The <code class="inline">plug</code> can be one of:</p><ul><li><p>A <em>function</em> plug: a <code class="inline">fun(conn)</code> or <code class="inline">fun(conn, options)</code> function that takes a
+<a href="https://hexdocs.pm/plug/1.16.1/Plug.Conn.html"><code class="inline">Plug.Conn</code></a> and returns a <a href="https://hexdocs.pm/plug/1.16.1/Plug.Conn.html"><code class="inline">Plug.Conn</code></a>.</p></li><li><p>A <em>module</em> plug: a <code class="inline">module</code> name or a <code class="inline">{module, options}</code> tuple.</p></li></ul><p>See <a href="#stub/2"><code class="inline">stub/2</code></a> and module documentation for more information.</p><p><a href="#verify_on_exit!/1"><code class="inline">verify_on_exit!/1</code></a> can be used to ensure that all defined expectations have been called.</p><h2 id="expect/3-examples" class="section-heading"><a href="#expect/3-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Examples</span></h2><p>Let's simulate a server that is having issues: on the first request it is not responding
+and on the following two requests it returns an HTTP 500. Only on the third request it returns
+an HTTP 200. Req by default automatically retries transient errors (using <a href="Req.Steps.html#retry/1"><code class="inline">Req.Steps.retry/1</code></a>)
+so it will make multiple requests exercising all of our request expectations:</p><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Test</span><span class="o">.</span><span class="n">expect</span><span class="p" data-group-id="3431751835-1">(</span><span class="nc">MyStub</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="nc">Req.Test</span><span class="o">.</span><span class="n">transport_error</span><span class="p" data-group-id="3431751835-2">(</span><span class="ni">&amp;1</span><span class="p">,</span><span class="w"> </span><span class="ss">:econnrefused</span><span class="p" data-group-id="3431751835-2">)</span><span class="p" data-group-id="3431751835-1">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Test</span><span class="o">.</span><span class="n">expect</span><span class="p" data-group-id="3431751835-3">(</span><span class="nc">MyStub</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="nc">Plug.Conn</span><span class="o">.</span><span class="n">send_resp</span><span class="p" data-group-id="3431751835-4">(</span><span class="ni">&amp;1</span><span class="p">,</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;internal server error&quot;</span><span class="p" data-group-id="3431751835-4">)</span><span class="p" data-group-id="3431751835-3">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Test</span><span class="o">.</span><span class="n">expect</span><span class="p" data-group-id="3431751835-5">(</span><span class="nc">MyStub</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="nc">Plug.Conn</span><span class="o">.</span><span class="n">send_resp</span><span class="p" data-group-id="3431751835-6">(</span><span class="ni">&amp;1</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ok&quot;</span><span class="p" data-group-id="3431751835-6">)</span><span class="p" data-group-id="3431751835-5">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="3431751835-7">(</span><span class="ss">plug</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3431751835-8">{</span><span class="nc">Req.Test</span><span class="p">,</span><span class="w"> </span><span class="nc">MyStub</span><span class="p" data-group-id="3431751835-8">}</span><span class="p" data-group-id="3431751835-7">)</span><span class="o">.</span><span class="n">body</span><span class="w">
+</span><span class="c1"># 15:57:06.309 [warning] retry: got exception, will retry in 1000ms, 3 attempts left</span><span class="w">
+</span><span class="c1"># 15:57:06.309 [warning] ** (Req.TransportError) connection refused</span><span class="w">
+</span><span class="c1"># 15:57:07.310 [warning] retry: got response with status 500, will retry in 2000ms, 2 attempts left</span><span class="w">
+</span><span class="c1"># 15:57:09.311 [warning] retry: got response with status 500, will retry in 4000ms, 1 attempt left</span><span class="w">
+</span><span class="s">&quot;ok&quot;</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">request!</span><span class="p" data-group-id="3431751835-9">(</span><span class="ss">plug</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3431751835-10">{</span><span class="nc">Req.Test</span><span class="p">,</span><span class="w"> </span><span class="nc">MyStub</span><span class="p" data-group-id="3431751835-10">}</span><span class="p" data-group-id="3431751835-9">)</span><span class="w">
+</span><span class="gt">** (RuntimeError) no mock or stub for MyStub</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="set_req_test_from_context/1">
+
+    <span id="set_req_test_from_context/0"></span>
+
+  <div class="detail-header">
+    <a href="#set_req_test_from_context/1" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">set_req_test_from_context(context \\ %{})</h1>
+
+        <span class="note">(since 0.5.0)</span>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/req/test.ex#L648" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> set_req_test_from_context(ex_unit_context :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()) :: :ok</pre>
+
+      </div>
+
+<p>Sets the <a href="Req.Test.html"><code class="inline">Req.Test</code></a> mode based on the given <a href="https://hexdocs.pm/ex_unit/ExUnit.html"><code class="inline">ExUnit</code></a> context.</p><p>This works as an ExUnit callback:</p><pre><code class="makeup elixir" translate="no"><span class="n">setup</span><span class="w"> </span><span class="ss">:set_req_test_from_context</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="set_req_test_to_private/1">
+
+    <span id="set_req_test_to_private/0"></span>
+
+  <div class="detail-header">
+    <a href="#set_req_test_to_private/1" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">set_req_test_to_private(context \\ %{})</h1>
+
+        <span class="note">(since 0.5.0)</span>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/req/test.ex#L633" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> set_req_test_to_private(ex_unit_context :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()) :: :ok</pre>
+
+      </div>
+
+<p>Sets the <a href="Req.Test.html"><code class="inline">Req.Test</code></a> mode to &quot;private&quot;, meaning that stubs can be shared across
+tests concurrently.</p>
+  </section>
+</section>
+<section class="detail" id="set_req_test_to_shared/1">
+
+    <span id="set_req_test_to_shared/0"></span>
+
+  <div class="detail-header">
+    <a href="#set_req_test_to_shared/1" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">set_req_test_to_shared(context \\ %{})</h1>
+
+        <span class="note">(since 0.5.0)</span>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/req/test.ex#L622" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> set_req_test_to_shared(ex_unit_context :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()) :: :ok</pre>
+
+      </div>
+
+<p>Sets the <a href="Req.Test.html"><code class="inline">Req.Test</code></a> mode to &quot;global&quot;, meaning that the stubs are shared across all tests
+and cannot be used concurrently.</p>
+  </section>
+</section>
+<section class="detail" id="stub/2">
+
+  <div class="detail-header">
+    <a href="#stub/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">stub(name, plug)</h1>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/req/test.ex#L541" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> stub(name(), plug()) :: :ok</pre>
+
+      </div>
+
+<p>Creates a request stub with the given <code class="inline">name</code> and <code class="inline">plug</code>.</p><p>Req allows running requests against <em>plugs</em> (instead of over the network) using the
+<a href="Req.Steps.html#run_plug/1"><code class="inline">:plug</code></a> option. However, passing the <code class="inline">:plug</code> value throughout the
+system can be cumbersome. Instead, you can tell Req to find plugs by <code class="inline">name</code> by setting
+<code class="inline">plug: {Req.Test, name}</code>, and register plug stubs for that <code class="inline">name</code> by calling
+<code class="inline">Req.Test.stub(name, plug)</code>. In other words, multiple concurrent tests can register test stubs
+under the same <code class="inline">name</code>, and when Req makes the request, it will find the appropriate
+implementation, even when invoked from different processes than the test process.</p><p>The <code class="inline">name</code> can be any term.</p><p>The <code class="inline">plug</code> can be one of:</p><ul><li><p>A <em>function</em> plug: a <code class="inline">fun(conn)</code> or <code class="inline">fun(conn, options)</code> function that takes a
+<a href="https://hexdocs.pm/plug/1.16.1/Plug.Conn.html"><code class="inline">Plug.Conn</code></a> and returns a <a href="https://hexdocs.pm/plug/1.16.1/Plug.Conn.html"><code class="inline">Plug.Conn</code></a>.</p></li><li><p>A <em>module</em> plug: a <code class="inline">module</code> name or a <code class="inline">{module, options}</code> tuple.</p></li></ul><h2 id="stub/2-examples" class="section-heading"><a href="#stub/2-examples" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i></a><span class="text">Examples</span></h2><pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="nc">Req.Test</span><span class="o">.</span><span class="n">stub</span><span class="p" data-group-id="3463089231-1">(</span><span class="nc">MyStub</span><span class="p">,</span><span class="w"> </span><span class="k" data-group-id="3463089231-2">fn</span><span class="w"> </span><span class="n">conn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="n">send</span><span class="p" data-group-id="3463089231-3">(</span><span class="n">self</span><span class="p" data-group-id="3463089231-4">(</span><span class="p" data-group-id="3463089231-4">)</span><span class="p">,</span><span class="w"> </span><span class="ss">:req_happened</span><span class="p" data-group-id="3463089231-3">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="nc">Req.Test</span><span class="o">.</span><span class="n">json</span><span class="p" data-group-id="3463089231-5">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="3463089231-6">%{</span><span class="p" data-group-id="3463089231-6">}</span><span class="p" data-group-id="3463089231-5">)</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="k" data-group-id="3463089231-2">end</span><span class="p" data-group-id="3463089231-1">)</span><span class="w">
+</span><span class="ss">:ok</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Req</span><span class="o">.</span><span class="n">get!</span><span class="p" data-group-id="3463089231-7">(</span><span class="ss">plug</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3463089231-8">{</span><span class="nc">Req.Test</span><span class="p">,</span><span class="w"> </span><span class="nc">MyStub</span><span class="p" data-group-id="3463089231-8">}</span><span class="p" data-group-id="3463089231-7">)</span><span class="o">.</span><span class="n">body</span><span class="w">
+</span><span class="p" data-group-id="3463089231-9">%{</span><span class="p" data-group-id="3463089231-9">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="k">receive</span><span class="w"> </span><span class="k" data-group-id="3463089231-10">do</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="w">  </span><span class="ss">:req_happened</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="ss">:ok</span><span class="w">
+</span><span class="gp unselectable">...&gt; </span><span class="k" data-group-id="3463089231-10">end</span><span class="w">
+</span><span class="ss">:ok</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="verify!/0">
+
+  <div class="detail-header">
+    <a href="#verify!/0" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">verify!()</h1>
+
+        <span class="note">(since 0.5.0)</span>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/req/test.ex#L682" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> verify!() :: :ok</pre>
+
+      </div>
+
+<p>Verifies that all the plugs expected to be executed within any scope have been executed.</p>
+  </section>
+</section>
+<section class="detail" id="verify!/1">
+
+  <div class="detail-header">
+    <a href="#verify!/1" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">verify!(name)</h1>
+
+        <span class="note">(since 0.5.0)</span>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/req/test.ex#L693" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> verify!(name()) :: :ok</pre>
+
+      </div>
+
+<p>Verifies that all the plugs expected to be executed within the scope of <code class="inline">name</code> have been
+executed.</p>
+  </section>
+</section>
+<section class="detail" id="verify_on_exit!/1">
+
+    <span id="verify_on_exit!/0"></span>
+
+  <div class="detail-header">
+    <a href="#verify_on_exit!/1" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">verify_on_exit!(context \\ %{})</h1>
+
+        <span class="note">(since 0.5.0)</span>
+
+
+        <a href="https://github.com/wojtekmach/req/blob/v0.6.0-dev/lib/req/test.ex#L666" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> verify_on_exit!(<a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()) :: :ok</pre>
+
+      </div>
+
+<p>Sets an ExUnit callback to verify the expectations on exit.</p><p>Similar to calling <a href="#verify!/0"><code class="inline">verify!/0</code></a> at the end of your test.</p><p>This works as an ExUnit callback:</p><pre><code class="makeup elixir" translate="no"><span class="n">setup</span><span class="w"> </span><span class="p" data-group-id="7751106526-1">{</span><span class="nc">Req.Test</span><span class="p">,</span><span class="w"> </span><span class="ss">:verify_on_exit!</span><span class="p" data-group-id="7751106526-1">}</span></code></pre>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+    <footer class="footer">
+
+        <p>
+
+            <span class="line">
+              <a href="https://hex.pm/packages/req/0.6.0-dev">Hex Package</a>
+
+              <a href="https://preview.hex.pm/preview/req/0.6.0-dev">Hex Preview</a>
+
+            </span>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Go to package docs">
+              Go to package docs
+            </button>
+
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.40.1) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+
+
+    </footer>
+  </div>
+</main>
+</div>
+
+  </body>
+</html>

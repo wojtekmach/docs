@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.40.1">
+    <meta name="project" content="req v0.6.0-dev">
+
+
+    <title>API Reference — req v0.6.0-dev</title>
+
+    <link rel="stylesheet" href="dist/html-elixir-YJO4MOOW.css" />
+
+    <script defer src="dist/sidebar_items-5C2416C1.js"></script>
+    <script defer src="docs_config.js"></script>
+    <script defer src="dist/html-YU4BZFVS.js"></script>
+
+  </head>
+  <body>
+    <script>(()=>{var t="ex_doc:settings",e="dark";var o="dark",s="light";var E="sidebar_state",n="closed";var r="sidebar_width";var a="sidebar-open";var i=new URLSearchParams(window.location.search),S=i.get("theme")||JSON.parse(localStorage.getItem(t)||"{}").theme;(S===o||S!==s&&window.matchMedia("(prefers-color-scheme: dark)").matches)&&document.body.classList.add(e);var d=sessionStorage.getItem(E),A=d!==n&&!window.matchMedia(`screen and (max-width: ${768}px)`).matches;document.body.classList.toggle(a,A);var c=sessionStorage.getItem(r);c&&document.body.style.setProperty("--sidebarWidth",`${c}px`);var p=/(Macintosh|iPhone|iPad|iPod)/.test(window.navigator.userAgent);document.documentElement.classList.toggle("apple-os",p);})();
+</script>
+
+<div class="body-wrapper">
+
+<button id="sidebar-menu" class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
+
+      <div>
+        <a href="readme.html" class="sidebar-projectName" translate="no">
+req
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v0.6.0-dev
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-list-nav" class="sidebar-list-nav" role="tablist" data-extras="Pages"></ul>
+  </div>
+</nav>
+
+<output role="status" id="toast"></output>
+
+<main class="content page-extra" id="main" data-type="extras">
+  <div id="content" class="content-inner">
+    <div class="top-search">
+      <div class="search-settings">
+        <form class="search-bar" action="search.html">
+          <label class="search-label">
+            <span class="sr-only">Search documentation of req</span>
+            <div class="search-input-wrapper">
+              <input name="q" type="text" class="search-input" placeholder="Press / to search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+              <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+                <i class="ri-close-line ri-lg" title="Cancel search"></i>
+              </button>
+            </div>
+          </label>
+        </form>
+        <div class="autocomplete">
+        </div>
+        <div class="engine-selector" data-multiple="false">
+          <button type="button" class="engine-button" aria-label="Select search engine" aria-haspopup="true" aria-expanded="false">
+            <i class="ri-search-2-line" aria-hidden="true"></i>
+            <span class="engine-name">Default</span>
+            <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+          </button>
+          <div class="engine-dropdown" hidden role="menu">
+
+              <button type="button"
+                      class="engine-option"
+                      data-engine-url="search.html?q="
+                      role="menuitemradio"
+                      aria-checked="true">
+                <span class="name">Default</span>
+                <span class="help">In-browser search</span>
+              </button>
+
+          </div>
+        </div>
+        <button class="icon-settings display-settings">
+          <i class="ri-settings-3-line"></i>
+          <span class="sr-only">Settings</span>
+        </button>
+      </div>
+    </div>
+
+<div id="top-content">
+  <div class="heading-with-actions top-heading">
+    <h1>API Reference <small class="app-vsn">req v#0.6.0-dev</small></h1>
+
+
+      <a href="https://github.com/wojtekmach/req" title="View Source" class="icon-action" rel="help">
+        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        <span class="sr-only">View Source</span>
+      </a>
+
+  </div>
+
+    <section class="details-list">
+      <h2 id="modules" class="section-heading">Modules</h2>
+      <div class="summary">
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Req.html" translate="no">Req</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>TODO</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Req.Adapter.html" translate="no">Req.<wbr>Adapter</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Behaviour for Req adapters — the modules that perform the actual HTTP request.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Req.ArchiveError.html" translate="no">Req.<wbr>ArchiveError</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Represents an error when unpacking archives fails, returned by <a href="Req.Steps.html#decode_body/1"><code class="inline">Req.Steps.decode_body/1</code></a>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Req.Auth.html" translate="no">Req.<wbr>Auth</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Uses Basic, Digest, or Bearer authentication.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Req.Builder.html" translate="no">Req.<wbr>Builder</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Conveniences for building Req plug pipelines at compile time.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Req.ChecksumMismatchError.html" translate="no">Req.<wbr>ChecksumMismatchError</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Represents a checksum mismatch error returned by <a href="Req.Steps.html#checksum/1"><code class="inline">Req.Steps.checksum/1</code></a>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Req.Compressed.html" translate="no">Req.<wbr>Compressed</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Asks the server to gzip the response by setting <code class="inline">accept-encoding: gzip</code>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Req.Conn.html" translate="no">Req.<wbr>Conn</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The Req connection struct.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Req.Conn.Headers.html" translate="no">Req.<wbr>Conn.<wbr>Headers</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Opaque container for Req request/response headers and trailers.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Req.Decode.html" translate="no">Req.<wbr>Decode</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Decodes the response body based on the <code class="inline">content-type</code> response header.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Req.Decoder.html" translate="no">Req.<wbr>Decoder</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Behaviour for response body decoders.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Req.Decompress.html" translate="no">Req.<wbr>Decompress</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Decompresses the response body when the <code class="inline">content-encoding</code> header is <code class="inline">gzip</code>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Req.DecompressError.html" translate="no">Req.<wbr>DecompressError</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Represents an error when decompression fails, returned by <a href="Req.Steps.html#decompress_body/1"><code class="inline">Req.Steps.decompress_body/1</code></a>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Req.Encode.html" translate="no">Req.<wbr>Encode</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Encodes the request body.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Req.EventStream.html" translate="no">Req.<wbr>EventStream</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Server-Sent Events decoder.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Req.ExpectStatus.html" translate="no">Req.<wbr>ExpectStatus</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Asserts the response status matches the expected status code or range.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Req.FinchAdapter.html" translate="no">Req.<wbr>FinchAdapter</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Req adapter that uses <a href="https://hex.pm/packages/finch">Finch</a>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Req.HTTPCAdapter.html" translate="no">Req.<wbr>HTTPCAdapter</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Req adapter that uses Erlang's <a href="https://www.erlang.org/doc/apps/inets/httpc.html"><code class="inline">:httpc</code></a>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Req.HTTPError.html" translate="no">Req.<wbr>HTTPError</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Represents an HTTP protocol error.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Req.JSON.html" translate="no">Req.<wbr>JSON</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>JSON decoder.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Req.Logger.html" translate="no">Req.<wbr>Logger</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Logs the request method, URL, response, and elapsed time.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Req.MintAdapter.html" translate="no">Req.<wbr>MintAdapter</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Req adapter that uses <a href="https://hex.pm/packages/mint">Mint</a>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Req.NDJSON.html" translate="no">Req.<wbr>NDJSON</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>NDJSON / JSON Lines decoder.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Req.Options.html" translate="no">Req.<wbr>Options</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Functions for validating and documenting options.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Req.Plug.html" translate="no">Req.<wbr>Plug</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Behaviour for Req pipeline plug modules.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Req.Plug.Wrapper.html" translate="no">Req.<wbr>Plug.<wbr>Wrapper</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Behaviour for plugs that wrap the rest of the pipeline.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Req.PlugAdapter.html" translate="no">Req.<wbr>PlugAdapter</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Req adapter that uses a server <a href="https://hexdocs.pm/plug/1.16.1/Plug.html"><code class="inline">Plug</code></a>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Req.Redirect.html" translate="no">Req.<wbr>Redirect</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Follows HTTP redirects.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Req.Request.html" translate="no">Req.<wbr>Request</a>
+
+      <span class="deprecated" title="See &quot;Upgrading to Req v0.6&quot; in the README">deprecated</span>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The low-level API and the request struct.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Req.Response.html" translate="no">Req.<wbr>Response</a>
+
+      <span class="deprecated" title="See &quot;Upgrading to Req v0.6&quot; in the README">deprecated</span>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The response struct.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Req.Response.Async.html" translate="no">Req.<wbr>Response.<wbr>Async</a>
+
+      <span class="deprecated" title="See &quot;Upgrading to Req v0.6&quot; in the README">deprecated</span>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Asynchronous response body.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Req.Retry.html" translate="no">Req.<wbr>Retry</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Retries the request on one of</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Req.Steps.html" translate="no">Req.<wbr>Steps</a>
+
+      <span class="deprecated" title="See &quot;Upgrading to Req v0.6&quot; in the README">deprecated</span>
+
+  </div>
+
+    <div class="summary-synopsis"><p>The collection of built-in steps.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Req.Test.html" translate="no">Req.<wbr>Test</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Req testing conveniences.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Req.Test.OwnershipError.html" translate="no">Req.<wbr>Test.<wbr>OwnershipError</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Req.TooManyRedirectsError.html" translate="no">Req.<wbr>TooManyRedirectsError</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Represents an error when too many redirects occurred, returned by <a href="Req.Steps.html#redirect/1"><code class="inline">Req.Steps.redirect/1</code></a>.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Req.TransportError.html" translate="no">Req.<wbr>TransportError</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>Represents an error with the transport used by an HTTP connection.</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Req.UnexpectedStatusError.html" translate="no">Req.<wbr>UnexpectedStatusError</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>An exception returned when the response has an unexpected status.</p></div>
+
+</div>
+
+      </div>
+    </section>
+
+
+</div>
+    <footer class="footer">
+
+        <p>
+
+            <span class="line">
+              <a href="https://hex.pm/packages/req/0.6.0-dev">Hex Package</a>
+
+              <a href="https://preview.hex.pm/preview/req/0.6.0-dev">Hex Preview</a>
+
+            </span>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Go to package docs">
+              Go to package docs
+            </button>
+
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.40.1) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+
+
+    </footer>
+  </div>
+</main>
+</div>
+
+  </body>
+</html>
